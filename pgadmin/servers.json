@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Local PostgreSQL",
+      "Group": "Servers",
+      "Host": "db",
+      "Port": 5432,
+      "Username": "el_shopper",
+      "SSLMode": "prefer",
+      "PassFile": "/pgpass",
+      "MaintenanceDB": "shopping-app"
+    }
+  }
+}

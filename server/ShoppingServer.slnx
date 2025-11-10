@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ShoppingServer.Database/ShoppingServer.Database.csproj" />
+  <Project Path="ShoppingServer/ShoppingServer.csproj" />
+</Solution>
