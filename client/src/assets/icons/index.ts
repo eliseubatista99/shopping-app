@@ -1,15 +1,17 @@
+import Basket from "./basket.svg";
 import Close from "./close.svg";
 import CloseBlack from "./close_dark.svg";
-import ExternalLink from "./externalLink.svg";
 import Hamburger from "./hamburguer.svg";
-import Logo from "./logo.png";
+import Home from "./home.svg";
+import Person from "./person.svg";
 
 export const Icons = {
+  Home,
   Hamburger,
-  Logo,
+  Person,
   Close: {
     Black: CloseBlack,
     White: Close,
   },
-  ExternalLink,
+  Basket,
 };

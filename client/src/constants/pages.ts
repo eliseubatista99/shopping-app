@@ -1,4 +1,7 @@
 export enum Pages {
-  home = "/",
-  projects = "/projects",
+  splash = "/",
+  home = "/home",
+  forYou = "/for-you",
+  basket = "/basket",
+  explore = "/explore",
 }

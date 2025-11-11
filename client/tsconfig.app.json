@@ -10,7 +10,8 @@
       "@modals": ["src/modals"],
       "@screens": ["src/screens"],
       "@store": ["src/store"],
-      "@types": ["src/types"]
+      "@types": ["src/types"],
+      "@services": ["src/services"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",

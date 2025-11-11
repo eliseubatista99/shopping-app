@@ -18,13 +18,7 @@ export const App = () => {
 
   console.log("RESULT", users);
 
-  return (
-    <>
-      {users.map((u) => (
-        <p>{u.nome}</p>
-      ))}
-    </>
-  );
+  return <></>;
 };
 
 export default App;

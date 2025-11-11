@@ -1,13 +1,13 @@
 import { useTranslations } from "@eliseubatista99/react-scaffold-core";
 import { AppResources } from "@resources";
-import { useBaseStore } from "@store";
+import { useStoreBase } from "@store";
 
 export const useAppTranslations = () => {
   const translations = AppResources.Translations;
-  const language = useBaseStore((state) => state.language);
+  const { storeBase } = useStoreBase();
 
   const { t, getTranslation } = useTranslations({
-    language,
+    language: storeBase.language,
     translations,
   });
 
