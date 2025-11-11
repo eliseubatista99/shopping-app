@@ -6,6 +6,8 @@ import { ChipMobile } from "./chip.mobile";
 export interface ChipProps {
   onClick?: () => void;
   text: string;
+  leftContent?: React.ReactNode;
+  rightContent?: React.ReactNode;
   styles?: React.CSSProperties;
 }
 

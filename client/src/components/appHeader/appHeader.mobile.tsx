@@ -14,7 +14,12 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
   return (
     <div
       data-testid="app-header"
-      style={{ width: "100%", justifyContent: "center", alignItems: "center" }}
+      style={{
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "12px",
+      }}
     >
       <AppSearchBar
         name={searchBarInputName}

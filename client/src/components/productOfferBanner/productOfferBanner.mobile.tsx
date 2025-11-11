@@ -9,8 +9,6 @@ export const ProductOfferBannerMobile: React.FC<ProductOfferBannerProps> = (
   const { i18n } = useProductOfferBannerHelper(props);
   const { onClick } = props;
 
-  console.log("ZAU", i18n);
-
   return (
     <div
       data-testid="product-offer-banner"
