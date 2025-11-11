@@ -1,17 +1,5 @@
 import { useCallback } from "react";
-
-export type AddressDto = {
-  postalCode: string;
-  city: string;
-  street: string;
-  country: string;
-  countryCode: string;
-};
-
-export type ClientInfoDto = {
-  name: string;
-  address: AddressDto;
-};
+import type { ClientInfoDto } from "../types";
 
 export type ClientInfoOutputDto = {
   client: ClientInfoDto;

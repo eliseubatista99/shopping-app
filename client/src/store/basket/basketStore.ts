@@ -1,5 +1,5 @@
+import type { ProductDto } from "@api";
 import { produce } from "immer";
-import type { ProductDto } from "src/services/useFetchBasket";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
@@ -10,27 +10,26 @@ export interface BasketState {
   products?: ProductDto[];
 }
 
-const initialBasketState: BasketState = {
+const initialState: BasketState = {
   numberOfProductsInBasket: 0,
   products: [],
 };
 
-interface UseBaseStoreOutput extends BasketState {
+interface UseStoreOutput extends BasketState {
   setPartialState: (data: Partial<BasketState>) => void;
 }
 
-export const useStoreBasketZustand =
-  StoreHelper.createStore<UseBaseStoreOutput>(
-    (set) => ({
-      ...initialBasketState,
-      setPartialState: function (data: Partial<BasketState>) {
-        set(
-          produce((state: BasketState) => ({ ...state, ...data })),
-          false,
-          "setPartialState"
-        );
-      },
-    }),
-    "Basket",
-    createJSONStorage(() => localStorage)
-  );
+export const useStoreBasketZustand = StoreHelper.createStore<UseStoreOutput>(
+  (set) => ({
+    ...initialState,
+    setPartialState: function (data: Partial<BasketState>) {
+      set(
+        produce((state: BasketState) => ({ ...state, ...data })),
+        false,
+        "setPartialState"
+      );
+    },
+  }),
+  "Basket",
+  createJSONStorage(() => localStorage)
+);

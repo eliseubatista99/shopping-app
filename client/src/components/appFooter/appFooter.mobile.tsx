@@ -68,6 +68,7 @@ export const AppFooterMobile: React.FC = () => {
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
+        borderTop: "1px solid #8a8a8a9a",
       }}
     >
       {itemsJSX}

@@ -1,5 +1,5 @@
+import type { ClientInfoDto } from "@api";
 import { produce } from "immer";
-import type { ClientInfoDto } from "src/services";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
@@ -10,17 +10,17 @@ export interface BaseState {
   client?: ClientInfoDto;
 }
 
-export const initialBaseState: BaseState = {
+export const initialState: BaseState = {
   language: "en",
 };
 
-interface UseBaseStoreOutput extends BaseState {
+interface UseStoreOutput extends BaseState {
   setPartialState: (data: Partial<BaseState>) => void;
 }
 
-export const useStoreBaseZustand = StoreHelper.createStore<UseBaseStoreOutput>(
+export const useStoreBaseZustand = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
-    ...initialBaseState,
+    ...initialState,
     setPartialState: function (data: Partial<BaseState>) {
       set(
         produce((state: BaseState) => ({ ...state, ...data })),

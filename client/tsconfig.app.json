@@ -11,7 +11,7 @@
       "@screens": ["src/screens"],
       "@store": ["src/store"],
       "@types": ["src/types"],
-      "@services": ["src/services"]
+      "@api": ["src/api"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",

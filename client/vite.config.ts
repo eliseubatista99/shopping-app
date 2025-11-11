@@ -27,7 +27,7 @@ export default defineConfig({
       { find: "@screens", replacement: "/src/screens" },
       { find: "@store", replacement: "/src/store" },
       { find: "@types", replacement: "/src/types" },
-      { find: "@services", replacement: "/src/services" },
+      { find: "@api", replacement: "/src/api" },
     ],
   },
   test: {

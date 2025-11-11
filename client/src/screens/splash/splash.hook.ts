@@ -1,3 +1,4 @@
+import { useFetchClientInfo } from "@api";
 import { Pages } from "@constants";
 import {
   useDidMount,
@@ -5,7 +6,6 @@ import {
 } from "@eliseubatista99/react-scaffold-core";
 import { useStoreBase, useStoreBasket } from "@store";
 import React from "react";
-import { useFetchClientInfo } from "src/services";
 
 export const useSplashPageHelper = () => {
   const { fetch: fetchClientInfo } = useFetchClientInfo();

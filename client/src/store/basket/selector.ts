@@ -1,4 +1,4 @@
-import type { ProductDto } from "src/services/useFetchBasket";
+import type { ProductDto } from "@api";
 import { useStoreBasketZustand } from "./basketStore";
 
 export const useStoreBasket = () => {

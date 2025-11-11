@@ -1,18 +1,5 @@
 import { useCallback } from "react";
-
-export type ProductDto = {
-  name: string;
-  image: string;
-  price: number;
-};
-
-export type BasketDto = {
-  products: ProductDto[];
-};
-
-export type BasketOutputDto = {
-  basket: BasketDto;
-};
+import type { BasketOutputDto } from "../types";
 
 export const useFetchBasket = () => {
   //   const fetchHook = useFetch();
@@ -26,6 +13,7 @@ export const useFetchBasket = () => {
       basket: {
         products: [
           {
+            id: "1",
             name: "Mesinha cebeceira VASAGÇLE",
             image:
               "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG",

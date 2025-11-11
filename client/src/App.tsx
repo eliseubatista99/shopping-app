@@ -1,6 +1,6 @@
+import { useFetchTest, type Person } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
-import { useFetchTest, type Person } from "./services";
 
 export const App = () => {
   const [users, setUsers] = React.useState<Person[]>([]);
