@@ -24,6 +24,7 @@ export default defineConfig({
       },
       { find: "@hooks", replacement: "/src/hooks" },
       { find: "@modals", replacement: "/src/modals" },
+      { find: "@drawers", replacement: "/src/drawers" },
       { find: "@screens", replacement: "/src/screens" },
       { find: "@store", replacement: "/src/store" },
       { find: "@types", replacement: "/src/types" },

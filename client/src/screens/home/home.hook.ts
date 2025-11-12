@@ -1,5 +1,6 @@
 import { useFetchProductOffers } from "@api";
-import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { Drawers } from "@constants";
+import { useDidMount, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreHome } from "@store";
 import React from "react";
@@ -7,7 +8,10 @@ import React from "react";
 export const useHomePageHelper = () => {
   const { storeBase } = useStoreBase();
   const { storeHome, setPartialState } = useStoreHome();
+  const { showItem } = useFeedback();
   const { fetch: fetchProductOffers } = useFetchProductOffers();
+  const [headerTriggerVisible, setHeaderTriggerVisible] =
+    React.useState<boolean>(true);
 
   const { t } = useAppTranslations();
 
@@ -66,6 +70,14 @@ export const useHomePageHelper = () => {
     storeHome.groups,
   ]);
 
+  const handleHeaderTrigger = React.useCallback((visible: boolean) => {
+    setHeaderTriggerVisible(visible);
+  }, []);
+
+  const onAddressChipClicked = React.useCallback(() => {
+    showItem(Drawers.selectAddress);
+  }, [showItem]);
+
   useDidMount(() => {
     initScreen();
   });
@@ -74,5 +86,10 @@ export const useHomePageHelper = () => {
     i18n,
     groupsList,
     banners: storeHome.banners || [],
+    header: {
+      headerTriggerVisible,
+      handleHeaderTrigger,
+    },
+    onAddressChipClicked,
   };
 };

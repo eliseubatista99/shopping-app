@@ -11,6 +11,8 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
     handleSearchBarChange,
   } = useAppHeaderHelper(props);
 
+  const { styles } = props;
+
   return (
     <div
       data-testid="app-header"
@@ -18,7 +20,9 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: "12px",
+        background: "#ffffff",
+        borderBottom: "1px solid #00000067",
+        ...styles,
       }}
     >
       <AppSearchBar
@@ -26,6 +30,7 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
         placeholder={i18n.header.searchBar.placeholder}
         onChange={handleSearchBarChange}
         onSubmit={handleSearchBarSubmit}
+        styles={{ padding: "6px" }}
       />
     </div>
   );

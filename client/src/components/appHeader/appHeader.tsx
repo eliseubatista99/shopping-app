@@ -7,6 +7,7 @@ export interface AppHeaderProps {
   onClickSearchBar?: () => void;
   onSearchBarChange?: (value: string) => void;
   onSearchBarSubmit?: (value: string) => void;
+  styles?: React.CSSProperties;
 }
 
 export const AppHeader: React.FC<AppHeaderProps> = (props) => {

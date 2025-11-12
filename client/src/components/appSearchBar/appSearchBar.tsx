@@ -9,6 +9,7 @@ export interface AppSearchBarProps {
   onClick?: () => void;
   onChange?: (value: string) => void;
   onSubmit?: (value: string) => void;
+  styles?: React.CSSProperties;
 }
 
 export const AppSearchBar: React.FC<AppSearchBarProps> = (props) => {

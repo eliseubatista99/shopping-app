@@ -5,19 +5,22 @@ import type { AppLayoutProps } from "./appLayout";
 
 export const AppLayoutMobile: React.FC<AppLayoutProps> = ({
   children,
-  styles,
+  containerStyles,
+  pageStyles,
+  appHeader,
 }) => {
   return (
     <PageLayout
       header={{
-        content: <AppHeader />,
+        content: <AppHeader {...appHeader} />,
         visibility: "always",
       }}
       footer={{
         content: <AppFooter />,
         visibility: "always",
       }}
-      containerStyles={{ ...styles }}
+      containerStyles={{ ...containerStyles }}
+      pageStyles={{ ...pageStyles }}
     >
       {children}
     </PageLayout>

@@ -11,12 +11,17 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
   const { handleOnSubmit, handleOnChange, handleOnIconClicked, name } =
     useAppSearchBarHelper(props);
 
-  const { placeholder } = props;
+  const { placeholder, styles } = props;
 
   return (
     <div
       data-testid="app-search-bar"
-      style={{ width: "100%", alignItems: "center", justifyContent: "center" }}
+      style={{
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        ...styles,
+      }}
     >
       <Form
         fields={[

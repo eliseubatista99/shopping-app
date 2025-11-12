@@ -1,4 +1,4 @@
-import type { ClientInfoDto } from "src/services";
+import type { ClientInfoDto } from "@api";
 import { useStoreBaseZustand } from "./baseStore";
 
 export const useStoreBase = () => {

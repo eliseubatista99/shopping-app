@@ -17,4 +17,28 @@ export const translationsHome: TranslationList = {
     pt: "Continuar a comprar na categoria Casa",
     en: "Continue shopping in the Home category.",
   },
+  "home.conditionOffers.lessThan10.title": {
+    pt: "Ofertas por menos de 10€",
+    en: "Offers for less than 10€",
+  },
+  "home.conditionOffers.lessThan10.image": {
+    pt: "https://m.media-amazon.com/images/I/316vpMWkQxL._SR414,552_.jpg",
+    en: "https://m.media-amazon.com/images/I/316vpMWkQxL._SR414,552_.jpg",
+  },
+  "home.conditionOffers.bestSellers.title": {
+    pt: "Os mais vendidos",
+    en: "The best sellers",
+  },
+  "home.conditionOffers.bestSellers.image": {
+    pt: "https://m.media-amazon.com/images/I/31FYnSv5CJL._SR414,552_.jpg",
+    en: "https://m.media-amazon.com/images/I/31FYnSv5CJL._SR414,552_.jpg",
+  },
+  "home.conditionOffers.noTransportationFees.title": {
+    pt: "Entrega grátis",
+    en: "Free Delivery",
+  },
+  "home.conditionOffers.noTransportationFees.image": {
+    pt: "https://m.media-amazon.com/images/I/61dv6XKzDeL._SX3000_.jpg",
+    en: "https://m.media-amazon.com/images/I/61dv6XKzDeL._SX3000_.jpg",
+  },
 };
