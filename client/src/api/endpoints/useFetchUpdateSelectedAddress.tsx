@@ -6,7 +6,7 @@ export type UpdatedSelectedAddressInputDto = {
 };
 
 export type UpdatedSelectedAddressOutputDto = {
-  updatedAddress?: AddressDto;
+  updatedAddresses?: AddressDto[];
 };
 
 export const useFetchUpdateSelectedAddress = () => {
@@ -18,14 +18,24 @@ export const useFetchUpdateSelectedAddress = () => {
     // const result = await fetchHook<Person[]>("http://localhost:5000/test");
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const result: AddressDto = {
-      postalCode: "6123-789",
-      city: "Fundão Updated",
-      street: "Rua Bonita  Updated",
-      country: "Portugal  Updated",
-      countryCode: "PT  Updated",
+    const address: AddressDto = {
+      name: "Eliseu",
+      postalCode: "6123-456",
+      city: "Fundão",
+      street: "Rua Bonita",
+      country: "Portugal",
+      countryCode: "PT",
+      isDefault: false,
+      isSelected: false,
     };
 
+    const result: UpdatedSelectedAddressOutputDto = {
+      updatedAddresses: [
+        { ...address, isDefault: true, isSelected: true },
+        { ...address, postalCode: "1234-567", city: "Guarda" },
+        { ...address, postalCode: "31321-434", city: "Pinhel" },
+      ],
+    };
     return result;
   }, []);
 

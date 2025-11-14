@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import type { ClientInfoDto } from "../types";
+import type { AddressDto, ClientInfoDto } from "../types";
 
 export type ClientInfoOutputDto = {
   client: ClientInfoDto;
@@ -14,16 +14,25 @@ export const useFetchClientInfo = () => {
     // const result = await fetchHook<Person[]>("http://localhost:5000/test");
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
+    const address: AddressDto = {
+      name: "Eliseu",
+      postalCode: "6123-456",
+      city: "Fundão",
+      street: "Rua Bonita",
+      country: "Portugal",
+      countryCode: "PT",
+      isDefault: false,
+      isSelected: false,
+    };
+
     const result: ClientInfoOutputDto = {
       client: {
         name: "Elideus Kuduro",
-        address: {
-          postalCode: "6123-456",
-          city: "Fundão",
-          street: "Rua Bonita",
-          country: "Portugal",
-          countryCode: "PT",
-        },
+        addresses: [
+          { ...address, isDefault: true, isSelected: true },
+          { ...address, postalCode: "1234-567", city: "Guarda" },
+          { ...address, postalCode: "31321-434", city: "Pinhel" },
+        ],
       },
       itemsInBasket: 2,
     };

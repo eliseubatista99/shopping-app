@@ -7,6 +7,7 @@ export const AppFooterMobile: React.FC = () => {
 
   const itemsJSX = items.map((i) => (
     <div
+      key={i.path}
       style={{
         width: "30px",
         alignItems: "center",

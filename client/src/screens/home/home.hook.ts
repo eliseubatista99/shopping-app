@@ -16,10 +16,14 @@ export const useHomePageHelper = () => {
   const { t } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
+    const selectedAddress = storeBase.client?.addresses?.find(
+      (a) => a.isSelected
+    );
+
     return {
       chips: {
         address: t("home.chips.address", {
-          address: storeBase.client?.address.postalCode,
+          address: selectedAddress?.postalCode,
         }),
       },
       group: {
@@ -32,7 +36,7 @@ export const useHomePageHelper = () => {
         title: t("home.group.fromHistory.title"),
       },
     };
-  }, [storeBase.client?.address.postalCode, t]);
+  }, [storeBase, t]);
 
   const initScreen = React.useCallback(async () => {
     const res = await fetchProductOffers();

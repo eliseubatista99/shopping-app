@@ -14,16 +14,19 @@ export type BasketOutputDto = {
 };
 
 export type AddressDto = {
+  name: string;
   postalCode: string;
   city: string;
   street: string;
   country: string;
   countryCode: string;
+  isDefault: boolean;
+  isSelected: boolean;
 };
 
 export type ClientInfoDto = {
   name: string;
-  address: AddressDto;
+  addresses: AddressDto[];
 };
 
 export type ProductOfferGroupDto = {

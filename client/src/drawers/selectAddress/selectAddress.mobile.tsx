@@ -1,63 +1,79 @@
+import { AddressSelectItem, AppButton, AppLoader } from "@components";
 import { Drawers } from "@constants";
-import { Typography } from "@eliseubatista99/react-scaffold-core";
+import {
+  Carousel,
+  Typography,
+  type CarouselSlideProps,
+} from "@eliseubatista99/react-scaffold-core";
+import { AddressHelper } from "@helpers";
 import { AppDrawer } from "../_appDrawer";
 import { useSelectAddressDrawerHelper } from "./selectAddress.hook";
 
 export const DrawerSelectAddressMobile = () => {
-  const { handleOnDrawerClosed } = useSelectAddressDrawerHelper();
+  const {
+    i18n,
+    addresses,
+    selectedAddress,
+    handleAddressSelected,
+    handleSubmit,
+    loading,
+  } = useSelectAddressDrawerHelper();
+
+  const addressesJSX = (addresses || []).map((a): CarouselSlideProps => {
+    const isSelected = AddressHelper.equals(a, selectedAddress);
+
+    return {
+      content: (
+        <AddressSelectItem
+          onClick={() => handleAddressSelected(a)}
+          key={`${a.postalCode}-${a.street}`}
+          address={a}
+          styles={
+            isSelected
+              ? {
+                  border: "1px solid #da5f18ff",
+                  background: "#ffeadeff",
+                }
+              : undefined
+          }
+        />
+      ),
+    };
+  });
+
   return (
     <AppDrawer
       id={Drawers.selectAddress}
-      handle={{
-        render: (
-          <div
-            style={{
-              width: "30px",
-              height: "5px",
-              borderRadius: "10px",
-              background: "#4e4e4eff",
-            }}
-          />
-        ),
-      }}
-      onCloseDrawer={() => handleOnDrawerClosed()}
+      canBeClosed={!loading}
+      drawerStyles={{ gap: "12px" }}
     >
+      <AppLoader
+        visible={loading}
+        styles={{ zIndex: 1, background: "#ffffff" }}
+      />
       <Typography
         styles={{
-          color: "#4d4d4d",
-          fontSize: "14px",
+          fontSize: "18px",
           fontWeight: 600,
-          textAlign: "center",
-          marginTop: "12px",
-          minHeight: "24px",
         }}
       >
-        {"Select the type"}
+        {i18n.title}
       </Typography>
-      <div
-        style={{
-          flexDirection: "column",
-          width: "100%",
-          padding: "0 32px",
-          gap: "12px",
-          marginTop: "32px",
-          overflow: "auto",
-          justifyContent: "flex-start",
+      <Typography
+        styles={{
+          fontSize: "14px",
         }}
       >
-        <Typography
-          styles={{
-            color: "#4d4d4d",
-            fontSize: "14px",
-            fontWeight: 600,
-            textAlign: "center",
-            marginTop: "12px",
-            minHeight: "24px",
-          }}
-        >
-          {"Select the type"}
-        </Typography>
-      </div>
+        {i18n.subtitle}
+      </Typography>
+      <Carousel content={addressesJSX} settings={{ slidesToShow: 2 }} />
+
+      <AppButton
+        text={{
+          content: i18n.button,
+        }}
+        onClick={handleSubmit}
+      />
     </AppDrawer>
   );
 };

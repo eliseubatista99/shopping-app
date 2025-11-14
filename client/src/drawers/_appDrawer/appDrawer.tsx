@@ -3,7 +3,9 @@ import { AppDrawerDesktop } from "./appDrawer.desktop";
 import { AppDrawerMobile } from "./appDrawer.mobile";
 
 export interface AppDrawerProps {
+  canBeClosed?: boolean;
   children?: React.ReactNode;
+  drawerStyles?: React.CSSProperties;
   id: string;
 }
 

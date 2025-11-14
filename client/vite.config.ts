@@ -29,6 +29,7 @@ export default defineConfig({
       { find: "@store", replacement: "/src/store" },
       { find: "@types", replacement: "/src/types" },
       { find: "@api", replacement: "/src/api" },
+      { find: "@helpers", replacement: "/src/helpers" },
     ],
   },
   test: {
