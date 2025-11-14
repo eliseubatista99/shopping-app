@@ -11,7 +11,7 @@ export const useSplashPageHelper = () => {
   const { fetch: fetchClientInfo } = useFetchClientInfo();
   const { goTo } = useNavigation();
   const { setClientInfo } = useStoreBase();
-  const { setBasketCount } = useStoreBasket();
+  const setBasketCount = useStoreBasket((state) => state.setBasketCount);
 
   const initScreen = React.useCallback(async () => {
     const res = await fetchClientInfo();
@@ -19,9 +19,8 @@ export const useSplashPageHelper = () => {
     if (res) {
       setClientInfo(res.client);
       setBasketCount(res.itemsInBasket);
-      goTo(Pages.home, false);
+      goTo(Pages.home);
     }
-    console.log("ZAU", res);
   }, [fetchClientInfo, goTo, setBasketCount, setClientInfo]);
 
   useDidMount(() => {

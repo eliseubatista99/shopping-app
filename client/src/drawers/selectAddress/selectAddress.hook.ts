@@ -11,14 +11,16 @@ import React from "react";
 
 export const useSelectAddressDrawerHelper = () => {
   const { hideItem } = useFeedback();
-  const { storeBase, setClientInfo } = useStoreBase();
+  const setClientInfo = useStoreBase((state) => state.setClientInfo);
+  const storeClient = useStoreBase((state) => state.client);
+
   const { fetch: fetchUpdateAddress } = useFetchUpdateSelectedAddress();
   const { t } = useAppTranslations();
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const [selectedAddress, setSelectedAddress] = React.useState<
     AddressDto | undefined
-  >(storeBase.client?.addresses.find((a) => a.isSelected));
+  >(storeClient?.addresses.find((a) => a.isSelected));
 
   const i18n = React.useMemo(() => {
     return {
@@ -33,12 +35,12 @@ export const useSelectAddressDrawerHelper = () => {
   }, []);
 
   const handleSubmit = React.useCallback(async () => {
-    if (!selectedAddress || !storeBase.client) {
+    if (!selectedAddress || !storeClient) {
       return;
     }
 
     setLoading(true);
-    const clientData: ClientInfoDto = { ...storeBase.client };
+    const clientData: ClientInfoDto = { ...storeClient };
 
     if (!clientData) {
       return;
@@ -59,7 +61,7 @@ export const useSelectAddressDrawerHelper = () => {
     hideItem,
     selectedAddress,
     setClientInfo,
-    storeBase.client,
+    storeClient,
   ]);
 
   return {
@@ -68,6 +70,6 @@ export const useSelectAddressDrawerHelper = () => {
     handleAddressSelected,
     handleSubmit,
     selectedAddress,
-    addresses: storeBase.client?.addresses,
+    addresses: storeClient?.addresses,
   };
 };

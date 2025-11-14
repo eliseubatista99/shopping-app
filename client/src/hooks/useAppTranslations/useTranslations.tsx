@@ -4,10 +4,10 @@ import { useStoreBase } from "@store";
 
 export const useAppTranslations = () => {
   const translations = AppResources.Translations;
-  const { storeBase } = useStoreBase();
+  const language = useStoreBase((state) => state.language);
 
   const { t, getTranslation } = useTranslations({
-    language: storeBase.language,
+    language: language,
     translations,
   });
 

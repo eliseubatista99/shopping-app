@@ -4,19 +4,21 @@ import { useStoreBase } from "@store";
 import React from "react";
 
 export const useForYouPageHelper = () => {
-  const { storeBase } = useStoreBase();
+  const client = useStoreBase((state) => state.client);
 
   const { t } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
+    const selectAddress = client?.addresses.find((a) => a.isSelected);
+
     return {
       chips: {
         address: t("home.chips.address", {
-          address: storeBase.client?.address.postalCode,
+          address: selectAddress?.postalCode,
         }),
       },
     };
-  }, [storeBase.client?.address.postalCode, t]);
+  }, [client?.addresses, t]);
 
   const initScreen = React.useCallback(async () => {}, []);
 

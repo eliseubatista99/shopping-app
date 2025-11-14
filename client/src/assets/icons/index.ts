@@ -1,3 +1,4 @@
+import ArrowLeft from "./arrow_left.svg";
 import Basket from "./basket.svg";
 import Hamburger from "./hamburguer.svg";
 import Home from "./home.svg";
@@ -12,4 +13,5 @@ export const Icons = {
   Location,
   Basket,
   NavDown,
+  ArrowLeft,
 };

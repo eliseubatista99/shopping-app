@@ -4,4 +4,6 @@ export enum Pages {
   forYou = "/for-you",
   basket = "/basket",
   explore = "/explore",
+  search = "/search",
+  productList = "/productList",
 }

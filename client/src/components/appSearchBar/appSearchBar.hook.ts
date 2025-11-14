@@ -34,14 +34,14 @@ export const useAppSearchBarHelper = ({
     [onChange]
   );
 
-  const handleOnClick = React.useCallback(() => {
+  const handleOnFocus = React.useCallback(() => {
     onClick?.();
   }, [onClick]);
 
   return {
     name,
     handleOnChange,
-    handleOnClick,
+    handleOnFocus,
     handleOnSubmit,
     handleOnIconClicked,
   };

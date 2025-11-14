@@ -8,8 +8,13 @@ import type { AppSearchBarProps } from "./appSearchBar";
 import { useAppSearchBarHelper } from "./appSearchBar.hook";
 
 export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
-  const { handleOnSubmit, handleOnChange, handleOnIconClicked, name } =
-    useAppSearchBarHelper(props);
+  const {
+    handleOnSubmit,
+    handleOnChange,
+    handleOnIconClicked,
+    name,
+    handleOnFocus,
+  } = useAppSearchBarHelper(props);
 
   const { placeholder, styles } = props;
 
@@ -32,6 +37,7 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
                 name={name}
                 placeHolder={placeholder}
                 type="text"
+                onFocus={() => handleOnFocus()}
                 rightIcon={
                   <div onClick={() => handleOnIconClicked()}>
                     <Typography styles={{ fontSize: "30px" }}>{"⌕"}</Typography>{" "}

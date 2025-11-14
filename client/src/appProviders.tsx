@@ -3,10 +3,8 @@ import {
   FeedbackProvider,
   NavigationProvider,
 } from "@eliseubatista99/react-scaffold-core";
-import { Home, Splash } from "@screens";
-import { Basket } from "./screens/basket";
-import { Explore } from "./screens/explore";
-import { ForYou } from "./screens/forYou";
+import { Basket, Explore, ForYou, Home, Search, Splash } from "@screens";
+import { ProductList } from "./screens/productList";
 
 export interface AppProvidersProps {
   children?: React.ReactNode;
@@ -36,6 +34,14 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: Pages.explore,
             render: <Explore />,
+          },
+          {
+            path: Pages.search,
+            render: <Search />,
+          },
+          {
+            path: Pages.productList,
+            render: <ProductList />,
           },
         ]}
       >

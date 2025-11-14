@@ -23,7 +23,7 @@ interface UseStoreOutput extends HomeState {
   setPartialState: (data: Partial<HomeState>) => void;
 }
 
-export const useStoreHomeZustand = StoreHelper.createStore<UseStoreOutput>(
+export const useStoreHome = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
     setPartialState: function (data: Partial<HomeState>) {

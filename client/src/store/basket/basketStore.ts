@@ -17,9 +17,11 @@ const initialState: BasketState = {
 
 interface UseStoreOutput extends BasketState {
   setPartialState: (data: Partial<BasketState>) => void;
+  setBasketCount: (data: number) => void;
+  setItemsInBasket: (data: ProductDto[]) => void;
 }
 
-export const useStoreBasketZustand = StoreHelper.createStore<UseStoreOutput>(
+export const useStoreBasket = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
     setPartialState: function (data: Partial<BasketState>) {
@@ -27,6 +29,27 @@ export const useStoreBasketZustand = StoreHelper.createStore<UseStoreOutput>(
         produce((state: BasketState) => ({ ...state, ...data })),
         false,
         "setPartialState"
+      );
+    },
+    setBasketCount: function (data: number) {
+      set(
+        produce((state: BasketState) => ({
+          ...state,
+          numberOfProductsInBasket: data,
+        })),
+        false,
+        "setBasketCount"
+      );
+    },
+    setItemsInBasket: function (data: ProductDto[]) {
+      set(
+        produce((state: BasketState) => ({
+          ...state,
+          products: data,
+          numberOfProductsInBasket: data.length,
+        })),
+        false,
+        "setItemsInBasket"
       );
     },
   }),

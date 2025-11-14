@@ -6,8 +6,12 @@ import { useStoreBase, useStoreHome } from "@store";
 import React from "react";
 
 export const useHomePageHelper = () => {
-  const { storeBase } = useStoreBase();
-  const { storeHome, setPartialState } = useStoreHome();
+  const client = useStoreBase((state) => state.client);
+  const setStoreHomeState = useStoreHome((state) => state.setPartialState);
+  const groups = useStoreHome((state) => state.groups);
+  const buyAgain = useStoreHome((state) => state.buyAgain);
+  const fromSearchHistory = useStoreHome((state) => state.fromSearchHistory);
+  const banners = useStoreHome((state) => state.banners);
   const { showItem } = useFeedback();
   const { fetch: fetchProductOffers } = useFetchProductOffers();
   const [headerTriggerVisible, setHeaderTriggerVisible] =
@@ -16,9 +20,7 @@ export const useHomePageHelper = () => {
   const { t } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
-    const selectedAddress = storeBase.client?.addresses?.find(
-      (a) => a.isSelected
-    );
+    const selectedAddress = client?.addresses?.find((a) => a.isSelected);
 
     return {
       chips: {
@@ -36,20 +38,20 @@ export const useHomePageHelper = () => {
         title: t("home.group.fromHistory.title"),
       },
     };
-  }, [storeBase, t]);
+  }, [client?.addresses, t]);
 
   const initScreen = React.useCallback(async () => {
     const res = await fetchProductOffers();
-    setPartialState({
+    setStoreHomeState({
       fromSearchHistory: res.fromSearchHistory,
       buyAgain: res.buyAgain,
       groups: res.groups,
       banners: res.banners,
     });
-  }, [fetchProductOffers, setPartialState]);
+  }, [fetchProductOffers, setStoreHomeState]);
 
   const groupsList = React.useMemo(() => {
-    const mappedGroups = (storeHome.groups || []).map((g) => ({
+    const mappedGroups = (groups || []).map((g) => ({
       title: i18n.group.title(g.category),
       products: g.products || [],
     }));
@@ -57,21 +59,21 @@ export const useHomePageHelper = () => {
     return [
       {
         title: i18n.buyAgain.title,
-        products: storeHome.buyAgain || [],
+        products: buyAgain || [],
       },
       {
         title: i18n.fromHistory.title,
-        products: storeHome.fromSearchHistory || [],
+        products: fromSearchHistory || [],
       },
       ...mappedGroups,
     ];
   }, [
-    i18n.buyAgain,
-    i18n.fromHistory,
+    buyAgain,
+    fromSearchHistory,
+    groups,
+    i18n.buyAgain.title,
+    i18n.fromHistory.title,
     i18n.group,
-    storeHome.buyAgain,
-    storeHome.fromSearchHistory,
-    storeHome.groups,
   ]);
 
   const handleHeaderTrigger = React.useCallback((visible: boolean) => {
@@ -89,7 +91,7 @@ export const useHomePageHelper = () => {
   return {
     i18n,
     groupsList,
-    banners: storeHome.banners || [],
+    banners: banners || [],
     header: {
       headerTriggerVisible,
       handleHeaderTrigger,

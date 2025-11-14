@@ -1,3 +1,5 @@
+import { Pages } from "@constants";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import React from "react";
 import type { AppHeaderProps } from "./appHeader";
@@ -10,6 +12,7 @@ export const useAppHeaderHelper = ({
   onSearchBarChange,
 }: AppHeaderProps) => {
   const { t } = useAppTranslations();
+  const { goTo, goBack, currentPath } = useNavigation();
 
   const i18n = React.useMemo(() => {
     return {
@@ -36,8 +39,16 @@ export const useAppHeaderHelper = ({
   );
 
   const handleSearchBarClick = React.useCallback(() => {
-    onClickSearchBar?.();
-  }, [onClickSearchBar]);
+    if (onClickSearchBar) {
+      onClickSearchBar();
+    } else if (currentPath !== Pages.search) {
+      goTo(Pages.search);
+    }
+  }, [currentPath, goTo, onClickSearchBar]);
+
+  const handleClickBack = React.useCallback(() => {
+    goBack();
+  }, [goBack]);
 
   return {
     i18n,
@@ -45,5 +56,6 @@ export const useAppHeaderHelper = ({
     handleSearchBarSubmit,
     handleSearchBarChange,
     handleSearchBarClick,
+    handleClickBack,
   };
 };

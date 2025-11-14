@@ -13,7 +13,9 @@ type FooterItem = {
 
 export const useAppFooterHelper = () => {
   const { goTo, currentPath } = useNavigation();
-  const { storeBasket } = useStoreBasket();
+  const numberOfProductsInBasket = useStoreBasket(
+    (state) => state.numberOfProductsInBasket
+  );
 
   const items = React.useMemo((): FooterItem[] => {
     return [
@@ -31,7 +33,7 @@ export const useAppFooterHelper = () => {
         path: Pages.basket,
         icon: Icons.Basket,
         selected: currentPath === Pages.basket,
-        text: `${storeBasket.numberOfProductsInBasket}`,
+        text: `${numberOfProductsInBasket}`,
       },
       {
         path: Pages.explore,
@@ -39,7 +41,7 @@ export const useAppFooterHelper = () => {
         selected: currentPath === Pages.explore,
       },
     ];
-  }, [currentPath]);
+  }, [currentPath, numberOfProductsInBasket]);
 
   const onClickItem = React.useCallback(
     (item: FooterItem) => {
