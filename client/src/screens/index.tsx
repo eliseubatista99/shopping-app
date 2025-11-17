@@ -2,5 +2,5 @@ export * from "./basket";
 export * from "./explore";
 export * from "./forYou";
 export * from "./home";
-export * from "./search";
+export * from "./productDetails";
 export * from "./splash";

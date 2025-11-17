@@ -40,7 +40,9 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
                 onFocus={() => handleOnFocus()}
                 rightIcon={
                   <div onClick={() => handleOnIconClicked()}>
-                    <Typography styles={{ fontSize: "30px" }}>{"⌕"}</Typography>{" "}
+                    <Typography styles={{ fontSize: "30px", zIndex: 2 }}>
+                      {"⌕"}
+                    </Typography>{" "}
                   </div>
                 }
                 onChange={handleOnChange}

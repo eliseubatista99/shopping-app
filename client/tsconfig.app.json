@@ -13,7 +13,8 @@
       "@store": ["src/store"],
       "@types": ["src/types"],
       "@api": ["src/api"],
-      "@helpers": ["src/helpers"]
+      "@helpers": ["src/helpers"],
+      "@overlays": ["src/overlays"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",

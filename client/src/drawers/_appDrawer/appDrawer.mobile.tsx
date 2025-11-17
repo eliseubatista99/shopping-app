@@ -1,3 +1,4 @@
+import { zIndexes } from "@constants";
 import type { AppDrawerProps } from "./appDrawer";
 import { useAppDrawerHelper } from "./appDrawer.hook";
 
@@ -18,7 +19,7 @@ export const AppDrawerMobile = (props: AppDrawerProps) => {
             left: 0,
             bottom: 0,
             right: 0,
-            zIndex: 101,
+            zIndex: zIndexes.drawer,
             background: "#00000049",
           }}
         >

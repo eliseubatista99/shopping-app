@@ -4,9 +4,9 @@ import { AppHeaderDesktop } from "./appHeader.desktop";
 import { AppHeaderMobile } from "./appHeader.mobile";
 
 export interface AppHeaderProps {
-  onClickSearchBar?: () => void;
   onSearchBarChange?: (value: string) => void;
   onSearchBarSubmit?: (value: string) => void;
+  onClickBack?: () => void;
   withBack?: boolean;
   styles?: React.CSSProperties;
 }

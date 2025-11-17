@@ -1,5 +1,8 @@
-import { Pages } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import { Overlays } from "@constants";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import React from "react";
 import type { AppHeaderProps } from "./appHeader";
@@ -8,11 +11,12 @@ const searchBarInputName = "search-bar";
 
 export const useAppHeaderHelper = ({
   onSearchBarSubmit,
-  onClickSearchBar,
   onSearchBarChange,
+  onClickBack,
 }: AppHeaderProps) => {
   const { t } = useAppTranslations();
-  const { goTo, goBack, currentPath } = useNavigation();
+  const { goBack } = useNavigation();
+  const { showItem, isItemVisible } = useFeedback();
 
   const i18n = React.useMemo(() => {
     return {
@@ -39,16 +43,18 @@ export const useAppHeaderHelper = ({
   );
 
   const handleSearchBarClick = React.useCallback(() => {
-    if (onClickSearchBar) {
-      onClickSearchBar();
-    } else if (currentPath !== Pages.search) {
-      goTo(Pages.search);
+    if (!isItemVisible(Overlays.search)) {
+      showItem(Overlays.search);
     }
-  }, [currentPath, goTo, onClickSearchBar]);
+  }, [isItemVisible, showItem]);
 
   const handleClickBack = React.useCallback(() => {
-    goBack();
-  }, [goBack]);
+    if (onClickBack) {
+      onClickBack?.();
+    } else {
+      goBack();
+    }
+  }, [goBack, onClickBack]);
 
   return {
     i18n,

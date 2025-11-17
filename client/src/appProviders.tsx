@@ -3,7 +3,14 @@ import {
   FeedbackProvider,
   NavigationProvider,
 } from "@eliseubatista99/react-scaffold-core";
-import { Basket, Explore, ForYou, Home, Search, Splash } from "@screens";
+import {
+  Basket,
+  Explore,
+  ForYou,
+  Home,
+  ProductDetails,
+  Splash,
+} from "@screens";
 import { ProductList } from "./screens/productList";
 
 export interface AppProvidersProps {
@@ -36,12 +43,12 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
             render: <Explore />,
           },
           {
-            path: Pages.search,
-            render: <Search />,
-          },
-          {
             path: Pages.productList,
             render: <ProductList />,
+          },
+          {
+            path: Pages.productDetails,
+            render: <ProductDetails />,
           },
         ]}
       >

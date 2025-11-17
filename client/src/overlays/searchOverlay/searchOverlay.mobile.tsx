@@ -1,9 +1,12 @@
-import { AppLayout } from "@components";
+import { AppHeader } from "@components";
+import { Overlays } from "@constants";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
-import { useSearchPageHelper } from "./search.hook";
+import { AppOverlay } from "../_appOverlay";
+import { useOverlaySearchHelper } from "./searchOverlay.hook";
 
-export const SearchMobile: React.FC = () => {
-  const { previousSearches, submitSearch } = useSearchPageHelper();
+export const OverlaySearchMobile: React.FC = () => {
+  const { previousSearches, submitSearch, onClickBack } =
+    useOverlaySearchHelper();
 
   const previousSearchesJSX = previousSearches?.map((p, index) => (
     <div
@@ -24,20 +27,16 @@ export const SearchMobile: React.FC = () => {
   ));
 
   return (
-    <AppLayout
-      pageStyles={{
-        padding: 0,
-      }}
-      appHeader={{
-        withBack: true,
-        styles: {
-          background: "#0a0d42ff",
-        },
-      }}
-    >
+    <AppOverlay id={Overlays.search} styles={{ background: "#ffffff" }}>
+      <AppHeader
+        withBack
+        onClickBack={() => onClickBack()}
+        onSearchBarSubmit={(value) => submitSearch(value)}
+        styles={{ background: "#0a0d42ff" }}
+      />
       <div style={{ width: "100%", flexDirection: "column" }}>
         {previousSearchesJSX}
       </div>
-    </AppLayout>
+    </AppOverlay>
   );
 };

@@ -7,6 +7,7 @@ export type LanguageType = "pt" | "en";
 export interface SearchState {
   searchText?: string;
   previousSearches?: string[];
+  selectedProduct?: string;
 }
 
 const initialState: SearchState = {

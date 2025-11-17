@@ -23,11 +23,5 @@ export const ConditionOffersBlockMobile: React.FC = () => {
     ),
   }));
 
-  return (
-    <Carousel
-      content={offersJSX}
-      styles={{ marginTop: "30px" }}
-      settings={{ slidesToShow: 3 }}
-    />
-  );
+  return <Carousel content={offersJSX} styles={{ marginTop: "30px" }} />;
 };

@@ -1,14 +1,14 @@
-import { AppLayout, ProductListItem } from "@components";
+import { AppLayout, AppLoader, ProductListItem } from "@components";
 import { useProductListPageHelper } from "./productList.hook";
 
 export const ProductListMobile: React.FC = () => {
-  const { products } = useProductListPageHelper();
+  const { products, loading, onClickProduct } = useProductListPageHelper();
 
   const productsJSX = products?.map((p) => (
     <ProductListItem
       key={p.id}
       product={p}
-      onClick={() => console.log("ZAU CLICKED PRODUCT")}
+      onClick={() => onClickProduct(p)}
       onClickAddToCart={() => console.log("ZAU ADDED TO CART")}
     />
   ));
@@ -25,11 +25,14 @@ export const ProductListMobile: React.FC = () => {
         },
       }}
     >
-      <div
-        style={{ width: "100%", flexDirection: "column", padding: "10px 0" }}
-      >
-        {productsJSX}
-      </div>
+      {loading && <AppLoader visible={loading} />}
+      {!loading && (
+        <div
+          style={{ width: "100%", flexDirection: "column", padding: "10px 0" }}
+        >
+          {productsJSX}
+        </div>
+      )}
     </AppLayout>
   );
 };

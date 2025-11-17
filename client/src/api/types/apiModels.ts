@@ -8,6 +8,10 @@ export type ProductDto = {
   bestSeller?: boolean;
 };
 
+export type ProductDetailDto = ProductDto & {
+  description: string;
+};
+
 export type BasketDto = {
   products: ProductDto[];
 };

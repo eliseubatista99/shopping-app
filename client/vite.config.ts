@@ -30,6 +30,7 @@ export default defineConfig({
       { find: "@types", replacement: "/src/types" },
       { find: "@api", replacement: "/src/api" },
       { find: "@helpers", replacement: "/src/helpers" },
+      { find: "@overlays", replacement: "/src/overlays" },
     ],
   },
   test: {
