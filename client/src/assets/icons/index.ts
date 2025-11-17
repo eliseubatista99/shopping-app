@@ -5,6 +5,9 @@ import Home from "./home.svg";
 import Location from "./location.svg";
 import NavDown from "./navDown.svg";
 import Person from "./person.svg";
+import StarEmpty from "./star_empty.svg";
+import StarFull from "./star_full.svg";
+import StarHalf from "./star_half.svg";
 
 export const Icons = {
   Home,
@@ -14,4 +17,7 @@ export const Icons = {
   Basket,
   NavDown,
   ArrowLeft,
+  StarEmpty,
+  StarFull,
+  StarHalf,
 };

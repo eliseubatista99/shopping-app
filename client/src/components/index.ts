@@ -6,4 +6,5 @@ export * from "./chip";
 export * from "./productGridItem";
 export * from "./productListItem";
 export * from "./productOfferBanner";
+export * from "./productScore";
 export * from "./tag";

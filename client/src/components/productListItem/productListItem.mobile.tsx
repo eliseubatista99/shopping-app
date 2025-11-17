@@ -1,6 +1,7 @@
 import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
+import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
 import type { ProductListItemProps } from "./productListItem";
 import { useProductListItemHelper } from "./productListItem.hook";
@@ -15,18 +16,17 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
     <div
       data-testid="product-list-item"
       style={{
-        gap: "5px",
+        gap: "10px",
         flexDirection: "row",
         position: "relative",
         height: "fit-content",
-        minHeight: "130px",
         padding: "4px 8px",
       }}
       onClick={() => onClick?.()}
     >
       <div
         style={{
-          width: "40%",
+          flex: 1,
           background: "#e4e4e4ff",
           position: "relative",
           overflow: "hidden",
@@ -36,8 +36,8 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
         <Image
           src={product.image}
           styles={{
-            position: "relative",
-            width: "100%",
+            position: "absolute",
+            flex: 1,
             aspectRatio: "1 / 1",
             background: "none",
             objectFit: "contain",
@@ -66,13 +66,15 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
 
       <div
         style={{
-          width: "60%",
+          width: "59%",
           gap: "5px",
           padding: "5px 0",
           height: "fit-content",
+          minHeight: "130px",
         }}
       >
         <Typography styles={{ fontSize: "14px" }}>{product.name}</Typography>
+        {product.score !== undefined && <ProductScore score={product.score} />}
         <Typography styles={{ fontWeight: "500", fontSize: "16px" }}>
           {product.price}
         </Typography>
@@ -90,7 +92,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
             text={{
               content: i18n.buttons.addToCart,
             }}
-            styles={{ marginTop: "auto" }}
+            styles={{ marginTop: "auto", width: "90%" }}
             onClick={() => onClickAddToCart?.()}
           />
         )}
