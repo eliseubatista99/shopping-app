@@ -1,17 +1,16 @@
 import { ProductGridItem } from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import type { OffersGroupBlockProps } from "./offersGroup";
+import { useOffersGroupBlockHelper } from "./offersGroup.hook";
 
 export const OffersGroupBlockMobile: React.FC<OffersGroupBlockProps> = ({
   title,
   products,
 }) => {
+  const { onClickProduct } = useOffersGroupBlockHelper();
+
   const offersJSX = products.map((p) => (
-    <ProductGridItem
-      key={p.id}
-      product={p}
-      onClick={() => console.log("Clicked item > ", p)}
-    />
+    <ProductGridItem key={p.id} product={p} onClick={() => onClickProduct(p)} />
   ));
 
   return (

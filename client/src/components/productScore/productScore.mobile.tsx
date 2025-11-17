@@ -38,6 +38,7 @@ export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
         position: "relative",
         height: "10px",
         display: "grid",
+        minWidth: "54px",
         gridTemplateColumns: "repeat(auto-fit, 10px)",
       }}
       onClick={() => onClick?.()}

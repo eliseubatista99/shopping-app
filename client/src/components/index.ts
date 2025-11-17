@@ -9,4 +9,5 @@ export * from "./productGridItem";
 export * from "./productListItem";
 export * from "./productOfferBanner";
 export * from "./productScore";
+export * from "./sellerListItem";
 export * from "./tag";
