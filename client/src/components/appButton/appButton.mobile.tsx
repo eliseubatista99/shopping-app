@@ -5,19 +5,22 @@ import type { AppButtonProps } from "./appButton";
 export const AppButtonMobile: React.FC<AppButtonProps> = ({
   text,
   onClick,
+  styles,
 }) => {
   return (
     <Button
       onClick={onClick}
       styles={{
         borderRadius: "20px",
-        padding: "14px 18px",
         height: "24px",
+        background: "#e9ca19ff",
+        padding: "13px 20px",
+        ...styles,
       }}
     >
       <Typography
         {...text.props}
-        styles={{ fontSize: "14px", fontWeight: 400, ...text.props?.styles }}
+        styles={{ fontSize: "13px", fontWeight: 400, ...text.props?.styles }}
       >
         {text.content}
       </Typography>

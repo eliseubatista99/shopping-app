@@ -1,22 +1,16 @@
-import { AppLayout } from "@components";
-import { Typography } from "@eliseubatista99/react-scaffold-core";
+import { AppLayout, ProductListItem } from "@components";
 import { useProductListPageHelper } from "./productList.hook";
 
 export const ProductListMobile: React.FC = () => {
   const { products } = useProductListPageHelper();
 
-  const productsJSX = products?.map((p, index) => (
-    <div
-      style={{
-        width: "100%",
-        flexDirection: "row",
-        borderTop: index === 0 ? undefined : "1px solid #5f5f5f54",
-        padding: "10px 15px",
-        gap: "20px",
-      }}
-    >
-      <Typography styles={{ lineHeight: 2 }}>{p.name}</Typography>
-    </div>
+  const productsJSX = products?.map((p) => (
+    <ProductListItem
+      key={p.id}
+      product={p}
+      onClick={() => console.log("ZAU CLICKED PRODUCT")}
+      onClickAddToCart={() => console.log("ZAU ADDED TO CART")}
+    />
   ));
 
   return (

@@ -24,6 +24,7 @@ export const useFetchSearchProducts = () => {
       image:
         "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG",
       price: 40.59,
+      score: 4,
     };
 
     const result: SearchProductsOutputDto = {
@@ -31,10 +32,12 @@ export const useFetchSearchProducts = () => {
         {
           ...mockProduct,
           id: "1",
+          bestSeller: true,
         },
         {
           ...mockProduct,
           id: "2",
+          freeShipping: true,
         },
         {
           ...mockProduct,

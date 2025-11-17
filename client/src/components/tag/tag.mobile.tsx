@@ -1,8 +1,8 @@
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
-import type { ChipProps } from "./chip";
+import type { TagProps } from "./tag";
 
-export const ChipMobile: React.FC<ChipProps> = ({
+export const TagMobile: React.FC<TagProps> = ({
   styles,
   onClick,
   text,
@@ -15,22 +15,22 @@ export const ChipMobile: React.FC<ChipProps> = ({
       data-testid="chip"
       onClick={() => onClick?.()}
       style={{
-        borderRadius: "20px",
         alignItems: "center",
         justifyContent: "center",
-        border: "2px solid black",
         width: "fit-content",
-        padding: "3px 10px",
         flexDirection: "row",
         gap: "5px",
-        height: "24px",
+        background: "#bdbdbdff",
+        borderRadius: "6px",
+        padding: "4px 6px",
+        height: "fit-content",
         ...styles,
       }}
     >
       {leftContent}
       <Typography
         {...textProps}
-        styles={{ fontSize: "14px", ...textProps?.styles }}
+        styles={{ fontSize: "11px", ...textProps?.styles }}
       >
         {text}
       </Typography>

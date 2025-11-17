@@ -3,6 +3,9 @@ export type ProductDto = {
   name: string;
   image: string;
   price: number;
+  score: number;
+  freeShipping?: boolean;
+  bestSeller?: boolean;
 };
 
 export type BasketDto = {
