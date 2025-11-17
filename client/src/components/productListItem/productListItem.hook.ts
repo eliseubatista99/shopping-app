@@ -1,8 +1,10 @@
 import { useAppTranslations } from "@hooks";
+import { useStoreBase } from "@store";
 import React from "react";
 
 export const useProductListItemHelper = () => {
   const { t } = useAppTranslations();
+  const currency = useStoreBase((state) => state.currency);
 
   const i18n = React.useMemo(() => {
     return {
@@ -18,5 +20,6 @@ export const useProductListItemHelper = () => {
 
   return {
     i18n,
+    currency,
   };
 };

@@ -1,6 +1,7 @@
 import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
+import { CurrencyBlock } from "../currencyBlock";
 import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
 import type { ProductListItemProps } from "./productListItem";
@@ -9,7 +10,7 @@ import { useProductListItemHelper } from "./productListItem.hook";
 export const ProductListItemMobile: React.FC<ProductListItemProps> = (
   props
 ) => {
-  const { i18n } = useProductListItemHelper();
+  const { i18n, currency } = useProductListItemHelper();
   const { product, onClick, onClickAddToCart } = props;
 
   return (
@@ -75,9 +76,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
       >
         <Typography styles={{ fontSize: "14px" }}>{product.name}</Typography>
         {product.score !== undefined && <ProductScore score={product.score} />}
-        <Typography styles={{ fontWeight: "500", fontSize: "16px" }}>
-          {product.price}
-        </Typography>
+        <CurrencyBlock value={product.price} currency={currency} />
         {product.freeShipping && (
           <Tag
             text={i18n.tags.bestSeller}

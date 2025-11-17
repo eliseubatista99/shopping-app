@@ -8,10 +8,12 @@ export type LanguageType = "pt" | "en";
 export interface BaseState {
   language: LanguageType;
   client?: ClientInfoDto;
+  currency?: string;
 }
 
 export const initialState: BaseState = {
   language: "en",
+  currency: "€",
 };
 
 interface UseStoreOutput extends BaseState {

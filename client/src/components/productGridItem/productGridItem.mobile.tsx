@@ -1,11 +1,14 @@
 import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
+import { CurrencyBlock } from "../currencyBlock";
 import type { ProductGridItemProps } from "./productGridItem";
+import { useProductGridItemHelper } from "./productGridItem.hook";
 
 export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
   props
 ) => {
   const { product, onClick } = props;
+  const { currency } = useProductGridItemHelper();
 
   return (
     <div
@@ -24,13 +27,11 @@ export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
           objectFit: "cover",
         }}
       />
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", gap: "5px" }}>
         <Typography overflowEllipsis styles={{ fontSize: "14px" }}>
           {product.name}
         </Typography>
-        <Typography styles={{ fontWeight: "500", fontSize: "16px" }}>
-          {product.price}
-        </Typography>
+        <CurrencyBlock value={product.price} currency={currency} />
       </div>
     </div>
   );
