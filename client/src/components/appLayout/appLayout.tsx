@@ -5,6 +5,7 @@ import { AppLayoutMobile } from "./appLayout.mobile";
 
 export interface AppLayoutProps {
   appHeader?: AppHeaderProps;
+  reserveSpaceForScrollbar?: boolean;
   containerStyles?: React.CSSProperties;
   pageStyles?: React.CSSProperties;
   children?: React.ReactNode;

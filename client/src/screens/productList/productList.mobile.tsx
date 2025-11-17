@@ -25,7 +25,9 @@ export const ProductListMobile: React.FC = () => {
         },
       }}
     >
-      <div style={{ width: "100%", flexDirection: "column" }}>
+      <div
+        style={{ width: "100%", flexDirection: "column", padding: "10px 0" }}
+      >
         {productsJSX}
       </div>
     </AppLayout>

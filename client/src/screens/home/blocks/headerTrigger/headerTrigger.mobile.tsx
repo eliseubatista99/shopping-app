@@ -18,7 +18,8 @@ export const HeaderTriggerBlockMobile: React.FC<HeaderTriggerBlockProps> = (
           position: "relative",
           width: "100%",
           height: "1px",
-          top: "-50px",
+          // top: "-50px",
+          top: "5px",
         }}
       />
       <div

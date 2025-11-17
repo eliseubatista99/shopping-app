@@ -55,6 +55,7 @@ div {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  position: relative;
 }
 
 img {
@@ -82,9 +83,43 @@ b {
   font-weight: 600;
 }
 
-@media only screen and (min-width: 375px) and (max-width: 768px) {
+@media only screen and (min-width: 375px) and (max-width: 600px) {
 }
 
 /* Desktop */
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 600px) {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  html {
+    background: #cccccc;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  body {
+    max-width: 390px;
+    max-height: 90%;
+    margin: 0;
+    scrollbar-gutter: stable;
+    padding-right: 5px;
+  }
 }
