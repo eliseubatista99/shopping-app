@@ -1,10 +1,17 @@
-import { CurrencyBlock } from "@components";
-import { Typography } from "@eliseubatista99/react-scaffold-core";
+import { Assets } from "@assets";
+import { CurrencyBlock, QuantityField } from "@components";
+import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import { usePurchaseBlockHelper } from "./purchase.hook";
 
 export const PurchaseBlockMobile: React.FC = () => {
-  const { i18n, product, calculatedPrices, currency } =
-    usePurchaseBlockHelper();
+  const {
+    i18n,
+    product,
+    calculatedPrices,
+    currency,
+    onClickAddress,
+    quantity,
+  } = usePurchaseBlockHelper();
 
   return (
     <>
@@ -71,6 +78,41 @@ export const PurchaseBlockMobile: React.FC = () => {
           <Typography styles={{ marginTop: "12px" }}>
             {i18n.delivery.date}
           </Typography>
+
+          <div
+            onClick={() => onClickAddress()}
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              marginTop: "22px",
+              gap: "6px",
+              cursor: "pointer",
+            }}
+          >
+            <Image
+              src={Assets.Icons.Location}
+              styles={{
+                width: "16px",
+                height: "16px",
+              }}
+            />
+            <Typography
+              styles={{
+                flex: 1,
+                color: "#001b74ff",
+              }}
+            >
+              {i18n.delivery.address}
+            </Typography>
+          </div>
+
+          <QuantityField
+            currentQuantity={quantity.current}
+            minQuantity={0}
+            maxQuantity={99}
+            onChange={quantity.onChange}
+            styles={{ marginTop: "20px" }}
+          />
         </div>
       )}
     </>

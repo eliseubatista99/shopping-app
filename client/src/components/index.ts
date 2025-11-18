@@ -10,5 +10,6 @@ export * from "./productListItem";
 export * from "./productOfferBanner";
 export * from "./productOptionItem";
 export * from "./productScore";
+export * from "./quantityField";
 export * from "./sellerListItem";
 export * from "./tag";

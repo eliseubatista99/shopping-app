@@ -1,12 +1,17 @@
-import { TimeHelper } from "@eliseubatista99/react-scaffold-core";
+import { Drawers } from "@constants";
+import { TimeHelper, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreProduct } from "@store";
 import React from "react";
 
 export const usePurchaseBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
+  const getSelectedAddress = useStoreBase((state) => state.getSelectedAddress);
   const currency = useStoreBase((state) => state.currency);
   const { t } = useAppTranslations();
+  const { showItem } = useFeedback();
+
+  const [quantity, setQuantity] = React.useState<number>(1);
 
   const i18n = React.useMemo(() => {
     const deliveryDate = TimeHelper.getDateInUTC(
@@ -20,6 +25,8 @@ export const usePurchaseBlockHelper = () => {
       month,
       year: deliveryDate?.year,
     });
+
+    const selectedAddress = getSelectedAddress();
 
     return {
       pricing: {
@@ -35,13 +42,14 @@ export const usePurchaseBlockHelper = () => {
         date: t("productDetails.delivery.date", {
           date: extenseDate,
         }),
+        address: t("productDetails.delivery.address", {
+          name: selectedAddress?.name,
+          city: selectedAddress?.city,
+          postalCode: selectedAddress?.postalCode,
+        }),
       },
     };
-  }, [
-    selectedProduct?.estimatedDeliveryDate,
-    selectedProduct?.shippingCost,
-    t,
-  ]);
+  }, [getSelectedAddress, selectedProduct, t]);
 
   const calculatedPrices = React.useMemo(() => {
     const originalPrice = selectedProduct?.originalPrice || 1;
@@ -65,10 +73,23 @@ export const usePurchaseBlockHelper = () => {
     };
   }, [selectedProduct?.originalPrice, selectedProduct?.price]);
 
+  const onClickAddress = React.useCallback(() => {
+    showItem(Drawers.selectAddress);
+  }, [showItem]);
+
+  const onChangeQuantity = React.useCallback((value: number) => {
+    setQuantity(value);
+  }, []);
+
   return {
     i18n,
     product: selectedProduct,
     currency,
     calculatedPrices,
+    onClickAddress,
+    quantity: {
+      current: quantity,
+      onChange: onChangeQuantity,
+    },
   };
 };

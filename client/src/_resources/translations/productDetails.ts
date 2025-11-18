@@ -21,4 +21,8 @@ export const translationsProductDetails: TranslationList = {
     pt: "Entrega estimada a {{date}}",
     en: "Estimated delivery at {{date}}",
   },
+  "productDetails.delivery.address": {
+    pt: "Enviar a {{name}} - {{city}} {{postalCode}}",
+    en: "Send to {{name}} - {{city}} {{postalCode}}",
+  },
 };

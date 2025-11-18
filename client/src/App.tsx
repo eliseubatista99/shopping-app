@@ -1,4 +1,5 @@
 import { useFetchTest, type Person } from "@api";
+import { SelectAddressDrawer } from "@drawers";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { OverlaySearch } from "@overlays";
 import React from "react";
@@ -23,6 +24,7 @@ export const App = () => {
 
   return (
     <>
+      <SelectAddressDrawer />
       <OverlaySearch />
     </>
   );

@@ -5,7 +5,7 @@ import {
   Image,
   type CarouselSlideProps,
 } from "@eliseubatista99/react-scaffold-core";
-import { AddressBlock, HeaderTriggerBlock, OffersGroupBlock } from "./blocks";
+import { HeaderTriggerBlock, OffersGroupBlock } from "./blocks";
 import { ConditionOffersBlock } from "./blocks/conditionOffers";
 import { useHomePageHelper } from "./home.hook";
 
@@ -32,57 +32,54 @@ export const HomeMobile: React.FC = () => {
   );
 
   return (
-    <>
-      <AppLayout
-        appHeader={{
-          styles: header.headerTriggerVisible
-            ? {
-                background: "transparent",
-                borderBottom: "none",
-              }
-            : undefined,
-        }}
-        pageStyles={{ paddingTop: "0px" }}
-      >
-        <HeaderTriggerBlock onTrigger={header.handleHeaderTrigger} />
-        <div style={{ width: "100%", zIndex: 1 }}>
-          <Chip
-            text={i18n.chips.address}
-            onClick={() => onAddressChipClicked()}
-            leftContent={
-              <Image
-                src={Assets.Icons.Location}
-                styles={{
-                  width: "10px",
-                  height: "10px",
-                }}
-              />
+    <AppLayout
+      appHeader={{
+        styles: header.headerTriggerVisible
+          ? {
+              background: "transparent",
+              borderBottom: "none",
             }
-            rightContent={
-              <Image
-                src={Assets.Icons.NavDown}
-                styles={{
-                  width: "15px",
-                  height: "15px",
-                }}
-              />
-            }
-            styles={{
-              border: "none",
-              background: "#ffffff70",
-              marginTop: "8px",
-            }}
-          />
+          : undefined,
+      }}
+      pageStyles={{ paddingTop: "0px" }}
+    >
+      <HeaderTriggerBlock onTrigger={header.handleHeaderTrigger} />
+      <div style={{ width: "100%", zIndex: 1 }}>
+        <Chip
+          text={i18n.chips.address}
+          onClick={() => onAddressChipClicked()}
+          leftContent={
+            <Image
+              src={Assets.Icons.Location}
+              styles={{
+                width: "10px",
+                height: "10px",
+              }}
+            />
+          }
+          rightContent={
+            <Image
+              src={Assets.Icons.NavDown}
+              styles={{
+                width: "15px",
+                height: "15px",
+              }}
+            />
+          }
+          styles={{
+            border: "none",
+            background: "#ffffff70",
+            marginTop: "8px",
+          }}
+        />
 
-          <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
-          <ConditionOffersBlock />
+        <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
+        <ConditionOffersBlock />
 
-          <div style={{ width: "100%", gap: "30px", marginTop: "30px" }}>
-            {groupsJSX}
-          </div>
+        <div style={{ width: "100%", gap: "30px", marginTop: "30px" }}>
+          {groupsJSX}
         </div>
-      </AppLayout>
-      <AddressBlock />
-    </>
+      </div>
+    </AppLayout>
   );
 };

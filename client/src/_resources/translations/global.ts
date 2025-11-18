@@ -17,4 +17,8 @@ export const translationsGlobal: TranslationList = {
     pt: "Pesquisa",
     en: "Search",
   },
+  "global.quantityField.placeholder": {
+    pt: "Quantidade: {{value}}",
+    en: "Quantity: {{value}}",
+  },
 };
