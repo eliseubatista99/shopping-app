@@ -15,12 +15,14 @@ export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
           flexDirection: "row",
           alignItems: "flex-start",
           gap: "1px",
+          ...value.containerStyles,
         }}
       >
         <Typography
           styles={{
             fontSize: "20px",
             fontWeight: 500,
+            ...value.unitsTextStyles,
           }}
         >
           {value.units}
@@ -31,6 +33,7 @@ export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
             styles={{
               fontSize: "12px",
               fontWeight: 300,
+              ...value.decimalsTextStyles,
             }}
           >
             {value.decimals}
@@ -40,6 +43,8 @@ export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
               styles={{
                 fontSize: "12px",
                 fontWeight: 300,
+                ...value.decimalsTextStyles,
+                ...value.currencyTextStyles,
               }}
             >
               {currency}
@@ -76,13 +81,14 @@ export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
             fontSize: "13px",
             fontWeight: 300,
             color: "#696969ff",
+            ...oldValue?.textStyles,
           }}
         >
           {`${oldValue?.value} ${currency || ""}`}
         </Typography>
       </div>
     ),
-    [currency, oldValue?.value]
+    [currency, oldValue]
   );
 
   return (

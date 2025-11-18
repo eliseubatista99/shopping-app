@@ -21,7 +21,15 @@ export const useCurrencyBlockHelper = ({ value }: CurrencyBlockProps) => {
   };
 
   const calculatedValues = React.useMemo(() => {
-    return calculateUnitsAndDecimals(value);
+    const res = calculateUnitsAndDecimals(value.value);
+
+    return {
+      ...res,
+      unitsTextStyles: value.unitsTextStyles,
+      decimalsTextStyles: value.decimalsTextStyles,
+      currencyTextStyles: value.currencyTextStyles,
+      containerStyles: value.containerStyles,
+    };
   }, [value]);
 
   return {

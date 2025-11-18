@@ -6,7 +6,7 @@ export type ProductDto = {
   originalPrice: number;
   score: number;
   scoreCount: number;
-  freeShipping?: boolean;
+  shippingCost?: number;
   bestSeller?: boolean;
 };
 
@@ -49,6 +49,7 @@ export type ProductDetailDto = ProductDto & {
   relatedProducts: ProductDto[];
   comboProducts: ProductDto[];
   reviews: ReviewDto[];
+  estimatedDeliveryDate: string;
 };
 
 export type BasketDto = {

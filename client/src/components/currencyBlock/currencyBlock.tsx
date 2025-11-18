@@ -1,4 +1,7 @@
-import { useResponsive } from "@eliseubatista99/react-scaffold-core";
+import {
+  useResponsive,
+  type TypographyProps,
+} from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { CurrencyBlockDesktop } from "./currencyBlock.desktop";
 import { CurrencyBlockMobile } from "./currencyBlock.mobile";
@@ -9,9 +12,16 @@ export type UnitsAndDecimals = {
 };
 
 export interface CurrencyBlockProps {
-  value: number;
+  value: {
+    value: number;
+    unitsTextStyles?: React.CSSProperties;
+    decimalsTextStyles?: React.CSSProperties;
+    currencyTextStyles?: React.CSSProperties;
+    containerStyles?: React.CSSProperties;
+  };
   oldValue?: {
     value: number;
+    textStyles?: TypographyProps;
     position?: "horizontal" | "vertical";
   };
   currency?: string;

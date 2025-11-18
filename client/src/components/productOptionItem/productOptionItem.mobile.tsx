@@ -35,7 +35,9 @@ export const ProductOptionItemMobile: React.FC<ProductOptionItemProps> = ({
         {option.name}
       </Typography>
       <CurrencyBlock
-        value={option.price}
+        value={{
+          value: option.price,
+        }}
         oldValue={{
           value: option.originalPrice,
           position: "vertical",

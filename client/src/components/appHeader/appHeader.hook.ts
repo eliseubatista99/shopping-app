@@ -22,7 +22,7 @@ export const useAppHeaderHelper = ({
     return {
       header: {
         searchBar: {
-          placeholder: t("header.searchBar.placeholder"),
+          placeholder: t("global.searchBar.placeholder"),
         },
       },
     };

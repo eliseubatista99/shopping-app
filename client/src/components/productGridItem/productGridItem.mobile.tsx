@@ -32,7 +32,9 @@ export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
           {product.name}
         </Typography>
         <CurrencyBlock
-          value={product.price}
+          value={{
+            value: product.price,
+          }}
           oldValue={{
             value: product.originalPrice,
           }}

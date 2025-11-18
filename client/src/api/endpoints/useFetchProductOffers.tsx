@@ -25,6 +25,7 @@ export const useFetchProductOffers = () => {
       score: 4,
       originalPrice: 40.59,
       scoreCount: 345,
+      shippingCost: 0,
     };
 
     const result: ProductOffersOutputDto = {

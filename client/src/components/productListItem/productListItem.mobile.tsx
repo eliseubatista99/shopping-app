@@ -76,8 +76,13 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
       >
         <Typography styles={{ fontSize: "14px" }}>{product.name}</Typography>
         {product.score !== undefined && <ProductScore score={product.score} />}
-        <CurrencyBlock value={product.price} currency={currency} />
-        {product.freeShipping && (
+        <CurrencyBlock
+          value={{
+            value: product.price,
+          }}
+          currency={currency}
+        />
+        {!product.shippingCost && (
           <Tag
             text={i18n.tags.bestSeller}
             styles={{

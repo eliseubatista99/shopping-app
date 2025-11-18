@@ -27,6 +27,7 @@ export const useFetchSearchProducts = () => {
       score: 4,
       originalPrice: 40.59,
       scoreCount: 345,
+      shippingCost: 7.99,
     };
 
     const result: SearchProductsOutputDto = {
@@ -39,7 +40,7 @@ export const useFetchSearchProducts = () => {
         {
           ...mockProduct,
           id: "2",
-          freeShipping: true,
+          shippingCost: 0,
         },
         {
           ...mockProduct,
