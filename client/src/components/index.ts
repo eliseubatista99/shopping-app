@@ -7,6 +7,7 @@ export * from "./appLoader";
 export * from "./chip";
 export * from "./currencyBlock";
 export * from "./productCombinationSelection";
+export * from "./productComboItem";
 export * from "./productGridItem";
 export * from "./productListItem";
 export * from "./productOfferBanner";

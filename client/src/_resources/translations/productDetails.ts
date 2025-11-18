@@ -29,4 +29,8 @@ export const translationsProductDetails: TranslationList = {
     pt: "Comprar todos os {{count}}:",
     en: "Buy all {{count}}:",
   },
+  "productDetails.related.title": {
+    pt: "Produtos relacionados",
+    en: "Related products",
+  },
 };
