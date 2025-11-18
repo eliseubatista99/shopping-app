@@ -29,6 +29,10 @@ export const usePurchaseBlockHelper = () => {
     const selectedAddress = getSelectedAddress();
 
     return {
+      actions: {
+        addToCard: t("global.actions.addToCart"),
+        buyNow: t("global.actions.buyNow"),
+      },
       pricing: {
         originalPrice: t("productDetails.price.original"),
         vat: t("productDetails.price.vatIncluded"),
@@ -81,6 +85,14 @@ export const usePurchaseBlockHelper = () => {
     setQuantity(value);
   }, []);
 
+  const onClickAddToCart = React.useCallback(() => {
+    //Do some
+  }, []);
+
+  const onClickBuyNow = React.useCallback(() => {
+    //Do some
+  }, []);
+
   return {
     i18n,
     product: selectedProduct,
@@ -91,5 +103,7 @@ export const usePurchaseBlockHelper = () => {
       current: quantity,
       onChange: onChangeQuantity,
     },
+    onClickAddToCart,
+    onClickBuyNow,
   };
 };

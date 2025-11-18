@@ -12,4 +12,5 @@ export * from "./productOptionItem";
 export * from "./productScore";
 export * from "./quantityField";
 export * from "./sellerListItem";
+export * from "./separator";
 export * from "./tag";

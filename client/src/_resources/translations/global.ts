@@ -5,6 +5,10 @@ export const translationsGlobal: TranslationList = {
     pt: "Adicionar ao carrinho",
     en: "Add to cart",
   },
+  "global.actions.buyNow": {
+    pt: "Comprar já",
+    en: "Buy now",
+  },
   "global.tag.bestSeller": {
     pt: "Mais vendido",
     en: "Best seller",

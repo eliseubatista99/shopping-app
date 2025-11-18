@@ -5,6 +5,7 @@ import {
   Typography,
 } from "@eliseubatista99/react-scaffold-core";
 import { ProductOptionItem } from "src/components/productOptionItem";
+import { Separator } from "src/components/separator";
 import { useBaseInfoBlockHelper } from "./baseInfo.hook";
 
 export const BaseInfoBlockMobile: React.FC = () => {
@@ -75,19 +76,19 @@ export const BaseInfoBlockMobile: React.FC = () => {
             }}
             styles={{
               marginTop: "10px",
-              borderBottom: "2px solid #e0e0e0",
-              paddingBottom: "50px",
             }}
           />
+
+          <Separator styles={{ marginTop: "50px" }} />
 
           <Carousel
             content={productOptionsSlides}
             styles={{
               marginTop: "10px",
-              borderBottom: "2px solid #e0e0e0",
-              padding: "5px 0 20px 0",
             }}
           />
+
+          <Separator styles={{ marginTop: "20px" }} />
         </>
       )}
     </>
