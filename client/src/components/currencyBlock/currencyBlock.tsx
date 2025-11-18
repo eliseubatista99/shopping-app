@@ -3,8 +3,17 @@ import React from "react";
 import { CurrencyBlockDesktop } from "./currencyBlock.desktop";
 import { CurrencyBlockMobile } from "./currencyBlock.mobile";
 
+export type UnitsAndDecimals = {
+  units: string;
+  decimals: string;
+};
+
 export interface CurrencyBlockProps {
   value: number;
+  oldValue?: {
+    value: number;
+    position?: "horizontal" | "vertical";
+  };
   currency?: string;
   styles?: React.CSSProperties;
 }

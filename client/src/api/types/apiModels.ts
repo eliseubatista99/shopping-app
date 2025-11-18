@@ -10,6 +10,14 @@ export type ProductDto = {
   bestSeller?: boolean;
 };
 
+export type ProductOptionDto = {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  originalPrice: number;
+};
+
 export type SellerDto = {
   id: string;
   name: string;
@@ -37,7 +45,7 @@ export type ProductDetailDto = ProductDto & {
   documents: DocumentDto[];
   seller: SellerDto;
   detailImages: string[];
-  productOptions: ProductDto[];
+  productOptions: ProductOptionDto[];
   relatedProducts: ProductDto[];
   comboProducts: ProductDto[];
   reviews: ReviewDto[];

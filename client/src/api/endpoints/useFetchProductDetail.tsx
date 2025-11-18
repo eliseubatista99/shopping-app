@@ -3,6 +3,7 @@ import type {
   DocumentDto,
   ProductDetailDto,
   ProductDto,
+  ProductOptionDto,
   ReviewDto,
 } from "../types";
 
@@ -23,15 +24,24 @@ export const useFetchProductDetail = () => {
     console.debug("Fetching product detail for id:", input.productId);
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const productOption: ProductDto = {
+    const productOption: ProductOptionDto = {
       id: "2",
       name: "Mesinha cebeceira VASAGÇLE",
       image:
         "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG",
       price: 40.59,
-      score: 4,
       originalPrice: 40.59,
-      scoreCount: 345,
+    };
+
+    const relatedProduct: ProductDto = {
+      id: "2",
+      name: "Mesinha cebeceira VASAGÇLE",
+      image:
+        "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG",
+      price: 40.59,
+      originalPrice: 50.59,
+      score: 4,
+      scoreCount: 20,
     };
 
     const review: ReviewDto = {
@@ -50,7 +60,7 @@ export const useFetchProductDetail = () => {
 
     const result: ProductDetailOutputDto = {
       product: {
-        id: "1",
+        id: "ABC1",
         name: "Mesinha cebeceira VASAGÇLE",
         image:
           "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG",
@@ -78,22 +88,22 @@ export const useFetchProductDetail = () => {
           "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG",
         ],
         productOptions: [
-          { ...productOption, id: "2" },
+          { ...productOption, id: "ABC1" },
           { ...productOption, id: "3" },
           { ...productOption, id: "3" },
           { ...productOption, id: "4" },
         ],
         relatedProducts: [
-          { ...productOption, id: "2" },
-          { ...productOption, id: "3" },
-          { ...productOption, id: "3" },
-          { ...productOption, id: "4" },
+          { ...relatedProduct, id: "2" },
+          { ...relatedProduct, id: "3" },
+          { ...relatedProduct, id: "3" },
+          { ...relatedProduct, id: "4" },
         ],
         comboProducts: [
-          { ...productOption, id: "2" },
-          { ...productOption, id: "3" },
-          { ...productOption, id: "3" },
-          { ...productOption, id: "4" },
+          { ...relatedProduct, id: "2" },
+          { ...relatedProduct, id: "3" },
+          { ...relatedProduct, id: "3" },
+          { ...relatedProduct, id: "4" },
         ],
         reviews: [
           {

@@ -32,6 +32,7 @@ export const useFetchProductOffers = () => {
         {
           ...mockProduct,
           id: "1",
+          originalPrice: 50.59,
         },
         {
           ...mockProduct,

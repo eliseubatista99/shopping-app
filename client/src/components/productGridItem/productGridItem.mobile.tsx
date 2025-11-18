@@ -31,7 +31,13 @@ export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
         <Typography overflowEllipsis styles={{ fontSize: "14px" }}>
           {product.name}
         </Typography>
-        <CurrencyBlock value={product.price} currency={currency} />
+        <CurrencyBlock
+          value={product.price}
+          oldValue={{
+            value: product.originalPrice,
+          }}
+          currency={currency}
+        />
       </div>
     </div>
   );

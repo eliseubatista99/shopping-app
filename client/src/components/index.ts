@@ -8,6 +8,7 @@ export * from "./currencyBlock";
 export * from "./productGridItem";
 export * from "./productListItem";
 export * from "./productOfferBanner";
+export * from "./productOptionItem";
 export * from "./productScore";
 export * from "./sellerListItem";
 export * from "./tag";

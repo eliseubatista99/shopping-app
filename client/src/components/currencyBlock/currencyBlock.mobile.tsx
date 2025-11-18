@@ -4,32 +4,98 @@ import type { CurrencyBlockProps } from "./currencyBlock";
 import { useCurrencyBlockHelper } from "./currencyBlock.hook";
 
 export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
-  const { styles, currency } = props;
-  const { units, decimals } = useCurrencyBlockHelper(props);
+  const { styles, currency, oldValue } = props;
+  const { value } = useCurrencyBlockHelper(props);
+
+  const valueBlock = React.useMemo(
+    () => (
+      <div
+        data-testid="value-block"
+        style={{
+          flexDirection: "row",
+          alignItems: "flex-start",
+          gap: "1px",
+        }}
+      >
+        <Typography
+          styles={{
+            fontSize: "20px",
+            fontWeight: 500,
+          }}
+        >
+          {value.units}
+        </Typography>
+
+        <div style={{ flexDirection: "row", padding: "1px 0 0 0", gap: "3px" }}>
+          <Typography
+            styles={{
+              fontSize: "12px",
+              fontWeight: 300,
+            }}
+          >
+            {value.decimals}
+          </Typography>
+          {currency && (
+            <Typography
+              styles={{
+                fontSize: "12px",
+                fontWeight: 300,
+              }}
+            >
+              {currency}
+            </Typography>
+          )}
+        </div>
+      </div>
+    ),
+    [currency, value]
+  );
+
+  const oldValueBlock = React.useMemo(
+    () => (
+      <div
+        data-testid="old-value-block"
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          width: "fit-content",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            position: "absolute",
+            height: "1px",
+            width: "100%",
+            background: "#858585ff",
+            margin: "auto",
+          }}
+        />
+        <Typography
+          styles={{
+            fontSize: "13px",
+            fontWeight: 300,
+            color: "#696969ff",
+          }}
+        >
+          {`${oldValue?.value} ${currency || ""}`}
+        </Typography>
+      </div>
+    ),
+    [currency, oldValue?.value]
+  );
 
   return (
     <div
       data-testid="currency-block"
       style={{
-        flexDirection: "row",
-        alignItems: "flex-start",
-        gap: "1px",
+        flexDirection: oldValue?.position === "vertical" ? "column" : "row",
+        gap: "3px",
         ...styles,
       }}
     >
-      <Typography styles={{ fontSize: "20px", fontWeight: 500 }}>
-        {units}
-      </Typography>
-      <div style={{ flexDirection: "row", padding: "1px 0 0 0", gap: "3px" }}>
-        <Typography styles={{ fontSize: "12px", fontWeight: 300 }}>
-          {decimals}
-        </Typography>
-        {currency && (
-          <Typography styles={{ fontSize: "12px", fontWeight: 300 }}>
-            {currency}
-          </Typography>
-        )}
-      </div>
+      {valueBlock}
+      {oldValue?.value && oldValueBlock}
     </div>
   );
 };

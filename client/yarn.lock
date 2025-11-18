@@ -204,10 +204,10 @@
   resolved "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-3.0.4.tgz"
   integrity sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==
 
-"@eliseubatista99/react-scaffold-core@^0.1.37":
-  version "0.1.37"
-  resolved "https://registry.yarnpkg.com/@eliseubatista99/react-scaffold-core/-/react-scaffold-core-0.1.37.tgz#12de789bd0bfc901515d59f2b544194a4f9327bd"
-  integrity sha512-kk8CZSpz9XXqLesycsL+L2ksJ3KyKM/hWt4Rcx26ecVtKNqRSk2LZTlluCWKY8L3TB1EDPfDVbZE+aTT2oztIg==
+"@eliseubatista99/react-scaffold-core@^0.1.39":
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@eliseubatista99/react-scaffold-core/-/react-scaffold-core-0.1.39.tgz#4f692ac1550eb5d9bc041e9fd3af9549b09bf186"
+  integrity sha512-xF/9Ie+tmLzJn3lpsgNQdBPZVPjmPu2efzZK12YIN+0xUfFZJKKk2fklsRJaaVkWmCoShMw9mCkhtHYugPjhgA==
 
 "@emotion/babel-plugin@^11.13.5":
   version "11.13.5"

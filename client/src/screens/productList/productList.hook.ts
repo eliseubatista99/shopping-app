@@ -1,13 +1,15 @@
 import { useFetchSearchProducts, type ProductDto } from "@api";
 import { Pages } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useStoreSearch } from "@store";
+import { useStoreProduct, useStoreSearch } from "@store";
 import React from "react";
 
 export const useProductListPageHelper = () => {
   const isFetching = React.useRef(false);
   const searchText = useStoreSearch((state) => state.searchText);
-  const setSearchStoreState = useStoreSearch((state) => state.setPartialState);
+  const setProductStoreState = useStoreProduct(
+    (state) => state.setPartialState
+  );
   const { fetch: fetchSearchProducts } = useFetchSearchProducts();
   const { goTo } = useNavigation();
 
@@ -16,10 +18,10 @@ export const useProductListPageHelper = () => {
 
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
-      setSearchStoreState({ selectedProduct: product.id });
+      setProductStoreState({ selectedProductId: product.id });
       goTo(Pages.productDetails);
     },
-    [goTo, setSearchStoreState]
+    [goTo, setProductStoreState]
   );
 
   const searchProducts = React.useCallback(async () => {

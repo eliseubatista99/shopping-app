@@ -13,7 +13,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@eliseubatista99/react-scaffold-core": "^0.1.37",
+    "@eliseubatista99/react-scaffold-core": "^0.1.39",
     "@emotion/css": "^11.11.2",
     "@reduxjs/toolkit": "^2.8.2",
     "csstype": "^3.1.3",
