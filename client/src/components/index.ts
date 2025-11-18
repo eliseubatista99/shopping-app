@@ -1,5 +1,6 @@
 export * from "./addressSelectItem";
 export * from "./appButton";
+export * from "./appCheckbox";
 export * from "./appHeader";
 export * from "./appLayout";
 export * from "./appLoader";

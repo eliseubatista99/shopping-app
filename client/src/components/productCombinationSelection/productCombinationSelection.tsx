@@ -9,6 +9,8 @@ export interface ProductsCombinationSelectionProps {
   combinations: ProductDto[];
   selectedProducts: ProductDto[];
   onClickProduct?: (product: ProductDto) => void;
+  onToggleProduct?: (product: ProductDto, checked: boolean) => void;
+  onClickAddToCard?: (products: ProductDto[]) => void;
 }
 
 export const ProductsCombinationSelection: React.FC<

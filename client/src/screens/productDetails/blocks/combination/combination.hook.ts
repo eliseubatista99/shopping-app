@@ -6,9 +6,10 @@ export const useCombinationBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
 
   const [expanded, setExpanded] = React.useState(false);
-  const [selectedItems, setSelectedItems] = React.useState<ProductDto[]>(
-    selectedProduct?.comboProducts || []
-  );
+  const [selectedItems, setSelectedItems] = React.useState<ProductDto[]>([
+    selectedProduct!,
+    ...(selectedProduct?.comboProducts || []),
+  ]);
 
   const onClickExpand = React.useCallback(() => {
     setExpanded(true);
@@ -16,6 +17,7 @@ export const useCombinationBlockHelper = () => {
 
   const onToggleSelectedItem = React.useCallback(
     (item: ProductDto) => {
+      console.log("ZAU TOGGLE", item);
       if (selectedItems.includes(item)) {
         setSelectedItems((prevItems) =>
           prevItems.filter((i) => i.id !== item.id)

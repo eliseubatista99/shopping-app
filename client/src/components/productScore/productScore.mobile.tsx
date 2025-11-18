@@ -5,9 +5,8 @@ import type { ProductScoreProps } from "./productScore";
 import { useProductScoreHelper } from "./productScore.hook";
 
 export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
-  const { score, onClick } = props;
-
   const { scoreList } = useProductScoreHelper(props);
+  const { onClick, starsSize = 10 } = props;
 
   const scoreStars = scoreList.map((scoreValue, index) => {
     let star = Assets.Icons.StarEmpty;
@@ -36,10 +35,10 @@ export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
         gap: "1px",
         flexDirection: "row",
         position: "relative",
-        height: "10px",
+        height: `${starsSize}px`,
         display: "grid",
-        minWidth: "54px",
-        gridTemplateColumns: "repeat(auto-fit, 10px)",
+        minWidth: `${6 * starsSize}px`,
+        gridTemplateColumns: `repeat(auto-fit, ${starsSize}px)`,
       }}
       onClick={() => onClick?.()}
     >

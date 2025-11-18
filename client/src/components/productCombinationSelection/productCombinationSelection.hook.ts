@@ -1,3 +1,4 @@
+import type { ProductDto } from "@api";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase } from "@store";
 import React from "react";
@@ -6,6 +7,8 @@ import type { ProductsCombinationSelectionProps } from "./productCombinationSele
 export const useProductsCombinationSelectionHelper = ({
   product,
   combinations,
+  selectedProducts,
+  onClickAddToCard,
 }: ProductsCombinationSelectionProps) => {
   const currency = useStoreBase((state) => state.currency);
   const { t } = useAppTranslations();
@@ -16,27 +19,43 @@ export const useProductsCombinationSelectionHelper = ({
 
   const i18n = React.useMemo(() => {
     return {
-      collapsed: {
-        totalCost: t("productDetails.combinations.collapsed.totalCost", {
-          count: items.length,
+      actions: {
+        addToCard: t("global.actions.addToCart.multiple", {
+          count: selectedProducts.length,
         }),
       },
     };
-  }, [items.length, t]);
+  }, [selectedProducts.length, t]);
 
   const calculateCostOfCombination = React.useCallback(() => {
     let res = 0;
 
-    items.forEach((i) => {
+    selectedProducts.forEach((i) => {
       res += i.price;
     });
     return res;
-  }, [items]);
+  }, [selectedProducts]);
+
+  const isSelected = React.useCallback(
+    (item: ProductDto) => {
+      return selectedProducts.findIndex((i) => i.id === item.id) !== -1;
+    },
+    [selectedProducts]
+  );
+
+  const addSelectedItemsToCard = React.useCallback(() => {
+    onClickAddToCard?.(selectedProducts);
+  }, [onClickAddToCard, selectedProducts]);
 
   return {
     i18n,
     items,
     currency,
+    combinations,
+    selectedProducts,
+    product,
+    isSelected,
     combinationCost: calculateCostOfCombination(),
+    addSelectedItemsToCard,
   };
 };

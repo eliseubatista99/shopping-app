@@ -14,7 +14,7 @@ export const useBaseInfoBlockHelper = () => {
         freeShipping: t("global.tag.freeShipping"),
       },
       buttons: {
-        addToCart: t("global.actions.addToCart"),
+        addToCart: t("global.actions.addToCart.single"),
       },
     };
   }, [t]);

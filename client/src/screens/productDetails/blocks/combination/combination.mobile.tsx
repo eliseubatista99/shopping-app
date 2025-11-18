@@ -5,8 +5,13 @@ import {
 import { useCombinationBlockHelper } from "./combination.hook";
 
 export const CombinationBlockMobile: React.FC = () => {
-  const { product, selectedItems, expanded, onClickExpand } =
-    useCombinationBlockHelper();
+  const {
+    product,
+    selectedItems,
+    expanded,
+    onClickExpand,
+    onToggleSelectedItem,
+  } = useCombinationBlockHelper();
 
   return (
     <>
@@ -25,6 +30,8 @@ export const CombinationBlockMobile: React.FC = () => {
           combinations={product?.comboProducts || []}
           selectedProducts={selectedItems}
           onClickProduct={() => onClickExpand()}
+          onClickAddToCard={() => onClickExpand()}
+          onToggleProduct={(item) => onToggleSelectedItem(item)}
         />
       )}
     </>

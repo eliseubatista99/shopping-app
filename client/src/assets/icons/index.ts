@@ -1,5 +1,7 @@
 import ArrowLeft from "./arrow_left.svg";
 import Basket from "./basket.svg";
+import Check from "./check.svg";
+import CheckWhite from "./check_white.svg";
 import Hamburger from "./hamburguer.svg";
 import Home from "./home.svg";
 import Location from "./location.svg";
@@ -20,4 +22,8 @@ export const Icons = {
   StarEmpty,
   StarFull,
   StarHalf,
+  Check: {
+    Black: Check,
+    White: CheckWhite,
+  },
 };

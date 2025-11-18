@@ -1,9 +1,13 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
 
 export const translationsGlobal: TranslationList = {
-  "global.actions.addToCart": {
+  "global.actions.addToCart.single": {
     pt: "Adicionar ao carrinho",
     en: "Add to cart",
+  },
+  "global.actions.addToCart.multiple": {
+    pt: "Adicionar {{count}} ao carrinho",
+    en: "Add {{count}} to cart",
   },
   "global.actions.buyNow": {
     pt: "Comprar já",

@@ -30,7 +30,7 @@ export const usePurchaseBlockHelper = () => {
 
     return {
       actions: {
-        addToCard: t("global.actions.addToCart"),
+        addToCard: t("global.actions.addToCart.single"),
         buyNow: t("global.actions.buyNow"),
       },
       pricing: {
