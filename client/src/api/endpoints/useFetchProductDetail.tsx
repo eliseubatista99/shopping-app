@@ -103,8 +103,6 @@ export const useFetchProductDetail = () => {
         comboProducts: [
           { ...relatedProduct, id: "2" },
           { ...relatedProduct, id: "3" },
-          { ...relatedProduct, id: "3" },
-          { ...relatedProduct, id: "4" },
         ],
         reviews: [
           {

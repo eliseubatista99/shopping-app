@@ -25,4 +25,8 @@ export const translationsProductDetails: TranslationList = {
     pt: "Enviar a {{name}} - {{city}} {{postalCode}}",
     en: "Send to {{name}} - {{city}} {{postalCode}}",
   },
+  "productDetails.combinations.collapsed.totalCost": {
+    pt: "Comprar todos os {{count}}:",
+    en: "Buy all {{count}}:",
+  },
 };

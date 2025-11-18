@@ -1,5 +1,10 @@
 import { AppLayout, AppLoader } from "@components";
-import { BaseInfoBlock, PurchaseBlock, SellerBlock } from "./blocks";
+import {
+  BaseInfoBlock,
+  CombinationBlock,
+  PurchaseBlock,
+  SellerBlock,
+} from "./blocks";
 import { useProductDetailsPageHelper } from "./productDetails.hook";
 
 export const ProductDetailsMobile: React.FC = () => {
@@ -21,6 +26,7 @@ export const ProductDetailsMobile: React.FC = () => {
           <SellerBlock />
           <BaseInfoBlock />
           <PurchaseBlock />
+          <CombinationBlock />
         </>
       )}
     </AppLayout>
