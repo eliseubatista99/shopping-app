@@ -33,4 +33,44 @@ export const translationsProductDetails: TranslationList = {
     pt: "Produtos relacionados",
     en: "Related products",
   },
+  "productDetails.specifications.title": {
+    pt: "Especificações do produto",
+    en: "Product Specifications",
+  },
+  "productDetails.specifications.brand": {
+    pt: "Marca",
+    en: "Brand",
+  },
+  "productDetails.specifications.model": {
+    pt: "Modelo",
+    en: "Model",
+  },
+  "productDetails.specifications.origin": {
+    pt: "Origem",
+    en: "Origin",
+  },
+  "productDetails.specifications.manufacturer": {
+    pt: "Fabricante",
+    en: "Manufacturer",
+  },
+  "productDetails.specifications.height": {
+    pt: "Altura (cm)",
+    en: "Height (cm)",
+  },
+  "productDetails.specifications.width": {
+    pt: "Largura (cm)",
+    en: "Width (cm)",
+  },
+  "productDetails.specifications.depth": {
+    pt: "Profundidade (cm)",
+    en: "Depth (cm)",
+  },
+  "productDetails.specifications.warranty": {
+    pt: "Garantia (meses)",
+    en: "Warranty (months)",
+  },
+  "productDetails.documents.title": {
+    pt: "Documentos",
+    en: "Documents",
+  },
 };

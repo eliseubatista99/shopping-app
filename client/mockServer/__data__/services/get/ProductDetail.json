@@ -16,7 +16,16 @@
       "bestSeller": true,
       "shippingCost": 7.99,
       "estimatedDeliveryDate": "2025-05-04T21:12:19.77Z",
-      "specifications": "",
+      "specifications": {
+        "brand": "VASAGÇLE",
+        "model": "56731AS",
+        "origin": "China",
+        "manufacturer": "JOM",
+        "height": 40,
+        "width": 45,
+        "depth": 40,
+        "warranty": 2
+      },
       "documents": [
         { "name": "User Manual", "content": "", "id": "2" },
         { "name": "User Manual", "content": "", "id": "3" }

@@ -6,6 +6,7 @@ export * from "./appLayout";
 export * from "./appLoader";
 export * from "./chip";
 export * from "./currencyBlock";
+export * from "./documentListItem";
 export * from "./productCombinationSelection";
 export * from "./productComboItem";
 export * from "./productGridItem";

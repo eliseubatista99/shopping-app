@@ -2,10 +2,12 @@ import ArrowLeft from "./arrow_left.svg";
 import Basket from "./basket.svg";
 import Check from "./check.svg";
 import CheckWhite from "./check_white.svg";
+import Document from "./doc.svg";
 import Hamburger from "./hamburguer.svg";
 import Home from "./home.svg";
 import Location from "./location.svg";
 import NavDown from "./navDown.svg";
+import NavUp from "./navUp.svg";
 import Person from "./person.svg";
 import StarEmpty from "./star_empty.svg";
 import StarFull from "./star_full.svg";
@@ -18,6 +20,7 @@ export const Icons = {
   Location,
   Basket,
   NavDown,
+  NavUp,
   ArrowLeft,
   StarEmpty,
   StarFull,
@@ -26,4 +29,5 @@ export const Icons = {
     Black: Check,
     White: CheckWhite,
   },
+  Document,
 };

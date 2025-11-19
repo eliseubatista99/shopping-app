@@ -5,7 +5,9 @@ import {
   PurchaseBlock,
   RelatedBlock,
   SellerBlock,
+  SpecificationsBlock,
 } from "./blocks";
+import { DocumentsBlock } from "./blocks/documents";
 import { useProductDetailsPageHelper } from "./productDetails.hook";
 
 export const ProductDetailsMobile: React.FC = () => {
@@ -29,6 +31,8 @@ export const ProductDetailsMobile: React.FC = () => {
           <PurchaseBlock />
           <CombinationBlock />
           <RelatedBlock />
+          <SpecificationsBlock />
+          <DocumentsBlock />
         </>
       )}
     </AppLayout>

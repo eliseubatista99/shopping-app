@@ -19,6 +19,17 @@ export type ProductDto = {
   bestSeller?: boolean;
 };
 
+export type ProductSpecificationsDto = {
+  brand: string;
+  model: string;
+  origin?: string;
+  manufacturer?: string;
+  height?: number;
+  width?: number;
+  depth?: number;
+  warranty?: number;
+};
+
 export type ProductOptionDto = {
   id: string;
   name: string;
@@ -49,8 +60,7 @@ export type ReviewDto = {
 };
 
 export type ProductDetailDto = ProductDto & {
-  description: string;
-  specifications: string;
+  specifications: ProductSpecificationsDto;
   documents: DocumentDto[];
   seller: SellerDto;
   detailImages: string[];
