@@ -1,2 +1,1 @@
 export * from "./useAppSearchParams";
-export * from "./useAppTranslations";

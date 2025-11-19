@@ -6,7 +6,6 @@ import { StoreHelper } from "../storeHelper";
 export type LanguageType = "pt" | "en";
 
 export interface ProductState {
-  selectedProductId?: string;
   selectedProduct?: ProductDetailDto;
 }
 

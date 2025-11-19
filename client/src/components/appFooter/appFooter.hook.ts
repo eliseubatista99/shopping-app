@@ -45,7 +45,7 @@ export const useAppFooterHelper = () => {
 
   const onClickItem = React.useCallback(
     (item: FooterItem) => {
-      goTo(item.path);
+      goTo({ path: item.path });
     },
     [goTo]
   );

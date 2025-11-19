@@ -1,11 +1,13 @@
 import { useFetchProductDetail } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { useAppSearchParams } from "@hooks";
 import { useStoreProduct } from "@store";
 import React from "react";
 
 export const useProductDetailsPageHelper = () => {
+  const searchParams = useAppSearchParams();
+
   const isFetching = React.useRef(false);
-  const selectedProductId = useStoreProduct((state) => state.selectedProductId);
   const selectedProductInStore = useStoreProduct(
     (state) => state.selectedProduct
   );
@@ -25,14 +27,14 @@ export const useProductDetailsPageHelper = () => {
     setLoading(true);
 
     const res = await fetchProductDetail({
-      productId: selectedProductId || "",
+      productId: searchParams.productId.value || "",
     });
 
     setProductStoreState({ selectedProduct: res.product });
 
     isFetching.current = false;
     setLoading(false);
-  }, [fetchProductDetail, selectedProductId, setProductStoreState]);
+  }, [fetchProductDetail, searchParams, setProductStoreState]);
 
   useDidMount(() => {
     initScreen();

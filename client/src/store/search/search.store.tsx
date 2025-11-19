@@ -5,7 +5,6 @@ import { StoreHelper } from "../storeHelper";
 export type LanguageType = "pt" | "en";
 
 export interface SearchState {
-  searchText?: string;
   previousSearches?: string[];
 }
 

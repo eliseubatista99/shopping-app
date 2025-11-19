@@ -1,4 +1,4 @@
-import { Overlays, Pages } from "@constants";
+import { Overlays, Pages, SEARCH_PARAMS } from "@constants";
 import {
   useFeedback,
   useNavigation,
@@ -8,20 +8,23 @@ import React from "react";
 
 export const useOverlaySearchHelper = () => {
   const previousSearches = useStoreSearch((state) => state.previousSearches);
-  const setSearchStoreState = useStoreSearch((state) => state.setPartialState);
   const { goTo, currentPath } = useNavigation();
   const { hideItem } = useFeedback();
 
   const submitSearch = React.useCallback(
     async (text: string) => {
-      setSearchStoreState({ searchText: text });
       hideItem(Overlays.search);
 
       if (currentPath !== Pages.productList) {
-        goTo(Pages.productList);
+        goTo({
+          path: Pages.productList,
+          params: {
+            [SEARCH_PARAMS.SEARCH_TEXT]: text,
+          },
+        });
       }
     },
-    [currentPath, goTo, hideItem, setSearchStoreState]
+    [currentPath, goTo, hideItem]
   );
 
   const onClickBack = React.useCallback(() => {

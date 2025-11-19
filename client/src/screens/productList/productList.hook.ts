@@ -1,27 +1,28 @@
 import { useFetchSearchProducts, type ProductDto } from "@api";
-import { Pages } from "@constants";
+import { Pages, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useStoreProduct, useStoreSearch } from "@store";
+import { useAppSearchParams } from "@hooks";
 import React from "react";
 
 export const useProductListPageHelper = () => {
   const isFetching = React.useRef(false);
-  const searchText = useStoreSearch((state) => state.searchText);
-  const setProductStoreState = useStoreProduct(
-    (state) => state.setPartialState
-  );
   const { fetch: fetchSearchProducts } = useFetchSearchProducts();
   const { goTo } = useNavigation();
+  const searchParams = useAppSearchParams();
 
   const [loading, setLoading] = React.useState(true);
   const [products, setProducts] = React.useState<ProductDto[]>([]);
 
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
-      setProductStoreState({ selectedProductId: product.id });
-      goTo(Pages.productDetails);
+      goTo({
+        path: Pages.productDetails,
+        params: {
+          [SEARCH_PARAMS.PRODUCT_ID]: product.id,
+        },
+      });
     },
-    [goTo, setProductStoreState]
+    [goTo]
   );
 
   const searchProducts = React.useCallback(async () => {
@@ -32,16 +33,18 @@ export const useProductListPageHelper = () => {
     isFetching.current = true;
     setLoading(true);
 
-    const res = await fetchSearchProducts({ keyword: searchText || "" });
+    const res = await fetchSearchProducts({
+      keyword: searchParams.searchText.value || "",
+    });
     setProducts(res.products || []);
 
     isFetching.current = false;
     setLoading(false);
-  }, [fetchSearchProducts, searchText, isFetching]);
+  }, [searchParams.searchText.value, fetchSearchProducts]);
 
   React.useEffect(() => {
     searchProducts();
-  }, [searchProducts, searchText]);
+  }, [searchProducts, searchParams.searchText.value]);
 
   return {
     products,

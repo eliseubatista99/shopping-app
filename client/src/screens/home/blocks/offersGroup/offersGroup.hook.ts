@@ -1,20 +1,20 @@
 import { type ProductDto } from "@api";
-import { Pages } from "@constants";
+import { Pages, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useStoreProduct } from "@store";
 import React from "react";
 
 export const useOffersGroupBlockHelper = () => {
-  const setProductStoreState = useStoreProduct(
-    (state) => state.setPartialState
-  );
   const { goTo } = useNavigation();
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
-      setProductStoreState({ selectedProductId: product.id });
-      goTo(Pages.productDetails);
+      goTo({
+        path: Pages.productDetails,
+        params: {
+          [SEARCH_PARAMS.PRODUCT_ID]: product.id,
+        },
+      });
     },
-    [goTo, setProductStoreState]
+    [goTo]
   );
 
   return {

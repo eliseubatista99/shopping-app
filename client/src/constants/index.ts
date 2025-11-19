@@ -4,4 +4,5 @@ export * from "./drawers";
 export * from "./loaders";
 export * from "./overlays";
 export * from "./pages";
+export * from "./searchParams";
 export * from "./zIndexes";
