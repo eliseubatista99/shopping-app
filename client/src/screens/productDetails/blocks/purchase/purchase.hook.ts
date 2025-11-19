@@ -1,6 +1,7 @@
+import type { ProductDto } from "@api";
 import { Drawers } from "@constants";
 import { TimeHelper, useFeedback } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppTranslations, useCart } from "@hooks";
 import { useStoreBase, useStoreProduct } from "@store";
 import React from "react";
 
@@ -10,6 +11,7 @@ export const usePurchaseBlockHelper = () => {
   const currency = useStoreBase((state) => state.currency);
   const { t } = useAppTranslations();
   const { showItem } = useFeedback();
+  const { addToCart } = useCart();
 
   const [quantity, setQuantity] = React.useState<number>(1);
 
@@ -85,9 +87,12 @@ export const usePurchaseBlockHelper = () => {
     setQuantity(value);
   }, []);
 
-  const onClickAddToCart = React.useCallback(() => {
-    //Do some
-  }, []);
+  const onClickAddToCart = React.useCallback(
+    (product: ProductDto) => {
+      addToCart([product.id]);
+    },
+    [addToCart]
+  );
 
   const onClickBuyNow = React.useCallback(() => {
     //Do some

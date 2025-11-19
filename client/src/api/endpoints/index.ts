@@ -1,3 +1,4 @@
+export * from "./useFetchAddToCard";
 export * from "./useFetchClientInfo";
 export * from "./useFetchProductDetail";
 export * from "./useFetchProductOffers";

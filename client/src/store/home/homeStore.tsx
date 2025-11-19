@@ -3,8 +3,6 @@ import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
-export type LanguageType = "pt" | "en";
-
 export interface HomeState {
   fromSearchHistory?: ProductDto[];
   buyAgain?: ProductDto[];
@@ -35,5 +33,5 @@ export const useStoreHome = StoreHelper.createStore<UseStoreOutput>(
     },
   }),
   "Home",
-  createJSONStorage(() => localStorage)
+  createJSONStorage(() => sessionStorage)
 );

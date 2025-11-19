@@ -11,6 +11,7 @@ import {
   ProductDetails,
   Splash,
 } from "@screens";
+import { useAppHelper } from "./App.hook";
 import { ProductList } from "./screens/productList";
 
 export interface AppProvidersProps {
@@ -18,9 +19,12 @@ export interface AppProvidersProps {
 }
 
 export const AppProviders = ({ children }: AppProvidersProps) => {
+  const { isAppInitialized } = useAppHelper();
+
   return (
     <FeedbackProvider>
       <NavigationProvider
+        isReady={isAppInitialized}
         routes={[
           {
             path: Pages.splash,

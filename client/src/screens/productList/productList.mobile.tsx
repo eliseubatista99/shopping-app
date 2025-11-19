@@ -2,14 +2,15 @@ import { AppLayout, AppLoader, ProductListItem } from "@components";
 import { useProductListPageHelper } from "./productList.hook";
 
 export const ProductListMobile: React.FC = () => {
-  const { products, loading, onClickProduct } = useProductListPageHelper();
+  const { products, loading, onClickProduct, onClickAddToCart } =
+    useProductListPageHelper();
 
   const productsJSX = products?.map((p) => (
     <ProductListItem
       key={p.id}
       product={p}
       onClick={() => onClickProduct(p)}
-      onClickAddToCart={() => console.log("ZAU ADDED TO CART")}
+      onClickAddToCart={() => onClickAddToCart(p)}
     />
   ));
 

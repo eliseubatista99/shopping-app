@@ -14,7 +14,10 @@ export const ProductsCombinationOverviewMobile: React.FC<
     useProductsCombinationOverviewHelper(props);
 
   const itemsJSX = items.map((item, index) => (
-    <div style={{ flexDirection: "row", alignItems: "center", width: "30%" }}>
+    <div
+      key={item.id}
+      style={{ flexDirection: "row", alignItems: "center", width: "30%" }}
+    >
       {index !== 0 && <Typography>+</Typography>}
       <Image
         src={item.image}

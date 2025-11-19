@@ -13,11 +13,13 @@ export const HomeMobile: React.FC = () => {
   const { i18n, groupsList, banners, header, onAddressChipClicked } =
     useHomePageHelper();
 
+  console.log("BANNERS", banners);
+
   const groupsJSX = groupsList.map((g) => (
     <OffersGroupBlock key={g.title} title={g.title} products={g.products} />
   ));
 
-  const bannersJSX = banners.map(
+  const bannersJSX = (banners || []).map(
     (b): CarouselSlideProps => ({
       content: (
         <ProductOfferBanner
@@ -72,10 +74,10 @@ export const HomeMobile: React.FC = () => {
             marginTop: "8px",
           }}
         />
-
-        <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
+        {banners?.length && (
+          <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
+        )}
         <ConditionOffersBlock />
-
         <div style={{ width: "100%", gap: "30px", marginTop: "30px" }}>
           {groupsJSX}
         </div>

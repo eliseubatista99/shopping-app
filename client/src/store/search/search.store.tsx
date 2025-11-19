@@ -2,8 +2,6 @@ import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
-export type LanguageType = "pt" | "en";
-
 export interface SearchState {
   previousSearches?: string[];
 }
@@ -28,5 +26,5 @@ export const useStoreSearch = StoreHelper.createStore<UseStoreOutput>(
     },
   }),
   "Search",
-  createJSONStorage(() => localStorage)
+  createJSONStorage(() => sessionStorage)
 );

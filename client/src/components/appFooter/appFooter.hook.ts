@@ -1,6 +1,6 @@
 import { Pages } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useStoreBasket } from "@store";
+import { useCart } from "@hooks";
 import React from "react";
 import { Icons } from "src/assets/icons";
 
@@ -13,9 +13,7 @@ type FooterItem = {
 
 export const useAppFooterHelper = () => {
   const { goTo, currentPath } = useNavigation();
-  const numberOfProductsInBasket = useStoreBasket(
-    (state) => state.numberOfProductsInBasket
-  );
+  const { numberOfProductsInBasket } = useCart();
 
   const items = React.useMemo((): FooterItem[] => {
     return [

@@ -5,7 +5,7 @@ import type { ApiOutput, ClientInfoDto } from "../types";
 
 export type ClientInfoOutputDto = {
   client: ClientInfoDto;
-  itemsInBasket: number;
+  itemsInCart: number;
 };
 
 export const useFetchClientInfo = () => {

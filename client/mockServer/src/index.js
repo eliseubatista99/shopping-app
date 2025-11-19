@@ -45,9 +45,9 @@ const handleApiCall = async (req, folderPath) => {
 
     let timeout = Configs.SERVICES_DELAY_IN_MILLISECONDS;
 
-    // if (file === "CardRequestDecision.json") {
-    //   timeout = Configs.DECISION_TIME_IN_MILLISECONDS;
-    // }
+    if (file === "GetClientInfo.json") {
+      timeout = Configs.GET_CLIENT_INFO_DELAY_IN_MILLISECONDS;
+    }
 
     await sleep(timeout);
 

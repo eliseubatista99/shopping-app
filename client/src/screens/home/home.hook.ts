@@ -91,7 +91,7 @@ export const useHomePageHelper = () => {
   return {
     i18n,
     groupsList,
-    banners: banners || [],
+    banners: banners,
     header: {
       headerTriggerVisible,
       handleHeaderTrigger,

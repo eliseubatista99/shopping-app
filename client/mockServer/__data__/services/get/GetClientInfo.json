@@ -19,8 +19,8 @@
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
-          "isDefault": false,
-          "isSelected": false
+          "isDefault": true,
+          "isSelected": true
         },
         {
           "name": "Eliseu",
@@ -44,6 +44,6 @@
         }
       ]
     },
-    "itemsInBasket": 2
+    "itemsInCart": 2
   }
 }

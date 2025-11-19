@@ -10,6 +10,7 @@ export const OverlaySearchMobile: React.FC = () => {
 
   const previousSearchesJSX = previousSearches?.map((p, index) => (
     <div
+      key={index}
       style={{
         width: "100%",
         flexDirection: "row",

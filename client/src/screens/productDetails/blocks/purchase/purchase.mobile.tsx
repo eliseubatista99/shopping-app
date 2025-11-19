@@ -137,7 +137,7 @@ export const PurchaseBlockMobile: React.FC = () => {
                 },
               }}
               styles={{ width: "100%", marginTop: "20px", padding: "20px" }}
-              onClick={onClickAddToCart}
+              onClick={() => onClickAddToCart(product)}
             />
 
             <AppButton

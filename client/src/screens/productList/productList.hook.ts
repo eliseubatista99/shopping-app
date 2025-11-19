@@ -4,7 +4,7 @@ import {
   useDidMount,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useAppSearchParams, useCart } from "@hooks";
 import React from "react";
 
 export const useProductListPageHelper = () => {
@@ -12,6 +12,7 @@ export const useProductListPageHelper = () => {
   const { fetch: fetchSearchProducts } = useFetchSearchProducts();
   const { goTo } = useNavigation();
   const searchParams = useAppSearchParams();
+  const { addToCart } = useCart();
 
   const [loading, setLoading] = React.useState(true);
   const [products, setProducts] = React.useState<ProductDto[]>([]);
@@ -26,6 +27,13 @@ export const useProductListPageHelper = () => {
       });
     },
     [goTo]
+  );
+
+  const onClickAddToCart = React.useCallback(
+    (product: ProductDto) => {
+      addToCart([product.id]);
+    },
+    [addToCart]
   );
 
   const searchProducts = React.useCallback(async () => {
@@ -53,5 +61,6 @@ export const useProductListPageHelper = () => {
     products,
     loading,
     onClickProduct,
+    onClickAddToCart,
   };
 };

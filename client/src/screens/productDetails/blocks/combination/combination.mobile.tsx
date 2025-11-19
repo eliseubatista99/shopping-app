@@ -11,6 +11,8 @@ export const CombinationBlockMobile: React.FC = () => {
     expanded,
     onClickExpand,
     onToggleSelectedItem,
+    onClickAddToCart,
+    onClickProduct,
   } = useCombinationBlockHelper();
 
   return (
@@ -20,7 +22,7 @@ export const CombinationBlockMobile: React.FC = () => {
           product={product}
           combinations={product?.comboProducts || []}
           onClickExpand={() => onClickExpand()}
-          onClickProduct={() => onClickExpand()}
+          onClickProduct={(p) => onClickProduct(p)}
         />
       )}
 
@@ -29,8 +31,8 @@ export const CombinationBlockMobile: React.FC = () => {
           product={product}
           combinations={product?.comboProducts || []}
           selectedProducts={selectedItems}
-          onClickProduct={() => onClickExpand()}
-          onClickAddToCard={() => onClickExpand()}
+          onClickProduct={(p) => onClickProduct(p)}
+          onClickAddToCard={(products) => onClickAddToCart(products)}
           onToggleProduct={(item) => onToggleSelectedItem(item)}
         />
       )}

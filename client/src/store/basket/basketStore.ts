@@ -3,8 +3,6 @@ import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
-export type LanguageType = "pt" | "en";
-
 export interface BasketState {
   numberOfProductsInBasket?: number;
   products?: ProductDto[];
@@ -54,5 +52,5 @@ export const useStoreBasket = StoreHelper.createStore<UseStoreOutput>(
     },
   }),
   "Basket",
-  createJSONStorage(() => localStorage)
+  createJSONStorage(() => sessionStorage)
 );

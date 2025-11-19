@@ -7,7 +7,7 @@ export const ExploreMobile: React.FC = () => {
 
   return (
     <AppLayout
-      styles={{
+      pageStyles={{
         background:
           "linear-gradient(180deg,rgba(16, 52, 71, 1) 0%, rgba(255, 255, 255, 1) 100%)",
       }}

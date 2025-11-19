@@ -23,39 +23,37 @@ export const ProductsCombinationSelectionMobile: React.FC<
   const { onClickProduct, onToggleProduct } = props;
 
   const renderItem = (item: ProductDto) => (
-    <>
-      <div
-        key={item.id}
-        style={{
-          position: "relative",
+    <div
+      key={item.id}
+      style={{
+        position: "relative",
+        width: item.id === product.id ? "100%" : undefined,
+        flexDirection: item.id === product.id ? "row" : "column",
+        alignItems: "center",
+        minHeight: "100px",
+        background: "#e4e4e4ff",
+        borderRadius: "8px",
+        padding: "8px",
+        gap: "5px",
+      }}
+    >
+      <AppCheckbox
+        checked={isSelected(item)}
+        styles={{ position: "absolute", top: "6px", right: "6px", zIndex: 2 }}
+        onToggle={(checked) => onToggleProduct?.(item, checked)}
+      />
+      <ProductsComboItem
+        product={item}
+        styles={{
           width: item.id === product.id ? "100%" : undefined,
           flexDirection: item.id === product.id ? "row" : "column",
-          alignItems: "center",
-          minHeight: "100px",
-          background: "#e4e4e4ff",
-          borderRadius: "8px",
-          padding: "8px",
-          gap: "5px",
         }}
-      >
-        <AppCheckbox
-          checked={isSelected(item)}
-          styles={{ position: "absolute", top: "6px", right: "6px", zIndex: 2 }}
-          onToggle={(checked) => onToggleProduct?.(item, checked)}
-        />
-        <ProductsComboItem
-          product={item}
-          styles={{
-            width: item.id === product.id ? "100%" : undefined,
-            flexDirection: item.id === product.id ? "row" : "column",
-          }}
-          imageStyles={{
-            width: item.id === product.id ? "130px" : "100%",
-          }}
-          onClick={() => onClickProduct?.(item)}
-        />
-      </div>
-    </>
+        imageStyles={{
+          width: item.id === product.id ? "130px" : "100%",
+        }}
+        onClick={() => onClickProduct?.(item)}
+      />
+    </div>
   );
 
   const combinationsJSX = combinations.map((comb) => renderItem(comb));
