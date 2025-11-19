@@ -1,3 +1,12 @@
+export type ApiOutputMetadata = {
+  success: boolean;
+};
+
+export type ApiOutput<T> = {
+  data: T;
+  metadata: ApiOutputMetadata;
+};
+
 export type ProductDto = {
   id: string;
   name: string;

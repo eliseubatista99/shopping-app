@@ -1,5 +1,7 @@
+import { useFetch } from "@eliseubatista99/react-scaffold-core";
 import { useCallback } from "react";
-import type { AddressDto } from "../types";
+import { ApiConfigs } from "../configs";
+import type { AddressDto, ApiOutput } from "../types";
 
 export type UpdatedSelectedAddressInputDto = {
   address: AddressDto;
@@ -10,34 +12,19 @@ export type UpdatedSelectedAddressOutputDto = {
 };
 
 export const useFetchUpdateSelectedAddress = () => {
-  //   const fetchHook = useFetch();
-  const fetch = useCallback(async (input: UpdatedSelectedAddressInputDto) => {
-    console.debug("Update Selected Address > ", input);
+  const { post } = useFetch();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // const result = await fetchHook<Person[]>("http://localhost:5000/test");
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+  const fetch = useCallback(
+    async (input: UpdatedSelectedAddressInputDto) => {
+      const result = await post<ApiOutput<UpdatedSelectedAddressOutputDto>>(
+        `${ApiConfigs.endpoint}/UpdateSelectedAddress`,
+        { ...input }
+      );
 
-    const address: AddressDto = {
-      name: "Eliseu",
-      postalCode: "6123-456",
-      city: "Fundão",
-      street: "Rua Bonita",
-      country: "Portugal",
-      countryCode: "PT",
-      isDefault: false,
-      isSelected: false,
-    };
-
-    const result: UpdatedSelectedAddressOutputDto = {
-      updatedAddresses: [
-        { ...address, isDefault: true, isSelected: true },
-        { ...address, postalCode: "1234-567", city: "Guarda" },
-        { ...address, postalCode: "31321-434", city: "Pinhel" },
-      ],
-    };
-    return result;
-  }, []);
+      return result;
+    },
+    [post]
+  );
 
   return {
     fetch,

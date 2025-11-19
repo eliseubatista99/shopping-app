@@ -43,10 +43,10 @@ export const useHomePageHelper = () => {
   const initScreen = React.useCallback(async () => {
     const res = await fetchProductOffers();
     setStoreHomeState({
-      fromSearchHistory: res.fromSearchHistory,
-      buyAgain: res.buyAgain,
-      groups: res.groups,
-      banners: res.banners,
+      fromSearchHistory: res.data.fromSearchHistory,
+      buyAgain: res.data.buyAgain,
+      groups: res.data.groups,
+      banners: res.data.banners,
     });
   }, [fetchProductOffers, setStoreHomeState]);
 

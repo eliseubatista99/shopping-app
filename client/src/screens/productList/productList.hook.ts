@@ -1,6 +1,9 @@
 import { useFetchSearchProducts, type ProductDto } from "@api";
 import { Pages, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import {
+  useDidMount,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams } from "@hooks";
 import React from "react";
 
@@ -36,15 +39,15 @@ export const useProductListPageHelper = () => {
     const res = await fetchSearchProducts({
       keyword: searchParams.searchText.value || "",
     });
-    setProducts(res.products || []);
+    setProducts(res.data.products || []);
 
     isFetching.current = false;
     setLoading(false);
   }, [searchParams.searchText.value, fetchSearchProducts]);
 
-  React.useEffect(() => {
+  useDidMount(() => {
     searchProducts();
-  }, [searchProducts, searchParams.searchText.value]);
+  });
 
   return {
     products,

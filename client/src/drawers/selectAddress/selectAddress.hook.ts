@@ -50,7 +50,7 @@ export const useSelectAddressDrawerHelper = () => {
       address: selectedAddress,
     });
 
-    clientData.addresses = res.updatedAddresses || [];
+    clientData.addresses = res.data.updatedAddresses || [];
     setClientInfo(clientData);
 
     setLoading(false);

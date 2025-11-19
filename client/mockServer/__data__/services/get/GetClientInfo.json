@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "success": true,
+    "errors": [
+      {
+        "code": "0001",
+        "message": "Error fetchAvailableTransactions"
+      }
+    ]
+  },
+  "data": {
+    "client": {
+      "name": "Elideus Kuduro",
+      "addresses": [
+        {
+          "name": "Eliseu",
+          "postalCode": "6123-456",
+          "city": "Fundão",
+          "street": "Rua Bonita",
+          "country": "Portugal",
+          "countryCode": "PT",
+          "isDefault": false,
+          "isSelected": false
+        },
+        {
+          "name": "Eliseu",
+          "street": "Rua Bonita",
+          "country": "Portugal",
+          "countryCode": "PT",
+          "isDefault": false,
+          "isSelected": false,
+          "postalCode": "1234-567",
+          "city": "Guarda"
+        },
+        {
+          "name": "Eliseu",
+          "street": "Rua Bonita",
+          "country": "Portugal",
+          "countryCode": "PT",
+          "isDefault": false,
+          "isSelected": false,
+          "postalCode": "31321-434",
+          "city": "Pinhel"
+        }
+      ]
+    },
+    "itemsInBasket": 2
+  }
+}

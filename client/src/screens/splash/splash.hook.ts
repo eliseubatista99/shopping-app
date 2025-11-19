@@ -17,8 +17,8 @@ export const useSplashPageHelper = () => {
     const res = await fetchClientInfo();
 
     if (res) {
-      setClientInfo(res.client);
-      setBasketCount(res.itemsInBasket);
+      setClientInfo(res.data.client);
+      setBasketCount(res.data.itemsInBasket);
       goTo({ path: Pages.home });
     }
   }, [fetchClientInfo, goTo, setBasketCount, setClientInfo]);

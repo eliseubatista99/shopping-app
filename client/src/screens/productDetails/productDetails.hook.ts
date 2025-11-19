@@ -30,7 +30,7 @@ export const useProductDetailsPageHelper = () => {
       productId: searchParams.productId.value || "",
     });
 
-    setProductStoreState({ selectedProduct: res.product });
+    setProductStoreState({ selectedProduct: res.data.product });
 
     isFetching.current = false;
     setLoading(false);
