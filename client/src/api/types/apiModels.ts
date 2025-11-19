@@ -47,7 +47,7 @@ export type SellerDto = {
 export type DocumentDto = {
   id: string;
   name: string;
-  content: string;
+  content?: string;
 };
 
 export type ReviewDto = {

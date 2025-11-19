@@ -3,10 +3,14 @@ import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useDocumentsBlockHelper } from "./documents.hook";
 
 export const DocumentsBlockMobile: React.FC = () => {
-  const { i18n, docs } = useDocumentsBlockHelper();
+  const { i18n, docs, onClickDocument } = useDocumentsBlockHelper();
 
   const docsJSX = docs.map((doc) => (
-    <DocumentListItem key={doc.id} document={doc} />
+    <DocumentListItem
+      key={doc.id}
+      document={doc}
+      onClick={() => onClickDocument(doc)}
+    />
   ));
 
   return (
@@ -18,7 +22,9 @@ export const DocumentsBlockMobile: React.FC = () => {
           >
             {i18n.title}
           </Typography>
-          <div>{docsJSX}</div>
+          <div style={{ width: "100%", marginTop: "10px", padding: "0 5px" }}>
+            {docsJSX}
+          </div>
         </div>
       )}
     </>

@@ -1,10 +1,12 @@
-import { useAppTranslations } from "@hooks";
+import type { DocumentDto } from "@api";
+import { useAppTranslations, useDocument } from "@hooks";
 import { useStoreProduct } from "@store";
 import React from "react";
 
 export const useDocumentsBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const { t } = useAppTranslations();
+  const { readDocument } = useDocument();
 
   const i18n = React.useMemo(() => {
     return {
@@ -12,8 +14,16 @@ export const useDocumentsBlockHelper = () => {
     };
   }, [t]);
 
+  const onClickDocument = React.useCallback(
+    async (doc: DocumentDto) => {
+      await readDocument(doc.id);
+    },
+    [readDocument]
+  );
+
   return {
     i18n,
     docs: selectedProduct?.documents || [],
+    onClickDocument,
   };
 };
