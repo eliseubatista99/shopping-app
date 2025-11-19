@@ -1,16 +1,19 @@
 import { useFetchGetDocument } from "@api";
+import { usePdfGenerator } from "@eliseubatista99/react-scaffold-pdf";
 import { useCallback } from "react";
 
 export const useDocument = () => {
   const { fetch: fetchGetDocument } = useFetchGetDocument();
+  const { downloadPdf, generateBase64Pdf } = usePdfGenerator();
 
   const readDocument = useCallback(
     async (docId: string) => {
       const res = await fetchGetDocument({ id: docId });
 
-      console.log(res.data.document);
+      const pdf = await generateBase64Pdf(res.data.document.content || "");
+      downloadPdf(pdf.url || "");
     },
-    [fetchGetDocument]
+    [fetchGetDocument, generateBase64Pdf, downloadPdf]
   );
 
   return {

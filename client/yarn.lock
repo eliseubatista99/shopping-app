@@ -206,8 +206,13 @@
 
 "@eliseubatista99/react-scaffold-core@^0.1.60":
   version "0.1.60"
-  resolved "https://registry.yarnpkg.com/@eliseubatista99/react-scaffold-core/-/react-scaffold-core-0.1.60.tgz#a6d62c5adcaa469dc8408251e6e457b7cbeab4e5"
+  resolved "https://registry.npmjs.org/@eliseubatista99/react-scaffold-core/-/react-scaffold-core-0.1.60.tgz"
   integrity sha512-GkqxdGcvqRDMvqAsy/mDTOwXeC15ZCnxF44vd8Uhb+vH1rQmT+pJKknu58Mq00PF8Gv8GNV+oGUjwcasVPgIJA==
+
+"@eliseubatista99/react-scaffold-pdf@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@eliseubatista99/react-scaffold-pdf/-/react-scaffold-pdf-0.1.6.tgz#bc8f3a716ff7298e9215e0a8bd649a7468c41e84"
+  integrity sha512-fVs+3jn4Mx/fOE8EmpiqgK7AIPS2Ymr0lEtUX+GJo/G7Q7hwWEQnlWAetOPEQmK21fwCZZv8Qls3GHJGSOhnfQ==
 
 "@emotion/babel-plugin@^11.13.5":
   version "11.13.5"
@@ -751,13 +756,13 @@
     npm-normalize-package-bin "^4.0.0"
 
 "@npmcli/map-workspaces@^5.0.0":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@npmcli/map-workspaces/-/map-workspaces-5.0.1.tgz#cb9e2c6541f6cb3956814b22ab38e74b8058fca3"
-  integrity sha512-LFEh3vY5nyiVI9IY9rko7FtAtS9fjgQySARlccKbnS7BMWFyQF73OT/n8NG22/8xyp57xPIl13gwO/OD63nktg==
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@npmcli/map-workspaces/-/map-workspaces-5.0.2.tgz#4ac1de07d20dd3017a0da16dbefbb17315de2d0a"
+  integrity sha512-Qg508s4CTD4FQxBJyvmRkf9t0s1MaaV09zo3VBg6JT7XIWZlzhcvgB/hzwS0OFRYQUgup5Ovoxb7evTW0kdnpA==
   dependencies:
     "@npmcli/name-from-folder" "^4.0.0"
     "@npmcli/package-json" "^7.0.0"
-    glob "^11.0.3"
+    glob "^12.0.0"
     minimatch "^10.0.3"
 
 "@npmcli/metavuln-calculator@^9.0.2":
@@ -792,12 +797,12 @@
   integrity sha512-uuG5HZFXLfyFKqg8QypsmgLQW7smiRjVc45bqD/ofZZcR/uxEjgQU8qDPv0s9TEeMUiAAU/GC5bR6++UdTirIQ==
 
 "@npmcli/package-json@^7.0.0", "@npmcli/package-json@^7.0.1":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@npmcli/package-json/-/package-json-7.0.2.tgz#9ac89c08d6a637bd0db8a73717d53ec45d87fa5c"
-  integrity sha512-0ylN3U5htO1SJTmy2YI78PZZjLkKUGg7EKgukb2CRi0kzyoDr0cfjHAzi7kozVhj2V3SxN1oyKqZ2NSo40z00g==
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@npmcli/package-json/-/package-json-7.0.3.tgz#785271154d6090b0a1d29303ba1c3bf737b1204f"
+  integrity sha512-XT8016UrDfnR7yh2XvnIqaPnA5v2QomaWryDYYgKNT0LaX0vcKf4gu2f3CWD/ltV4tOto4MwZynWlynMJL8bBQ==
   dependencies:
     "@npmcli/git" "^7.0.0"
-    glob "^11.0.3"
+    glob "^12.0.0"
     hosted-git-info "^9.0.0"
     json-parse-even-better-errors "^5.0.0"
     proc-log "^6.0.0"
@@ -2054,6 +2059,18 @@ glob@^11.0.3:
     package-json-from-dist "^1.0.0"
     path-scurry "^2.0.0"
 
+glob@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-12.0.0.tgz#4f75198719ab443ea433fdc023629b853532a443"
+  integrity sha512-5Qcll1z7IKgHr5g485ePDdHcNQY0k2dtv/bjYy0iuyGxQw2qSOiiXUXJ+AYQpg3HNoUMHqAruX478Jeev7UULw==
+  dependencies:
+    foreground-child "^3.3.1"
+    jackspeak "^4.1.1"
+    minimatch "^10.1.1"
+    minipass "^7.1.2"
+    package-json-from-dist "^1.0.0"
+    path-scurry "^2.0.0"
+
 globals@^14.0.0:
   version "14.0.0"
   resolved "https://registry.npmjs.org/globals/-/globals-14.0.0.tgz"
@@ -2608,7 +2625,7 @@ micromatch@^4.0.8:
     braces "^3.0.3"
     picomatch "^2.3.1"
 
-minimatch@^10.0.3:
+minimatch@^10.0.3, minimatch@^10.1.1:
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-10.1.1.tgz#e6e61b9b0c1dcab116b5a7d1458e8b6ae9e73a55"
   integrity sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==
