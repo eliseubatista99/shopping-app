@@ -39,10 +39,10 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
           styles={{
             position: "absolute",
             flex: 1,
-            aspectRatio: "1 / 1",
-            background: "none",
-            objectFit: "contain",
             zIndex: 0,
+            aspectRatio: "1 / 1",
+            objectFit: "contain",
+            background: "none",
             mixBlendMode: "multiply",
           }}
         />
