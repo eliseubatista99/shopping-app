@@ -1,5 +1,5 @@
 import { AppLayout, AppLoader } from "@components";
-import { ProductBlock } from "./blocks";
+import { ProductBlock, ReviewBlock } from "./blocks";
 import { useWriteReviewPageHelper } from "./writeReview.hook";
 
 export const WriteReviewMobile: React.FC = () => {
@@ -24,6 +24,7 @@ export const WriteReviewMobile: React.FC = () => {
       {!loading && product && (
         <>
           <ProductBlock />
+          <ReviewBlock />
         </>
       )}
     </AppLayout>

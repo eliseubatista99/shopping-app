@@ -33,4 +33,8 @@ export const translationsGlobal: TranslationList = {
     pt: "{{score}} de {{max}}",
     en: "{{score}} of {{max}}",
   },
+  "reviewScoreInput.clear": {
+    pt: "Limpar",
+    en: "Clear",
+  },
 };
