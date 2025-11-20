@@ -6,6 +6,7 @@ import { ProductScoreMobile } from "./productScore.mobile";
 export interface ProductScoreProps {
   score: number;
   starsSize?: number;
+  withScoreText?: boolean;
   onClick?: () => void;
 }
 

@@ -7,6 +7,7 @@ import Hamburger from "./hamburguer.svg";
 import Home from "./home.svg";
 import Location from "./location.svg";
 import NavDown from "./navDown.svg";
+import NavRight from "./navRight.svg";
 import NavUp from "./navUp.svg";
 import Person from "./person.svg";
 import StarEmpty from "./star_empty.svg";
@@ -30,4 +31,5 @@ export const Icons = {
     White: CheckWhite,
   },
   Document,
+  NavRight,
 };

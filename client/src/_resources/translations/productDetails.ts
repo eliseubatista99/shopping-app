@@ -73,4 +73,24 @@ export const translationsProductDetails: TranslationList = {
     pt: "Documentos",
     en: "Documents",
   },
+  "productDetails.reviews.title": {
+    pt: "Avaliações de clientes",
+    en: "Client reviews",
+  },
+  "productDetails.reviews.count": {
+    pt: "{{count}} classificações globais",
+    en: "{{count}} global reviews",
+  },
+  "productDetails.reviews.expand": {
+    pt: "Ver mais",
+    en: "See more",
+  },
+  "productDetails.reviews.seeAll": {
+    pt: "Ver todas as avaliações",
+    en: "See all reviews",
+  },
+  "productDetails.reviews.create": {
+    pt: "Escrever uma avaliação",
+    en: "Write a review",
+  },
 };

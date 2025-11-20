@@ -1,12 +1,12 @@
 import { Assets } from "@assets";
-import { Image } from "@eliseubatista99/react-scaffold-core";
+import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import type { ProductScoreProps } from "./productScore";
 import { useProductScoreHelper } from "./productScore.hook";
 
 export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
-  const { scoreList } = useProductScoreHelper(props);
-  const { onClick, starsSize = 10 } = props;
+  const { i18n, scoreList } = useProductScoreHelper(props);
+  const { onClick, starsSize = 10, withScoreText } = props;
 
   const scoreStars = scoreList.map((scoreValue, index) => {
     let star = Assets.Icons.StarEmpty;
@@ -32,17 +32,31 @@ export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
     <div
       data-testid="product-score"
       style={{
-        gap: "1px",
         flexDirection: "row",
         position: "relative",
-        height: `${starsSize}px`,
-        display: "grid",
-        minWidth: `${6 * starsSize}px`,
-        gridTemplateColumns: `repeat(auto-fit, ${starsSize}px)`,
+        gap: "5px",
+        alignItems: "center",
       }}
-      onClick={() => onClick?.()}
     >
-      {scoreStars}
+      <div
+        style={{
+          gap: "1px",
+          flexDirection: "row",
+          position: "relative",
+          height: `${starsSize}px`,
+          display: "grid",
+          minWidth: `${6 * starsSize}px`,
+          gridTemplateColumns: `repeat(auto-fit, ${starsSize}px)`,
+        }}
+        onClick={() => onClick?.()}
+      >
+        {scoreStars}
+      </div>
+      {withScoreText && (
+        <Typography styles={{ fontSize: "16px", fontWeight: 400 }}>
+          {i18n.score}
+        </Typography>
+      )}
     </div>
   );
 };

@@ -3,5 +3,6 @@ export * from "./combination";
 export * from "./documents";
 export * from "./purchase";
 export * from "./related";
+export * from "./reviews";
 export * from "./seller";
 export * from "./specifications";

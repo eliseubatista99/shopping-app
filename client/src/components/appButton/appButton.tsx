@@ -11,6 +11,7 @@ export interface AppButtonProps {
     content: string;
     props?: Omit<TypographyProps, "children">;
   };
+  endContent?: React.ReactNode;
   styles?: React.CSSProperties;
   onClick: () => void;
 }

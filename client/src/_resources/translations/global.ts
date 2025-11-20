@@ -29,4 +29,8 @@ export const translationsGlobal: TranslationList = {
     pt: "Quantidade: {{value}}",
     en: "Quantity: {{value}}",
   },
+  "global.score.countOfMax": {
+    pt: "{{score}} de {{max}}",
+    en: "{{score}} of {{max}}",
+  },
 };

@@ -16,6 +16,7 @@ export * from "./productOptionItem";
 export * from "./productsCombinationOverview";
 export * from "./productScore";
 export * from "./quantityField";
+export * from "./reviewListItem";
 export * from "./sellerListItem";
 export * from "./separator";
 export * from "./tag";

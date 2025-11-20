@@ -5,6 +5,7 @@ import type { AppButtonProps } from "./appButton";
 export const AppButtonMobile: React.FC<AppButtonProps> = ({
   text,
   onClick,
+  endContent,
   styles,
 }) => {
   return (
@@ -15,6 +16,9 @@ export const AppButtonMobile: React.FC<AppButtonProps> = ({
         height: "24px",
         background: "#e9ca19ff",
         padding: "13px 20px",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         ...styles,
       }}
     >
@@ -24,6 +28,7 @@ export const AppButtonMobile: React.FC<AppButtonProps> = ({
       >
         {text.content}
       </Typography>
+      {endContent}
     </Button>
   );
 };

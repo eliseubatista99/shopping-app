@@ -4,6 +4,7 @@ import {
   CombinationBlock,
   PurchaseBlock,
   RelatedBlock,
+  ReviewsBlock,
   SellerBlock,
   SpecificationsBlock,
 } from "./blocks";
@@ -33,6 +34,7 @@ export const ProductDetailsMobile: React.FC = () => {
           <RelatedBlock />
           <SpecificationsBlock />
           <DocumentsBlock />
+          <ReviewsBlock />
         </>
       )}
     </AppLayout>
