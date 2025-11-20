@@ -10,7 +10,7 @@ export const AppButtonMobile: React.FC<AppButtonProps> = ({
 }) => {
   return (
     <Button
-      onClick={onClick}
+      onClick={() => onClick?.()}
       styles={{
         borderRadius: "20px",
         height: "24px",

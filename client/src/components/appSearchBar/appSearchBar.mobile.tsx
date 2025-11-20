@@ -46,7 +46,7 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
                   </div>
                 }
                 onChange={handleOnChange}
-                inputStyles={{
+                containerStyles={{
                   background: "#ffffff",
                   border: "2px solid #747474b4",
                   borderRadius: "100px",

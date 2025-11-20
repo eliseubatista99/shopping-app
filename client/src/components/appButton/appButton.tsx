@@ -13,7 +13,7 @@ export interface AppButtonProps {
   };
   endContent?: React.ReactNode;
   styles?: React.CSSProperties;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const AppButton: React.FC<AppButtonProps> = (props) => {

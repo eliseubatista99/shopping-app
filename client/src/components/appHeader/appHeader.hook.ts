@@ -7,8 +7,6 @@ import { useAppTranslations } from "@hooks";
 import React from "react";
 import type { AppHeaderProps } from "./appHeader";
 
-const searchBarInputName = "search-bar";
-
 export const useAppHeaderHelper = ({
   onSearchBarSubmit,
   onSearchBarChange,
@@ -58,7 +56,6 @@ export const useAppHeaderHelper = ({
 
   return {
     i18n,
-    searchBarInputName,
     handleSearchBarSubmit,
     handleSearchBarChange,
     handleSearchBarClick,
