@@ -1,11 +1,16 @@
 import { useFetchProductDetail } from "@api";
-import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { Pages } from "@constants";
+import {
+  useDidMount,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams } from "@hooks";
 import { useStoreProduct } from "@store";
 import React from "react";
 
 export const useProductDetailsPageHelper = () => {
   const searchParams = useAppSearchParams();
+  const { goTo } = useNavigation();
 
   const isFetching = React.useRef(false);
   const selectedProductInStore = useStoreProduct(
@@ -26,6 +31,10 @@ export const useProductDetailsPageHelper = () => {
     isFetching.current = true;
     setLoading(true);
 
+    if (!searchParams.productId.value) {
+      goTo({ path: Pages.notFound404, addToHistory: false });
+    }
+
     const res = await fetchProductDetail({
       productId: searchParams.productId.value || "",
     });
@@ -34,7 +43,12 @@ export const useProductDetailsPageHelper = () => {
 
     isFetching.current = false;
     setLoading(false);
-  }, [fetchProductDetail, searchParams, setProductStoreState]);
+  }, [
+    fetchProductDetail,
+    goTo,
+    searchParams.productId.value,
+    setProductStoreState,
+  ]);
 
   useDidMount(() => {
     initScreen();

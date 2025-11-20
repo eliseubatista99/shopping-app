@@ -1,6 +1,12 @@
+import { Assets } from "@assets";
 import { useAppTranslations } from "@hooks";
-import React from "react";
+import React, { type FunctionComponent, type SVGProps } from "react";
 import type { ProductScoreProps } from "./productScore";
+
+type ScoreStar = {
+  score: number;
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+};
 
 export const useProductScoreHelper = ({ score }: ProductScoreProps) => {
   const { t } = useAppTranslations();
@@ -15,17 +21,26 @@ export const useProductScoreHelper = ({ score }: ProductScoreProps) => {
   }, [score, t]);
 
   const scoreList = React.useMemo(() => {
-    const res: number[] = [];
+    const res: ScoreStar[] = [];
 
     for (let i = 1; i < 6; i++) {
       if (i > score) {
         if (i < score + 1) {
-          res.push(0.5);
+          res.push({
+            score: 0.5,
+            icon: Assets.Icons.StarHalf,
+          });
         } else {
-          res.push(0);
+          res.push({
+            score: 0,
+            icon: Assets.Icons.StarEmpty,
+          });
         }
       } else {
-        res.push(1);
+        res.push({
+          score: 1,
+          icon: Assets.Icons.StarFull,
+        });
       }
     }
     return res;

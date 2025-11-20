@@ -12,5 +12,3 @@ export const Basket: React.FC = () => {
     </>
   );
 };
-
-export default Basket;

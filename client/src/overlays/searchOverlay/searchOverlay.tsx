@@ -12,5 +12,3 @@ export const OverlaySearch: React.FC = () => {
     </>
   );
 };
-
-export default OverlaySearch;

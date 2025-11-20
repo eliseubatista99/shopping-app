@@ -12,5 +12,3 @@ export const ForYou: React.FC = () => {
     </>
   );
 };
-
-export default ForYou;

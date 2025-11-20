@@ -12,4 +12,3 @@ export const RelatedBlock: React.FC = () => {
     </>
   );
 };
-export default RelatedBlock;

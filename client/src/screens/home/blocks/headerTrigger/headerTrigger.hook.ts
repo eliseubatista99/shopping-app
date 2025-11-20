@@ -1,5 +1,5 @@
+import { useOnScreen } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
-import useOnScreen from "./a";
 import type { HeaderTriggerBlockProps } from "./headerTrigger";
 
 export const useHeaderTriggerBlockHelper = ({

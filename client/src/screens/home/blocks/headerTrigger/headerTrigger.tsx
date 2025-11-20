@@ -18,5 +18,3 @@ export const HeaderTriggerBlock: React.FC<HeaderTriggerBlockProps> = (
     </>
   );
 };
-
-export default HeaderTriggerBlock;

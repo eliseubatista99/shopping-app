@@ -1,4 +1,4 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { useAppFooterHelper } from "./appFooter.hook";
 
@@ -36,14 +36,8 @@ export const AppFooterMobile: React.FC = () => {
           gap: "3px",
         }}
       >
-        <Image
-          onClick={() => onClickItem(i)}
-          src={i.icon}
-          styles={{
-            width: "20px",
-            height: "20px",
-          }}
-        />
+        <i.icon width="20px" height="20px" onClick={() => onClickItem(i)} />
+
         {i.text && (
           <Typography
             styles={{

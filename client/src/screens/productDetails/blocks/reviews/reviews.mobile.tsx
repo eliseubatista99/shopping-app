@@ -5,7 +5,7 @@ import {
   ReviewListItem,
   Separator,
 } from "@components";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useReviewsBlockHelper } from "./reviews.hook";
 
 export const ReviewsBlockMobile: React.FC = () => {
@@ -41,12 +41,10 @@ export const ReviewsBlockMobile: React.FC = () => {
           <ProductScore starsSize={14} score={score.value} withScoreText />
           <Typography>{i18n.globalReviews.count}</Typography>
         </div>
-        <Image
-          src={Assets.Icons.NavRight}
-          styles={{
-            width: "25px",
-            height: "25px",
-          }}
+
+        <Assets.Icons.NavRight
+          width="25px"
+          height="25px"
           onClick={() => onClickSeeAll()}
         />
       </div>
@@ -69,12 +67,9 @@ export const ReviewsBlockMobile: React.FC = () => {
             {i18n.reviews.seeAll}
           </Typography>
 
-          <Image
-            src={Assets.Icons.NavRight}
-            styles={{
-              width: "25px",
-              height: "25px",
-            }}
+          <Assets.Icons.NavRight
+            width="25px"
+            height="25px"
             onClick={() => onClickSeeAll()}
           />
         </div>
@@ -90,13 +85,10 @@ export const ReviewsBlockMobile: React.FC = () => {
           },
         }}
         endContent={
-          <Image
-            src={Assets.Icons.NavRight}
-            styles={{
-              width: "20px",
-              height: "20px",
-            }}
-            onClick={() => onClickSeeAll()}
+          <Assets.Icons.NavRight
+            width="20px"
+            height="20px"
+            onClick={() => onClickCreateReview()}
           />
         }
         onClick={() => onClickCreateReview()}

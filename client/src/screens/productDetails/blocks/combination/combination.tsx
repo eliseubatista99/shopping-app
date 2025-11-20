@@ -12,4 +12,3 @@ export const CombinationBlock: React.FC = () => {
     </>
   );
 };
-export default CombinationBlock;

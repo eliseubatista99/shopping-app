@@ -20,7 +20,9 @@ export const ProductListMobile: React.FC = () => {
         padding: 0,
       }}
       appHeader={{
-        withBack: true,
+        back: {
+          visible: true,
+        },
         styles: {
           background: "#0a0d42ff",
         },

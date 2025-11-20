@@ -5,7 +5,7 @@ import {
   QuantityField,
   Separator,
 } from "@components";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { usePurchaseBlockHelper } from "./purchase.hook";
 
 export const PurchaseBlockMobile: React.FC = () => {
@@ -102,13 +102,7 @@ export const PurchaseBlockMobile: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              <Image
-                src={Assets.Icons.Location}
-                styles={{
-                  width: "16px",
-                  height: "16px",
-                }}
-              />
+              <Assets.Icons.Location width="16px" height="16px" />
               <Typography
                 styles={{
                   flex: 1,

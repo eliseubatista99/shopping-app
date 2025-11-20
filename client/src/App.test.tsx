@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { expect, test } from "vitest";
-import App from "./App";
+import { App } from "./App";
 // import { TestComponent } from "./components";
 
 const setup = () => {

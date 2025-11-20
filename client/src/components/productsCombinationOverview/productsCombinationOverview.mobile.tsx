@@ -83,12 +83,9 @@ export const ProductsCombinationOverviewMobile: React.FC<
           >{`${combinationCost.toFixed(2)}${currency}`}</Typography>
         </div>
         {onClickExpand && (
-          <Image
-            src={Assets.Icons.NavDown}
-            styles={{
-              width: "15px",
-              height: "15px",
-            }}
+          <Assets.Icons.NavDown
+            width="15px"
+            height="15px"
             onClick={() => onClickExpand()}
           />
         )}

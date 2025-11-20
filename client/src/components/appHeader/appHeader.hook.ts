@@ -12,7 +12,7 @@ const searchBarInputName = "search-bar";
 export const useAppHeaderHelper = ({
   onSearchBarSubmit,
   onSearchBarChange,
-  onClickBack,
+  back,
 }: AppHeaderProps) => {
   const { t } = useAppTranslations();
   const { goBack } = useNavigation();
@@ -49,12 +49,12 @@ export const useAppHeaderHelper = ({
   }, [isItemVisible, showItem]);
 
   const handleClickBack = React.useCallback(() => {
-    if (onClickBack) {
-      onClickBack?.();
+    if (back?.onClick) {
+      back.onClick?.();
     } else {
       goBack();
     }
-  }, [goBack, onClickBack]);
+  }, [back, goBack]);
 
   return {
     i18n,

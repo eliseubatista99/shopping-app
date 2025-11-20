@@ -1,5 +1,5 @@
 import { Assets } from "@assets";
-import { Checkbox, Image } from "@eliseubatista99/react-scaffold-core";
+import { Checkbox } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import type { AppCheckboxProps } from "./appCheckbox";
 
@@ -13,12 +13,10 @@ export const AppCheckboxMobile: React.FC<AppCheckboxProps> = ({
       checked={checked}
       onToggle={onToggle}
       customCheckedRender={
-        <Image
-          src={Assets.Icons.Check.White}
-          styles={{
-            width: "18px",
-            height: "18px",
-          }}
+        <Assets.Icons.Check
+          width="18px"
+          height="18px"
+          style={{ color: "#ffffff" }}
         />
       }
       checkedStyles={{ background: "#192fd4ff" }}

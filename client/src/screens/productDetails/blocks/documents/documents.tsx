@@ -12,4 +12,3 @@ export const DocumentsBlock: React.FC = () => {
     </>
   );
 };
-export default DocumentsBlock;

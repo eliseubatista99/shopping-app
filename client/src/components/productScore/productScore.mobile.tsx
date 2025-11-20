@@ -1,5 +1,4 @@
-import { Assets } from "@assets";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import type { ProductScoreProps } from "./productScore";
 import { useProductScoreHelper } from "./productScore.hook";
@@ -8,22 +7,13 @@ export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
   const { i18n, scoreList } = useProductScoreHelper(props);
   const { onClick, starsSize = 10, withScoreText } = props;
 
-  const scoreStars = scoreList.map((scoreValue, index) => {
-    let star = Assets.Icons.StarEmpty;
-
-    if (scoreValue === 0.5) {
-      star = Assets.Icons.StarHalf;
-    } else if (scoreValue === 1) {
-      star = Assets.Icons.StarFull;
-    } else {
-      star = Assets.Icons.StarEmpty;
-    }
-
+  const scoreStars = scoreList.map((score, index) => {
     return (
-      <Image
-        src={star}
+      <score.icon
+        width={`${starsSize}px`}
+        height={`${starsSize}px`}
         key={index}
-        styles={{ height: "100%", objectFit: "contain" }}
+        style={{ objectFit: "contain", color: "#e99619ff" }}
       />
     );
   });
@@ -43,7 +33,6 @@ export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
           gap: "1px",
           flexDirection: "row",
           position: "relative",
-          height: `${starsSize}px`,
           display: "grid",
           minWidth: `${6 * starsSize}px`,
           gridTemplateColumns: `repeat(auto-fit, ${starsSize}px)`,

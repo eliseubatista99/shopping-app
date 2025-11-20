@@ -1,5 +1,5 @@
 import { Assets } from "@assets";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import type { DocumentListItemProps } from "./documentListItem";
 
@@ -21,13 +21,7 @@ export const DocumentListItemMobile: React.FC<DocumentListItemProps> = (
       }}
       onClick={() => onClick?.()}
     >
-      <Image
-        src={Assets.Icons.Document}
-        styles={{
-          width: "20px",
-          height: "20px",
-        }}
-      />
+      <Assets.Icons.Document width="20px" height="20px" />
       <Typography styles={{ fontSize: "16px", fontWeight: 500 }}>
         {document.name}
       </Typography>

@@ -2,7 +2,6 @@ import { Assets } from "@assets";
 import { AppLayout, Chip, ProductOfferBanner } from "@components";
 import {
   Carousel,
-  Image,
   type CarouselSlideProps,
 } from "@eliseubatista99/react-scaffold-core";
 import { HeaderTriggerBlock, OffersGroupBlock } from "./blocks";
@@ -50,24 +49,8 @@ export const HomeMobile: React.FC = () => {
         <Chip
           text={i18n.chips.address}
           onClick={() => onAddressChipClicked()}
-          leftContent={
-            <Image
-              src={Assets.Icons.Location}
-              styles={{
-                width: "10px",
-                height: "10px",
-              }}
-            />
-          }
-          rightContent={
-            <Image
-              src={Assets.Icons.NavDown}
-              styles={{
-                width: "15px",
-                height: "15px",
-              }}
-            />
-          }
+          leftContent={<Assets.Icons.Location width="10px" height="10px" />}
+          rightContent={<Assets.Icons.NavDown width="15px" height="15px" />}
           styles={{
             border: "none",
             background: "#ffffff70",

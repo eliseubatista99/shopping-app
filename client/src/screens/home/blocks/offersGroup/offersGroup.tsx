@@ -18,5 +18,3 @@ export const OffersGroupBlock: React.FC<OffersGroupBlockProps> = (props) => {
     </>
   );
 };
-
-export default OffersGroupBlock;

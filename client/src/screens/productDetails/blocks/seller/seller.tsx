@@ -12,4 +12,3 @@ export const SellerBlock: React.FC = () => {
     </>
   );
 };
-export default SellerBlock;

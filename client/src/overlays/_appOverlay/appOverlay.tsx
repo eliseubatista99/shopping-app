@@ -18,5 +18,3 @@ export const AppOverlay: React.FC<AppOverlayProps> = (props) => {
     </>
   );
 };
-
-export default AppOverlay;

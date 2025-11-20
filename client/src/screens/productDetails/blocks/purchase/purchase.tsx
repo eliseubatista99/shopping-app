@@ -12,4 +12,3 @@ export const PurchaseBlock: React.FC = () => {
     </>
   );
 };
-export default PurchaseBlock;

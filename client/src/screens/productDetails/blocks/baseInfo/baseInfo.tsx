@@ -12,4 +12,3 @@ export const BaseInfoBlock: React.FC = () => {
     </>
   );
 };
-export default BaseInfoBlock;

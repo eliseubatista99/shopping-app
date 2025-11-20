@@ -1,5 +1,4 @@
 import { Assets } from "@assets";
-import { Image } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppSearchBar } from "../appSearchBar";
 import type { AppHeaderProps } from "./appHeader";
@@ -15,7 +14,7 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
     handleClickBack,
   } = useAppHeaderHelper(props);
 
-  const { withBack, styles } = props;
+  const { back, styles } = props;
 
   return (
     <div
@@ -31,11 +30,12 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
         ...styles,
       }}
     >
-      {withBack && (
-        <Image
-          src={Assets.Icons.ArrowLeft}
-          onClick={handleClickBack}
-          styles={{ width: "20px", height: "20px" }}
+      {back?.visible && (
+        <Assets.Icons.ArrowLeft
+          width="20px"
+          height="20px"
+          onClick={() => handleClickBack()}
+          style={{ color: "#ffffff", ...back.styles }}
         />
       )}
       <AppSearchBar

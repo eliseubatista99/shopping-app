@@ -1,6 +1,6 @@
 import { Assets } from "@assets";
 import { Separator } from "@components";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useSpecificationsBlockHelper } from "./specifications.hook";
 
 export const SpecificationsBlockMobile: React.FC = () => {
@@ -55,14 +55,21 @@ export const SpecificationsBlockMobile: React.FC = () => {
             <Typography styles={{ fontSize: "20px", fontWeight: 600 }}>
               {i18n.title}
             </Typography>
-            <Image
-              src={isExpanded ? Assets.Icons.NavUp : Assets.Icons.NavDown}
-              styles={{
-                width: "20px",
-                height: "20px",
-              }}
-              onClick={() => onToggleExpansion()}
-            />
+
+            {isExpanded && (
+              <Assets.Icons.NavUp
+                width="20px"
+                height="20px"
+                onClick={() => onToggleExpansion()}
+              />
+            )}
+            {!isExpanded && (
+              <Assets.Icons.NavDown
+                width="20px"
+                height="20px"
+                onClick={() => onToggleExpansion()}
+              />
+            )}
           </div>
 
           {isExpanded && (

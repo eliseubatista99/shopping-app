@@ -2,5 +2,7 @@ export * from "./basket";
 export * from "./explore";
 export * from "./forYou";
 export * from "./home";
+export * from "./notFound404";
 export * from "./productDetails";
 export * from "./splash";
+export * from "./writeReview";

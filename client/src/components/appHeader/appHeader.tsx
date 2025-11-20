@@ -6,8 +6,11 @@ import { AppHeaderMobile } from "./appHeader.mobile";
 export interface AppHeaderProps {
   onSearchBarChange?: (value: string) => void;
   onSearchBarSubmit?: (value: string) => void;
-  onClickBack?: () => void;
-  withBack?: boolean;
+  back?: {
+    visible: boolean;
+    onClick?: () => void;
+    styles?: React.CSSProperties;
+  };
   styles?: React.CSSProperties;
 }
 

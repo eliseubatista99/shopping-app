@@ -1,12 +1,12 @@
+import { Assets } from "@assets";
 import { Pages } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useCart } from "@hooks";
-import React from "react";
-import { Icons } from "src/assets/icons";
+import React, { type FunctionComponent, type SVGProps } from "react";
 
 type FooterItem = {
   path: Pages;
-  icon: string;
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   text?: string;
   selected: boolean;
 };
@@ -19,23 +19,23 @@ export const useAppFooterHelper = () => {
     return [
       {
         path: Pages.home,
-        icon: Icons.Home,
+        icon: Assets.Icons.Home,
         selected: currentPath === Pages.home,
       },
       {
         path: Pages.forYou,
-        icon: Icons.Person,
+        icon: Assets.Icons.Person,
         selected: currentPath === Pages.forYou,
       },
       {
         path: Pages.basket,
-        icon: Icons.Basket,
+        icon: Assets.Icons.Basket,
         selected: currentPath === Pages.basket,
         text: `${numberOfProductsInBasket}`,
       },
       {
         path: Pages.explore,
-        icon: Icons.Hamburger,
+        icon: Assets.Icons.Hamburger,
         selected: currentPath === Pages.explore,
       },
     ];

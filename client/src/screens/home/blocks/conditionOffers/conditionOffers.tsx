@@ -12,5 +12,3 @@ export const ConditionOffersBlock: React.FC = () => {
     </>
   );
 };
-
-export default ConditionOffersBlock;

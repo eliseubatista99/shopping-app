@@ -18,7 +18,9 @@ export const ProductDetailsMobile: React.FC = () => {
     <AppLayout
       pageStyles={{ padding: "12px" }}
       appHeader={{
-        withBack: true,
+        back: {
+          visible: true,
+        },
         styles: {
           background: "#0a0d42ff",
         },

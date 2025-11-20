@@ -12,4 +12,3 @@ export const SpecificationsBlock: React.FC = () => {
     </>
   );
 };
-export default SpecificationsBlock;
