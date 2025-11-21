@@ -1,4 +1,4 @@
-import { Pages, SEARCH_PARAMS } from "@constants";
+import { PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useDidMount,
   useNavigation,
@@ -17,12 +17,12 @@ export const useWriteReviewPageHelper = () => {
   const initScreen = React.useCallback(async () => {
     setLoading(true);
     if (!productId.value) {
-      goTo({ path: Pages.notFound404, addToHistory: false });
+      goTo({ path: PAGES.NOT_FOUND, addToHistory: false });
     }
 
     if (!selectedProduct || selectedProduct.id !== productId.value) {
       goTo({
-        path: Pages.productDetails,
+        path: PAGES.PRODUCT_DETAILS,
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: productId.value,
         },

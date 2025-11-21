@@ -5,9 +5,10 @@ import {
 import { AppTextAreaDesktop } from "./appTextArea.desktop";
 import { AppTextAreaMobile } from "./appTextArea.mobile";
 
-export interface AppTextAreaProps extends TextAreaFieldProps {
+export type AppTextAreaProps = Omit<TextAreaFieldProps, "label"> & {
+  label?: string;
   styles?: React.CSSProperties;
-}
+};
 
 export const AppTextArea: React.FC<AppTextAreaProps> = (props) => {
   const { currentSize } = useResponsive();

@@ -5,9 +5,10 @@ import {
 import { AppInputFieldDesktop } from "./appInputField.desktop";
 import { AppInputFieldMobile } from "./appInputField.mobile";
 
-export interface AppInputFieldProps extends InputFieldProps {
+export type AppInputFieldProps = Omit<InputFieldProps, "label"> & {
+  label?: string;
   styles?: React.CSSProperties;
-}
+};
 
 export const AppInputField: React.FC<AppInputFieldProps> = (props) => {
   const { currentSize } = useResponsive();

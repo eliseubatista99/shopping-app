@@ -1,4 +1,4 @@
-import { Pages } from "@constants";
+import { PAGES } from "@constants";
 import {
   FeedbackProvider,
   NavigationProvider,
@@ -29,39 +29,39 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
         isReady={isAppInitialized}
         routes={[
           {
-            path: Pages.splash,
+            path: PAGES.SPLASH,
             render: <Splash />,
           },
           {
-            path: Pages.notFound404,
+            path: PAGES.NOT_FOUND,
             render: <NotFound404 />,
           },
           {
-            path: Pages.home,
+            path: PAGES.HOME,
             render: <Home />,
           },
           {
-            path: Pages.forYou,
+            path: PAGES.FOR_YOU,
             render: <ForYou />,
           },
           {
-            path: Pages.basket,
+            path: PAGES.CART,
             render: <Basket />,
           },
           {
-            path: Pages.explore,
+            path: PAGES.EXPLORE,
             render: <Explore />,
           },
           {
-            path: Pages.productList,
+            path: PAGES.PRODUCT_LIST,
             render: <ProductList />,
           },
           {
-            path: Pages.productDetails,
+            path: PAGES.PRODUCT_DETAILS,
             render: <ProductDetails />,
           },
           {
-            path: Pages.writeReview,
+            path: PAGES.WRITE_REVIEW,
             render: <WriteReview />,
           },
         ]}

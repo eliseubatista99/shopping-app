@@ -1,5 +1,5 @@
 import { Assets } from "@assets";
-import { Inputs } from "@constants";
+import { INPUTS } from "@constants";
 import React from "react";
 import { AppSearchBar } from "../appSearchBar";
 import type { AppHeaderProps } from "./appHeader";
@@ -39,7 +39,7 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
         />
       )}
       <AppSearchBar
-        name={Inputs.searchBar}
+        name={INPUTS.SEARCH_BAR}
         placeholder={i18n.header.searchBar.placeholder}
         onChange={handleSearchBarChange}
         onSubmit={handleSearchBarSubmit}

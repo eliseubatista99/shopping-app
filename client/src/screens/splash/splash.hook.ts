@@ -1,4 +1,4 @@
-import { Pages } from "@constants";
+import { PAGES } from "@constants";
 import {
   useDidMount,
   useNavigation,
@@ -9,7 +9,7 @@ export const useSplashPageHelper = () => {
   const { goTo } = useNavigation();
 
   const initScreen = React.useCallback(async () => {
-    goTo({ path: Pages.home });
+    goTo({ path: PAGES.HOME });
   }, [goTo]);
 
   useDidMount(() => {

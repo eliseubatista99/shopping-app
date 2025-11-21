@@ -1,5 +1,5 @@
 import type { ReviewDto } from "@api";
-import { Pages, SEARCH_PARAMS } from "@constants";
+import { PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useDidMount,
   useNavigation,
@@ -55,7 +55,7 @@ export const useReviewsBlockHelper = () => {
   const onClickCreateReview = React.useCallback(() => {
     //Go to review screen
     goTo({
-      path: Pages.writeReview,
+      path: PAGES.WRITE_REVIEW,
       params: {
         [SEARCH_PARAMS.PRODUCT_ID]: selectedProduct?.id,
       },

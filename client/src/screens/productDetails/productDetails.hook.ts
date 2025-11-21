@@ -1,5 +1,5 @@
 import { useFetchProductDetail } from "@api";
-import { Pages } from "@constants";
+import { PAGES } from "@constants";
 import {
   useDidMount,
   useNavigation,
@@ -32,7 +32,7 @@ export const useProductDetailsPageHelper = () => {
     setLoading(true);
 
     if (!searchParams.productId.value) {
-      goTo({ path: Pages.notFound404, addToHistory: false });
+      goTo({ path: PAGES.NOT_FOUND, addToHistory: false });
     }
 
     const res = await fetchProductDetail({

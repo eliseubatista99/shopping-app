@@ -4,12 +4,26 @@ import {
   AppTextArea,
   ReviewScoreInput,
 } from "@components";
-import { Inputs } from "@constants";
-import { Form } from "@eliseubatista99/react-scaffold-core";
+import { INPUTS } from "@constants";
+import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useReviewBlockHelper } from "./review.hook";
 
 export const ReviewBlockMobile: React.FC = () => {
-  const { i18n, score, onScoreChange } = useReviewBlockHelper();
+  const { i18n, score, onScoreChange, onSubmit, form } = useReviewBlockHelper();
+
+  const errorMessage = (error?: string) => {
+    if (!error) {
+      return undefined;
+    }
+
+    return (
+      <Typography
+        styles={{ fontSize: "16px", fontWeight: 600, color: "#de1616ff" }}
+      >
+        {error}
+      </Typography>
+    );
+  };
 
   return (
     <div
@@ -19,39 +33,38 @@ export const ReviewBlockMobile: React.FC = () => {
         flex: 1,
       }}
     >
-      <ReviewScoreInput
-        value={score}
-        onClick={(value) => onScoreChange(value)}
-        styles={{ padding: "20px 5px" }}
-      />
+      <div style={{ width: "100%", padding: "20px 0" }}>
+        <ReviewScoreInput
+          value={score}
+          onClick={(value) => onScoreChange(value)}
+          styles={{ padding: "0 5px" }}
+        />
+        {errorMessage(form.scoreError)}
+      </div>
 
       <Form
         fields={[
           {
-            name: Inputs.reviewDescription,
+            name: INPUTS.REVIEW_DESCRIPTION,
             content: (
               <AppTextArea
                 label={i18n.description.title}
-                name={Inputs.reviewDescription}
+                name={INPUTS.REVIEW_DESCRIPTION}
                 placeHolder={i18n.description.placeholder}
-                onChange={(v) => {
-                  console.log(v);
-                }}
                 inputStyles={{ height: "150px", padding: "10px" }}
+                bottomMessage={errorMessage(form.descriptionError)}
               />
             ),
           },
           {
-            name: Inputs.reviewTitle,
+            name: INPUTS.REVIEW_TITLE,
             content: (
               <AppInputField
                 label={i18n.title.title}
-                name={Inputs.reviewTitle}
+                name={INPUTS.REVIEW_TITLE}
                 placeHolder={i18n.title.placeholder}
-                onChange={(v) => {
-                  console.log(v);
-                }}
                 inputStyles={{ height: "150px", padding: "10px" }}
+                bottomMessage={errorMessage(form.titleError)}
               />
             ),
           },
@@ -74,10 +87,8 @@ export const ReviewBlockMobile: React.FC = () => {
             marginTop: "auto",
           },
         }}
-        onSubmit={(data) => {
-          console.log(data);
-        }}
-        styles={{ flex: 1 }}
+        onSubmit={onSubmit}
+        styles={{ flex: 1, gap: "30px" }}
       />
     </div>
   );

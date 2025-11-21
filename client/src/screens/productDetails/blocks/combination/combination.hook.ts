@@ -1,5 +1,5 @@
 import { type ProductDto } from "@api";
-import { Pages, SEARCH_PARAMS } from "@constants";
+import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useCart } from "@hooks";
 import { useStoreProduct } from "@store";
@@ -43,7 +43,7 @@ export const useCombinationBlockHelper = () => {
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
       goTo({
-        path: Pages.productDetails,
+        path: PAGES.PRODUCT_DETAILS,
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: product.id,
         },

@@ -91,6 +91,7 @@ export type AddressDto = {
 };
 
 export type ClientInfoDto = {
+  id: string;
   name: string;
   addresses: AddressDto[];
 };

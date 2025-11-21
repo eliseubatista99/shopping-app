@@ -12,6 +12,7 @@ export const ReviewScoreInputMobile: React.FC<ReviewScoreInputProps> = (
 
   const scoreJSX = scoreList.map((s, index) => (
     <s.icon
+      key={index}
       width={`${starsSize}px`}
       height={`${starsSize}px`}
       style={{ objectFit: "contain", color: "#e99619ff" }}

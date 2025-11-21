@@ -1,11 +1,11 @@
 import { Assets } from "@assets";
-import { Pages } from "@constants";
+import { PAGES } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useCart } from "@hooks";
 import React, { type FunctionComponent, type SVGProps } from "react";
 
 type FooterItem = {
-  path: Pages;
+  path: PAGES;
   icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   text?: string;
   selected: boolean;
@@ -18,25 +18,25 @@ export const useAppFooterHelper = () => {
   const items = React.useMemo((): FooterItem[] => {
     return [
       {
-        path: Pages.home,
+        path: PAGES.HOME,
         icon: Assets.Icons.Home,
-        selected: currentPath === Pages.home,
+        selected: currentPath === PAGES.HOME,
       },
       {
-        path: Pages.forYou,
+        path: PAGES.FOR_YOU,
         icon: Assets.Icons.Person,
-        selected: currentPath === Pages.forYou,
+        selected: currentPath === PAGES.FOR_YOU,
       },
       {
-        path: Pages.basket,
+        path: PAGES.CART,
         icon: Assets.Icons.Basket,
-        selected: currentPath === Pages.basket,
+        selected: currentPath === PAGES.CART,
         text: `${numberOfProductsInBasket}`,
       },
       {
-        path: Pages.explore,
+        path: PAGES.EXPLORE,
         icon: Assets.Icons.Hamburger,
-        selected: currentPath === Pages.explore,
+        selected: currentPath === PAGES.EXPLORE,
       },
     ];
   }, [currentPath, numberOfProductsInBasket]);

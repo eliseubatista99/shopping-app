@@ -5,6 +5,7 @@ import { translationsGlobal } from "./global";
 import { translationsHome } from "./home";
 import { translationsProductDetails } from "./productDetails";
 import { translationsTime } from "./time";
+import { translationsToasts } from "./toasts";
 import { translationsWriteReview } from "./writeReview";
 
 export const translations: TranslationList = {
@@ -15,4 +16,5 @@ export const translations: TranslationList = {
   ...translationsDrawers,
   ...translationsProductDetails,
   ...translationsWriteReview,
+  ...translationsToasts,
 };

@@ -1,4 +1,4 @@
-import { Overlays, Pages, SEARCH_PARAMS } from "@constants";
+import { Overlays, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useFeedback,
   useNavigation,
@@ -15,9 +15,9 @@ export const useOverlaySearchHelper = () => {
     async (text: string) => {
       hideItem(Overlays.search);
 
-      if (currentPath !== Pages.productList) {
+      if (currentPath !== PAGES.PRODUCT_LIST) {
         goTo({
-          path: Pages.productList,
+          path: PAGES.PRODUCT_LIST,
           params: {
             [SEARCH_PARAMS.SEARCH_TEXT]: text,
           },
