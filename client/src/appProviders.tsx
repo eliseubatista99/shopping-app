@@ -4,6 +4,7 @@ import {
   NavigationProvider,
 } from "@eliseubatista99/react-scaffold-core";
 import {
+  AllReviews,
   Basket,
   Explore,
   ForYou,
@@ -63,6 +64,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.WRITE_REVIEW,
             render: <WriteReview />,
+          },
+          {
+            path: PAGES.ALL_REVIEWS,
+            render: <AllReviews />,
           },
         ]}
       >

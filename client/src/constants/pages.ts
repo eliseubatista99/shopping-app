@@ -8,4 +8,5 @@ export enum PAGES {
   PRODUCT_LIST = "/product-list",
   PRODUCT_DETAILS = "/product-details",
   WRITE_REVIEW = "/write-review",
+  ALL_REVIEWS = "/reviews",
 }

@@ -37,8 +37,13 @@ export const useReviewsBlockHelper = () => {
   }, [selectedProduct, t]);
 
   const onClickSeeAll = React.useCallback(() => {
-    //Do some
-  }, []);
+    goTo({
+      path: PAGES.ALL_REVIEWS,
+      params: {
+        [SEARCH_PARAMS.PRODUCT_ID]: selectedProduct?.id,
+      },
+    });
+  }, [goTo, selectedProduct?.id]);
 
   const onClickExpand = React.useCallback((review: ReviewDto) => {
     setReviews((prevState) =>

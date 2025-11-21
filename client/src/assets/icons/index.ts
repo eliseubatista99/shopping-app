@@ -7,6 +7,7 @@ import Hamburger from "./hamburguer.svg?react";
 import Home from "./home.svg?react";
 import Location from "./location.svg?react";
 import NavDown from "./navDown.svg?react";
+import NavLeft from "./navLeft.svg?react";
 import NavRight from "./navRight.svg?react";
 import NavUp from "./navUp.svg?react";
 import Person from "./person.svg?react";
@@ -29,4 +30,5 @@ export const Icons = {
   Check,
   Document,
   NavRight,
+  NavLeft,
 };
