@@ -1,6 +1,6 @@
 import { AppLayout, AppLoader } from "@components";
 import { useAllReviewsPageHelper } from "./allReviews.hook";
-import { ProductBlock } from "./blocks";
+import { ProductBlock, ScoreBlock } from "./blocks";
 
 export const AllReviewsMobile: React.FC = () => {
   const { loading, product } = useAllReviewsPageHelper();
@@ -24,7 +24,7 @@ export const AllReviewsMobile: React.FC = () => {
       {!loading && product && (
         <>
           <ProductBlock />
-          <div style={{ padding: "12px" }}>{}</div>
+          <div style={{ padding: "12px" }}>{<ScoreBlock />}</div>
         </>
       )}
     </AppLayout>

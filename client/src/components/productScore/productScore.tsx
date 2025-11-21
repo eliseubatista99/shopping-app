@@ -7,6 +7,7 @@ export interface ProductScoreProps {
   score: number;
   starsSize?: number;
   withScoreText?: boolean;
+  styles?: React.CSSProperties;
   onClick?: () => void;
 }
 

@@ -5,7 +5,7 @@ import { useProductScoreHelper } from "./productScore.hook";
 
 export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
   const { i18n, scoreList } = useProductScoreHelper(props);
-  const { onClick, starsSize = 10, withScoreText } = props;
+  const { onClick, starsSize = 10, withScoreText, styles } = props;
 
   const scoreStars = scoreList.map((score, index) => {
     return (
@@ -26,6 +26,7 @@ export const ProductScoreMobile: React.FC<ProductScoreProps> = (props) => {
         position: "relative",
         gap: "5px",
         alignItems: "center",
+        ...styles,
       }}
     >
       <div
