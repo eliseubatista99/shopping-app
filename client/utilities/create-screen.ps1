@@ -115,7 +115,7 @@ Set-Content -Path "$baseDir/${camel}.tsx" -Value $screenContent
 # 5) index.ts
 # -----------------------------------------------------------------------------------
 $indexContent = @"
-export * from "./product";
+export * from "./${camel}";
 "@
 
 Set-Content -Path "$baseDir/index.ts" -Value $indexContent

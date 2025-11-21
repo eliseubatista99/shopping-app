@@ -6,23 +6,37 @@ param(
     [string]$BlockName
 )
 
-# Convert block name to folder-friendly lower-case
+# Normalize folder name
 $blockFolder = $BlockName.ToLower()
 
+# PascalCase para componentes
+function To-PascalCase([string]$text) {
+    return ($text.Substring(0,1).ToUpper() + $text.Substring(1))
+}
+
+$pascal = To-PascalCase $BlockName
+
 # Base directory
-$baseDir = "src/screens/$Screen/blocks/CSSMathProduct/$blockFolder"
+$baseDir = "../src/screens/$Screen/blocks/$blockFolder"
 
 # Create directory
 New-Item -ItemType Directory -Force -Path $baseDir | Out-Null
 
+# Filenames
+$hookFile      = "$blockFolder.hook.ts"
+$mobileFile    = "$blockFolder.mobile.tsx"
+$desktopFile   = "$blockFolder.desktop.tsx"
+$rootFile      = "$blockFolder.tsx"
+$indexFile     = "index.ts"
+
 # -----------------------------------------------------------------------------------
-# 1) product.hook.ts
+# 1) HOOK FILE
 # -----------------------------------------------------------------------------------
 $hookContent = @"
 import { useAppTranslations } from "@hooks";
 import React from "react";
 
-export const useProductBlockHelper = () => {
+export const use${pascal}BlockHelper = () => {
   const { t } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
@@ -37,18 +51,17 @@ export const useProductBlockHelper = () => {
 };
 "@
 
-Set-Content -Path "$baseDir/product.hook.ts" -Value $hookContent
+Set-Content -Path "$baseDir/$hookFile" -Value $hookContent
 
 
 # -----------------------------------------------------------------------------------
-# 2) product.mobile.tsx
+# 2) MOBILE FILE
 # -----------------------------------------------------------------------------------
 $mobileContent = @"
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
-import { useProductBlockHelper } from "./product.hook";
+import { use${pascal}BlockHelper } from "./$blockFolder.hook";
 
-export const ProductBlockMobile: React.FC = () => {
-  const { i18n } = useProductBlockHelper();
+export const ${pascal}BlockMobile: React.FC = () => {
+  const { i18n } = use${pascal}BlockHelper();
 
   return (
     <>
@@ -58,54 +71,53 @@ export const ProductBlockMobile: React.FC = () => {
 };
 "@
 
-Set-Content -Path "$baseDir/product.mobile.tsx" -Value $mobileContent
+Set-Content -Path "$baseDir/$mobileFile" -Value $mobileContent
 
 
 # -----------------------------------------------------------------------------------
-# 3) product.desktop.tsx
+# 3) DESKTOP FILE
 # -----------------------------------------------------------------------------------
 $desktopContent = @"
-import { ProductBlockMobile } from "./product.mobile";
+import { ${pascal}BlockMobile } from "./$blockFolder.mobile";
 
-export const ProductBlockDesktop: React.FC = () => {
-  return <ProductBlockMobile />;
+export const ${pascal}BlockDesktop: React.FC = () => {
+  return <${pascal}BlockMobile />;
 };
 "@
 
-Set-Content -Path "$baseDir/product.desktop.tsx" -Value $desktopContent
+Set-Content -Path "$baseDir/$desktopFile" -Value $desktopContent
 
 
 # -----------------------------------------------------------------------------------
-# 4) product.tsx
+# 4) ROOT COMPONENT FILE
 # -----------------------------------------------------------------------------------
 $rootContent = @"
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
-import { ProductBlockDesktop } from "./product.desktop";
-import { ProductBlockMobile } from "./product.mobile";
+import { ${pascal}BlockDesktop } from "./$blockFolder.desktop";
+import { ${pascal}BlockMobile } from "./$blockFolder.mobile";
 
-export const ProductBlock: React.FC = () => {
+export const ${pascal}Block: React.FC = () => {
   const { currentSize } = useResponsive();
 
   return (
     <>
-      {currentSize !== "desktop" && <ProductBlockMobile />}
-      {currentSize === "desktop" && <ProductBlockDesktop />}
+      {currentSize !== "desktop" && <${pascal}BlockMobile />}
+      {currentSize === "desktop" && <${pascal}BlockDesktop />}
     </>
   );
 };
 "@
 
-Set-Content -Path "$baseDir/product.tsx" -Value $rootContent
+Set-Content -Path "$baseDir/$rootFile" -Value $rootContent
 
 
 # -----------------------------------------------------------------------------------
-# 5) index.ts
+# 5) INDEX FILE
 # -----------------------------------------------------------------------------------
 $indexContent = @"
-export * from "./product";
+export * from "./$blockFolder";
 "@
 
-Set-Content -Path "$baseDir/index.ts" -Value $indexContent
-
+Set-Content -Path "$baseDir/$indexFile" -Value $indexContent
 
 Write-Host "Bloco '$BlockName' criado com sucesso em $baseDir"
