@@ -1,6 +1,8 @@
 import { Assets } from "@assets";
 import {
   AppButton,
+  AppLoader,
+  IsOnScreenTrigger,
   ProductScore,
   ReviewListItem,
   ScorePercentageBar,
@@ -9,8 +11,15 @@ import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useScoreBlockHelper } from "./score.hook";
 
 export const ScoreBlockMobile: React.FC = () => {
-  const { i18n, product, scoreBars, onClickCreateReview, reviews } =
-    useScoreBlockHelper();
+  const {
+    i18n,
+    product,
+    scoreBars,
+    onClickCreateReview,
+    reviews,
+    loading,
+    handleRequestTrigger,
+  } = useScoreBlockHelper();
 
   const scoreBarsJSX = scoreBars.map((s) => (
     <ScorePercentageBar
@@ -48,39 +57,47 @@ export const ScoreBlockMobile: React.FC = () => {
           >
             {i18n.count}
           </Typography>
-          <div style={{ width: "100%", gap: "15px", marginTop: "40px" }}>
-            {scoreBarsJSX}
-          </div>
-          <AppButton
-            text={{
-              content: i18n.create,
-              props: {
-                styles: {
-                  fontSize: "16px",
-                },
-              },
-            }}
-            endContent={
-              <Assets.Icons.NavRight
-                width="20px"
-                height="20px"
+          {scoreBars.length > 0 && (
+            <>
+              <div style={{ width: "100%", gap: "15px", marginTop: "40px" }}>
+                {scoreBarsJSX}
+              </div>
+              <AppButton
+                text={{
+                  content: i18n.create,
+                  props: {
+                    styles: {
+                      fontSize: "16px",
+                    },
+                  },
+                }}
+                endContent={
+                  <Assets.Icons.NavRight
+                    width="20px"
+                    height="20px"
+                    onClick={() => onClickCreateReview()}
+                  />
+                }
                 onClick={() => onClickCreateReview()}
+                styles={{
+                  width: "95%",
+                  padding: "20px",
+                  background: "transparent",
+                  border: "0.5px solid #000000",
+                  justifyContent: "space-between",
+                  margin: "25px auto 0 auto",
+                }}
               />
-            }
-            onClick={() => onClickCreateReview()}
-            styles={{
-              width: "95%",
-              padding: "20px",
-              background: "transparent",
-              border: "0.5px solid #000000",
-              justifyContent: "space-between",
-              margin: "25px auto 0 auto",
-            }}
-          />
+            </>
+          )}
 
           {reviewsJSX.length > 0 && (
             <div style={{ width: "100%", marginTop: "20px" }}>{reviewsJSX}</div>
           )}
+          {loading && <AppLoader visible={loading} />}
+          <IsOnScreenTrigger
+            onVisibilityChanged={(visible) => handleRequestTrigger(visible)}
+          />
         </>
       )}
     </>

@@ -24,7 +24,7 @@ export const AllReviewsMobile: React.FC = () => {
       {!loading && product && (
         <>
           <ProductBlock />
-          <div style={{ padding: "12px" }}>{<ScoreBlock />}</div>
+          <div style={{ padding: "12px", flex: 1 }}>{<ScoreBlock />}</div>
         </>
       )}
     </AppLayout>

@@ -5,6 +5,8 @@ import type { ApiOutput, ReviewDto, ScoreCountDto } from "../types";
 
 export type GetProductReviewsInputDto = {
   productId: string;
+  page: number;
+  pageCount: number;
 };
 
 export type GetProductReviewsOutputDto = {
@@ -12,6 +14,7 @@ export type GetProductReviewsOutputDto = {
   reviewsCount: number;
   scores: ScoreCountDto[];
   reviews: ReviewDto[];
+  hasMorePages: boolean;
 };
 
 export const useFetchGetProductReviews = () => {

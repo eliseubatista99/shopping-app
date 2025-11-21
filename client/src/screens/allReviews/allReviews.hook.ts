@@ -1,4 +1,3 @@
-import { useFetchGetProductReviews } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useDidMount,
@@ -10,10 +9,8 @@ import React from "react";
 
 export const useAllReviewsPageHelper = () => {
   const { productId } = useAppSearchParams();
-  const { fetch: fetchGetProductReviews } = useFetchGetProductReviews();
 
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
-  const setProductState = useStoreProduct((state) => state.setPartialState);
   const { goTo } = useNavigation();
 
   const [loading, setLoading] = React.useState(true);
@@ -38,25 +35,8 @@ export const useAllReviewsPageHelper = () => {
       return;
     }
 
-    const res = await fetchGetProductReviews({
-      productId: selectedProduct?.id,
-    });
-
-    if (res.metadata.success) {
-      setProductState({
-        scoreCounts: res.data.scores,
-        allReviews: res.data.reviews,
-      });
-    }
-
     setLoading(false);
-  }, [
-    fetchGetProductReviews,
-    goTo,
-    productId.value,
-    selectedProduct,
-    setProductState,
-  ]);
+  }, [goTo, productId.value, selectedProduct]);
 
   useDidMount(() => {
     initScreen();

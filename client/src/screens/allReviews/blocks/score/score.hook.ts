@@ -1,3 +1,8 @@
+import {
+  useFetchGetProductReviews,
+  type ReviewDto,
+  type ScoreCountDto,
+} from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import {
   NumberHelper,
@@ -9,10 +14,20 @@ import React from "react";
 
 export const useScoreBlockHelper = () => {
   const { t } = useAppTranslations();
+  const { fetch: fetchGetProductReviews } = useFetchGetProductReviews();
+
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
-  const scoreCounts = useStoreProduct((state) => state.scoreCounts);
-  const allReviews = useStoreProduct((state) => state.allReviews);
+
+  const [allReviews, setAllReviews] = React.useState<ReviewDto[]>([]);
+  const [scoreCounts, setScoreCounts] = React.useState<ScoreCountDto[]>([]);
+
   const { goTo } = useNavigation();
+
+  const currentPage = React.useRef<number>(0);
+
+  const hasMorePages = React.useRef<boolean>(true);
+  const isFetching = React.useRef<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const i18n = React.useMemo(() => {
     return {
@@ -43,11 +58,43 @@ export const useScoreBlockHelper = () => {
     });
   }, [goTo, selectedProduct?.id]);
 
+  const requestReviews = React.useCallback(async () => {
+    isFetching.current = true;
+    setLoading(true);
+
+    const res = await fetchGetProductReviews({
+      productId: selectedProduct?.id || "",
+      page: currentPage.current,
+      pageCount: 10,
+    });
+
+    if (res.metadata.success) {
+      setScoreCounts(res.data.scores);
+      setAllReviews((prevState) => [...prevState, ...res.data.reviews]);
+      hasMorePages.current = res.data.hasMorePages;
+    }
+
+    setLoading(false);
+    isFetching.current = false;
+  }, [fetchGetProductReviews, selectedProduct?.id]);
+
+  const handleRequestTrigger = React.useCallback(
+    (visible: boolean) => {
+      if (visible && !isFetching.current && hasMorePages.current) {
+        currentPage.current += 1;
+        requestReviews();
+      }
+    },
+    [requestReviews]
+  );
+
   return {
     i18n,
+    loading,
     scoreBars,
     product: selectedProduct,
     reviews: allReviews || [],
     onClickCreateReview,
+    handleRequestTrigger,
   };
 };

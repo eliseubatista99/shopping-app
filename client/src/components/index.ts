@@ -9,6 +9,7 @@ export * from "./appTextArea";
 export * from "./chip";
 export * from "./currencyBlock";
 export * from "./documentListItem";
+export * from "./isOnScreenTrigger";
 export * from "./productCombinationSelection";
 export * from "./productComboItem";
 export * from "./productGridItem";
