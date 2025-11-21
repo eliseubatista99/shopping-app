@@ -3,6 +3,7 @@ export * from "./useFetchClientInfo";
 export * from "./useFetchDocument";
 export * from "./useFetchProductDetail";
 export * from "./useFetchProductOffers";
+export * from "./useFetchProductReviews";
 export * from "./useFetchSearchProducts";
 export * from "./useFetchUpdateSelectedAddress";
 export * from "./useFetchWriteReview";

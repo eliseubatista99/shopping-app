@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "success": true,
+    "errors": []
+  },
+  "data": {
+    "averageScore": 4.6,
+    "reviewsCount": 1543,
+    "scores": [
+      {
+        "score": 1,
+        "count": 32
+      },
+      {
+        "score": 2,
+        "count": 12
+      },
+      {
+        "score": 3,
+        "count": 56
+      },
+      {
+        "score": 4,
+        "count": 7
+      },
+      {
+        "score": 5,
+        "count": 978
+      }
+    ],
+    "reviews": [
+      {
+        "reviewerIcon": "https://www.svgrepo.com/show/382109/male-avatar-boy-face-man-user-7.svg",
+        "reviewer": "Eligod",
+        "score": 3,
+        "title": "Its okay",
+        "comment": "It works fine for my needs. It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.It works fine for my needs.",
+        "id": "1"
+      },
+      {
+        "reviewerIcon": "https://www.svgrepo.com/show/382109/male-avatar-boy-face-man-user-7.svg",
+        "reviewer": "Eligod",
+        "score": 3,
+        "title": "Its okay",
+        "comment": "It works fine for my needs.",
+        "id": "2"
+      },
+      {
+        "reviewerIcon": "https://www.svgrepo.com/show/382109/male-avatar-boy-face-man-user-7.svg",
+        "reviewer": "Eligod",
+        "score": 3,
+        "title": "Its okay",
+        "comment": "It works fine for my needs.",
+        "id": "3"
+      },
+      {
+        "reviewerIcon": "https://www.svgrepo.com/show/382109/male-avatar-boy-face-man-user-7.svg",
+        "reviewer": "Eligod",
+        "score": 3,
+        "title": "Its okay",
+        "comment": "It works fine for my needs.",
+        "id": "4"
+      }
+    ]
+  }
+}

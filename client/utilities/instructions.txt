@@ -1,1 +1,6 @@
 .\create-screen -Name ScreenName
+
+.\create-screen-block -Screen ScreenName -BlockName BlockName
+
+.\create-component -Name ComponentName
+

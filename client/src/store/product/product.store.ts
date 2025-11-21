@@ -1,10 +1,12 @@
-import type { ProductDetailDto } from "@api";
+import type { ProductDetailDto, ReviewDto, ScoreCountDto } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
 export interface ProductState {
   selectedProduct?: ProductDetailDto;
+  allReviews?: ReviewDto[];
+  scoreCounts?: ScoreCountDto[];
 }
 
 const initialState: ProductState = {};

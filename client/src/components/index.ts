@@ -20,6 +20,7 @@ export * from "./productScore";
 export * from "./quantityField";
 export * from "./reviewListItem";
 export * from "./reviewScoreInput";
+export * from "./scorePercentageBar";
 export * from "./sellerListItem";
 export * from "./separator";
 export * from "./tag";

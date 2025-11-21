@@ -37,4 +37,12 @@ export const translationsGlobal: TranslationList = {
     pt: "Limpar",
     en: "Clear",
   },
+  "scoreBar.score.stars.single": {
+    pt: "1 Estrela",
+    en: "1 Star",
+  },
+  "scoreBar.score.stars.multiple": {
+    pt: "{{count}} Estrelas",
+    en: "{{count}} Stars",
+  },
 };

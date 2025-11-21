@@ -100,3 +100,8 @@ export type ProductOfferGroupDto = {
   products: ProductDto[];
   category: string;
 };
+
+export type ScoreCountDto = {
+  score: number;
+  count: number;
+};

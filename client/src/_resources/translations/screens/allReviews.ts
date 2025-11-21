@@ -9,4 +9,8 @@ export const translationsAllReviews: TranslationList = {
     pt: "{{count}} avaliações globais de clientes",
     en: "{{count}} global client reviews",
   },
+  "allReviews.score.create": {
+    pt: "Escrever uma avaliação",
+    en: "Write a review",
+  },
 };
