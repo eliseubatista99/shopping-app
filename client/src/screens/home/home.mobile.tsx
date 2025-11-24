@@ -52,7 +52,7 @@ export const HomeMobile: React.FC = () => {
           leftContent={<Assets.Icons.Location width="10px" height="10px" />}
           rightContent={<Assets.Icons.NavDown width="15px" height="15px" />}
           styles={{
-            border: "none",
+            padding: "3px 10px",
             background: "#ffffff70",
             marginTop: "8px",
           }}

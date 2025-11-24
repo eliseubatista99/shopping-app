@@ -1,6 +1,10 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
 
 export const translationsGlobal: TranslationList = {
+  "global.filters": {
+    pt: "Filtros",
+    en: "Filters",
+  },
   "global.actions.addToCart.single": {
     pt: "Adicionar ao carrinho",
     en: "Add to cart",
@@ -44,5 +48,29 @@ export const translationsGlobal: TranslationList = {
   "scoreBar.score.stars.multiple": {
     pt: "{{count}} Estrelas",
     en: "{{count}} Stars",
+  },
+  "global.filters.sort.LowToHighPrice": {
+    pt: "Preço: Ascendente",
+    en: "Price: Low To High",
+  },
+  "global.filters.sort.HighToLowPrice": {
+    pt: "Preço: Descendente",
+    en: "Price: High To Low",
+  },
+  "global.filters.sort.LowToHighScore": {
+    pt: "Classificação: Ascendente",
+    en: "Score: Low To High",
+  },
+  "global.filters.sort.HightToLowScore": {
+    pt: "Classificação: Ascendente",
+    en: "Score: High To Low",
+  },
+  "global.filters.sort.OldToNew": {
+    pt: "Mais antigos primeiro",
+    en: "Oldest first",
+  },
+  "global.filters.sort.NewToOld": {
+    pt: "Mais recentes primeiro",
+    en: "Newest first",
   },
 };

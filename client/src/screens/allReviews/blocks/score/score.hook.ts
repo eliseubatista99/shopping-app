@@ -1,11 +1,13 @@
 import {
+  SortMode,
   useFetchGetProductReviews,
   type ReviewDto,
   type ScoreCountDto,
 } from "@api";
-import { PAGES, SEARCH_PARAMS } from "@constants";
+import { DRAWERS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   NumberHelper,
+  useFeedback,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -15,8 +17,11 @@ import React from "react";
 export const useScoreBlockHelper = () => {
   const { t } = useAppTranslations();
   const { fetch: fetchGetProductReviews } = useFetchGetProductReviews();
+  const { showItem } = useFeedback();
 
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
+  const scoreFilter = useStoreProduct((state) => state.scoreFilter);
+  const sortFilter = useStoreProduct((state) => state.sortFilter);
 
   const [allReviews, setAllReviews] = React.useState<ReviewDto[]>([]);
   const [scoreCounts, setScoreCounts] = React.useState<ScoreCountDto[]>([]);
@@ -27,11 +32,16 @@ export const useScoreBlockHelper = () => {
 
   const hasMorePages = React.useRef<boolean>(true);
   const isFetching = React.useRef<boolean>(false);
+
+  const sortFilterCache = React.useRef<SortMode | undefined>(undefined);
+  const scoreFilterCache = React.useRef<number | undefined>(undefined);
+
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const i18n = React.useMemo(() => {
     return {
       title: t("allReviews.score.title"),
+      filters: t("global.filters"),
       count: t("allReviews.score.count", {
         count: selectedProduct?.scoreCount,
       }),
@@ -58,6 +68,10 @@ export const useScoreBlockHelper = () => {
     });
   }, [goTo, selectedProduct?.id]);
 
+  const onClickFilters = React.useCallback(() => {
+    showItem(DRAWERS.REVIEW_FILTERS);
+  }, [showItem]);
+
   const requestReviews = React.useCallback(async () => {
     isFetching.current = true;
     setLoading(true);
@@ -66,6 +80,8 @@ export const useScoreBlockHelper = () => {
       productId: selectedProduct?.id || "",
       page: currentPage.current,
       pageCount: 10,
+      filterByRating: scoreFilter,
+      sortMode: sortFilter,
     });
 
     if (res.metadata.success) {
@@ -76,7 +92,7 @@ export const useScoreBlockHelper = () => {
 
     setLoading(false);
     isFetching.current = false;
-  }, [fetchGetProductReviews, selectedProduct?.id]);
+  }, [fetchGetProductReviews, scoreFilter, selectedProduct?.id, sortFilter]);
 
   const handleRequestTrigger = React.useCallback(
     (visible: boolean) => {
@@ -88,6 +104,19 @@ export const useScoreBlockHelper = () => {
     [requestReviews]
   );
 
+  React.useEffect(() => {
+    if (
+      sortFilterCache.current !== sortFilter ||
+      scoreFilterCache.current !== scoreFilter
+    ) {
+      sortFilterCache.current = sortFilter;
+      scoreFilterCache.current = scoreFilter;
+      currentPage.current = 0;
+
+      requestReviews();
+    }
+  }, [requestReviews, scoreFilter, sortFilter]);
+
   return {
     i18n,
     loading,
@@ -96,5 +125,6 @@ export const useScoreBlockHelper = () => {
     reviews: allReviews || [],
     onClickCreateReview,
     handleRequestTrigger,
+    onClickFilters,
   };
 };

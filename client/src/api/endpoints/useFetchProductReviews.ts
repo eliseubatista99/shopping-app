@@ -1,12 +1,14 @@
 import { useFetch } from "@eliseubatista99/react-scaffold-core";
 import { useCallback } from "react";
 import { ApiConfigs } from "../configs";
-import type { ApiOutput, ReviewDto, ScoreCountDto } from "../types";
+import type { ApiOutput, ReviewDto, ScoreCountDto, SortMode } from "../types";
 
 export type GetProductReviewsInputDto = {
   productId: string;
   page: number;
   pageCount: number;
+  filterByRating?: number;
+  sortMode?: SortMode;
 };
 
 export type GetProductReviewsOutputDto = {

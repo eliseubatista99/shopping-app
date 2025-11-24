@@ -4,3 +4,6 @@
 
 .\create-component -Name ComponentName
 
+.\create-drawer -Name DrawerName
+
+

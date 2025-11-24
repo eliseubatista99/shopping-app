@@ -1,5 +1,5 @@
 import type { ProductDto } from "@api";
-import { Drawers } from "@constants";
+import { DRAWERS } from "@constants";
 import { TimeHelper, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useCart } from "@hooks";
 import { useStoreBase, useStoreProduct } from "@store";
@@ -80,7 +80,7 @@ export const usePurchaseBlockHelper = () => {
   }, [selectedProduct?.originalPrice, selectedProduct?.price]);
 
   const onClickAddress = React.useCallback(() => {
-    showItem(Drawers.selectAddress);
+    showItem(DRAWERS.SELECT_ADDRESS);
   }, [showItem]);
 
   const onChangeQuantity = React.useCallback((value: number) => {

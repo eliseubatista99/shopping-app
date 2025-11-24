@@ -18,12 +18,13 @@ export const ChipMobile: React.FC<ChipProps> = ({
         borderRadius: "20px",
         alignItems: "center",
         justifyContent: "center",
-        border: "2px solid black",
         width: "fit-content",
-        padding: "3px 10px",
         flexDirection: "row",
         gap: "5px",
         height: "24px",
+        padding: "15px",
+        border: "none",
+        background: "#e7e7e7ff",
         ...styles,
       }}
     >

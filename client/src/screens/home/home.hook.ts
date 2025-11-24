@@ -1,5 +1,5 @@
 import { useFetchProductOffers } from "@api";
-import { Drawers } from "@constants";
+import { DRAWERS } from "@constants";
 import { useDidMount, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreHome } from "@store";
@@ -81,7 +81,7 @@ export const useHomePageHelper = () => {
   }, []);
 
   const onAddressChipClicked = React.useCallback(() => {
-    showItem(Drawers.selectAddress);
+    showItem(DRAWERS.SELECT_ADDRESS);
   }, [showItem]);
 
   useDidMount(() => {

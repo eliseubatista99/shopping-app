@@ -13,4 +13,16 @@ export const translationsDrawers: TranslationList = {
     pt: "Confirmar",
     en: "Confirm",
   },
+  "drawers.reviewFilters.title": {
+    pt: "Filtros",
+    en: "Filters",
+  },
+  "drawers.reviewFilters.sort": {
+    pt: "Ordenação",
+    en: "Sorting",
+  },
+  "drawers.reviewFilters.score": {
+    pt: "Classificação",
+    en: "Score",
+  },
 };

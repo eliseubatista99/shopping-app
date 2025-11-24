@@ -1,5 +1,5 @@
 import { AddressSelectItem, AppButton, AppLoader } from "@components";
-import { Drawers } from "@constants";
+import { DRAWERS } from "@constants";
 import {
   Carousel,
   Typography,
@@ -43,7 +43,7 @@ export const DrawerSelectAddressMobile = () => {
 
   return (
     <AppDrawer
-      id={Drawers.selectAddress}
+      id={DRAWERS.SELECT_ADDRESS}
       canBeClosed={!loading}
       drawerStyles={{ gap: "12px" }}
     >

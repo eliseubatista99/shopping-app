@@ -7,6 +7,15 @@ export type ApiOutput<T> = {
   metadata: ApiOutputMetadata;
 };
 
+export enum SortMode {
+  LowToHighScore = "LowToHighScore",
+  HightToLowScore = "HightToLowScore",
+  LowToHighPrice = "LowToHighPrice",
+  HighToLowPrice = "HighToLowPrice",
+  NewToOld = "NewToOld",
+  OldToNew = "OldToNew",
+}
+
 export type ProductDto = {
   id: string;
   name: string;

@@ -3,7 +3,7 @@ import {
   type AddressDto,
   type ClientInfoDto,
 } from "@api";
-import { Drawers } from "@constants";
+import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase } from "@store";
@@ -55,7 +55,7 @@ export const useSelectAddressDrawerHelper = () => {
 
     setLoading(false);
 
-    hideItem(Drawers.selectAddress);
+    hideItem(DRAWERS.SELECT_ADDRESS);
   }, [
     fetchUpdateAddress,
     hideItem,

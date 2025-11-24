@@ -19,10 +19,12 @@ export const ScoreBlockMobile: React.FC = () => {
     reviews,
     loading,
     handleRequestTrigger,
+    onClickFilters,
   } = useScoreBlockHelper();
 
   const scoreBarsJSX = scoreBars.map((s) => (
     <ScorePercentageBar
+      key={s.score}
       score={s.score}
       percentage={s.percentage}
       onClick={() => {
@@ -43,9 +45,29 @@ export const ScoreBlockMobile: React.FC = () => {
     <>
       {product && (
         <>
-          <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
-            {i18n.title}
-          </Typography>
+          <div
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
+              {i18n.title}
+            </Typography>
+            <div
+              style={{ cursor: "pointer", color: "#023492" }}
+              onClick={() => {
+                onClickFilters();
+              }}
+            >
+              <Typography styles={{ fontSize: "16px" }}>
+                {i18n.filters}
+              </Typography>
+            </div>
+          </div>
+
           <ProductScore
             score={product?.score || 0}
             starsSize={16}
