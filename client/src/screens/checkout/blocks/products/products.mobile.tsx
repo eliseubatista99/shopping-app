@@ -1,4 +1,4 @@
-import { ProductCheckoutItem } from "@components";
+import { ProductCheckoutItem, Separator } from "@components";
 import { useProductsBlockHelper } from "./products.hook";
 
 export const ProductsBlockMobile: React.FC = () => {
@@ -8,5 +8,12 @@ export const ProductsBlockMobile: React.FC = () => {
     <ProductCheckoutItem key={p.id} product={p} />
   ));
 
-  return <div style={{ width: "100%", gap: "6px" }}>{productsJSX}</div>;
+  return (
+    <>
+      <Separator styles={{ marginTop: "20px" }} />
+      <div style={{ width: "100%", gap: "6px", marginTop: "20px" }}>
+        {productsJSX}
+      </div>
+    </>
+  );
 };

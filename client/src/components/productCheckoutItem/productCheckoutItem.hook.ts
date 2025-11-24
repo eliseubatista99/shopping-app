@@ -1,12 +1,18 @@
-import { useAppTranslations } from "@hooks";
 import { useStoreBase } from "@store";
+import React from "react";
 import type { ProductCheckoutItemProps } from "./productCheckoutItem";
 
-export const useProductCheckoutItemHelper = (
-  props: ProductCheckoutItemProps
-) => {
-  const { t } = useAppTranslations();
+export const useProductCheckoutItemHelper = ({
+  onChangeQuantity,
+}: ProductCheckoutItemProps) => {
   const currency = useStoreBase((state) => state.currency);
 
-  return { currency };
+  const onClickChangeQuantity = React.useCallback(
+    (value: number) => {
+      onChangeQuantity?.(value);
+    },
+    [onChangeQuantity]
+  );
+
+  return { currency, onClickChangeQuantity };
 };
