@@ -6,6 +6,7 @@
   "data": {
     "updatedAddresses": [
       {
+        "id": "1",
         "name": "Eliseu",
         "postalCode": "6123-456",
         "city": "Fundão",
@@ -16,6 +17,7 @@
         "isSelected": true
       },
       {
+        "id": "2",
         "name": "Eliseu",
         "street": "Rua Bonita",
         "country": "Portugal",
@@ -24,6 +26,7 @@
         "city": "Guarda"
       },
       {
+        "id": "3",
         "name": "Eliseu",
         "street": "Rua Bonita",
         "country": "Portugal",

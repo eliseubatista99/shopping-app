@@ -1,5 +1,5 @@
 import {
-  useFetchUpdateSelectedAddress,
+  useFetchUpdateDefaultAddress,
   type AddressDto,
   type ClientInfoDto,
 } from "@api";
@@ -13,14 +13,15 @@ export const useSelectAddressDrawerHelper = () => {
   const { hideItem } = useFeedback();
   const setClientInfo = useStoreBase((state) => state.setClientInfo);
   const storeClient = useStoreBase((state) => state.client);
+  const selectedAddressInStore = useStoreBase((state) => state.selectedAddress);
 
-  const { fetch: fetchUpdateAddress } = useFetchUpdateSelectedAddress();
+  const { fetch: fetchUpdateAddress } = useFetchUpdateDefaultAddress();
   const { t } = useAppTranslations();
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const [selectedAddress, setSelectedAddress] = React.useState<
     AddressDto | undefined
-  >(storeClient?.addresses.find((a) => a.isSelected));
+  >(selectedAddressInStore);
 
   const i18n = React.useMemo(() => {
     return {
@@ -47,7 +48,7 @@ export const useSelectAddressDrawerHelper = () => {
     }
 
     const res = await fetchUpdateAddress({
-      address: selectedAddress,
+      addressId: selectedAddress.id,
     });
 
     clientData.addresses = res.data.updatedAddresses || [];

@@ -16,6 +16,11 @@ export enum SortMode {
   OldToNew = "OldToNew",
 }
 
+export enum PaymentMethodType {
+  Card = "Card",
+  Bank = "Bank",
+}
+
 export type ProductDto = {
   id: string;
   name: string;
@@ -89,6 +94,7 @@ export type CartOutputDto = {
 };
 
 export type AddressDto = {
+  id: string;
   name: string;
   postalCode: string;
   city: string;
@@ -96,13 +102,24 @@ export type AddressDto = {
   country: string;
   countryCode: string;
   isDefault: boolean;
-  isSelected: boolean;
+};
+
+export type PaymentMethodDto = {
+  id: string;
+  type: PaymentMethodType;
+  name: string;
+  network: string;
+  cardNumber: string;
+  expirationMonth: number;
+  expirationYear: number;
+  isDefault: boolean;
 };
 
 export type ClientInfoDto = {
   id: string;
   name: string;
   addresses: AddressDto[];
+  paymentMethods: PaymentMethodDto[];
 };
 
 export type ProductOfferGroupDto = {

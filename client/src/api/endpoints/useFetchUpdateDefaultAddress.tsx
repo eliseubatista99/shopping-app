@@ -3,21 +3,21 @@ import { useCallback } from "react";
 import { ApiConfigs } from "../configs";
 import type { AddressDto, ApiOutput } from "../types";
 
-export type UpdatedSelectedAddressInputDto = {
-  address: AddressDto;
+export type UpdatedDefaultAddressInputDto = {
+  addressId: string;
 };
 
-export type UpdatedSelectedAddressOutputDto = {
+export type UpdatedDefaultAddressOutputDto = {
   updatedAddresses?: AddressDto[];
 };
 
-export const useFetchUpdateSelectedAddress = () => {
+export const useFetchUpdateDefaultAddress = () => {
   const { post } = useFetch();
 
   const fetch = useCallback(
-    async (input: UpdatedSelectedAddressInputDto) => {
-      const result = await post<ApiOutput<UpdatedSelectedAddressOutputDto>>(
-        `${ApiConfigs.endpoint}/UpdateSelectedAddress`,
+    async (input: UpdatedDefaultAddressInputDto) => {
+      const result = await post<ApiOutput<UpdatedDefaultAddressOutputDto>>(
+        `${ApiConfigs.endpoint}/UpdateDefaultAddress`,
         { ...input }
       );
 

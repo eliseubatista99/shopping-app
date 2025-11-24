@@ -27,4 +27,12 @@ export class AddressHelper {
 
     return `${a.street} ${a.city} ${a.postalCode}`;
   };
+
+  static formatAddressLong = (a: AddressDto | undefined) => {
+    if (!a) {
+      return "";
+    }
+
+    return `${a.street}, ${a.city}, ${a.postalCode}, ${a.country}`;
+  };
 }

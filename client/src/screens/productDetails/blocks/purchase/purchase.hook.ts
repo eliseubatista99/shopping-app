@@ -1,7 +1,6 @@
 import type { ProductDto } from "@api";
 import { DRAWERS, PAGES } from "@constants";
 import {
-  TimeHelper,
   useFeedback,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
@@ -14,9 +13,9 @@ export const usePurchaseBlockHelper = () => {
   const setCheckoutStoreState = useStoreCheckout(
     (state) => state.setPartialState
   );
-  const getSelectedAddress = useStoreBase((state) => state.getSelectedAddress);
+  const selectedAddress = useStoreBase((state) => state.selectedAddress);
   const currency = useStoreBase((state) => state.currency);
-  const { t } = useAppTranslations();
+  const { t, translateDate } = useAppTranslations();
   const { showItem } = useFeedback();
   const { addToCart } = useCart();
   const { goTo } = useNavigation();
@@ -24,19 +23,9 @@ export const usePurchaseBlockHelper = () => {
   const [quantity, setQuantity] = React.useState<number>(1);
 
   const i18n = React.useMemo(() => {
-    const deliveryDate = TimeHelper.getDateInUTC(
-      selectedProduct?.estimatedDeliveryDate
+    const { extenseDate } = translateDate(
+      selectedProduct?.estimatedDeliveryDate || ""
     );
-    const month = t(`time.month.long.${deliveryDate?.month}`);
-    const weekday = t(`time.month.long.${deliveryDate?.weekday}`);
-    const extenseDate = t("time.date.extense", {
-      weekday,
-      day: deliveryDate?.day,
-      month,
-      year: deliveryDate?.year,
-    });
-
-    const selectedAddress = getSelectedAddress();
 
     return {
       actions: {
@@ -63,7 +52,15 @@ export const usePurchaseBlockHelper = () => {
         }),
       },
     };
-  }, [getSelectedAddress, selectedProduct, t]);
+  }, [
+    selectedAddress?.city,
+    selectedAddress?.name,
+    selectedAddress?.postalCode,
+    selectedProduct?.estimatedDeliveryDate,
+    selectedProduct?.shippingCost,
+    t,
+    translateDate,
+  ]);
 
   const calculatedPrices = React.useMemo(() => {
     const originalPrice = selectedProduct?.originalPrice || 1;

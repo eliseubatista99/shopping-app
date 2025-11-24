@@ -7,7 +7,7 @@ export const useAppHelper = () => {
   const [isAppInitialized, setIsAppInitialized] = React.useState(false);
 
   const clientInfo = useStoreBase((state) => state.client);
-  const setClientInfo = useStoreBase((state) => state.setClientInfo);
+  const setBaseStoreState = useStoreBase((state) => state.setPartialState);
   const setBasketCount = useStoreBasket((state) => state.setBasketCount);
 
   const { fetch: fetchClientInfo } = useFetchClientInfo();
@@ -19,11 +19,21 @@ export const useAppHelper = () => {
     }
 
     const res = await fetchClientInfo();
-    setClientInfo(res.data.client);
+    setBaseStoreState({
+      client: res.data.client,
+
+      selectedAddress: (res.data.client.addresses || []).find(
+        (a) => a.isDefault
+      ),
+      selectedPaymentMethod: (res.data.client.paymentMethods || []).find(
+        (p) => p.isDefault
+      ),
+    });
+
     setBasketCount(res.data.itemsInCart);
 
     setIsAppInitialized(true);
-  }, [clientInfo, fetchClientInfo, setBasketCount, setClientInfo]);
+  }, [clientInfo, fetchClientInfo, setBaseStoreState, setBasketCount]);
 
   useDidMount(() => {
     initApp();

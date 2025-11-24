@@ -14,34 +14,62 @@
       "name": "Elideus Kuduro",
       "addresses": [
         {
+          "id": "1",
           "name": "Eliseu",
           "postalCode": "6123-456",
           "city": "Fundão",
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
-          "isDefault": true,
-          "isSelected": true
+          "isDefault": true
         },
         {
+          "id": "2",
           "name": "Eliseu",
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
           "isDefault": false,
-          "isSelected": false,
           "postalCode": "1234-567",
           "city": "Guarda"
         },
         {
+          "id": "3",
           "name": "Eliseu",
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
           "isDefault": false,
-          "isSelected": false,
           "postalCode": "31321-434",
           "city": "Pinhel"
+        }
+      ],
+      "paymentMethods": [
+        {
+          "id": "1",
+          "type": "Card",
+          "name": "Eliseu Batista",
+          "network": "Mastercard",
+          "cardNumber": "**** **** **** 1234",
+          "expirationMonth": 11,
+          "expirationYear": 2025,
+          "isDefault": true
+        },
+        {
+          "id": "2",
+          "type": "Bank",
+          "name": "Eliseu Batista",
+          "isDefault": false
+        },
+        {
+          "id": "3",
+          "type": "Card",
+          "name": "Eliseu Batista",
+          "cardNumber": "**** **** **** 5678",
+          "network": "Visa",
+          "expirationMonth": 11,
+          "expirationYear": 2025,
+          "isDefault": false
         }
       ]
     },

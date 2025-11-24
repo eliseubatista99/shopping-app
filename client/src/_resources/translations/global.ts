@@ -73,4 +73,12 @@ export const translationsGlobal: TranslationList = {
     pt: "Mais recentes primeiro",
     en: "Newest first",
   },
+  "global.card.network.Mastercard": {
+    pt: "Mastercard",
+    en: "Mastercard",
+  },
+  "global.card.network.Visa": {
+    pt: "Visa",
+    en: "Visa",
+  },
 };

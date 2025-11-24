@@ -6,7 +6,7 @@ import { useStoreBase, useStoreHome } from "@store";
 import React from "react";
 
 export const useHomePageHelper = () => {
-  const client = useStoreBase((state) => state.client);
+  const selectedAddress = useStoreBase((state) => state.selectedAddress);
   const setStoreHomeState = useStoreHome((state) => state.setPartialState);
   const groups = useStoreHome((state) => state.groups);
   const buyAgain = useStoreHome((state) => state.buyAgain);
@@ -20,8 +20,6 @@ export const useHomePageHelper = () => {
   const { t } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
-    const selectedAddress = client?.addresses?.find((a) => a.isSelected);
-
     return {
       chips: {
         address: t("home.chips.address", {
@@ -38,7 +36,7 @@ export const useHomePageHelper = () => {
         title: t("home.group.fromHistory.title"),
       },
     };
-  }, [client?.addresses, t]);
+  }, [selectedAddress?.postalCode, t]);
 
   const initScreen = React.useCallback(async () => {
     const res = await fetchProductOffers();

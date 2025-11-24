@@ -1,4 +1,4 @@
-import type { AddressDto, ClientInfoDto } from "@api";
+import type { AddressDto, ClientInfoDto, PaymentMethodDto } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
@@ -8,6 +8,8 @@ export type LanguageType = "pt" | "en";
 export interface BaseState {
   language: LanguageType;
   client?: ClientInfoDto;
+  selectedPaymentMethod?: PaymentMethodDto;
+  selectedAddress?: AddressDto;
   currency?: string;
 }
 
@@ -17,17 +19,13 @@ export const initialState: BaseState = {
 };
 
 interface UseStoreOutput extends BaseState {
-  getSelectedAddress: () => AddressDto | undefined;
   setPartialState: (data: Partial<BaseState>) => void;
   setClientInfo: (data: ClientInfoDto) => void;
 }
 
 export const useStoreBase = StoreHelper.createStore<UseStoreOutput>(
-  (set, get) => ({
+  (set) => ({
     ...initialState,
-    getSelectedAddress: function () {
-      return get()?.client?.addresses?.find((a) => a.isSelected);
-    },
     setPartialState: function (data: Partial<BaseState>) {
       set(
         produce((state: BaseState) => ({ ...state, ...data })),

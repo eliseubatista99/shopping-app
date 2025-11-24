@@ -5,6 +5,12 @@ import { StoreHelper } from "../storeHelper";
 
 export interface CheckoutState {
   products?: ProductDto[];
+  productCost?: number;
+  shippingCost?: number;
+  totalCost?: number;
+  startDeliveryDate?: string;
+  endDeliveryDate?: string;
+  wantsFastestOption?: boolean;
 }
 
 const initialState: CheckoutState = {};
