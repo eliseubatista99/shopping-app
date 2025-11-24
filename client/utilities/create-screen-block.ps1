@@ -14,10 +14,13 @@ function To-PascalCase([string]$text) {
     return ($text.Substring(0,1).ToUpper() + $text.Substring(1))
 }
 
+$pascalScreen = To-PascalCase $Screen
+
+
 $pascal = To-PascalCase $BlockName
 
 # Base directory
-$baseDir = "../src/screens/$Screen/blocks/$blockFolder"
+$baseDir = "../src/screens/$pascalScreen/blocks/$blockFolder"
 
 # Create directory
 New-Item -ItemType Directory -Force -Path $baseDir | Out-Null

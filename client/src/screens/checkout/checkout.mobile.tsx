@@ -1,4 +1,11 @@
 import { AppLayout, AppLoader } from "@components";
+import {
+  AddressBlock,
+  ExecutionBlock,
+  PaymentBlock,
+  ProductsBlock,
+  ScheduleBlock,
+} from "./blocks";
 import { useCheckoutPageHelper } from "./checkout.hook";
 
 export const CheckoutMobile: React.FC = () => {
@@ -19,7 +26,15 @@ export const CheckoutMobile: React.FC = () => {
       }}
     >
       {loading && <AppLoader visible={loading} />}
-      {!loading && <></>}
+      {!loading && (
+        <>
+          <AddressBlock />
+          <PaymentBlock />
+          <ScheduleBlock />
+          <ProductsBlock />
+          <ExecutionBlock />
+        </>
+      )}
     </AppLayout>
   );
 };
