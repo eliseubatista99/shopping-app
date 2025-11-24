@@ -6,4 +6,6 @@
 
 .\create-drawer -Name DrawerName
 
+.\create-store -Name StoreName
+
 

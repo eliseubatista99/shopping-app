@@ -1,17 +1,25 @@
 import type { ProductDto } from "@api";
-import { DRAWERS } from "@constants";
-import { TimeHelper, useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { DRAWERS, PAGES } from "@constants";
+import {
+  TimeHelper,
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useCart } from "@hooks";
-import { useStoreBase, useStoreProduct } from "@store";
+import { useStoreBase, useStoreCheckout, useStoreProduct } from "@store";
 import React from "react";
 
 export const usePurchaseBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
+  const setCheckoutStoreState = useStoreCheckout(
+    (state) => state.setPartialState
+  );
   const getSelectedAddress = useStoreBase((state) => state.getSelectedAddress);
   const currency = useStoreBase((state) => state.currency);
   const { t } = useAppTranslations();
   const { showItem } = useFeedback();
   const { addToCart } = useCart();
+  const { goTo } = useNavigation();
 
   const [quantity, setQuantity] = React.useState<number>(1);
 
@@ -95,8 +103,16 @@ export const usePurchaseBlockHelper = () => {
   );
 
   const onClickBuyNow = React.useCallback(() => {
-    //Do some
-  }, []);
+    if (selectedProduct) {
+      setCheckoutStoreState({
+        products: [selectedProduct],
+      });
+      goTo({
+        path: PAGES.CHECKOUT,
+        addToHistory: true,
+      });
+    }
+  }, [goTo, selectedProduct, setCheckoutStoreState]);
 
   return {
     i18n,

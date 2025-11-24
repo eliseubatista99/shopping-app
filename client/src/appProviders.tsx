@@ -6,6 +6,7 @@ import {
 import {
   AllReviews,
   Basket,
+  Checkout,
   Explore,
   ForYou,
   Home,
@@ -68,6 +69,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.ALL_REVIEWS,
             render: <AllReviews />,
+          },
+          {
+            path: PAGES.CHECKOUT,
+            render: <Checkout />,
           },
         ]}
       >
