@@ -20,6 +20,7 @@ export const useCheckoutPageHelper = () => {
   const setCheckoutStoreState = useStoreCheckout(
     (state) => state.setPartialState
   );
+  const recalculate = useStoreCheckout((state) => state.recalculate);
 
   const { fetch: fetchGetCheckoutInfo } = useFetchGetCheckoutInfo();
 
@@ -47,15 +48,12 @@ export const useCheckoutPageHelper = () => {
     });
 
     setCheckoutStoreState({
-      products: res.data.products,
-      productCost: res.data.productCost,
       shippingCost: res.data.shippingCost,
-      totalCost: res.data.totalCost,
       startDeliveryDate: res.data.startDeliveryDate,
       endDeliveryDate: res.data.endDeliveryDate,
       fastestDeliveryCost: res.data.fastestDeliveryCost,
     });
-    // setProductStoreState({ selectedProduct: res.data.product });
+    recalculate();
 
     isFetching.current = false;
     setLoading(false);
@@ -63,6 +61,7 @@ export const useCheckoutPageHelper = () => {
     fetchGetCheckoutInfo,
     goTo,
     productsInStore,
+    recalculate,
     selectedAddress?.id,
     selectedPaymentMethod?.id,
     setCheckoutStoreState,

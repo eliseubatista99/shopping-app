@@ -19,6 +19,7 @@ export const usePaymentBlockHelper = () => {
   const fastestDeliveryCost = useStoreCheckout(
     (state) => state.fastestDeliveryCost || 0
   );
+  const recalculate = useStoreCheckout((state) => state.recalculate);
 
   const i18n = React.useMemo(() => {
     const cardNum = selectedPaymentMethod?.cardNumber
@@ -54,7 +55,8 @@ export const usePaymentBlockHelper = () => {
 
   const onClickChangePayment = React.useCallback(() => {
     //DO SOMETHING
-  }, []);
+    recalculate();
+  }, [recalculate]);
 
   return {
     i18n,
@@ -62,7 +64,7 @@ export const usePaymentBlockHelper = () => {
     products,
     productCost,
     shippingCost,
-    totalCost: wantsFastestOption ? totalCost + fastestDeliveryCost : totalCost,
+    totalCost,
     selectedPaymentMethod,
     onClickChangePayment,
     wantsFastestOption,

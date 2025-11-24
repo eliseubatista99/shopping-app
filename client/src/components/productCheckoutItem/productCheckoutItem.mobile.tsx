@@ -1,13 +1,15 @@
 import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductQuantityChip } from "../productQuantityChip";
 import type { ProductCheckoutItemProps } from "./productCheckoutItem";
 import { useProductCheckoutItemHelper } from "./productCheckoutItem.hook";
 
 export const ProductCheckoutItemMobile: React.FC<ProductCheckoutItemProps> = (
   props
 ) => {
-  const { currency } = useProductCheckoutItemHelper(props);
+  const { currency, onClickChangeQuantity } =
+    useProductCheckoutItemHelper(props);
   const { styles, product } = props;
   return (
     <div
@@ -44,13 +46,10 @@ export const ProductCheckoutItemMobile: React.FC<ProductCheckoutItemProps> = (
         </div>
       </div>
 
-      <div
-        style={{
-          width: "fit-content",
-          borderRadius: "20px",
-          border: "1px solid #ffc400ff",
-        }}
-      ></div>
+      <ProductQuantityChip
+        value={product.quantity || 0}
+        onChange={onClickChangeQuantity}
+      />
     </div>
   );
 };

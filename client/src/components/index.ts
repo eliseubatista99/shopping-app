@@ -17,6 +17,7 @@ export * from "./productGridItem";
 export * from "./productListItem";
 export * from "./productOfferBanner";
 export * from "./productOptionItem";
+export * from "./productQuantityChip";
 export * from "./productsCombinationOverview";
 export * from "./productScore";
 export * from "./quantityField";

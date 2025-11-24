@@ -33,6 +33,11 @@ export type ProductDto = {
   bestSeller?: boolean;
 };
 
+export type CheckoutProductDto = {
+  productId?: string;
+  quantity?: number;
+};
+
 export type ProductSpecificationsDto = {
   brand: string;
   model: string;

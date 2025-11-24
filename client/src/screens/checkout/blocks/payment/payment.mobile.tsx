@@ -66,11 +66,14 @@ export const PaymentBlockMobile: React.FC = () => {
       )}
       <Separator styles={{ marginTop: "20px" }} />
       <div style={{ width: "100%", gap: "6px", marginTop: "10px" }}>
-        {costRow(i18n.products, `${productCost}${currency}`)}
-        {costRow(i18n.shipping, `${shippingCost}${currency}`)}
+        {costRow(i18n.products, `${productCost?.toFixed(2)}${currency}`)}
+        {costRow(i18n.shipping, `${shippingCost?.toFixed(2)}${currency}`)}
         {wantsFastestOption &&
-          costRow(i18n.fastShipping, `${fastestDeliveryCost}${currency}`)}
-        {costRow(i18n.final, `${totalCost}${currency}`, true)}
+          costRow(
+            i18n.fastShipping,
+            `${fastestDeliveryCost.toFixed(2)}${currency}`
+          )}
+        {costRow(i18n.final, `${totalCost?.toFixed(2)}${currency}`, true)}
       </div>
     </>
   );

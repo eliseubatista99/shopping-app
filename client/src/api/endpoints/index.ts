@@ -1,6 +1,7 @@
 export * from "./useFetchAddToCard";
 export * from "./useFetchClientInfo";
 export * from "./useFetchDocument";
+export * from "./useFetchExecutePurchase";
 export * from "./useFetchGetCheckoutInfo";
 export * from "./useFetchProductDetail";
 export * from "./useFetchProductOffers";

@@ -1,12 +1,11 @@
-import type { ProductDto } from "@api";
+import type { CheckoutProductDto } from "@api";
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { ProductCheckoutItemDesktop } from "./productCheckoutItem.desktop";
 import { ProductCheckoutItemMobile } from "./productCheckoutItem.mobile";
 
 export interface ProductCheckoutItemProps {
-  product: ProductDto;
-  quantity?: number;
+  product: CheckoutProductDto;
   onChangeQuantity?: (value: number) => void;
   styles?: React.CSSProperties;
 }

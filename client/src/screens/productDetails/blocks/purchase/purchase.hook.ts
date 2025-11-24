@@ -63,8 +63,8 @@ export const usePurchaseBlockHelper = () => {
   ]);
 
   const calculatedPrices = React.useMemo(() => {
-    const originalPrice = selectedProduct?.originalPrice || 1;
-    const price = selectedProduct?.price || 1;
+    const originalPrice = (selectedProduct?.originalPrice || 1) * quantity;
+    const price = (selectedProduct?.price || 1) * quantity;
 
     if (price === originalPrice) {
       return {
@@ -82,7 +82,7 @@ export const usePurchaseBlockHelper = () => {
       originalPrice,
       discount: discountPercentage,
     };
-  }, [selectedProduct?.originalPrice, selectedProduct?.price]);
+  }, [quantity, selectedProduct?.originalPrice, selectedProduct?.price]);
 
   const onClickAddress = React.useCallback(() => {
     showItem(DRAWERS.SELECT_ADDRESS);
@@ -102,14 +102,14 @@ export const usePurchaseBlockHelper = () => {
   const onClickBuyNow = React.useCallback(() => {
     if (selectedProduct) {
       setCheckoutStoreState({
-        products: [selectedProduct],
+        products: [{ ...selectedProduct, quantity }],
       });
       goTo({
         path: PAGES.CHECKOUT,
         addToHistory: true,
       });
     }
-  }, [goTo, selectedProduct, setCheckoutStoreState]);
+  }, [goTo, quantity, selectedProduct, setCheckoutStoreState]);
 
   return {
     i18n,

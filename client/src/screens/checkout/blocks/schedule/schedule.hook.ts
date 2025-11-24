@@ -19,6 +19,7 @@ export const useScheduleBlockHelper = () => {
   const setStoreCheckoutState = useStoreCheckout(
     (state) => state.setPartialState
   );
+  const recalculate = useStoreCheckout((state) => state.recalculate);
 
   const i18n = React.useMemo(() => {
     const startDateData = TimeHelper.getDateInUTC(startDeliveryDate);
@@ -41,8 +42,9 @@ export const useScheduleBlockHelper = () => {
   const onClickOption = React.useCallback(
     (fastest: boolean) => {
       setStoreCheckoutState({ wantsFastestOption: fastest });
+      recalculate();
     },
-    [setStoreCheckoutState]
+    [recalculate, setStoreCheckoutState]
   );
 
   return {

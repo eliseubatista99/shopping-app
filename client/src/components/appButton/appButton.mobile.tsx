@@ -16,16 +16,17 @@ export const AppButtonMobile: React.FC<AppButtonProps> = ({
         borderRadius: "20px",
         height: "24px",
         background: "#e9ca19ff",
-        padding: "13px 20px",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
+        width: "100%",
+        padding: "20px",
         ...styles,
       }}
     >
       <Typography
         {...text.props}
-        styles={{ fontSize: "13px", fontWeight: 400, ...text.props?.styles }}
+        styles={{ fontSize: "18px", fontWeight: 400, ...text.props?.styles }}
       >
         {text.content}
       </Typography>

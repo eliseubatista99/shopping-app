@@ -14,6 +14,7 @@ import Person from "./person.svg?react";
 import StarEmpty from "./star_empty.svg?react";
 import StarFull from "./star_full.svg?react";
 import StarHalf from "./star_half.svg?react";
+import Trash from "./trash.svg?react";
 
 export const Icons = {
   Home,
@@ -31,4 +32,5 @@ export const Icons = {
   Document,
   NavRight,
   NavLeft,
+  Trash,
 };

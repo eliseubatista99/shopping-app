@@ -2,10 +2,14 @@ import { ProductCheckoutItem, Separator } from "@components";
 import { useProductsBlockHelper } from "./products.hook";
 
 export const ProductsBlockMobile: React.FC = () => {
-  const { products } = useProductsBlockHelper();
+  const { products, onChangeProductQuantity } = useProductsBlockHelper();
 
   const productsJSX = products.map((p) => (
-    <ProductCheckoutItem key={p.id} product={p} />
+    <ProductCheckoutItem
+      key={p.id}
+      product={p}
+      onChangeQuantity={(value) => onChangeProductQuantity(p, value)}
+    />
   ));
 
   return (

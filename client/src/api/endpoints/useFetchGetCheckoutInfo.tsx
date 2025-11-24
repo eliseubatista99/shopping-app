@@ -1,13 +1,10 @@
 import { useFetch } from "@eliseubatista99/react-scaffold-core";
 import { useCallback } from "react";
 import { ApiConfigs } from "../configs";
-import type { ApiOutput, ProductDto } from "../types";
+import type { ApiOutput } from "../types";
 
 export type GetCheckoutInfoOutputDto = {
-  products?: ProductDto[];
-  productCost?: number;
   shippingCost?: number;
-  totalCost?: number;
   startDeliveryDate?: string;
   fastestDeliveryCost?: number;
   endDeliveryDate?: string;
