@@ -11,6 +11,8 @@ export const PaymentBlockMobile: React.FC = () => {
     shippingCost,
     totalCost,
     onClickChangePayment,
+    wantsFastestOption,
+    fastestDeliveryCost,
   } = usePaymentBlockHelper();
 
   const costRow = (text: string, cost: string, bold?: boolean) => (
@@ -43,11 +45,6 @@ export const PaymentBlockMobile: React.FC = () => {
 
   return (
     <>
-      <div style={{ width: "100%", gap: "6px" }}>
-        {costRow(i18n.products, `${productCost}${currency}`)}
-        {costRow(i18n.shipping, `${shippingCost}${currency}`)}
-        {costRow(i18n.final, `${totalCost}${currency}`, true)}
-      </div>
       {selectedPaymentMethod && (
         <div style={{ width: "100%", gap: "10px", marginTop: "20px" }}>
           <Separator />
@@ -67,6 +64,14 @@ export const PaymentBlockMobile: React.FC = () => {
           </div>
         </div>
       )}
+      <Separator styles={{ marginTop: "20px" }} />
+      <div style={{ width: "100%", gap: "6px", marginTop: "10px" }}>
+        {costRow(i18n.products, `${productCost}${currency}`)}
+        {costRow(i18n.shipping, `${shippingCost}${currency}`)}
+        {wantsFastestOption &&
+          costRow(i18n.fastShipping, `${fastestDeliveryCost}${currency}`)}
+        {costRow(i18n.final, `${totalCost}${currency}`, true)}
+      </div>
     </>
   );
 };

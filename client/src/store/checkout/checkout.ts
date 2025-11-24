@@ -8,6 +8,7 @@ export interface CheckoutState {
   productCost?: number;
   shippingCost?: number;
   totalCost?: number;
+  fastestDeliveryCost?: number;
   startDeliveryDate?: string;
   endDeliveryDate?: string;
   wantsFastestOption?: boolean;

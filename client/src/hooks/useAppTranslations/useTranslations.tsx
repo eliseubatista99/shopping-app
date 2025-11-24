@@ -20,7 +20,7 @@ export const useAppTranslations = () => {
       const dateData = TimeHelper.getDateInUTC(date);
 
       const month = t(`time.month.long.${dateData?.month}`);
-      const weekday = t(`time.month.long.${dateData?.weekday}`);
+      const weekday = t(`time.weekday.long.${dateData?.weekday}`);
 
       const extenseDate = t("time.date.extense", {
         weekday,

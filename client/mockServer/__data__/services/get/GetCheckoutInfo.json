@@ -38,6 +38,7 @@
     ],
     "productCost": 30,
     "shippingCost": 1.99,
+    "fastestDeliveryCost": 1.99,
     "totalCost": 31.99,
     "startDeliveryDate": "2025-05-04T21:12:19.77Z",
     "endDeliveryDate": "2025-05-08T21:12:19.77Z"

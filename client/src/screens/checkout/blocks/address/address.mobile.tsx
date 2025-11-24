@@ -1,4 +1,3 @@
-import { Separator } from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { AddressHelper } from "@helpers";
 import { useAddressBlockHelper } from "./address.hook";
@@ -10,8 +9,7 @@ export const AddressBlockMobile: React.FC = () => {
   return (
     <>
       {selectedAddress && (
-        <div style={{ width: "100%", gap: "10px", marginTop: "20px" }}>
-          <Separator />
+        <div style={{ width: "100%", gap: "10px" }}>
           <Typography
             styles={{
               fontSize: "20px",

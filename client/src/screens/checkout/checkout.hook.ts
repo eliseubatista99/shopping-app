@@ -53,6 +53,7 @@ export const useCheckoutPageHelper = () => {
       totalCost: res.data.totalCost,
       startDeliveryDate: res.data.startDeliveryDate,
       endDeliveryDate: res.data.endDeliveryDate,
+      fastestDeliveryCost: res.data.fastestDeliveryCost,
     });
     // setProductStoreState({ selectedProduct: res.data.product });
 

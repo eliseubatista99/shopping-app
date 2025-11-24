@@ -9,6 +9,7 @@ export type GetCheckoutInfoOutputDto = {
   shippingCost?: number;
   totalCost?: number;
   startDeliveryDate?: string;
+  fastestDeliveryCost?: number;
   endDeliveryDate?: string;
 };
 

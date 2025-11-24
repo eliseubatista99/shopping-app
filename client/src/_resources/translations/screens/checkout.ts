@@ -9,6 +9,10 @@ export const translationsCheckout: TranslationList = {
     pt: "Envio",
     en: "Shipping",
   },
+  "checkout.payment.costs.fastShipping": {
+    pt: "Envio Rápido",
+    en: "Fast Shipping",
+  },
   "checkout.payment.costs.final": {
     pt: "Valor total (inclui IVA)",
     en: "Total amount (includes VAT)",
@@ -40,5 +44,9 @@ export const translationsCheckout: TranslationList = {
   "checkout.schedule.estimate": {
     pt: "Chega em {{startDate}} - {{endDate}}",
     en: "Delivered in {{startDate}} - {{endDate}}",
+  },
+  "checkout.schedule.costs.none": {
+    pt: "Sem custos adicionais",
+    en: "No additional costs",
   },
 };

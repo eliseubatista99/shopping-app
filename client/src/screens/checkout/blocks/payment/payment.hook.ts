@@ -8,10 +8,16 @@ export const usePaymentBlockHelper = () => {
   const products = useStoreCheckout((state) => state.products || []);
   const productCost = useStoreCheckout((state) => state.productCost);
   const shippingCost = useStoreCheckout((state) => state.shippingCost);
-  const totalCost = useStoreCheckout((state) => state.totalCost);
+  const totalCost = useStoreCheckout((state) => state.totalCost || 0);
   const currency = useStoreBase((state) => state.currency);
   const selectedPaymentMethod = useStoreBase(
     (state) => state.selectedPaymentMethod
+  );
+  const wantsFastestOption = useStoreCheckout(
+    (state) => state.wantsFastestOption
+  );
+  const fastestDeliveryCost = useStoreCheckout(
+    (state) => state.fastestDeliveryCost || 0
   );
 
   const i18n = React.useMemo(() => {
@@ -24,6 +30,7 @@ export const usePaymentBlockHelper = () => {
     return {
       products: t("checkout.payment.costs.products"),
       shipping: t("checkout.payment.costs.shipping"),
+      fastShipping: t("checkout.payment.costs.fastShipping"),
       final: t("checkout.payment.costs.final"),
       methodName:
         selectedPaymentMethod?.type === PaymentMethodType.Card
@@ -55,8 +62,10 @@ export const usePaymentBlockHelper = () => {
     products,
     productCost,
     shippingCost,
-    totalCost,
+    totalCost: wantsFastestOption ? totalCost + fastestDeliveryCost : totalCost,
     selectedPaymentMethod,
     onClickChangePayment,
+    wantsFastestOption,
+    fastestDeliveryCost,
   };
 };

@@ -28,10 +28,10 @@ export const CheckoutMobile: React.FC = () => {
       {loading && <AppLoader visible={loading} />}
       {!loading && (
         <>
-          <PaymentBlock />
           <AddressBlock />
           <ScheduleBlock />
           <ProductsBlock />
+          <PaymentBlock />
           <ExecutionBlock />
         </>
       )}

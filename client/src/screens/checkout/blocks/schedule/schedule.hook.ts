@@ -1,6 +1,6 @@
 import { TimeHelper } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreCheckout } from "@store";
+import { useStoreBase, useStoreCheckout } from "@store";
 import React from "react";
 
 export const useScheduleBlockHelper = () => {
@@ -8,7 +8,11 @@ export const useScheduleBlockHelper = () => {
   const startDeliveryDate = useStoreCheckout(
     (state) => state.startDeliveryDate
   );
+  const currency = useStoreBase((state) => state.currency);
   const endDeliveryDate = useStoreCheckout((state) => state.endDeliveryDate);
+  const fastestDeliveryCost = useStoreCheckout(
+    (state) => state.fastestDeliveryCost || 0
+  );
   const wantsFastestOption = useStoreCheckout(
     (state) => state.wantsFastestOption
   );
@@ -30,6 +34,7 @@ export const useScheduleBlockHelper = () => {
       }),
       startDate,
       endDate,
+      noCosts: t("checkout.schedule.costs.none"),
     };
   }, [endDeliveryDate, startDeliveryDate, t, translateDate]);
 
@@ -42,7 +47,9 @@ export const useScheduleBlockHelper = () => {
 
   return {
     i18n,
+    currency,
     wantsFastestOption,
     onClickOption,
+    fastestDeliveryCost,
   };
 };
