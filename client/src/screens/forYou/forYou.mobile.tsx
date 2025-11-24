@@ -7,6 +7,14 @@ export const ForYouMobile: React.FC = () => {
 
   return (
     <AppLayout
+      appHeader={{
+        back: {
+          visible: true,
+        },
+        searchBar: {
+          visible: true,
+        },
+      }}
       pageStyles={{
         background:
           "linear-gradient(180deg,rgba(16, 52, 71, 1) 0%, rgba(255, 255, 255, 1) 100%)",

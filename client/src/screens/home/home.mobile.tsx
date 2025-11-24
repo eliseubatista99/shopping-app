@@ -35,6 +35,12 @@ export const HomeMobile: React.FC = () => {
   return (
     <AppLayout
       appHeader={{
+        back: {
+          visible: true,
+        },
+        searchBar: {
+          visible: true,
+        },
         styles: header.headerTriggerVisible
           ? {
               background: "transparent",

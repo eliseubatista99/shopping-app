@@ -9,14 +9,17 @@ export const CheckoutMobile: React.FC = () => {
       appHeader={{
         back: {
           visible: true,
+          styles: {
+            color: "#000000",
+          },
+        },
+        styles: {
+          background: "#ff7300ff",
         },
       }}
     >
       {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-        </>
-      )}
+      {!loading && <></>}
     </AppLayout>
   );
 };

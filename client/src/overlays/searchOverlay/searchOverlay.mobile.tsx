@@ -31,7 +31,10 @@ export const OverlaySearchMobile: React.FC = () => {
     <AppOverlay id={Overlays.search} styles={{ background: "#ffffff" }}>
       <AppHeader
         back={{ visible: true, onClick: () => onClickBack() }}
-        onSearchBarSubmit={(value) => submitSearch(value)}
+        searchBar={{
+          visible: true,
+          onSearchBarSubmit: (value) => submitSearch(value),
+        }}
         styles={{ background: "#0a0d42ff" }}
       />
       <div style={{ width: "100%", flexDirection: "column" }}>

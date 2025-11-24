@@ -15,6 +15,9 @@ export const WriteReviewMobile: React.FC = () => {
             color: "#000000",
           },
         },
+        searchBar: {
+          visible: true,
+        },
         styles: {
           background: "#ff7300ff",
         },

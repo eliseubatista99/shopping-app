@@ -4,8 +4,10 @@ import { AppHeaderDesktop } from "./appHeader.desktop";
 import { AppHeaderMobile } from "./appHeader.mobile";
 
 export interface AppHeaderProps {
-  onSearchBarChange?: (value: string) => void;
-  onSearchBarSubmit?: (value: string) => void;
+  searchBar?: {
+    visible: boolean;
+    onSearchBarSubmit?: (value: string) => void;
+  };
   back?: {
     visible: boolean;
     onClick?: () => void;

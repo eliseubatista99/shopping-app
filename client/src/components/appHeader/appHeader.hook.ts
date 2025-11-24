@@ -7,11 +7,7 @@ import { useAppTranslations } from "@hooks";
 import React from "react";
 import type { AppHeaderProps } from "./appHeader";
 
-export const useAppHeaderHelper = ({
-  onSearchBarSubmit,
-  onSearchBarChange,
-  back,
-}: AppHeaderProps) => {
+export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
   const { t } = useAppTranslations();
   const { goBack } = useNavigation();
   const { showItem, isItemVisible } = useFeedback();
@@ -28,16 +24,9 @@ export const useAppHeaderHelper = ({
 
   const handleSearchBarSubmit = React.useCallback(
     (data: string) => {
-      onSearchBarSubmit?.(data);
+      searchBar?.onSearchBarSubmit?.(data);
     },
-    [onSearchBarSubmit]
-  );
-
-  const handleSearchBarChange = React.useCallback(
-    (data: string) => {
-      onSearchBarChange?.(data);
-    },
-    [onSearchBarChange]
+    [searchBar]
   );
 
   const handleSearchBarClick = React.useCallback(() => {
@@ -57,7 +46,6 @@ export const useAppHeaderHelper = ({
   return {
     i18n,
     handleSearchBarSubmit,
-    handleSearchBarChange,
     handleSearchBarClick,
     handleClickBack,
   };

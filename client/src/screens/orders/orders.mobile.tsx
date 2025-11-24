@@ -10,13 +10,13 @@ export const OrdersMobile: React.FC = () => {
         back: {
           visible: true,
         },
+        searchBar: {
+          visible: true,
+        },
       }}
     >
       {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-        </>
-      )}
+      {!loading && <></>}
     </AppLayout>
   );
 };

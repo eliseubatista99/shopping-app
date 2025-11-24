@@ -21,6 +21,9 @@ export const ProductDetailsMobile: React.FC = () => {
         back: {
           visible: true,
         },
+        searchBar: {
+          visible: true,
+        },
         styles: {
           background: "#0a0d42ff",
         },
