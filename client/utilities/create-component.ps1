@@ -47,7 +47,8 @@ import type { ${Name}Props } from "./${camel}";
 import { use${Name}Helper } from "./${camel}.hook";
 
 export const ${Name}Mobile: React.FC<${Name}Props> = (props) => {
-  const { i18n, styles } = use${Name}Helper(props);
+  const { i18n } = use${Name}Helper(props);
+  const { styles } = props;
 
   return (
     <div

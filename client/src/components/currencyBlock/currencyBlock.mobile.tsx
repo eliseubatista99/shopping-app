@@ -5,7 +5,7 @@ import { useCurrencyBlockHelper } from "./currencyBlock.hook";
 
 export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
   const { styles, currency, oldValue } = props;
-  const { value } = useCurrencyBlockHelper(props);
+  const { value, hasOldValue } = useCurrencyBlockHelper(props);
 
   const valueBlock = React.useMemo(
     () => (
@@ -101,7 +101,7 @@ export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
       }}
     >
       {valueBlock}
-      {oldValue?.value && oldValueBlock}
+      {hasOldValue && oldValueBlock}
     </div>
   );
 };

@@ -1,7 +1,10 @@
 import React from "react";
 import type { CurrencyBlockProps, UnitsAndDecimals } from "./currencyBlock";
 
-export const useCurrencyBlockHelper = ({ value }: CurrencyBlockProps) => {
+export const useCurrencyBlockHelper = ({
+  value,
+  oldValue,
+}: CurrencyBlockProps) => {
   const calculateUnitsAndDecimals = (
     value: number | null | undefined
   ): UnitsAndDecimals => {
@@ -34,5 +37,6 @@ export const useCurrencyBlockHelper = ({ value }: CurrencyBlockProps) => {
 
   return {
     value: calculatedValues,
+    hasOldValue: (oldValue?.value || 0) > 0 && oldValue?.value !== value.value,
   };
 };
