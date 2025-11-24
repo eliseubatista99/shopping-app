@@ -6,10 +6,10 @@ export const useAppSearchParams = () => {
 
   return {
     productId: {
-      value: searchParams.get<string>(SEARCH_PARAMS.PRODUCT_ID),
+      value: searchParams.get<string>(SEARCH_PARAMS.PRODUCT_ID) ?? undefined,
     },
     searchText: {
-      value: searchParams.get<string>(SEARCH_PARAMS.SEARCH_TEXT),
+      value: searchParams.get<string>(SEARCH_PARAMS.SEARCH_TEXT) ?? undefined,
     },
   };
 };

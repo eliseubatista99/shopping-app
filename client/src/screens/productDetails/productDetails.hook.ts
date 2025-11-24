@@ -6,13 +6,15 @@ import {
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams } from "@hooks";
 import { useStoreProduct } from "@store";
-import React from "react";
+import React, { useEffect } from "react";
 
 export const useProductDetailsPageHelper = () => {
   const searchParams = useAppSearchParams();
   const { goTo } = useNavigation();
 
   const isFetching = React.useRef(false);
+  const cachedProductId = React.useRef<string | undefined>(undefined);
+
   const selectedProductInStore = useStoreProduct(
     (state) => state.selectedProduct
   );
@@ -43,11 +45,20 @@ export const useProductDetailsPageHelper = () => {
 
     isFetching.current = false;
     setLoading(false);
+  }, [fetchProductDetail, goTo, searchParams, setProductStoreState]);
+
+  useEffect(() => {
+    if (searchParams.productId.value !== cachedProductId.current) {
+      cachedProductId.current = searchParams.productId.value;
+
+      initScreen();
+    }
   }, [
-    fetchProductDetail,
-    goTo,
-    searchParams.productId.value,
-    setProductStoreState,
+    initScreen,
+    searchParams,
+    searchParams.productId,
+    selectedProductInStore,
+    selectedProductInStore?.id,
   ]);
 
   useDidMount(() => {

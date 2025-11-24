@@ -1,5 +1,9 @@
-import { DRAWERS } from "@constants";
-import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import type { ProductDto } from "@api";
+import { DRAWERS, PAGES, SEARCH_PARAMS } from "@constants";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreProduct } from "@store";
 import React from "react";
@@ -9,6 +13,7 @@ export const useRelatedBlockHelper = () => {
   const currency = useStoreBase((state) => state.currency);
   const { t } = useAppTranslations();
   const { showItem } = useFeedback();
+  const { goTo } = useNavigation();
 
   const [quantity, setQuantity] = React.useState<number>(1);
 
@@ -50,13 +55,18 @@ export const useRelatedBlockHelper = () => {
     setQuantity(value);
   }, []);
 
-  const onClickAddToCart = React.useCallback(() => {
-    //Do some
-  }, []);
-
-  const onClickBuyNow = React.useCallback(() => {
-    //Do some
-  }, []);
+  const onClickProduct = React.useCallback(
+    (product: ProductDto) => {
+      goTo({
+        path: PAGES.PRODUCT_DETAILS,
+        params: {
+          [SEARCH_PARAMS.PRODUCT_ID]: product.id,
+        },
+        addToHistory: true,
+      });
+    },
+    [goTo]
+  );
 
   return {
     i18n,
@@ -68,7 +78,6 @@ export const useRelatedBlockHelper = () => {
       current: quantity,
       onChange: onChangeQuantity,
     },
-    onClickAddToCart,
-    onClickBuyNow,
+    onClickProduct,
   };
 };

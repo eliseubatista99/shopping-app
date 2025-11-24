@@ -9,26 +9,30 @@ import { Separator } from "src/components/separator";
 import { useBaseInfoBlockHelper } from "./baseInfo.hook";
 
 export const BaseInfoBlockMobile: React.FC = () => {
-  const { i18n, product, currency } = useBaseInfoBlockHelper();
+  const { i18n, product, currency, onClickProduct } = useBaseInfoBlockHelper();
 
-  const productImagesSlides = (product?.detailImages || []).map((image) => ({
-    content: (
-      <Image
-        src={image}
-        styles={{
-          width: "100%",
-          height: "100%",
-          objectFit: "contain",
-          mixBlendMode: "multiply",
-        }}
-      />
-    ),
-  }));
+  const productImagesSlides = (product?.detailImages || []).map(
+    (image, index) => ({
+      content: (
+        <Image
+          key={index}
+          src={image}
+          styles={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            mixBlendMode: "multiply",
+          }}
+        />
+      ),
+    })
+  );
 
   const productOptionsSlides = (product?.productOptions || []).map(
     (option) => ({
       content: (
         <ProductOptionItem
+          key={option.id}
           option={option}
           currency={currency}
           styles={
@@ -38,6 +42,7 @@ export const BaseInfoBlockMobile: React.FC = () => {
                 }
               : undefined
           }
+          onClick={() => onClickProduct(option)}
         />
       ),
     })
