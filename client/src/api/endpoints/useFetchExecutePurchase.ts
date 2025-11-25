@@ -7,6 +7,7 @@ export type ExecutePurchaseInputDto = {
   products: CheckoutProductDto[];
   addressId: string;
   paymentMethodId: string;
+  wantsFastShipping: boolean;
 };
 
 export const useFetchExecutePurchase = () => {

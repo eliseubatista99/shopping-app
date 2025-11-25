@@ -6,6 +6,9 @@ import React from "react";
 export const useExecutionBlockHelper = () => {
   const { t } = useAppTranslations();
   const { fetch: fetchExecutePurchaseInfo } = useFetchExecutePurchase();
+  const wantsFastestOption = useStoreCheckout(
+    (state) => state.wantsFastestOption
+  );
   const products = useStoreCheckout((state) => state.products || []);
   const selectedAddress = useStoreBase((state) => state.selectedAddress);
   const selectedPaymentMethod = useStoreBase(
@@ -26,6 +29,7 @@ export const useExecutionBlockHelper = () => {
       })),
       addressId: selectedAddress?.id || "",
       paymentMethodId: selectedPaymentMethod?.id || "",
+      wantsFastShipping: wantsFastestOption || false,
     });
 
     if (res.metadata.success) {
@@ -36,6 +40,7 @@ export const useExecutionBlockHelper = () => {
     products,
     selectedAddress?.id,
     selectedPaymentMethod?.id,
+    wantsFastestOption,
   ]);
 
   return {
