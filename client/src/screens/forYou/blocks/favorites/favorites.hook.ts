@@ -19,7 +19,7 @@ export const useFavoritesBlockHelper = () => {
 
   const onClickSeeAll = React.useCallback(() => {
     goTo({
-      path: PAGES.ORDERS,
+      path: PAGES.WISHLIST,
     });
   }, [goTo]);
 

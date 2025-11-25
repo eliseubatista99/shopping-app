@@ -4,6 +4,7 @@ export * from "./useFetchDocument";
 export * from "./useFetchExecutePurchase";
 export * from "./useFetchForYou";
 export * from "./useFetchGetCheckoutInfo";
+export * from "./useFetchGetClientOrders";
 export * from "./useFetchProductDetail";
 export * from "./useFetchProductOffers";
 export * from "./useFetchProductReviews";

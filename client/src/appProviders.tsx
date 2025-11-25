@@ -11,6 +11,7 @@ import {
   ForYou,
   Home,
   NotFound404,
+  Orders,
   ProductDetails,
   Splash,
   WriteReview,
@@ -73,6 +74,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.CHECKOUT,
             render: <Checkout />,
+          },
+          {
+            path: PAGES.ORDERS,
+            render: <Orders />,
           },
         ]}
       >
