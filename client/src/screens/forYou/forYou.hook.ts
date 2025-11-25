@@ -1,32 +1,40 @@
+import { useFetchForYou } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
-import { useStoreBase } from "@store";
+import { useStoreForYou } from "@store";
 import React from "react";
 
 export const useForYouPageHelper = () => {
-  const client = useStoreBase((state) => state.client);
+  const { fetch: fetchForYou } = useFetchForYou();
 
-  const { t } = useAppTranslations();
+  const setForYouStoreState = useStoreForYou((state) => state.setPartialState);
+  const [loading, setLoading] = React.useState(true);
 
-  const i18n = React.useMemo(() => {
-    const selectAddress = client?.addresses.find((a) => a.isSelected);
+  const initScreen = React.useCallback(async () => {
+    setLoading(true);
+    const res = await fetchForYou();
 
-    return {
-      chips: {
-        address: t("home.chips.address", {
-          address: selectAddress?.postalCode,
-        }),
-      },
-    };
-  }, [client?.addresses, t]);
-
-  const initScreen = React.useCallback(async () => {}, []);
+    if (res.metadata.success) {
+      setForYouStoreState({
+        orders: res.data.orders,
+        favorites: {
+          images: res.data.favoritesImages || [],
+          count: res.data.favoritesImages.length,
+        },
+        needingReviewProduct: {
+          id: res.data.needingReviewProductId,
+          image: res.data.needingReviewProductImage,
+        },
+        review: res.data.review,
+      });
+      setLoading(false);
+    }
+  }, [fetchForYou, setForYouStoreState]);
 
   useDidMount(() => {
     initScreen();
   });
 
   return {
-    i18n,
+    loading,
   };
 };

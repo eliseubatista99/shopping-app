@@ -71,11 +71,15 @@ export type DocumentDto = {
 
 export type ReviewDto = {
   id: string;
-  reviewer: string;
+  reviewerId: string;
+  reviewerName: string;
   reviewerIcon?: string;
   score: number;
   title: string;
   comment: string;
+  productId: string;
+  productName: string;
+  productIcon: string;
 };
 
 export type ProductDetailDto = ProductDto & {
@@ -135,4 +139,33 @@ export type ProductOfferGroupDto = {
 export type ScoreCountDto = {
   score: number;
   count: number;
+};
+
+export enum OrderStatus {
+  Processing = "Processing",
+  Sent = "Sent",
+  InDelivery = "InDelivery",
+  Delivered = "Delivered",
+}
+
+export type OrderStatusEntry = {
+  status: OrderStatus;
+  date: string;
+};
+
+export type OrderDto = {
+  id: string;
+  product: ProductDto;
+  date: string;
+};
+
+export type OrderDetailDto = OrderDto & {
+  seller: SellerDto;
+  currentStatus: OrderStatus;
+  statusHistory: OrderStatusEntry[];
+  paymentMethod: PaymentMethodDto;
+  address: AddressDto;
+  productsCost: number;
+  shippingCost: number;
+  totalCost: number;
 };

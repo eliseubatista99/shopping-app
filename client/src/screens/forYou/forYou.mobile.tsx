@@ -1,9 +1,8 @@
-import { AppLayout } from "@components";
-import { Chip } from "src/components/chip";
+import { AppLayout, AppLoader } from "@components";
 import { useForYouPageHelper } from "./forYou.hook";
 
 export const ForYouMobile: React.FC = () => {
-  const { i18n } = useForYouPageHelper();
+  const { loading } = useForYouPageHelper();
 
   return (
     <AppLayout
@@ -11,21 +10,10 @@ export const ForYouMobile: React.FC = () => {
         back: {
           visible: true,
         },
-        searchBar: {
-          visible: true,
-        },
-      }}
-      pageStyles={{
-        background:
-          "linear-gradient(180deg,rgba(16, 52, 71, 1) 0%, rgba(255, 255, 255, 1) 100%)",
       }}
     >
-      <div style={{ width: "100%" }}>
-        <Chip
-          text={i18n.chips.address}
-          styles={{ border: "none", background: "#ffffff70" }}
-        />
-      </div>
+      {loading && <AppLoader visible={loading} />}
+      {!loading && <></>}
     </AppLayout>
   );
 };

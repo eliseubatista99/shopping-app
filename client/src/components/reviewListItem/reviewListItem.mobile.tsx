@@ -40,7 +40,7 @@ export const ReviewListItemMobile: React.FC<ReviewListItemProps> = (props) => {
           }}
         />
         <Typography styles={{ fontWeight: 400, fontSize: "16px" }}>
-          {review.reviewer}
+          {review.reviewerName}
         </Typography>
       </div>
       <ProductScore starsSize={14} score={review.score} />
