@@ -127,6 +127,7 @@ export type PaymentMethodDto = {
 export type ClientInfoDto = {
   id: string;
   name: string;
+  image: string;
   addresses: AddressDto[];
   paymentMethods: PaymentMethodDto[];
 };

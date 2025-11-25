@@ -11,6 +11,7 @@ import NavLeft from "./navLeft.svg?react";
 import NavRight from "./navRight.svg?react";
 import NavUp from "./navUp.svg?react";
 import Person from "./person.svg?react";
+import Settings from "./settings.svg?react";
 import StarEmpty from "./star_empty.svg?react";
 import StarFull from "./star_full.svg?react";
 import StarHalf from "./star_half.svg?react";
@@ -33,4 +34,5 @@ export const Icons = {
   NavRight,
   NavLeft,
   Trash,
+  Settings,
 };

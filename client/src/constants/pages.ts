@@ -10,4 +10,5 @@ export enum PAGES {
   WRITE_REVIEW = "/write-review",
   ALL_REVIEWS = "/reviews",
   CHECKOUT = "/checkout",
+  SETTINGS = "/settings",
 }
