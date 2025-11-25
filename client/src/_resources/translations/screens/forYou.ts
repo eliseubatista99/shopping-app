@@ -5,4 +5,8 @@ export const translationsForYou: TranslationList = {
     pt: "Olá, {{name}}",
     en: "Hi, {{name}}",
   },
+  "forYou.orders.title": {
+    pt: "Os seus pedidos",
+    en: "Your orders",
+  },
 };

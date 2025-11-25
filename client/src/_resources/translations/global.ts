@@ -81,4 +81,8 @@ export const translationsGlobal: TranslationList = {
     pt: "Visa",
     en: "Visa",
   },
+  "global.actions.seeAll": {
+    pt: "Ver tudo",
+    en: "See all",
+  },
 };

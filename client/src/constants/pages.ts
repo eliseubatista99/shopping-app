@@ -11,4 +11,6 @@ export enum PAGES {
   ALL_REVIEWS = "/reviews",
   CHECKOUT = "/checkout",
   SETTINGS = "/settings",
+  ORDERS = "/orders",
+  ORDER_DETAILS = "/order-details",
 }
