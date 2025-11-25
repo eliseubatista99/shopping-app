@@ -9,6 +9,7 @@ export enum PAGES {
   PRODUCT_DETAILS = "/product-details",
   WRITE_REVIEW = "/write-review",
   ALL_REVIEWS = "/reviews",
+  REVIEW_DETAIL = "/review-detail",
   CHECKOUT = "/checkout",
   SETTINGS = "/settings",
   ORDERS = "/orders",
