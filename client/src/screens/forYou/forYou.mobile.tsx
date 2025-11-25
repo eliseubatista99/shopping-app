@@ -15,6 +15,15 @@ export const ForYouMobile: React.FC = () => {
       appHeader={{
         back: {
           visible: true,
+          styles: {
+            color: "#000000",
+          },
+        },
+        searchBar: {
+          visible: true,
+        },
+        styles: {
+          background: "#ff7300ff",
         },
       }}
     >

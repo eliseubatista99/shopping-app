@@ -31,7 +31,7 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
           width="20px"
           height="20px"
           onClick={() => handleClickBack()}
-          style={{ color: "#ffffff", ...back.styles }}
+          style={{ color: "#000000", ...back.styles }}
         />
       )}
       {searchBar?.visible && (
