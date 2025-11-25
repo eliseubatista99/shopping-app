@@ -18,7 +18,7 @@ export const useForYouPageHelper = () => {
         orders: res.data.orders,
         favorites: {
           images: res.data.favoritesImages || [],
-          count: res.data.favoritesImages.length,
+          count: res.data.favoritesImages?.length,
         },
         needingReviewProduct: {
           id: res.data.needingReviewProductId,

@@ -1,4 +1,10 @@
 import { AppLayout, AppLoader } from "@components";
+import {
+  FavoritesBlock,
+  OrdersBlock,
+  ProfileBlock,
+  ReviewsBlock,
+} from "./blocks";
 import { useForYouPageHelper } from "./forYou.hook";
 
 export const ForYouMobile: React.FC = () => {
@@ -13,7 +19,14 @@ export const ForYouMobile: React.FC = () => {
       }}
     >
       {loading && <AppLoader visible={loading} />}
-      {!loading && <></>}
+      {!loading && (
+        <>
+          <ProfileBlock />
+          <OrdersBlock />
+          <FavoritesBlock />
+          <ReviewsBlock />
+        </>
+      )}
     </AppLayout>
   );
 };
