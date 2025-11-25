@@ -3,11 +3,11 @@ import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useProductBlockHelper } from "./product.hook";
 
 export const ProductBlockMobile: React.FC = () => {
-  const { product, onClickBack } = useProductBlockHelper();
+  const { productName, onClickBack } = useProductBlockHelper();
 
   return (
     <>
-      {product && (
+      {productName && (
         <div
           style={{
             width: "100%",
@@ -25,7 +25,7 @@ export const ProductBlockMobile: React.FC = () => {
             onClick={() => onClickBack()}
           />
           <Typography styles={{ fontSize: "17px", fontWeight: 600 }}>
-            {product.name}
+            {productName}
           </Typography>
         </div>
       )}

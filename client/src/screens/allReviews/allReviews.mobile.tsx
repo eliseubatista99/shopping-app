@@ -3,7 +3,7 @@ import { useAllReviewsPageHelper } from "./allReviews.hook";
 import { ProductBlock, ScoreBlock } from "./blocks";
 
 export const AllReviewsMobile: React.FC = () => {
-  const { loading, product } = useAllReviewsPageHelper();
+  const { loading } = useAllReviewsPageHelper();
 
   return (
     <AppLayout
@@ -24,7 +24,7 @@ export const AllReviewsMobile: React.FC = () => {
       }}
     >
       {loading && <AppLoader visible={loading} />}
-      {!loading && product && (
+      {!loading && (
         <>
           <ProductBlock />
           <div style={{ padding: "12px", flex: 1 }}>{<ScoreBlock />}</div>

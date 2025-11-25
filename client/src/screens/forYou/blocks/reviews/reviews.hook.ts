@@ -38,12 +38,13 @@ export const useReviewsBlockHelper = () => {
 
   const onClickReview = React.useCallback(() => {
     goTo({
-      path: PAGES.REVIEW_DETAIL,
+      path: PAGES.ALL_REVIEWS,
       params: {
-        [SEARCH_PARAMS.ORDER_ID]: review?.id,
+        [SEARCH_PARAMS.REVIEW_ID]: review?.id,
+        [SEARCH_PARAMS.PRODUCT_ID]: review?.productId,
       },
     });
-  }, [goTo, review?.id]);
+  }, [goTo, review?.id, review?.productId]);
 
   return {
     i18n,

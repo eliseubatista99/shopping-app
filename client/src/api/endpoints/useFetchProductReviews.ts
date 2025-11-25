@@ -12,6 +12,8 @@ export type GetProductReviewsInputDto = {
 };
 
 export type GetProductReviewsOutputDto = {
+  productName: string;
+  productId: string;
   averageScore: number;
   reviewsCount: number;
   scores: ScoreCountDto[];

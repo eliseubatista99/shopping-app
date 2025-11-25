@@ -11,5 +11,8 @@ export const useAppSearchParams = () => {
     searchText: {
       value: searchParams.get<string>(SEARCH_PARAMS.SEARCH_TEXT) ?? undefined,
     },
+    reviewId: {
+      value: searchParams.get<string>(SEARCH_PARAMS.REVIEW_ID) ?? undefined,
+    },
   };
 };
