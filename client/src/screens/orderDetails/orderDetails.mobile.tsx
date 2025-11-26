@@ -9,7 +9,7 @@ import {
 import { useOrderDetailsPageHelper } from "./orderDetails.hook";
 
 export const OrderDetailsMobile: React.FC = () => {
-  const { loading } = useOrderDetailsPageHelper();
+  const { loading, selectedOrder } = useOrderDetailsPageHelper();
 
   return (
     <AppLayout
@@ -30,7 +30,7 @@ export const OrderDetailsMobile: React.FC = () => {
       pageStyles={{ padding: 0 }}
     >
       {loading && <AppLoader visible={loading} />}
-      {!loading && (
+      {!loading && selectedOrder && (
         <>
           <DetailsBlock />
           <ProductBlock />

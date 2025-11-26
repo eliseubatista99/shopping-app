@@ -7,10 +7,10 @@ export const useAppHelper = () => {
   const [isAppInitialized, setIsAppInitialized] = React.useState(false);
 
   const clientInfo = useStoreBase((state) => state.client);
-  const setBaseStoreState = useStoreBase((state) => state.setPartialState);
+  const setBaseStoreState = useStoreBase((state) => state.setBaseStoreState);
   const setBasketCount = useStoreBasket((state) => state.setBasketCount);
 
-  const { fetch: fetchClientInfo } = useFetchClientInfo();
+  const { fetchClientInfo } = useFetchClientInfo();
 
   const initApp = React.useCallback(async () => {
     if (clientInfo) {

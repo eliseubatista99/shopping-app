@@ -19,14 +19,14 @@ export const initialState: BaseState = {
 };
 
 interface UseStoreOutput extends BaseState {
-  setPartialState: (data: Partial<BaseState>) => void;
+  setBaseStoreState: (data: Partial<BaseState>) => void;
   setClientInfo: (data: ClientInfoDto) => void;
 }
 
 export const useStoreBase = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<BaseState>) {
+    setBaseStoreState: function (data: Partial<BaseState>) {
       set(
         produce((state: BaseState) => ({ ...state, ...data })),
         false,

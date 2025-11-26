@@ -9,7 +9,7 @@ import React from "react";
 
 export const useProductListPageHelper = () => {
   const isFetching = React.useRef(false);
-  const { fetch: fetchSearchProducts } = useFetchSearchProducts();
+  const { fetchSearchProducts } = useFetchSearchProducts();
   const { goTo } = useNavigation();
   const searchParams = useAppSearchParams();
   const { addToCart } = useCart();

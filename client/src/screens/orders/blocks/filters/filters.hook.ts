@@ -8,7 +8,9 @@ export const useFiltersBlockHelper = () => {
   const { t } = useAppTranslations();
   const { showItem } = useFeedback();
 
-  const setStoreOrdersState = useStoreOrders((state) => state.setPartialState);
+  const setStoreOrdersState = useStoreOrders(
+    (state) => state.setOrdersStoreState
+  );
   const textFilter = useStoreOrders((state) => state.textFilter);
   const statusFilter = useStoreOrders((state) => state.statusFilter);
   const startDateFilter = useStoreOrders((state) => state.startDateFilter);

@@ -16,6 +16,6 @@ export const useFetchCart = () => {
   }, [get]);
 
   return {
-    fetch,
+    fetchCart: fetch,
   };
 };

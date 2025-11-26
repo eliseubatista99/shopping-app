@@ -37,6 +37,6 @@ export const useFetchGetProductReviews = () => {
   );
 
   return {
-    fetch,
+    fetchGetProductReviews: fetch,
   };
 };

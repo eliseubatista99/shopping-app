@@ -10,13 +10,13 @@ export interface ProductState {
 const initialState: ProductState = {};
 
 interface UseStoreOutput extends ProductState {
-  setPartialState: (data: Partial<ProductState>) => void;
+  setProductStoreState: (data: Partial<ProductState>) => void;
 }
 
 export const useStoreProduct = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<ProductState>) {
+    setProductStoreState: function (data: Partial<ProductState>) {
       set(
         produce((state: ProductState) => ({ ...state, ...data })),
         false,

@@ -11,13 +11,13 @@ const initialState: SearchState = {
 };
 
 interface UseStoreOutput extends SearchState {
-  setPartialState: (data: Partial<SearchState>) => void;
+  setSearchStoreState: (data: Partial<SearchState>) => void;
 }
 
 export const useStoreSearch = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<SearchState>) {
+    setSearchStoreState: function (data: Partial<SearchState>) {
       set(
         produce((state: SearchState) => ({ ...state, ...data })),
         false,

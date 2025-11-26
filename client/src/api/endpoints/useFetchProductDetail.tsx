@@ -29,6 +29,6 @@ export const useFetchProductDetail = () => {
   );
 
   return {
-    fetch,
+    fetchProductDetail: fetch,
   };
 };

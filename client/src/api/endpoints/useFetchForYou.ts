@@ -24,6 +24,6 @@ export const useFetchForYou = () => {
   }, [get]);
 
   return {
-    fetch,
+    fetchForYou: fetch,
   };
 };

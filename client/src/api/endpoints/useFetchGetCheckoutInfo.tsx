@@ -34,6 +34,6 @@ export const useFetchGetCheckoutInfo = () => {
   );
 
   return {
-    fetch,
+    fetchGetCheckoutInfo: fetch,
   };
 };

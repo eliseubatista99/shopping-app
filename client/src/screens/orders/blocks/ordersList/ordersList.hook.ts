@@ -10,17 +10,18 @@ import {
   useDidMount,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams, useAppTranslations } from "@hooks";
+import { useAppTranslations } from "@hooks";
 import { useStoreOrders } from "@store";
 import React from "react";
 
 export const useOrdersListBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { orderId } = useAppSearchParams();
-  const { fetch: fetchGetClientOrders } = useFetchGetClientOrders();
+  const { fetchGetClientOrders } = useFetchGetClientOrders();
   const { goTo } = useNavigation();
 
-  const setOrdersStoreState = useStoreOrders((state) => state.setPartialState);
+  const setOrdersStoreState = useStoreOrders(
+    (state) => state.setOrdersStoreState
+  );
   const addOrders = useStoreOrders((state) => state.addOrders);
   const allOrders = useStoreOrders((state) => state.orders);
 
@@ -55,7 +56,6 @@ export const useOrdersListBlockHelper = () => {
     setLoading(true);
 
     const res = await fetchGetClientOrders({
-      orderId: orderId?.value || "",
       filterByText: textFilter,
       page: currentPage.current,
       pageCount: 10,
@@ -66,10 +66,6 @@ export const useOrdersListBlockHelper = () => {
     });
 
     if (res.metadata.success) {
-      if (orderId.value) {
-        res.data.orders = res.data.orders.filter((o) => o.id === orderId.value);
-      }
-
       if (currentPage.current < 1) {
         setOrdersStoreState({
           orders: res.data.orders,
@@ -89,7 +85,6 @@ export const useOrdersListBlockHelper = () => {
     addOrders,
     endDateFilter,
     fetchGetClientOrders,
-    orderId.value,
     setOrdersStoreState,
     sortFilter,
     startDateFilter,
@@ -103,14 +98,13 @@ export const useOrdersListBlockHelper = () => {
         visible &&
         !isFetching.current &&
         hasMorePages.current &&
-        orderId.value === undefined &&
         hasRequestedOrdersOnce.current
       ) {
         currentPage.current += 1;
         requestOrders();
       }
     },
-    [orderId.value, requestOrders]
+    [requestOrders]
   );
 
   const onClickOrder = React.useCallback(
@@ -158,7 +152,6 @@ export const useOrdersListBlockHelper = () => {
 
   return {
     i18n,
-    isInDetailedOrder: orderId.value !== undefined,
     loading,
     orders: allOrders || [],
     handleRequestTrigger,

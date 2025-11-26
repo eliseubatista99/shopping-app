@@ -29,6 +29,6 @@ export const useFetchWriteReview = () => {
   );
 
   return {
-    fetch,
+    fetchWriteReview: fetch,
   };
 };

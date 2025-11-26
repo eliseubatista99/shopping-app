@@ -28,6 +28,6 @@ export const useFetchExecutePurchase = () => {
   );
 
   return {
-    fetch,
+    fetchExecutePurchaseInfo: fetch,
   };
 };

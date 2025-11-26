@@ -16,13 +16,13 @@ export interface ForYouState {
 const initialState: ForYouState = {};
 
 interface UseStoreOutput extends ForYouState {
-  setPartialState: (data: Partial<ForYouState>) => void;
+  setForYouStoreState: (data: Partial<ForYouState>) => void;
 }
 
 export const useStoreForYou = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<ForYouState>) {
+    setForYouStoreState: function (data: Partial<ForYouState>) {
       set(
         produce((state: ForYouState) => ({ ...state, ...data })),
         false,

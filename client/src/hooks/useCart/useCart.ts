@@ -3,7 +3,7 @@ import { useStoreBasket } from "@store";
 import { useCallback } from "react";
 
 export const useCart = () => {
-  const { fetch: fetchAddToCart } = useFetchAddToCart();
+  const { fetchAddToCart } = useFetchAddToCart();
   const itemsInBasket = useStoreBasket((state) => state.products);
   const numberOfProductsInBasket = useStoreBasket(
     (state) => state.numberOfProductsInBasket

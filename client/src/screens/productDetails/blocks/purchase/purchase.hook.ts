@@ -11,7 +11,7 @@ import React from "react";
 export const usePurchaseBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const setCheckoutStoreState = useStoreCheckout(
-    (state) => state.setPartialState
+    (state) => state.setCheckoutStoreState
   );
   const selectedAddress = useStoreBase((state) => state.selectedAddress);
   const currency = useStoreBase((state) => state.currency);

@@ -10,7 +10,7 @@ import React from "react";
 export const useAllReviewsPageHelper = () => {
   const { productId } = useAppSearchParams();
   const setReviewsStoreState = useStoreReviews(
-    (state) => state.setPartialState
+    (state) => state.setReviewsStoreState
   );
 
   const { goTo } = useNavigation();

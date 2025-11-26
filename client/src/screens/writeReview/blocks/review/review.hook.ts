@@ -19,7 +19,7 @@ export const useReviewBlockHelper = () => {
   const { t } = useAppTranslations();
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const client = useStoreBase((state) => state.client);
-  const { fetch: fetchWriteReview } = useFetchWriteReview();
+  const { fetchWriteReview } = useFetchWriteReview();
   const { showItem } = useFeedback();
   const { goTo } = useNavigation();
 

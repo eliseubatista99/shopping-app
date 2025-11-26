@@ -5,7 +5,7 @@ import React from "react";
 
 export const useExecutionBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetch: fetchExecutePurchaseInfo } = useFetchExecutePurchase();
+  const { fetchExecutePurchaseInfo } = useFetchExecutePurchase();
   const wantsFastestOption = useStoreCheckout(
     (state) => state.wantsFastestOption
   );

@@ -7,13 +7,13 @@ import React from "react";
 
 export const useHomePageHelper = () => {
   const selectedAddress = useStoreBase((state) => state.selectedAddress);
-  const setStoreHomeState = useStoreHome((state) => state.setPartialState);
+  const setStoreHomeState = useStoreHome((state) => state.setHomeStoreState);
   const groups = useStoreHome((state) => state.groups);
   const buyAgain = useStoreHome((state) => state.buyAgain);
   const fromSearchHistory = useStoreHome((state) => state.fromSearchHistory);
   const banners = useStoreHome((state) => state.banners);
   const { showItem } = useFeedback();
-  const { fetch: fetchProductOffers } = useFetchProductOffers();
+  const { fetchProductOffers } = useFetchProductOffers();
   const [headerTriggerVisible, setHeaderTriggerVisible] =
     React.useState<boolean>(true);
 

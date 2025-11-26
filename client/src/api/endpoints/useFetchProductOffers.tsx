@@ -22,6 +22,6 @@ export const useFetchProductOffers = () => {
   }, [get]);
 
   return {
-    fetch,
+    fetchProductOffers: fetch,
   };
 };

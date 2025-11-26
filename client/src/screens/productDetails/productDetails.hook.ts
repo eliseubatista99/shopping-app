@@ -19,9 +19,9 @@ export const useProductDetailsPageHelper = () => {
     (state) => state.selectedProduct
   );
   const setProductStoreState = useStoreProduct(
-    (state) => state.setPartialState
+    (state) => state.setProductStoreState
   );
-  const { fetch: fetchProductDetail } = useFetchProductDetail();
+  const { fetchProductDetail } = useFetchProductDetail();
 
   const [loading, setLoading] = React.useState(true);
 

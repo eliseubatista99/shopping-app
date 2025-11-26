@@ -21,7 +21,7 @@ export interface CheckoutState {
 const initialState: CheckoutState = {};
 
 interface UseStoreOutput extends CheckoutState {
-  setPartialState: (data: Partial<CheckoutState>) => void;
+  setCheckoutStoreState: (data: Partial<CheckoutState>) => void;
   changeProductQuantity: (
     product: ProductWithQuantity,
     quantity: number
@@ -32,7 +32,7 @@ interface UseStoreOutput extends CheckoutState {
 export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<CheckoutState>) {
+    setCheckoutStoreState: function (data: Partial<CheckoutState>) {
       set(
         produce((state: CheckoutState) => ({ ...state, ...data })),
         false,

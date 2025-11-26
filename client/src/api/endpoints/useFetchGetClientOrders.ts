@@ -10,9 +10,9 @@ export type GetClientOrdersOutputDto = {
 };
 
 export type GetClientOrdersInputDto = {
-  orderId: string;
-  page: number;
-  pageCount: number;
+  orderId?: string;
+  page?: number;
+  pageCount?: number;
   filterByText?: string;
   filterByStatus?: OrderStatus;
   sortMode?: SortMode;
@@ -38,6 +38,6 @@ export const useFetchGetClientOrders = () => {
   );
 
   return {
-    fetch,
+    fetchGetClientOrders: fetch,
   };
 };

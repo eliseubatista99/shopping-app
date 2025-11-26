@@ -18,13 +18,13 @@ const initialState: HomeState = {
 };
 
 interface UseStoreOutput extends HomeState {
-  setPartialState: (data: Partial<HomeState>) => void;
+  setHomeStoreState: (data: Partial<HomeState>) => void;
 }
 
 export const useStoreHome = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<HomeState>) {
+    setHomeStoreState: function (data: Partial<HomeState>) {
       set(
         produce((state: HomeState) => ({ ...state, ...data })),
         false,

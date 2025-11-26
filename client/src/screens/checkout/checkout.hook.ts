@@ -18,11 +18,11 @@ export const useCheckoutPageHelper = () => {
   );
   const productsInStore = useStoreCheckout((state) => state.products);
   const setCheckoutStoreState = useStoreCheckout(
-    (state) => state.setPartialState
+    (state) => state.setCheckoutStoreState
   );
   const recalculate = useStoreCheckout((state) => state.recalculate);
 
-  const { fetch: fetchGetCheckoutInfo } = useFetchGetCheckoutInfo();
+  const { fetchGetCheckoutInfo } = useFetchGetCheckoutInfo();
 
   const [loading, setLoading] = React.useState(true);
 

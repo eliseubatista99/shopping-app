@@ -18,7 +18,7 @@ export interface ReviewsState {
 const initialState: ReviewsState = {};
 
 interface UseStoreOutput extends ReviewsState {
-  setPartialState: (data: Partial<ReviewsState>) => void;
+  setReviewsStoreState: (data: Partial<ReviewsState>) => void;
   addReviews: (data: ReviewDto[]) => void;
   setSortFilter: (sort?: SortMode) => void;
   setScoreFilter: (score?: number) => void;
@@ -27,7 +27,7 @@ interface UseStoreOutput extends ReviewsState {
 export const useStoreReviews = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<ReviewsState>) {
+    setReviewsStoreState: function (data: Partial<ReviewsState>) {
       set(
         produce((state: ReviewsState) => ({ ...state, ...data })),
         false,

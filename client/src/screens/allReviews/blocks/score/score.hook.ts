@@ -14,11 +14,11 @@ export const useScoreBlockHelper = () => {
   const { t } = useAppTranslations();
   const { reviewId } = useAppSearchParams();
   const { productId } = useAppSearchParams();
-  const { fetch: fetchGetProductReviews } = useFetchGetProductReviews();
+  const { fetchGetProductReviews } = useFetchGetProductReviews();
   const { showItem } = useFeedback();
 
   const setReviewsStoreState = useStoreReviews(
-    (state) => state.setPartialState
+    (state) => state.setReviewsStoreState
   );
   const addReviews = useStoreReviews((state) => state.addReviews);
   const scoreCounts = useStoreReviews((state) => state.scores);

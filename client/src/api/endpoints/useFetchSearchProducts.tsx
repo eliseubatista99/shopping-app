@@ -27,6 +27,6 @@ export const useFetchSearchProducts = () => {
   );
 
   return {
-    fetch,
+    fetchSearchProducts: fetch,
   };
 };

@@ -17,7 +17,7 @@ export const useScheduleBlockHelper = () => {
     (state) => state.wantsFastestOption
   );
   const setStoreCheckoutState = useStoreCheckout(
-    (state) => state.setPartialState
+    (state) => state.setCheckoutStoreState
   );
   const recalculate = useStoreCheckout((state) => state.recalculate);
 

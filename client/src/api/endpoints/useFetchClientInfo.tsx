@@ -20,6 +20,6 @@ export const useFetchClientInfo = () => {
   }, [get]);
 
   return {
-    fetch,
+    fetchClientInfo: fetch,
   };
 };

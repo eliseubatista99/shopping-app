@@ -27,6 +27,6 @@ export const useFetchUpdateDefaultAddress = () => {
   );
 
   return {
-    fetch,
+    fetchUpdateAddress: fetch,
   };
 };

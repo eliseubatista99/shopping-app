@@ -1,9 +1,10 @@
-import type { OrderDto, OrderStatus, SortMode } from "@api";
+import type { OrderDetailDto, OrderDto, OrderStatus, SortMode } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
 export interface OrdersState {
+  selectedOrder?: OrderDetailDto;
   orders?: OrderDto[];
   textFilter?: string;
   statusFilter?: OrderStatus;
@@ -16,7 +17,7 @@ export interface OrdersState {
 const initialState: OrdersState = {};
 
 interface UseStoreOutput extends OrdersState {
-  setPartialState: (data: Partial<OrdersState>) => void;
+  setOrdersStoreState: (data: Partial<OrdersState>) => void;
   addOrders: (data: OrderDto[]) => void;
   setSortFilter: (sort?: SortMode) => void;
   setStatusFilter: (status?: OrderStatus) => void;
@@ -27,7 +28,7 @@ interface UseStoreOutput extends OrdersState {
 export const useStoreOrders = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setPartialState: function (data: Partial<OrdersState>) {
+    setOrdersStoreState: function (data: Partial<OrdersState>) {
       set(
         produce((state: OrdersState) => ({ ...state, ...data })),
         false,

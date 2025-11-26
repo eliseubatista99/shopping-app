@@ -25,6 +25,6 @@ export const useFetchAddToCart = () => {
   );
 
   return {
-    fetch,
+    fetchAddToCart: fetch,
   };
 };

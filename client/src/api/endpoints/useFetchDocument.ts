@@ -29,6 +29,6 @@ export const useFetchGetDocument = () => {
   );
 
   return {
-    fetch,
+    fetchGetDocument: fetch,
   };
 };

@@ -4,9 +4,11 @@ import { useStoreForYou } from "@store";
 import React from "react";
 
 export const useForYouPageHelper = () => {
-  const { fetch: fetchForYou } = useFetchForYou();
+  const { fetchForYou } = useFetchForYou();
 
-  const setForYouStoreState = useStoreForYou((state) => state.setPartialState);
+  const setForYouStoreState = useStoreForYou(
+    (state) => state.setForYouStoreState
+  );
   const [loading, setLoading] = React.useState(true);
 
   const initScreen = React.useCallback(async () => {
