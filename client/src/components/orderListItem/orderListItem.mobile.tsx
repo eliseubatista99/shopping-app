@@ -5,11 +5,12 @@ import { useOrderListItemHelper } from "./orderListItem.hook";
 
 export const OrderListItemMobile: React.FC<OrderListItemProps> = (props) => {
   const { i18n } = useOrderListItemHelper(props);
-  const { styles, order } = props;
+  const { styles, order, onClick } = props;
 
   return (
     <div
       data-testid="orderListItem"
+      onClick={() => onClick?.()}
       style={{
         border: "1px solid #b8b8b8ff",
         borderRadius: "10px",

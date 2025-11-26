@@ -3,10 +3,12 @@ import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useOrdersListBlockHelper } from "./ordersList.hook";
 
 export const OrdersListBlockMobile: React.FC = () => {
-  const { i18n, orders, loading, handleRequestTrigger } =
+  const { i18n, orders, loading, handleRequestTrigger, onClickOrder } =
     useOrdersListBlockHelper();
 
-  const ordersJSX = orders.map((o) => <OrderListItem key={o.id} order={o} />);
+  const ordersJSX = orders.map((o) => (
+    <OrderListItem key={o.id} order={o} onClick={() => onClickOrder(o)} />
+  ));
 
   return (
     <>
@@ -16,6 +18,7 @@ export const OrdersListBlockMobile: React.FC = () => {
       {ordersJSX.length > 0 && (
         <div
           style={{
+            marginTop: "20px",
             width: "100%",
             gap: "8px",
           }}

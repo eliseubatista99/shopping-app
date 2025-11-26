@@ -1,5 +1,15 @@
-import { OrderStatus, SortMode, useFetchGetClientOrders } from "@api";
-import { TimeHelper, useDidMount } from "@eliseubatista99/react-scaffold-core";
+import {
+  OrderStatus,
+  SortMode,
+  useFetchGetClientOrders,
+  type OrderDto,
+} from "@api";
+import { PAGES, SEARCH_PARAMS } from "@constants";
+import {
+  TimeHelper,
+  useDidMount,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useAppTranslations } from "@hooks";
 import { useStoreOrders } from "@store";
 import React from "react";
@@ -8,6 +18,7 @@ export const useOrdersListBlockHelper = () => {
   const { t } = useAppTranslations();
   const { orderId } = useAppSearchParams();
   const { fetch: fetchGetClientOrders } = useFetchGetClientOrders();
+  const { goTo } = useNavigation();
 
   const setOrdersStoreState = useStoreOrders((state) => state.setPartialState);
   const addOrders = useStoreOrders((state) => state.addOrders);
@@ -50,8 +61,8 @@ export const useOrdersListBlockHelper = () => {
       pageCount: 10,
       filterByStatus: statusFilter,
       sortMode: sortFilter,
-      filterByStartDate: startDateFilter?.toString(),
-      filterByEndDate: endDateFilter?.toString(),
+      filterByStartDate: startDateFilter?.toISOString(),
+      filterByEndDate: endDateFilter?.toISOString(),
     });
 
     if (res.metadata.success) {
@@ -102,6 +113,18 @@ export const useOrdersListBlockHelper = () => {
     [orderId.value, requestOrders]
   );
 
+  const onClickOrder = React.useCallback(
+    (order: OrderDto) => {
+      goTo({
+        path: PAGES.ORDER_DETAILS,
+        params: {
+          [SEARCH_PARAMS.ORDER_ID]: order.id,
+        },
+      });
+    },
+    [goTo]
+  );
+
   React.useEffect(() => {
     if (
       (sortFilterCache.current !== sortFilter ||
@@ -139,5 +162,6 @@ export const useOrdersListBlockHelper = () => {
     loading,
     orders: allOrders || [],
     handleRequestTrigger,
+    onClickOrder,
   };
 };

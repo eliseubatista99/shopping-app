@@ -6,6 +6,7 @@ import { OrderListItemMobile } from "./orderListItem.mobile";
 
 export interface OrderListItemProps {
   order: OrderDto;
+  onClick?: () => void;
   styles?: React.CSSProperties;
 }
 

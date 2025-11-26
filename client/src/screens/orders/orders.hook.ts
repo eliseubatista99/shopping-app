@@ -14,6 +14,7 @@ export const useOrdersPageHelper = () => {
       statusFilter: undefined,
       startDateFilter: undefined,
       endDateFilter: undefined,
+      orders: undefined,
     });
 
     setLoading(false);

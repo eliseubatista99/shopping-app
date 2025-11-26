@@ -4,10 +4,14 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams } from "@hooks";
+import { useStoreReviews } from "@store";
 import React from "react";
 
 export const useAllReviewsPageHelper = () => {
   const { productId } = useAppSearchParams();
+  const setReviewsStoreState = useStoreReviews(
+    (state) => state.setPartialState
+  );
 
   const { goTo } = useNavigation();
 
@@ -21,8 +25,16 @@ export const useAllReviewsPageHelper = () => {
       return;
     }
 
+    setReviewsStoreState({
+      reviews: undefined,
+      sortFilter: undefined,
+      scoreFilter: undefined,
+      scores: undefined,
+      averageScore: undefined,
+    });
+
     setLoading(false);
-  }, [goTo, productId.value]);
+  }, [goTo, productId.value, setReviewsStoreState]);
 
   useDidMount(() => {
     initScreen();
