@@ -1,5 +1,5 @@
 import { AppLayout, AppLoader } from "@components";
-import { FiltersBlock } from "./blocks";
+import { FiltersBlock, OrdersListBlock } from "./blocks";
 import { useOrdersPageHelper } from "./orders.hook";
 
 export const OrdersMobile: React.FC = () => {
@@ -27,6 +27,15 @@ export const OrdersMobile: React.FC = () => {
       {!loading && (
         <>
           <FiltersBlock />
+          <div
+            style={{
+              width: "100%",
+              flexDirection: "column",
+              padding: "12px",
+            }}
+          >
+            {<OrdersListBlock />}
+          </div>
         </>
       )}
     </AppLayout>

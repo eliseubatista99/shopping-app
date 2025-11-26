@@ -6,8 +6,7 @@ param(
     [string]$BlockName
 )
 
-# Normalize folder name
-$blockFolder = $BlockName.ToLower()
+$blockFolder = $BlockName
 
 # PascalCase para componentes
 function To-PascalCase([string]$text) {
