@@ -5,7 +5,7 @@ import React from "react";
 
 export const useProductsBlockHelper = () => {
   const { t } = useAppTranslations();
-  const products = useStoreCheckout((state) => state.products || []);
+  const products = useStoreCheckout((state) => state.products);
   const changeProductQuantity = useStoreCheckout(
     (state) => state.changeProductQuantity
   );

@@ -9,7 +9,7 @@ export const useExecutionBlockHelper = () => {
   const wantsFastestOption = useStoreCheckout(
     (state) => state.wantsFastestOption
   );
-  const products = useStoreCheckout((state) => state.products || []);
+  const products = useStoreCheckout((state) => state.products);
   const selectedAddress = useStoreBase((state) => state.selectedAddress);
   const selectedPaymentMethod = useStoreBase(
     (state) => state.selectedPaymentMethod

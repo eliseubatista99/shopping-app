@@ -21,10 +21,10 @@ export const useScoreBlockHelper = () => {
     (state) => state.setPartialState
   );
   const addReviews = useStoreReviews((state) => state.addReviews);
-  const scoreCounts = useStoreReviews((state) => state.scores || []);
+  const scoreCounts = useStoreReviews((state) => state.scores);
   const averageScore = useStoreReviews((state) => state.averageScore);
   const reviewsCount = useStoreReviews((state) => state.reviewsCount);
-  const allReviews = useStoreReviews((state) => state.reviews || []);
+  const allReviews = useStoreReviews((state) => state.reviews);
   const scoreFilter = useStoreProduct((state) => state.scoreFilter);
   const sortFilter = useStoreProduct((state) => state.sortFilter);
 
@@ -94,6 +94,8 @@ export const useScoreBlockHelper = () => {
         );
       }
 
+      console.log("ZAU", currentPage.current);
+
       if (currentPage.current < 1) {
         setReviewsStoreState({
           scores: res.data.scores,
@@ -129,7 +131,8 @@ export const useScoreBlockHelper = () => {
         visible &&
         !isFetching.current &&
         hasMorePages.current &&
-        reviewId.value === undefined
+        reviewId.value === undefined &&
+        hasRequestedReviewsOnce.current
       ) {
         currentPage.current += 1;
         requestReviews();

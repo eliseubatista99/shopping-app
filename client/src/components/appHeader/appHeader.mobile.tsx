@@ -1,5 +1,6 @@
 import { Assets } from "@assets";
 import { INPUTS } from "@constants";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppSearchBar } from "../appSearchBar";
 import type { AppHeaderProps } from "./appHeader";
@@ -38,8 +39,13 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
         <AppSearchBar
           name={INPUTS.SEARCH_BAR}
           placeholder={i18n.header.searchBar.placeholder}
+          rightIcon={
+            <Typography styles={{ fontSize: "30px", zIndex: 2 }}>
+              {"⌕"}
+            </Typography>
+          }
           onSubmit={handleSearchBarSubmit}
-          onClick={handleSearchBarClick}
+          onFocus={handleSearchBarClick}
           styles={{ padding: "6px" }}
         />
       )}

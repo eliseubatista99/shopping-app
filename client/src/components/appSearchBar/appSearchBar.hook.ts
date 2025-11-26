@@ -5,7 +5,8 @@ import type { AppSearchBarProps } from "./appSearchBar";
 export const useAppSearchBarHelper = ({
   name,
   onSubmit,
-  onClick,
+  onFocus,
+  onBlur,
   onChange,
 }: AppSearchBarProps) => {
   const searchBarContent = React.useRef<string>("");
@@ -35,8 +36,12 @@ export const useAppSearchBarHelper = ({
   );
 
   const handleOnFocus = React.useCallback(() => {
-    onClick?.();
-  }, [onClick]);
+    onFocus?.();
+  }, [onFocus]);
+
+  const handleOnBlur = React.useCallback(() => {
+    onBlur?.();
+  }, [onBlur]);
 
   return {
     name,
@@ -44,5 +49,6 @@ export const useAppSearchBarHelper = ({
     handleOnFocus,
     handleOnSubmit,
     handleOnIconClicked,
+    handleOnBlur,
   };
 };

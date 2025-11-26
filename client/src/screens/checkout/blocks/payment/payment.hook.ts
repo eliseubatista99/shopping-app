@@ -5,7 +5,7 @@ import React from "react";
 
 export const usePaymentBlockHelper = () => {
   const { t } = useAppTranslations();
-  const products = useStoreCheckout((state) => state.products || []);
+  const products = useStoreCheckout((state) => state.products);
   const productCost = useStoreCheckout((state) => state.productCost);
   const shippingCost = useStoreCheckout((state) => state.shippingCost);
   const totalCost = useStoreCheckout((state) => state.totalCost || 0);

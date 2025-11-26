@@ -8,7 +8,7 @@ import React from "react";
 export const useOrdersBlockHelper = () => {
   const { t } = useAppTranslations();
   const { goTo } = useNavigation();
-  const orders = useStoreForYou((state) => state.orders || []);
+  const orders = useStoreForYou((state) => state.orders);
 
   const i18n = React.useMemo(() => {
     return {

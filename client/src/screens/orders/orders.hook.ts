@@ -1,15 +1,23 @@
-import {
-  useDidMount,
-} from "@eliseubatista99/react-scaffold-core";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { useStoreOrders } from "@store";
 import React from "react";
 
 export const useOrdersPageHelper = () => {
   const [loading, setLoading] = React.useState(true);
+  const setStoreOrdersState = useStoreOrders((state) => state.setPartialState);
 
   const initScreen = React.useCallback(async () => {
-    
+    setLoading(true);
+
+    setStoreOrdersState({
+      textFilter: undefined,
+      statusFilter: undefined,
+      startDateFilter: undefined,
+      endDateFilter: undefined,
+    });
+
     setLoading(false);
-  }, []);
+  }, [setStoreOrdersState]);
 
   useDidMount(() => {
     initScreen();
