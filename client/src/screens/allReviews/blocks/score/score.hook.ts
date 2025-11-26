@@ -7,7 +7,7 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useAppTranslations } from "@hooks";
-import { useStoreProduct, useStoreReviews } from "@store";
+import { useStoreReviews } from "@store";
 import React from "react";
 
 export const useScoreBlockHelper = () => {
@@ -25,8 +25,8 @@ export const useScoreBlockHelper = () => {
   const averageScore = useStoreReviews((state) => state.averageScore);
   const reviewsCount = useStoreReviews((state) => state.reviewsCount);
   const allReviews = useStoreReviews((state) => state.reviews);
-  const scoreFilter = useStoreProduct((state) => state.scoreFilter);
-  const sortFilter = useStoreProduct((state) => state.sortFilter);
+  const scoreFilter = useStoreReviews((state) => state.scoreFilter);
+  const sortFilter = useStoreReviews((state) => state.sortFilter);
 
   const { goTo } = useNavigation();
 

@@ -1,11 +1,11 @@
 import { SortMode } from "@api";
 import { useAppTranslations } from "@hooks";
-import { useStoreProduct } from "@store";
+import { useStoreReviews } from "@store";
 import React from "react";
 
 export const useReviewFiltersDrawerHelper = () => {
-  const setStoreScoreFilter = useStoreProduct((state) => state.setScoreFilter);
-  const setStoreSortFilter = useStoreProduct((state) => state.setSortFilter);
+  const setStoreScoreFilter = useStoreReviews((state) => state.setScoreFilter);
+  const setStoreSortFilter = useStoreReviews((state) => state.setSortFilter);
   const { t } = useAppTranslations();
 
   const [sortFilter, setSortFilter] = React.useState<SortMode | undefined>(
