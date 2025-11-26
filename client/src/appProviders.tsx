@@ -11,13 +11,14 @@ import {
   ForYou,
   Home,
   NotFound404,
+  OrderDetails,
   Orders,
   ProductDetails,
+  ProductList,
   Splash,
   WriteReview,
 } from "@screens";
 import { useAppHelper } from "./App.hook";
-import { ProductList } from "./screens/productList";
 
 export interface AppProvidersProps {
   children?: React.ReactNode;
@@ -78,6 +79,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.ORDERS,
             render: <Orders />,
+          },
+          {
+            path: PAGES.ORDER_DETAILS,
+            render: <OrderDetails />,
           },
         ]}
       >
