@@ -2,11 +2,11 @@ import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useProductBlockHelper } from "./product.hook";
 
 export const ProductBlockMobile: React.FC = () => {
-  const { i18n, product } = useProductBlockHelper();
+  const { i18n, productImage, productName } = useProductBlockHelper();
 
   return (
     <>
-      {product && (
+      {productImage && productName && (
         <div
           style={{
             width: "100%",
@@ -16,7 +16,7 @@ export const ProductBlockMobile: React.FC = () => {
           }}
         >
           <Image
-            src={product.image}
+            src={productImage}
             styles={{
               width: "50px",
               height: "50px",
@@ -30,7 +30,7 @@ export const ProductBlockMobile: React.FC = () => {
             <Typography styles={{ fontWeight: 800, fontSize: "18px" }}>
               {i18n.title}
             </Typography>
-            <Typography>{product.name}</Typography>
+            <Typography>{productName}</Typography>
           </div>
         </div>
       )}

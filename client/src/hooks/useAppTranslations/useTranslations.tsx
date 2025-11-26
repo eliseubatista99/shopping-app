@@ -16,7 +16,17 @@ export const useAppTranslations = () => {
   });
 
   const translateDate = React.useCallback(
-    (date: string) => {
+    (date: string | undefined) => {
+      if (!date) {
+        return {
+          weekday: "",
+          month: "",
+          extenseDate: "",
+          scheduleDate: "",
+          orderDate: "",
+        };
+      }
+
       const dateData = TimeHelper.getDateInUTC(date);
 
       const month = t(`time.month.long.${dateData?.month}`);

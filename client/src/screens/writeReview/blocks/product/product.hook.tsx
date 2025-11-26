@@ -1,9 +1,10 @@
 import { useAppTranslations } from "@hooks";
-import { useStoreProduct } from "@store";
+import { useStoreReviews } from "@store";
 import React from "react";
 
 export const useProductBlockHelper = () => {
-  const selectedProduct = useStoreProduct((state) => state.selectedProduct);
+  const productImage = useStoreReviews((state) => state.productImage);
+  const productName = useStoreReviews((state) => state.productName);
   const { t } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
@@ -14,6 +15,7 @@ export const useProductBlockHelper = () => {
 
   return {
     i18n,
-    product: selectedProduct,
+    productImage,
+    productName,
   };
 };

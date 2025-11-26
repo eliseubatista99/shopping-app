@@ -3,6 +3,7 @@ import { translationsAllReviews } from "./allReviews";
 import { translationsCheckout } from "./checkout";
 import { translationsForYou } from "./forYou";
 import { translationsHome } from "./home";
+import { translationsOrderDetails } from "./orderDetails";
 import { translationsOrders } from "./orders";
 import { translationsProductDetails } from "./productDetails";
 import { translationsWriteReview } from "./writeReview";
@@ -15,4 +16,5 @@ export const translationsScreens: TranslationList = {
   ...translationsCheckout,
   ...translationsForYou,
   ...translationsOrders,
+  ...translationsOrderDetails,
 };

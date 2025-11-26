@@ -20,6 +20,9 @@ export const ProductDetailsMobile: React.FC = () => {
       appHeader={{
         back: {
           visible: true,
+          styles: {
+            color: "#ffffff",
+          },
         },
         searchBar: {
           visible: true,

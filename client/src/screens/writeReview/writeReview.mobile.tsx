@@ -3,7 +3,7 @@ import { ProductBlock, ReviewBlock } from "./blocks";
 import { useWriteReviewPageHelper } from "./writeReview.hook";
 
 export const WriteReviewMobile: React.FC = () => {
-  const { loading, product } = useWriteReviewPageHelper();
+  const { loading } = useWriteReviewPageHelper();
 
   return (
     <AppLayout
@@ -24,7 +24,7 @@ export const WriteReviewMobile: React.FC = () => {
       }}
     >
       {loading && <AppLoader visible={loading} />}
-      {!loading && product && (
+      {!loading && (
         <>
           <ProductBlock />
           <ReviewBlock />

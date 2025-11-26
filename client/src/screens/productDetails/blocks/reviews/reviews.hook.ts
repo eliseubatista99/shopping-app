@@ -5,7 +5,7 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreProduct } from "@store";
+import { useStoreProduct, useStoreReviews } from "@store";
 import React from "react";
 
 type ReviewWithExpansion = ReviewDto & {
@@ -14,6 +14,9 @@ type ReviewWithExpansion = ReviewDto & {
 
 export const useReviewsBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
+  const setReviewsStoreState = useStoreReviews(
+    (state) => state.setReviewsStoreState
+  );
   const { goTo } = useNavigation();
   const { t } = useAppTranslations();
 
@@ -58,6 +61,12 @@ export const useReviewsBlockHelper = () => {
   }, []);
 
   const onClickCreateReview = React.useCallback(() => {
+    setReviewsStoreState({
+      productId: selectedProduct?.id,
+      productName: selectedProduct?.name,
+      productImage: selectedProduct?.image,
+    });
+
     //Go to review screen
     goTo({
       path: PAGES.WRITE_REVIEW,
@@ -65,7 +74,13 @@ export const useReviewsBlockHelper = () => {
         [SEARCH_PARAMS.PRODUCT_ID]: selectedProduct?.id,
       },
     });
-  }, [goTo, selectedProduct?.id]);
+  }, [
+    goTo,
+    selectedProduct?.id,
+    selectedProduct?.image,
+    selectedProduct?.name,
+    setReviewsStoreState,
+  ]);
 
   const initializeReviews = React.useCallback(() => {
     const data = (selectedProduct?.reviews || []).map(

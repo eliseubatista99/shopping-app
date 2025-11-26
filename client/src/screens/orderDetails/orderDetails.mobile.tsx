@@ -1,4 +1,4 @@
-import { AppLayout, AppLoader } from "@components";
+import { AppLayout, AppLoader, Separator } from "@components";
 import {
   AddressBlock,
   DetailsBlock,
@@ -33,6 +33,7 @@ export const OrderDetailsMobile: React.FC = () => {
       {!loading && selectedOrder && (
         <>
           <DetailsBlock />
+          <Separator />
           <ProductBlock />
           <PaymentBlock />
           <AddressBlock />

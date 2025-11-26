@@ -6,6 +6,7 @@ import { StoreHelper } from "../storeHelper";
 export interface ReviewsState {
   productName?: string;
   productId?: string;
+  productImage?: string;
   averageScore?: number;
   reviewsCount?: number;
   scores?: ScoreCountDto[];
