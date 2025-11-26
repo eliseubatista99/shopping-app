@@ -10,12 +10,14 @@ export interface OrdersState {
   startDateFilter?: Date;
   endDateFilter?: Date;
   oldestOrderDate?: string;
+  sortFilter?: SortMode;
 }
 
 const initialState: OrdersState = {};
 
 interface UseStoreOutput extends OrdersState {
   setPartialState: (data: Partial<OrdersState>) => void;
+  addOrders: (data: OrderDto[]) => void;
   setSortFilter: (sort?: SortMode) => void;
   setStatusFilter: (status?: OrderStatus) => void;
   setStartDateFilter: (value?: Date) => void;
@@ -30,6 +32,15 @@ export const useStoreOrders = StoreHelper.createStore<UseStoreOutput>(
         produce((state: OrdersState) => ({ ...state, ...data })),
         false,
         "setPartialState"
+      );
+    },
+    addOrders: function (data: OrderDto[]) {
+      set(
+        produce((state: OrdersState) => {
+          state.orders = [...(state.orders || []), ...data];
+        }),
+        false,
+        "addOrders"
       );
     },
     setSortFilter: function (sort?: SortMode) {

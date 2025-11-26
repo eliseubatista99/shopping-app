@@ -5,4 +5,8 @@ export const translationsOrders: TranslationList = {
     pt: "Pesquisar pedidos",
     en: "Search orders",
   },
+  "orders.ordersList.title": {
+    pt: "Histórico de compras",
+    en: "Order history",
+  },
 };

@@ -13,6 +13,7 @@ export type GetClientOrdersInputDto = {
   orderId: string;
   page: number;
   pageCount: number;
+  filterByText?: string;
   filterByStatus?: OrderStatus;
   sortMode?: SortMode;
   filterByStartDate?: string;
