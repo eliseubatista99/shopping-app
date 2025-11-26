@@ -5,6 +5,7 @@ import type { ApiOutput, OrderDto, OrderStatus, SortMode } from "../types";
 
 export type GetClientOrdersOutputDto = {
   orders: OrderDto[];
+  oldestOrderDate?: string;
   hasMorePages: boolean;
 };
 

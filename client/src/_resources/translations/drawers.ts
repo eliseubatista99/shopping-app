@@ -41,4 +41,12 @@ export const translationsDrawers: TranslationList = {
     pt: "Estado",
     en: "Status",
   },
+  "drawers.orderFilters.date.lastMonth": {
+    pt: "Ultimo mês",
+    en: "Last month",
+  },
+  "drawers.orderFilters.date.lastThreeMonths": {
+    pt: "Ultimos 3 mêses",
+    en: "Last 3 months",
+  },
 };

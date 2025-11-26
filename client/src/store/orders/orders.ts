@@ -9,6 +9,7 @@ export interface OrdersState {
   statusFilter?: OrderStatus;
   startDateFilter?: Date;
   endDateFilter?: Date;
+  oldestOrderDate?: string;
 }
 
 const initialState: OrdersState = {};
@@ -17,6 +18,8 @@ interface UseStoreOutput extends OrdersState {
   setPartialState: (data: Partial<OrdersState>) => void;
   setSortFilter: (sort?: SortMode) => void;
   setStatusFilter: (status?: OrderStatus) => void;
+  setStartDateFilter: (value?: Date) => void;
+  setEndDateFilter: (value?: Date) => void;
 }
 
 export const useStoreOrders = StoreHelper.createStore<UseStoreOutput>(
@@ -41,6 +44,20 @@ export const useStoreOrders = StoreHelper.createStore<UseStoreOutput>(
         produce((state: OrdersState) => ({ ...state, statusFilter: status })),
         false,
         "setStatusFilter"
+      );
+    },
+    setStartDateFilter: function (value?: Date) {
+      set(
+        produce((state: OrdersState) => ({ ...state, startDateFilter: value })),
+        false,
+        "setStartDateFilter"
+      );
+    },
+    setEndDateFilter: function (value?: Date) {
+      set(
+        produce((state: OrdersState) => ({ ...state, endDateFilter: value })),
+        false,
+        "setEndDateFilter"
       );
     },
   }),
