@@ -25,4 +25,20 @@ export const translationsDrawers: TranslationList = {
     pt: "Classificação",
     en: "Score",
   },
+  "drawers.orderFilters.title": {
+    pt: "Filtros",
+    en: "Filters",
+  },
+  "drawers.orderFilters.sort": {
+    pt: "Ordenação",
+    en: "Sorting",
+  },
+  "drawers.orderFilters.date": {
+    pt: "Data de pedido",
+    en: "Order date",
+  },
+  "drawers.orderFilters.status": {
+    pt: "Estado",
+    en: "Status",
+  },
 };

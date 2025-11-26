@@ -1,9 +1,13 @@
+import { DRAWERS } from "@constants";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreOrders } from "@store";
 import React from "react";
 
 export const useFiltersBlockHelper = () => {
   const { t } = useAppTranslations();
+  const { showItem } = useFeedback();
+
   const setStoreOrdersState = useStoreOrders((state) => state.setPartialState);
   const textFilter = useStoreOrders((state) => state.textFilter);
   const statusFilter = useStoreOrders((state) => state.statusFilter);
@@ -28,12 +32,17 @@ export const useFiltersBlockHelper = () => {
   }, []);
 
   const onClickFilters = React.useCallback(() => {
-    setIsSearchFocused(false);
-  }, []);
+    showItem(DRAWERS.ORDER_FILTERS);
+  }, [showItem]);
 
-  const submitSearch = React.useCallback(async (text: string) => {
-    //
-  }, []);
+  const submitSearch = React.useCallback(
+    async (text: string) => {
+      setStoreOrdersState({
+        textFilter: text,
+      });
+    },
+    [setStoreOrdersState]
+  );
 
   return {
     i18n,

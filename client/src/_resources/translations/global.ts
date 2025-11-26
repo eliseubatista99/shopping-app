@@ -73,6 +73,22 @@ export const translationsGlobal: TranslationList = {
     pt: "Mais recentes primeiro",
     en: "Newest first",
   },
+  "global.filters.orderStatus.Processing": {
+    pt: "Em processamento",
+    en: "Processing",
+  },
+  "global.filters.orderStatus.Sent": {
+    pt: "Enviado",
+    en: "Sent",
+  },
+  "global.filters.orderStatus.InDelivery": {
+    pt: "Em entrega",
+    en: "In Delivery",
+  },
+  "global.filters.orderStatus.Delivered": {
+    pt: "Entregue",
+    en: "Delivered",
+  },
   "global.card.network.Mastercard": {
     pt: "Mastercard",
     en: "Mastercard",
