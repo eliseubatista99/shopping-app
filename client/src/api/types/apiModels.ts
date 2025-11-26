@@ -147,6 +147,7 @@ export enum OrderStatus {
   Sent = "Sent",
   InDelivery = "InDelivery",
   Delivered = "Delivered",
+  Cancelled = "Cancelled",
 }
 
 export type OrderStatusEntry = {
@@ -158,11 +159,11 @@ export type OrderDto = {
   id: string;
   product: ProductDto;
   date: string;
+  currentStatus: OrderStatusEntry;
 };
 
 export type OrderDetailDto = OrderDto & {
   seller: SellerDto;
-  currentStatus: OrderStatus;
   statusHistory: OrderStatusEntry[];
   paymentMethod: PaymentMethodDto;
   address: AddressDto;

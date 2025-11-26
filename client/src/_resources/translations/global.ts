@@ -89,6 +89,10 @@ export const translationsGlobal: TranslationList = {
     pt: "Entregue",
     en: "Delivered",
   },
+  "global.filters.orderStatus.Cancelled": {
+    pt: "Cancelado",
+    en: "Cancelled",
+  },
   "global.card.network.Mastercard": {
     pt: "Mastercard",
     en: "Mastercard",
@@ -100,5 +104,25 @@ export const translationsGlobal: TranslationList = {
   "global.actions.seeAll": {
     pt: "Ver tudo",
     en: "See all",
+  },
+  "global.orderStatus.history.Sent": {
+    pt: "Enviado a {{date}}",
+    en: "Sent in {{date}}",
+  },
+  "global.orderStatus.history.Delivered": {
+    pt: "Entregue a {{date}}",
+    en: "Delivered in {{date}}",
+  },
+  "global.orderStatus.history.Processing": {
+    pt: "Em processamento",
+    en: "In process",
+  },
+  "global.orderStatus.history.InDelivery": {
+    pt: "Em entrega",
+    en: "In Delivery",
+  },
+  "global.orderStatus.history.Cancelled": {
+    pt: "Cancelado a {{date}}",
+    en: "Cancelled in {{date}}",
   },
 };

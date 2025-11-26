@@ -37,10 +37,6 @@ export const translationsCheckout: TranslationList = {
     pt: "Alterar morada de envio",
     en: "Change delivery address",
   },
-  "checkout.schedule.date": {
-    pt: "{{weekday}}, {{day}}/{{month}}",
-    en: "{{weekday}}, {{day}}/{{month}}",
-  },
   "checkout.schedule.estimate": {
     pt: "Chega em {{startDate}} - {{endDate}}",
     en: "Delivered in {{startDate}} - {{endDate}}",

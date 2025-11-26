@@ -1,4 +1,4 @@
-import { AppLoader, IsOnScreenTrigger } from "@components";
+import { AppLoader, IsOnScreenTrigger, OrderListItem } from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useOrdersListBlockHelper } from "./ordersList.hook";
 
@@ -6,7 +6,7 @@ export const OrdersListBlockMobile: React.FC = () => {
   const { i18n, orders, loading, handleRequestTrigger } =
     useOrdersListBlockHelper();
 
-  const ordersJSX = orders.map((o) => <div key={o.id}></div>);
+  const ordersJSX = orders.map((o) => <OrderListItem key={o.id} order={o} />);
 
   return (
     <>
@@ -17,6 +17,7 @@ export const OrdersListBlockMobile: React.FC = () => {
         <div
           style={{
             width: "100%",
+            gap: "8px",
           }}
         >
           {ordersJSX}

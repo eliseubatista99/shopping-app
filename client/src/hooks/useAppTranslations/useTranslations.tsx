@@ -29,10 +29,16 @@ export const useAppTranslations = () => {
         year: dateData?.year,
       });
 
-      const scheduleDate = t("checkout.schedule.date", {
+      const scheduleDate = t("time.date.schedule", {
         weekday,
         day: dateData?.day,
         month: month,
+      });
+
+      const orderDate = t("time.date.order", {
+        day: dateData?.day,
+        month: month,
+        year: dateData?.year,
       });
 
       return {
@@ -40,6 +46,7 @@ export const useAppTranslations = () => {
         month,
         extenseDate,
         scheduleDate,
+        orderDate,
       };
     },
     [t]

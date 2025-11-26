@@ -81,4 +81,12 @@ export const translationsTime: TranslationList = {
     pt: "{{weekday}}, {{day}} de {{month}} de {{year}}",
     en: "{{weekday}}, {{day}} of {{month}} of {{year}}",
   },
+  "time.date.schedule": {
+    pt: "{{weekday}}, {{day}}/{{month}}",
+    en: "{{weekday}}, {{day}}/{{month}}",
+  },
+  "time.date.order": {
+    pt: "{{day}} de {{month}} de {{year}}",
+    en: "{{day}} of {{month}} of {{year}}",
+  },
 };
