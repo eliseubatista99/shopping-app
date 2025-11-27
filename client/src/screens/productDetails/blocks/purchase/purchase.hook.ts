@@ -39,7 +39,7 @@ export const usePurchaseBlockHelper = () => {
       delivery: {
         cost: selectedProduct?.shippingCost
           ? t("productDetails.delivery.paid", {
-              value: selectedProduct?.shippingCost,
+              value: `${selectedProduct?.shippingCost}${currency}`,
             })
           : t("productDetails.delivery.free"),
         date: t("productDetails.delivery.date", {
@@ -53,6 +53,7 @@ export const usePurchaseBlockHelper = () => {
       },
     };
   }, [
+    currency,
     selectedAddress?.city,
     selectedAddress?.name,
     selectedAddress?.postalCode,

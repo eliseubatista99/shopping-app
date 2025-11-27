@@ -29,4 +29,37 @@ export const translationsOrderDetails: TranslationList = {
     pt: "Forma de pagamento",
     en: "Payment Method",
   },
+  "orderDetails.address.title": {
+    pt: "Enviar para",
+    en: "Ship to",
+  },
+  "orderDetails.summary.title": {
+    pt: "Resumo do pedido",
+    en: "Order summary",
+  },
+  "orderDetails.summary.costs.products.text": {
+    pt: "Subtotal dos produtos:",
+    en: "Products subtotal:",
+  },
+  "orderDetails.summary.costs.shipping.text": {
+    pt: "Envio:",
+    en: "Shipping:",
+  },
+
+  "orderDetails.summary.costs.shipping.free": {
+    pt: "Grátis",
+    en: "Free",
+  },
+  "orderDetails.summary.costs.discounts.text": {
+    pt: "Descontos:",
+    en: "Discounts:",
+  },
+  "orderDetails.summary.costs.total.text": {
+    pt: "Total:",
+    en: "Total:",
+  },
+  "orderDetails.summary.vatIncluded": {
+    pt: "Iva incluido",
+    en: "Vat included",
+  },
 };

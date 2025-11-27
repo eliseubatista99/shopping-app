@@ -170,5 +170,6 @@ export type OrderDetailDto = OrderDto & {
   address: AddressDto;
   productsCost: number;
   shippingCost: number;
+  discounts: number;
   totalCost: number;
 };
