@@ -118,6 +118,7 @@ export type PaymentMethodDto = {
   type: PaymentMethodType;
   name: string;
   network: string;
+  image: string;
   cardNumber: string;
   expirationMonth: number;
   expirationYear: number;

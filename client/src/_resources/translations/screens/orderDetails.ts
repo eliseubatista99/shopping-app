@@ -25,4 +25,8 @@ export const translationsOrderDetails: TranslationList = {
     pt: "Escrever uma avaliação do produto",
     en: "Write a review of the product",
   },
+  "orderDetails.paymentMethod.title": {
+    pt: "Forma de pagamento",
+    en: "Payment Method",
+  },
 };

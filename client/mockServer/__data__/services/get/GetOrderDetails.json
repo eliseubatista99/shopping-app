@@ -32,6 +32,7 @@
         "type": "Card",
         "name": "Eliseu Batista",
         "network": "Mastercard",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKiJB99ZxoMB8pRe4lHhqO9UIfOBqcdeMjKg&s",
         "cardNumber": "**** **** **** 1234",
         "expirationMonth": 11,
         "expirationYear": 2025,

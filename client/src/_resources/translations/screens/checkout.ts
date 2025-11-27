@@ -17,14 +17,7 @@ export const translationsCheckout: TranslationList = {
     pt: "Valor total (inclui IVA)",
     en: "Total amount (includes VAT)",
   },
-  "checkout.payment.option.card.name": {
-    pt: "Pagar com {{name}} {{card}}",
-    en: "Pay with {{name}} {{card}}",
-  },
-  "checkout.payment.option.bank.name": {
-    pt: "Pagar com {{name}}",
-    en: "Pay with {{name}}",
-  },
+
   "checkout.payment.option.change": {
     pt: "Alterar forma de pagamento",
     en: "Change payment method",

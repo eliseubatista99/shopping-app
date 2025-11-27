@@ -1,3 +1,4 @@
+import { PaymentMethodType, type PaymentMethodDto } from "@api";
 import {
   TimeHelper,
   useTranslations,
@@ -62,9 +63,43 @@ export const useAppTranslations = () => {
     [t]
   );
 
+  const translatePaymentMethod = React.useCallback(
+    (paymentMethod: PaymentMethodDto | undefined) => {
+      if (!paymentMethod) {
+        return {
+          cardNum: "",
+          network: "",
+          methodName: "",
+        };
+      }
+
+      const cardNum = paymentMethod?.cardNumber?.replaceAll("*", "").trim();
+
+      const network = t(`global.card.network.${paymentMethod?.network}`);
+
+      const methodName =
+        paymentMethod.type === PaymentMethodType.Card
+          ? t("global.paymentMethod.card.name", {
+              name: network,
+              card: `•••• ${cardNum}`,
+            })
+          : t("global.paymentMethod.bank.name", {
+              name: paymentMethod.name,
+            });
+
+      return {
+        cardNum,
+        network,
+        methodName,
+      };
+    },
+    [t]
+  );
+
   return {
     t,
     getTranslation,
     translateDate,
+    translatePaymentMethod,
   };
 };

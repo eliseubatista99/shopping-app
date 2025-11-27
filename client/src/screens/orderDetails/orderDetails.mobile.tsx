@@ -35,6 +35,7 @@ export const OrderDetailsMobile: React.FC = () => {
           <DetailsBlock />
           <Separator />
           <ProductBlock />
+          <Separator />
           <PaymentBlock />
           <AddressBlock />
           <SummaryBlock />

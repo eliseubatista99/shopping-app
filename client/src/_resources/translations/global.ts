@@ -125,4 +125,12 @@ export const translationsGlobal: TranslationList = {
     pt: "Cancelado a {{date}}",
     en: "Cancelled in {{date}}",
   },
+  "global.paymentMethod.card.name": {
+    pt: "Pagar com {{name}} {{card}}",
+    en: "Pay with {{name}} {{card}}",
+  },
+  "global.paymentMethod.bank.name": {
+    pt: "Pagar com {{name}}",
+    en: "Pay with {{name}}",
+  },
 };
