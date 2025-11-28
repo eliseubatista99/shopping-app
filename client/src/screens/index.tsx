@@ -1,5 +1,5 @@
 export * from "./allReviews";
-export * from "./basket";
+export * from "./cart";
 export * from "./checkout";
 export * from "./explore";
 export * from "./forYou";

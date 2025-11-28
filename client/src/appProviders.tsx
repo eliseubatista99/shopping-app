@@ -5,7 +5,7 @@ import {
 } from "@eliseubatista99/react-scaffold-core";
 import {
   AllReviews,
-  Basket,
+  Cart,
   Checkout,
   Explore,
   ForYou,
@@ -51,7 +51,7 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           },
           {
             path: PAGES.CART,
-            render: <Basket />,
+            render: <Cart />,
           },
           {
             path: PAGES.EXPLORE,

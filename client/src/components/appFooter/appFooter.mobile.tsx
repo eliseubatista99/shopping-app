@@ -8,6 +8,7 @@ export const AppFooterMobile: React.FC = () => {
   const itemsJSX = items.map((i) => (
     <div
       key={i.path}
+      onClick={() => onClickItem(i)}
       style={{
         width: "30px",
         alignItems: "center",
@@ -36,7 +37,7 @@ export const AppFooterMobile: React.FC = () => {
           gap: "3px",
         }}
       >
-        <i.icon width="20px" height="20px" onClick={() => onClickItem(i)} />
+        <i.icon width="20px" height="20px" />
 
         {i.text && (
           <Typography

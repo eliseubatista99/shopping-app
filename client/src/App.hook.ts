@@ -1,6 +1,6 @@
 import { Api } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
-import { useStoreBase, useStoreBasket } from "@store";
+import { useStoreBase, useStoreCart } from "@store";
 import React from "react";
 
 export const useAppHelper = () => {
@@ -8,7 +8,7 @@ export const useAppHelper = () => {
 
   const clientInfo = useStoreBase((state) => state.client);
   const setBaseStoreState = useStoreBase((state) => state.setBaseStoreState);
-  const setBasketCount = useStoreBasket((state) => state.setBasketCount);
+  const setBasketCount = useStoreCart((state) => state.setCartCount);
 
   const { fetchClientInfo } = Api.GetClientInfo();
 

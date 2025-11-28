@@ -3,35 +3,35 @@ import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
-export interface BasketState {
+export interface CartState {
   numberOfProductsInBasket?: number;
   products?: ProductDto[];
 }
 
-const initialState: BasketState = {
+const initialState: CartState = {
   numberOfProductsInBasket: 0,
   products: [],
 };
 
-interface UseStoreOutput extends BasketState {
-  setBasketStoreState: (data: Partial<BasketState>) => void;
-  setBasketCount: (data: number) => void;
-  setItemsInBasket: (data: ProductDto[]) => void;
+interface UseStoreOutput extends CartState {
+  setCartStoreState: (data: Partial<CartState>) => void;
+  setCartCount: (data: number) => void;
+  setItemsInCart: (data: ProductDto[]) => void;
 }
 
-export const useStoreBasket = StoreHelper.createStore<UseStoreOutput>(
+export const useStoreCart = StoreHelper.createStore<UseStoreOutput>(
   (set) => ({
     ...initialState,
-    setBasketStoreState: function (data: Partial<BasketState>) {
+    setCartStoreState: function (data: Partial<CartState>) {
       set(
-        produce((state: BasketState) => ({ ...state, ...data })),
+        produce((state: CartState) => ({ ...state, ...data })),
         false,
         "setPartialState"
       );
     },
-    setBasketCount: function (data: number) {
+    setCartCount: function (data: number) {
       set(
-        produce((state: BasketState) => ({
+        produce((state: CartState) => ({
           ...state,
           numberOfProductsInBasket: data,
         })),
@@ -39,9 +39,9 @@ export const useStoreBasket = StoreHelper.createStore<UseStoreOutput>(
         "setBasketCount"
       );
     },
-    setItemsInBasket: function (data: ProductDto[]) {
+    setItemsInCart: function (data: ProductDto[]) {
       set(
-        produce((state: BasketState) => ({
+        produce((state: CartState) => ({
           ...state,
           products: data,
           numberOfProductsInBasket: data.length,

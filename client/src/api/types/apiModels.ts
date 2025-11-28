@@ -94,12 +94,8 @@ export type ProductDetailDto = ProductDto & {
   estimatedDeliveryDate: string;
 };
 
-export type CartDto = {
-  products: ProductDto[];
-};
-
 export type CartOutputDto = {
-  cart: CartDto;
+  products: ProductDto[];
 };
 
 export type AddressDto = {
