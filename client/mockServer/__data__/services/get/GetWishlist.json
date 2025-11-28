@@ -25,7 +25,8 @@
         "originalPrice": 40.59,
         "scoreCount": 345,
         "id": "2",
-        "shippingCost": 0
+        "shippingCost": 0,
+        "isWishlisted": true
       },
       {
         "name": "Mesinha cebeceira VASAGÇLE",
@@ -35,7 +36,8 @@
         "originalPrice": 40.59,
         "scoreCount": 345,
         "shippingCost": 7.99,
-        "id": "3"
+        "id": "3",
+        "isWishlisted": true
       },
       {
         "name": "Mesinha cebeceira VASAGÇLE",
@@ -45,7 +47,8 @@
         "originalPrice": 40.59,
         "scoreCount": 345,
         "shippingCost": 7.99,
-        "id": "4"
+        "id": "4",
+        "isWishlisted": true
       }
     ]
   }

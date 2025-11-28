@@ -31,6 +31,7 @@ export type ProductDto = {
   scoreCount: number;
   shippingCost?: number;
   bestSeller?: boolean;
+  isWishlisted?: boolean;
 };
 
 export type CheckoutProductDto = {

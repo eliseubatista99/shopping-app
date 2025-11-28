@@ -10,4 +10,5 @@ export * from "./orders";
 export * from "./productDetails";
 export * from "./productList";
 export * from "./splash";
+export * from "./wishlist";
 export * from "./writeReview";

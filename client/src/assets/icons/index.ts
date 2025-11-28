@@ -4,6 +4,8 @@ import Basket from "./basket.svg?react";
 import Check from "./check.svg?react";
 import Document from "./doc.svg?react";
 import Hamburger from "./hamburguer.svg?react";
+import HeartEmpty from "./heart_empty.svg?react";
+import HeartFull from "./heart_full.svg?react";
 import Home from "./home.svg?react";
 import Location from "./location.svg?react";
 import NavDown from "./navDown.svg?react";
@@ -35,4 +37,6 @@ export const Icons = {
   NavLeft,
   Trash,
   Settings,
+  HeartEmpty,
+  HeartFull,
 };

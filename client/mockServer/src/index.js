@@ -100,6 +100,19 @@ app.get(REQUEST_PREFIX, async (req, res) => {
   }
 });
 
+app.delete(REQUEST_PREFIX, async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const result = await handleApiCall(req, "services/delete");
+
+  if (!result.error) {
+    res.send(result.content);
+  } else {
+    res.status(500).send({
+      message: result.error,
+    });
+  }
+});
+
 app.listen(port, function () {
   console.log(`listening on *:${port}`);
 });

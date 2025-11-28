@@ -29,7 +29,7 @@ export const AppLayoutMobile: React.FC<AppLayoutProps> = ({
           width: "100%",
           flex: 1,
           flexDirection: "column",
-          padding: "24px",
+          padding: "24px 12px",
           ...pageStyles,
         }}
       >

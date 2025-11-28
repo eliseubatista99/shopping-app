@@ -16,6 +16,7 @@ import {
   ProductDetails,
   ProductList,
   Splash,
+  Wishlist,
   WriteReview,
 } from "@screens";
 import { useAppHelper } from "./App.hook";
@@ -83,6 +84,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.ORDER_DETAILS,
             render: <OrderDetails />,
+          },
+          {
+            path: PAGES.WISHLIST,
+            render: <Wishlist />,
           },
         ]}
       >

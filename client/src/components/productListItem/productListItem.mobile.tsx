@@ -4,6 +4,7 @@ import { AppButton } from "../appButton";
 import { CurrencyBlock } from "../currencyBlock";
 import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
+import { WishlistButton } from "../wishlistButton";
 import type { ProductListItemProps } from "./productListItem";
 import { useProductListItemHelper } from "./productListItem.hook";
 
@@ -11,7 +12,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
   props
 ) => {
   const { i18n, currency } = useProductListItemHelper();
-  const { product, onClick, onClickAddToCart } = props;
+  const { product, onClick, onClickAddToCart, onClickWishlist } = props;
 
   return (
     <div
@@ -67,7 +68,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
 
       <div
         style={{
-          width: "59%",
+          width: "65%",
           gap: "5px",
           padding: "5px 0",
           height: "fit-content",
@@ -91,15 +92,39 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
             }}
           />
         )}
-        {onClickAddToCart && (
-          <AppButton
-            text={{
-              content: i18n.buttons.addToCart,
-            }}
-            styles={{ marginTop: "auto", width: "90%" }}
-            onClick={() => onClickAddToCart?.()}
-          />
-        )}
+        <div
+          style={{
+            flexDirection: "row",
+            gap: "10px",
+            marginTop: "auto",
+            alignItems: "center",
+          }}
+        >
+          {onClickAddToCart && (
+            <AppButton
+              text={{
+                content: i18n.buttons.addToCart,
+                props: {
+                  styles: {
+                    fontSize: "16px",
+                  },
+                },
+              }}
+              styles={{ width: "90%", padding: "16px" }}
+              onClick={() => onClickAddToCart?.()}
+            />
+          )}
+          {onClickWishlist && (
+            <>
+              <WishlistButton
+                isWishlisted={product.isWishlisted}
+                onClick={() => {
+                  onClickWishlist?.();
+                }}
+              />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

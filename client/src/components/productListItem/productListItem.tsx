@@ -8,6 +8,7 @@ export interface ProductListItemProps {
   product: ProductDto;
   onClick?: () => void;
   onClickAddToCart?: () => void;
+  onClickWishlist?: () => void;
 }
 
 export const ProductListItem: React.FC<ProductListItemProps> = (props) => {

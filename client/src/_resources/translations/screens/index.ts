@@ -6,6 +6,7 @@ import { translationsHome } from "./home";
 import { translationsOrderDetails } from "./orderDetails";
 import { translationsOrders } from "./orders";
 import { translationsProductDetails } from "./productDetails";
+import { translationsWishlist } from "./wishlist";
 import { translationsWriteReview } from "./writeReview";
 
 export const translationsScreens: TranslationList = {
@@ -17,4 +18,5 @@ export const translationsScreens: TranslationList = {
   ...translationsForYou,
   ...translationsOrders,
   ...translationsOrderDetails,
+  ...translationsWishlist,
 };
