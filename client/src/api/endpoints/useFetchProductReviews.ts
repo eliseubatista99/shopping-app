@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, ReviewDto, ScoreCountDto, SortMode } from "../types";
+import type { ReviewDto, ScoreCountDto, SortMode } from "../types";
 
 export type GetProductReviewsInputDto = {
   productId: string;
@@ -22,14 +21,11 @@ export type GetProductReviewsOutputDto = {
 };
 
 export const GetProductReviews = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<GetProductReviewsOutputDto>("GetProductReviews");
 
   const fetch = useCallback(
     async (input: GetProductReviewsInputDto) => {
-      const result = await get<ApiOutput<GetProductReviewsOutputDto>>(
-        `${ApiConfigs.endpoint}/GetProductReviews`,
-        { ...input }
-      );
+      const result = await get({ ...input });
 
       return result;
     },

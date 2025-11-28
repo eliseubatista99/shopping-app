@@ -13,7 +13,7 @@ export const useOrderDetailsPageHelper = () => {
   );
   const selectedOrder = useStoreOrders((state) => state.selectedOrder);
 
-  const { fetchGetOrderDetails } = Api.useFetchGetOrderDetails();
+  const { fetchGetOrderDetails } = Api.GetOrderDetails();
 
   const isFetching = React.useRef(false);
   const cachedOrderId = React.useRef<string | undefined>(undefined);

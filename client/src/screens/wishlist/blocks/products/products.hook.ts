@@ -7,7 +7,7 @@ import React from "react";
 
 export const useProductsBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchRemoveFromWishlist } = Api.useFetchRemoveFromWishlist();
+  const { fetchRemoveFromWishlist } = Api.RemoveFromWishlist();
   const products = useStoreWishlist((state) => state.products);
   const setWishlistStoreState = useStoreWishlist(
     (state) => state.setWishlistStoreState

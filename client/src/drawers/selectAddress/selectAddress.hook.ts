@@ -11,7 +11,7 @@ export const useSelectAddressDrawerHelper = () => {
   const storeClient = useStoreBase((state) => state.client);
   const selectedAddressInStore = useStoreBase((state) => state.selectedAddress);
 
-  const { fetchUpdateAddress } = Api.useFetchUpdateDefaultAddress();
+  const { fetchUpdateAddress } = Api.UpdateDefaultAddress();
   const { t } = useAppTranslations();
   const [loading, setLoading] = React.useState<boolean>(false);
 

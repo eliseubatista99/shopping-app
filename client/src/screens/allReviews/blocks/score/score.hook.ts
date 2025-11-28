@@ -14,7 +14,7 @@ export const useScoreBlockHelper = () => {
   const { t } = useAppTranslations();
   const { reviewId } = useAppSearchParams();
   const { productId } = useAppSearchParams();
-  const { fetchGetProductReviews } = Api.useFetchGetProductReviews();
+  const { fetchGetProductReviews } = Api.GetProductReviews();
   const { showItem } = useFeedback();
 
   const setReviewsStoreState = useStoreReviews(

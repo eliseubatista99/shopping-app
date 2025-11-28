@@ -17,7 +17,7 @@ export const useAppFetch = <TOut>(endpoint: string) => {
     const token = "3789463481dasidas";
     return {
       "Content-Type": "application/json",
-      authorization: `$Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     };
   }, []);
 

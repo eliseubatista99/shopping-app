@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, DocumentDto } from "../types";
+import type { DocumentDto } from "../types";
 
 export type GetDocumentOutputDto = {
   document: DocumentDto;
@@ -12,16 +11,13 @@ export type GetDocumentInputDto = {
 };
 
 export const GetDocument = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<GetDocumentOutputDto>("GetDocument");
 
   const fetch = useCallback(
     async (input: GetDocumentInputDto) => {
-      const result = await get<ApiOutput<GetDocumentOutputDto>>(
-        `${ApiConfigs.endpoint}/GetDocument`,
-        {
-          ...input,
-        }
-      );
+      const result = await get({
+        ...input,
+      });
 
       return result;
     },

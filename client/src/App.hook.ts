@@ -10,7 +10,7 @@ export const useAppHelper = () => {
   const setBaseStoreState = useStoreBase((state) => state.setBaseStoreState);
   const setBasketCount = useStoreBasket((state) => state.setBasketCount);
 
-  const { fetchClientInfo } = Api.useFetchClientInfo();
+  const { fetchClientInfo } = Api.GetClientInfo();
 
   const initApp = React.useCallback(async () => {
     if (clientInfo) {

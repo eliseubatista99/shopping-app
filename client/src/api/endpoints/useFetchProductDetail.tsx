@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, ProductDetailDto } from "../types";
+import type { ProductDetailDto } from "../types";
 
 export type ProductDetailOutputDto = {
   product: ProductDetailDto;
@@ -12,16 +11,11 @@ export type ProductDetailInputDto = {
 };
 
 export const GetProductDetails = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<ProductDetailOutputDto>("ProductDetail");
 
   const fetch = useCallback(
     async (input: ProductDetailInputDto) => {
-      const result = await get<ApiOutput<ProductDetailOutputDto>>(
-        `${ApiConfigs.endpoint}/ProductDetail`,
-        {
-          ...input,
-        }
-      );
+      const result = await get({ ...input });
 
       return result;
     },

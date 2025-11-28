@@ -4,7 +4,7 @@ import { useStoreForYou } from "@store";
 import React from "react";
 
 export const useForYouPageHelper = () => {
-  const { fetchForYou } = Api.useFetchForYou();
+  const { fetchForYou } = Api.GetForYou();
 
   const setForYouStoreState = useStoreForYou(
     (state) => state.setForYouStoreState

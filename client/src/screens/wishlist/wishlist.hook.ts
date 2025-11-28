@@ -5,7 +5,7 @@ import React from "react";
 
 export const useWishlistPageHelper = () => {
   const [loading, setLoading] = React.useState(true);
-  const { fetchGetWishlist } = Api.useFetchGetWishlist();
+  const { fetchGetWishlist } = Api.GetWishlist();
   const setWishlistStoreState = useStoreWishlist(
     (state) => state.setWishlistStoreState
   );

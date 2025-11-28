@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, OrderDetailDto } from "../types";
+import type { OrderDetailDto } from "../types";
 
 export type GetOrderDetailsOutputDto = {
   order: OrderDetailDto;
@@ -12,16 +11,11 @@ export type GetOrderDetailsInputDto = {
 };
 
 export const GetOrderDetails = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<GetOrderDetailsOutputDto>("GetOrderDetails");
 
   const fetch = useCallback(
     async (input: GetOrderDetailsInputDto) => {
-      const result = await get<ApiOutput<GetOrderDetailsOutputDto>>(
-        `${ApiConfigs.endpoint}/GetOrderDetails`,
-        {
-          ...input,
-        }
-      );
+      const result = await get({ ...input });
 
       return result;
     },

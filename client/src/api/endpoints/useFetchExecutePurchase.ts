@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, CheckoutProductDto } from "../types";
+import type { CheckoutProductDto } from "../types";
 
 export type ExecutePurchaseInputDto = {
   products: CheckoutProductDto[];
@@ -11,16 +10,13 @@ export type ExecutePurchaseInputDto = {
 };
 
 export const ExecutePurchase = () => {
-  const { post } = useFetch();
+  const { post } = useAppFetch<void>("ExecutePurchase");
 
   const fetch = useCallback(
     async (input: ExecutePurchaseInputDto) => {
-      const result = await post<ApiOutput<void>>(
-        `${ApiConfigs.endpoint}/ExecutePurchase`,
-        {
-          ...input,
-        }
-      );
+      const result = await post({
+        ...input,
+      });
 
       return result;
     },

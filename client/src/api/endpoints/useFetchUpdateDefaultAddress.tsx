@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { AddressDto, ApiOutput } from "../types";
+import type { AddressDto } from "../types";
 
 export type UpdatedDefaultAddressInputDto = {
   addressId: string;
@@ -12,18 +11,17 @@ export type UpdatedDefaultAddressOutputDto = {
 };
 
 export const UpdateDefaultAddress = () => {
-  const { post } = useFetch();
+  const { get } = useAppFetch<UpdatedDefaultAddressOutputDto>(
+    "UpdateDefaultAddress"
+  );
 
   const fetch = useCallback(
     async (input: UpdatedDefaultAddressInputDto) => {
-      const result = await post<ApiOutput<UpdatedDefaultAddressOutputDto>>(
-        `${ApiConfigs.endpoint}/UpdateDefaultAddress`,
-        { ...input }
-      );
+      const result = await get({ ...input });
 
       return result;
     },
-    [post]
+    [get]
   );
 
   return {

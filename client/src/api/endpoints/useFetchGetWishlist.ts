@@ -1,19 +1,16 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, ProductDto } from "../types";
+import type { ProductDto } from "../types";
 
 export type GetWishlistOutputDto = {
   products: ProductDto[];
 };
 
 export const GetWishlist = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<GetWishlistOutputDto>("GetWishlist");
 
   const fetch = useCallback(async () => {
-    const result = await get<ApiOutput<GetWishlistOutputDto>>(
-      `${ApiConfigs.endpoint}/GetWishlist`
-    );
+    const result = await get({});
 
     return result;
   }, [get]);

@@ -1,7 +1,5 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput } from "../types";
 
 export type GetCheckoutInfoOutputDto = {
   shippingCost?: number;
@@ -17,16 +15,11 @@ export type GetCheckoutInfoInputDto = {
 };
 
 export const GetCheckoutInfo = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<GetCheckoutInfoOutputDto>("GetCheckoutInfo");
 
   const fetch = useCallback(
     async (input: GetCheckoutInfoInputDto) => {
-      const result = await get<ApiOutput<GetCheckoutInfoOutputDto>>(
-        `${ApiConfigs.endpoint}/GetCheckoutInfo`,
-        {
-          ...input,
-        }
-      );
+      const result = await get({ ...input });
 
       return result;
     },

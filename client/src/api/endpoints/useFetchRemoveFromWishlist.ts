@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, ProductDto } from "../types";
+import type { ProductDto } from "../types";
 
 export type RemoveFromWishlistInputDto = {
   productId: string;
@@ -12,14 +11,12 @@ export type RemoveFromWishlistOutputDto = {
 };
 
 export const RemoveFromWishlist = () => {
-  const { delete: httpDelete } = useFetch();
+  const { delete: httpDelete } =
+    useAppFetch<RemoveFromWishlistOutputDto>("RemoveFromWishlist");
 
   const fetch = useCallback(
     async (input: RemoveFromWishlistInputDto) => {
-      const result = await httpDelete<ApiOutput<RemoveFromWishlistOutputDto>>(
-        `${ApiConfigs.endpoint}/RemoveFromWishlist`,
-        { ...input }
-      );
+      const result = await httpDelete({ ...input });
 
       return result;
     },

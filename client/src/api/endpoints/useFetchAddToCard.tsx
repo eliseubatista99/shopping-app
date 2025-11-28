@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, CartDto } from "../types";
+import type { CartDto } from "../types";
 
 export type AddToCartInputDto = {
   productIds?: string[];
@@ -10,14 +9,11 @@ export type AddToCartInputDto = {
 export type AddToCartOutputDto = { cart: CartDto };
 
 export const AddToCard = () => {
-  const { post } = useFetch();
+  const { post } = useAppFetch<AddToCartOutputDto>("AddToCart");
 
   const fetch = useCallback(
     async (input: AddToCartInputDto) => {
-      const result = await post<ApiOutput<AddToCartOutputDto>>(
-        `${ApiConfigs.endpoint}/AddToCart`,
-        { ...input }
-      );
+      const result = await post({ ...input });
 
       return result;
     },

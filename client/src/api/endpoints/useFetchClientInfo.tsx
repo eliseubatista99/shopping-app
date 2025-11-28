@@ -1,7 +1,6 @@
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import { ApiConfigs } from "../configs";
-import type { ApiOutput, ClientInfoDto } from "../types";
+import type { ClientInfoDto } from "../types";
 
 export type ClientInfoOutputDto = {
   client: ClientInfoDto;
@@ -9,12 +8,10 @@ export type ClientInfoOutputDto = {
 };
 
 export const GetClientInfo = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<ClientInfoOutputDto>("GetClientInfo");
 
   const fetch = useCallback(async () => {
-    const result = await get<ApiOutput<ClientInfoOutputDto>>(
-      `${ApiConfigs.endpoint}/GetClientInfo`
-    );
+    const result = await get({});
 
     return result;
   }, [get]);

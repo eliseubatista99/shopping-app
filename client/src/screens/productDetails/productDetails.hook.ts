@@ -21,7 +21,7 @@ export const useProductDetailsPageHelper = () => {
   const setProductStoreState = useStoreProduct(
     (state) => state.setProductStoreState
   );
-  const { fetchProductDetail } = Api.useFetchProductDetail();
+  const { fetchProductDetail } = Api.GetProductDetails();
 
   const [loading, setLoading] = React.useState(true);
 

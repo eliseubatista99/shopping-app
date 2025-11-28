@@ -22,7 +22,7 @@ export const useCheckoutPageHelper = () => {
   );
   const recalculate = useStoreCheckout((state) => state.recalculate);
 
-  const { fetchGetCheckoutInfo } = Api.useFetchGetCheckoutInfo();
+  const { fetchGetCheckoutInfo } = Api.GetCheckoutInfo();
 
   const [loading, setLoading] = React.useState(true);
 

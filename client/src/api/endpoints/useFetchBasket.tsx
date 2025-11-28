@@ -1,16 +1,13 @@
 import { useCallback } from "react";
-import type { ApiOutput, CartOutputDto } from "../types";
+import type { CartOutputDto } from "../types";
 
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
-import { ApiConfigs } from "../configs";
+import { useAppFetch } from "@hooks";
 
 export const GetCart = () => {
-  const { get } = useFetch();
+  const { get } = useAppFetch<CartOutputDto>("GetCart");
 
   const fetch = useCallback(async () => {
-    const result = await get<ApiOutput<CartOutputDto>>(
-      `${ApiConfigs.endpoint}/GetCart`
-    );
+    const result = await get({});
 
     return result;
   }, [get]);

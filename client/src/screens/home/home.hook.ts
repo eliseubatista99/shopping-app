@@ -13,7 +13,7 @@ export const useHomePageHelper = () => {
   const fromSearchHistory = useStoreHome((state) => state.fromSearchHistory);
   const banners = useStoreHome((state) => state.banners);
   const { showItem } = useFeedback();
-  const { fetchProductOffers } = Api.useFetchProductOffers();
+  const { fetchProductOffers } = Api.GetProductOffers();
   const [headerTriggerVisible, setHeaderTriggerVisible] =
     React.useState<boolean>(true);
 

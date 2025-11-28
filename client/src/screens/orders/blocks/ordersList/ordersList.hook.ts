@@ -11,7 +11,7 @@ import React from "react";
 
 export const useOrdersListBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchGetClientOrders } = Api.useFetchGetClientOrders();
+  const { fetchGetClientOrders } = Api.GetClientOrders();
   const { goTo } = useNavigation();
 
   const setOrdersStoreState = useStoreOrders(
