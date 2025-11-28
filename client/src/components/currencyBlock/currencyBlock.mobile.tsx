@@ -84,7 +84,7 @@ export const CurrencyBlockMobile: React.FC<CurrencyBlockProps> = (props) => {
             ...oldValue?.textStyles,
           }}
         >
-          {`${oldValue?.value} ${currency || ""}`}
+          {`${oldValue?.value?.toFixed(2)} ${currency || ""}`}
         </Typography>
       </div>
     ),

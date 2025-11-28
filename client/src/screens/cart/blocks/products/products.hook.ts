@@ -9,14 +9,20 @@ export const useProductsBlockHelper = () => {
   const products = useStoreCart((state) => state.products);
   const [loading, setLoading] = React.useState(false);
 
+  const allProductsSelected = React.useMemo(
+    () => !((products || []).findIndex((p) => !p.isSelected) !== -1),
+    [products]
+  );
+
   const i18n = React.useMemo(() => {
     return {
       actions: {
-        selectAll: t("cart.products.actions.selectAll"),
-        unselectAll: t(t("cart.products.actions.unselectAll")),
+        selection: allProductsSelected
+          ? t("cart.products.actions.unselectAll")
+          : t("cart.products.actions.selectAll"),
       },
     };
-  }, [t]);
+  }, [allProductsSelected, t]);
 
   const onClickRemoveFromCart = React.useCallback(
     async (product: CartProductDto) => {

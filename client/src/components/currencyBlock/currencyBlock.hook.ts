@@ -20,7 +20,7 @@ export const useCurrencyBlockHelper = ({
     if (splitNumber.length < 2) {
       return { units: splitNumber[0], decimals: "00" };
     }
-    return { units: splitNumber[0], decimals: splitNumber[1] };
+    return { units: splitNumber[0], decimals: splitNumber[1].slice(0, 2) };
   };
 
   const calculatedValues = React.useMemo(() => {

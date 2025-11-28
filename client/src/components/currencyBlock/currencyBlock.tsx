@@ -1,7 +1,4 @@
-import {
-  useResponsive,
-  type TypographyProps,
-} from "@eliseubatista99/react-scaffold-core";
+import { useResponsive } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { CurrencyBlockDesktop } from "./currencyBlock.desktop";
 import { CurrencyBlockMobile } from "./currencyBlock.mobile";
@@ -21,7 +18,7 @@ export interface CurrencyBlockProps {
   };
   oldValue?: {
     value: number;
-    textStyles?: TypographyProps;
+    textStyles?: React.CSSProperties;
     position?: "horizontal" | "vertical";
   };
   currency?: string;

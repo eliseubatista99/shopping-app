@@ -3,8 +3,13 @@ import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useProductsBlockHelper } from "./products.hook";
 
 export const ProductsBlockMobile: React.FC = () => {
-  const { loading, products, onClickRemoveFromCart, onClickChangeQuantity } =
-    useProductsBlockHelper();
+  const {
+    i18n,
+    loading,
+    products,
+    onClickRemoveFromCart,
+    onClickChangeQuantity,
+  } = useProductsBlockHelper();
 
   const productsJSX = products.map((p) => (
     <CartProductListItem
@@ -23,7 +28,7 @@ export const ProductsBlockMobile: React.FC = () => {
       {loading && <AppLoader visible={loading} />}
 
       <div style={{ color: "#1b33abff" }}>
-        <Typography></Typography>
+        <Typography>{i18n.actions.selection}</Typography>
       </div>
       <div style={{ width: "100%", gap: "10px" }}>{productsJSX}</div>
     </>

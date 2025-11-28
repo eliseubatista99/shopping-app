@@ -1,5 +1,6 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
 import { translationsAllReviews } from "./allReviews";
+import { translationsCart } from "./cart";
 import { translationsCheckout } from "./checkout";
 import { translationsForYou } from "./forYou";
 import { translationsHome } from "./home";
@@ -19,4 +20,5 @@ export const translationsScreens: TranslationList = {
   ...translationsOrders,
   ...translationsOrderDetails,
   ...translationsWishlist,
+  ...translationsCart,
 };

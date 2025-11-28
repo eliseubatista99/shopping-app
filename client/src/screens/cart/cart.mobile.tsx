@@ -1,4 +1,4 @@
-import { AppLayout } from "@components";
+import { AppLayout, Separator } from "@components";
 import { ExecutionBlock, ProductsBlock } from "./blocks";
 
 export const CartMobile: React.FC = () => {
@@ -25,6 +25,7 @@ export const CartMobile: React.FC = () => {
       {/* {!loading && ( */}
       <>
         <ExecutionBlock />
+        <Separator styles={{ marginBlock: "15px" }} />
         <ProductsBlock />
       </>
       {/* )}{" "} */}
