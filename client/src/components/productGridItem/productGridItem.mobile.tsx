@@ -18,7 +18,7 @@ export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
       onClick={() => onClick?.()}
     >
       <Image
-        src={product.image}
+        src={product.image || ""}
         styles={{
           width: "100%",
           aspectRatio: "1/1",
@@ -33,10 +33,10 @@ export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
         </Typography>
         <CurrencyBlock
           value={{
-            value: product.price,
+            value: product.price || 0,
           }}
           oldValue={{
-            value: product.originalPrice,
+            value: product.originalPrice || 0,
           }}
           currency={currency}
         />

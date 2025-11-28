@@ -21,7 +21,7 @@ export const OrderListItemMobile: React.FC<OrderListItemProps> = (props) => {
     >
       <div style={{ width: "80px", background: "#ecececff" }}>
         <Image
-          src={order.product.image}
+          src={order.product.image || ""}
           styles={{
             aspectRatio: "1 / 1",
             objectFit: "contain",

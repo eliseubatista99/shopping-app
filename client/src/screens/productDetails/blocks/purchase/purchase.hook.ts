@@ -95,7 +95,7 @@ export const usePurchaseBlockHelper = () => {
 
   const onClickAddToCart = React.useCallback(
     (product: ProductDto) => {
-      addToCart([product.id]);
+      addToCart([product.id || ""]);
     },
     [addToCart]
   );

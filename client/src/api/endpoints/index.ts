@@ -11,8 +11,10 @@ import { GetWishlist } from "./useFetchGetWishlist";
 import { GetProductDetails } from "./useFetchProductDetail";
 import { GetProductOffers } from "./useFetchProductOffers";
 import { GetProductReviews } from "./useFetchProductReviews";
+import { RemoveFromCart } from "./useFetchRemoveFromCart";
 import { RemoveFromWishlist } from "./useFetchRemoveFromWishlist";
 import { SearchProducts } from "./useFetchSearchProducts";
+import { UpdateCartProduct } from "./useFetchUpdateCartProduct";
 import { UpdateDefaultAddress } from "./useFetchUpdateDefaultAddress";
 import { WriteReview } from "./useFetchWriteReview";
 
@@ -34,4 +36,6 @@ export const Api = {
   SearchProducts,
   UpdateDefaultAddress,
   WriteReview,
+  RemoveFromCart,
+  UpdateCartProduct,
 };

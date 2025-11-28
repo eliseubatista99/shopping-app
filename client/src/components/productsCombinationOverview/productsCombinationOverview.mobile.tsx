@@ -20,7 +20,7 @@ export const ProductsCombinationOverviewMobile: React.FC<
     >
       {index !== 0 && <Typography>+</Typography>}
       <Image
-        src={item.image}
+        src={item.image || ""}
         styles={{
           width: "100%",
           height: "150px",

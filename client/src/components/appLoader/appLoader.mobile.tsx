@@ -104,6 +104,10 @@ export const AppLoaderMobile: React.FC<AppLoaderProps> = ({
     <>
       {visible && (
         <div
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           style={{
             width: "100%",
             height: "100%",

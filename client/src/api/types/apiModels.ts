@@ -22,13 +22,13 @@ export enum PaymentMethodType {
 }
 
 export type ProductDto = {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  originalPrice: number;
-  score: number;
-  scoreCount: number;
+  id?: string;
+  name?: string;
+  image?: string;
+  price?: number;
+  originalPrice?: number;
+  score?: number;
+  scoreCount?: number;
   shippingCost?: number;
   bestSeller?: boolean;
   isWishlisted?: boolean;
@@ -36,6 +36,11 @@ export type ProductDto = {
 
 export type CheckoutProductDto = ProductDto & {
   quantity?: number;
+};
+
+export type CartProductDto = ProductDto & {
+  quantity?: number;
+  isSelected?: boolean;
 };
 
 export type ProductSpecificationsDto = {
@@ -92,10 +97,6 @@ export type ProductDetailDto = ProductDto & {
   comboProducts: ProductDto[];
   reviews: ReviewDto[];
   estimatedDeliveryDate: string;
-};
-
-export type CartOutputDto = {
-  products: ProductDto[];
 };
 
 export type AddressDto = {

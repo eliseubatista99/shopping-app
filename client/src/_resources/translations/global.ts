@@ -5,6 +5,10 @@ export const translationsGlobal: TranslationList = {
     pt: "Filtros",
     en: "Filters",
   },
+  "global.actions.removeFromCart.single": {
+    pt: "Remover",
+    en: "Remove",
+  },
   "global.actions.addToCart.single": {
     pt: "Adicionar ao carrinho",
     en: "Add to cart",

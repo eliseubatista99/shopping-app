@@ -1,9 +1,8 @@
-import { AppLayout, AppLoader } from "@components";
+import { AppLayout } from "@components";
 import { ExecutionBlock, ProductsBlock } from "./blocks";
-import { useCartPageHelper } from "./cart.hook";
 
 export const CartMobile: React.FC = () => {
-  const { loading } = useCartPageHelper();
+  // const { loading } = useCartPageHelper();
 
   return (
     <AppLayout
@@ -22,13 +21,13 @@ export const CartMobile: React.FC = () => {
         },
       }}
     >
-      {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-          <ExecutionBlock />
-          <ProductsBlock />
-        </>
-      )}{" "}
+      {/* {loading && <AppLoader visible={loading} />} */}
+      {/* {!loading && ( */}
+      <>
+        <ExecutionBlock />
+        <ProductsBlock />
+      </>
+      {/* )}{" "} */}
     </AppLayout>
   );
 };

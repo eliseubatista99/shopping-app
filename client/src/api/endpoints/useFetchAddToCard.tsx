@@ -1,12 +1,12 @@
 import { useAppFetch } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDto } from "../types";
+import type { CartProductDto } from "../types";
 
 export type AddToCartInputDto = {
   productIds?: string[];
 };
 
-export type AddToCartOutputDto = { products: ProductDto[] };
+export type AddToCartOutputDto = { products: CartProductDto[] };
 
 export const AddToCard = () => {
   const { post } = useAppFetch<AddToCartOutputDto>("AddToCart");

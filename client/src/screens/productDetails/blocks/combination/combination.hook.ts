@@ -35,7 +35,7 @@ export const useCombinationBlockHelper = () => {
 
   const onClickAddToCart = React.useCallback(
     (products: ProductDto[]) => {
-      addToCart(products.map((p) => p.id));
+      addToCart(products.map((p) => p.id || ""));
     },
     [addToCart]
   );

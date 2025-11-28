@@ -37,7 +37,7 @@ export const useProductsBlockHelper = () => {
 
   const onClickAddToCart = React.useCallback(
     (product: ProductDto) => {
-      addToCart([product.id]);
+      addToCart([product.id || ""]);
     },
     [addToCart]
   );
@@ -45,7 +45,9 @@ export const useProductsBlockHelper = () => {
   const onClickWishlist = React.useCallback(
     async (product: ProductDto) => {
       setLoading(true);
-      const res = await fetchRemoveFromWishlist({ productId: product.id });
+      const res = await fetchRemoveFromWishlist({
+        productId: product.id || "",
+      });
 
       if (res.metadata.success) {
         setWishlistStoreState({ products: res.data.updatedWishlist });

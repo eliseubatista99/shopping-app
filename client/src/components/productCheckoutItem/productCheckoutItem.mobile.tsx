@@ -23,7 +23,7 @@ export const ProductCheckoutItemMobile: React.FC<ProductCheckoutItemProps> = (
     >
       <div style={{ width: "100%", flexDirection: "row", gap: "5px" }}>
         <Image
-          src={product.image}
+          src={product.image || ""}
           styles={{
             height: "60px",
             width: "60px",
@@ -35,10 +35,10 @@ export const ProductCheckoutItemMobile: React.FC<ProductCheckoutItemProps> = (
           <Typography>{product.name}</Typography>
           <CurrencyBlock
             value={{
-              value: product.price,
+              value: product.price || 0,
             }}
             oldValue={{
-              value: product.originalPrice,
+              value: product.originalPrice || 0,
               position: "vertical",
             }}
             currency={currency}

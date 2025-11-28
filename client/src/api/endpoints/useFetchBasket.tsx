@@ -1,10 +1,12 @@
 import { useCallback } from "react";
-import type { CartOutputDto } from "../types";
+import type { CartProductDto } from "../types";
 
 import { useAppFetch } from "@hooks";
 
+export type GetCartOutputDto = { products: CartProductDto[] };
+
 export const GetCart = () => {
-  const { get } = useAppFetch<CartOutputDto>("GetCart");
+  const { get } = useAppFetch<GetCartOutputDto>("GetCart");
 
   const fetch = useCallback(async () => {
     const result = await get({});

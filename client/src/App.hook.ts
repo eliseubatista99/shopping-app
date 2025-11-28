@@ -1,5 +1,6 @@
 import { Api } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { useCart } from "@hooks";
 import { useStoreBase, useStoreCart } from "@store";
 import React from "react";
 
@@ -8,9 +9,10 @@ export const useAppHelper = () => {
 
   const clientInfo = useStoreBase((state) => state.client);
   const setBaseStoreState = useStoreBase((state) => state.setBaseStoreState);
-  const setBasketCount = useStoreCart((state) => state.setCartCount);
+  const setItemsInCart = useStoreCart((state) => state.setItemsInCart);
 
   const { fetchClientInfo } = Api.GetClientInfo();
+  const { getCart } = useCart();
 
   const initApp = React.useCallback(async () => {
     if (clientInfo) {
@@ -18,22 +20,26 @@ export const useAppHelper = () => {
       return;
     }
 
-    const res = await fetchClientInfo();
-    setBaseStoreState({
-      client: res.data.client,
+    const [clientInfoRes, cartRes] = await Promise.all([
+      fetchClientInfo(),
+      getCart(),
+    ]);
 
-      selectedAddress: (res.data.client.addresses || []).find(
+    setBaseStoreState({
+      client: clientInfoRes.data.client,
+
+      selectedAddress: (clientInfoRes.data.client.addresses || []).find(
         (a) => a.isDefault
       ),
-      selectedPaymentMethod: (res.data.client.paymentMethods || []).find(
-        (p) => p.isDefault
-      ),
+      selectedPaymentMethod: (
+        clientInfoRes.data.client.paymentMethods || []
+      ).find((p) => p.isDefault),
     });
 
-    setBasketCount(res.data.itemsInCart);
+    setItemsInCart(cartRes.products);
 
     setIsAppInitialized(true);
-  }, [clientInfo, fetchClientInfo, setBaseStoreState, setBasketCount]);
+  }, [clientInfo, fetchClientInfo, getCart, setBaseStoreState, setItemsInCart]);
 
   useDidMount(() => {
     initApp();

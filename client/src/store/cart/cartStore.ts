@@ -1,11 +1,11 @@
-import type { ProductDto } from "@api";
+import type { CartProductDto, ProductDto } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
 export interface CartState {
   numberOfProductsInBasket?: number;
-  products?: ProductDto[];
+  products?: CartProductDto[];
 }
 
 const initialState: CartState = {

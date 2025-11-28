@@ -28,7 +28,7 @@ export const useProductsCombinationOverviewHelper = ({
     let res = 0;
 
     items.forEach((i) => {
-      res += i.price;
+      res += i.price || 0;
     });
     return res;
   }, [items]);

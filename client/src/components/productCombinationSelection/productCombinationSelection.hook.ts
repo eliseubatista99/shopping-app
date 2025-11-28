@@ -31,7 +31,7 @@ export const useProductsCombinationSelectionHelper = ({
     let res = 0;
 
     selectedProducts.forEach((i) => {
-      res += i.price;
+      res += i.price || 0;
     });
     return res;
   }, [selectedProducts]);

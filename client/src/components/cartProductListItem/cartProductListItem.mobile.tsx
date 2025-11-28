@@ -2,17 +2,17 @@ import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductQuantityChip } from "../productQuantityChip";
 import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
-import { WishlistButton } from "../wishlistButton";
-import type { ProductListItemProps } from "./productListItem";
-import { useProductListItemHelper } from "./productListItem.hook";
+import type { CartProductListItemProps } from "./cartProductListItem";
+import { useCartProductListItemHelper } from "./cartProductListItem.hook";
 
-export const ProductListItemMobile: React.FC<ProductListItemProps> = (
+export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
   props
 ) => {
-  const { i18n, currency } = useProductListItemHelper();
-  const { product, onClick, onClickAddToCart, onClickWishlist } = props;
+  const { i18n, currency } = useCartProductListItemHelper();
+  const { product, onClick, onChangeQuantity, onClickRemoveCart } = props;
 
   return (
     <div
@@ -100,29 +100,30 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
             alignItems: "center",
           }}
         >
-          {onClickAddToCart && (
+          {onChangeQuantity && (
+            <ProductQuantityChip
+              value={product.quantity || 0}
+              onChange={onChangeQuantity}
+            />
+          )}
+          {onClickRemoveCart && (
             <AppButton
               text={{
-                content: i18n.buttons.addToCart,
+                content: i18n.buttons.removeFromCart,
                 props: {
                   styles: {
-                    fontSize: "16px",
+                    fontSize: "14px",
                   },
                 },
               }}
-              styles={{ width: "90%", padding: "16px" }}
-              onClick={() => onClickAddToCart?.()}
+              styles={{
+                border: "1px solid #878787ff",
+                background: "#ffffff",
+                padding: "14px 20px",
+                width: "fit-content",
+              }}
+              onClick={() => onClickRemoveCart?.()}
             />
-          )}
-          {onClickWishlist && (
-            <>
-              <WishlistButton
-                isWishlisted={product.isWishlisted}
-                onClick={() => {
-                  onClickWishlist?.();
-                }}
-              />
-            </>
           )}
         </div>
       </div>

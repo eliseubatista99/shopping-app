@@ -39,13 +39,13 @@ export const ProductsComboItemMobile: React.FC<ProductsComboItemProps> = (
         <Typography styles={{ fontSize: "14px", fontWeight: 600 }}>
           {product.name}
         </Typography>
-        <ProductScore score={product.score} starsSize={14} />
+        <ProductScore score={product.score || 0} starsSize={14} />
         <CurrencyBlock
           value={{
-            value: product.price,
+            value: product.price || 0,
           }}
           oldValue={{
-            value: product.originalPrice,
+            value: product.originalPrice || 0,
             position: "vertical",
           }}
           currency={currency}

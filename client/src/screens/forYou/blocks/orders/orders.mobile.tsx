@@ -20,7 +20,7 @@ export const OrdersBlockMobile: React.FC = () => {
       >
         <Image
           key={o.id}
-          src={o.product.image}
+          src={o.product.image || ""}
           onClick={() => onClickOrder(o)}
           styles={{
             objectFit: "contain",
