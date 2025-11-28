@@ -11,7 +11,7 @@ export type GetOrderDetailsInputDto = {
   orderId: string;
 };
 
-export const useFetchGetOrderDetails = () => {
+export const GetOrderDetails = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(

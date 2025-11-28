@@ -11,7 +11,7 @@ export type RemoveFromWishlistOutputDto = {
   updatedWishlist?: ProductDto[];
 };
 
-export const useFetchRemoveFromWishlist = () => {
+export const RemoveFromWishlist = () => {
   const { delete: httpDelete } = useFetch();
 
   const fetch = useCallback(

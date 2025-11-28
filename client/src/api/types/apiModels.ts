@@ -34,8 +34,7 @@ export type ProductDto = {
   isWishlisted?: boolean;
 };
 
-export type CheckoutProductDto = {
-  productId?: string;
+export type CheckoutProductDto = ProductDto & {
   quantity?: number;
 };
 

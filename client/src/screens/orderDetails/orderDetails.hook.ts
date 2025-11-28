@@ -1,9 +1,9 @@
+import { Api } from "@api";
 import { PAGES } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams } from "@hooks";
 import { useStoreOrders } from "@store";
 import React, { useEffect } from "react";
-import { useFetchGetOrderDetails } from "src/api/endpoints/useFetchGetOrderDetails";
 
 export const useOrderDetailsPageHelper = () => {
   const { orderId } = useAppSearchParams();
@@ -13,7 +13,7 @@ export const useOrderDetailsPageHelper = () => {
   );
   const selectedOrder = useStoreOrders((state) => state.selectedOrder);
 
-  const { fetchGetOrderDetails } = useFetchGetOrderDetails();
+  const { fetchGetOrderDetails } = Api.useFetchGetOrderDetails();
 
   const isFetching = React.useRef(false);
   const cachedOrderId = React.useRef<string | undefined>(undefined);

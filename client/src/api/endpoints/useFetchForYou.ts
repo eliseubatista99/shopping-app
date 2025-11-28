@@ -12,7 +12,7 @@ export type ForYouOutputDto = {
   review: ReviewDto;
 };
 
-export const useFetchForYou = () => {
+export const GetForYou = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(async () => {

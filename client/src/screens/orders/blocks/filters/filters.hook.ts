@@ -11,10 +11,6 @@ export const useFiltersBlockHelper = () => {
   const setStoreOrdersState = useStoreOrders(
     (state) => state.setOrdersStoreState
   );
-  const textFilter = useStoreOrders((state) => state.textFilter);
-  const statusFilter = useStoreOrders((state) => state.statusFilter);
-  const startDateFilter = useStoreOrders((state) => state.startDateFilter);
-  const endDateFilter = useStoreOrders((state) => state.endDateFilter);
 
   const [isSearchFocused, setIsSearchFocused] = React.useState(false);
 

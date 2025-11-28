@@ -11,7 +11,7 @@ export type ProductDetailInputDto = {
   productId: string;
 };
 
-export const useFetchProductDetail = () => {
+export const GetProductDetails = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(

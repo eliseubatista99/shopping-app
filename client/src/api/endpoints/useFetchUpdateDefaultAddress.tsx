@@ -11,7 +11,7 @@ export type UpdatedDefaultAddressOutputDto = {
   updatedAddresses?: AddressDto[];
 };
 
-export const useFetchUpdateDefaultAddress = () => {
+export const UpdateDefaultAddress = () => {
   const { post } = useFetch();
 
   const fetch = useCallback(

@@ -1,9 +1,9 @@
-import { useFetchAddToCart } from "@api";
+import { Api } from "@api";
 import { useStoreBasket } from "@store";
 import { useCallback } from "react";
 
 export const useCart = () => {
-  const { fetchAddToCart } = useFetchAddToCart();
+  const { fetchAddToCart } = Api.useFetchAddToCart();
   const itemsInBasket = useStoreBasket((state) => state.products);
   const numberOfProductsInBasket = useStoreBasket(
     (state) => state.numberOfProductsInBasket

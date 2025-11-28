@@ -1,3 +1,4 @@
+export * from "./useAppFetch";
 export * from "./useAppSearchParams";
 export * from "./useAppTranslations";
 export * from "./useCart";

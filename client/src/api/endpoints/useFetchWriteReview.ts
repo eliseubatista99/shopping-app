@@ -11,7 +11,7 @@ export type WriteReviewInputDto = {
   description: string;
 };
 
-export const useFetchWriteReview = () => {
+export const WriteReview = () => {
   const { post } = useFetch();
 
   const fetch = useCallback(

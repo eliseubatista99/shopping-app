@@ -10,7 +10,7 @@ export type ExecutePurchaseInputDto = {
   wantsFastShipping: boolean;
 };
 
-export const useFetchExecutePurchase = () => {
+export const ExecutePurchase = () => {
   const { post } = useFetch();
 
   const fetch = useCallback(

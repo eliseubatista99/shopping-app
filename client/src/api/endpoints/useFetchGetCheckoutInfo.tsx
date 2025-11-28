@@ -16,7 +16,7 @@ export type GetCheckoutInfoInputDto = {
   paymentMethodId: string;
 };
 
-export const useFetchGetCheckoutInfo = () => {
+export const GetCheckoutInfo = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(

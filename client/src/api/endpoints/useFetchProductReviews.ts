@@ -21,7 +21,7 @@ export type GetProductReviewsOutputDto = {
   hasMorePages: boolean;
 };
 
-export const useFetchGetProductReviews = () => {
+export const GetProductReviews = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(

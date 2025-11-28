@@ -1,4 +1,4 @@
-import { useFetchWriteReview } from "@api";
+import { Api } from "@api";
 import { INPUTS, PAGES, SEARCH_PARAMS, TOASTS } from "@constants";
 import {
   useFeedback,
@@ -19,7 +19,7 @@ export const useReviewBlockHelper = () => {
   const { t } = useAppTranslations();
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const client = useStoreBase((state) => state.client);
-  const { fetchWriteReview } = useFetchWriteReview();
+  const { fetchWriteReview } = Api.useFetchWriteReview();
   const { showItem } = useFeedback();
   const { goTo } = useNavigation();
 

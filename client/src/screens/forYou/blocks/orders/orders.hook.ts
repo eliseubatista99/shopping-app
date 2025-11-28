@@ -39,6 +39,6 @@ export const useOrdersBlockHelper = () => {
     i18n,
     onClickSeeAll,
     onClickOrder,
-    orders,
+    orders: orders || [],
   };
 };

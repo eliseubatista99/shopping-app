@@ -1,9 +1,4 @@
-import {
-  OrderStatus,
-  SortMode,
-  useFetchGetClientOrders,
-  type OrderDto,
-} from "@api";
+import { Api, OrderStatus, SortMode, type OrderDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import {
   TimeHelper,
@@ -16,7 +11,7 @@ import React from "react";
 
 export const useOrdersListBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchGetClientOrders } = useFetchGetClientOrders();
+  const { fetchGetClientOrders } = Api.useFetchGetClientOrders();
   const { goTo } = useNavigation();
 
   const setOrdersStoreState = useStoreOrders(

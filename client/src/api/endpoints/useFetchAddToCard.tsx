@@ -9,7 +9,7 @@ export type AddToCartInputDto = {
 
 export type AddToCartOutputDto = { cart: CartDto };
 
-export const useFetchAddToCart = () => {
+export const AddToCard = () => {
   const { post } = useFetch();
 
   const fetch = useCallback(

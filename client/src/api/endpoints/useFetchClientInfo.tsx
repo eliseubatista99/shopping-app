@@ -8,7 +8,7 @@ export type ClientInfoOutputDto = {
   itemsInCart: number;
 };
 
-export const useFetchClientInfo = () => {
+export const GetClientInfo = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(async () => {

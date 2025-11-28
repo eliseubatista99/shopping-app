@@ -11,7 +11,7 @@ export type GetDocumentInputDto = {
   id: string;
 };
 
-export const useFetchGetDocument = () => {
+export const GetDocument = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(

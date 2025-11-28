@@ -1,4 +1,4 @@
-import { useFetchProductOffers } from "@api";
+import { Api } from "@api";
 import { DRAWERS } from "@constants";
 import { useDidMount, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -13,7 +13,7 @@ export const useHomePageHelper = () => {
   const fromSearchHistory = useStoreHome((state) => state.fromSearchHistory);
   const banners = useStoreHome((state) => state.banners);
   const { showItem } = useFeedback();
-  const { fetchProductOffers } = useFetchProductOffers();
+  const { fetchProductOffers } = Api.useFetchProductOffers();
   const [headerTriggerVisible, setHeaderTriggerVisible] =
     React.useState<boolean>(true);
 

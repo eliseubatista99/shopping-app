@@ -1,14 +1,10 @@
-import type { ProductDto } from "@api";
+import type { CheckoutProductDto } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
-type ProductWithQuantity = ProductDto & {
-  quantity?: number;
-};
-
 export interface CheckoutState {
-  products?: ProductWithQuantity[];
+  products?: CheckoutProductDto[];
   productCost?: number;
   shippingCost?: number;
   totalCost?: number;
@@ -23,7 +19,7 @@ const initialState: CheckoutState = {};
 interface UseStoreOutput extends CheckoutState {
   setCheckoutStoreState: (data: Partial<CheckoutState>) => void;
   changeProductQuantity: (
-    product: ProductWithQuantity,
+    product: CheckoutProductDto,
     quantity: number
   ) => void;
   recalculate: () => void;
@@ -40,7 +36,7 @@ export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
       );
     },
     changeProductQuantity: function (
-      product: ProductWithQuantity,
+      product: CheckoutProductDto,
       quantity: number
     ) {
       set(
@@ -65,7 +61,7 @@ export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
           let productCost = 0;
 
           (state.products || []).forEach((p) => {
-            productCost += p.price * (p.quantity || 1);
+            productCost += (p.price || 0) * (p.quantity || 1);
           });
 
           let totalCost = productCost + (state.shippingCost || 0);

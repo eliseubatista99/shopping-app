@@ -11,7 +11,7 @@ export type SearchProductsOutputDto = {
   products?: ProductDto[];
 };
 
-export const useFetchSearchProducts = () => {
+export const SearchProducts = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(

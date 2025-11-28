@@ -20,7 +20,7 @@ export type GetClientOrdersInputDto = {
   filterByEndDate?: string;
 };
 
-export const useFetchGetClientOrders = () => {
+export const GetClientOrders = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(

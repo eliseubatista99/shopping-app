@@ -1,11 +1,11 @@
-import { useFetchExecutePurchase } from "@api";
+import { Api } from "@api";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreCheckout } from "@store";
 import React from "react";
 
 export const useExecutionBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchExecutePurchaseInfo } = useFetchExecutePurchase();
+  const { fetchExecutePurchaseInfo } = Api.useFetchExecutePurchase();
   const wantsFastestOption = useStoreCheckout(
     (state) => state.wantsFastestOption
   );
@@ -23,10 +23,7 @@ export const useExecutionBlockHelper = () => {
 
   const onClickBuyNow = React.useCallback(async () => {
     const res = await fetchExecutePurchaseInfo({
-      products: products.map((p) => ({
-        productId: p.id,
-        quantity: p.quantity,
-      })),
+      products: products || [],
       addressId: selectedAddress?.id || "",
       paymentMethodId: selectedPaymentMethod?.id || "",
       wantsFastShipping: wantsFastestOption || false,

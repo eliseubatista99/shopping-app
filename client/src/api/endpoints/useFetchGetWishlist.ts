@@ -7,7 +7,7 @@ export type GetWishlistOutputDto = {
   products: ProductDto[];
 };
 
-export const useFetchGetWishlist = () => {
+export const GetWishlist = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(async () => {

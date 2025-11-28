@@ -1,4 +1,4 @@
-import { useFetchRemoveFromWishlist, type ProductDto } from "@api";
+import { Api, type ProductDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useCart } from "@hooks";
@@ -7,7 +7,7 @@ import React from "react";
 
 export const useProductsBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchRemoveFromWishlist } = useFetchRemoveFromWishlist();
+  const { fetchRemoveFromWishlist } = Api.useFetchRemoveFromWishlist();
   const products = useStoreWishlist((state) => state.products);
   const setWishlistStoreState = useStoreWishlist(
     (state) => state.setWishlistStoreState

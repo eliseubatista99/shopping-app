@@ -1,8 +1,4 @@
-import {
-  useFetchUpdateDefaultAddress,
-  type AddressDto,
-  type ClientInfoDto,
-} from "@api";
+import { Api, type AddressDto, type ClientInfoDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -15,7 +11,7 @@ export const useSelectAddressDrawerHelper = () => {
   const storeClient = useStoreBase((state) => state.client);
   const selectedAddressInStore = useStoreBase((state) => state.selectedAddress);
 
-  const { fetchUpdateAddress } = useFetchUpdateDefaultAddress();
+  const { fetchUpdateAddress } = Api.useFetchUpdateDefaultAddress();
   const { t } = useAppTranslations();
   const [loading, setLoading] = React.useState<boolean>(false);
 

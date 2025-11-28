@@ -10,7 +10,7 @@ export type ProductOffersOutputDto = {
   banners: ProductOfferGroupDto[];
 };
 
-export const useFetchProductOffers = () => {
+export const GetProductOffers = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(async () => {

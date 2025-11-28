@@ -1,4 +1,4 @@
-import { useFetchGetCheckoutInfo } from "@api";
+import { Api } from "@api";
 import { PAGES } from "@constants";
 import {
   useDidMount,
@@ -22,7 +22,7 @@ export const useCheckoutPageHelper = () => {
   );
   const recalculate = useStoreCheckout((state) => state.recalculate);
 
-  const { fetchGetCheckoutInfo } = useFetchGetCheckoutInfo();
+  const { fetchGetCheckoutInfo } = Api.useFetchGetCheckoutInfo();
 
   const [loading, setLoading] = React.useState(true);
 

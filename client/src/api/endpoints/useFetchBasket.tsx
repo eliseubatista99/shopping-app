@@ -4,12 +4,12 @@ import type { ApiOutput, CartOutputDto } from "../types";
 import { useFetch } from "@eliseubatista99/react-scaffold-core";
 import { ApiConfigs } from "../configs";
 
-export const useFetchCart = () => {
+export const GetCart = () => {
   const { get } = useFetch();
 
   const fetch = useCallback(async () => {
     const result = await get<ApiOutput<CartOutputDto>>(
-      `${ApiConfigs.endpoint}/GetBasket`
+      `${ApiConfigs.endpoint}/GetCart`
     );
 
     return result;

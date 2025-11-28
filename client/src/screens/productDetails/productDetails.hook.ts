@@ -1,4 +1,4 @@
-import { useFetchProductDetail } from "@api";
+import { Api } from "@api";
 import { PAGES } from "@constants";
 import {
   useDidMount,
@@ -21,7 +21,7 @@ export const useProductDetailsPageHelper = () => {
   const setProductStoreState = useStoreProduct(
     (state) => state.setProductStoreState
   );
-  const { fetchProductDetail } = useFetchProductDetail();
+  const { fetchProductDetail } = Api.useFetchProductDetail();
 
   const [loading, setLoading] = React.useState(true);
 

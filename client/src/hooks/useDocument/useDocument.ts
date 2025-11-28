@@ -1,9 +1,9 @@
-import { useFetchGetDocument } from "@api";
+import { Api } from "@api";
 import { usePdfGenerator } from "@eliseubatista99/react-scaffold-pdf";
 import { useCallback } from "react";
 
 export const useDocument = () => {
-  const { fetchGetDocument } = useFetchGetDocument();
+  const { fetchGetDocument } = Api.useFetchGetDocument();
   const { downloadPdf, generateBase64Pdf } = usePdfGenerator();
 
   const readDocument = useCallback(

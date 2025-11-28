@@ -1,4 +1,4 @@
-import { useFetchSearchProducts, type ProductDto } from "@api";
+import { Api, type ProductDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useDidMount,
@@ -9,7 +9,7 @@ import React from "react";
 
 export const useProductListPageHelper = () => {
   const isFetching = React.useRef(false);
-  const { fetchSearchProducts } = useFetchSearchProducts();
+  const { fetchSearchProducts } = Api.useFetchSearchProducts();
   const { goTo } = useNavigation();
   const searchParams = useAppSearchParams();
   const { addToCart } = useCart();

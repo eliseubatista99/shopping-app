@@ -1,10 +1,10 @@
-import { useFetchForYou } from "@api";
+import { Api } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { useStoreForYou } from "@store";
 import React from "react";
 
 export const useForYouPageHelper = () => {
-  const { fetchForYou } = useFetchForYou();
+  const { fetchForYou } = Api.useFetchForYou();
 
   const setForYouStoreState = useStoreForYou(
     (state) => state.setForYouStoreState

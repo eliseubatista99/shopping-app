@@ -1,4 +1,4 @@
-import { SortMode, useFetchGetProductReviews } from "@api";
+import { Api, SortMode } from "@api";
 import { DRAWERS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   NumberHelper,
@@ -14,7 +14,7 @@ export const useScoreBlockHelper = () => {
   const { t } = useAppTranslations();
   const { reviewId } = useAppSearchParams();
   const { productId } = useAppSearchParams();
-  const { fetchGetProductReviews } = useFetchGetProductReviews();
+  const { fetchGetProductReviews } = Api.useFetchGetProductReviews();
   const { showItem } = useFeedback();
 
   const setReviewsStoreState = useStoreReviews(

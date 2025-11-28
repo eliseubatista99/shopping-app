@@ -1,4 +1,4 @@
-import { useFetchClientInfo } from "@api";
+import { Api } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { useStoreBase, useStoreBasket } from "@store";
 import React from "react";
@@ -10,7 +10,7 @@ export const useAppHelper = () => {
   const setBaseStoreState = useStoreBase((state) => state.setBaseStoreState);
   const setBasketCount = useStoreBasket((state) => state.setBasketCount);
 
-  const { fetchClientInfo } = useFetchClientInfo();
+  const { fetchClientInfo } = Api.useFetchClientInfo();
 
   const initApp = React.useCallback(async () => {
     if (clientInfo) {
