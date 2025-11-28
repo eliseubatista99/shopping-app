@@ -34,9 +34,9 @@ export const useAppFooterHelper = () => {
         text: `${numberOfProductsInBasket}`,
       },
       {
-        path: PAGES.EXPLORE,
+        path: PAGES.SETTINGS,
         icon: Assets.Icons.Hamburger,
-        selected: currentPath === PAGES.EXPLORE,
+        selected: currentPath === PAGES.SETTINGS,
       },
     ];
   }, [currentPath, numberOfProductsInBasket]);

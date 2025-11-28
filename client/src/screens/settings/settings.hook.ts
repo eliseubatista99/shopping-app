@@ -2,14 +2,15 @@ import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import React from "react";
 
-export const useExplorePageHelper = () => {
+export const useSettingsPageHelper = () => {
   const { t } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
     return {
-      chips: {
-        address: t("home.chips.address"),
-      },
+      title: t("settings.title"),
+      signIn: t("settings.signIn"),
+      paymentMethods: t("settings.paymentMethods"),
+      addresses: t("settings.addresses"),
     };
   }, [t]);
 

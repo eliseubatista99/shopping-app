@@ -1,7 +1,6 @@
 export * from "./allReviews";
 export * from "./cart";
 export * from "./checkout";
-export * from "./explore";
 export * from "./forYou";
 export * from "./home";
 export * from "./notFound404";
@@ -9,6 +8,7 @@ export * from "./orderDetails";
 export * from "./orders";
 export * from "./productDetails";
 export * from "./productList";
+export * from "./settings";
 export * from "./splash";
 export * from "./wishlist";
 export * from "./writeReview";

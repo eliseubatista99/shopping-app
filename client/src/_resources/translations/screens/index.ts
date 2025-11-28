@@ -7,6 +7,7 @@ import { translationsHome } from "./home";
 import { translationsOrderDetails } from "./orderDetails";
 import { translationsOrders } from "./orders";
 import { translationsProductDetails } from "./productDetails";
+import { translationsSettings } from "./settings";
 import { translationsWishlist } from "./wishlist";
 import { translationsWriteReview } from "./writeReview";
 
@@ -21,4 +22,5 @@ export const translationsScreens: TranslationList = {
   ...translationsOrderDetails,
   ...translationsWishlist,
   ...translationsCart,
+  ...translationsSettings,
 };

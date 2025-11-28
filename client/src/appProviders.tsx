@@ -7,7 +7,6 @@ import {
   AllReviews,
   Cart,
   Checkout,
-  Explore,
   ForYou,
   Home,
   NotFound404,
@@ -15,6 +14,7 @@ import {
   Orders,
   ProductDetails,
   ProductList,
+  Settings,
   Splash,
   Wishlist,
   WriteReview,
@@ -54,8 +54,8 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
             render: <Cart />,
           },
           {
-            path: PAGES.EXPLORE,
-            render: <Explore />,
+            path: PAGES.SETTINGS,
+            render: <Settings />,
           },
           {
             path: PAGES.PRODUCT_LIST,
