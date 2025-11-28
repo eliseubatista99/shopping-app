@@ -9,6 +9,8 @@ export const ProductsBlockMobile: React.FC = () => {
     products,
     onClickRemoveFromCart,
     onClickChangeQuantity,
+    onToggleProductSelection,
+    onClickToggleAll,
   } = useProductsBlockHelper();
 
   const productsJSX = products.map((p) => (
@@ -20,6 +22,7 @@ export const ProductsBlockMobile: React.FC = () => {
       }}
       onClickRemoveCart={() => onClickRemoveFromCart(p)}
       onChangeQuantity={(value: number) => onClickChangeQuantity(p, value)}
+      onClickSelected={(value) => onToggleProductSelection(p, value)}
     />
   ));
 
@@ -27,10 +30,14 @@ export const ProductsBlockMobile: React.FC = () => {
     <>
       {loading && <AppLoader visible={loading} />}
 
-      <div style={{ color: "#1b33abff" }}>
-        <Typography>{i18n.actions.selection}</Typography>
+      <div onClick={() => onClickToggleAll()} style={{ color: "#1b33abff" }}>
+        <Typography styles={{ fontSize: "18px" }}>
+          {i18n.actions.selection}
+        </Typography>
       </div>
-      <div style={{ width: "100%", gap: "10px" }}>{productsJSX}</div>
+      <div style={{ width: "100%", gap: "10px", marginTop: "15px" }}>
+        {productsJSX}
+      </div>
     </>
   );
 };

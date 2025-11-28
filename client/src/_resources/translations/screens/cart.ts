@@ -13,4 +13,12 @@ export const translationsCart: TranslationList = {
     pt: "Finalizar compra ({{count}} produtos)",
     en: "Buy now ({{count}} products)",
   },
+  "cart.products.actions.unselectAll": {
+    pt: "Desselecionar todos",
+    en: "Unselect all",
+  },
+  "cart.products.actions.selectAll": {
+    pt: "Selecionar todos",
+    en: "Select all",
+  },
 };

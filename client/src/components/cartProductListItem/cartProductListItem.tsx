@@ -7,6 +7,7 @@ import { CartProductListItemMobile } from "./cartProductListItem.mobile";
 export interface CartProductListItemProps {
   product: CartProductDto;
   onClick?: () => void;
+  onClickSelected?: (value: boolean) => void;
   onChangeQuantity?: (value: number) => void;
   onClickRemoveCart?: () => void;
   styles?: React.CSSProperties;

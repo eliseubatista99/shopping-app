@@ -5,7 +5,8 @@ import React from "react";
 
 export const useProductsBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { changeProductsQuantity, removeFromCart } = useCart();
+  const { changeProductsQuantity, removeFromCart, setProductsSelectedState } =
+    useCart();
   const products = useStoreCart((state) => state.products);
   const [loading, setLoading] = React.useState(false);
 
@@ -33,6 +34,29 @@ export const useProductsBlockHelper = () => {
     [removeFromCart]
   );
 
+  const onToggleProductSelection = React.useCallback(
+    async (product: CartProductDto, value: boolean) => {
+      setLoading(true);
+      await setProductsSelectedState([
+        { productId: product.id || "", selected: value },
+      ]);
+      setLoading(false);
+    },
+    [setProductsSelectedState]
+  );
+
+  const onClickToggleAll = React.useCallback(async () => {
+    setLoading(true);
+    await setProductsSelectedState(
+      (products || []).map((p) => ({
+        productId: p.id || "",
+        selected: !allProductsSelected,
+      }))
+    );
+
+    setLoading(false);
+  }, [allProductsSelected, products, setProductsSelectedState]);
+
   const onClickChangeQuantity = React.useCallback(
     async (product: CartProductDto, value: number) => {
       if (value > 0) {
@@ -54,5 +78,7 @@ export const useProductsBlockHelper = () => {
     products: products || [],
     onClickChangeQuantity,
     onClickRemoveFromCart,
+    onToggleProductSelection,
+    onClickToggleAll,
   };
 };

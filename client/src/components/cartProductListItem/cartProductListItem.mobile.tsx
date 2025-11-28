@@ -1,6 +1,7 @@
 import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
+import { AppCheckbox } from "../appCheckbox";
 import { CurrencyBlock } from "../currencyBlock";
 import { ProductQuantityChip } from "../productQuantityChip";
 import { ProductScore } from "../productScore";
@@ -12,7 +13,13 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
   props
 ) => {
   const { i18n, currency } = useCartProductListItemHelper();
-  const { product, onClick, onChangeQuantity, onClickRemoveCart } = props;
+  const {
+    product,
+    onClick,
+    onChangeQuantity,
+    onClickRemoveCart,
+    onClickSelected,
+  } = props;
 
   return (
     <div
@@ -47,23 +54,21 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
             mixBlendMode: "multiply",
           }}
         />
-        {product.bestSeller && (
-          <Tag
-            text={i18n.tags.bestSeller}
-            textProps={{
-              styles: {
-                color: "#ffffff",
-              },
-            }}
-            styles={{
-              position: "absolute",
-              top: "5px",
-              left: "5px",
-              background: "#8a0000ff",
-              zIndex: 1,
-            }}
+        <div
+          style={{
+            flexDirection: "row",
+            zIndex: 1,
+            position: "absolute",
+            top: "5px",
+            left: "5px",
+            gap: "10px",
+          }}
+        >
+          <AppCheckbox
+            checked={product.isSelected || false}
+            onToggle={(value) => onClickSelected?.(value)}
           />
-        )}
+        </div>
       </div>
 
       <div
