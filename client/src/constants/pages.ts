@@ -13,4 +13,5 @@ export enum PAGES {
   ORDERS = "/orders",
   ORDER_DETAILS = "/order-details",
   WISHLIST = "/wishlist",
+  SIGN_IN_AND_SECURITY = "/signInAndSecurity",
 }

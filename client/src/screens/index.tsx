@@ -9,6 +9,7 @@ export * from "./orders";
 export * from "./productDetails";
 export * from "./productList";
 export * from "./settings";
+export * from "./signInAndSecurity";
 export * from "./splash";
 export * from "./wishlist";
 export * from "./writeReview";

@@ -15,6 +15,7 @@ import {
   ProductDetails,
   ProductList,
   Settings,
+  SignInAndSecurity,
   Splash,
   Wishlist,
   WriteReview,
@@ -88,6 +89,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.WISHLIST,
             render: <Wishlist />,
+          },
+          {
+            path: PAGES.SIGN_IN_AND_SECURITY,
+            render: <SignInAndSecurity />,
           },
         ]}
       >

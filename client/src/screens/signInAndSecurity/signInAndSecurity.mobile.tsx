@@ -1,12 +1,11 @@
-import { Assets } from "@assets";
-import { AppLayout } from "@components";
+import { AppButton, AppLayout } from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
-import { useSettingsPageHelper } from "./settings.hook";
+import { useSignInAndSecurityPageHelper } from "./signInAndSecurity.hook";
 
-export const SettingsMobile: React.FC = () => {
-  const { i18n, options } = useSettingsPageHelper();
+export const SignInAndSecurityMobile: React.FC = () => {
+  const { i18n, options } = useSignInAndSecurityPageHelper();
 
-  const optionsJSX = options.map((o) => (
+  const optionsJSX = options.map((o, index) => (
     <div
       key={o.id}
       onClick={() => o.onClick()}
@@ -16,12 +15,32 @@ export const SettingsMobile: React.FC = () => {
         justifyContent: "space-between",
         alignItems: "center",
         border: "1px solid #a0a0a0ff",
-        borderRadius: "10px",
+        borderRadius:
+          index === 0
+            ? "10px 10px 0 0"
+            : index === options.length - 1
+            ? "0 0 10px 10px"
+            : "0",
         padding: "12px 15px",
       }}
     >
       <Typography styles={{ fontSize: "18px" }}>{o.text}</Typography>
-      <Assets.Icons.NavRight width="20px" height="20px" />
+      <AppButton
+        text={{
+          content: o.cta,
+          props: {
+            styles: {
+              fontSize: "16px",
+            },
+          },
+        }}
+        styles={{
+          width: "fit-content",
+          background: "#ffffff",
+          border: "1px solid #414141ff",
+          paddingBlock: "18px",
+        }}
+      />
     </div>
   ));
 
@@ -45,7 +64,7 @@ export const SettingsMobile: React.FC = () => {
       <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
         {i18n.title}
       </Typography>
-      <div style={{ width: "100%", gap: "10px", marginTop: "10px" }}>
+      <div style={{ width: "100%", gap: "0px", marginTop: "10px" }}>
         {optionsJSX}
       </div>
     </AppLayout>
