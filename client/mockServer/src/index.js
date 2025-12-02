@@ -1,9 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const Configs = require("./configs");
+const JwtConfigs = require("./jwt");
 const express = require("express");
 const bodyParser = require("body-parser");
 // const dotenv = require('dotenv');
@@ -28,10 +24,7 @@ app.use(express.static("__html__"));
 
 const DATA_PATH = "../__data__";
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
-const handleApiCall = async (req, folderPath) => {
-  const file = `${req.params.file}.json`;
-
+const handleApiCall = async (file, folderPath) => {
   console.log(`\n\REQUEST [in]: \n`, {
     file,
     path: path.join(__dirname, DATA_PATH, folderPath),
@@ -44,6 +37,10 @@ const handleApiCall = async (req, folderPath) => {
     );
 
     let timeout = Configs.SERVICES_DELAY_IN_MILLISECONDS;
+
+    if (file === "GetClientInfo.json") {
+      timeout = Configs.GET_CLIENT_INFO_DELAY_IN_MILLISECONDS;
+    }
 
     if (file === "GetClientInfo.json") {
       timeout = Configs.GET_CLIENT_INFO_DELAY_IN_MILLISECONDS;
@@ -75,16 +72,37 @@ const handleApiCall = async (req, folderPath) => {
 };
 
 app.post(REQUEST_PREFIX, async (req, res) => {
+  const file = `${req.params.file}.json`;
+
+  if (
+    file === "Authenticate.json" ||
+    file === "CreateAccount.json" ||
+    file === "RefreshAuthentication.json"
+  ) {
+    res.cookie("refreshToken", "example-refresh-token-zau-zau", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      path: "/RefreshAuthentication", // refresh only on this route
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+    });
+  }
+
   res.setHeader("Content-Type", "application/json");
-  res.cookie("refreshToken", "example-refresh-token-zau-zau", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "lax",
-    path: "/RefreshAuthentication", // refresh only on this route
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
+
+  const result = await handleApiCall(file, "services/post");
+
+  console.log("ZAU1", {
+    file,
   });
 
-  const result = await handleApiCall(req, "services/post");
+  if (
+    file === "Authenticate.json" ||
+    file === "CreateAccount.json" ||
+    file === "RefreshAuthentication.json"
+  ) {
+    result.content.data.token = JwtConfigs.token;
+  }
 
   if (!result.error) {
     res.send(result.content);
@@ -96,8 +114,10 @@ app.post(REQUEST_PREFIX, async (req, res) => {
 });
 
 app.get(REQUEST_PREFIX, async (req, res) => {
+  const file = `${req.params.file}.json`;
+
   res.setHeader("Content-Type", "application/json");
-  const result = await handleApiCall(req, "services/get");
+  const result = await handleApiCall(file, "services/get");
 
   if (!result.error) {
     res.send(result.content);
@@ -109,8 +129,10 @@ app.get(REQUEST_PREFIX, async (req, res) => {
 });
 
 app.delete(REQUEST_PREFIX, async (req, res) => {
+  const file = `${req.params.file}.json`;
+
   res.setHeader("Content-Type", "application/json");
-  const result = await handleApiCall(req, "services/delete");
+  const result = await handleApiCall(file, "services/delete");
 
   if (!result.error) {
     res.send(result.content);

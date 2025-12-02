@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
 import type { DocumentDto } from "../types";
 
@@ -11,7 +11,7 @@ export type GetDocumentInputDto = {
 };
 
 export const GetDocument = () => {
-  const { get } = useAppFetch<GetDocumentOutputDto>({
+  const { get } = useFetchNoAuth<GetDocumentOutputDto>({
     endpoint: "GetDocument",
   });
 

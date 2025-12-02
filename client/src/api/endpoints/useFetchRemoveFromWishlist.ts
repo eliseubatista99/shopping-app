@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { ProductDto } from "../types";
 
@@ -11,9 +11,8 @@ export type RemoveFromWishlistOutputDto = {
 };
 
 export const RemoveFromWishlist = () => {
-  const { delete: httpDelete } = useAppFetch<RemoveFromWishlistOutputDto>({
+  const { delete: httpDelete } = useFetchWithAuth<RemoveFromWishlistOutputDto>({
     endpoint: "RemoveFromWishlist",
-    secure: true,
   });
 
   const fetch = useCallback(

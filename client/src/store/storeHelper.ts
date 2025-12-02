@@ -19,7 +19,10 @@ export class StoreHelper {
         persist((set, get, api) => innerStore(set, get, api), {
           name: storeName,
           storage,
-        })
+        }),
+        {
+          name: storeName,
+        }
       )
     );
 }

@@ -1,11 +1,9 @@
-import { Api } from "@api";
 import { INPUTS, PAGES } from "@constants";
 import {
   useNavigation,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
-import { ApiHelper } from "@helpers";
-import { useAppTranslations } from "@hooks";
+import { useAppTranslations, useAuthentication } from "@hooks";
 import React from "react";
 
 type SignInForm = {
@@ -18,7 +16,7 @@ type SignInForm = {
 export const useSignInPageHelper = () => {
   const { t } = useAppTranslations();
   const { goTo } = useNavigation();
-  const { fetchCreateAccount } = Api.CreateAccount();
+  const { createAccount } = useAuthentication();
 
   const [form, setForm] = React.useState<SignInForm>({});
   const [loading, setLoading] = React.useState(true);
@@ -88,8 +86,6 @@ export const useSignInPageHelper = () => {
         passwordConfirmationError,
       }));
 
-      console.log("ZAU", { data });
-
       if (
         !nameError &&
         !emailError &&
@@ -97,28 +93,26 @@ export const useSignInPageHelper = () => {
         !passwordError &&
         !passwordConfirmationError
       ) {
-        const res = await fetchCreateAccount({
+        const res = await createAccount({
           name,
           password,
           phoneNumber,
           email,
         });
 
-        if (res.metadata.success) {
-          ApiHelper.setToken(res.data.token);
+        if (res.success) {
           goTo({
             path: PAGES.HOME,
             addToHistory: false,
           });
         }
-        console.log("ZAU", { res });
         // submitReview(score, title, description);
       }
 
       setLoading(false);
     },
     [
-      fetchCreateAccount,
+      createAccount,
       goTo,
       i18n.email.error,
       i18n.name.error,

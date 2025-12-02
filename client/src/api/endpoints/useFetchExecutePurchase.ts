@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { CheckoutProductDto } from "../types";
 
@@ -10,9 +10,8 @@ export type ExecutePurchaseInputDto = {
 };
 
 export const ExecutePurchase = () => {
-  const { post } = useAppFetch<void>({
+  const { post } = useFetchWithAuth<void>({
     endpoint: "ExecutePurchase",
-    secure: true,
   });
 
   const fetch = useCallback(

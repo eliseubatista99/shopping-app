@@ -71,8 +71,6 @@ export const useReviewBlockHelper = () => {
         addToHistory: false,
       });
     }
-
-    console.log("SUBMIT", { score, title, description, res });
   };
 
   const onSubmit = (data: FormFieldOutputData[]) => {

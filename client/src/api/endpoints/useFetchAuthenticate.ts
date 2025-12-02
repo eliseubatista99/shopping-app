@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
 
 export type AuthenticateInputDto = {
@@ -10,7 +10,7 @@ export type AuthenticateInputDto = {
 export type AuthenticateOutputDto = { token: string };
 
 export const Authenticate = () => {
-  const { post } = useAppFetch<AuthenticateOutputDto>({
+  const { post } = useFetchNoAuth<AuthenticateOutputDto>({
     endpoint: "Authenticate",
   });
 

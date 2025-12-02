@@ -43,8 +43,6 @@ export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
     }
   }, [back, goBack]);
 
-  console.log("ZAU", { history });
-
   return {
     i18n,
     handleSearchBarSubmit,

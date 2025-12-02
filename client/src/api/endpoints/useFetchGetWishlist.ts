@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { ProductDto } from "../types";
 
@@ -7,9 +7,8 @@ export type GetWishlistOutputDto = {
 };
 
 export const GetWishlist = () => {
-  const { get } = useAppFetch<GetWishlistOutputDto>({
+  const { get } = useFetchWithAuth<GetWishlistOutputDto>({
     endpoint: "GetWishlist",
-    secure: true,
   });
 
   const fetch = useCallback(async () => {

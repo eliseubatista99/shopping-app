@@ -84,14 +84,6 @@ export const useOrderFiltersDrawerHelper = () => {
     threeMonthsAgoMonthStartDate.setDate(1);
     threeMonthsAgoMonthStartDate.setMonth(thisMonthStartDate.getMonth() - 3);
 
-    console.log({
-      startDateFilter,
-      endDateFilter,
-      today,
-      thisMonthStartDate,
-      threeMonthsAgoMonthStartDate,
-    });
-
     const result = [
       {
         startDate: thisMonthStartDate,

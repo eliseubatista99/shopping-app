@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
 import type { ProductDto, ProductOfferGroupDto } from "../types";
 
@@ -10,7 +10,7 @@ export type ProductOffersOutputDto = {
 };
 
 export const GetProductOffers = () => {
-  const { get } = useAppFetch<ProductOffersOutputDto>({
+  const { get } = useFetchNoAuth<ProductOffersOutputDto>({
     endpoint: "ProductOffers",
   });
 

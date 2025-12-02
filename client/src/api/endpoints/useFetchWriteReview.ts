@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 
 export type WriteReviewInputDto = {
@@ -10,9 +10,8 @@ export type WriteReviewInputDto = {
 };
 
 export const WriteReview = () => {
-  const { post } = useAppFetch<void>({
+  const { post } = useFetchWithAuth<void>({
     endpoint: "WriteReview",
-    secure: true,
   });
 
   const fetch = useCallback(

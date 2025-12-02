@@ -37,8 +37,6 @@ export const useExecutionBlockHelper = () => {
     let total = 0;
 
     selectedProducts.forEach((p) => {
-      console.log("ZAU", { p });
-
       total += (p.price || 0) + (p.shippingCost || 0);
       totalOriginal += (p.originalPrice || 0) + (p.shippingCost || 0);
     });

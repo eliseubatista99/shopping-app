@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { OrderDto, OrderStatus, SortMode } from "../types";
 
@@ -20,9 +20,8 @@ export type GetClientOrdersInputDto = {
 };
 
 export const GetClientOrders = () => {
-  const { get } = useAppFetch<GetClientOrdersOutputDto>({
+  const { get } = useFetchWithAuth<GetClientOrdersOutputDto>({
     endpoint: "GetClientOrders",
-    secure: true,
   });
 
   const fetch = useCallback(

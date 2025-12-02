@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
 import type { ReviewDto, ScoreCountDto, SortMode } from "../types";
 
@@ -21,7 +21,7 @@ export type GetProductReviewsOutputDto = {
 };
 
 export const GetProductReviews = () => {
-  const { get } = useAppFetch<GetProductReviewsOutputDto>({
+  const { get } = useFetchNoAuth<GetProductReviewsOutputDto>({
     endpoint: "GetProductReviews",
   });
 

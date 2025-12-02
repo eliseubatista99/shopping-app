@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { CartProductDto } from "../types";
 
@@ -9,9 +9,8 @@ export type RemoveFromCartInputDto = {
 export type RemoveFromCartOutputDto = { products: CartProductDto[] };
 
 export const RemoveFromCart = () => {
-  const { delete: httpDelete } = useAppFetch<RemoveFromCartOutputDto>({
+  const { delete: httpDelete } = useFetchWithAuth<RemoveFromCartOutputDto>({
     endpoint: "RemoveFromCart",
-    secure: true,
   });
 
   const fetch = useCallback(

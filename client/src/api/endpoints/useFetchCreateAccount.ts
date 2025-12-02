@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
 
 export type CreateAccountInputDto = {
@@ -11,7 +11,7 @@ export type CreateAccountInputDto = {
 export type CreateAccountOutputDto = { token: string };
 
 export const CreateAccount = () => {
-  const { post } = useAppFetch<CreateAccountOutputDto>({
+  const { post } = useFetchNoAuth<CreateAccountOutputDto>({
     endpoint: "CreateAccount",
   });
 

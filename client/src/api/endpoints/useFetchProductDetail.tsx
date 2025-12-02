@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
 import type { ProductDetailDto } from "../types";
 
@@ -11,7 +11,7 @@ export type ProductDetailInputDto = {
 };
 
 export const GetProductDetails = () => {
-  const { get } = useAppFetch<ProductDetailOutputDto>({
+  const { get } = useFetchNoAuth<ProductDetailOutputDto>({
     endpoint: "ProductDetail",
   });
 

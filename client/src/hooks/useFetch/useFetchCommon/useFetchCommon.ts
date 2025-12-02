@@ -1,36 +1,29 @@
 import { ApiConfigs, type ApiOutput } from "@api";
 import { useFetch } from "@eliseubatista99/react-scaffold-core";
-import { ApiHelper } from "@helpers";
 import { useCallback, useMemo } from "react";
 
-type AppFetchInput = {
+type FetchCommonInput = {
   endpoint: string;
   secure?: boolean;
 };
 
 type TIn = Record<string, unknown>;
 
-export const useAppFetch = <TOut>({ endpoint, secure }: AppFetchInput) => {
+export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
   const { get: httpGet, post: httpPost, delete: httpDelete } = useFetch();
 
   const commonHeaders = useMemo(() => {
-    let headers: HeadersInit = {
+    return {
       "Content-Type": "application/json",
     };
-
-    if (secure) {
-      headers = { ...headers, authorization: `Bearer ${ApiHelper.getToken()}` };
-    }
-
-    return headers;
-  }, [secure]);
+  }, []);
 
   const runGet = useCallback(
-    async (input: TIn) => {
+    async (input: TIn, headers?: HeadersInit) => {
       const result = await httpGet<ApiOutput<TOut>>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        { ...commonHeaders }
+        { ...commonHeaders, ...headers }
       );
 
       return result;
@@ -52,11 +45,11 @@ export const useAppFetch = <TOut>({ endpoint, secure }: AppFetchInput) => {
   );
 
   const runDelete = useCallback(
-    async (input: TIn) => {
+    async (input: TIn, headers?: HeadersInit) => {
       const result = await httpDelete<ApiOutput<TOut>>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        { ...commonHeaders }
+        { ...commonHeaders, ...headers }
       );
 
       return result;

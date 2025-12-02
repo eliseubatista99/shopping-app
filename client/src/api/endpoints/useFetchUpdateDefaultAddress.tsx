@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { AddressDto } from "../types";
 
@@ -11,9 +11,8 @@ export type UpdatedDefaultAddressOutputDto = {
 };
 
 export const UpdateDefaultAddress = () => {
-  const { get } = useAppFetch<UpdatedDefaultAddressOutputDto>({
+  const { get } = useFetchWithAuth<UpdatedDefaultAddressOutputDto>({
     endpoint: "UpdateDefaultAddress",
-    secure: true,
   });
 
   const fetch = useCallback(

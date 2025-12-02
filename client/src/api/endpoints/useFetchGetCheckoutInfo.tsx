@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 
 export type GetCheckoutInfoOutputDto = {
@@ -15,9 +15,8 @@ export type GetCheckoutInfoInputDto = {
 };
 
 export const GetCheckoutInfo = () => {
-  const { get } = useAppFetch<GetCheckoutInfoOutputDto>({
+  const { get } = useFetchWithAuth<GetCheckoutInfoOutputDto>({
     endpoint: "GetCheckoutInfo",
-    secure: true,
   });
 
   const fetch = useCallback(

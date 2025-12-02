@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { CartProductDto } from "../types";
 
@@ -9,9 +9,8 @@ export type AddToCartInputDto = {
 export type AddToCartOutputDto = { products: CartProductDto[] };
 
 export const AddToCard = () => {
-  const { post } = useAppFetch<AddToCartOutputDto>({
+  const { post } = useFetchWithAuth<AddToCartOutputDto>({
     endpoint: "AddToCart",
-    secure: true,
   });
 
   const fetch = useCallback(

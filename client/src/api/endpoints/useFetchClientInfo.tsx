@@ -1,4 +1,4 @@
-import { useAppFetch } from "@hooks";
+import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type { ClientInfoDto } from "../types";
 
@@ -8,9 +8,8 @@ export type ClientInfoOutputDto = {
 };
 
 export const GetClientInfo = () => {
-  const { get } = useAppFetch<ClientInfoOutputDto>({
+  const { get } = useFetchWithAuth<ClientInfoOutputDto>({
     endpoint: "GetClientInfo",
-    secure: true,
   });
 
   const fetch = useCallback(async () => {
