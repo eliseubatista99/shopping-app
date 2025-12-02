@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.Database.Contracts;
 using ShoppingApp.Database.Models;
