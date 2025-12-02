@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShoppingServer.Database\ShoppingServer.Database.csproj" />
+    <ProjectReference Include="..\ShoppingServer.BusinessLogic\ShoppingServer.BusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>

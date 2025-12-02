@@ -1,6 +1,5 @@
 using ShoppingApp.Database.Contracts;
 using ShoppingApp.Database.Providers;
-using ShoppingServer.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
