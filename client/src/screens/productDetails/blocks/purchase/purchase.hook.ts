@@ -5,10 +5,18 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useCart } from "@hooks";
-import { useStoreBase, useStoreCheckout, useStoreProduct } from "@store";
+import {
+  useStoreAuthentication,
+  useStoreBase,
+  useStoreCheckout,
+  useStoreProduct,
+} from "@store";
 import React from "react";
 
 export const usePurchaseBlockHelper = () => {
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const setCheckoutStoreState = useStoreCheckout(
     (state) => state.setCheckoutStoreState
@@ -95,25 +103,34 @@ export const usePurchaseBlockHelper = () => {
 
   const onClickAddToCart = React.useCallback(
     (product: ProductDto) => {
-      addToCart([product.id || ""]);
+      if (isAuthenticated) {
+        addToCart([product.id || ""]);
+      } else {
+        goTo({ path: PAGES.LOG_IN });
+      }
     },
-    [addToCart]
+    [addToCart, goTo, isAuthenticated]
   );
 
   const onClickBuyNow = React.useCallback(() => {
     if (selectedProduct) {
-      setCheckoutStoreState({
-        products: [{ ...selectedProduct, quantity }],
-      });
-      goTo({
-        path: PAGES.CHECKOUT,
-        addToHistory: true,
-      });
+      if (isAuthenticated) {
+        setCheckoutStoreState({
+          products: [{ ...selectedProduct, quantity }],
+        });
+        goTo({
+          path: PAGES.CHECKOUT,
+          addToHistory: true,
+        });
+      } else {
+        goTo({ path: PAGES.LOG_IN });
+      }
     }
-  }, [goTo, quantity, selectedProduct, setCheckoutStoreState]);
+  }, [goTo, isAuthenticated, quantity, selectedProduct, setCheckoutStoreState]);
 
   return {
     i18n,
+    isAuthenticated,
     product: selectedProduct,
     currency,
     calculatedPrices,

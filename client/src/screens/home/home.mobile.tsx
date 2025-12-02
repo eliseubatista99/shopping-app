@@ -9,10 +9,14 @@ import { ConditionOffersBlock } from "./blocks/conditionOffers";
 import { useHomePageHelper } from "./home.hook";
 
 export const HomeMobile: React.FC = () => {
-  const { i18n, groupsList, banners, header, onAddressChipClicked } =
-    useHomePageHelper();
-
-  console.log("BANNERS", banners);
+  const {
+    i18n,
+    isAuthenticated,
+    groupsList,
+    banners,
+    header,
+    onAddressChipClicked,
+  } = useHomePageHelper();
 
   const groupsJSX = groupsList.map((g) => (
     <OffersGroupBlock key={g.title} title={g.title} products={g.products} />
@@ -56,17 +60,19 @@ export const HomeMobile: React.FC = () => {
     >
       <HeaderTriggerBlock onTrigger={header.handleHeaderTrigger} />
       <div style={{ width: "100%", zIndex: 1 }}>
-        <Chip
-          text={i18n.chips.address}
-          onClick={() => onAddressChipClicked()}
-          leftContent={<Assets.Icons.Location width="10px" height="10px" />}
-          rightContent={<Assets.Icons.NavDown width="15px" height="15px" />}
-          styles={{
-            padding: "3px 10px",
-            background: "#ffffff70",
-            marginTop: "8px",
-          }}
-        />
+        {isAuthenticated && (
+          <Chip
+            text={i18n.chips.address}
+            onClick={() => onAddressChipClicked()}
+            leftContent={<Assets.Icons.Location width="10px" height="10px" />}
+            rightContent={<Assets.Icons.NavDown width="15px" height="15px" />}
+            styles={{
+              padding: "3px 10px",
+              background: "#ffffff70",
+              marginTop: "8px",
+            }}
+          />
+        )}
         {banners?.length && (
           <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
         )}

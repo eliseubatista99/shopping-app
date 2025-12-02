@@ -5,10 +5,13 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useCart } from "@hooks";
+import { useStoreAuthentication } from "@store";
 import React from "react";
 
 export const useProductListPageHelper = () => {
-  const isFetching = React.useRef(false);
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const { fetchSearchProducts } = Api.SearchProducts();
   const { goTo } = useNavigation();
   const searchParams = useAppSearchParams();
@@ -16,6 +19,7 @@ export const useProductListPageHelper = () => {
 
   const [loading, setLoading] = React.useState(true);
   const [products, setProducts] = React.useState<ProductDto[]>([]);
+  const isFetching = React.useRef(false);
 
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
@@ -31,9 +35,13 @@ export const useProductListPageHelper = () => {
 
   const onClickAddToCart = React.useCallback(
     (product: ProductDto) => {
-      addToCart([product.id || ""]);
+      if (isAuthenticated) {
+        addToCart([product.id || ""]);
+      } else {
+        goTo({ path: PAGES.LOG_IN });
+      }
     },
-    [addToCart]
+    [addToCart, goTo, isAuthenticated]
   );
 
   const searchProducts = React.useCallback(async () => {

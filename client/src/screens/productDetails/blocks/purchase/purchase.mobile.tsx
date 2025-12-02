@@ -11,6 +11,7 @@ import { usePurchaseBlockHelper } from "./purchase.hook";
 export const PurchaseBlockMobile: React.FC = () => {
   const {
     i18n,
+    isAuthenticated,
     product,
     calculatedPrices,
     currency,
@@ -92,26 +93,28 @@ export const PurchaseBlockMobile: React.FC = () => {
               {i18n.delivery.date}
             </Typography>
 
-            <div
-              onClick={() => onClickAddress()}
-              style={{
-                width: "100%",
-                flexDirection: "row",
-                marginTop: "22px",
-                gap: "6px",
-                cursor: "pointer",
-              }}
-            >
-              <Assets.Icons.Location width="16px" height="16px" />
-              <Typography
-                styles={{
-                  flex: 1,
-                  color: "#001b74ff",
+            {isAuthenticated && (
+              <div
+                onClick={() => onClickAddress()}
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  marginTop: "22px",
+                  gap: "6px",
+                  cursor: "pointer",
                 }}
               >
-                {i18n.delivery.address}
-              </Typography>
-            </div>
+                <Assets.Icons.Location width="16px" height="16px" />
+                <Typography
+                  styles={{
+                    flex: 1,
+                    color: "#001b74ff",
+                  }}
+                >
+                  {i18n.delivery.address}
+                </Typography>
+              </div>
+            )}
 
             <QuantityField
               currentQuantity={quantity.current}

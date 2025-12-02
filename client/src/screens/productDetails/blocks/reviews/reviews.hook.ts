@@ -5,7 +5,11 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreProduct, useStoreReviews } from "@store";
+import {
+  useStoreAuthentication,
+  useStoreProduct,
+  useStoreReviews,
+} from "@store";
 import React from "react";
 
 type ReviewWithExpansion = ReviewDto & {
@@ -13,6 +17,9 @@ type ReviewWithExpansion = ReviewDto & {
 };
 
 export const useReviewsBlockHelper = () => {
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const setReviewsStoreState = useStoreReviews(
     (state) => state.setReviewsStoreState
@@ -61,21 +68,28 @@ export const useReviewsBlockHelper = () => {
   }, []);
 
   const onClickCreateReview = React.useCallback(() => {
-    setReviewsStoreState({
-      productId: selectedProduct?.id,
-      productName: selectedProduct?.name,
-      productImage: selectedProduct?.image,
-    });
+    if (isAuthenticated) {
+      setReviewsStoreState({
+        productId: selectedProduct?.id,
+        productName: selectedProduct?.name,
+        productImage: selectedProduct?.image,
+      });
 
-    //Go to review screen
-    goTo({
-      path: PAGES.WRITE_REVIEW,
-      params: {
-        [SEARCH_PARAMS.PRODUCT_ID]: selectedProduct?.id,
-      },
-    });
+      //Go to review screen
+      goTo({
+        path: PAGES.WRITE_REVIEW,
+        params: {
+          [SEARCH_PARAMS.PRODUCT_ID]: selectedProduct?.id,
+        },
+      });
+    } else {
+      goTo({
+        path: PAGES.LOG_IN,
+      });
+    }
   }, [
     goTo,
+    isAuthenticated,
     selectedProduct?.id,
     selectedProduct?.image,
     selectedProduct?.name,

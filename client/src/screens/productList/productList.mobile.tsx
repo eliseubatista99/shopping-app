@@ -19,6 +19,7 @@ export const ProductListMobile: React.FC = () => {
       pageStyles={{
         padding: 0,
       }}
+      appFooter
       appHeader={{
         back: {
           visible: true,

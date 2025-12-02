@@ -7,10 +7,13 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useAppTranslations } from "@hooks";
-import { useStoreReviews } from "@store";
+import { useStoreAuthentication, useStoreReviews } from "@store";
 import React from "react";
 
 export const useScoreBlockHelper = () => {
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const { t } = useAppTranslations();
   const { reviewId } = useAppSearchParams();
   const { productId } = useAppSearchParams();
@@ -62,14 +65,20 @@ export const useScoreBlockHelper = () => {
   }, [reviewsCount, scoreCounts]);
 
   const onClickCreateReview = React.useCallback(() => {
-    //Go to review screen
-    goTo({
-      path: PAGES.WRITE_REVIEW,
-      params: {
-        [SEARCH_PARAMS.PRODUCT_ID]: productId?.value,
-      },
-    });
-  }, [goTo, productId?.value]);
+    if (isAuthenticated) {
+      //Go to review screen
+      goTo({
+        path: PAGES.WRITE_REVIEW,
+        params: {
+          [SEARCH_PARAMS.PRODUCT_ID]: productId?.value,
+        },
+      });
+    } else {
+      goTo({
+        path: PAGES.LOG_IN,
+      });
+    }
+  }, [goTo, isAuthenticated, productId?.value]);
 
   const onClickFilters = React.useCallback(() => {
     showItem(DRAWERS.REVIEW_FILTERS);

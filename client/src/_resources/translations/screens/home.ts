@@ -13,10 +13,6 @@ export const translationsHome: TranslationList = {
     pt: "Continuar onde parou",
     en: "Continue where you left off",
   },
-  "home.group.home.title": {
-    pt: "Continuar a comprar na categoria Casa",
-    en: "Continue shopping in the Home category.",
-  },
   "home.conditionOffers.lessThan10.title": {
     pt: "Ofertas por menos de 10€",
     en: "Offers for less than 10€",
@@ -40,5 +36,17 @@ export const translationsHome: TranslationList = {
   "home.conditionOffers.noTransportationFees.image": {
     pt: "https://m.media-amazon.com/images/I/61dv6XKzDeL._SX3000_.jpg",
     en: "https://m.media-amazon.com/images/I/61dv6XKzDeL._SX3000_.jpg",
+  },
+  "home.group.home.title": {
+    pt: "Casa",
+    en: "Home",
+  },
+  "home.group.eletronics.title": {
+    pt: "Equipamentos eletrónicos",
+    en: "Eletronics",
+  },
+  "home.group.garden.title": {
+    pt: "Jardim",
+    en: "Garden",
   },
 };

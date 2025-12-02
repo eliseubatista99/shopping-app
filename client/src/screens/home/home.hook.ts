@@ -2,10 +2,13 @@ import { Api } from "@api";
 import { DRAWERS } from "@constants";
 import { useDidMount, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase, useStoreHome } from "@store";
+import { useStoreAuthentication, useStoreBase, useStoreHome } from "@store";
 import React from "react";
 
 export const useHomePageHelper = () => {
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const selectedAddress = useStoreBase((state) => state.selectedAddress);
   const setStoreHomeState = useStoreHome((state) => state.setHomeStoreState);
   const groups = useStoreHome((state) => state.groups);
@@ -88,6 +91,7 @@ export const useHomePageHelper = () => {
 
   return {
     i18n,
+    isAuthenticated,
     groupsList,
     banners: banners,
     header: {

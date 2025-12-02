@@ -2,10 +2,13 @@ import { type ProductDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useCart } from "@hooks";
-import { useStoreProduct } from "@store";
+import { useStoreAuthentication, useStoreProduct } from "@store";
 import React from "react";
 
 export const useCombinationBlockHelper = () => {
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const { addToCart } = useCart();
   const { goTo } = useNavigation();
@@ -35,9 +38,13 @@ export const useCombinationBlockHelper = () => {
 
   const onClickAddToCart = React.useCallback(
     (products: ProductDto[]) => {
-      addToCart(products.map((p) => p.id || ""));
+      if (isAuthenticated) {
+        addToCart(products.map((p) => p.id || ""));
+      } else {
+        goTo({ path: PAGES.LOG_IN });
+      }
     },
-    [addToCart]
+    [addToCart, goTo, isAuthenticated]
   );
 
   const onClickProduct = React.useCallback(
