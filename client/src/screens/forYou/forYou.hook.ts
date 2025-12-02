@@ -1,11 +1,14 @@
 import { Api } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
-import { useStoreForYou } from "@store";
+import { useStoreAuthentication, useStoreForYou } from "@store";
 import React from "react";
 
 export const useForYouPageHelper = () => {
   const { fetchForYou } = Api.GetForYou();
 
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const setForYouStoreState = useStoreForYou(
     (state) => state.setForYouStoreState
   );
@@ -38,5 +41,6 @@ export const useForYouPageHelper = () => {
 
   return {
     loading,
+    isAuthenticated,
   };
 };

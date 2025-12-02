@@ -9,6 +9,7 @@ import {
   Checkout,
   ForYou,
   Home,
+  LogIn,
   NotFound404,
   OrderDetails,
   Orders,
@@ -17,6 +18,7 @@ import {
   Settings,
   SignIn,
   SignInAndSecurity,
+  SignUpOrLogin,
   Splash,
   Wishlist,
   WriteReview,
@@ -44,8 +46,16 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
             render: <NotFound404 />,
           },
           {
-            path: PAGES.SIGN_IN,
+            path: PAGES.SIGN_UP_OR_LOGIN,
+            render: <SignUpOrLogin />,
+          },
+          {
+            path: PAGES.SIGN_UP,
             render: <SignIn />,
+          },
+          {
+            path: PAGES.LOG_IN,
+            render: <LogIn />,
           },
           {
             path: PAGES.HOME,

@@ -1,10 +1,10 @@
 import { AppButton, AppInputField, AppLayout } from "@components";
 import { INPUTS } from "@constants";
 import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
-import { useSignInPageHelper } from "./signIn.hook";
+import { useLogInPageHelper } from "./logIn.hook";
 
-export const SignInMobile: React.FC = () => {
-  const { i18n, form, onClickSubmit } = useSignInPageHelper();
+export const LogInMobile: React.FC = () => {
+  const { i18n, form, onClickSubmit } = useLogInPageHelper();
 
   const errorMessage = (error?: string) => {
     if (!error) {
@@ -28,38 +28,14 @@ export const SignInMobile: React.FC = () => {
       <Form
         fields={[
           {
-            name: INPUTS.NAME,
+            name: INPUTS.PHONE_OR_EMAIL,
             content: (
               <AppInputField
-                label={i18n.name.title}
-                name={INPUTS.NAME}
-                placeHolder={i18n.name.placeholder}
+                label={i18n.emailOrPhone.title}
+                name={INPUTS.PHONE_OR_EMAIL}
+                placeHolder={i18n.emailOrPhone.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.nameError)}
-              />
-            ),
-          },
-          {
-            name: INPUTS.EMAIL,
-            content: (
-              <AppInputField
-                label={i18n.email.title}
-                name={INPUTS.EMAIL}
-                placeHolder={i18n.email.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.emailError)}
-              />
-            ),
-          },
-          {
-            name: INPUTS.PHONE,
-            content: (
-              <AppInputField
-                label={i18n.phone.title}
-                name={INPUTS.PHONE}
-                placeHolder={i18n.phone.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.phoneError)}
+                bottomMessage={errorMessage(form.emailOrPhoneError)}
               />
             ),
           },
@@ -70,18 +46,6 @@ export const SignInMobile: React.FC = () => {
                 label={i18n.password.title}
                 name={INPUTS.PASSWORD}
                 placeHolder={i18n.password.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.passwordError)}
-              />
-            ),
-          },
-          {
-            name: INPUTS.PASSWORD_CONFIRMATION,
-            content: (
-              <AppInputField
-                label={i18n.passwordConfirm.title}
-                name={INPUTS.PASSWORD_CONFIRMATION}
-                placeHolder={i18n.passwordConfirm.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
                 bottomMessage={errorMessage(form.passwordError)}
               />

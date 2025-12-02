@@ -1,5 +1,6 @@
 import { AppLayout, AppLoader } from "@components";
 import {
+  AuthenticateBlock,
   FavoritesBlock,
   OrdersBlock,
   ProfileBlock,
@@ -8,7 +9,7 @@ import {
 import { useForYouPageHelper } from "./forYou.hook";
 
 export const ForYouMobile: React.FC = () => {
-  const { loading } = useForYouPageHelper();
+  const { loading, isAuthenticated } = useForYouPageHelper();
 
   return (
     <AppLayout
@@ -31,10 +32,15 @@ export const ForYouMobile: React.FC = () => {
       {loading && <AppLoader visible={loading} />}
       {!loading && (
         <>
-          <ProfileBlock />
-          <OrdersBlock />
-          <FavoritesBlock />
-          <ReviewsBlock />
+          {isAuthenticated && (
+            <>
+              <ProfileBlock />
+              <OrdersBlock />
+              <FavoritesBlock />
+              <ReviewsBlock />
+            </>
+          )}
+          {!isAuthenticated && <AuthenticateBlock />}
         </>
       )}
     </AppLayout>

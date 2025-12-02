@@ -3,9 +3,10 @@ import React from "react";
 import { SignInOrLoginTemplateDesktop } from "./signInOrLoginTemplate.desktop";
 import { SignInOrLoginTemplateMobile } from "./signInOrLoginTemplate.mobile";
 
+export type SignInOrLoginTemplateStep = "login" | "signUp";
+
 export interface SignInOrLoginTemplateProps {
-  onLogIn?: () => void;
-  onCreateAccount?: () => void;
+  onSubmit?: (step: SignInOrLoginTemplateStep) => void;
   styles?: React.CSSProperties;
 }
 
