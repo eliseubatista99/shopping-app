@@ -1,5 +1,6 @@
 export enum PAGES {
   SPLASH = "/",
+  SIGN_IN = "/signIn",
   NOT_FOUND = "/404-not-found",
   HOME = "/home",
   FOR_YOU = "/for-you",

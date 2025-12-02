@@ -15,6 +15,7 @@ import {
   ProductDetails,
   ProductList,
   Settings,
+  SignIn,
   SignInAndSecurity,
   Splash,
   Wishlist,
@@ -41,6 +42,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.NOT_FOUND,
             render: <NotFound404 />,
+          },
+          {
+            path: PAGES.SIGN_IN,
+            render: <SignIn />,
           },
           {
             path: PAGES.HOME,

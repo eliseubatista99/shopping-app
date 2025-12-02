@@ -8,11 +8,13 @@ import { translationsOrderDetails } from "./orderDetails";
 import { translationsOrders } from "./orders";
 import { translationsProductDetails } from "./productDetails";
 import { translationsSettings } from "./settings";
+import { translationsSignIn } from "./signIn";
 import { translationsSignInAndSecurity } from "./signInAndSecurity";
 import { translationsWishlist } from "./wishlist";
 import { translationsWriteReview } from "./writeReview";
 
 export const translationsScreens: TranslationList = {
+  ...translationsSignIn,
   ...translationsHome,
   ...translationsProductDetails,
   ...translationsWriteReview,

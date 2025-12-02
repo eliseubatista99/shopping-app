@@ -9,7 +9,7 @@ import type { AppHeaderProps } from "./appHeader";
 
 export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
   const { t } = useAppTranslations();
-  const { goBack } = useNavigation();
+  const { goBack, history } = useNavigation();
   const { showItem, isItemVisible } = useFeedback();
 
   const i18n = React.useMemo(() => {
@@ -43,10 +43,13 @@ export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
     }
   }, [back, goBack]);
 
+  console.log("ZAU", { history });
+
   return {
     i18n,
     handleSearchBarSubmit,
     handleSearchBarClick,
     handleClickBack,
+    canGoBack: history.length > 0,
   };
 };

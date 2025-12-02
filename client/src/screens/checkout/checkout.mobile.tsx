@@ -13,6 +13,7 @@ export const CheckoutMobile: React.FC = () => {
 
   return (
     <AppLayout
+      appFooter
       appHeader={{
         back: {
           visible: true,

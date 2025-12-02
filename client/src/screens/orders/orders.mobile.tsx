@@ -7,6 +7,7 @@ export const OrdersMobile: React.FC = () => {
 
   return (
     <AppLayout
+      appFooter
       appHeader={{
         back: {
           visible: true,

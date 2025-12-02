@@ -7,8 +7,13 @@ import type { AppHeaderProps } from "./appHeader";
 import { useAppHeaderHelper } from "./appHeader.hook";
 
 export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
-  const { i18n, handleSearchBarSubmit, handleSearchBarClick, handleClickBack } =
-    useAppHeaderHelper(props);
+  const {
+    i18n,
+    canGoBack,
+    handleSearchBarSubmit,
+    handleSearchBarClick,
+    handleClickBack,
+  } = useAppHeaderHelper(props);
 
   const { back, styles, searchBar } = props;
 
@@ -27,7 +32,7 @@ export const AppHeaderMobile: React.FC<AppHeaderProps> = (props) => {
         ...styles,
       }}
     >
-      {back?.visible && (
+      {back?.visible && canGoBack && (
         <Assets.Icons.ArrowLeft
           width="20px"
           height="20px"

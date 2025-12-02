@@ -46,6 +46,7 @@ export const SignInAndSecurityMobile: React.FC = () => {
 
   return (
     <AppLayout
+      appFooter
       appHeader={{
         back: {
           visible: true,

@@ -13,6 +13,7 @@ export const OrderDetailsMobile: React.FC = () => {
 
   return (
     <AppLayout
+      appFooter
       appHeader={{
         back: {
           visible: true,

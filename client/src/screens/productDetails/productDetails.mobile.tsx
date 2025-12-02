@@ -17,6 +17,7 @@ export const ProductDetailsMobile: React.FC = () => {
   return (
     <AppLayout
       pageStyles={{ padding: "12px" }}
+      appFooter
       appHeader={{
         back: {
           visible: true,

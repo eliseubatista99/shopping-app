@@ -34,6 +34,7 @@ export const HomeMobile: React.FC = () => {
 
   return (
     <AppLayout
+      appFooter
       appHeader={{
         back: {
           visible: true,

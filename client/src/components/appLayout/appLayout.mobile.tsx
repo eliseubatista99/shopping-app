@@ -8,18 +8,27 @@ export const AppLayoutMobile: React.FC<AppLayoutProps> = ({
   containerStyles,
   pageStyles,
   appHeader,
+  appFooter,
   reserveSpaceForScrollbar,
 }) => {
   return (
     <PageLayout
-      header={{
-        content: <AppHeader {...appHeader} />,
-        visibility: "always",
-      }}
-      footer={{
-        content: <AppFooter />,
-        visibility: "always",
-      }}
+      header={
+        appHeader
+          ? {
+              content: <AppHeader {...appHeader} />,
+              visibility: "always",
+            }
+          : undefined
+      }
+      footer={
+        appFooter
+          ? {
+              content: <AppFooter />,
+              visibility: "always",
+            }
+          : undefined
+      }
       containerStyles={{ ...containerStyles }}
       reserveSpaceForScrollbar={reserveSpaceForScrollbar}
     >

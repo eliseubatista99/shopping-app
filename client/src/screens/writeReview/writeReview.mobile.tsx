@@ -8,6 +8,7 @@ export const WriteReviewMobile: React.FC = () => {
   return (
     <AppLayout
       pageStyles={{ padding: "12px" }}
+      appFooter
       appHeader={{
         back: {
           visible: true,
