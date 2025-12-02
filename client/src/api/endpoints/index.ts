@@ -10,6 +10,7 @@ import { GetCheckoutInfo } from "./useFetchGetCheckoutInfo";
 import { GetClientOrders } from "./useFetchGetClientOrders";
 import { GetOrderDetails } from "./useFetchGetOrderDetails";
 import { GetWishlist } from "./useFetchGetWishlist";
+import { IsExistingAccount } from "./useFetchIsExistingAccount";
 import { GetProductDetails } from "./useFetchProductDetail";
 import { GetProductOffers } from "./useFetchProductOffers";
 import { GetProductReviews } from "./useFetchProductReviews";
@@ -44,4 +45,5 @@ export const Api = {
   Authenticate,
   CreateAccount,
   RefreshAuthentication,
+  IsExistingAccount,
 };

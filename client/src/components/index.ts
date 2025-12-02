@@ -28,5 +28,6 @@ export * from "./reviewScoreInput";
 export * from "./scorePercentageBar";
 export * from "./sellerListItem";
 export * from "./separator";
+export * from "./signInOrLoginTemplate";
 export * from "./tag";
 export * from "./wishlistButton";

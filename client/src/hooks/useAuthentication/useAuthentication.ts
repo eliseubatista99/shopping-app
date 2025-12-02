@@ -3,12 +3,14 @@ import { useStoreAuthentication } from "@store";
 import { useCallback } from "react";
 import type { AuthenticateInputDto } from "src/api/endpoints/useFetchAuthenticate";
 import type { CreateAccountInputDto } from "src/api/endpoints/useFetchCreateAccount";
+import type { IsExistingAccountInputDto } from "src/api/endpoints/useFetchIsExistingAccount";
 
 export const useAuthentication = () => {
   const token = useStoreAuthentication((state) => state.token);
   const setAuthenticationStoreState = useStoreAuthentication(
     (state) => state.setAuthenticationStoreState
   );
+  const { fetchIsExistingAccount } = Api.IsExistingAccount();
   const { fetchCreateAccount } = Api.CreateAccount();
   const { fetchAuthenticate } = Api.Authenticate();
   const { fetchRefreshAuthentication } = Api.RefreshAuthentication();
@@ -69,6 +71,17 @@ export const useAuthentication = () => {
     [fetchAuthenticate, setAuthenticationStoreState]
   );
 
+  const isExistingAccount = useCallback(
+    async (input: IsExistingAccountInputDto) => {
+      const res = await fetchIsExistingAccount({
+        ...input,
+      });
+
+      return res.data?.exists || false;
+    },
+    [fetchIsExistingAccount]
+  );
+
   const refreshToken = useCallback(async () => {
     const res = await fetchRefreshAuthentication();
 
@@ -111,6 +124,7 @@ export const useAuthentication = () => {
 
   return {
     token,
+    isExistingAccount,
     createAccount,
     authenticate,
     isTokenExpired,
