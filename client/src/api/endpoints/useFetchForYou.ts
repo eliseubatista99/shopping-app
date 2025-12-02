@@ -12,7 +12,10 @@ export type ForYouOutputDto = {
 };
 
 export const GetForYou = () => {
-  const { get } = useAppFetch<ForYouOutputDto>("ForYou");
+  const { get } = useAppFetch<ForYouOutputDto>({
+    endpoint: "ForYou",
+    secure: true,
+  });
 
   const fetch = useCallback(async () => {
     const result = await get({});

@@ -11,9 +11,10 @@ export type UpdatedDefaultAddressOutputDto = {
 };
 
 export const UpdateDefaultAddress = () => {
-  const { get } = useAppFetch<UpdatedDefaultAddressOutputDto>(
-    "UpdateDefaultAddress"
-  );
+  const { get } = useAppFetch<UpdatedDefaultAddressOutputDto>({
+    endpoint: "UpdateDefaultAddress",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: UpdatedDefaultAddressInputDto) => {

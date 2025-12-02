@@ -8,7 +8,10 @@ export type ClientInfoOutputDto = {
 };
 
 export const GetClientInfo = () => {
-  const { get } = useAppFetch<ClientInfoOutputDto>("GetClientInfo");
+  const { get } = useAppFetch<ClientInfoOutputDto>({
+    endpoint: "GetClientInfo",
+    secure: true,
+  });
 
   const fetch = useCallback(async () => {
     const result = await get({});

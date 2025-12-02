@@ -11,7 +11,9 @@ export type SearchProductsOutputDto = {
 };
 
 export const SearchProducts = () => {
-  const { get } = useAppFetch<SearchProductsOutputDto>("SearchProducts");
+  const { get } = useAppFetch<SearchProductsOutputDto>({
+    endpoint: "SearchProducts",
+  });
 
   const fetch = useCallback(
     async (input: SearchProductsInputDto) => {

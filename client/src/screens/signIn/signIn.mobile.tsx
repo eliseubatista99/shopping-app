@@ -22,6 +22,9 @@ export const SignInMobile: React.FC = () => {
 
   return (
     <AppLayout>
+      <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
+        {i18n.title}
+      </Typography>
       <Form
         fields={[
           {
@@ -104,7 +107,7 @@ export const SignInMobile: React.FC = () => {
           },
         }}
         onSubmit={onClickSubmit}
-        styles={{ flex: 1, gap: "30px" }}
+        styles={{ flex: 1, gap: "30px", marginTop: "30px" }}
       />
     </AppLayout>
   );

@@ -9,7 +9,10 @@ export type AddToCartInputDto = {
 export type AddToCartOutputDto = { products: CartProductDto[] };
 
 export const AddToCard = () => {
-  const { post } = useAppFetch<AddToCartOutputDto>("AddToCart");
+  const { post } = useAppFetch<AddToCartOutputDto>({
+    endpoint: "AddToCart",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: AddToCartInputDto) => {

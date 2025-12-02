@@ -6,7 +6,10 @@ import { useAppFetch } from "@hooks";
 export type GetCartOutputDto = { products: CartProductDto[] };
 
 export const GetCart = () => {
-  const { get } = useAppFetch<GetCartOutputDto>("GetCart");
+  const { get } = useAppFetch<GetCartOutputDto>({
+    endpoint: "GetCart",
+    secure: true,
+  });
 
   const fetch = useCallback(async () => {
     const result = await get({});

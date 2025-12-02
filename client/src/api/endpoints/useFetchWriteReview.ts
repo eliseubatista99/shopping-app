@@ -10,7 +10,10 @@ export type WriteReviewInputDto = {
 };
 
 export const WriteReview = () => {
-  const { post } = useAppFetch<void>("WriteReview");
+  const { post } = useAppFetch<void>({
+    endpoint: "WriteReview",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: WriteReviewInputDto) => {

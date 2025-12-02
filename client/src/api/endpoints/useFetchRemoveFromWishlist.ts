@@ -11,8 +11,10 @@ export type RemoveFromWishlistOutputDto = {
 };
 
 export const RemoveFromWishlist = () => {
-  const { delete: httpDelete } =
-    useAppFetch<RemoveFromWishlistOutputDto>("RemoveFromWishlist");
+  const { delete: httpDelete } = useAppFetch<RemoveFromWishlistOutputDto>({
+    endpoint: "RemoveFromWishlist",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: RemoveFromWishlistInputDto) => {

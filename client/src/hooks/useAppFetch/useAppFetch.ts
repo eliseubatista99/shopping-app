@@ -1,76 +1,54 @@
 import { ApiConfigs, type ApiOutput } from "@api";
 import { useFetch } from "@eliseubatista99/react-scaffold-core";
-import { useCallback } from "react";
+import { ApiHelper } from "@helpers";
+import { useCallback, useMemo } from "react";
+
+type AppFetchInput = {
+  endpoint: string;
+  secure?: boolean;
+};
 
 type TIn = Record<string, unknown>;
 
-export const useAppFetch = <TOut>(endpoint: string) => {
-  const {
-    get: httpGet,
-    patch: httpPatch,
-    post: httpPost,
-    put: httpPut,
-    delete: httpDelete,
-  } = useFetch();
+export const useAppFetch = <TOut>({ endpoint, secure }: AppFetchInput) => {
+  const { get: httpGet, post: httpPost, delete: httpDelete } = useFetch();
 
-  const buildCommonHeaders = useCallback(() => {
-    const token = "3789463481dasidas";
-    return {
+  const commonHeaders = useMemo(() => {
+    let headers: HeadersInit = {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
     };
-  }, []);
+
+    if (secure) {
+      headers = { ...headers, authorization: `Bearer ${ApiHelper.getToken()}` };
+    }
+
+    return headers;
+  }, [secure]);
 
   const runGet = useCallback(
     async (input: TIn) => {
       const result = await httpGet<ApiOutput<TOut>>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        buildCommonHeaders()
+        { ...commonHeaders }
       );
 
       return result;
     },
-    [buildCommonHeaders, endpoint, httpGet]
-  );
-
-  const runPatch = useCallback(
-    async (input: TIn) => {
-      const result = await httpPatch<ApiOutput<TOut>>(
-        `${ApiConfigs.endpoint}/${endpoint}`,
-        { ...input },
-        buildCommonHeaders()
-      );
-
-      return result;
-    },
-    [buildCommonHeaders, endpoint, httpPatch]
+    [commonHeaders, endpoint, httpGet]
   );
 
   const runPost = useCallback(
-    async (input: TIn) => {
+    async (input: TIn, headers?: HeadersInit) => {
       const result = await httpPost<ApiOutput<TOut>>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        buildCommonHeaders()
+        { ...commonHeaders, ...headers }
       );
 
       return result;
     },
-    [buildCommonHeaders, endpoint, httpPost]
-  );
-
-  const runPut = useCallback(
-    async (input: TIn) => {
-      const result = await httpPut<ApiOutput<TOut>>(
-        `${ApiConfigs.endpoint}/${endpoint}`,
-        { ...input },
-        buildCommonHeaders()
-      );
-
-      return result;
-    },
-    [buildCommonHeaders, endpoint, httpPut]
+    [commonHeaders, endpoint, httpPost]
   );
 
   const runDelete = useCallback(
@@ -78,19 +56,17 @@ export const useAppFetch = <TOut>(endpoint: string) => {
       const result = await httpDelete<ApiOutput<TOut>>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        buildCommonHeaders()
+        { ...commonHeaders }
       );
 
       return result;
     },
-    [buildCommonHeaders, endpoint, httpDelete]
+    [commonHeaders, endpoint, httpDelete]
   );
 
   return {
     get: runGet,
-    patch: runPatch,
     post: runPost,
-    put: runPut,
     delete: runDelete,
   };
 };

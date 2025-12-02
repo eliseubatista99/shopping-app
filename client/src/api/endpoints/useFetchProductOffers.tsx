@@ -10,7 +10,9 @@ export type ProductOffersOutputDto = {
 };
 
 export const GetProductOffers = () => {
-  const { get } = useAppFetch<ProductOffersOutputDto>("ProductOffers");
+  const { get } = useAppFetch<ProductOffersOutputDto>({
+    endpoint: "ProductOffers",
+  });
 
   const fetch = useCallback(async () => {
     const result = await get({});

@@ -11,7 +11,10 @@ export type GetOrderDetailsInputDto = {
 };
 
 export const GetOrderDetails = () => {
-  const { get } = useAppFetch<GetOrderDetailsOutputDto>("GetOrderDetails");
+  const { get } = useAppFetch<GetOrderDetailsOutputDto>({
+    endpoint: "GetOrderDetails",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: GetOrderDetailsInputDto) => {

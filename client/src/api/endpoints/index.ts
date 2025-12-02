@@ -1,6 +1,8 @@
 import { AddToCard } from "./useFetchAddToCard";
+import { Authenticate } from "./useFetchAuthenticate";
 import { GetCart } from "./useFetchBasket";
 import { GetClientInfo } from "./useFetchClientInfo";
+import { CreateAccount } from "./useFetchCreateAccount";
 import { GetDocument } from "./useFetchDocument";
 import { ExecutePurchase } from "./useFetchExecutePurchase";
 import { GetForYou } from "./useFetchForYou";
@@ -11,6 +13,7 @@ import { GetWishlist } from "./useFetchGetWishlist";
 import { GetProductDetails } from "./useFetchProductDetail";
 import { GetProductOffers } from "./useFetchProductOffers";
 import { GetProductReviews } from "./useFetchProductReviews";
+import { RefreshAuthentication } from "./useFetchRefreshAuthentication";
 import { RemoveFromCart } from "./useFetchRemoveFromCart";
 import { RemoveFromWishlist } from "./useFetchRemoveFromWishlist";
 import { SearchProducts } from "./useFetchSearchProducts";
@@ -38,4 +41,7 @@ export const Api = {
   WriteReview,
   RemoveFromCart,
   UpdateCartProduct,
+  Authenticate,
+  CreateAccount,
+  RefreshAuthentication,
 };

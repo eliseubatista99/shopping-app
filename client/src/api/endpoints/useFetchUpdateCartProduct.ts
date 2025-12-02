@@ -9,7 +9,10 @@ export type UpdateCartProductInputDto = {
 export type UpdateCartProductOutputDto = { products: CartProductDto[] };
 
 export const UpdateCartProduct = () => {
-  const { post } = useAppFetch<UpdateCartProductOutputDto>("UpdateCartProduct");
+  const { post } = useAppFetch<UpdateCartProductOutputDto>({
+    endpoint: "UpdateCartProduct",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: UpdateCartProductInputDto) => {

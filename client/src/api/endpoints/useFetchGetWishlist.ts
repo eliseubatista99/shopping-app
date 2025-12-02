@@ -7,7 +7,10 @@ export type GetWishlistOutputDto = {
 };
 
 export const GetWishlist = () => {
-  const { get } = useAppFetch<GetWishlistOutputDto>("GetWishlist");
+  const { get } = useAppFetch<GetWishlistOutputDto>({
+    endpoint: "GetWishlist",
+    secure: true,
+  });
 
   const fetch = useCallback(async () => {
     const result = await get({});

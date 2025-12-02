@@ -10,7 +10,10 @@ export type ExecutePurchaseInputDto = {
 };
 
 export const ExecutePurchase = () => {
-  const { post } = useAppFetch<void>("ExecutePurchase");
+  const { post } = useAppFetch<void>({
+    endpoint: "ExecutePurchase",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: ExecutePurchaseInputDto) => {

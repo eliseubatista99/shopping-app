@@ -11,7 +11,9 @@ export type GetDocumentInputDto = {
 };
 
 export const GetDocument = () => {
-  const { get } = useAppFetch<GetDocumentOutputDto>("GetDocument");
+  const { get } = useAppFetch<GetDocumentOutputDto>({
+    endpoint: "GetDocument",
+  });
 
   const fetch = useCallback(
     async (input: GetDocumentInputDto) => {

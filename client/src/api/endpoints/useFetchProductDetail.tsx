@@ -11,7 +11,9 @@ export type ProductDetailInputDto = {
 };
 
 export const GetProductDetails = () => {
-  const { get } = useAppFetch<ProductDetailOutputDto>("ProductDetail");
+  const { get } = useAppFetch<ProductDetailOutputDto>({
+    endpoint: "ProductDetail",
+  });
 
   const fetch = useCallback(
     async (input: ProductDetailInputDto) => {

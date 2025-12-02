@@ -76,6 +76,14 @@ const handleApiCall = async (req, folderPath) => {
 
 app.post(REQUEST_PREFIX, async (req, res) => {
   res.setHeader("Content-Type", "application/json");
+  res.cookie("refreshToken", "example-refresh-token-zau-zau", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    path: "/RefreshAuthentication", // refresh only on this route
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+  });
+
   const result = await handleApiCall(req, "services/post");
 
   if (!result.error) {

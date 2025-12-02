@@ -15,7 +15,10 @@ export type GetCheckoutInfoInputDto = {
 };
 
 export const GetCheckoutInfo = () => {
-  const { get } = useAppFetch<GetCheckoutInfoOutputDto>("GetCheckoutInfo");
+  const { get } = useAppFetch<GetCheckoutInfoOutputDto>({
+    endpoint: "GetCheckoutInfo",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: GetCheckoutInfoInputDto) => {

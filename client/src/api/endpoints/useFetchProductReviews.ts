@@ -21,7 +21,9 @@ export type GetProductReviewsOutputDto = {
 };
 
 export const GetProductReviews = () => {
-  const { get } = useAppFetch<GetProductReviewsOutputDto>("GetProductReviews");
+  const { get } = useAppFetch<GetProductReviewsOutputDto>({
+    endpoint: "GetProductReviews",
+  });
 
   const fetch = useCallback(
     async (input: GetProductReviewsInputDto) => {

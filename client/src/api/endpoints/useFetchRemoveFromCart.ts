@@ -9,8 +9,10 @@ export type RemoveFromCartInputDto = {
 export type RemoveFromCartOutputDto = { products: CartProductDto[] };
 
 export const RemoveFromCart = () => {
-  const { delete: httpDelete } =
-    useAppFetch<RemoveFromCartOutputDto>("RemoveFromCart");
+  const { delete: httpDelete } = useAppFetch<RemoveFromCartOutputDto>({
+    endpoint: "RemoveFromCart",
+    secure: true,
+  });
 
   const fetch = useCallback(
     async (input: RemoveFromCartInputDto) => {
