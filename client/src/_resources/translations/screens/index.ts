@@ -1,7 +1,10 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
 import { translationsAllReviews } from "./allReviews";
 import { translationsCart } from "./cart";
+import { translationsChangeEmail } from "./changeEmail";
 import { translationsChangeName } from "./changeName";
+import { translationsChangePassword } from "./changePassword";
+import { translationsChangePhone } from "./changePhone";
 import { translationsCheckout } from "./checkout";
 import { translationsForYou } from "./forYou";
 import { translationsHome } from "./home";
@@ -33,4 +36,7 @@ export const translationsScreens: TranslationList = {
   ...translationsSettings,
   ...translationsSignInAndSecurity,
   ...translationsChangeName,
+  ...translationsChangeEmail,
+  ...translationsChangePhone,
+  ...translationsChangePassword,
 };
