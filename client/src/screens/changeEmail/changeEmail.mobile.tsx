@@ -47,7 +47,7 @@ export const ChangeEmailMobile: React.FC = () => {
                     <AppInputField
                       name={INPUTS.EMAIL}
                       placeHolder={i18n.email.placeholder}
-                      inputStyles={{ height: "150px", padding: "10px" }}
+                      inputStyles={{ padding: "10px" }}
                       bottomMessage={error}
                     />
                   ),

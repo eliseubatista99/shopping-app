@@ -31,7 +31,7 @@ export const SignInOrLoginTemplateMobile: React.FC<
                   label={i18n.emailOrPhone.title}
                   name={INPUTS.PHONE_OR_EMAIL}
                   placeHolder={i18n.emailOrPhone.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={emailOrPhoneError}
                 />
               ),

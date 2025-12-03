@@ -21,7 +21,7 @@ export const LogInMobile: React.FC = () => {
                   label={i18n.emailOrPhone.title}
                   name={INPUTS.PHONE_OR_EMAIL}
                   placeHolder={i18n.emailOrPhone.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.emailOrPhoneError}
                 />
               ),
@@ -33,7 +33,7 @@ export const LogInMobile: React.FC = () => {
                   label={i18n.password.title}
                   name={INPUTS.PASSWORD}
                   placeHolder={i18n.password.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.passwordError}
                 />
               ),

@@ -42,7 +42,7 @@ export const ChangeNameMobile: React.FC = () => {
                     <AppInputField
                       name={INPUTS.NAME}
                       placeHolder={i18n.name.placeholder}
-                      inputStyles={{ height: "150px", padding: "10px" }}
+                      inputStyles={{ padding: "10px" }}
                       bottomMessage={error}
                     />
                   ),

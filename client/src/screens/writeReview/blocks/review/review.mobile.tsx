@@ -44,7 +44,7 @@ export const ReviewBlockMobile: React.FC = () => {
                   label={i18n.description.title}
                   name={INPUTS.REVIEW_DESCRIPTION}
                   placeHolder={i18n.description.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.descriptionError}
                 />
               ),
@@ -56,7 +56,7 @@ export const ReviewBlockMobile: React.FC = () => {
                   label={i18n.title.title}
                   name={INPUTS.REVIEW_TITLE}
                   placeHolder={i18n.title.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.titleError}
                 />
               ),

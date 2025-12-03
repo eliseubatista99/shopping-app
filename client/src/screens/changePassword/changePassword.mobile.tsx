@@ -4,7 +4,7 @@ import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useChangePasswordPageHelper } from "./changePassword.hook";
 
 export const ChangePasswordMobile: React.FC = () => {
-  const { i18n, error, onClickSubmit, loading } = useChangePasswordPageHelper();
+  const { i18n, form, onClickSubmit, loading } = useChangePasswordPageHelper();
 
   return (
     <AppLayout
@@ -37,17 +37,57 @@ export const ChangePasswordMobile: React.FC = () => {
             fields={{
               list: [
                 {
-                  name: INPUTS.NAME,
+                  name: INPUTS.PASSWORD,
                   content: (
                     <AppInputField
-                      name={INPUTS.NAME}
-                      placeHolder={i18n.name.placeholder}
-                      inputStyles={{ height: "150px", padding: "10px" }}
-                      bottomMessage={error}
+                      name={INPUTS.PASSWORD}
+                      type="password"
+                      placeHolder={i18n.current.placeholder}
+                      containerStyles={{ marginTop: "15px" }}
+                      inputStyles={{ padding: "10px" }}
+                      bottomMessage={form.currentPasswordError}
+                    />
+                  ),
+                },
+                {
+                  name: INPUTS.NEW_PASSWORD,
+                  content: (
+                    <AppInputField
+                      name={INPUTS.NEW_PASSWORD}
+                      type="password"
+                      placeHolder={i18n.password.placeholder}
+                      containerStyles={{
+                        borderBottomLeftRadius: 0,
+                        borderBottomRightRadius: 0,
+                        marginTop: "30px",
+                      }}
+                      inputStyles={{
+                        padding: "10px",
+                      }}
+                    />
+                  ),
+                },
+                {
+                  name: INPUTS.PASSWORD_CONFIRMATION,
+                  content: (
+                    <AppInputField
+                      name={INPUTS.PASSWORD_CONFIRMATION}
+                      type="password"
+                      placeHolder={i18n.confirmPassword.placeholder}
+                      containerStyles={{
+                        marginTop: 0,
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
+                      }}
+                      inputStyles={{ padding: "10px" }}
+                      bottomMessage={form.passwordError}
                     />
                   ),
                 },
               ],
+              styles: {
+                gap: 0,
+              },
             }}
             submitButton={{
               content: (

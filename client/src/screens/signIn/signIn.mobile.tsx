@@ -21,7 +21,7 @@ export const SignInMobile: React.FC = () => {
                   label={i18n.name.title}
                   name={INPUTS.NAME}
                   placeHolder={i18n.name.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.nameError}
                 />
               ),
@@ -33,7 +33,7 @@ export const SignInMobile: React.FC = () => {
                   label={i18n.email.title}
                   name={INPUTS.EMAIL}
                   placeHolder={i18n.email.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.emailError}
                 />
               ),
@@ -45,7 +45,7 @@ export const SignInMobile: React.FC = () => {
                   label={i18n.phone.title}
                   name={INPUTS.PHONE}
                   placeHolder={i18n.phone.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.phoneError}
                 />
               ),
@@ -57,7 +57,7 @@ export const SignInMobile: React.FC = () => {
                   label={i18n.password.title}
                   name={INPUTS.PASSWORD}
                   placeHolder={i18n.password.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.passwordError}
                 />
               ),
@@ -69,7 +69,7 @@ export const SignInMobile: React.FC = () => {
                   label={i18n.passwordConfirm.title}
                   name={INPUTS.PASSWORD_CONFIRMATION}
                   placeHolder={i18n.passwordConfirm.placeholder}
-                  inputStyles={{ height: "150px", padding: "10px" }}
+                  inputStyles={{ padding: "10px" }}
                   bottomMessage={form.passwordError}
                 />
               ),

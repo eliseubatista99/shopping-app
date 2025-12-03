@@ -50,7 +50,7 @@ export const ChangePhoneMobile: React.FC = () => {
                       name={INPUTS.PHONE_PREFIX}
                       type="number"
                       placeHolder={i18n.prefix.placeholder}
-                      inputStyles={{ height: "150px", padding: "10px" }}
+                      inputStyles={{ padding: "10px" }}
                       bottomMessage={form.prefixError}
                     />
                   ),
@@ -62,7 +62,7 @@ export const ChangePhoneMobile: React.FC = () => {
                       name={INPUTS.PHONE}
                       type="number"
                       placeHolder={i18n.phone.placeholder}
-                      inputStyles={{ height: "150px", padding: "10px" }}
+                      inputStyles={{ padding: "10px" }}
                       bottomMessage={form.phoneError}
                     />
                   ),

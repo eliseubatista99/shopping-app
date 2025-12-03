@@ -9,5 +9,6 @@ export const INPUTS = {
   PHONE_PREFIX: "phone-prefix",
   EMAIL: "email",
   PASSWORD: "password",
+  NEW_PASSWORD: "new-password",
   PASSWORD_CONFIRMATION: "password-confirmation",
 };
