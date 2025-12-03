@@ -1,6 +1,6 @@
 export enum PAGES {
   SPLASH = "/",
-  SIGN_UP_OR_LOGIN = "/signUpOrLogin",
+  SIGN_UP_OR_LOGIN = "/signup-or-login",
   SIGN_UP = "/signUp",
   LOG_IN = "/logIn",
   NOT_FOUND = "/404-not-found",
@@ -16,5 +16,9 @@ export enum PAGES {
   ORDERS = "/orders",
   ORDER_DETAILS = "/order-details",
   WISHLIST = "/wishlist",
-  SIGN_IN_AND_SECURITY = "/signInAndSecurity",
+  SIGN_IN_AND_SECURITY = "/signin-and-security",
+  CHANGE_NAME = "/change-name",
+  CHANGE_EMAIL = "/change-email",
+  CHANGE_PHONE = "/change-phone",
+  CHANGE_PASSWORD = "/change-password",
 }

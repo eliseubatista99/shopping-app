@@ -36,7 +36,7 @@ export const useSignInAndSecurityPageHelper = () => {
       cta: i18n.name.action,
       onClick: () => {
         goTo({
-          path: PAGES.SIGN_IN_AND_SECURITY,
+          path: PAGES.CHANGE_NAME,
         });
       },
     },
@@ -46,7 +46,7 @@ export const useSignInAndSecurityPageHelper = () => {
       cta: i18n.email.action,
       onClick: () => {
         goTo({
-          path: PAGES.SIGN_IN_AND_SECURITY,
+          path: PAGES.CHANGE_EMAIL,
         });
       },
     },
@@ -56,7 +56,7 @@ export const useSignInAndSecurityPageHelper = () => {
       cta: i18n.phone.action,
       onClick: () => {
         goTo({
-          path: PAGES.SIGN_IN_AND_SECURITY,
+          path: PAGES.CHANGE_PHONE,
         });
       },
     },
@@ -66,7 +66,7 @@ export const useSignInAndSecurityPageHelper = () => {
       cta: i18n.password.action,
       onClick: () => {
         goTo({
-          path: PAGES.SIGN_IN_AND_SECURITY,
+          path: PAGES.CHANGE_PASSWORD,
         });
       },
     },

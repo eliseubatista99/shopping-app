@@ -5,8 +5,12 @@ import {
 import { AppInputFieldDesktop } from "./appInputField.desktop";
 import { AppInputFieldMobile } from "./appInputField.mobile";
 
-export type AppInputFieldProps = Omit<InputFieldProps, "label"> & {
+export type AppInputFieldProps = Omit<
+  InputFieldProps,
+  "label" | "bottomMessage"
+> & {
   label?: string;
+  bottomMessage?: string;
   styles?: React.CSSProperties;
 };
 

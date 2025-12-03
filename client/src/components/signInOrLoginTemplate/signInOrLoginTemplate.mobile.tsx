@@ -13,20 +13,6 @@ export const SignInOrLoginTemplateMobile: React.FC<
   const { i18n, emailOrPhoneError, onClickSubmitEmailOrPhone } =
     useSignInOrLoginTemplateHelper(props);
 
-  const errorMessage = (error?: string) => {
-    if (!error) {
-      return undefined;
-    }
-
-    return (
-      <Typography
-        styles={{ fontSize: "16px", fontWeight: 600, color: "#de1616ff" }}
-      >
-        {error}
-      </Typography>
-    );
-  };
-
   return (
     <div
       data-testid="signin-or-login-template"
@@ -45,7 +31,7 @@ export const SignInOrLoginTemplateMobile: React.FC<
                 name={INPUTS.PHONE_OR_EMAIL}
                 placeHolder={i18n.emailOrPhone.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(emailOrPhoneError)}
+                bottomMessage={emailOrPhoneError}
               />
             ),
           },

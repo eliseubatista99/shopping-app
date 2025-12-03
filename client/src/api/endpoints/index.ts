@@ -19,6 +19,7 @@ import { RemoveFromCart } from "./useFetchRemoveFromCart";
 import { RemoveFromWishlist } from "./useFetchRemoveFromWishlist";
 import { SearchProducts } from "./useFetchSearchProducts";
 import { UpdateCartProduct } from "./useFetchUpdateCartProduct";
+import { UpdateClientInfo } from "./useFetchUpdateClientInfo";
 import { UpdateDefaultAddress } from "./useFetchUpdateDefaultAddress";
 import { WriteReview } from "./useFetchWriteReview";
 
@@ -46,4 +47,5 @@ export const Api = {
   CreateAccount,
   RefreshAuthentication,
   IsExistingAccount,
+  UpdateClientInfo,
 };

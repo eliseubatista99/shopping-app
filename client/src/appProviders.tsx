@@ -6,6 +6,10 @@ import {
 import {
   AllReviews,
   Cart,
+  ChangeEmail,
+  ChangeName,
+  ChangePassword,
+  ChangePhone,
   Checkout,
   ForYou,
   Home,
@@ -108,6 +112,22 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.SIGN_IN_AND_SECURITY,
             render: <SignInAndSecurity />,
+          },
+          {
+            path: PAGES.CHANGE_NAME,
+            render: <ChangeName />,
+          },
+          {
+            path: PAGES.CHANGE_EMAIL,
+            render: <ChangeEmail />,
+          },
+          {
+            path: PAGES.CHANGE_PHONE,
+            render: <ChangePhone />,
+          },
+          {
+            path: PAGES.CHANGE_PASSWORD,
+            render: <ChangePassword />,
           },
         ]}
       >

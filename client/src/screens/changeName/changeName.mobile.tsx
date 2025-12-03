@@ -1,39 +1,45 @@
 import { AppButton, AppInputField, AppLayout } from "@components";
 import { INPUTS } from "@constants";
 import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
-import { useLogInPageHelper } from "./logIn.hook";
+import { useChangeNamePageHelper } from "./changeName.hook";
 
-export const LogInMobile: React.FC = () => {
-  const { i18n, form, onClickSubmit } = useLogInPageHelper();
+export const ChangeNameMobile: React.FC = () => {
+  const { i18n, error, onClickSubmit } = useChangeNamePageHelper();
 
   return (
-    <AppLayout>
+    <AppLayout
+      appFooter
+      appHeader={{
+        back: {
+          visible: true,
+          styles: {
+            color: "#ffffff",
+          },
+        },
+        searchBar: {
+          visible: true,
+        },
+        styles: {
+          background: "#292361ff",
+        },
+      }}
+    >
       <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
         {i18n.title}
+      </Typography>
+      <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
+        {i18n.subtitle}
       </Typography>
       <Form
         fields={[
           {
-            name: INPUTS.PHONE_OR_EMAIL,
+            name: INPUTS.NAME,
             content: (
               <AppInputField
-                label={i18n.emailOrPhone.title}
-                name={INPUTS.PHONE_OR_EMAIL}
-                placeHolder={i18n.emailOrPhone.placeholder}
+                name={INPUTS.NAME}
+                placeHolder={i18n.name.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.emailOrPhoneError}
-              />
-            ),
-          },
-          {
-            name: INPUTS.PASSWORD,
-            content: (
-              <AppInputField
-                label={i18n.password.title}
-                name={INPUTS.PASSWORD}
-                placeHolder={i18n.password.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.passwordError}
+                bottomMessage={error}
               />
             ),
           },
@@ -42,7 +48,7 @@ export const LogInMobile: React.FC = () => {
           content: (
             <AppButton
               text={{
-                content: i18n.actions.signIn,
+                content: i18n.actions.submit,
                 props: {
                   styles: {
                     fontSize: "16px",
@@ -57,7 +63,7 @@ export const LogInMobile: React.FC = () => {
           },
         }}
         onSubmit={onClickSubmit}
-        styles={{ flex: 1, gap: "30px", marginTop: "30px" }}
+        styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
       />
     </AppLayout>
   );

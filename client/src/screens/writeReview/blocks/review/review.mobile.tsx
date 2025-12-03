@@ -11,20 +11,6 @@ import { useReviewBlockHelper } from "./review.hook";
 export const ReviewBlockMobile: React.FC = () => {
   const { i18n, score, onScoreChange, onSubmit, form } = useReviewBlockHelper();
 
-  const errorMessage = (error?: string) => {
-    if (!error) {
-      return undefined;
-    }
-
-    return (
-      <Typography
-        styles={{ fontSize: "16px", fontWeight: 600, color: "#de1616ff" }}
-      >
-        {error}
-      </Typography>
-    );
-  };
-
   return (
     <div
       style={{
@@ -39,7 +25,13 @@ export const ReviewBlockMobile: React.FC = () => {
           onClick={(value) => onScoreChange(value)}
           styles={{ padding: "0 5px" }}
         />
-        {errorMessage(form.scoreError)}
+        {form.scoreError && (
+          <Typography
+            styles={{ fontSize: "16px", fontWeight: 600, color: "#de1616ff" }}
+          >
+            {form.scoreError}
+          </Typography>
+        )}
       </div>
 
       <Form
@@ -52,7 +44,7 @@ export const ReviewBlockMobile: React.FC = () => {
                 name={INPUTS.REVIEW_DESCRIPTION}
                 placeHolder={i18n.description.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.descriptionError)}
+                bottomMessage={form.descriptionError}
               />
             ),
           },
@@ -64,7 +56,7 @@ export const ReviewBlockMobile: React.FC = () => {
                 name={INPUTS.REVIEW_TITLE}
                 placeHolder={i18n.title.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.titleError)}
+                bottomMessage={form.titleError}
               />
             ),
           },

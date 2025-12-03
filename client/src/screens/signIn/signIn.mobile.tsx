@@ -6,20 +6,6 @@ import { useSignInPageHelper } from "./signIn.hook";
 export const SignInMobile: React.FC = () => {
   const { i18n, form, onClickSubmit } = useSignInPageHelper();
 
-  const errorMessage = (error?: string) => {
-    if (!error) {
-      return undefined;
-    }
-
-    return (
-      <Typography
-        styles={{ fontSize: "16px", fontWeight: 600, color: "#de1616ff" }}
-      >
-        {error}
-      </Typography>
-    );
-  };
-
   return (
     <AppLayout>
       <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
@@ -35,7 +21,7 @@ export const SignInMobile: React.FC = () => {
                 name={INPUTS.NAME}
                 placeHolder={i18n.name.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.nameError)}
+                bottomMessage={form.nameError}
               />
             ),
           },
@@ -47,7 +33,7 @@ export const SignInMobile: React.FC = () => {
                 name={INPUTS.EMAIL}
                 placeHolder={i18n.email.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.emailError)}
+                bottomMessage={form.emailError}
               />
             ),
           },
@@ -59,7 +45,7 @@ export const SignInMobile: React.FC = () => {
                 name={INPUTS.PHONE}
                 placeHolder={i18n.phone.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.phoneError)}
+                bottomMessage={form.phoneError}
               />
             ),
           },
@@ -71,7 +57,7 @@ export const SignInMobile: React.FC = () => {
                 name={INPUTS.PASSWORD}
                 placeHolder={i18n.password.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.passwordError)}
+                bottomMessage={form.passwordError}
               />
             ),
           },
@@ -83,7 +69,7 @@ export const SignInMobile: React.FC = () => {
                 name={INPUTS.PASSWORD_CONFIRMATION}
                 placeHolder={i18n.passwordConfirm.placeholder}
                 inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={errorMessage(form.passwordError)}
+                bottomMessage={form.passwordError}
               />
             ),
           },

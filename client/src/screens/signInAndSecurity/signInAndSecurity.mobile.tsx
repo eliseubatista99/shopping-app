@@ -8,7 +8,6 @@ export const SignInAndSecurityMobile: React.FC = () => {
   const optionsJSX = options.map((o, index) => (
     <div
       key={o.id}
-      onClick={() => o.onClick()}
       style={{
         width: "100%",
         flexDirection: "row",
@@ -34,6 +33,7 @@ export const SignInAndSecurityMobile: React.FC = () => {
             },
           },
         }}
+        onClick={() => o.onClick()}
         styles={{
           width: "fit-content",
           background: "#ffffff",
