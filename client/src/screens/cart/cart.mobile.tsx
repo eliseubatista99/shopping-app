@@ -1,8 +1,9 @@
 import { AppLayout, Separator } from "@components";
-import { ExecutionBlock, ProductsBlock } from "./blocks";
+import { AuthenticateBlock, ExecutionBlock, ProductsBlock } from "./blocks";
+import { useCartPageHelper } from "./cart.hook";
 
 export const CartMobile: React.FC = () => {
-  // const { loading } = useCartPageHelper();
+  const { isAuthenticated } = useCartPageHelper();
 
   return (
     <AppLayout
@@ -24,11 +25,16 @@ export const CartMobile: React.FC = () => {
     >
       {/* {loading && <AppLoader visible={loading} />} */}
       {/* {!loading && ( */}
-      <>
-        <ExecutionBlock />
-        <Separator styles={{ marginBlock: "15px" }} />
-        <ProductsBlock />
-      </>
+
+      {isAuthenticated && (
+        <>
+          <ExecutionBlock />
+          <Separator styles={{ marginBlock: "15px" }} />
+          <ProductsBlock />
+        </>
+      )}
+      {!isAuthenticated && <AuthenticateBlock />}
+
       {/* )}{" "} */}
     </AppLayout>
   );

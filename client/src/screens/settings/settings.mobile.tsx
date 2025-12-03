@@ -1,10 +1,11 @@
 import { Assets } from "@assets";
 import { AppLayout } from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
+import { AuthenticateBlock } from "./blocks";
 import { useSettingsPageHelper } from "./settings.hook";
 
 export const SettingsMobile: React.FC = () => {
-  const { i18n, options } = useSettingsPageHelper();
+  const { i18n, options, isAuthenticated } = useSettingsPageHelper();
 
   const optionsJSX = options.map((o) => (
     <div
@@ -43,12 +44,17 @@ export const SettingsMobile: React.FC = () => {
         },
       }}
     >
-      <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
-        {i18n.title}
-      </Typography>
-      <div style={{ width: "100%", gap: "10px", marginTop: "10px" }}>
-        {optionsJSX}
-      </div>
+      {isAuthenticated && (
+        <>
+          <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
+            {i18n.title}
+          </Typography>
+          <div style={{ width: "100%", gap: "10px", marginTop: "10px" }}>
+            {optionsJSX}
+          </div>
+        </>
+      )}
+      {!isAuthenticated && <AuthenticateBlock />}
     </AppLayout>
   );
 };

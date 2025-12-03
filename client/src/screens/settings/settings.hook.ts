@@ -4,11 +4,16 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
+import { useStoreAuthentication } from "@store";
 import React from "react";
 
 export const useSettingsPageHelper = () => {
   const { t } = useAppTranslations();
   const { goTo } = useNavigation();
+
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
 
   const i18n = React.useMemo(() => {
     return {
@@ -55,6 +60,7 @@ export const useSettingsPageHelper = () => {
 
   return {
     i18n,
+    isAuthenticated,
     options,
   };
 };
