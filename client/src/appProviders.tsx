@@ -17,6 +17,7 @@ import {
   NotFound404,
   OrderDetails,
   Orders,
+  PaymentMethods,
   ProductDetails,
   ProductList,
   Settings,
@@ -128,6 +129,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.CHANGE_PASSWORD,
             render: <ChangePassword />,
+          },
+          {
+            path: PAGES.PAYMENT_METHODS,
+            render: <PaymentMethods />,
           },
         ]}
       >

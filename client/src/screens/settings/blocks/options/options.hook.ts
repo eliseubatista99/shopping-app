@@ -21,31 +21,30 @@ export const useOptionsBlockHelper = () => {
     };
   }, [t]);
 
-  const onClickSignInAndSecurity = React.useCallback(() => {
-    goTo({
-      path: PAGES.SIGN_IN_AND_SECURITY,
-    });
-  }, [goTo]);
-
-  const onClickPaymentMethods = React.useCallback(() => {}, []);
-
-  const onClickAddresses = React.useCallback(() => {}, []);
-
   const options = [
     {
       id: "sign-in",
       text: i18n.signIn,
-      onClick: onClickSignInAndSecurity,
+      onClick: () =>
+        goTo({
+          path: PAGES.SIGN_IN_AND_SECURITY,
+        }),
     },
     {
       id: "payment",
       text: i18n.paymentMethods,
-      onClick: onClickPaymentMethods,
+      onClick: () =>
+        goTo({
+          path: PAGES.PAYMENT_METHODS,
+        }),
     },
     {
       id: "addresses",
       text: i18n.addresses,
-      onClick: onClickAddresses,
+      onClick: () =>
+        goTo({
+          path: PAGES.SIGN_IN_AND_SECURITY,
+        }),
     },
   ];
 

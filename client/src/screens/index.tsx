@@ -11,6 +11,7 @@ export * from "./logIn";
 export * from "./notFound404";
 export * from "./orderDetails";
 export * from "./orders";
+export * from "./paymentMethods";
 export * from "./productDetails";
 export * from "./productList";
 export * from "./settings";
