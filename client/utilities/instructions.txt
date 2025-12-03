@@ -8,4 +8,6 @@
 
 .\create-store -Name StoreName
 
+.\create-toast -Name ToastName
+
 

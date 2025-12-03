@@ -6,6 +6,7 @@ export const INPUTS = {
   NAME: "name",
   PHONE_OR_EMAIL: "phone-email",
   PHONE: "phone",
+  PHONE_PREFIX: "phone-prefix",
   EMAIL: "email",
   PASSWORD: "password",
   PASSWORD_CONFIRMATION: "password-confirmation",

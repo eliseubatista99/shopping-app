@@ -35,32 +35,34 @@ export const ReviewBlockMobile: React.FC = () => {
       </div>
 
       <Form
-        fields={[
-          {
-            name: INPUTS.REVIEW_DESCRIPTION,
-            content: (
-              <AppTextArea
-                label={i18n.description.title}
-                name={INPUTS.REVIEW_DESCRIPTION}
-                placeHolder={i18n.description.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.descriptionError}
-              />
-            ),
-          },
-          {
-            name: INPUTS.REVIEW_TITLE,
-            content: (
-              <AppInputField
-                label={i18n.title.title}
-                name={INPUTS.REVIEW_TITLE}
-                placeHolder={i18n.title.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.titleError}
-              />
-            ),
-          },
-        ]}
+        fields={{
+          list: [
+            {
+              name: INPUTS.REVIEW_DESCRIPTION,
+              content: (
+                <AppTextArea
+                  label={i18n.description.title}
+                  name={INPUTS.REVIEW_DESCRIPTION}
+                  placeHolder={i18n.description.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.descriptionError}
+                />
+              ),
+            },
+            {
+              name: INPUTS.REVIEW_TITLE,
+              content: (
+                <AppInputField
+                  label={i18n.title.title}
+                  name={INPUTS.REVIEW_TITLE}
+                  placeHolder={i18n.title.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.titleError}
+                />
+              ),
+            },
+          ],
+        }}
         submitButton={{
           content: (
             <AppButton

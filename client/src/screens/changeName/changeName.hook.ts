@@ -1,6 +1,7 @@
 import { Api } from "@api";
-import { INPUTS, PAGES } from "@constants";
+import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
+  useFeedback,
   useNavigation,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
@@ -12,9 +13,10 @@ export const useChangeNamePageHelper = () => {
   const { t } = useAppTranslations();
   const { fetchUpdateClientInfo } = Api.UpdateClientInfo();
   const { goTo, goBack, history } = useNavigation();
+  const { showItem } = useFeedback();
   const setClientInfo = useStoreBase((state) => state.setClientInfo);
 
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | undefined>();
 
   const i18n = React.useMemo(() => {
@@ -49,6 +51,8 @@ export const useChangeNamePageHelper = () => {
         if (res.metadata.success) {
           setClientInfo(res.data.updatedInfo);
 
+          showItem(TOASTS.CLIENT_INFO_CHANGED);
+
           if (history.length > 0) {
             goBack();
           } else {
@@ -69,6 +73,7 @@ export const useChangeNamePageHelper = () => {
       history.length,
       i18n.name.error,
       setClientInfo,
+      showItem,
     ]
   );
 

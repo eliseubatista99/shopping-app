@@ -1,6 +1,7 @@
 import { Api } from "@api";
-import { INPUTS, PAGES } from "@constants";
+import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
+  useFeedback,
   useNavigation,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
@@ -12,21 +13,24 @@ export const useChangeEmailPageHelper = () => {
   const { t } = useAppTranslations();
   const { fetchUpdateClientInfo } = Api.UpdateClientInfo();
   const { goTo, goBack, history } = useNavigation();
+  const { showItem } = useFeedback();
+  const client = useStoreBase((state) => state.client);
   const setClientInfo = useStoreBase((state) => state.setClientInfo);
 
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | undefined>();
 
   const i18n = React.useMemo(() => {
     return {
-      title: t("changeName.title"),
-      subtitle: t("changeName.subtitle"),
-      name: {
-        placeholder: t("changeName.name.placeholder"),
-        error: t("changeName.name.error"),
+      title: t("changeEmail.title"),
+      current: t("changeEmail.current"),
+      subtitle: t("changeEmail.subtitle"),
+      email: {
+        placeholder: t("changeEmail.email.placeholder"),
+        error: t("changeEmail.email.error"),
       },
       actions: {
-        submit: t("changeName.actions.submit"),
+        submit: t("changeEmail.actions.submit"),
       },
     };
   }, [t]);
@@ -35,19 +39,21 @@ export const useChangeEmailPageHelper = () => {
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const name = data.find((d) => d.name === INPUTS.NAME)?.value as string;
+      const email = data.find((d) => d.name === INPUTS.EMAIL)?.value as string;
 
-      const nameError = !name ? i18n.name.error : undefined;
+      const emailError = !email ? i18n.email.error : undefined;
 
-      setError(nameError);
+      setError(emailError);
 
-      if (!nameError) {
+      if (!emailError) {
         const res = await fetchUpdateClientInfo({
-          name,
+          email,
         });
 
         if (res.metadata.success) {
           setClientInfo(res.data.updatedInfo);
+
+          showItem(TOASTS.CLIENT_INFO_CHANGED);
 
           if (history.length > 0) {
             goBack();
@@ -67,8 +73,9 @@ export const useChangeEmailPageHelper = () => {
       goBack,
       goTo,
       history.length,
-      i18n.name.error,
+      i18n.email.error,
       setClientInfo,
+      showItem,
     ]
   );
 
@@ -77,5 +84,6 @@ export const useChangeEmailPageHelper = () => {
     loading,
     error,
     onClickSubmit,
+    client,
   };
 };

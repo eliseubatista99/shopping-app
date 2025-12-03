@@ -5,17 +5,29 @@ export const translationsChangePhone: TranslationList = {
     pt: "Alterar o seu nome",
     en: "Change your name",
   },
+  "changePhone.current": {
+    pt: "Número de telemóvel atual:",
+    en: "Current phone number:",
+  },
   "changePhone.subtitle": {
-    pt: "Se quiser alterar o nome associado à sua conta, pode fazê-lo abaixo. Certifice-se de guardar as alterações quando terminar.",
-    en: "If you want to change the name associated to your account, you can do it bellow. Make sure you save the changes when you are done.",
+    pt: "Para verificar o seu número, iremos enviar-lhe uma mensagem SMS comn um código temporário. podem aplicar-se taxas de mensagens e dados.",
+    en: "To validate your number, we will send you an SMS with a temporary code. There could be sms and data costs.",
   },
   "changePhone.phone.placeholder": {
-    pt: "Nome",
-    en: "Name",
+    pt: "123456789",
+    en: "123456789",
   },
   "changePhone.phone.error": {
-    pt: "Nome inválido",
-    en: "Invalid name",
+    pt: "Número inválido",
+    en: "Invalid number",
+  },
+  "changePhone.prefix.placeholder": {
+    pt: "+351",
+    en: "+351",
+  },
+  "changePhone.prefix.error": {
+    pt: "Prefixo inválido",
+    en: "Invalid prefix",
   },
   "changePhone.actions.submit": {
     pt: "Guardar alterações",

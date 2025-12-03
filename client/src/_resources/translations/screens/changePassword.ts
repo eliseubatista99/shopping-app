@@ -2,8 +2,8 @@ import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
 
 export const translationsChangePassword: TranslationList = {
   "changePassword.title": {
-    pt: "Alterar o seu nome",
-    en: "Change your name",
+    pt: "Alterar  palavra-passe",
+    en: "Change password",
   },
   "changePassword.subtitle": {
     pt: "Se quiser alterar o nome associado à sua conta, pode fazê-lo abaixo. Certifice-se de guardar as alterações quando terminar.",

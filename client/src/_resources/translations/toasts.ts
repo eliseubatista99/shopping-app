@@ -5,4 +5,8 @@ export const translationsToasts: TranslationList = {
     pt: "Avaliação submetida",
     en: "Review submitted",
   },
+  "toasts.clientInfoChanged.text": {
+    pt: "Informação atualizada",
+    en: "Information updated",
+  },
 };

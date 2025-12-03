@@ -4,7 +4,7 @@ import {
   SelectAddressDrawer,
 } from "@drawers";
 import { OverlaySearch } from "@overlays";
-import { ReviewSubmittedToast } from "@toasts";
+import { ClientInfoChangedToast, ReviewSubmittedToast } from "@toasts";
 
 export const App = () => {
   return (
@@ -14,6 +14,7 @@ export const App = () => {
       <OrderFiltersDrawer />
       <OverlaySearch />
       <ReviewSubmittedToast />
+      <ClientInfoChangedToast />
     </>
   );
 };

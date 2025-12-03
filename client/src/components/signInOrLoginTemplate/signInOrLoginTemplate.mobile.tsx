@@ -22,20 +22,22 @@ export const SignInOrLoginTemplateMobile: React.FC<
         {i18n.title}
       </Typography>
       <Form
-        fields={[
-          {
-            name: INPUTS.PHONE_OR_EMAIL,
-            content: (
-              <AppInputField
-                label={i18n.emailOrPhone.title}
-                name={INPUTS.PHONE_OR_EMAIL}
-                placeHolder={i18n.emailOrPhone.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={emailOrPhoneError}
-              />
-            ),
-          },
-        ]}
+        fields={{
+          list: [
+            {
+              name: INPUTS.PHONE_OR_EMAIL,
+              content: (
+                <AppInputField
+                  label={i18n.emailOrPhone.title}
+                  name={INPUTS.PHONE_OR_EMAIL}
+                  placeHolder={i18n.emailOrPhone.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={emailOrPhoneError}
+                />
+              ),
+            },
+          ],
+        }}
         submitButton={{
           content: (
             <AppButton

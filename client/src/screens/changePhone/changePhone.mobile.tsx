@@ -1,10 +1,11 @@
-import { AppButton, AppInputField, AppLayout } from "@components";
+import { AppButton, AppInputField, AppLayout, AppLoader } from "@components";
 import { INPUTS } from "@constants";
 import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useChangePhonePageHelper } from "./changePhone.hook";
 
 export const ChangePhoneMobile: React.FC = () => {
-  const { i18n, error, onClickSubmit } = useChangePhonePageHelper();
+  const { i18n, client, form, onClickSubmit, loading } =
+    useChangePhonePageHelper();
 
   return (
     <AppLayout
@@ -24,47 +25,78 @@ export const ChangePhoneMobile: React.FC = () => {
         },
       }}
     >
-      <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
-        {i18n.title}
-      </Typography>
-      <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
-        {i18n.subtitle}
-      </Typography>
-      <Form
-        fields={[
-          {
-            name: INPUTS.NAME,
-            content: (
-              <AppInputField
-                name={INPUTS.NAME}
-                placeHolder={i18n.name.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={error}
-              />
-            ),
-          },
-        ]}
-        submitButton={{
-          content: (
-            <AppButton
-              text={{
-                content: i18n.actions.submit,
-                props: {
-                  styles: {
-                    fontSize: "16px",
-                  },
+      {loading && <AppLoader visible={loading} />}
+      {!loading && (
+        <>
+          <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
+            {i18n.title}
+          </Typography>
+          <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
+            {i18n.current}
+          </Typography>
+          <Typography
+            styles={{ fontSize: "16px" }}
+          >{`${client?.phoneNumberPrefix} ${client?.phoneNumber}`}</Typography>
+          <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
+            {i18n.subtitle}
+          </Typography>
+          <Form
+            fields={{
+              list: [
+                {
+                  name: INPUTS.PHONE_PREFIX,
+                  content: (
+                    <AppInputField
+                      name={INPUTS.PHONE_PREFIX}
+                      type="number"
+                      placeHolder={i18n.prefix.placeholder}
+                      inputStyles={{ height: "150px", padding: "10px" }}
+                      bottomMessage={form.prefixError}
+                    />
+                  ),
                 },
-              }}
-              styles={{ width: "100%", padding: "20px" }}
-            />
-          ),
-          styles: {
-            marginTop: "auto",
-          },
-        }}
-        onSubmit={onClickSubmit}
-        styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
-      />
+                {
+                  name: INPUTS.PHONE,
+                  content: (
+                    <AppInputField
+                      name={INPUTS.PHONE}
+                      type="number"
+                      placeHolder={i18n.phone.placeholder}
+                      inputStyles={{ height: "150px", padding: "10px" }}
+                      bottomMessage={form.phoneError}
+                    />
+                  ),
+                },
+              ],
+              styles: {
+                display: "grid",
+                gridTemplateColumns: "100px auto",
+                gap: "20px",
+              },
+            }}
+            submitButton={{
+              content: (
+                <AppButton
+                  text={{
+                    content: i18n.actions.submit,
+                    props: {
+                      styles: {
+                        fontSize: "16px",
+                      },
+                    },
+                  }}
+                  styles={{ width: "100%", padding: "20px" }}
+                />
+              ),
+              styles: {
+                marginTop: "auto",
+              },
+            }}
+            onSubmit={onClickSubmit}
+            styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
+          />
+        </>
+      )}
     </AppLayout>
   );
 };

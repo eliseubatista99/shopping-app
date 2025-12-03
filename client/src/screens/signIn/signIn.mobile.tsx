@@ -12,68 +12,70 @@ export const SignInMobile: React.FC = () => {
         {i18n.title}
       </Typography>
       <Form
-        fields={[
-          {
-            name: INPUTS.NAME,
-            content: (
-              <AppInputField
-                label={i18n.name.title}
-                name={INPUTS.NAME}
-                placeHolder={i18n.name.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.nameError}
-              />
-            ),
-          },
-          {
-            name: INPUTS.EMAIL,
-            content: (
-              <AppInputField
-                label={i18n.email.title}
-                name={INPUTS.EMAIL}
-                placeHolder={i18n.email.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.emailError}
-              />
-            ),
-          },
-          {
-            name: INPUTS.PHONE,
-            content: (
-              <AppInputField
-                label={i18n.phone.title}
-                name={INPUTS.PHONE}
-                placeHolder={i18n.phone.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.phoneError}
-              />
-            ),
-          },
-          {
-            name: INPUTS.PASSWORD,
-            content: (
-              <AppInputField
-                label={i18n.password.title}
-                name={INPUTS.PASSWORD}
-                placeHolder={i18n.password.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.passwordError}
-              />
-            ),
-          },
-          {
-            name: INPUTS.PASSWORD_CONFIRMATION,
-            content: (
-              <AppInputField
-                label={i18n.passwordConfirm.title}
-                name={INPUTS.PASSWORD_CONFIRMATION}
-                placeHolder={i18n.passwordConfirm.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.passwordError}
-              />
-            ),
-          },
-        ]}
+        fields={{
+          list: [
+            {
+              name: INPUTS.NAME,
+              content: (
+                <AppInputField
+                  label={i18n.name.title}
+                  name={INPUTS.NAME}
+                  placeHolder={i18n.name.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.nameError}
+                />
+              ),
+            },
+            {
+              name: INPUTS.EMAIL,
+              content: (
+                <AppInputField
+                  label={i18n.email.title}
+                  name={INPUTS.EMAIL}
+                  placeHolder={i18n.email.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.emailError}
+                />
+              ),
+            },
+            {
+              name: INPUTS.PHONE,
+              content: (
+                <AppInputField
+                  label={i18n.phone.title}
+                  name={INPUTS.PHONE}
+                  placeHolder={i18n.phone.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.phoneError}
+                />
+              ),
+            },
+            {
+              name: INPUTS.PASSWORD,
+              content: (
+                <AppInputField
+                  label={i18n.password.title}
+                  name={INPUTS.PASSWORD}
+                  placeHolder={i18n.password.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.passwordError}
+                />
+              ),
+            },
+            {
+              name: INPUTS.PASSWORD_CONFIRMATION,
+              content: (
+                <AppInputField
+                  label={i18n.passwordConfirm.title}
+                  name={INPUTS.PASSWORD_CONFIRMATION}
+                  placeHolder={i18n.passwordConfirm.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.passwordError}
+                />
+              ),
+            },
+          ],
+        }}
         submitButton={{
           content: (
             <AppButton

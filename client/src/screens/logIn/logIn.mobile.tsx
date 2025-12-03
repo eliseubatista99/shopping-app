@@ -12,32 +12,34 @@ export const LogInMobile: React.FC = () => {
         {i18n.title}
       </Typography>
       <Form
-        fields={[
-          {
-            name: INPUTS.PHONE_OR_EMAIL,
-            content: (
-              <AppInputField
-                label={i18n.emailOrPhone.title}
-                name={INPUTS.PHONE_OR_EMAIL}
-                placeHolder={i18n.emailOrPhone.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.emailOrPhoneError}
-              />
-            ),
-          },
-          {
-            name: INPUTS.PASSWORD,
-            content: (
-              <AppInputField
-                label={i18n.password.title}
-                name={INPUTS.PASSWORD}
-                placeHolder={i18n.password.placeholder}
-                inputStyles={{ height: "150px", padding: "10px" }}
-                bottomMessage={form.passwordError}
-              />
-            ),
-          },
-        ]}
+        fields={{
+          list: [
+            {
+              name: INPUTS.PHONE_OR_EMAIL,
+              content: (
+                <AppInputField
+                  label={i18n.emailOrPhone.title}
+                  name={INPUTS.PHONE_OR_EMAIL}
+                  placeHolder={i18n.emailOrPhone.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.emailOrPhoneError}
+                />
+              ),
+            },
+            {
+              name: INPUTS.PASSWORD,
+              content: (
+                <AppInputField
+                  label={i18n.password.title}
+                  name={INPUTS.PASSWORD}
+                  placeHolder={i18n.password.placeholder}
+                  inputStyles={{ height: "150px", padding: "10px" }}
+                  bottomMessage={form.passwordError}
+                />
+              ),
+            },
+          ],
+        }}
         submitButton={{
           content: (
             <AppButton
