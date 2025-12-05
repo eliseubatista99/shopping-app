@@ -34,6 +34,8 @@ export const DrawerAddCardPaymentMethodMobile = () => {
               content: (
                 <AppInputField
                   name={INPUTS.CARD_NUMBER}
+                  type="number"
+                  maxLength={16}
                   label={i18n.form.cardNumber.title}
                   placeHolder={i18n.form.cardNumber.placeholder}
                   containerStyles={{ marginTop: "15px" }}
@@ -74,6 +76,7 @@ export const DrawerAddCardPaymentMethodMobile = () => {
                         name={INPUTS.EXPIRATION_MONTH}
                         type="number"
                         placeHolder={i18n.form.date.month.placeholder}
+                        maxLength={2}
                         styles={{ width: undefined, overflow: "hidden" }}
                         containerStyles={{ marginTop: "15px", padding: 0 }}
                         inputStyles={{
@@ -86,6 +89,7 @@ export const DrawerAddCardPaymentMethodMobile = () => {
                         name={INPUTS.EXPIRATION_YEAR}
                         type="number"
                         placeHolder={i18n.form.date.year.placeholder}
+                        maxLength={4}
                         styles={{ width: undefined, overflow: "hidden" }}
                         containerStyles={{ marginTop: "15px", padding: 0 }}
                         inputStyles={{
@@ -111,8 +115,10 @@ export const DrawerAddCardPaymentMethodMobile = () => {
                   <div style={{ minWidth: "100%" }}>
                     <AppInputField
                       name={INPUTS.SECURITY_CODE}
+                      type="number"
                       label={i18n.form.securityCode.title}
                       placeHolder={i18n.form.securityCode.placeholder}
+                      maxLength={3}
                       bottomMessage={form.securityCodeError}
                       styles={{ width: undefined, overflow: "hidden" }}
                       containerStyles={{ marginTop: "15px", padding: 0 }}
@@ -131,6 +137,7 @@ export const DrawerAddCardPaymentMethodMobile = () => {
               content: (
                 <AppInputField
                   name={INPUTS.NAME}
+                  maxLength={50}
                   label={i18n.form.name.title}
                   placeHolder={i18n.form.name.placeholder}
                   containerStyles={{ marginTop: "15px" }}
