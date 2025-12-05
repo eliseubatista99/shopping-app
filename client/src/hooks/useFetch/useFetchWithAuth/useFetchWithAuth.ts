@@ -14,6 +14,7 @@ export const useFetchWithAuth = <TOut>({ endpoint }: FetchWithAuthInput) => {
     get: httpGet,
     post: httpPost,
     delete: httpDelete,
+    patch: httpPatch,
   } = useFetchNoAuth<TOut>({
     endpoint,
   });
@@ -59,9 +60,21 @@ export const useFetchWithAuth = <TOut>({ endpoint }: FetchWithAuthInput) => {
     [httpDelete, runPreFetch]
   );
 
+  const runPatch = useCallback(
+    async (input: TIn, headers?: HeadersInit) => {
+      await runPreFetch();
+
+      const result = await httpPatch({ ...input }, { ...headers });
+
+      return result;
+    },
+    [httpPatch, runPreFetch]
+  );
+
   return {
     get: runGet,
     post: runPost,
     delete: runDelete,
+    patch: runPatch,
   };
 };

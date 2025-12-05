@@ -101,7 +101,7 @@ app.post(REQUEST_PREFIX, async (req, res) => {
     file === "CreateAccount.json" ||
     file === "RefreshAuthentication.json"
   ) {
-    result.content.data.token = JwtConfigs.token;
+    result.content.data.token = JwtConfigs.getToken();
   }
 
   if (!result.error) {
@@ -133,6 +133,21 @@ app.delete(REQUEST_PREFIX, async (req, res) => {
 
   res.setHeader("Content-Type", "application/json");
   const result = await handleApiCall(file, "services/delete");
+
+  if (!result.error) {
+    res.send(result.content);
+  } else {
+    res.status(500).send({
+      message: result.error,
+    });
+  }
+});
+
+app.patch(REQUEST_PREFIX, async (req, res) => {
+  const file = `${req.params.file}.json`;
+
+  res.setHeader("Content-Type", "application/json");
+  const result = await handleApiCall(file, "services/patch");
 
   if (!result.error) {
     res.send(result.content);

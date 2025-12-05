@@ -11,7 +11,7 @@ export const useSelectAddressDrawerHelper = () => {
   const storeClient = useStoreBase((state) => state.client);
   const selectedAddressInStore = useStoreBase((state) => state.selectedAddress);
 
-  const { fetchUpdateAddress } = Api.UpdateDefaultAddress();
+  const { fetchSetDefaultAddress } = Api.SetDefaultAddress();
   const { t } = useAppTranslations();
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -43,7 +43,7 @@ export const useSelectAddressDrawerHelper = () => {
       return;
     }
 
-    const res = await fetchUpdateAddress({
+    const res = await fetchSetDefaultAddress({
       addressId: selectedAddress.id,
     });
 
@@ -54,7 +54,7 @@ export const useSelectAddressDrawerHelper = () => {
 
     hideItem(DRAWERS.SELECT_ADDRESS);
   }, [
-    fetchUpdateAddress,
+    fetchSetDefaultAddress,
     hideItem,
     selectedAddress,
     setClientInfo,

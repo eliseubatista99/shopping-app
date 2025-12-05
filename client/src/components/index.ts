@@ -13,6 +13,7 @@ export * from "./currencyBlock";
 export * from "./documentListItem";
 export * from "./isOnScreenTrigger";
 export * from "./orderListItem";
+export * from "./paymentMethodListItem";
 export * from "./productCheckoutItem";
 export * from "./productCombinationSelection";
 export * from "./productComboItem";

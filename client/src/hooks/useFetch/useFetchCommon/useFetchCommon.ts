@@ -12,7 +12,12 @@ type TIn = Record<string, unknown>;
 
 export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
   const token = useStoreAuthentication((state) => state.token);
-  const { get: httpGet, post: httpPost, delete: httpDelete } = useFetch();
+  const {
+    get: httpGet,
+    post: httpPost,
+    delete: httpDelete,
+    patch: httpPatch,
+  } = useFetch();
 
   const commonHeaders = useMemo((): HeadersInit => {
     let headers: HeadersInit = {
@@ -68,9 +73,23 @@ export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
     [commonHeaders, endpoint, httpDelete]
   );
 
+  const runPatch = useCallback(
+    async (input: TIn, headers?: HeadersInit) => {
+      const result = await httpPatch<ApiOutput<TOut>>(
+        `${ApiConfigs.endpoint}/${endpoint}`,
+        { ...input },
+        { ...commonHeaders, ...headers }
+      );
+
+      return result;
+    },
+    [commonHeaders, endpoint, httpPatch]
+  );
+
   return {
     get: runGet,
     post: runPost,
     delete: runDelete,
+    patch: runPatch,
   };
 };

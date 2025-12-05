@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "success": true,
+    "errors": [
+      {
+        "code": "0001",
+        "message": "Error fetchAvailableTransactions"
+      }
+    ]
+  },
+  "data": {
+    "updatedMethods": [
+      {
+        "id": "1",
+        "type": "Card",
+        "name": "Eliseu Batista",
+        "network": "Mastercard",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKiJB99ZxoMB8pRe4lHhqO9UIfOBqcdeMjKg&s",
+        "cardNumber": "**** **** **** 1234",
+        "expirationMonth": 11,
+        "expirationYear": 2025,
+        "isDefault": true
+      },
+      {
+        "id": "3",
+        "type": "Card",
+        "name": "Eliseu Batista",
+        "cardNumber": "**** **** **** 5678",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKiJB99ZxoMB8pRe4lHhqO9UIfOBqcdeMjKg&s",
+        "network": "Visa",
+        "expirationMonth": 11,
+        "expirationYear": 2025,
+        "isDefault": false
+      }
+    ]
+  }
+}

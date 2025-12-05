@@ -21,6 +21,7 @@ export const initialState: BaseState = {
 interface UseStoreOutput extends BaseState {
   setBaseStoreState: (data: Partial<BaseState>) => void;
   setClientInfo: (data: ClientInfoDto) => void;
+  setPaymentMethods: (data: PaymentMethodDto[]) => void;
 }
 
 export const useStoreBase = StoreHelper.createStore<UseStoreOutput>(
@@ -44,6 +45,19 @@ export const useStoreBase = StoreHelper.createStore<UseStoreOutput>(
         })),
         false,
         "setClientInfo"
+      );
+    },
+    setPaymentMethods: function (data: PaymentMethodDto[]) {
+      set(
+        produce((state: BaseState) => {
+          if (state.client) {
+            state.client.paymentMethods = data;
+
+            state.selectedPaymentMethod = data.find((p) => p.isDefault);
+          }
+        }),
+        false,
+        "setPaymentMethods"
       );
     },
   }),
