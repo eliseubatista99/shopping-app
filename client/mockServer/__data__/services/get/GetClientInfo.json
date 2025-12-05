@@ -61,12 +61,6 @@
           "isDefault": true
         },
         {
-          "id": "2",
-          "type": "Bank",
-          "name": "Eliseu Batista",
-          "isDefault": false
-        },
-        {
           "id": "3",
           "type": "Card",
           "name": "Eliseu Batista",
