@@ -1,5 +1,5 @@
 import { Typography } from "@eliseubatista99/react-scaffold-core";
-import { useMethodsListBlockHelper } from "./MethodsList.hook";
+import { useMethodsListBlockHelper } from "./methodsList.hook";
 
 export const MethodsListBlockMobile: React.FC = () => {
   const { i18n, paymentMethods } = useMethodsListBlockHelper();

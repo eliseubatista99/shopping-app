@@ -1,6 +1,6 @@
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
-import { MethodsListBlockDesktop } from "./methodsList.desktop";
-import { MethodsListBlockMobile } from "./methodsList.mobile";
+import { MethodsListBlockDesktop } from "./.desktop";
+import { MethodsListBlockMobile } from "./.mobile";
 
 export const MethodsListBlock: React.FC = () => {
   const { currentSize } = useResponsive();
