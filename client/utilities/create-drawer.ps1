@@ -50,7 +50,7 @@ Set-Content -Path "$baseDir/${camel}.hook.ts" -Value $hookContent
 # ------------------------------
 $mobileContent = @"
 import { AppLoader } from "@components";
-import { Drawers } from "@constants";
+import { DRAWERS } from "@constants";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { AppDrawer } from "../_appDrawer";
 import { use${Name}DrawerHelper } from "./${camel}.hook";
@@ -60,7 +60,7 @@ export const Drawer${Name}Mobile = () => {
 
   return (
     <AppDrawer
-      id={Drawers.${camel}}
+      id={DRAWERS.${camel}}
       canBeClosed={!loading}
       drawerStyles={{ gap: "12px" }}
     >

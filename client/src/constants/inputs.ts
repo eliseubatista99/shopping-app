@@ -11,4 +11,9 @@ export const INPUTS = {
   PASSWORD: "password",
   NEW_PASSWORD: "new-password",
   PASSWORD_CONFIRMATION: "password-confirmation",
+  CARD_NUMBER: "card-number",
+  DATE: "date",
+  EXPIRATION_MONTH: "expiration-month",
+  EXPIRATION_YEAR: "expiration-year",
+  SECURITY_CODE: "security-code",
 };

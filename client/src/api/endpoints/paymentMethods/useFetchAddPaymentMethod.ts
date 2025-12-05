@@ -1,9 +1,13 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { PaymentMethodDto } from "../../types";
+import type { PaymentMethodDto, PaymentMethodType } from "../../types";
 
 export type AddPaymentMethodInputDto = {
-  method: PaymentMethodDto;
+  type: PaymentMethodType;
+  name: string;
+  cardNumber: string;
+  expirationMonth: number;
+  expirationYear: number;
 };
 
 export type AddPaymentMethodOutputDto = {

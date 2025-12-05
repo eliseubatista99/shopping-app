@@ -1,4 +1,6 @@
 import { Api, type PaymentMethodDto } from "@api";
+import { DRAWERS } from "@constants";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase } from "@store";
 import React, { useCallback } from "react";
@@ -10,6 +12,7 @@ export const useMethodsListBlockHelper = () => {
   const { fetchUpdatePaymentMethod } = Api.UpdatePaymentMethod();
   const { fetchDeletePaymentMethod } = Api.DeletePaymentMethod();
   const { fetchSetDefaultPaymentMethod } = Api.SetDefaultPaymentMethod();
+  const { showItem } = useFeedback();
 
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -26,7 +29,9 @@ export const useMethodsListBlockHelper = () => {
     };
   }, [t]);
 
-  const onClickAdd = useCallback(() => {}, []);
+  const onClickAdd = useCallback(() => {
+    showItem(DRAWERS.ADD_CARD_PAYMENT_METHOD);
+  }, [showItem]);
 
   const onClickEdit = useCallback(
     async (method: PaymentMethodDto) => {
