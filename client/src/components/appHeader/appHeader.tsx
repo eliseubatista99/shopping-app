@@ -11,6 +11,7 @@ export interface AppHeaderProps {
   back?: {
     visible: boolean;
     onClick?: () => void;
+    defaultBackPath?: string;
     styles?: React.CSSProperties;
   };
   styles?: React.CSSProperties;
