@@ -1,4 +1,9 @@
-import { AppButton, AppInputField, AppLoader } from "@components";
+import {
+  AppButton,
+  AppInputField,
+  AppLoader,
+  AppNumericInputField,
+} from "@components";
 import { DRAWERS, INPUTS } from "@constants";
 import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { AppDrawer } from "../_appDrawer";
@@ -72,11 +77,10 @@ export const DrawerAddCardPaymentMethodMobile = () => {
                         gridTemplateColumns: "0.4fr 0.6fr",
                       }}
                     >
-                      <AppInputField
+                      <AppNumericInputField
                         name={INPUTS.EXPIRATION_MONTH}
-                        type="number"
                         placeHolder={i18n.form.date.month.placeholder}
-                        maxLength={2}
+                        max={12}
                         styles={{ width: undefined, overflow: "hidden" }}
                         containerStyles={{ marginTop: "15px", padding: 0 }}
                         inputStyles={{
@@ -85,11 +89,10 @@ export const DrawerAddCardPaymentMethodMobile = () => {
                           textAlign: "center",
                         }}
                       />
-                      <AppInputField
+                      <AppNumericInputField
                         name={INPUTS.EXPIRATION_YEAR}
-                        type="number"
                         placeHolder={i18n.form.date.year.placeholder}
-                        maxLength={4}
+                        max={9999}
                         styles={{ width: undefined, overflow: "hidden" }}
                         containerStyles={{ marginTop: "15px", padding: 0 }}
                         inputStyles={{
@@ -113,12 +116,11 @@ export const DrawerAddCardPaymentMethodMobile = () => {
                   </div>
 
                   <div style={{ minWidth: "100%" }}>
-                    <AppInputField
+                    <AppNumericInputField
                       name={INPUTS.SECURITY_CODE}
-                      type="number"
                       label={i18n.form.securityCode.title}
                       placeHolder={i18n.form.securityCode.placeholder}
-                      maxLength={3}
+                      max={999}
                       bottomMessage={form.securityCodeError}
                       styles={{ width: undefined, overflow: "hidden" }}
                       containerStyles={{ marginTop: "15px", padding: 0 }}

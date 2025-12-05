@@ -1,9 +1,17 @@
-import { InputField, Typography } from "@eliseubatista99/react-scaffold-core";
-import type { AppInputFieldProps } from "./appInputField";
+import {
+  NumericInputField,
+  Typography,
+} from "@eliseubatista99/react-scaffold-core";
+import React from "react";
+import type { AppNumericInputFieldProps } from "./appNumericInputField";
 
-export const AppInputFieldMobile: React.FC<AppInputFieldProps> = (props) => {
+export const AppNumericInputFieldMobile: React.FC<AppNumericInputFieldProps> = (
+  props
+) => {
   return (
-    <InputField
+    <NumericInputField
+      allowNegatives={false}
+      allowDecimals={false}
       {...props}
       label={
         props.label ? (
