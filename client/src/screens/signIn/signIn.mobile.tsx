@@ -7,7 +7,19 @@ export const SignInMobile: React.FC = () => {
   const { i18n, form, onClickSubmit } = useSignInPageHelper();
 
   return (
-    <AppLayout>
+    <AppLayout
+      appHeader={{
+        back: {
+          visible: true,
+        },
+
+        styles: {
+          borderBottom: "none",
+          minHeight: 0,
+          paddingTop: "28px",
+        },
+      }}
+    >
       <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
         {i18n.title}
       </Typography>

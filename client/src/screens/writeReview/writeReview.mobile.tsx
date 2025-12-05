@@ -1,4 +1,5 @@
-import { AppLayout, AppLoader } from "@components";
+import { AppLayout, AppLoader, AuthenticatedScreen } from "@components";
+import { PAGES } from "@constants";
 import { ProductBlock, ReviewBlock } from "./blocks";
 import { useWriteReviewPageHelper } from "./writeReview.hook";
 
@@ -24,13 +25,15 @@ export const WriteReviewMobile: React.FC = () => {
         },
       }}
     >
-      {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-          <ProductBlock />
-          <ReviewBlock />
-        </>
-      )}
+      <AuthenticatedScreen returnPage={PAGES.WRITE_REVIEW}>
+        {loading && <AppLoader visible={loading} />}
+        {!loading && (
+          <>
+            <ProductBlock />
+            <ReviewBlock />
+          </>
+        )}
+      </AuthenticatedScreen>
     </AppLayout>
   );
 };

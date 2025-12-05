@@ -1,4 +1,10 @@
-import { AppLayout, AppLoader, Separator } from "@components";
+import {
+  AppLayout,
+  AppLoader,
+  AuthenticatedScreen,
+  Separator,
+} from "@components";
+import { PAGES } from "@constants";
 import {
   AddressBlock,
   DetailsBlock,
@@ -30,18 +36,20 @@ export const OrderDetailsMobile: React.FC = () => {
       }}
       pageStyles={{ padding: 0 }}
     >
-      {loading && <AppLoader visible={loading} />}
-      {!loading && selectedOrder && (
-        <>
-          <DetailsBlock />
-          <Separator />
-          <ProductBlock />
-          <Separator />
-          <PaymentBlock />
-          <AddressBlock />
-          <SummaryBlock />
-        </>
-      )}
+      <AuthenticatedScreen returnPage={PAGES.ORDER_DETAILS}>
+        {loading && <AppLoader visible={loading} />}
+        {!loading && selectedOrder && (
+          <>
+            <DetailsBlock />
+            <Separator />
+            <ProductBlock />
+            <Separator />
+            <PaymentBlock />
+            <AddressBlock />
+            <SummaryBlock />
+          </>
+        )}
+      </AuthenticatedScreen>
     </AppLayout>
   );
 };

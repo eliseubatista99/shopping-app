@@ -6,6 +6,7 @@ export * from "./appInputField";
 export * from "./appLayout";
 export * from "./appLoader";
 export * from "./appTextArea";
+export * from "./authenticatedScreen";
 export * from "./cartProductListItem";
 export * from "./chip";
 export * from "./currencyBlock";

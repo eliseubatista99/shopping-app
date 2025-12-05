@@ -1,4 +1,5 @@
-import { AppLayout, AppLoader } from "@components";
+import { AppLayout, AppLoader, AuthenticatedScreen } from "@components";
+import { PAGES } from "@constants";
 import { ProductsBlock } from "./blocks";
 import { useWishlistPageHelper } from "./wishlist.hook";
 
@@ -23,12 +24,14 @@ export const WishlistMobile: React.FC = () => {
         },
       }}
     >
-      {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-          <ProductsBlock />
-        </>
-      )}
+      <AuthenticatedScreen returnPage={PAGES.WISHLIST}>
+        {loading && <AppLoader visible={loading} />}
+        {!loading && (
+          <>
+            <ProductsBlock />
+          </>
+        )}
+      </AuthenticatedScreen>
     </AppLayout>
   );
 };

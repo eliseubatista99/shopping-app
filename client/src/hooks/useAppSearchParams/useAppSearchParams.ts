@@ -5,6 +5,7 @@ export const useAppSearchParams = () => {
   const { searchParams } = useNavigation();
 
   return {
+    allParams: searchParams.getAll(),
     productId: {
       value: searchParams.get<string>(SEARCH_PARAMS.PRODUCT_ID) ?? undefined,
     },
@@ -16,6 +17,9 @@ export const useAppSearchParams = () => {
     },
     orderId: {
       value: searchParams.get<string>(SEARCH_PARAMS.ORDER_ID) ?? undefined,
+    },
+    returnPage: {
+      value: searchParams.get<string>(SEARCH_PARAMS.RETURN_PAGE) ?? undefined,
     },
   };
 };

@@ -1,4 +1,5 @@
-import { AppLayout, AppLoader } from "@components";
+import { AppLayout, AppLoader, AuthenticatedScreen } from "@components";
+import { PAGES } from "@constants";
 import {
   AddressBlock,
   ExecutionBlock,
@@ -26,16 +27,18 @@ export const CheckoutMobile: React.FC = () => {
         },
       }}
     >
-      {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-          <AddressBlock />
-          <ScheduleBlock />
-          <PaymentBlock />
-          <ProductsBlock />
-          <ExecutionBlock />
-        </>
-      )}
+      <AuthenticatedScreen returnPage={PAGES.CHECKOUT}>
+        {loading && <AppLoader visible={loading} />}
+        {!loading && (
+          <>
+            <AddressBlock />
+            <ScheduleBlock />
+            <PaymentBlock />
+            <ProductsBlock />
+            <ExecutionBlock />
+          </>
+        )}
+      </AuthenticatedScreen>
     </AppLayout>
   );
 };

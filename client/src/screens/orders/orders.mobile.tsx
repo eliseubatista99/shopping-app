@@ -1,4 +1,5 @@
-import { AppLayout, AppLoader } from "@components";
+import { AppLayout, AppLoader, AuthenticatedScreen } from "@components";
+import { PAGES } from "@constants";
 import { FiltersBlock, OrdersListBlock } from "./blocks";
 import { useOrdersPageHelper } from "./orders.hook";
 
@@ -24,21 +25,23 @@ export const OrdersMobile: React.FC = () => {
       }}
       pageStyles={{ padding: 0 }}
     >
-      {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-          <FiltersBlock />
-          <div
-            style={{
-              width: "100%",
-              flexDirection: "column",
-              padding: "12px",
-            }}
-          >
-            {<OrdersListBlock />}
-          </div>
-        </>
-      )}
+      <AuthenticatedScreen returnPage={PAGES.ORDERS}>
+        {loading && <AppLoader visible={loading} />}
+        {!loading && (
+          <>
+            <FiltersBlock />
+            <div
+              style={{
+                width: "100%",
+                flexDirection: "column",
+                padding: "12px",
+              }}
+            >
+              {<OrdersListBlock />}
+            </div>
+          </>
+        )}
+      </AuthenticatedScreen>
     </AppLayout>
   );
 };

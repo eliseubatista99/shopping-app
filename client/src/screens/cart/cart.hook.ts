@@ -4,22 +4,24 @@ export const useCartPageHelper = () => {
   const isAuthenticated = useStoreAuthentication(
     (state) => state.isAuthenticated
   );
-  // const [loading, setLoading] = React.useState(true);
+  // const { goTo } = useNavigation();
 
-  // const { getCart } = useCart();
-
-  // const initScreen = React.useCallback(async () => {
-  //   setLoading(true);
-  //   await getCart();
-  //   setLoading(false);
-  // }, [getCart]);
+  // const initScreen = useCallback(async () => {
+  //   if (!isAuthenticated) {
+  //     goTo({
+  //       path: PAGES.SIGN_UP_OR_LOGIN,
+  //       params: {
+  //         [SEARCH_PARAMS.RETURN_PAGE]: PAGES.CART,
+  //       },
+  //     });
+  //   }
+  // }, [goTo, isAuthenticated]);
 
   // useDidMount(() => {
   //   initScreen();
   // });
 
   return {
-    // loading,
     isAuthenticated,
   };
 };

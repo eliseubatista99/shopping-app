@@ -16,7 +16,6 @@ export const useChangeEmailPageHelper = () => {
   const { showItem } = useFeedback();
   const client = useStoreBase((state) => state.client);
   const setClientInfo = useStoreBase((state) => state.setClientInfo);
-
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | undefined>();
 

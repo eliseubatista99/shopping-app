@@ -3,7 +3,11 @@ import {
   useNavigation,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations, useAuthentication } from "@hooks";
+import {
+  useAppSearchParams,
+  useAppTranslations,
+  useAuthentication,
+} from "@hooks";
 import React from "react";
 
 type SignInForm = {
@@ -17,6 +21,7 @@ export const useSignInPageHelper = () => {
   const { t } = useAppTranslations();
   const { goTo } = useNavigation();
   const { createAccount } = useAuthentication();
+  const { returnPage } = useAppSearchParams();
 
   const [form, setForm] = React.useState<SignInForm>({});
   const [loading, setLoading] = React.useState(true);
@@ -101,10 +106,17 @@ export const useSignInPageHelper = () => {
         });
 
         if (res.success) {
-          goTo({
-            path: PAGES.HOME,
-            addToHistory: false,
-          });
+          if (returnPage.value) {
+            goTo({
+              path: returnPage.value,
+              addToHistory: false,
+            });
+          } else {
+            goTo({
+              path: PAGES.HOME,
+              addToHistory: false,
+            });
+          }
         }
         // submitReview(score, title, description);
       }
@@ -119,6 +131,7 @@ export const useSignInPageHelper = () => {
       i18n.password.error,
       i18n.passwordConfirm.error,
       i18n.phone.error,
+      returnPage.value,
     ]
   );
 

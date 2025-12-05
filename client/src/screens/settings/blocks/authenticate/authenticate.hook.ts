@@ -1,5 +1,5 @@
 import type { SignInOrLoginTemplateStep } from "@components";
-import { PAGES } from "@constants";
+import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 
@@ -11,12 +11,16 @@ export const useAuthenticateBlockHelper = () => {
       if (step === "login") {
         goTo({
           path: PAGES.LOG_IN,
-          addToHistory: false,
+          params: {
+            [SEARCH_PARAMS.RETURN_PAGE]: PAGES.FOR_YOU,
+          },
         });
       } else {
         goTo({
           path: PAGES.SIGN_UP,
-          addToHistory: false,
+          params: {
+            [SEARCH_PARAMS.RETURN_PAGE]: PAGES.FOR_YOU,
+          },
         });
       }
     },
