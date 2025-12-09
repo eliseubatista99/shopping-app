@@ -3,6 +3,7 @@ import { DRAWERS, INPUTS, TOASTS } from "@constants";
 import {
   FormsHelper,
   useFeedback,
+  type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -27,10 +28,6 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
 
   const setPaymentMethods = useStorePaymentMethods(
     (state) => state.setPaymentMethods
-  );
-
-  const setStorePaymentMethodsState = useStorePaymentMethods(
-    (state) => state.setStorePaymentMethodsState
   );
 
   const [loading, setLoading] = React.useState(false);
@@ -81,58 +78,92 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.CARD_NUMBER,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.cardNumber.error,
+          },
+        },
+        {
+          name: INPUTS.EXPIRATION_MONTH,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.date.error,
+          },
+        },
+        {
+          name: INPUTS.EXPIRATION_YEAR,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.date.error,
+          },
+        },
+        {
+          name: INPUTS.SECURITY_CODE,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.securityCode.error,
+          },
+        },
+        {
+          name: INPUTS.NAME,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.name.error,
+          },
+        },
+      ];
+    }, [
+      i18n.form.cardNumber.error,
+      i18n.form.date.error,
+      i18n.form.name.error,
+      i18n.form.securityCode.error,
+    ]);
+
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const cardNumber = FormsHelper.getField<string>(data, INPUTS.CARD_NUMBER);
-      const expirationMonth = FormsHelper.getField<number>(
+      const cardNumber = FormsHelper.getField(data, INPUTS.CARD_NUMBER);
+      const expirationMonth = FormsHelper.getField(
         data,
         INPUTS.EXPIRATION_MONTH
       );
-      const expirationYear = FormsHelper.getField<number>(
-        data,
-        INPUTS.EXPIRATION_YEAR
-      );
-      const securityCode = FormsHelper.getField<string>(
-        data,
-        INPUTS.SECURITY_CODE
-      );
-      const name = FormsHelper.getField<string>(data, INPUTS.NAME);
-
-      const cardNumberError = !cardNumber
-        ? i18n.form.cardNumber.error
-        : undefined;
-      const dateError =
-        !expirationMonth || !expirationYear ? i18n.form.date.error : undefined;
-
-      const securityCodeError = !securityCode
-        ? i18n.form.securityCode.error
-        : undefined;
-      const nameError = !name ? i18n.form.name.error : undefined;
+      const expirationYear = FormsHelper.getField(data, INPUTS.EXPIRATION_YEAR);
+      const securityCode = FormsHelper.getField(data, INPUTS.SECURITY_CODE);
+      const name = FormsHelper.getField(data, INPUTS.NAME);
 
       setForm((prevState) => ({
         ...prevState,
-        cardNumberError,
-        dateError,
-        securityCodeError,
-        nameError,
+        cardNumberError: cardNumber?.error,
+        dateError: expirationYear?.error || expirationMonth?.error,
+        securityCodeError: securityCode?.error,
+        nameError: name?.error,
       }));
 
-      if (!cardNumberError && !dateError && !securityCodeError && !nameError) {
+      if (
+        !cardNumber?.error &&
+        !expirationYear?.error &&
+        !expirationMonth?.error &&
+        !securityCode?.error &&
+        !name?.error
+      ) {
         const res = await fetchUpdatePaymentMethod({
           id: paymentMethodInEdit?.id || "",
-          name: name || "",
-          cardNumber: cardNumber || "",
-          expirationMonth: expirationMonth || 0,
-          expirationYear: expirationYear || 0,
+          name: FormsHelper.getFieldValueOrDefault(name, ""),
+          cardNumber: FormsHelper.getFieldValueOrDefault(cardNumber, ""),
+          expirationMonth: FormsHelper.getFieldValueOrDefault(
+            expirationMonth,
+            0
+          ),
+          expirationYear: FormsHelper.getFieldValueOrDefault(expirationYear, 0),
         });
 
         if (res.metadata.success) {
-          setStorePaymentMethodsState({
-            paymentMethodInEdit: undefined,
-          });
-
           setPaymentMethods(res.data.updatedMethods);
 
           showItem(TOASTS.CLIENT_INFO_CHANGED);
@@ -146,13 +177,8 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
     [
       fetchUpdatePaymentMethod,
       hideItem,
-      i18n.form.cardNumber.error,
-      i18n.form.date.error,
-      i18n.form.name.error,
-      i18n.form.securityCode.error,
       paymentMethodInEdit?.id,
       setPaymentMethods,
-      setStorePaymentMethodsState,
       showItem,
     ]
   );
@@ -163,5 +189,6 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
     form,
     onClickSubmit,
     paymentMethodInEdit,
+    formConfiguration: getFormConfiguration(),
   };
 };

@@ -1,6 +1,8 @@
 import { INPUTS, PAGES } from "@constants";
 import {
+  FormsHelper,
   useNavigation,
+  type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import {
@@ -48,29 +50,42 @@ export const useLogInPageHelper = () => {
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.PHONE_OR_EMAIL,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.emailOrPhone.error,
+          },
+        },
+        {
+          name: INPUTS.PASSWORD,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.password.error,
+          },
+        },
+      ];
+    }, [i18n.emailOrPhone.error, i18n.password.error]);
+
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const emailOrPhone = data.find((d) => d.name === INPUTS.PHONE_OR_EMAIL)
-        ?.value as string;
-      const password = data.find((d) => d.name === INPUTS.PASSWORD)
-        ?.value as string;
-
-      const emailOrPhoneError = !emailOrPhone
-        ? i18n.emailOrPhone.error
-        : undefined;
-      const passwordError = !password ? i18n.password.error : undefined;
+      const emailOrPhone = FormsHelper.getField(data, INPUTS.PHONE_OR_EMAIL);
+      const password = FormsHelper.getField(data, INPUTS.PASSWORD);
 
       setForm((prevState) => ({
         ...prevState,
-        emailOrPhoneError,
-        passwordError,
+        emailOrPhoneError: emailOrPhone?.error,
+        passwordError: password?.error,
       }));
 
-      if (!emailOrPhoneError && !passwordError) {
+      if (!emailOrPhone?.error && !password?.error) {
         const res = await authenticate({
-          password,
+          password: FormsHelper.getFieldValueOrDefault(password, ""),
           phoneNumber: "",
           email: "",
         });
@@ -88,12 +103,11 @@ export const useLogInPageHelper = () => {
             });
           }
         }
-        // submitReview(score, title, description);
       }
 
       setLoading(false);
     },
-    [authenticate, goTo, i18n.emailOrPhone.error, i18n.password.error]
+    [authenticate, goTo, returnPage.value]
   );
 
   return {
@@ -101,5 +115,6 @@ export const useLogInPageHelper = () => {
     loading,
     onClickSubmit,
     form,
+    formConfiguration: getFormConfiguration(),
   };
 };

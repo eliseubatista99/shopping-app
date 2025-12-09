@@ -33,49 +33,6 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
       }}
     >
       <Form
-        fields={{
-          list: [
-            {
-              name: name,
-              content: (
-                <InputField
-                  name={name}
-                  placeHolder={placeholder}
-                  type="text"
-                  onFocus={() => handleOnFocus()}
-                  onBlur={() => handleOnBlur()}
-                  rightIcon={
-                    <>
-                      {rightIcon && (
-                        <div onClick={() => handleOnIconClicked()}>
-                          {rightIcon}
-                        </div>
-                      )}
-                    </>
-                  }
-                  leftIcon={
-                    <>
-                      {leftIcon && (
-                        <div onClick={() => handleOnIconClicked()}>
-                          {leftIcon}
-                        </div>
-                      )}
-                    </>
-                  }
-                  onChange={handleOnChange}
-                  styles={{ ...inputFieldStyles?.styles }}
-                  containerStyles={{
-                    background: "#ffffff",
-                    border: "2px solid #747474b4",
-                    borderRadius: "100px",
-                    ...inputFieldStyles?.containerStyles,
-                  }}
-                  inputStyles={{ ...inputFieldStyles?.inputStyles }}
-                />
-              ),
-            },
-          ],
-        }}
         submitButton={{
           content: (
             <button
@@ -92,7 +49,38 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
           justifyContent: "center",
           ...formStyles,
         }}
-      />
+      >
+        <InputField
+          name={name}
+          placeHolder={placeholder}
+          type="text"
+          onFocus={() => handleOnFocus()}
+          onBlur={() => handleOnBlur()}
+          rightIcon={
+            <>
+              {rightIcon && (
+                <div onClick={() => handleOnIconClicked()}>{rightIcon}</div>
+              )}
+            </>
+          }
+          leftIcon={
+            <>
+              {leftIcon && (
+                <div onClick={() => handleOnIconClicked()}>{leftIcon}</div>
+              )}
+            </>
+          }
+          onChange={handleOnChange}
+          styles={{ ...inputFieldStyles?.styles }}
+          containerStyles={{
+            background: "#ffffff",
+            border: "2px solid #747474b4",
+            borderRadius: "100px",
+            ...inputFieldStyles?.containerStyles,
+          }}
+          inputStyles={{ ...inputFieldStyles?.inputStyles }}
+        />
+      </Form>
     </div>
   );
 };

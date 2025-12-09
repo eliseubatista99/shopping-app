@@ -5,8 +5,15 @@ import { AppDrawer } from "../_appDrawer";
 import { useAddAddressDrawerHelper } from "./addAddress.hook";
 
 export const DrawerAddAddressMobile = () => {
-  const { i18n, loading, form, onClickSubmit, wantsDefault, onToggleDefault } =
-    useAddAddressDrawerHelper();
+  const {
+    i18n,
+    loading,
+    form,
+    onClickSubmit,
+    wantsDefault,
+    onToggleDefault,
+    formConfiguration,
+  } = useAddAddressDrawerHelper();
 
   return (
     <AppDrawer
@@ -31,114 +38,9 @@ export const DrawerAddAddressMobile = () => {
       />
 
       <Form
-        fields={{
-          list: [
-            {
-              name: INPUTS.COUNTRY,
-              content: (
-                <AppInputField
-                  name={INPUTS.COUNTRY}
-                  label={i18n.form.country.title}
-                  placeHolder={i18n.form.country.placeholder}
-                  containerStyles={{ marginTop: "15px" }}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.countryError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.NAME,
-              content: (
-                <AppInputField
-                  name={INPUTS.NAME}
-                  label={i18n.form.name.title}
-                  placeHolder={i18n.form.name.placeholder}
-                  containerStyles={{ marginTop: "15px" }}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.nameError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.PHONE,
-              content: (
-                <AppInputField
-                  name={INPUTS.PHONE}
-                  label={i18n.form.phone.title}
-                  placeHolder={i18n.form.phone.placeholder}
-                  containerStyles={{ marginTop: "15px" }}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.phoneError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.STREET,
-              content: (
-                <AppInputField
-                  name={INPUTS.STREET}
-                  label={i18n.form.street.title}
-                  placeHolder={i18n.form.street.placeholder}
-                  containerStyles={{ marginTop: "15px" }}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.streetError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.LOCATION,
-              content: (
-                <AppInputField
-                  name={INPUTS.LOCATION}
-                  label={i18n.form.location.title}
-                  placeHolder={i18n.form.location.placeholder}
-                  containerStyles={{ marginTop: "15px" }}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.locationError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.CITY,
-              content: (
-                <AppInputField
-                  name={INPUTS.CITY}
-                  label={i18n.form.city.title}
-                  placeHolder={i18n.form.city.placeholder}
-                  containerStyles={{ marginTop: "15px" }}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.cityError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.POSTAL_CODE,
-              content: (
-                <AppInputField
-                  name={INPUTS.POSTAL_CODE}
-                  label={i18n.form.postalCode.title}
-                  placeHolder={i18n.form.postalCode.placeholder}
-                  containerStyles={{ marginTop: "15px" }}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.postalCodeError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.SET_DEFAULT,
-              content: (
-                <AppCheckbox
-                  name={INPUTS.SET_DEFAULT}
-                  label={i18n.actions.setDefault}
-                  checked={wantsDefault}
-                  onToggle={onToggleDefault}
-                />
-              ),
-            },
-          ],
-          styles: {
-            gap: "20px",
-          },
+        configurations={formConfiguration}
+        childrenStyles={{
+          gap: "20px",
         }}
         submitButton={{
           content: (
@@ -160,7 +62,70 @@ export const DrawerAddAddressMobile = () => {
         }}
         onSubmit={onClickSubmit}
         styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
-      />
+      >
+        <AppInputField
+          name={INPUTS.COUNTRY}
+          label={i18n.form.country.title}
+          placeHolder={i18n.form.country.placeholder}
+          containerStyles={{ marginTop: "15px" }}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.countryError}
+        />
+        <AppInputField
+          name={INPUTS.NAME}
+          label={i18n.form.name.title}
+          placeHolder={i18n.form.name.placeholder}
+          containerStyles={{ marginTop: "15px" }}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.nameError}
+        />
+        <AppInputField
+          name={INPUTS.PHONE}
+          label={i18n.form.phone.title}
+          placeHolder={i18n.form.phone.placeholder}
+          containerStyles={{ marginTop: "15px" }}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.phoneError}
+        />
+        <AppInputField
+          name={INPUTS.STREET}
+          label={i18n.form.street.title}
+          placeHolder={i18n.form.street.placeholder}
+          containerStyles={{ marginTop: "15px" }}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.streetError}
+        />{" "}
+        <AppInputField
+          name={INPUTS.LOCATION}
+          label={i18n.form.location.title}
+          placeHolder={i18n.form.location.placeholder}
+          containerStyles={{ marginTop: "15px" }}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.locationError}
+        />
+        <AppInputField
+          name={INPUTS.CITY}
+          label={i18n.form.city.title}
+          placeHolder={i18n.form.city.placeholder}
+          containerStyles={{ marginTop: "15px" }}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.cityError}
+        />
+        <AppInputField
+          name={INPUTS.POSTAL_CODE}
+          label={i18n.form.postalCode.title}
+          placeHolder={i18n.form.postalCode.placeholder}
+          containerStyles={{ marginTop: "15px" }}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.postalCodeError}
+        />
+        <AppCheckbox
+          name={INPUTS.SET_DEFAULT}
+          label={i18n.actions.setDefault}
+          checked={wantsDefault}
+          onToggle={onToggleDefault}
+        />
+      </Form>
     </AppDrawer>
   );
 };

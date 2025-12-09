@@ -10,7 +10,7 @@ import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useChangePhonePageHelper } from "./changePhone.hook";
 
 export const ChangePhoneMobile: React.FC = () => {
-  const { i18n, client, form, onClickSubmit, loading } =
+  const { i18n, client, form, onClickSubmit, loading, formConfiguration } =
     useChangePhonePageHelper();
 
   return (
@@ -47,39 +47,13 @@ export const ChangePhoneMobile: React.FC = () => {
             <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
               {i18n.subtitle}
             </Typography>
+
             <Form
-              fields={{
-                list: [
-                  {
-                    name: INPUTS.PHONE_PREFIX,
-                    content: (
-                      <AppInputField
-                        name={INPUTS.PHONE_PREFIX}
-                        type="number"
-                        placeHolder={i18n.prefix.placeholder}
-                        inputStyles={{ padding: "10px" }}
-                        bottomMessage={form.prefixError}
-                      />
-                    ),
-                  },
-                  {
-                    name: INPUTS.PHONE,
-                    content: (
-                      <AppInputField
-                        name={INPUTS.PHONE}
-                        type="number"
-                        placeHolder={i18n.phone.placeholder}
-                        inputStyles={{ padding: "10px" }}
-                        bottomMessage={form.phoneError}
-                      />
-                    ),
-                  },
-                ],
-                styles: {
-                  display: "grid",
-                  gridTemplateColumns: "100px auto",
-                  gap: "20px",
-                },
+              configurations={formConfiguration}
+              childrenStyles={{
+                display: "grid",
+                gridTemplateColumns: "100px auto",
+                gap: "20px",
               }}
               submitButton={{
                 content: (
@@ -101,7 +75,24 @@ export const ChangePhoneMobile: React.FC = () => {
               }}
               onSubmit={onClickSubmit}
               styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
-            />
+            >
+              <AppInputField
+                name={INPUTS.PHONE_PREFIX}
+                initialValue={client?.phoneNumberPrefix}
+                type="number"
+                placeHolder={i18n.prefix.placeholder}
+                inputStyles={{ padding: "10px" }}
+                bottomMessage={form.prefixError}
+              />
+              <AppInputField
+                name={INPUTS.PHONE}
+                type="number"
+                initialValue={client?.phoneNumber}
+                placeHolder={i18n.phone.placeholder}
+                inputStyles={{ padding: "10px" }}
+                bottomMessage={form.phoneError}
+              />
+            </Form>
           </>
         )}
       </AuthenticatedScreen>

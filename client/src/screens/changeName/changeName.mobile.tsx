@@ -10,7 +10,8 @@ import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useChangeNamePageHelper } from "./changeName.hook";
 
 export const ChangeNameMobile: React.FC = () => {
-  const { i18n, error, onClickSubmit, loading } = useChangeNamePageHelper();
+  const { i18n, error, onClickSubmit, client, loading, formConfiguration } =
+    useChangeNamePageHelper();
 
   return (
     <AppLayout
@@ -40,22 +41,9 @@ export const ChangeNameMobile: React.FC = () => {
             <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
               {i18n.subtitle}
             </Typography>
+
             <Form
-              fields={{
-                list: [
-                  {
-                    name: INPUTS.NAME,
-                    content: (
-                      <AppInputField
-                        name={INPUTS.NAME}
-                        placeHolder={i18n.name.placeholder}
-                        inputStyles={{ padding: "10px" }}
-                        bottomMessage={error}
-                      />
-                    ),
-                  },
-                ],
-              }}
+              configurations={formConfiguration}
               submitButton={{
                 content: (
                   <AppButton
@@ -76,7 +64,15 @@ export const ChangeNameMobile: React.FC = () => {
               }}
               onSubmit={onClickSubmit}
               styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
-            />
+            >
+              <AppInputField
+                name={INPUTS.NAME}
+                initialValue={client?.name}
+                placeHolder={i18n.name.placeholder}
+                inputStyles={{ padding: "10px" }}
+                bottomMessage={error}
+              />
+            </Form>
           </>
         )}
       </AuthenticatedScreen>

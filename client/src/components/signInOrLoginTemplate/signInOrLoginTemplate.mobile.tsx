@@ -10,8 +10,12 @@ import { useSignInOrLoginTemplateHelper } from "./signInOrLoginTemplate.hook";
 export const SignInOrLoginTemplateMobile: React.FC<
   SignInOrLoginTemplateProps
 > = (props) => {
-  const { i18n, emailOrPhoneError, onClickSubmitEmailOrPhone } =
-    useSignInOrLoginTemplateHelper(props);
+  const {
+    i18n,
+    emailOrPhoneError,
+    onClickSubmitEmailOrPhone,
+    formConfiguration,
+  } = useSignInOrLoginTemplateHelper(props);
 
   return (
     <div
@@ -22,22 +26,7 @@ export const SignInOrLoginTemplateMobile: React.FC<
         {i18n.title}
       </Typography>
       <Form
-        fields={{
-          list: [
-            {
-              name: INPUTS.PHONE_OR_EMAIL,
-              content: (
-                <AppInputField
-                  label={i18n.emailOrPhone.title}
-                  name={INPUTS.PHONE_OR_EMAIL}
-                  placeHolder={i18n.emailOrPhone.placeholder}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={emailOrPhoneError}
-                />
-              ),
-            },
-          ],
-        }}
+        configurations={formConfiguration}
         submitButton={{
           content: (
             <AppButton
@@ -58,7 +47,15 @@ export const SignInOrLoginTemplateMobile: React.FC<
         }}
         onSubmit={onClickSubmitEmailOrPhone}
         styles={{ flex: 1, gap: "30px", marginTop: "30px" }}
-      />
+      >
+        <AppInputField
+          label={i18n.emailOrPhone.title}
+          name={INPUTS.PHONE_OR_EMAIL}
+          placeHolder={i18n.emailOrPhone.placeholder}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={emailOrPhoneError}
+        />
+      </Form>
     </div>
   );
 };

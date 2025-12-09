@@ -65,6 +65,7 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
           }}
         >
           <AppCheckbox
+            name="product-select"
             checked={product.isSelected || false}
             onToggle={(value) => onClickSelected?.(value)}
           />

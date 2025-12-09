@@ -9,7 +9,8 @@ import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useReviewBlockHelper } from "./review.hook";
 
 export const ReviewBlockMobile: React.FC = () => {
-  const { i18n, score, onScoreChange, onSubmit, form } = useReviewBlockHelper();
+  const { i18n, score, onScoreChange, onSubmit, form, formConfiguration } =
+    useReviewBlockHelper();
 
   return (
     <div
@@ -35,34 +36,7 @@ export const ReviewBlockMobile: React.FC = () => {
       </div>
 
       <Form
-        fields={{
-          list: [
-            {
-              name: INPUTS.REVIEW_DESCRIPTION,
-              content: (
-                <AppTextArea
-                  label={i18n.description.title}
-                  name={INPUTS.REVIEW_DESCRIPTION}
-                  placeHolder={i18n.description.placeholder}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.descriptionError}
-                />
-              ),
-            },
-            {
-              name: INPUTS.REVIEW_TITLE,
-              content: (
-                <AppInputField
-                  label={i18n.title.title}
-                  name={INPUTS.REVIEW_TITLE}
-                  placeHolder={i18n.title.placeholder}
-                  inputStyles={{ padding: "10px" }}
-                  bottomMessage={form.titleError}
-                />
-              ),
-            },
-          ],
-        }}
+        configurations={formConfiguration}
         submitButton={{
           content: (
             <AppButton
@@ -83,7 +57,22 @@ export const ReviewBlockMobile: React.FC = () => {
         }}
         onSubmit={onSubmit}
         styles={{ flex: 1, gap: "30px" }}
-      />
+      >
+        <AppTextArea
+          label={i18n.description.title}
+          name={INPUTS.REVIEW_DESCRIPTION}
+          placeHolder={i18n.description.placeholder}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.descriptionError}
+        />
+        <AppInputField
+          label={i18n.title.title}
+          name={INPUTS.REVIEW_TITLE}
+          placeHolder={i18n.title.placeholder}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.titleError}
+        />
+      </Form>
     </div>
   );
 };

@@ -16,7 +16,7 @@ export const useAppSearchBarHelper = ({
   }, [onSubmit]);
 
   const handleOnSubmit = React.useCallback(
-    (data: FormFieldOutputData[]) => {
+    async (data: FormFieldOutputData[]) => {
       const searchBarData = data.find((d) => d.name === name);
       const searchBarValue = searchBarData
         ? (searchBarData.value as string)

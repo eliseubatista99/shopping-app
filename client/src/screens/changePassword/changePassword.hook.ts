@@ -1,8 +1,10 @@
 import { Api } from "@api";
 import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
+  FormsHelper,
   useFeedback,
   useNavigation,
+  type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -50,39 +52,74 @@ export const useChangePasswordPageHelper = () => {
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.PASSWORD,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.password.errors.invalid,
+          },
+        },
+        {
+          name: INPUTS.NEW_PASSWORD,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.password.errors.invalid,
+          },
+        },
+        {
+          name: INPUTS.PASSWORD_CONFIRMATION,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.password.errors.invalid,
+          },
+        },
+      ];
+    }, [i18n.password.errors.invalid]);
+
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
+      console.log("ZAU", { data });
       setLoading(true);
 
-      const currentPassword = data.find((d) => d.name === INPUTS.PASSWORD)
-        ?.value as string;
-      const password = data.find((d) => d.name === INPUTS.NEW_PASSWORD)
-        ?.value as string;
-      const passwordConfirm = data.find(
-        (d) => d.name === INPUTS.PASSWORD_CONFIRMATION
-      )?.value as string;
+      const currentPassword = FormsHelper.getField(data, INPUTS.PASSWORD);
+      const password = FormsHelper.getField(data, INPUTS.NEW_PASSWORD);
+      const passwordConfirm = FormsHelper.getField(
+        data,
+        INPUTS.PASSWORD_CONFIRMATION
+      );
 
-      const currentPasswordError = !currentPassword
-        ? i18n.current.error
-        : undefined;
-
-      let passwordError = !password ? i18n.password.errors.invalid : undefined;
-
-      if (password !== passwordConfirm) {
-        passwordError = i18n.password.errors.noMatch;
-      } else if (password === currentPassword) {
-        passwordError = i18n.password.errors.sameAsCurrent;
+      if (
+        password &&
+        passwordConfirm &&
+        FormsHelper.getFieldValueOrDefault(password, "") !==
+          FormsHelper.getFieldValueOrDefault(passwordConfirm, "")
+      ) {
+        password.error = i18n.password.errors.noMatch;
+      } else if (
+        password &&
+        currentPassword &&
+        FormsHelper.getFieldValueOrDefault(password, "") ===
+          FormsHelper.getFieldValueOrDefault(currentPassword, "")
+      ) {
+        password.error = i18n.password.errors.sameAsCurrent;
       }
 
       setForm((prevState) => ({
         ...prevState,
-        currentPasswordError,
-        passwordError,
+        currentPasswordError: currentPassword?.error,
+        passwordError: password?.error,
       }));
 
-      if (!currentPasswordError && !passwordError) {
+      if (
+        !currentPassword?.error &&
+        !password?.error &&
+        !passwordConfirm?.error
+      ) {
         const res = await fetchUpdateClientInfo({
-          password,
+          password: FormsHelper.getFieldValueOrDefault(password, ""),
         });
 
         if (res.metadata.success) {
@@ -108,7 +145,8 @@ export const useChangePasswordPageHelper = () => {
       goBack,
       goTo,
       history.length,
-      i18n,
+      i18n.password.errors.noMatch,
+      i18n.password.errors.sameAsCurrent,
       setClientInfo,
       showItem,
     ]
@@ -120,5 +158,6 @@ export const useChangePasswordPageHelper = () => {
     form,
     onClickSubmit,
     client,
+    formConfiguration: getFormConfiguration(),
   };
 };

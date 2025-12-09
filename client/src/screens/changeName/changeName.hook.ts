@@ -1,8 +1,10 @@
 import { Api } from "@api";
 import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
+  FormsHelper,
   useFeedback,
   useNavigation,
+  type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -14,6 +16,7 @@ export const useChangeNamePageHelper = () => {
   const { fetchUpdateClientInfo } = Api.UpdateClientInfo();
   const { goTo, goBack, history } = useNavigation();
   const { showItem } = useFeedback();
+  const client = useStoreBase((state) => state.client);
   const setClientInfo = useStoreBase((state) => state.setClientInfo);
 
   const [loading, setLoading] = React.useState(false);
@@ -33,19 +36,30 @@ export const useChangeNamePageHelper = () => {
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.NAME,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.name.error,
+          },
+        },
+      ];
+    }, [i18n.name.error]);
+
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const name = data.find((d) => d.name === INPUTS.NAME)?.value as string;
+      const name = FormsHelper.getField(data, INPUTS.NAME);
 
-      const nameError = !name ? i18n.name.error : undefined;
+      setError(name?.error);
 
-      setError(nameError);
-
-      if (!nameError) {
+      if (!name?.error) {
         const res = await fetchUpdateClientInfo({
-          name,
+          name: FormsHelper.getFieldValueOrDefault(name, ""),
         });
 
         if (res.metadata.success) {
@@ -71,7 +85,6 @@ export const useChangeNamePageHelper = () => {
       goBack,
       goTo,
       history.length,
-      i18n.name.error,
       setClientInfo,
       showItem,
     ]
@@ -82,5 +95,7 @@ export const useChangeNamePageHelper = () => {
     loading,
     error,
     onClickSubmit,
+    client,
+    formConfiguration: getFormConfiguration(),
   };
 };

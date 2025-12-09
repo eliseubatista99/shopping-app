@@ -10,7 +10,8 @@ import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useChangePasswordPageHelper } from "./changePassword.hook";
 
 export const ChangePasswordMobile: React.FC = () => {
-  const { i18n, form, onClickSubmit, loading } = useChangePasswordPageHelper();
+  const { i18n, form, onClickSubmit, loading, formConfiguration } =
+    useChangePasswordPageHelper();
 
   return (
     <AppLayout
@@ -40,62 +41,10 @@ export const ChangePasswordMobile: React.FC = () => {
             <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
               {i18n.subtitle}
             </Typography>
+
             <Form
-              fields={{
-                list: [
-                  {
-                    name: INPUTS.PASSWORD,
-                    content: (
-                      <AppInputField
-                        name={INPUTS.PASSWORD}
-                        type="password"
-                        placeHolder={i18n.current.placeholder}
-                        containerStyles={{ marginTop: "15px" }}
-                        inputStyles={{ padding: "10px" }}
-                        bottomMessage={form.currentPasswordError}
-                      />
-                    ),
-                  },
-                  {
-                    name: INPUTS.NEW_PASSWORD,
-                    content: (
-                      <AppInputField
-                        name={INPUTS.NEW_PASSWORD}
-                        type="password"
-                        placeHolder={i18n.password.placeholder}
-                        containerStyles={{
-                          borderBottomLeftRadius: 0,
-                          borderBottomRightRadius: 0,
-                          marginTop: "30px",
-                        }}
-                        inputStyles={{
-                          padding: "10px",
-                        }}
-                      />
-                    ),
-                  },
-                  {
-                    name: INPUTS.PASSWORD_CONFIRMATION,
-                    content: (
-                      <AppInputField
-                        name={INPUTS.PASSWORD_CONFIRMATION}
-                        type="password"
-                        placeHolder={i18n.confirmPassword.placeholder}
-                        containerStyles={{
-                          marginTop: 0,
-                          borderTopLeftRadius: 0,
-                          borderTopRightRadius: 0,
-                        }}
-                        inputStyles={{ padding: "10px" }}
-                        bottomMessage={form.passwordError}
-                      />
-                    ),
-                  },
-                ],
-                styles: {
-                  gap: 0,
-                },
-              }}
+              configurations={formConfiguration}
+              childrenStyles={{ gap: 0 }}
               submitButton={{
                 content: (
                   <AppButton
@@ -116,7 +65,41 @@ export const ChangePasswordMobile: React.FC = () => {
               }}
               onSubmit={onClickSubmit}
               styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
-            />
+            >
+              <AppInputField
+                name={INPUTS.PASSWORD}
+                type="password"
+                placeHolder={i18n.current.placeholder}
+                containerStyles={{ marginTop: "15px" }}
+                inputStyles={{ padding: "10px" }}
+                bottomMessage={form.currentPasswordError}
+              />
+              <AppInputField
+                name={INPUTS.NEW_PASSWORD}
+                type="password"
+                placeHolder={i18n.password.placeholder}
+                containerStyles={{
+                  borderBottomLeftRadius: 0,
+                  borderBottomRightRadius: 0,
+                  marginTop: "30px",
+                }}
+                inputStyles={{
+                  padding: "10px",
+                }}
+              />
+              <AppInputField
+                name={INPUTS.PASSWORD_CONFIRMATION}
+                type="password"
+                placeHolder={i18n.confirmPassword.placeholder}
+                containerStyles={{
+                  marginTop: 0,
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                }}
+                inputStyles={{ padding: "10px" }}
+                bottomMessage={form.passwordError}
+              />
+            </Form>
           </>
         )}
       </AuthenticatedScreen>

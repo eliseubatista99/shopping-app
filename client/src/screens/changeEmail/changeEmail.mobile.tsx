@@ -10,7 +10,7 @@ import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useChangeEmailPageHelper } from "./changeEmail.hook";
 
 export const ChangeEmailMobile: React.FC = () => {
-  const { i18n, client, error, onClickSubmit, loading } =
+  const { i18n, client, error, onClickSubmit, loading, formConfiguration } =
     useChangeEmailPageHelper();
 
   return (
@@ -47,22 +47,9 @@ export const ChangeEmailMobile: React.FC = () => {
             <Typography styles={{ fontSize: "16px", marginTop: "15px" }}>
               {i18n.subtitle}
             </Typography>
+
             <Form
-              fields={{
-                list: [
-                  {
-                    name: INPUTS.EMAIL,
-                    content: (
-                      <AppInputField
-                        name={INPUTS.EMAIL}
-                        placeHolder={i18n.email.placeholder}
-                        inputStyles={{ padding: "10px" }}
-                        bottomMessage={error}
-                      />
-                    ),
-                  },
-                ],
-              }}
+              configurations={formConfiguration}
               submitButton={{
                 content: (
                   <AppButton
@@ -83,7 +70,15 @@ export const ChangeEmailMobile: React.FC = () => {
               }}
               onSubmit={onClickSubmit}
               styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
-            />
+            >
+              <AppInputField
+                name={INPUTS.EMAIL}
+                initialValue={client?.email}
+                placeHolder={i18n.email.placeholder}
+                inputStyles={{ padding: "10px" }}
+                bottomMessage={error}
+              />
+            </Form>
           </>
         )}
       </AuthenticatedScreen>

@@ -3,6 +3,7 @@ import { DRAWERS, INPUTS, TOASTS } from "@constants";
 import {
   FormsHelper,
   useFeedback,
+  type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -76,54 +77,107 @@ export const useAddAddressDrawerHelper = () => {
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.COUNTRY,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.country.error,
+          },
+        },
+        {
+          name: INPUTS.NAME,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.name.error,
+          },
+        },
+        {
+          name: INPUTS.PHONE,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.phone.error,
+          },
+        },
+        {
+          name: INPUTS.STREET,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.street.error,
+          },
+        },
+        {
+          name: INPUTS.LOCATION,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.location.error,
+          },
+        },
+        {
+          name: INPUTS.CITY,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.city.error,
+          },
+        },
+        {
+          name: INPUTS.POSTAL_CODE,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.form.postalCode.error,
+          },
+        },
+      ];
+    }, [
+      i18n.form.city.error,
+      i18n.form.country.error,
+      i18n.form.location.error,
+      i18n.form.name.error,
+      i18n.form.phone.error,
+      i18n.form.postalCode.error,
+      i18n.form.street.error,
+    ]);
+
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const country = FormsHelper.getField<string>(data, INPUTS.COUNTRY);
-      const name = FormsHelper.getField<string>(data, INPUTS.NAME);
-      const phone = FormsHelper.getField<string>(data, INPUTS.PHONE);
-      const street = FormsHelper.getField<string>(data, INPUTS.STREET);
-      const location = FormsHelper.getField<string>(data, INPUTS.LOCATION);
-      const city = FormsHelper.getField<string>(data, INPUTS.CITY);
-      const postalCode = FormsHelper.getField<string>(data, INPUTS.POSTAL_CODE);
-
-      const countryError = !country ? i18n.form.country.error : undefined;
-      const nameError = !name ? i18n.form.name.error : undefined;
-      const phoneError = !phone ? i18n.form.phone.error : undefined;
-      const streetError = !street ? i18n.form.street.error : undefined;
-      const locationError = !location ? i18n.form.location.error : undefined;
-      const cityError = !city ? i18n.form.city.error : undefined;
-      const postalCodeError = !postalCode
-        ? i18n.form.postalCode.error
-        : undefined;
+      const country = FormsHelper.getField(data, INPUTS.COUNTRY);
+      const name = FormsHelper.getField(data, INPUTS.NAME);
+      const phone = FormsHelper.getField(data, INPUTS.PHONE);
+      const street = FormsHelper.getField(data, INPUTS.STREET);
+      const location = FormsHelper.getField(data, INPUTS.LOCATION);
+      const city = FormsHelper.getField(data, INPUTS.CITY);
+      const postalCode = FormsHelper.getField(data, INPUTS.POSTAL_CODE);
 
       setForm((prevState) => ({
         ...prevState,
-        countryError,
-        nameError,
-        phoneError,
-        streetError,
-        locationError,
-        cityError,
-        postalCodeError,
+        countryError: country?.error,
+        nameError: name?.error,
+        phoneError: phone?.error,
+        streetError: street?.error,
+        locationError: location?.error,
+        cityError: city?.error,
+        postalCodeError: postalCode?.error,
       }));
 
       if (
-        !countryError &&
-        !nameError &&
-        !phoneError &&
-        !streetError &&
-        !locationError &&
-        !cityError &&
-        !postalCodeError
+        !country?.error &&
+        !name?.error &&
+        !phone?.error &&
+        !street?.error &&
+        !location?.error &&
+        !city?.error &&
+        !postalCode?.error
       ) {
         const res = await fetchAddAddress({
-          name: name || "",
-          postalCode: postalCode || "",
-          city: city || "",
-          street: street || "",
-          country: country || "",
+          name: FormsHelper.getFieldValueOrDefault(name, ""),
+          postalCode: FormsHelper.getFieldValueOrDefault(postalCode, ""),
+          city: FormsHelper.getFieldValueOrDefault(city, ""),
+          street: FormsHelper.getFieldValueOrDefault(street, ""),
+          country: FormsHelper.getFieldValueOrDefault(country, ""),
           isDefault: wantsDefault,
         });
 
@@ -138,20 +192,7 @@ export const useAddAddressDrawerHelper = () => {
 
       setLoading(false);
     },
-    [
-      fetchAddAddress,
-      hideItem,
-      i18n.form.city.error,
-      i18n.form.country.error,
-      i18n.form.location.error,
-      i18n.form.name.error,
-      i18n.form.phone.error,
-      i18n.form.postalCode.error,
-      i18n.form.street.error,
-      setAddresses,
-      showItem,
-      wantsDefault,
-    ]
+    [fetchAddAddress, hideItem, setAddresses, showItem, wantsDefault]
   );
 
   const onToggleDefault = (value: boolean) => {
@@ -165,5 +206,6 @@ export const useAddAddressDrawerHelper = () => {
     onClickSubmit,
     onToggleDefault,
     wantsDefault,
+    formConfiguration: getFormConfiguration(),
   };
 };

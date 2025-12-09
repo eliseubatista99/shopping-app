@@ -1,8 +1,10 @@
 import { Api } from "@api";
 import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
+  FormsHelper,
   useFeedback,
   useNavigation,
+  type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -34,19 +36,30 @@ export const useChangeEmailPageHelper = () => {
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.EMAIL,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.email.error,
+          },
+        },
+      ];
+    }, [i18n.email.error]);
+
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const email = data.find((d) => d.name === INPUTS.EMAIL)?.value as string;
+      const email = FormsHelper.getField(data, INPUTS.EMAIL);
 
-      const emailError = !email ? i18n.email.error : undefined;
+      setError(email?.error);
 
-      setError(emailError);
-
-      if (!emailError) {
+      if (!email?.error) {
         const res = await fetchUpdateClientInfo({
-          email,
+          email: FormsHelper.getFieldValueOrDefault(email, ""),
         });
 
         if (res.metadata.success) {
@@ -84,5 +97,6 @@ export const useChangeEmailPageHelper = () => {
     error,
     onClickSubmit,
     client,
+    formConfiguration: getFormConfiguration(),
   };
 };

@@ -1,8 +1,10 @@
 import { Api } from "@api";
 import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
+  FormsHelper,
   useFeedback,
   useNavigation,
+  type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -44,24 +46,40 @@ export const useChangePhonePageHelper = () => {
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.PHONE,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.phone.error,
+          },
+        },
+        {
+          name: INPUTS.PHONE_PREFIX,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.prefix.error,
+          },
+        },
+      ];
+    }, [i18n.phone.error, i18n.prefix.error]);
+
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const phone = data.find((d) => d.name === INPUTS.PHONE)?.value as string;
-      const phonePrefix = data.find((d) => d.name === INPUTS.PHONE_PREFIX)
-        ?.value as string;
-
-      const phoneError = !phone ? i18n.phone.error : undefined;
-      const prefixError = !phonePrefix ? i18n.prefix.error : undefined;
+      const phone = FormsHelper.getField(data, INPUTS.PHONE);
+      const phonePrefix = FormsHelper.getField(data, INPUTS.PHONE_PREFIX);
 
       setForm((prevState) => ({
         ...prevState,
-        phoneError,
-        prefixError,
+        phoneError: phone?.error,
+        prefixError: phonePrefix?.error,
       }));
 
-      if (!phoneError && !prefixError) {
+      if (!phone?.error && !phonePrefix?.error) {
         const res = await fetchUpdateClientInfo({
           phone: `${phonePrefix}${phone}`,
         });
@@ -89,8 +107,6 @@ export const useChangePhonePageHelper = () => {
       goBack,
       goTo,
       history.length,
-      i18n.phone.error,
-      i18n.prefix.error,
       setClientInfo,
       showItem,
     ]
@@ -102,5 +118,6 @@ export const useChangePhonePageHelper = () => {
     form,
     onClickSubmit,
     client,
+    formConfiguration: getFormConfiguration(),
   };
 };

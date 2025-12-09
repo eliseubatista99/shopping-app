@@ -1,5 +1,9 @@
 import { INPUTS } from "@constants";
-import { type FormFieldOutputData } from "@eliseubatista99/react-scaffold-core";
+import {
+  FormsHelper,
+  type FormFieldConfiguration,
+  type FormFieldOutputData,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useAuthentication } from "@hooks";
 import React from "react";
 import type { SignInOrLoginTemplateProps } from "./signInOrLoginTemplate";
@@ -31,18 +35,28 @@ export const useSignInOrLoginTemplateHelper = ({
     };
   }, [t]);
 
+  const getFormConfiguration =
+    React.useCallback((): FormFieldConfiguration[] => {
+      return [
+        {
+          name: INPUTS.PHONE_OR_EMAIL,
+          emptyValidation: {
+            allow: false,
+            errorMessage: i18n.emailOrPhone.error,
+          },
+        },
+      ];
+    }, [i18n.emailOrPhone.error]);
+
   const onClickSubmitEmailOrPhone = React.useCallback(
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const emailOrPhone = data.find((d) => d.name === INPUTS.PHONE_OR_EMAIL)
-        ?.value as string;
+      const emailOrPhone = FormsHelper.getField(data, INPUTS.PHONE_OR_EMAIL);
 
-      const err = !emailOrPhone ? i18n.emailOrPhone.error : undefined;
+      setEmailOrPhoneError(emailOrPhone?.error);
 
-      setEmailOrPhoneError(err);
-
-      if (!emailOrPhoneError) {
+      if (!emailOrPhone?.error) {
         const res = await isExistingAccount({
           email: "",
           phoneNumber: "",
@@ -53,12 +67,13 @@ export const useSignInOrLoginTemplateHelper = ({
 
       setLoading(false);
     },
-    [emailOrPhoneError, i18n.emailOrPhone.error, isExistingAccount, onSubmit]
+    [isExistingAccount, onSubmit]
   );
 
   return {
     i18n,
     loading,
+    formConfiguration: getFormConfiguration(),
     onClickSubmitEmailOrPhone,
     emailOrPhoneError,
   };

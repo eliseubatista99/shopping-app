@@ -9,7 +9,6 @@ export type UpdateAddressInputDto = {
   city: string;
   street: string;
   country: string;
-  countryCode: string;
   isDefault: boolean;
 };
 
