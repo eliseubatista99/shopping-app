@@ -25,7 +25,9 @@
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
-          "isDefault": true
+          "phone": "911111111",
+          "isDefault": true,
+          "isSelected": true
         },
         {
           "id": "2",
@@ -33,7 +35,7 @@
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
-          "isDefault": false,
+          "phone": "911111111",
           "postalCode": "1234-567",
           "city": "Guarda"
         },
@@ -43,7 +45,7 @@
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
-          "isDefault": false,
+          "phone": "911111111",
           "postalCode": "31321-434",
           "city": "Pinhel"
         }

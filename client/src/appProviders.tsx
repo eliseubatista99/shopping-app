@@ -4,6 +4,7 @@ import {
   NavigationProvider,
 } from "@eliseubatista99/react-scaffold-core";
 import {
+  Addresses,
   AllReviews,
   Cart,
   ChangeEmail,
@@ -133,6 +134,10 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {
             path: PAGES.PAYMENT_METHODS,
             render: <PaymentMethods />,
+          },
+          {
+            path: PAGES.ADDRESSES,
+            render: <Addresses />,
           },
         ]}
       >

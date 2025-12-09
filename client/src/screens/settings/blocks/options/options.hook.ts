@@ -43,7 +43,7 @@ export const useOptionsBlockHelper = () => {
       text: i18n.addresses,
       onClick: () =>
         goTo({
-          path: PAGES.SIGN_IN_AND_SECURITY,
+          path: PAGES.ADDRESSES,
         }),
     },
   ];

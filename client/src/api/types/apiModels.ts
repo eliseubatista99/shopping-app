@@ -108,6 +108,7 @@ export type AddressDto = {
   country: string;
   countryCode: string;
   isDefault: boolean;
+  phone: string;
 };
 
 export type PaymentMethodDto = {

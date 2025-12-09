@@ -1,3 +1,4 @@
+export * from "./addresses";
 export * from "./allReviews";
 export * from "./cart";
 export * from "./changeEmail";

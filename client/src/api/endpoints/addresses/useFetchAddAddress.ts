@@ -3,7 +3,13 @@ import { useCallback } from "react";
 import type { AddressDto } from "../../types";
 
 export type AddAddressInputDto = {
-  address: AddressDto;
+  name: string;
+  postalCode: string;
+  city: string;
+  street: string;
+  country: string;
+  countryCode: string;
+  isDefault: boolean;
 };
 
 export type AddAddressOutputDto = {

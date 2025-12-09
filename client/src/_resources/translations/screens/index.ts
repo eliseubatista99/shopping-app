@@ -1,4 +1,5 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
+import { translationsAddresses } from "./addresses";
 import { translationsAllReviews } from "./allReviews";
 import { translationsCart } from "./cart";
 import { translationsChangeEmail } from "./changeEmail";
@@ -41,4 +42,5 @@ export const translationsScreens: TranslationList = {
   ...translationsChangePhone,
   ...translationsChangePassword,
   ...translationsPaymentMethods,
+  ...translationsAddresses,
 };

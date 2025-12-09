@@ -9,11 +9,11 @@ export const usePaymentMethodListItemHelper = (
 
   const i18n = React.useMemo(() => {
     return {
-      default: t("paymentMethods.default"),
+      default: t("paymentMethodListItem.default"),
       actions: {
-        edit: t("paymentMethods.actions.edit"),
-        delete: t("paymentMethods.actions.delete"),
-        setDefault: t("paymentMethods.actions.setDefault"),
+        edit: t("paymentMethodListItem.actions.edit"),
+        delete: t("paymentMethodListItem.actions.delete"),
+        setDefault: t("paymentMethodListItem.actions.setDefault"),
       },
     };
   }, [t]);
