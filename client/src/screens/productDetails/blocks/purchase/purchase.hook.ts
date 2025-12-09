@@ -6,6 +6,7 @@ import {
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useCart } from "@hooks";
 import {
+  useStoreAddresses,
   useStoreAuthentication,
   useStoreBase,
   useStoreCheckout,
@@ -21,7 +22,7 @@ export const usePurchaseBlockHelper = () => {
   const setCheckoutStoreState = useStoreCheckout(
     (state) => state.setCheckoutStoreState
   );
-  const selectedAddress = useStoreBase((state) => state.selectedAddress);
+  const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const currency = useStoreBase((state) => state.currency);
   const { t, translateDate } = useAppTranslations();
   const { showItem } = useFeedback();

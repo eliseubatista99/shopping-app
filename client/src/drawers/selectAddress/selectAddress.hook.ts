@@ -2,14 +2,16 @@ import { Api, type AddressDto, type ClientInfoDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase } from "@store";
+import { useStoreAddresses, useStoreBase } from "@store";
 import React from "react";
 
 export const useSelectAddressDrawerHelper = () => {
   const { hideItem } = useFeedback();
   const setClientInfo = useStoreBase((state) => state.setClientInfo);
   const storeClient = useStoreBase((state) => state.client);
-  const selectedAddressInStore = useStoreBase((state) => state.selectedAddress);
+  const selectedAddressInStore = useStoreAddresses(
+    (state) => state.selectedAddress
+  );
 
   const { fetchSetDefaultAddress } = Api.SetDefaultAddress();
   const { t } = useAppTranslations();

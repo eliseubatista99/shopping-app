@@ -1,12 +1,12 @@
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase } from "@store";
+import { useStoreAddresses } from "@store";
 import React from "react";
 
 export const useAddressBlockHelper = () => {
   const { t } = useAppTranslations();
-  const selectedAddress = useStoreBase((state) => state.selectedAddress);
+  const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const { showItem } = useFeedback();
 
   const i18n = React.useMemo(() => {

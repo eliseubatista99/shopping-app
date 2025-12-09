@@ -1,4 +1,4 @@
-import type { AddressDto, ClientInfoDto } from "@api";
+import type { ClientInfoDto } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
@@ -8,7 +8,6 @@ export type LanguageType = "pt" | "en";
 export interface BaseState {
   language: LanguageType;
   client?: ClientInfoDto;
-  selectedAddress?: AddressDto;
   currency?: string;
 }
 

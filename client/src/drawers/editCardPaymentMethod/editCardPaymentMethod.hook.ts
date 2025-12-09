@@ -28,6 +28,10 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
     (state) => state.setPaymentMethods
   );
 
+  const setStorePaymentMethodsState = useStorePaymentMethods(
+    (state) => state.setStorePaymentMethodsState
+  );
+
   const [loading, setLoading] = React.useState(false);
   const [form, setForm] = React.useState<AddPaymentMethodForm>({});
 
@@ -120,6 +124,10 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
         });
 
         if (res.metadata.success) {
+          setStorePaymentMethodsState({
+            paymentMethodInEdit: undefined,
+          });
+
           setPaymentMethods(res.data.updatedMethods);
 
           showItem(TOASTS.CLIENT_INFO_CHANGED);
@@ -137,8 +145,9 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
       i18n.form.date.error,
       i18n.form.name.error,
       i18n.form.securityCode.error,
-      paymentMethodInEdit,
+      paymentMethodInEdit?.id,
       setPaymentMethods,
+      setStorePaymentMethodsState,
       showItem,
     ]
   );

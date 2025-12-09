@@ -39,7 +39,10 @@ export const DrawerEditCardPaymentMethodMobile = () => {
               content: (
                 <AppNumericInputField
                   name={INPUTS.CARD_NUMBER}
-                  initialValue={paymentMethodInEdit?.cardNumberUnmasked}
+                  initialValue={paymentMethodInEdit?.cardNumberUnmasked?.replaceAll(
+                    " ",
+                    ""
+                  )}
                   maxLength={16}
                   label={i18n.form.cardNumber.title}
                   placeHolder={i18n.form.cardNumber.placeholder}

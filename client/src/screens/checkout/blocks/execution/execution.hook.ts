@@ -1,6 +1,10 @@
 import { Api } from "@api";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase, useStoreCheckout, useStorePaymentMethods } from "@store";
+import {
+  useStoreAddresses,
+  useStoreCheckout,
+  useStorePaymentMethods,
+} from "@store";
 import React from "react";
 
 export const useExecutionBlockHelper = () => {
@@ -10,7 +14,7 @@ export const useExecutionBlockHelper = () => {
     (state) => state.wantsFastestOption
   );
   const products = useStoreCheckout((state) => state.products);
-  const selectedAddress = useStoreBase((state) => state.selectedAddress);
+  const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const selectedPaymentMethod = useStorePaymentMethods(
     (state) => state.selectedPaymentMethod
   );
