@@ -1,5 +1,5 @@
 import { Api, PaymentMethodType } from "@api";
-import { INPUTS, PAGES, TOASTS } from "@constants";
+import { DRAWERS, INPUTS, TOASTS } from "@constants";
 import {
   useFeedback,
   useNavigation,
@@ -20,7 +20,7 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
   const { t } = useAppTranslations();
   const { fetchAddPaymentMethod } = Api.AddPaymentMethod();
   const { goTo, goBack, history } = useNavigation();
-  const { showItem } = useFeedback();
+  const { showItem, hideItem } = useFeedback();
   const setPaymentMethods = useStoreBase((state) => state.setPaymentMethods);
 
   const [loading, setLoading] = React.useState(false);
@@ -128,14 +128,7 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
 
           showItem(TOASTS.CLIENT_INFO_CHANGED);
 
-          if (history.length > 0) {
-            goBack();
-          } else {
-            goTo({
-              path: PAGES.SIGN_IN_AND_SECURITY,
-              addToHistory: false,
-            });
-          }
+          hideItem(DRAWERS.ADD_CARD_PAYMENT_METHOD);
         }
       }
 
@@ -143,9 +136,7 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
     },
     [
       fetchAddPaymentMethod,
-      goBack,
-      goTo,
-      history.length,
+      hideItem,
       i18n.form.cardNumber.error,
       i18n.form.date.error,
       i18n.form.name.error,

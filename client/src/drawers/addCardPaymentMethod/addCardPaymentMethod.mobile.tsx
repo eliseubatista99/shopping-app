@@ -37,9 +37,8 @@ export const DrawerAddCardPaymentMethodMobile = () => {
             {
               name: INPUTS.CARD_NUMBER,
               content: (
-                <AppInputField
+                <AppNumericInputField
                   name={INPUTS.CARD_NUMBER}
-                  type="number"
                   maxLength={16}
                   label={i18n.form.cardNumber.title}
                   placeHolder={i18n.form.cardNumber.placeholder}
