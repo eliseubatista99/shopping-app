@@ -104,6 +104,7 @@ export type AddressDto = {
   name: string;
   postalCode: string;
   city: string;
+  location: string;
   street: string;
   country: string;
   countryCode: string;

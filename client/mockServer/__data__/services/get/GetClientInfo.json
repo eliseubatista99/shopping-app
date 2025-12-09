@@ -22,6 +22,7 @@
           "name": "Eliseu",
           "postalCode": "6123-456",
           "city": "Fundão",
+          "location": "Fundão",
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
@@ -35,9 +36,10 @@
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
-          "phone": "911111111",
           "postalCode": "1234-567",
-          "city": "Guarda"
+          "phone": "911111111",
+          "city": "Guarda",
+          "location": "Guarda"
         },
         {
           "id": "3",
@@ -45,9 +47,10 @@
           "street": "Rua Bonita",
           "country": "Portugal",
           "countryCode": "PT",
-          "phone": "911111111",
           "postalCode": "31321-434",
-          "city": "Pinhel"
+          "phone": "911111111",
+          "city": "Guarda",
+          "location": "Pinhel"
         }
       ],
       "paymentMethods": [

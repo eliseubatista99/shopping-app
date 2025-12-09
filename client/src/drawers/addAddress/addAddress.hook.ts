@@ -155,7 +155,6 @@ export const useAddAddressDrawerHelper = () => {
   );
 
   const onToggleDefault = (value: boolean) => {
-    console.log("ZAU1", value);
     setWantsDefault(value);
   };
 

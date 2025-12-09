@@ -30,7 +30,7 @@ export const AppDrawerMobile = (props: AppDrawerProps) => {
               left: "0",
               position: "absolute",
               background: "#ffffff",
-              maxHeight: "100%",
+              maxHeight: "80%",
               overflow: "hidden",
             }}
             onClick={(e) => {

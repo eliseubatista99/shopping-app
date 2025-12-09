@@ -1,6 +1,7 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
 import { translationsDrawerAddAddress } from "./addAddress";
 import { translationsDrawerAddCardPaymentMethod } from "./addCardPaymentMethod";
+import { translationsDrawerEditAddress } from "./editAddress";
 import { translationsDrawerEditCardPaymentMethod } from "./editCardPaymentMethod";
 import { translationsDrawerOrderFilters } from "./orderFilters";
 import { translationsDrawerReviewFilters } from "./reviewFilters";
@@ -13,4 +14,5 @@ export const translationsDrawers: TranslationList = {
   ...translationsDrawerAddCardPaymentMethod,
   ...translationsDrawerEditCardPaymentMethod,
   ...translationsDrawerAddAddress,
+  ...translationsDrawerEditAddress,
 };
