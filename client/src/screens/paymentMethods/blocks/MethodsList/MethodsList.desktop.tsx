@@ -1,5 +1,0 @@
-import { MethodsListBlockMobile } from "./methodsList.mobile";
-
-export const MethodsListBlockDesktop: React.FC = () => {
-  return <MethodsListBlockMobile />;
-};

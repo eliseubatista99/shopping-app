@@ -3,4 +3,5 @@ export const DRAWERS = {
   REVIEW_FILTERS: "review-filters",
   ORDER_FILTERS: "order-filters",
   ADD_CARD_PAYMENT_METHOD: "add-card-payment-method",
+  EDIT_CARD_PAYMENT_METHOD: "edit-card-payment-method",
 };

@@ -1,7 +1,7 @@
 import { Api } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { useCart } from "@hooks";
-import { useStoreBase, useStoreCart } from "@store";
+import { useStoreBase, useStoreCart, useStorePaymentMethods } from "@store";
 import React from "react";
 
 export const useAppHelper = () => {
@@ -9,6 +9,9 @@ export const useAppHelper = () => {
 
   const clientInfo = useStoreBase((state) => state.client);
   const setBaseStoreState = useStoreBase((state) => state.setBaseStoreState);
+  const setStorePaymentMethodsState = useStorePaymentMethods(
+    (state) => state.setStorePaymentMethodsState
+  );
   const setItemsInCart = useStoreCart((state) => state.setItemsInCart);
 
   const { fetchClientInfo } = Api.GetClientInfo();
@@ -27,10 +30,13 @@ export const useAppHelper = () => {
 
     setBaseStoreState({
       client: clientInfoRes.data.client,
-
       selectedAddress: (clientInfoRes.data.client.addresses || []).find(
         (a) => a.isDefault
       ),
+    });
+
+    setStorePaymentMethodsState({
+      paymentMethods: clientInfoRes.data.client.paymentMethods || [],
       selectedPaymentMethod: (
         clientInfoRes.data.client.paymentMethods || []
       ).find((p) => p.isDefault),
@@ -39,7 +45,14 @@ export const useAppHelper = () => {
     setItemsInCart(cartRes.products);
 
     setIsAppInitialized(true);
-  }, [clientInfo, fetchClientInfo, getCart, setBaseStoreState, setItemsInCart]);
+  }, [
+    clientInfo,
+    fetchClientInfo,
+    getCart,
+    setBaseStoreState,
+    setItemsInCart,
+    setStorePaymentMethodsState,
+  ]);
 
   useDidMount(() => {
     initApp();

@@ -4,7 +4,7 @@ import {
   useDidMount,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
-import { useStoreBase, useStoreCheckout } from "@store";
+import { useStoreBase, useStoreCheckout, useStorePaymentMethods } from "@store";
 import React from "react";
 
 export const useCheckoutPageHelper = () => {
@@ -13,7 +13,7 @@ export const useCheckoutPageHelper = () => {
   const isFetching = React.useRef(false);
 
   const selectedAddress = useStoreBase((state) => state.selectedAddress);
-  const selectedPaymentMethod = useStoreBase(
+  const selectedPaymentMethod = useStorePaymentMethods(
     (state) => state.selectedPaymentMethod
   );
   const productsInStore = useStoreCheckout((state) => state.products);

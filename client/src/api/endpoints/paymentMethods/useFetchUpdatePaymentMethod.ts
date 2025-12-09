@@ -3,7 +3,11 @@ import { useCallback } from "react";
 import type { PaymentMethodDto } from "../../types";
 
 export type UpdatePaymentMethodInputDto = {
-  method: PaymentMethodDto;
+  id: string;
+  name: string;
+  cardNumber: string;
+  expirationMonth: number;
+  expirationYear: number;
 };
 
 export type UpdatePaymentMethodOutputDto = {

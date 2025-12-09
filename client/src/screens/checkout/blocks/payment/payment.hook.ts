@@ -1,5 +1,5 @@
 import { useAppTranslations } from "@hooks";
-import { useStoreBase, useStoreCheckout } from "@store";
+import { useStoreBase, useStoreCheckout, useStorePaymentMethods } from "@store";
 import React from "react";
 
 export const usePaymentBlockHelper = () => {
@@ -9,7 +9,7 @@ export const usePaymentBlockHelper = () => {
   const shippingCost = useStoreCheckout((state) => state.shippingCost);
   const totalCost = useStoreCheckout((state) => state.totalCost || 0);
   const currency = useStoreBase((state) => state.currency);
-  const selectedPaymentMethod = useStoreBase(
+  const selectedPaymentMethod = useStorePaymentMethods(
     (state) => state.selectedPaymentMethod
   );
   const wantsFastestOption = useStoreCheckout(

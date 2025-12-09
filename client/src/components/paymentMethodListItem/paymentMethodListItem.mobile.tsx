@@ -85,7 +85,9 @@ export const PaymentMethodListItemMobile: React.FC<
           }}
         />
         {customText && <Typography>{customText}</Typography>}
-        {!customText && <Typography>{paymentMethod.cardNumber}</Typography>}
+        {!customText && (
+          <Typography>{paymentMethod.cardNumberMasked}</Typography>
+        )}
       </div>
 
       {hasActions && (

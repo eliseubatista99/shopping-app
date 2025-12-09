@@ -114,9 +114,11 @@ export type PaymentMethodDto = {
   id: string;
   type: PaymentMethodType;
   name: string;
+  securityCode: string;
   network: string;
   image: string;
-  cardNumber: string;
+  cardNumberMasked: string;
+  cardNumberUnmasked: string;
   expirationMonth: number;
   expirationYear: number;
   isDefault: boolean;

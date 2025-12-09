@@ -73,7 +73,9 @@ export const useAppTranslations = () => {
         };
       }
 
-      const cardNum = paymentMethod?.cardNumber?.replaceAll("*", "").trim();
+      const cardNum = paymentMethod?.cardNumberMasked
+        ?.replaceAll("*", "")
+        .trim();
 
       const network = t(`global.card.network.${paymentMethod?.network}`);
 

@@ -1,4 +1,4 @@
-import { Api, PaymentMethodType } from "@api";
+import { Api } from "@api";
 import { DRAWERS, INPUTS, TOASTS } from "@constants";
 import {
   useFeedback,
@@ -15,10 +15,15 @@ type AddPaymentMethodForm = {
   nameError?: string;
 };
 
-export const useAddCardPaymentMethodDrawerHelper = () => {
+export const useEditCardPaymentMethodDrawerHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchAddPaymentMethod } = Api.AddPaymentMethod();
+  const { fetchUpdatePaymentMethod } = Api.UpdatePaymentMethod();
   const { showItem, hideItem } = useFeedback();
+
+  const paymentMethodInEdit = useStorePaymentMethods(
+    (state) => state.paymentMethodInEdit
+  );
+
   const setPaymentMethods = useStorePaymentMethods(
     (state) => state.setPaymentMethods
   );
@@ -28,45 +33,45 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
 
   const i18n = React.useMemo(() => {
     return {
-      title: t("drawers.addCardPaymentMethod.title"),
-      subtitle: t("drawers.addCardPaymentMethod.subtitle"),
+      title: t("drawers.editCardPaymentMethod.title"),
+      subtitle: t("drawers.editCardPaymentMethod.subtitle"),
       form: {
         cardNumber: {
-          title: t("drawers.addCardPaymentMethod.form.cardNumber.title"),
+          title: t("drawers.editCardPaymentMethod.form.cardNumber.title"),
           placeholder: t(
-            "drawers.addCardPaymentMethod.form.cardNumber.placeholder"
+            "drawers.editCardPaymentMethod.form.cardNumber.placeholder"
           ),
-          error: t("drawers.addCardPaymentMethod.form.cardNumber.error"),
+          error: t("drawers.editCardPaymentMethod.form.cardNumber.error"),
         },
         date: {
-          title: t("drawers.addCardPaymentMethod.form.date.title"),
-          error: t("drawers.addCardPaymentMethod.form.date.error"),
+          title: t("drawers.editCardPaymentMethod.form.date.title"),
+          error: t("drawers.editCardPaymentMethod.form.date.error"),
           month: {
             placeholder: t(
-              "drawers.addCardPaymentMethod.form.expirationMonth.placeholder"
+              "drawers.editCardPaymentMethod.form.expirationMonth.placeholder"
             ),
           },
           year: {
             placeholder: t(
-              "drawers.addCardPaymentMethod.form.expirationYear.placeholder"
+              "drawers.editCardPaymentMethod.form.expirationYear.placeholder"
             ),
           },
         },
         securityCode: {
-          title: t("drawers.addCardPaymentMethod.form.securityCode.title"),
+          title: t("drawers.editCardPaymentMethod.form.securityCode.title"),
           placeholder: t(
-            "drawers.addCardPaymentMethod.form.securityCode.placeholder"
+            "drawers.editCardPaymentMethod.form.securityCode.placeholder"
           ),
-          error: t("drawers.addCardPaymentMethod.form.securityCode.error"),
+          error: t("drawers.editCardPaymentMethod.form.securityCode.error"),
         },
         name: {
-          title: t("drawers.addCardPaymentMethod.form.name.title"),
-          placeholder: t("drawers.addCardPaymentMethod.form.name.placeholder"),
-          error: t("drawers.addCardPaymentMethod.form.name.error"),
+          title: t("drawers.editCardPaymentMethod.form.name.title"),
+          placeholder: t("drawers.editCardPaymentMethod.form.name.placeholder"),
+          error: t("drawers.editCardPaymentMethod.form.name.error"),
         },
       },
       actions: {
-        submit: t("drawers.addCardPaymentMethod.actions.submit"),
+        submit: t("drawers.editCardPaymentMethod.actions.submit"),
       },
     };
   }, [t]);
@@ -85,15 +90,6 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
       const securityCode = data.find((d) => d.name === INPUTS.SECURITY_CODE)
         ?.value as string;
       const name = data.find((d) => d.name === INPUTS.NAME)?.value as string;
-
-      console.log("ZAU", {
-        cardNumber,
-        expirationMonth: !expirationMonth,
-        expirationYear: !expirationYear,
-        securityCode,
-        name,
-        data,
-      });
 
       const cardNumberError = !cardNumber
         ? i18n.form.cardNumber.error
@@ -115,8 +111,8 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
       }));
 
       if (!cardNumberError && !dateError && !securityCodeError && !nameError) {
-        const res = await fetchAddPaymentMethod({
-          type: PaymentMethodType.Card,
+        const res = await fetchUpdatePaymentMethod({
+          id: paymentMethodInEdit?.id || "",
           name,
           cardNumber,
           expirationMonth,
@@ -128,19 +124,20 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
 
           showItem(TOASTS.CLIENT_INFO_CHANGED);
 
-          hideItem(DRAWERS.ADD_CARD_PAYMENT_METHOD);
+          hideItem(DRAWERS.EDIT_CARD_PAYMENT_METHOD);
         }
       }
 
       setLoading(false);
     },
     [
-      fetchAddPaymentMethod,
+      fetchUpdatePaymentMethod,
       hideItem,
       i18n.form.cardNumber.error,
       i18n.form.date.error,
       i18n.form.name.error,
       i18n.form.securityCode.error,
+      paymentMethodInEdit,
       setPaymentMethods,
       showItem,
     ]
@@ -151,5 +148,6 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
     loading,
     form,
     onClickSubmit,
+    paymentMethodInEdit,
   };
 };

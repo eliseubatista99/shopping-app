@@ -1,5 +1,6 @@
 import {
   AddCardPaymentMethodDrawer,
+  EditCardPaymentMethodDrawer,
   OrderFiltersDrawer,
   ReviewFiltersDrawer,
   SelectAddressDrawer,
@@ -14,6 +15,7 @@ export const App = () => {
       <ReviewFiltersDrawer />
       <OrderFiltersDrawer />
       <AddCardPaymentMethodDrawer />
+      <EditCardPaymentMethodDrawer />
 
       <OverlaySearch />
 

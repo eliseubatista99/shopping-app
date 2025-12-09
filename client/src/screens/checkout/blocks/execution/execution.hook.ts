@@ -1,6 +1,6 @@
 import { Api } from "@api";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase, useStoreCheckout } from "@store";
+import { useStoreBase, useStoreCheckout, useStorePaymentMethods } from "@store";
 import React from "react";
 
 export const useExecutionBlockHelper = () => {
@@ -11,7 +11,7 @@ export const useExecutionBlockHelper = () => {
   );
   const products = useStoreCheckout((state) => state.products);
   const selectedAddress = useStoreBase((state) => state.selectedAddress);
-  const selectedPaymentMethod = useStoreBase(
+  const selectedPaymentMethod = useStorePaymentMethods(
     (state) => state.selectedPaymentMethod
   );
 
