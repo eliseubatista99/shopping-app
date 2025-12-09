@@ -1,11 +1,12 @@
-import { AppButton, AppInputField, AppLoader } from "@components";
+import { AppButton, AppCheckbox, AppInputField, AppLoader } from "@components";
 import { DRAWERS, INPUTS } from "@constants";
 import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { AppDrawer } from "../_appDrawer";
 import { useAddAddressDrawerHelper } from "./addAddress.hook";
 
 export const DrawerAddAddressMobile = () => {
-  const { i18n, loading, form, onClickSubmit } = useAddAddressDrawerHelper();
+  const { i18n, loading, form, onClickSubmit, wantsDefault, onToggleDefault } =
+    useAddAddressDrawerHelper();
 
   return (
     <AppDrawer
@@ -120,6 +121,17 @@ export const DrawerAddAddressMobile = () => {
                   containerStyles={{ marginTop: "15px" }}
                   inputStyles={{ padding: "10px" }}
                   bottomMessage={form.postalCodeError}
+                />
+              ),
+            },
+            {
+              name: INPUTS.SET_DEFAULT,
+              content: (
+                <AppCheckbox
+                  name={INPUTS.SET_DEFAULT}
+                  label={i18n.actions.setDefault}
+                  checked={wantsDefault}
+                  onToggle={onToggleDefault}
                 />
               ),
             },

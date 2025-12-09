@@ -4,8 +4,11 @@ import { AppCheckboxDesktop } from "./appCheckbox.desktop";
 import { AppCheckboxMobile } from "./appCheckbox.mobile";
 
 export interface AppCheckboxProps {
+  name: string;
+  label?: string;
   checked: boolean;
   onToggle?: (checked: boolean) => void;
+  checkboxStyles?: React.CSSProperties;
   styles?: React.CSSProperties;
 }
 

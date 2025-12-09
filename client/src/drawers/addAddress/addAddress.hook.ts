@@ -26,6 +26,7 @@ export const useAddAddressDrawerHelper = () => {
   const setAddresses = useStoreAddresses((state) => state.setAddresses);
 
   const [loading, setLoading] = React.useState(false);
+  const [wantsDefault, setWantsDefault] = React.useState(false);
   const [form, setForm] = React.useState<AddAddressForm>({});
 
   const i18n = React.useMemo(() => {
@@ -123,7 +124,7 @@ export const useAddAddressDrawerHelper = () => {
           city: city || "",
           street: street || "",
           country: country || "",
-          isDefault: false,
+          isDefault: wantsDefault,
         });
 
         if (res.metadata.success) {
@@ -149,13 +150,21 @@ export const useAddAddressDrawerHelper = () => {
       i18n.form.street.error,
       setAddresses,
       showItem,
+      wantsDefault,
     ]
   );
+
+  const onToggleDefault = (value: boolean) => {
+    console.log("ZAU1", value);
+    setWantsDefault(value);
+  };
 
   return {
     i18n,
     loading,
     form,
     onClickSubmit,
+    onToggleDefault,
+    wantsDefault,
   };
 };

@@ -41,6 +41,7 @@ export const ProductsCombinationSelectionMobile: React.FC<
         checked={isSelected(item)}
         styles={{ position: "absolute", top: "6px", right: "6px", zIndex: 2 }}
         onToggle={(checked) => onToggleProduct?.(item, checked)}
+        name={""}
       />
       <ProductsComboItem
         product={item}

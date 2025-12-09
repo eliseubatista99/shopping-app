@@ -21,4 +21,5 @@ export const INPUTS = {
   LOCATION: "location",
   CITY: "city",
   POSTAL_CODE: "postal-code",
+  SET_DEFAULT: "set-default",
 };
