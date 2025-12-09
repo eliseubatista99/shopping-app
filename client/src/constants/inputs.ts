@@ -16,4 +16,9 @@ export const INPUTS = {
   EXPIRATION_MONTH: "expiration-month",
   EXPIRATION_YEAR: "expiration-year",
   SECURITY_CODE: "security-code",
+  COUNTRY: "country",
+  STREET: "street",
+  LOCATION: "location",
+  CITY: "city",
+  POSTAL_CODE: "postal-code",
 };

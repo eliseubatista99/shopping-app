@@ -4,7 +4,7 @@ import { useAppDrawerHelper } from "./appDrawer.hook";
 
 export const AppDrawerMobile = (props: AppDrawerProps) => {
   const { isVisible, onClickBackground } = useAppDrawerHelper(props);
-  const { drawerStyles } = props;
+  const { topContent, drawerStyles } = props;
   return (
     <>
       {isVisible && (
@@ -30,16 +30,43 @@ export const AppDrawerMobile = (props: AppDrawerProps) => {
               left: "0",
               position: "absolute",
               background: "#ffffff",
-              minHeight: "150px",
-              padding: "20px",
-              ...drawerStyles,
+              maxHeight: "100%",
+              overflow: "hidden",
             }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
             }}
           >
-            {props.children}
+            {topContent && (
+              <div
+                style={{
+                  width: "100%",
+                  minHeight: "fit-content",
+                }}
+              >
+                {topContent}
+              </div>
+            )}
+            <div
+              style={{
+                width: "100%",
+                minHeight: "150px",
+                overflowX: "hidden",
+                overflowY: "auto",
+                padding: "20px",
+                ...drawerStyles,
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  minHeight: "fit-content",
+                }}
+              >
+                {props.children}
+              </div>
+            </div>
           </div>
         </div>
       )}

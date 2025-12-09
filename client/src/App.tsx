@@ -1,5 +1,7 @@
 import {
+  AddAddressDrawer,
   AddCardPaymentMethodDrawer,
+  EditAddressDrawer,
   EditCardPaymentMethodDrawer,
   OrderFiltersDrawer,
   ReviewFiltersDrawer,
@@ -12,6 +14,8 @@ export const App = () => {
   return (
     <>
       <SelectAddressDrawer />
+      <AddAddressDrawer />
+      <EditAddressDrawer />
       <ReviewFiltersDrawer />
       <OrderFiltersDrawer />
       <AddCardPaymentMethodDrawer />

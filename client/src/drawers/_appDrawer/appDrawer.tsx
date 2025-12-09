@@ -5,6 +5,7 @@ import { AppDrawerMobile } from "./appDrawer.mobile";
 export interface AppDrawerProps {
   canBeClosed?: boolean;
   onClose?: () => void;
+  topContent?: React.ReactNode;
   children?: React.ReactNode;
   drawerStyles?: React.CSSProperties;
   id: string;

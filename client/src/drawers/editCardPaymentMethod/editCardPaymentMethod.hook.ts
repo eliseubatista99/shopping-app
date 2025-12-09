@@ -1,6 +1,7 @@
 import { Api } from "@api";
 import { DRAWERS, INPUTS, TOASTS } from "@constants";
 import {
+  FormsHelper,
   useFeedback,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
@@ -84,16 +85,20 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
     async (data: FormFieldOutputData[]) => {
       setLoading(true);
 
-      const cardNumber = data.find((d) => d.name === INPUTS.CARD_NUMBER)
-        ?.value as string;
-      const expirationMonth = data.find(
-        (d) => d.name === INPUTS.EXPIRATION_MONTH
-      )?.value as number;
-      const expirationYear = data.find((d) => d.name === INPUTS.EXPIRATION_YEAR)
-        ?.value as number;
-      const securityCode = data.find((d) => d.name === INPUTS.SECURITY_CODE)
-        ?.value as string;
-      const name = data.find((d) => d.name === INPUTS.NAME)?.value as string;
+      const cardNumber = FormsHelper.getField<string>(data, INPUTS.CARD_NUMBER);
+      const expirationMonth = FormsHelper.getField<number>(
+        data,
+        INPUTS.EXPIRATION_MONTH
+      );
+      const expirationYear = FormsHelper.getField<number>(
+        data,
+        INPUTS.EXPIRATION_YEAR
+      );
+      const securityCode = FormsHelper.getField<string>(
+        data,
+        INPUTS.SECURITY_CODE
+      );
+      const name = FormsHelper.getField<string>(data, INPUTS.NAME);
 
       const cardNumberError = !cardNumber
         ? i18n.form.cardNumber.error
@@ -117,10 +122,10 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
       if (!cardNumberError && !dateError && !securityCodeError && !nameError) {
         const res = await fetchUpdatePaymentMethod({
           id: paymentMethodInEdit?.id || "",
-          name,
-          cardNumber,
-          expirationMonth,
-          expirationYear,
+          name: name || "",
+          cardNumber: cardNumber || "",
+          expirationMonth: expirationMonth || 0,
+          expirationYear: expirationYear || 0,
         });
 
         if (res.metadata.success) {
