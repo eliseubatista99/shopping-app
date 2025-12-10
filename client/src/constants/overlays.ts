@@ -1,3 +1,4 @@
-export const Overlays = {
-  search: "search",
+export const OVERLAYS = {
+  SEARCH: "search",
+  LOADER: "loader",
 };

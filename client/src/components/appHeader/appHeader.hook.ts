@@ -1,4 +1,4 @@
-import { Overlays } from "@constants";
+import { OVERLAYS } from "@constants";
 import {
   useFeedback,
   useNavigation,
@@ -30,8 +30,8 @@ export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
   );
 
   const handleSearchBarClick = React.useCallback(() => {
-    if (!isItemVisible(Overlays.search)) {
-      showItem(Overlays.search);
+    if (!isItemVisible(OVERLAYS.SEARCH)) {
+      showItem(OVERLAYS.SEARCH);
     }
   }, [isItemVisible, showItem]);
 

@@ -1,12 +1,11 @@
 import type { ProductDto } from "@api";
-import { AppLoader, ItemsListTemplate, ProductListItem } from "@components";
+import { ItemsListTemplate, ProductListItem } from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useProductsBlockHelper } from "./products.hook";
 
 export const ProductsBlockMobile: React.FC = () => {
   const {
     i18n,
-    loading,
     products,
     onClickAddToCart,
     onClickProduct,
@@ -30,19 +29,14 @@ export const ProductsBlockMobile: React.FC = () => {
 
   return (
     <>
-      {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <>
-          <Typography styles={{ fontWeight: 600, fontSize: "20px" }}>
-            {i18n.title}
-          </Typography>
-          <ItemsListTemplate
-            items={products}
-            renderItem={renderItem}
-            retrieveItems={retrieveItems}
-          />
-        </>
-      )}
+      <Typography styles={{ fontWeight: 600, fontSize: "20px" }}>
+        {i18n.title}
+      </Typography>
+      <ItemsListTemplate
+        items={products}
+        renderItem={renderItem}
+        retrieveItems={retrieveItems}
+      />
     </>
   );
 };

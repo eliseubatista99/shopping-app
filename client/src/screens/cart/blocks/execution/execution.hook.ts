@@ -57,6 +57,7 @@ export const useExecutionBlockHelper = () => {
 
   return {
     i18n,
+    products: products || [],
     productsCosts,
     currency,
     onClickBuyNow,

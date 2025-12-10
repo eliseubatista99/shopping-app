@@ -1,4 +1,4 @@
-import { AppLayout, Separator } from "@components";
+import { AppLayout } from "@components";
 import { AuthenticateBlock, ExecutionBlock, ProductsBlock } from "./blocks";
 import { useCartPageHelper } from "./cart.hook";
 
@@ -29,7 +29,6 @@ export const CartMobile: React.FC = () => {
       {isAuthenticated && (
         <>
           <ExecutionBlock />
-          <Separator styles={{ marginBlock: "15px" }} />
           <ProductsBlock />
         </>
       )}

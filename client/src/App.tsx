@@ -7,7 +7,7 @@ import {
   ReviewFiltersDrawer,
   SelectAddressDrawer,
 } from "@drawers";
-import { OverlaySearch } from "@overlays";
+import { OverlayLoader, OverlaySearch } from "@overlays";
 import { ClientInfoChangedToast, ReviewSubmittedToast } from "@toasts";
 
 export const App = () => {
@@ -21,6 +21,7 @@ export const App = () => {
       <AddCardPaymentMethodDrawer />
       <EditCardPaymentMethodDrawer />
 
+      <OverlayLoader />
       <OverlaySearch />
 
       <ReviewSubmittedToast />

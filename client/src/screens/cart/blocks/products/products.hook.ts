@@ -1,4 +1,6 @@
 import type { CartProductDto } from "@api";
+import { OVERLAYS } from "@constants";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useCart } from "@hooks";
 import { useStoreCart } from "@store";
 import React from "react";
@@ -8,7 +10,9 @@ export const useProductsBlockHelper = () => {
   const { changeProductsQuantity, removeFromCart, setProductsSelectedState } =
     useCart();
   const products = useStoreCart((state) => state.products);
-  const [loading, setLoading] = React.useState(false);
+  const [showSelectAction, setShowSelectAction] = React.useState(false);
+  const { getCart } = useCart();
+  const { showItem, hideItem } = useFeedback();
 
   const allProductsSelected = React.useMemo(
     () => !((products || []).findIndex((p) => !p.isSelected) !== -1),
@@ -25,28 +29,39 @@ export const useProductsBlockHelper = () => {
     };
   }, [allProductsSelected, t]);
 
+  const retrieveItems = React.useCallback(async () => {
+    setShowSelectAction(false);
+    const res = await getCart();
+    setShowSelectAction(true);
+
+    return {
+      success: res.metadata.success,
+      hasMorePages: false,
+    };
+  }, [getCart]);
+
   const onClickRemoveFromCart = React.useCallback(
     async (product: CartProductDto) => {
-      setLoading(true);
+      showItem(OVERLAYS.LOADER);
       await removeFromCart([product.id || ""]);
-      setLoading(false);
+      hideItem(OVERLAYS.LOADER);
     },
-    [removeFromCart]
+    [hideItem, removeFromCart, showItem]
   );
 
   const onToggleProductSelection = React.useCallback(
     async (product: CartProductDto, value: boolean) => {
-      setLoading(true);
+      showItem(OVERLAYS.LOADER);
       await setProductsSelectedState([
         { productId: product.id || "", selected: value },
       ]);
-      setLoading(false);
+      hideItem(OVERLAYS.LOADER);
     },
-    [setProductsSelectedState]
+    [hideItem, setProductsSelectedState, showItem]
   );
 
   const onClickToggleAll = React.useCallback(async () => {
-    setLoading(true);
+    showItem(OVERLAYS.LOADER);
     await setProductsSelectedState(
       (products || []).map((p) => ({
         productId: p.id || "",
@@ -54,31 +69,42 @@ export const useProductsBlockHelper = () => {
       }))
     );
 
-    setLoading(false);
-  }, [allProductsSelected, products, setProductsSelectedState]);
+    hideItem(OVERLAYS.LOADER);
+  }, [
+    allProductsSelected,
+    hideItem,
+    products,
+    setProductsSelectedState,
+    showItem,
+  ]);
 
   const onClickChangeQuantity = React.useCallback(
     async (product: CartProductDto, value: number) => {
+      showItem(OVERLAYS.LOADER);
+
       if (value > 0) {
-        setLoading(true);
         await changeProductsQuantity([
           { productId: product.id, quantity: value },
         ]);
-        setLoading(false);
       } else {
         await onClickRemoveFromCart(product);
       }
+      hideItem(OVERLAYS.LOADER);
     },
-    [changeProductsQuantity, onClickRemoveFromCart]
+    [changeProductsQuantity, hideItem, onClickRemoveFromCart, showItem]
   );
 
   return {
     i18n,
-    loading,
+    selectAction: {
+      visible: showSelectAction,
+      onClickToggleAll,
+    },
     products: products || [],
     onClickChangeQuantity,
     onClickRemoveFromCart,
     onToggleProductSelection,
-    onClickToggleAll,
+
+    retrieveItems,
   };
 };

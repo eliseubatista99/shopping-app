@@ -1,5 +1,5 @@
 import { AppHeader } from "@components";
-import { Overlays } from "@constants";
+import { OVERLAYS } from "@constants";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { AppOverlay } from "../_appOverlay";
 import { useOverlaySearchHelper } from "./searchOverlay.hook";
@@ -28,7 +28,7 @@ export const OverlaySearchMobile: React.FC = () => {
   ));
 
   return (
-    <AppOverlay id={Overlays.search} styles={{ background: "#ffffff" }}>
+    <AppOverlay id={OVERLAYS.SEARCH} styles={{ background: "#ffffff" }}>
       <AppHeader
         back={{
           visible: true,

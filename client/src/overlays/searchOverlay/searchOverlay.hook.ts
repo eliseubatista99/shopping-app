@@ -1,4 +1,4 @@
-import { Overlays, PAGES, SEARCH_PARAMS } from "@constants";
+import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useFeedback,
   useNavigation,
@@ -16,7 +16,7 @@ export const useOverlaySearchHelper = () => {
 
   const submitSearch = React.useCallback(
     async (text: string) => {
-      hideItem(Overlays.search);
+      hideItem(OVERLAYS.SEARCH);
 
       setProductFilters({
         text,
@@ -37,7 +37,7 @@ export const useOverlaySearchHelper = () => {
   );
 
   const onClickBack = React.useCallback(() => {
-    hideItem(Overlays.search);
+    hideItem(OVERLAYS.SEARCH);
   }, [hideItem]);
 
   return {

@@ -2,12 +2,14 @@ import styled from "@emotion/styled";
 import React from "react";
 import type { AppLoaderProps } from "./appLoader";
 
-const AnimationSpan = styled.span`
+const AnimationSpan = styled.span<{ styles?: React.CSSProperties }>`
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
   border: 8px solid #514b82;
   animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
+
+  ${({ styles }) => styles && { ...styles }}
 
   @keyframes l20-1 {
     0% {
@@ -98,36 +100,9 @@ const AnimationSpan = styled.span`
 
 export const AppLoaderMobile: React.FC<AppLoaderProps> = ({
   visible,
-  mode,
   styles,
+  loaderStyles,
 }) => {
-  const modeStyles: React.CSSProperties =
-    mode === "full"
-      ? {
-          width: "100%",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "absolute",
-          background: "#0000004d",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 1,
-        }
-      : {
-          width: "fit-content",
-          height: "fit-content",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-          zIndex: 1,
-          padding: "20px",
-          flex: 1,
-          margin: "auto",
-        };
-
   return (
     <>
       {visible && (
@@ -136,12 +111,26 @@ export const AppLoaderMobile: React.FC<AppLoaderProps> = ({
             e.preventDefault();
             e.stopPropagation();
           }}
+          onScroll={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           style={{
-            ...modeStyles,
+            width: "fit-content",
+            height: "fit-content",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            zIndex: 1,
+            padding: "20px",
+            flex: 1,
+            margin: "auto",
             ...styles,
           }}
         >
-          <AnimationSpan />
+          <AnimationSpan
+            style={{ border: "8px solid #514b82", ...loaderStyles }}
+          />
         </div>
       )}
     </>

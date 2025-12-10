@@ -5,8 +5,8 @@ import { AppLoaderMobile } from "./appLoader.mobile";
 
 export interface AppLoaderProps {
   visible: boolean;
-  mode?: "local" | "full";
   styles?: React.CSSProperties;
+  loaderStyles?: React.CSSProperties;
 }
 
 export const AppLoader: React.FC<AppLoaderProps> = (props) => {

@@ -82,7 +82,7 @@ export const useCart = () => {
 
     setItemsInBasket(res.data?.products || []);
 
-    return res.data;
+    return res;
   }, [fetchCart, setItemsInBasket]);
 
   return {

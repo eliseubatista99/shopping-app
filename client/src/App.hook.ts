@@ -1,6 +1,5 @@
 import { Api } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
-import { useCart } from "@hooks";
 import {
   useStoreAddresses,
   useStoreBase,
@@ -18,10 +17,9 @@ export const useAppHelper = () => {
     (state) => state.setPaymentMethods
   );
   const setAddresses = useStoreAddresses((state) => state.setAddresses);
-  const setItemsInCart = useStoreCart((state) => state.setItemsInCart);
+  const setCartCount = useStoreCart((state) => state.setCartCount);
 
   const { fetchClientInfo } = Api.GetClientInfo();
-  const { getCart } = useCart();
 
   const initApp = React.useCallback(async () => {
     if (clientInfo) {
@@ -29,10 +27,7 @@ export const useAppHelper = () => {
       return;
     }
 
-    const [clientInfoRes, cartRes] = await Promise.all([
-      fetchClientInfo(),
-      getCart(),
-    ]);
+    const [clientInfoRes] = await Promise.all([fetchClientInfo()]);
 
     setBaseStoreState({
       client: clientInfoRes.data.client,
@@ -41,16 +36,15 @@ export const useAppHelper = () => {
     setAddresses(clientInfoRes.data.client.addresses || []);
     setPaymentMethods(clientInfoRes.data.client.paymentMethods || []);
 
-    setItemsInCart(cartRes.products);
+    setCartCount(clientInfoRes.data.itemsInCart || 0);
 
     setIsAppInitialized(true);
   }, [
     clientInfo,
     fetchClientInfo,
-    getCart,
     setAddresses,
     setBaseStoreState,
-    setItemsInCart,
+    setCartCount,
     setPaymentMethods,
   ]);
 

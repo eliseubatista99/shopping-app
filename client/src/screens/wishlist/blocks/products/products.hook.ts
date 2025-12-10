@@ -1,6 +1,9 @@
 import { Api, type ProductDto } from "@api";
-import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations, useCart } from "@hooks";
 import { useStoreWishlist } from "@store";
 import React from "react";
@@ -16,9 +19,8 @@ export const useProductsBlockHelper = () => {
     (state) => state.setWishlistStoreState
   );
   const { goTo } = useNavigation();
+  const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
-
-  const [loading, setLoading] = React.useState(false);
 
   const i18n = React.useMemo(() => {
     return {
@@ -72,7 +74,7 @@ export const useProductsBlockHelper = () => {
 
   const onClickWishlist = React.useCallback(
     async (product: ProductDto) => {
-      setLoading(true);
+      showItem(OVERLAYS.LOADER);
       const res = await fetchRemoveFromWishlist({
         productId: product.id || "",
       });
@@ -80,14 +82,13 @@ export const useProductsBlockHelper = () => {
       if (res.metadata.success) {
         setWishlistStoreState({ products: res.data.updatedWishlist });
       }
-      setLoading(false);
+      hideItem(OVERLAYS.LOADER);
     },
-    [fetchRemoveFromWishlist, setWishlistStoreState]
+    [fetchRemoveFromWishlist, hideItem, setWishlistStoreState, showItem]
   );
 
   return {
     i18n,
-    loading,
     products: products || [],
     onClickProduct,
     onClickAddToCart,
