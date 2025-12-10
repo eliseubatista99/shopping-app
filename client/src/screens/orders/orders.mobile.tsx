@@ -30,15 +30,7 @@ export const OrdersMobile: React.FC = () => {
         {!loading && (
           <>
             <FiltersBlock />
-            <div
-              style={{
-                width: "100%",
-                flexDirection: "column",
-                padding: "12px",
-              }}
-            >
-              {<OrdersListBlock />}
-            </div>
+            <OrdersListBlock />
           </>
         )}
       </AuthenticatedScreen>

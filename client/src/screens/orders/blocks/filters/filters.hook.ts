@@ -8,6 +8,7 @@ export const useFiltersBlockHelper = () => {
   const { t } = useAppTranslations();
   const { showItem } = useFeedback();
 
+  const storeFilters = useStoreOrders((state) => state.filters);
   const setOrderFilters = useStoreOrders((state) => state.setOrderFilters);
 
   const [isSearchFocused, setIsSearchFocused] = React.useState(false);
@@ -42,6 +43,7 @@ export const useFiltersBlockHelper = () => {
 
   return {
     i18n,
+    currentTextFilter: storeFilters?.textFilter,
     isSearchFocused,
     submitSearch,
     onSearchBarFocus,

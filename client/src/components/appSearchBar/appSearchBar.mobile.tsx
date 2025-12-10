@@ -20,6 +20,7 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
     formStyles,
     rightIcon,
     leftIcon,
+    initialValue,
   } = props;
 
   return (
@@ -54,6 +55,7 @@ export const AppSearchBarMobile: React.FC<AppSearchBarProps> = (props) => {
           name={name}
           placeHolder={placeholder}
           type="text"
+          initialValue={initialValue}
           onFocus={() => handleOnFocus()}
           onBlur={() => handleOnBlur()}
           rightIcon={

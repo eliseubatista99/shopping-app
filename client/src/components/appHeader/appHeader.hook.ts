@@ -50,6 +50,6 @@ export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
     handleSearchBarSubmit,
     handleSearchBarClick,
     handleClickBack,
-    canGoBack: history.length > 0 || back?.defaultBackPath,
+    canGoBack: history.length > 0 || back?.defaultBackPath || back?.onClick,
   };
 };

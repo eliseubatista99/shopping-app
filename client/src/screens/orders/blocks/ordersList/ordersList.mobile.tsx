@@ -31,7 +31,7 @@ export const OrdersListBlockMobile: React.FC = () => {
   };
 
   return (
-    <>
+    <div style={{ width: "100%", flex: 1, padding: "12px" }}>
       <Typography styles={{ fontSize: "20px", fontWeight: 600 }}>
         {i18n.title}
       </Typography>
@@ -58,6 +58,6 @@ export const OrdersListBlockMobile: React.FC = () => {
       <IsOnScreenTrigger
         onVisibilityChanged={(visible) => handleRequestTrigger(visible)}
       /> */}
-    </>
+    </div>
   );
 };

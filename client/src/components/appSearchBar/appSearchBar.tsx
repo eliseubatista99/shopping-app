@@ -5,6 +5,7 @@ import { AppSearchBarMobile } from "./appSearchBar.mobile";
 
 export interface AppSearchBarProps {
   name: string;
+  initialValue?: string;
   placeholder?: string;
   onFocus?: () => void;
   onBlur?: () => void;

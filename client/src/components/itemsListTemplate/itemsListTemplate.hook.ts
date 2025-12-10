@@ -5,10 +5,7 @@ import {
 import React from "react";
 import type { ItemsListTemplateProps } from "./itemsListTemplate";
 
-export const useItemsListTemplateHelper = ({
-  retrieveItems,
-  filters,
-}: ItemsListTemplateProps) => {
+export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
   const currentPage = React.useRef<number>(0);
 
   const hasMorePages = React.useRef<boolean>(true);
@@ -20,11 +17,17 @@ export const useItemsListTemplateHelper = ({
   const [loading, setLoading] = React.useState<boolean>(false);
   const [hasError, setHasError] = React.useState<boolean>(false);
 
+  const [items, setItems] = React.useState<unknown[]>([]);
+
   const handleRequestItems = React.useCallback(async () => {
     isFetching.current = true;
     setLoading(true);
 
-    const res = await retrieveItems(
+    if (currentPage.current === 0) {
+      setItems([]);
+    }
+
+    const res = await props.retrieveItems(
       currentPage.current,
       10,
       cachedFilters.current
@@ -40,7 +43,7 @@ export const useItemsListTemplateHelper = ({
     setLoading(false);
     isFetching.current = false;
     hasRequestedOrdersOnce.current = true;
-  }, [retrieveItems]);
+  }, [props]);
 
   const handleRequestTrigger = React.useCallback(
     (visible: boolean) => {
@@ -59,24 +62,31 @@ export const useItemsListTemplateHelper = ({
 
   React.useEffect(() => {
     if (
-      !ObjectsHelper.isSameObject(filters, cachedFilters.current) &&
+      !ObjectsHelper.isSameObject(props.filters, cachedFilters.current) &&
       hasRequestedOrdersOnce.current
     ) {
-      cachedFilters.current = filters;
+      cachedFilters.current = props.filters;
       currentPage.current = 0;
 
       handleRequestItems();
     }
-  }, [filters, handleRequestItems]);
+  }, [props.filters, handleRequestItems]);
+
+  React.useEffect(() => {
+    setItems(props.items);
+  }, [props.items]);
 
   useDidMount(() => {
-    cachedFilters.current = filters;
+    cachedFilters.current = props.filters;
     currentPage.current = 0;
+
+    setItems(props.items);
 
     handleRequestItems();
   });
 
   return {
+    items,
     loading,
     hasError,
     handleRequestTrigger,

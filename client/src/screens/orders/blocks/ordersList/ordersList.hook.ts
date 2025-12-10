@@ -35,8 +35,6 @@ export const useOrdersListBlockHelper = () => {
   // const startDateFilterCache = React.useRef<Date | undefined>(undefined);
   // const endDateFilterCache = React.useRef<Date | undefined>(undefined);
 
-  const [loading, setLoading] = React.useState<boolean>(false);
-
   const i18n = React.useMemo(() => {
     return {
       title: t("orders.ordersList.title"),
@@ -44,9 +42,6 @@ export const useOrdersListBlockHelper = () => {
   }, [t]);
 
   const requestOrders = React.useCallback(async () => {
-    isFetching.current = true;
-    setLoading(true);
-
     const res = await fetchGetClientOrders({
       page: currentPage.current,
       pageCount: 10,
@@ -69,10 +64,6 @@ export const useOrdersListBlockHelper = () => {
 
       hasMorePages.current = res.data.hasMorePages;
     }
-
-    setLoading(false);
-    isFetching.current = false;
-    hasRequestedOrdersOnce.current = true;
   }, [
     addOrders,
     fetchGetClientOrders,
@@ -177,7 +168,6 @@ export const useOrdersListBlockHelper = () => {
 
   return {
     i18n,
-    loading,
     orders: allOrders || [],
     handleRequestTrigger,
     onClickOrder,

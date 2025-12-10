@@ -9,14 +9,17 @@ import { useItemsListTemplateHelper } from "./itemsListTemplate.hook";
 export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
   props
 ) => {
-  const { loading, handleRequestTrigger, hasError } =
+  const { items, loading, handleRequestTrigger, hasError } =
     useItemsListTemplateHelper(props);
-  const { items, renderItem } = props;
+  const { renderItem, styles } = props;
 
   const itemsJSX = items.map((i) => renderItem(i));
 
   return (
-    <>
+    <div
+      data-testid="item-list-template"
+      style={{ width: "100%", flex: 1, ...styles }}
+    >
       {items.length > 0 && (
         <div
           style={{
@@ -64,14 +67,15 @@ export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
       )}
 
       {loading && (
-        <AppLoader visible={loading} styles={{ margin: "20px auto" }} />
-      )}
-
-      {!hasError && !loading && (
-        <IsOnScreenTrigger
-          onVisibilityChanged={(visible) => handleRequestTrigger(visible)}
+        <AppLoader
+          visible={loading}
+          styles={{ padding: "20px", flex: 1, margin: "auto" }}
         />
       )}
-    </>
+
+      <IsOnScreenTrigger
+        onVisibilityChanged={(visible) => handleRequestTrigger(visible)}
+      />
+    </div>
   );
 };

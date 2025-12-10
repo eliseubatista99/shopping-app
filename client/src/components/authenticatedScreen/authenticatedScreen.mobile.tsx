@@ -12,6 +12,8 @@ export const AuthenticatedScreenMobile: React.FC<AuthenticatedScreenProps> = (
     <div
       data-testid="authenticatedScreen"
       style={{
+        width: "100%",
+        flex: 1,
         ...styles,
       }}
     >

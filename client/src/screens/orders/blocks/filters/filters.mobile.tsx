@@ -12,6 +12,7 @@ export const FiltersBlockMobile: React.FC = () => {
     onSearchBarBlur,
     onSearchBarFocus,
     onClickFilters,
+    currentTextFilter,
   } = useFiltersBlockHelper();
 
   return (
@@ -25,6 +26,7 @@ export const FiltersBlockMobile: React.FC = () => {
     >
       <AppSearchBar
         name={INPUTS.ORDERS_SEARCH}
+        initialValue={currentTextFilter}
         placeholder={i18n.placeholder}
         onSubmit={submitSearch}
         onFocus={onSearchBarFocus}
