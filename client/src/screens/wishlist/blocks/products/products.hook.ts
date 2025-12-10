@@ -7,8 +7,11 @@ import React from "react";
 
 export const useProductsBlockHelper = () => {
   const { t } = useAppTranslations();
+
+  const { fetchGetWishlist } = Api.GetWishlist();
   const { fetchRemoveFromWishlist } = Api.RemoveFromWishlist();
   const products = useStoreWishlist((state) => state.products);
+  const addProducts = useStoreWishlist((state) => state.addProducts);
   const setWishlistStoreState = useStoreWishlist(
     (state) => state.setWishlistStoreState
   );
@@ -22,6 +25,31 @@ export const useProductsBlockHelper = () => {
       title: t("wishlist.products.title"),
     };
   }, [t]);
+
+  const retrieveItems = React.useCallback(
+    async (currentPage: number, pageSize: number) => {
+      const res = await fetchGetWishlist({
+        page: currentPage,
+        pageCount: pageSize,
+      });
+
+      if (res.metadata.success) {
+        if (currentPage < 1) {
+          setWishlistStoreState({
+            products: res.data.products,
+          });
+        } else {
+          addProducts(res.data.products);
+        }
+      }
+
+      return {
+        success: res.metadata.success,
+        hasMorePages: res.data?.hasMorePages,
+      };
+    },
+    [addProducts, fetchGetWishlist, setWishlistStoreState]
+  );
 
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
@@ -64,5 +92,6 @@ export const useProductsBlockHelper = () => {
     onClickProduct,
     onClickAddToCart,
     onClickWishlist,
+    retrieveItems,
   };
 };

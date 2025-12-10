@@ -123,6 +123,9 @@ export const AppLoaderMobile: React.FC<AppLoaderProps> = ({
           justifyContent: "center",
           position: "relative",
           zIndex: 1,
+          padding: "20px",
+          flex: 1,
+          margin: "auto",
         };
 
   return (

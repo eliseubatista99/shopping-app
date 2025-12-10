@@ -11,6 +11,7 @@ const initialState: WishlistState = {};
 
 interface UseStoreOutput extends WishlistState {
   setWishlistStoreState: (data: Partial<WishlistState>) => void;
+  addProducts: (data: ProductDto[]) => void;
 }
 
 export const useStoreWishlist = StoreHelper.createStore<UseStoreOutput>(
@@ -21,6 +22,15 @@ export const useStoreWishlist = StoreHelper.createStore<UseStoreOutput>(
         produce((state: WishlistState) => ({ ...state, ...data })),
         false,
         "setPartialState"
+      );
+    },
+    addProducts: function (data: ProductDto[]) {
+      set(
+        produce((state: WishlistState) => {
+          state.products = [...(state.products || []), ...data];
+        }),
+        false,
+        "addProducts"
       );
     },
   }),

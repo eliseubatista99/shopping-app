@@ -1,4 +1,5 @@
-import { AppLoader, ProductListItem } from "@components";
+import type { ProductDto } from "@api";
+import { AppLoader, ItemsListTemplate, ProductListItem } from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useProductsBlockHelper } from "./products.hook";
 
@@ -10,17 +11,22 @@ export const ProductsBlockMobile: React.FC = () => {
     onClickAddToCart,
     onClickProduct,
     onClickWishlist,
+    retrieveItems,
   } = useProductsBlockHelper();
 
-  const productsJSX = products?.map((p) => (
-    <ProductListItem
-      key={p.id}
-      product={p}
-      onClick={() => onClickProduct(p)}
-      onClickAddToCart={() => onClickAddToCart(p)}
-      onClickWishlist={() => onClickWishlist(p)}
-    />
-  ));
+  const renderItem = (i: unknown) => {
+    const item = i as ProductDto;
+
+    return (
+      <ProductListItem
+        key={item.id}
+        product={item}
+        onClick={() => onClickProduct(item)}
+        onClickAddToCart={() => onClickAddToCart(item)}
+        onClickWishlist={() => onClickWishlist(item)}
+      />
+    );
+  };
 
   return (
     <>
@@ -30,16 +36,11 @@ export const ProductsBlockMobile: React.FC = () => {
           <Typography styles={{ fontWeight: 600, fontSize: "20px" }}>
             {i18n.title}
           </Typography>
-          <div
-            style={{
-              width: "100%",
-              flexDirection: "column",
-              padding: "10px 0px",
-              gap: "5px",
-            }}
-          >
-            {productsJSX}
-          </div>
+          <ItemsListTemplate
+            items={products}
+            renderItem={renderItem}
+            retrieveItems={retrieveItems}
+          />
         </>
       )}
     </>
