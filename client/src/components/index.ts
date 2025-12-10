@@ -14,6 +14,7 @@ export * from "./chip";
 export * from "./currencyBlock";
 export * from "./documentListItem";
 export * from "./isOnScreenTrigger";
+export * from "./itemsListTemplate";
 export * from "./orderListItem";
 export * from "./paymentMethodListItem";
 export * from "./productCheckoutItem";
