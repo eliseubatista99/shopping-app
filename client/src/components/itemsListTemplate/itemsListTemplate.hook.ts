@@ -1,4 +1,7 @@
-import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import {
+  ObjectsHelper,
+  useDidMount,
+} from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import type { ItemsListTemplateProps } from "./itemsListTemplate";
 
@@ -55,7 +58,10 @@ export const useItemsListTemplateHelper = ({
   );
 
   React.useEffect(() => {
-    if (filters !== cachedFilters.current && hasRequestedOrdersOnce.current) {
+    if (
+      !ObjectsHelper.isSameObject(filters, cachedFilters.current) &&
+      hasRequestedOrdersOnce.current
+    ) {
       cachedFilters.current = filters;
       currentPage.current = 0;
 
@@ -64,6 +70,9 @@ export const useItemsListTemplateHelper = ({
   }, [filters, handleRequestItems]);
 
   useDidMount(() => {
+    cachedFilters.current = filters;
+    currentPage.current = 0;
+
     handleRequestItems();
   });
 

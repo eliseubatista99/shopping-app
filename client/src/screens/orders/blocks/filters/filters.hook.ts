@@ -8,9 +8,7 @@ export const useFiltersBlockHelper = () => {
   const { t } = useAppTranslations();
   const { showItem } = useFeedback();
 
-  const setStoreOrdersState = useStoreOrders(
-    (state) => state.setOrdersStoreState
-  );
+  const setOrderFilters = useStoreOrders((state) => state.setOrderFilters);
 
   const [isSearchFocused, setIsSearchFocused] = React.useState(false);
 
@@ -35,11 +33,11 @@ export const useFiltersBlockHelper = () => {
 
   const submitSearch = React.useCallback(
     async (text: string) => {
-      setStoreOrdersState({
+      setOrderFilters({
         textFilter: text,
       });
     },
-    [setStoreOrdersState]
+    [setOrderFilters]
   );
 
   return {

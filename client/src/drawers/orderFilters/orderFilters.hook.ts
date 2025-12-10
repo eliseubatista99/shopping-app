@@ -1,7 +1,10 @@
 import { OrderStatus, SortMode } from "@api";
-import { TimeHelper } from "@eliseubatista99/react-scaffold-core";
+import {
+  ObjectsHelper,
+  TimeHelper,
+} from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreOrders } from "@store";
+import { useStoreOrders, type OrdersFilters } from "@store";
 import React from "react";
 
 export const useOrderFiltersDrawerHelper = () => {
@@ -9,29 +12,25 @@ export const useOrderFiltersDrawerHelper = () => {
     (state) => state.oldestOrderDate
   );
 
-  const setStoreSortFilter = useStoreOrders((state) => state.setSortFilter);
-  const setStoreStatusFilter = useStoreOrders((state) => state.setStatusFilter);
-  const setStoreStartDateFilter = useStoreOrders(
-    (state) => state.setStartDateFilter
-  );
-  const setStoreEndDateFilter = useStoreOrders(
-    (state) => state.setEndDateFilter
-  );
+  const storeFilters = useStoreOrders((state) => state.filters);
+
+  const setOrderFilters = useStoreOrders((state) => state.setOrderFilters);
+
   const { t } = useAppTranslations();
 
   const [sortFilter, setSortFilter] = React.useState<SortMode | undefined>(
-    undefined
+    storeFilters?.sortFilter
   );
   const [statusFilter, setStatusFilter] = React.useState<
     OrderStatus | undefined
-  >(undefined);
+  >(storeFilters?.statusFilter);
 
   const [startDateFilter, setStartDateFilter] = React.useState<
-    Date | undefined
-  >(undefined);
+    string | undefined
+  >(storeFilters?.startDateFilter);
 
-  const [endDateFilter, setEndDateFilter] = React.useState<Date | undefined>(
-    undefined
+  const [endDateFilter, setEndDateFilter] = React.useState<string | undefined>(
+    storeFilters?.endDateFilter
   );
 
   const i18n = React.useMemo(() => {
@@ -84,23 +83,24 @@ export const useOrderFiltersDrawerHelper = () => {
     threeMonthsAgoMonthStartDate.setDate(1);
     threeMonthsAgoMonthStartDate.setMonth(thisMonthStartDate.getMonth() - 3);
 
+    const startFilter = startDateFilter ? new Date(startDateFilter) : undefined;
+    const endFilter = endDateFilter ? new Date(endDateFilter) : undefined;
+
     const result = [
       {
-        startDate: thisMonthStartDate,
-        endDate: today,
+        startDate: thisMonthStartDate.toISOString(),
+        endDate: today.toISOString(),
         isSelected:
-          TimeHelper.isSameDate(startDateFilter, thisMonthStartDate) &&
-          TimeHelper.isSameDate(endDateFilter, today),
+          TimeHelper.isSameDate(startFilter, thisMonthStartDate) &&
+          TimeHelper.isSameDate(endFilter, today),
         text: i18n.filters.date.lastMonth,
       },
       {
-        startDate: threeMonthsAgoMonthStartDate,
-        endDate: today,
+        startDate: threeMonthsAgoMonthStartDate.toISOString(),
+        endDate: today.toISOString(),
         isSelected:
-          TimeHelper.isSameDate(
-            startDateFilter,
-            threeMonthsAgoMonthStartDate
-          ) && TimeHelper.isSameDate(endDateFilter, today),
+          TimeHelper.isSameDate(startFilter, threeMonthsAgoMonthStartDate) &&
+          TimeHelper.isSameDate(endFilter, today),
         text: i18n.filters.date.lastThreeMonths,
       },
     ];
@@ -116,11 +116,11 @@ export const useOrderFiltersDrawerHelper = () => {
       const end = new Date(i, 11, 31);
 
       result.push({
-        startDate: start,
-        endDate: end,
+        startDate: start.toISOString(),
+        endDate: end.toISOString(),
         isSelected:
-          TimeHelper.isSameDate(startDateFilter, start) &&
-          TimeHelper.isSameDate(endDateFilter, end),
+          TimeHelper.isSameDate(startFilter, start) &&
+          TimeHelper.isSameDate(endFilter, end),
         text: `${i}`,
       });
     }
@@ -157,10 +157,18 @@ export const useOrderFiltersDrawerHelper = () => {
   );
 
   const onClickDateFilter = React.useCallback(
-    (startDate: Date, endDate: Date) => {
+    (startDate: string, endDate: string) => {
+      const startFilter = startDateFilter
+        ? new Date(startDateFilter)
+        : undefined;
+      const endFilter = endDateFilter ? new Date(endDateFilter) : undefined;
+
+      const inputStart = new Date(startDate);
+      const inputEnd = new Date(endDate);
+
       if (
-        TimeHelper.isSameDate(startDateFilter, startDate) &&
-        TimeHelper.isSameDate(endDateFilter, endDate)
+        TimeHelper.isSameDate(startFilter, inputStart) &&
+        TimeHelper.isSameDate(endFilter, inputEnd)
       ) {
         setStartDateFilter(undefined);
         setEndDateFilter(undefined);
@@ -173,19 +181,23 @@ export const useOrderFiltersDrawerHelper = () => {
   );
 
   const onClose = React.useCallback(() => {
-    setStoreStatusFilter(statusFilter);
-    setStoreSortFilter(sortFilter);
-    setStoreStartDateFilter(startDateFilter);
-    setStoreEndDateFilter(endDateFilter);
+    const filters: OrdersFilters = {
+      statusFilter,
+      sortFilter,
+      startDateFilter,
+      endDateFilter,
+    };
+
+    if (!ObjectsHelper.isSameObject(filters, storeFilters)) {
+      setOrderFilters(filters);
+    }
   }, [
     endDateFilter,
-    setStoreEndDateFilter,
-    setStoreSortFilter,
-    setStoreStartDateFilter,
-    setStoreStatusFilter,
+    setOrderFilters,
     sortFilter,
     startDateFilter,
     statusFilter,
+    storeFilters,
   ]);
 
   return {

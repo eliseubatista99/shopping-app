@@ -5,6 +5,7 @@ import { AppLoaderMobile } from "./appLoader.mobile";
 
 export interface AppLoaderProps {
   visible: boolean;
+  mode?: "local" | "full";
   styles?: React.CSSProperties;
 }
 

@@ -1,12 +1,8 @@
-import { Api, OrderStatus, SortMode, type OrderDto } from "@api";
+import { Api, type OrderDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import {
-  TimeHelper,
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
+import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreOrders } from "@store";
+import { useStoreOrders, type OrdersFilters } from "@store";
 import React from "react";
 
 export const useOrdersListBlockHelper = () => {
@@ -20,11 +16,12 @@ export const useOrdersListBlockHelper = () => {
   const addOrders = useStoreOrders((state) => state.addOrders);
   const allOrders = useStoreOrders((state) => state.orders);
 
-  const textFilter = useStoreOrders((state) => state.textFilter);
-  const statusFilter = useStoreOrders((state) => state.statusFilter);
-  const startDateFilter = useStoreOrders((state) => state.startDateFilter);
-  const endDateFilter = useStoreOrders((state) => state.endDateFilter);
-  const sortFilter = useStoreOrders((state) => state.sortFilter);
+  const storeFilters = useStoreOrders((state) => state.filters);
+  // const textFilter = useStoreOrders((state) => state.textFilter);
+  // const statusFilter = useStoreOrders((state) => state.statusFilter);
+  // const startDateFilter = useStoreOrders((state) => state.startDateFilter);
+  // const endDateFilter = useStoreOrders((state) => state.endDateFilter);
+  // const sortFilter = useStoreOrders((state) => state.sortFilter);
 
   const currentPage = React.useRef<number>(0);
 
@@ -32,11 +29,11 @@ export const useOrdersListBlockHelper = () => {
   const isFetching = React.useRef<boolean>(false);
   const hasRequestedOrdersOnce = React.useRef<boolean>(false);
 
-  const sortFilterCache = React.useRef<SortMode | undefined>(undefined);
-  const textFilterCache = React.useRef<string | undefined>(undefined);
-  const statusFilterCache = React.useRef<OrderStatus | undefined>(undefined);
-  const startDateFilterCache = React.useRef<Date | undefined>(undefined);
-  const endDateFilterCache = React.useRef<Date | undefined>(undefined);
+  // const sortFilterCache = React.useRef<SortMode | undefined>(undefined);
+  // const textFilterCache = React.useRef<string | undefined>(undefined);
+  // const statusFilterCache = React.useRef<OrderStatus | undefined>(undefined);
+  // const startDateFilterCache = React.useRef<Date | undefined>(undefined);
+  // const endDateFilterCache = React.useRef<Date | undefined>(undefined);
 
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -51,13 +48,13 @@ export const useOrdersListBlockHelper = () => {
     setLoading(true);
 
     const res = await fetchGetClientOrders({
-      filterByText: textFilter,
       page: currentPage.current,
       pageCount: 10,
-      filterByStatus: statusFilter,
-      sortMode: sortFilter,
-      filterByStartDate: startDateFilter?.toISOString(),
-      filterByEndDate: endDateFilter?.toISOString(),
+      filterByText: storeFilters?.textFilter,
+      filterByStatus: storeFilters?.statusFilter,
+      sortMode: storeFilters?.sortFilter,
+      filterByStartDate: storeFilters?.startDateFilter,
+      filterByEndDate: storeFilters?.endDateFilter,
     });
 
     if (res.metadata.success) {
@@ -78,14 +75,47 @@ export const useOrdersListBlockHelper = () => {
     hasRequestedOrdersOnce.current = true;
   }, [
     addOrders,
-    endDateFilter,
     fetchGetClientOrders,
     setOrdersStoreState,
-    sortFilter,
-    startDateFilter,
-    statusFilter,
-    textFilter,
+    storeFilters?.endDateFilter,
+    storeFilters?.sortFilter,
+    storeFilters?.startDateFilter,
+    storeFilters?.statusFilter,
+    storeFilters?.textFilter,
   ]);
+
+  const retrieveItems = React.useCallback(
+    async (currentPage: number, pageSize: number, filters?: object) => {
+      const parsedFilters = filters as OrdersFilters | undefined;
+
+      const res = await fetchGetClientOrders({
+        filterByText: parsedFilters?.textFilter,
+        page: currentPage,
+        pageCount: pageSize,
+        filterByStatus: parsedFilters?.statusFilter,
+        sortMode: parsedFilters?.sortFilter,
+        filterByStartDate: parsedFilters?.startDateFilter,
+        filterByEndDate: parsedFilters?.endDateFilter,
+      });
+
+      if (res.metadata.success) {
+        if (currentPage < 1) {
+          setOrdersStoreState({
+            orders: res.data.orders,
+            oldestOrderDate: res.data.oldestOrderDate,
+          });
+        } else {
+          addOrders(res.data.orders);
+        }
+      }
+
+      return {
+        success: res.metadata.success,
+        hasMorePages: res.data?.hasMorePages,
+      };
+    },
+    [addOrders, fetchGetClientOrders, setOrdersStoreState]
+  );
 
   const handleRequestTrigger = React.useCallback(
     (visible: boolean) => {
@@ -114,36 +144,36 @@ export const useOrdersListBlockHelper = () => {
     [goTo]
   );
 
-  React.useEffect(() => {
-    if (
-      (sortFilterCache.current !== sortFilter ||
-        textFilterCache.current !== textFilter ||
-        statusFilterCache.current !== statusFilter ||
-        !TimeHelper.isSameDate(startDateFilterCache.current, startDateFilter) ||
-        !TimeHelper.isSameDate(endDateFilterCache.current, endDateFilter)) &&
-      hasRequestedOrdersOnce.current
-    ) {
-      sortFilterCache.current = sortFilter;
-      textFilterCache.current = textFilter;
-      statusFilterCache.current = statusFilter;
-      startDateFilterCache.current = startDateFilter;
-      endDateFilterCache.current = endDateFilter;
-      currentPage.current = 0;
+  // React.useEffect(() => {
+  //   if (
+  //     (sortFilterCache.current !== sortFilter ||
+  //       textFilterCache.current !== textFilter ||
+  //       statusFilterCache.current !== statusFilter ||
+  //       !TimeHelper.isSameDate(startDateFilterCache.current, startDateFilter) ||
+  //       !TimeHelper.isSameDate(endDateFilterCache.current, endDateFilter)) &&
+  //     hasRequestedOrdersOnce.current
+  //   ) {
+  //     sortFilterCache.current = sortFilter;
+  //     textFilterCache.current = textFilter;
+  //     statusFilterCache.current = statusFilter;
+  //     startDateFilterCache.current = startDateFilter;
+  //     endDateFilterCache.current = endDateFilter;
+  //     currentPage.current = 0;
 
-      requestOrders();
-    }
-  }, [
-    endDateFilter,
-    requestOrders,
-    sortFilter,
-    startDateFilter,
-    statusFilter,
-    textFilter,
-  ]);
+  //     requestOrders();
+  //   }
+  // }, [
+  //   endDateFilter,
+  //   requestOrders,
+  //   sortFilter,
+  //   startDateFilter,
+  //   statusFilter,
+  //   textFilter,
+  // ]);
 
-  useDidMount(() => {
-    requestOrders();
-  });
+  // useDidMount(() => {
+  //   requestOrders();
+  // });
 
   return {
     i18n,
@@ -151,5 +181,7 @@ export const useOrdersListBlockHelper = () => {
     orders: allOrders || [],
     handleRequestTrigger,
     onClickOrder,
+    retrieveItems,
+    storeFilters,
   };
 };

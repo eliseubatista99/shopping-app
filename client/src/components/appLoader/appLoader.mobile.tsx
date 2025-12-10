@@ -98,8 +98,33 @@ const AnimationSpan = styled.span`
 
 export const AppLoaderMobile: React.FC<AppLoaderProps> = ({
   visible,
+  mode,
   styles,
 }) => {
+  const modeStyles: React.CSSProperties =
+    mode === "full"
+      ? {
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute",
+          background: "#0000004d",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1,
+        }
+      : {
+          width: "fit-content",
+          height: "fit-content",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          zIndex: 1,
+        };
+
   return (
     <>
       {visible && (
@@ -109,17 +134,7 @@ export const AppLoaderMobile: React.FC<AppLoaderProps> = ({
             e.stopPropagation();
           }}
           style={{
-            width: "100%",
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "absolute",
-            background: "#0000004d",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 1,
+            ...modeStyles,
             ...styles,
           }}
         >

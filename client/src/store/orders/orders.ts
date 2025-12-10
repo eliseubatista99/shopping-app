@@ -3,26 +3,27 @@ import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
+export type OrdersFilters = {
+  textFilter?: string;
+  statusFilter?: OrderStatus;
+  startDateFilter?: string;
+  endDateFilter?: string;
+  sortFilter?: SortMode;
+};
+
 export interface OrdersState {
   selectedOrder?: OrderDetailDto;
   orders?: OrderDto[];
-  textFilter?: string;
-  statusFilter?: OrderStatus;
-  startDateFilter?: Date;
-  endDateFilter?: Date;
   oldestOrderDate?: string;
-  sortFilter?: SortMode;
+  filters?: OrdersFilters;
 }
 
 const initialState: OrdersState = {};
 
 interface UseStoreOutput extends OrdersState {
   setOrdersStoreState: (data: Partial<OrdersState>) => void;
+  setOrderFilters: (data: Partial<OrdersFilters>) => void;
   addOrders: (data: OrderDto[]) => void;
-  setSortFilter: (sort?: SortMode) => void;
-  setStatusFilter: (status?: OrderStatus) => void;
-  setStartDateFilter: (value?: Date) => void;
-  setEndDateFilter: (value?: Date) => void;
 }
 
 export const useStoreOrders = StoreHelper.createStore<UseStoreOutput>(
@@ -35,6 +36,16 @@ export const useStoreOrders = StoreHelper.createStore<UseStoreOutput>(
         "setPartialState"
       );
     },
+    setOrderFilters: function (data: Partial<OrdersFilters>) {
+      set(
+        produce((state: OrdersState) => ({
+          ...state,
+          filters: { ...state.filters, ...data },
+        })),
+        false,
+        "setOrderFilters"
+      );
+    },
     addOrders: function (data: OrderDto[]) {
       set(
         produce((state: OrdersState) => {
@@ -42,34 +53,6 @@ export const useStoreOrders = StoreHelper.createStore<UseStoreOutput>(
         }),
         false,
         "addOrders"
-      );
-    },
-    setSortFilter: function (sort?: SortMode) {
-      set(
-        produce((state: OrdersState) => ({ ...state, sortFilter: sort })),
-        false,
-        "setSortFilter"
-      );
-    },
-    setStatusFilter: function (status?: OrderStatus) {
-      set(
-        produce((state: OrdersState) => ({ ...state, statusFilter: status })),
-        false,
-        "setStatusFilter"
-      );
-    },
-    setStartDateFilter: function (value?: Date) {
-      set(
-        produce((state: OrdersState) => ({ ...state, startDateFilter: value })),
-        false,
-        "setStartDateFilter"
-      );
-    },
-    setEndDateFilter: function (value?: Date) {
-      set(
-        produce((state: OrdersState) => ({ ...state, endDateFilter: value })),
-        false,
-        "setEndDateFilter"
       );
     },
   }),
