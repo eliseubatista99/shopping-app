@@ -41,40 +41,6 @@ export const useOrdersListBlockHelper = () => {
     };
   }, [t]);
 
-  const requestOrders = React.useCallback(async () => {
-    const res = await fetchGetClientOrders({
-      page: currentPage.current,
-      pageCount: 10,
-      filterByText: storeFilters?.textFilter,
-      filterByStatus: storeFilters?.statusFilter,
-      sortMode: storeFilters?.sortFilter,
-      filterByStartDate: storeFilters?.startDateFilter,
-      filterByEndDate: storeFilters?.endDateFilter,
-    });
-
-    if (res.metadata.success) {
-      if (currentPage.current < 1) {
-        setOrdersStoreState({
-          orders: res.data.orders,
-          oldestOrderDate: res.data.oldestOrderDate,
-        });
-      } else {
-        addOrders(res.data.orders);
-      }
-
-      hasMorePages.current = res.data.hasMorePages;
-    }
-  }, [
-    addOrders,
-    fetchGetClientOrders,
-    setOrdersStoreState,
-    storeFilters?.endDateFilter,
-    storeFilters?.sortFilter,
-    storeFilters?.startDateFilter,
-    storeFilters?.statusFilter,
-    storeFilters?.textFilter,
-  ]);
-
   const retrieveItems = React.useCallback(
     async (currentPage: number, pageSize: number, filters?: object) => {
       const parsedFilters = filters as OrdersFilters | undefined;
@@ -117,10 +83,10 @@ export const useOrdersListBlockHelper = () => {
         hasRequestedOrdersOnce.current
       ) {
         currentPage.current += 1;
-        requestOrders();
+        retrieveItems(currentPage.current, 10, storeFilters);
       }
     },
-    [requestOrders]
+    [retrieveItems, storeFilters]
   );
 
   const onClickOrder = React.useCallback(
@@ -134,37 +100,6 @@ export const useOrdersListBlockHelper = () => {
     },
     [goTo]
   );
-
-  // React.useEffect(() => {
-  //   if (
-  //     (sortFilterCache.current !== sortFilter ||
-  //       textFilterCache.current !== textFilter ||
-  //       statusFilterCache.current !== statusFilter ||
-  //       !TimeHelper.isSameDate(startDateFilterCache.current, startDateFilter) ||
-  //       !TimeHelper.isSameDate(endDateFilterCache.current, endDateFilter)) &&
-  //     hasRequestedOrdersOnce.current
-  //   ) {
-  //     sortFilterCache.current = sortFilter;
-  //     textFilterCache.current = textFilter;
-  //     statusFilterCache.current = statusFilter;
-  //     startDateFilterCache.current = startDateFilter;
-  //     endDateFilterCache.current = endDateFilter;
-  //     currentPage.current = 0;
-
-  //     requestOrders();
-  //   }
-  // }, [
-  //   endDateFilter,
-  //   requestOrders,
-  //   sortFilter,
-  //   startDateFilter,
-  //   statusFilter,
-  //   textFilter,
-  // ]);
-
-  // useDidMount(() => {
-  //   requestOrders();
-  // });
 
   return {
     i18n,

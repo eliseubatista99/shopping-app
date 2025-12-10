@@ -4,10 +4,14 @@ import type { ProductDto } from "../types";
 
 export type SearchProductsInputDto = {
   keyword: string;
+  page?: number;
+  pageCount?: number;
+  scoreFilter?: number;
 };
 
 export type SearchProductsOutputDto = {
   products?: ProductDto[];
+  hasMorePages?: boolean;
 };
 
 export const SearchProducts = () => {

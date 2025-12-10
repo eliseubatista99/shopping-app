@@ -14,10 +14,6 @@ export const OrdersListBlockMobile: React.FC = () => {
     storeFilters,
   } = useOrdersListBlockHelper();
 
-  // const ordersJSX = orders.map((o) => (
-  //   <OrderListItem key={o.id} order={o} onClick={() => onClickOrder(o)} />
-  // ));
-
   const renderItem = (i: unknown) => {
     const item = i as OrderDto;
 
@@ -42,22 +38,6 @@ export const OrdersListBlockMobile: React.FC = () => {
         retrieveItems={retrieveItems}
         filters={storeFilters}
       />
-
-      {/* {ordersJSX.length > 0 && (
-        <div
-          style={{
-            marginTop: "20px",
-            width: "100%",
-            gap: "8px",
-          }}
-        >
-          {ordersJSX}
-        </div>
-      )}
-      {loading && <AppLoader visible={loading} />}
-      <IsOnScreenTrigger
-        onVisibilityChanged={(visible) => handleRequestTrigger(visible)}
-      /> */}
     </div>
   );
 };

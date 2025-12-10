@@ -5,7 +5,11 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useCart } from "@hooks";
-import { useStoreAuthentication } from "@store";
+import {
+  useStoreAuthentication,
+  useStoreProduct,
+  type ProductFilters,
+} from "@store";
 import React from "react";
 
 export const useProductListPageHelper = () => {
@@ -17,9 +21,13 @@ export const useProductListPageHelper = () => {
   const searchParams = useAppSearchParams();
   const { addToCart } = useCart();
 
-  const [loading, setLoading] = React.useState(true);
+  const storeFilters = useStoreProduct((state) => state.filters);
+  const setProductStoreState = useStoreProduct(
+    (state) => state.setProductStoreState
+  );
+
+  const [initialized, setInitialized] = React.useState(false);
   const [products, setProducts] = React.useState<ProductDto[]>([]);
-  const isFetching = React.useRef(false);
 
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
@@ -44,31 +52,56 @@ export const useProductListPageHelper = () => {
     [addToCart, goTo, isAuthenticated]
   );
 
-  const searchProducts = React.useCallback(async () => {
-    if (isFetching.current) {
-      return;
-    }
+  const retrieveItems = React.useCallback(
+    async (currentPage: number, pageSize: number, filters?: object) => {
+      const parsedFilters = filters as ProductFilters | undefined;
 
-    isFetching.current = true;
-    setLoading(true);
+      const res = await fetchSearchProducts({
+        page: currentPage,
+        pageCount: pageSize,
+        keyword: parsedFilters?.text || "",
+        scoreFilter: parsedFilters?.score,
+      });
 
-    const res = await fetchSearchProducts({
-      keyword: searchParams.searchText.value || "",
+      if (res.metadata.success) {
+        if (currentPage < 1) {
+          setProducts(res.data.products || []);
+        } else {
+          setProducts((prevState) => [
+            ...prevState,
+            ...(res.data.products || []),
+          ]);
+        }
+      }
+
+      return {
+        success: res.metadata.success,
+        hasMorePages: res.data?.hasMorePages || false,
+      };
+    },
+    [fetchSearchProducts]
+  );
+
+  const initScreen = React.useCallback(() => {
+    setInitialized(false);
+    setProductStoreState({
+      filters: {
+        text: searchParams.searchText.value || "",
+      },
     });
-    setProducts(res.data.products || []);
-
-    isFetching.current = false;
-    setLoading(false);
-  }, [searchParams.searchText.value, fetchSearchProducts]);
+    setInitialized(true);
+  }, [searchParams.searchText.value, setProductStoreState]);
 
   useDidMount(() => {
-    searchProducts();
+    initScreen();
   });
 
   return {
     products,
-    loading,
+    initialized,
+    retrieveItems,
     onClickProduct,
     onClickAddToCart,
+    storeFilters,
   };
 };

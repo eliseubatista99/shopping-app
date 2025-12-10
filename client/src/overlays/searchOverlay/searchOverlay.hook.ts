@@ -3,17 +3,24 @@ import {
   useFeedback,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
-import { useStoreSearch } from "@store";
+import { useAppSearchParams } from "@hooks";
+import { useStoreProduct, useStoreSearch } from "@store";
 import React from "react";
 
 export const useOverlaySearchHelper = () => {
   const previousSearches = useStoreSearch((state) => state.previousSearches);
+  const setProductFilters = useStoreProduct((state) => state.setProductFilters);
   const { goTo, currentPath } = useNavigation();
   const { hideItem } = useFeedback();
+  const { searchText } = useAppSearchParams();
 
   const submitSearch = React.useCallback(
     async (text: string) => {
       hideItem(Overlays.search);
+
+      setProductFilters({
+        text,
+      });
 
       if (currentPath !== PAGES.PRODUCT_LIST) {
         goTo({
@@ -22,9 +29,11 @@ export const useOverlaySearchHelper = () => {
             [SEARCH_PARAMS.SEARCH_TEXT]: text,
           },
         });
+      } else {
+        searchText.set(text);
       }
     },
-    [currentPath, goTo, hideItem]
+    [currentPath, goTo, hideItem, searchText, setProductFilters]
   );
 
   const onClickBack = React.useCallback(() => {

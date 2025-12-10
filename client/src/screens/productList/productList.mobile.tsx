@@ -1,18 +1,29 @@
-import { AppLayout, AppLoader, ProductListItem } from "@components";
+import type { ProductDto } from "@api";
+import { AppLayout, ItemsListTemplate, ProductListItem } from "@components";
 import { useProductListPageHelper } from "./productList.hook";
 
 export const ProductListMobile: React.FC = () => {
-  const { products, loading, onClickProduct, onClickAddToCart } =
-    useProductListPageHelper();
+  const {
+    products,
+    initialized,
+    onClickProduct,
+    onClickAddToCart,
+    storeFilters,
+    retrieveItems,
+  } = useProductListPageHelper();
 
-  const productsJSX = products?.map((p) => (
-    <ProductListItem
-      key={p.id}
-      product={p}
-      onClick={() => onClickProduct(p)}
-      onClickAddToCart={() => onClickAddToCart(p)}
-    />
-  ));
+  const renderItem = (i: unknown) => {
+    const item = i as ProductDto;
+
+    return (
+      <ProductListItem
+        key={item.id}
+        product={item}
+        onClick={() => onClickProduct(item)}
+        onClickAddToCart={() => onClickAddToCart(item)}
+      />
+    );
+  };
 
   return (
     <AppLayout
@@ -32,13 +43,13 @@ export const ProductListMobile: React.FC = () => {
         },
       }}
     >
-      {loading && <AppLoader visible={loading} />}
-      {!loading && (
-        <div
-          style={{ width: "100%", flexDirection: "column", padding: "10px 0" }}
-        >
-          {productsJSX}
-        </div>
+      {initialized && (
+        <ItemsListTemplate
+          items={products}
+          renderItem={renderItem}
+          retrieveItems={retrieveItems}
+          filters={storeFilters}
+        />
       )}
     </AppLayout>
   );
