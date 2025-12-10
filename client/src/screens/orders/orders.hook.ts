@@ -12,10 +12,7 @@ export const useOrdersPageHelper = () => {
     setLoading(true);
 
     setStoreOrdersState({
-      textFilter: undefined,
-      statusFilter: undefined,
-      startDateFilter: undefined,
-      endDateFilter: undefined,
+      filters: undefined,
       orders: undefined,
     });
 

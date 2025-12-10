@@ -9,8 +9,14 @@ import { useItemsListTemplateHelper } from "./itemsListTemplate.hook";
 export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
   props
 ) => {
-  const { items, loading, handleRequestTrigger, hasError } =
-    useItemsListTemplateHelper(props);
+  const {
+    i18n,
+    items,
+    loading,
+    handleRequestTrigger,
+    handleRequestItems,
+    hasError,
+  } = useItemsListTemplateHelper(props);
   const { renderItem, styles } = props;
 
   const itemsJSX = items.map((i) => renderItem(i));
@@ -45,11 +51,11 @@ export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
           <Typography
             styles={{ textAlign: "center", fontSize: "16px", fontWeight: 400 }}
           >
-            Something went wrong, please try again!
+            {i18n.error.text}
           </Typography>
           <AppButton
             text={{
-              content: "Try again",
+              content: i18n.error.actions.try,
               props: {
                 styles: {
                   textAlign: "center",
@@ -58,7 +64,7 @@ export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
                 },
               },
             }}
-            onClick={() => handleRequestTrigger(true)}
+            onClick={() => handleRequestItems()}
             styles={{
               width: "80%",
             }}

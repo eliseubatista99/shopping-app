@@ -2,10 +2,12 @@ import {
   ObjectsHelper,
   useDidMount,
 } from "@eliseubatista99/react-scaffold-core";
+import { useAppTranslations } from "@hooks";
 import React from "react";
 import type { ItemsListTemplateProps } from "./itemsListTemplate";
 
 export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
+  const { t } = useAppTranslations();
   const currentPage = React.useRef<number>(0);
 
   const hasMorePages = React.useRef<boolean>(true);
@@ -18,6 +20,17 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
   const [hasError, setHasError] = React.useState<boolean>(false);
 
   const [items, setItems] = React.useState<unknown[]>([]);
+
+  const i18n = React.useMemo(() => {
+    return {
+      error: {
+        text: t("itemsListTemplate.error.message"),
+        actions: {
+          try: t("itemsListTemplate.error.action.try"),
+        },
+      },
+    };
+  }, [t]);
 
   const handleRequestItems = React.useCallback(async () => {
     isFetching.current = true;
@@ -49,6 +62,7 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
     (visible: boolean) => {
       if (
         visible &&
+        !hasError &&
         !isFetching.current &&
         hasMorePages.current &&
         hasRequestedOrdersOnce.current
@@ -57,7 +71,7 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
         handleRequestItems();
       }
     },
-    [handleRequestItems]
+    [handleRequestItems, hasError]
   );
 
   React.useEffect(() => {
@@ -86,9 +100,11 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
   });
 
   return {
+    i18n,
     items,
     loading,
     hasError,
+    handleRequestItems,
     handleRequestTrigger,
   };
 };
