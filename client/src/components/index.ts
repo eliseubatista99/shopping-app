@@ -16,6 +16,7 @@ export * from "./documentListItem";
 export * from "./isOnScreenTrigger";
 export * from "./itemsListTemplate";
 export * from "./orderListItem";
+export * from "./paymentMethodForm";
 export * from "./paymentMethodListItem";
 export * from "./productCheckoutItem";
 export * from "./productCombinationSelection";
