@@ -29,6 +29,7 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
           try: t("itemsListTemplate.error.action.try"),
         },
       },
+      empty: t("itemsListTemplate.empty.message"),
     };
   }, [t]);
 
@@ -63,6 +64,7 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
       if (
         visible &&
         !hasError &&
+        items.length > 0 &&
         !isFetching.current &&
         hasMorePages.current &&
         hasRequestedOrdersOnce.current
@@ -71,7 +73,7 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
         handleRequestItems();
       }
     },
-    [handleRequestItems, hasError]
+    [handleRequestItems, hasError, items.length]
   );
 
   React.useEffect(() => {

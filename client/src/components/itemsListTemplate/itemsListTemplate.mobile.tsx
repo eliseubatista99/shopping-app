@@ -38,6 +38,24 @@ export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
         </div>
       )}
 
+      {!loading && !hasError && items.length < 1 && (
+        <div
+          style={{
+            width: "100%",
+            padding: "40px",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
+        >
+          <Typography
+            styles={{ textAlign: "center", fontSize: "16px", fontWeight: 400 }}
+          >
+            {i18n.empty}
+          </Typography>
+        </div>
+      )}
+
       {!loading && hasError && (
         <div
           style={{
@@ -46,6 +64,7 @@ export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
             alignItems: "center",
             justifyContent: "center",
             gap: "20px",
+            flex: 1,
           }}
         >
           <Typography
