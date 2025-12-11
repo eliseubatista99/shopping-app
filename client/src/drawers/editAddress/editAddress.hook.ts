@@ -40,7 +40,7 @@ export const useEditAddressDrawerHelper = () => {
 
         showItem(TOASTS.CLIENT_INFO_CHANGED);
 
-        hideItem(DRAWERS.ADD_ADDRESS);
+        hideItem(DRAWERS.EDIT_ADDRESS);
       }
 
       setCanCloseDrawer(true);

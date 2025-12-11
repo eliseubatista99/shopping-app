@@ -18,10 +18,10 @@ New-Item -ItemType Directory -Force -Path $baseDir | Out-Null
 # 1) HOOK FILE
 # ------------------------------
 $hookContent = @"
+import { MODALS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { MODALS } from "@constants";
-import React from "react";
+import React, { useCallback } from "react";
 
 export const use${Name}ModalHelper = () => {
   const { hideItem } = useFeedback();
@@ -56,14 +56,14 @@ Set-Content -Path "$baseDir/${camel}.hook.ts" -Value $hookContent
 # 2) MOBILE FILE
 # ------------------------------
 $mobileContent = @"
-import { AppLoader } from "@components";
+import { AppButton } from "@components";
 import { MODALS } from "@constants";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { AppModal } from "../_appModal";
-import { use${Name}ModalHelper } from "./${camel}.hook";
+import { useGenericApiErrorModalHelper } from "./genericApiError.hook";
 
 export const Modal${Name}Mobile = () => {
-  const { i18n } = use${Name}ModalHelper();
+  const { i18n, onClickButton } = use${Name}ModalHelper();
 
   return (
     <AppModal
@@ -73,10 +73,27 @@ export const Modal${Name}Mobile = () => {
         styles={{
           fontSize: "18px",
           fontWeight: 600,
+          textAlign: "center",
         }}
       >
         {i18n.message}
       </Typography>
+      <AppButton
+        text={{
+          content: i18n.actions.button,
+          props: {
+            styles: {
+              fontSize: "18px",
+              fontWeight: 500,
+            },
+          },
+        }}
+        onClick={onClickButton}
+        styles={{
+          width: "fit-content",
+          paddingInline: "60px",
+        }}
+      />
     </AppModal>
   );
 };

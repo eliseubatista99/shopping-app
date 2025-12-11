@@ -1,16 +1,23 @@
 import { ApiConfigs, type ApiOutput } from "@api";
-import { useFetch } from "@eliseubatista99/react-scaffold-core";
+import { MODALS } from "@constants";
+import { useFeedback, useFetch } from "@eliseubatista99/react-scaffold-core";
 import { useStoreAuthentication } from "@store";
 import { useCallback, useMemo } from "react";
 
 type FetchCommonInput = {
   endpoint: string;
   secure?: boolean;
+  showGenericErrorModal?: boolean;
 };
 
 type TIn = Record<string, unknown>;
 
-export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
+export const useFetchNoAuth = <TOut>({
+  endpoint,
+  showGenericErrorModal = true,
+}: FetchCommonInput) => {
+  const { showItem } = useFeedback();
+
   const token = useStoreAuthentication((state) => state.token);
   const {
     get: httpGet,
@@ -34,6 +41,15 @@ export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
     return headers;
   }, [token]);
 
+  const handleFetchResponse = useCallback(
+    (response: ApiOutput<TOut>) => {
+      if (!response.metadata.success && showGenericErrorModal) {
+        showItem(MODALS.GENERIC_API_ERROR);
+      }
+    },
+    [showGenericErrorModal, showItem]
+  );
+
   const runGet = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
       const result = await httpGet<ApiOutput<TOut>>(
@@ -42,9 +58,11 @@ export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
         { ...commonHeaders, ...headers }
       );
 
+      handleFetchResponse(result);
+
       return result;
     },
-    [commonHeaders, endpoint, httpGet]
+    [commonHeaders, endpoint, handleFetchResponse, httpGet]
   );
 
   const runPost = useCallback(
@@ -55,9 +73,11 @@ export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
         { ...commonHeaders, ...headers }
       );
 
+      handleFetchResponse(result);
+
       return result;
     },
-    [commonHeaders, endpoint, httpPost]
+    [commonHeaders, endpoint, handleFetchResponse, httpPost]
   );
 
   const runDelete = useCallback(
@@ -68,9 +88,11 @@ export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
         { ...commonHeaders, ...headers }
       );
 
+      handleFetchResponse(result);
+
       return result;
     },
-    [commonHeaders, endpoint, httpDelete]
+    [commonHeaders, endpoint, handleFetchResponse, httpDelete]
   );
 
   const runPatch = useCallback(
@@ -81,9 +103,11 @@ export const useFetchNoAuth = <TOut>({ endpoint }: FetchCommonInput) => {
         { ...commonHeaders, ...headers }
       );
 
+      handleFetchResponse(result);
+
       return result;
     },
-    [commonHeaders, endpoint, httpPatch]
+    [commonHeaders, endpoint, handleFetchResponse, httpPatch]
   );
 
   return {

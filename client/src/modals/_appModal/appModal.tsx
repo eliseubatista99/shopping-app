@@ -5,7 +5,9 @@ import {
 import { AppModalDesktop } from "./appModal.desktop";
 import { AppModalMobile } from "./appModal.mobile";
 
-export type AppModalProps = ModalProps;
+export interface AppModalProps extends ModalProps {
+  styles?: React.CSSProperties;
+}
 
 export const AppModal: React.FC<AppModalProps> = (props) => {
   const { currentSize } = useResponsive();
