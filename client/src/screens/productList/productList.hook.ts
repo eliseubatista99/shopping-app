@@ -5,12 +5,8 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useCart } from "@hooks";
-import {
-  useStoreAuthentication,
-  useStoreProduct,
-  type ProductFilters,
-} from "@store";
-import React from "react";
+import { useStoreAuthentication, type ProductFilters } from "@store";
+import React, { useMemo } from "react";
 
 export const useProductListPageHelper = () => {
   const isAuthenticated = useStoreAuthentication(
@@ -21,13 +17,32 @@ export const useProductListPageHelper = () => {
   const searchParams = useAppSearchParams();
   const { addToCart } = useCart();
 
-  const storeFilters = useStoreProduct((state) => state.filters);
-  const setProductStoreState = useStoreProduct(
-    (state) => state.setProductStoreState
-  );
+  // const setProductStoreState = useStoreProduct(
+  //   (state) => state.setProductStoreState
+  // );
 
   const [initialized, setInitialized] = React.useState(false);
   const [products, setProducts] = React.useState<ProductDto[]>([]);
+
+  const filters = useMemo((): ProductFilters => {
+    return {
+      text: searchParams.searchText.value,
+      score: searchParams.searchScore.value,
+      maxPrice: searchParams.searchMaxPrice.value,
+      minPrice: searchParams.searchMinPrice.value,
+      bestSeller: searchParams.searchBestSeller.value,
+      freeShipping: searchParams.searchFreeShipping.value,
+      category: searchParams.searchCategory.value,
+    };
+  }, [
+    searchParams.searchBestSeller.value,
+    searchParams.searchCategory.value,
+    searchParams.searchFreeShipping.value,
+    searchParams.searchMaxPrice.value,
+    searchParams.searchMinPrice.value,
+    searchParams.searchScore.value,
+    searchParams.searchText.value,
+  ]);
 
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
@@ -59,8 +74,13 @@ export const useProductListPageHelper = () => {
       const res = await fetchSearchProducts({
         page: currentPage,
         pageCount: pageSize,
-        keyword: parsedFilters?.text || "",
-        scoreFilter: parsedFilters?.score,
+        text: parsedFilters?.text,
+        score: parsedFilters?.score,
+        maxPrice: parsedFilters?.maxPrice,
+        minPrice: parsedFilters?.minPrice,
+        bestSeller: parsedFilters?.bestSeller,
+        freeShipping: parsedFilters?.freeShipping,
+        category: parsedFilters?.category,
       });
 
       if (res.metadata.success) {
@@ -84,13 +104,13 @@ export const useProductListPageHelper = () => {
 
   const initScreen = React.useCallback(() => {
     setInitialized(false);
-    setProductStoreState({
-      filters: {
-        text: searchParams.searchText.value || "",
-      },
-    });
+    // setProductStoreState({
+    //   filters: {
+    //     text: searchParams.searchText.value || "",
+    //   },
+    // });
     setInitialized(true);
-  }, [searchParams.searchText.value, setProductStoreState]);
+  }, []);
 
   useDidMount(() => {
     initScreen();
@@ -102,6 +122,6 @@ export const useProductListPageHelper = () => {
     retrieveItems,
     onClickProduct,
     onClickAddToCart,
-    storeFilters,
+    filters,
   };
 };

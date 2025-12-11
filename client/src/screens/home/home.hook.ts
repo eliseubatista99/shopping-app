@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { Api, type ProductDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useDidMount, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -8,6 +8,11 @@ import {
   useStoreHome,
 } from "@store";
 import React from "react";
+
+type OfferGroup = {
+  title: string;
+  products: ProductDto[];
+};
 
 export const useHomePageHelper = () => {
   const isAuthenticated = useStoreAuthentication(
@@ -23,6 +28,8 @@ export const useHomePageHelper = () => {
   const { fetchProductOffers } = Api.GetProductOffers();
   const [headerTriggerVisible, setHeaderTriggerVisible] =
     React.useState<boolean>(true);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [hasError, setHasError] = React.useState<boolean>(false);
 
   const { t } = useAppTranslations();
 
@@ -45,33 +52,57 @@ export const useHomePageHelper = () => {
     };
   }, [selectedAddress?.postalCode, t]);
 
-  const initScreen = React.useCallback(async () => {
+  const retrieveProductOffers = React.useCallback(async () => {
+    setLoading(true);
     const res = await fetchProductOffers();
-    setStoreHomeState({
-      fromSearchHistory: res.data.fromSearchHistory,
-      buyAgain: res.data.buyAgain,
-      groups: res.data.groups,
-      banners: res.data.banners,
-    });
+
+    if (res.metadata.success) {
+      setStoreHomeState({
+        fromSearchHistory: res.data.fromSearchHistory,
+        buyAgain: res.data.buyAgain,
+        groups: res.data.groups,
+        banners: res.data.banners,
+      });
+
+      const hasContent =
+        res.data.fromSearchHistory?.length > 0 ||
+        res.data.buyAgain?.length > 0 ||
+        res.data.groups?.length > 0 ||
+        res.data.banners?.length > 0;
+
+      setHasError(!hasContent);
+    } else {
+      setHasError(true);
+    }
+
+    setLoading(false);
   }, [fetchProductOffers, setStoreHomeState]);
 
   const groupsList = React.useMemo(() => {
-    const mappedGroups = (groups || []).map((g) => ({
-      title: i18n.group.title(g.category),
-      products: g.products || [],
-    }));
+    const result: OfferGroup[] = [];
 
-    return [
-      {
+    if (buyAgain && buyAgain.length > 0) {
+      result.push({
         title: i18n.buyAgain.title,
         products: buyAgain || [],
-      },
-      {
+      });
+    }
+
+    if (fromSearchHistory && fromSearchHistory.length > 0) {
+      result.push({
         title: i18n.fromHistory.title,
         products: fromSearchHistory || [],
-      },
-      ...mappedGroups,
-    ];
+      });
+    }
+
+    const mappedGroups = (groups || []).map(
+      (g): OfferGroup => ({
+        title: i18n.group.title(g.category),
+        products: g.products || [],
+      })
+    );
+
+    return [...result, ...mappedGroups];
   }, [
     buyAgain,
     fromSearchHistory,
@@ -90,7 +121,7 @@ export const useHomePageHelper = () => {
   }, [showItem]);
 
   useDidMount(() => {
-    initScreen();
+    retrieveProductOffers();
   });
 
   return {
@@ -103,5 +134,8 @@ export const useHomePageHelper = () => {
       handleHeaderTrigger,
     },
     onAddressChipClicked,
+    hasError,
+    loading,
+    retrieveProductOffers,
   };
 };

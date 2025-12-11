@@ -8,7 +8,7 @@ export const ProductListMobile: React.FC = () => {
     initialized,
     onClickProduct,
     onClickAddToCart,
-    storeFilters,
+    filters,
     retrieveItems,
   } = useProductListPageHelper();
 
@@ -48,7 +48,7 @@ export const ProductListMobile: React.FC = () => {
           items={products}
           renderItem={renderItem}
           retrieveItems={retrieveItems}
-          filters={storeFilters}
+          filters={filters}
         />
       )}
     </AppLayout>

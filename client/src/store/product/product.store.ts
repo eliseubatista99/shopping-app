@@ -6,18 +6,23 @@ import { StoreHelper } from "../storeHelper";
 export type ProductFilters = {
   text?: string;
   score?: number;
+  maxPrice?: number;
+  minPrice?: number;
+  bestSeller?: boolean;
+  freeShipping?: boolean;
+  category?: string;
 };
 
 export interface ProductState {
   selectedProduct?: ProductDetailDto;
-  filters?: ProductFilters;
+  // filters?: ProductFilters;
 }
 
 const initialState: ProductState = {};
 
 interface UseStoreOutput extends ProductState {
   setProductStoreState: (data: Partial<ProductState>) => void;
-  setProductFilters: (data: Partial<ProductFilters>) => void;
+  // setProductFilters: (data: Partial<ProductFilters>) => void;
 }
 
 export const useStoreProduct = StoreHelper.createStore<UseStoreOutput>(
@@ -30,16 +35,16 @@ export const useStoreProduct = StoreHelper.createStore<UseStoreOutput>(
         "setPartialState"
       );
     },
-    setProductFilters: function (data: Partial<ProductFilters>) {
-      set(
-        produce((state: ProductState) => ({
-          ...state,
-          filters: { ...state.filters, ...data },
-        })),
-        false,
-        "setProductFilters"
-      );
-    },
+    // setProductFilters: function (data: Partial<ProductFilters>) {
+    //   set(
+    //     produce((state: ProductState) => ({
+    //       ...state,
+    //       filters: { ...state.filters, ...data },
+    //     })),
+    //     false,
+    //     "setProductFilters"
+    //   );
+    // },
   }),
   "Product",
   createJSONStorage(() => sessionStorage)

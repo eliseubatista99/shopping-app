@@ -3,10 +3,15 @@ import { useCallback } from "react";
 import type { ProductDto } from "../types";
 
 export type SearchProductsInputDto = {
-  keyword: string;
   page?: number;
   pageCount?: number;
-  scoreFilter?: number;
+  text?: string;
+  score?: number;
+  maxPrice?: number;
+  minPrice?: number;
+  bestSeller?: boolean;
+  freeShipping?: boolean;
+  category?: string;
 };
 
 export type SearchProductsOutputDto = {

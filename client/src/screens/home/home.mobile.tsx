@@ -1,5 +1,11 @@
 import { Assets } from "@assets";
-import { AppLayout, Chip, ProductOfferBanner } from "@components";
+import {
+  AppLayout,
+  AppLoader,
+  Chip,
+  ProductOfferBanner,
+  TryAgainSection,
+} from "@components";
 import {
   Carousel,
   type CarouselSlideProps,
@@ -16,6 +22,9 @@ export const HomeMobile: React.FC = () => {
     banners,
     header,
     onAddressChipClicked,
+    retrieveProductOffers,
+    hasError,
+    loading,
   } = useHomePageHelper();
 
   const groupsJSX = groupsList.map((g) => (
@@ -59,28 +68,34 @@ export const HomeMobile: React.FC = () => {
       pageStyles={{ paddingTop: "0px" }}
     >
       <HeaderTriggerBlock onTrigger={header.handleHeaderTrigger} />
-      <div style={{ width: "100%", zIndex: 1 }}>
-        {isAuthenticated && (
-          <Chip
-            text={i18n.chips.address}
-            onClick={() => onAddressChipClicked()}
-            leftContent={<Assets.Icons.Location width="10px" height="10px" />}
-            rightContent={<Assets.Icons.NavDown width="15px" height="15px" />}
-            styles={{
-              padding: "3px 10px",
-              background: "#ffffff70",
-              marginTop: "8px",
-            }}
-          />
-        )}
-        {banners?.length && (
-          <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
-        )}
-        <ConditionOffersBlock />
-        <div style={{ width: "100%", gap: "30px", marginTop: "30px" }}>
-          {groupsJSX}
+      {loading && <AppLoader visible={true} />}
+      {hasError && !loading && (
+        <TryAgainSection onClickRetry={retrieveProductOffers} />
+      )}
+      {!hasError && !loading && (
+        <div style={{ width: "100%", zIndex: 1 }}>
+          {isAuthenticated && (
+            <Chip
+              text={i18n.chips.address}
+              onClick={() => onAddressChipClicked()}
+              leftContent={<Assets.Icons.Location width="10px" height="10px" />}
+              rightContent={<Assets.Icons.NavDown width="15px" height="15px" />}
+              styles={{
+                padding: "3px 10px",
+                background: "#ffffff70",
+                marginTop: "8px",
+              }}
+            />
+          )}
+          {banners?.length && (
+            <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
+          )}
+          <ConditionOffersBlock />
+          <div style={{ width: "100%", gap: "30px", marginTop: "30px" }}>
+            {groupsJSX}
+          </div>
         </div>
-      </div>
+      )}
     </AppLayout>
   );
 };

@@ -13,7 +13,7 @@ import {
   FeedbackProvider,
   NavigationProvider,
 } from "@eliseubatista99/react-scaffold-core";
-import { GenericApiErrorModal } from "@modals";
+import { GenericApiErrorModal, TryAgainClientInfoModal } from "@modals";
 import { OverlayLoader, OverlaySearch } from "@overlays";
 import {
   Addresses,
@@ -43,7 +43,6 @@ import {
 } from "@screens";
 import { ClientInfoChangedToast, ReviewSubmittedToast } from "@toasts";
 import { useAppHelper } from "./App.hook";
-import { TryAgainClientInfoModal } from "./modals/tryAgainClientInfo/tryAgainClientInfo";
 
 export interface AppProvidersProps {
   children?: React.ReactNode;

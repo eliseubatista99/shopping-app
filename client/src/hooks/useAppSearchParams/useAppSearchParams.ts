@@ -6,20 +6,48 @@ export const useAppSearchParams = () => {
 
   return {
     allParams: searchParams.getAll(),
-    email: {
-      value: searchParams.get<string>(SEARCH_PARAMS.EMAIL) ?? undefined,
-      set: (val: string) => searchParams.set(SEARCH_PARAMS.EMAIL, val),
-    },
-    phone: {
-      value: searchParams.get<string>(SEARCH_PARAMS.PHONE) ?? undefined,
-      set: (val: string) => searchParams.set(SEARCH_PARAMS.PHONE, val),
-    },
     productId: {
       value: searchParams.get<string>(SEARCH_PARAMS.PRODUCT_ID) ?? undefined,
     },
     searchText: {
       value: searchParams.get<string>(SEARCH_PARAMS.SEARCH_TEXT) ?? undefined,
       set: (val: string) => searchParams.set(SEARCH_PARAMS.SEARCH_TEXT, val),
+    },
+    searchScore: {
+      value: searchParams.get<number>(SEARCH_PARAMS.SEARCH_SCORE) ?? undefined,
+      set: (val: number) => searchParams.set(SEARCH_PARAMS.SEARCH_SCORE, val),
+    },
+    searchMaxPrice: {
+      value:
+        searchParams.get<number>(SEARCH_PARAMS.SEARCH_MAX_PRICE) ?? undefined,
+      set: (val: number) =>
+        searchParams.set(SEARCH_PARAMS.SEARCH_MAX_PRICE, val),
+    },
+    searchMinPrice: {
+      value:
+        searchParams.get<number>(SEARCH_PARAMS.SEARCH_MIN_PRICE) ?? undefined,
+      set: (val: number) =>
+        searchParams.set(SEARCH_PARAMS.SEARCH_MIN_PRICE, val),
+    },
+    searchBestSeller: {
+      value:
+        searchParams.get<boolean>(SEARCH_PARAMS.SEARCH_BEST_SELLER) ??
+        undefined,
+      set: (val: boolean) =>
+        searchParams.set(SEARCH_PARAMS.SEARCH_BEST_SELLER, val),
+    },
+    searchFreeShipping: {
+      value:
+        searchParams.get<boolean>(SEARCH_PARAMS.SEARCH_FREE_SHIPPING) ??
+        undefined,
+      set: (val: boolean) =>
+        searchParams.set(SEARCH_PARAMS.SEARCH_FREE_SHIPPING, val),
+    },
+    searchCategory: {
+      value:
+        searchParams.get<string>(SEARCH_PARAMS.SEARCH_CATEGORY) ?? undefined,
+      set: (val: string) =>
+        searchParams.set(SEARCH_PARAMS.SEARCH_CATEGORY, val),
     },
     reviewId: {
       value: searchParams.get<string>(SEARCH_PARAMS.REVIEW_ID) ?? undefined,

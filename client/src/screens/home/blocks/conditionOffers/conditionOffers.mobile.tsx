@@ -7,6 +7,7 @@ export const ConditionOffersBlockMobile: React.FC = () => {
   const offersJSX = offers.map((o) => ({
     content: (
       <div
+        onClick={o.onClick}
         style={{
           width: "100px",
           height: "150px",
