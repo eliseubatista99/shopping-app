@@ -14,6 +14,7 @@ export type ForYouOutputDto = {
 export const GetForYou = () => {
   const { get } = useFetchWithAuth<ForYouOutputDto>({
     endpoint: "ForYou",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(async () => {

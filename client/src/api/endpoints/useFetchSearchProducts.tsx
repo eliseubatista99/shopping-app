@@ -17,6 +17,7 @@ export type SearchProductsOutputDto = {
 export const SearchProducts = () => {
   const { get } = useFetchNoAuth<SearchProductsOutputDto>({
     endpoint: "SearchProducts",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

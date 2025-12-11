@@ -7,6 +7,7 @@ export type GetCartOutputDto = { products: CartProductDto[] };
 export const GetCart = () => {
   const { get } = useFetchWithAuth<GetCartOutputDto>({
     endpoint: "GetCart",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(async () => {

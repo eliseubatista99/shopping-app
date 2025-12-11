@@ -17,6 +17,7 @@ export type GetCheckoutInfoInputDto = {
 export const GetCheckoutInfo = () => {
   const { get } = useFetchWithAuth<GetCheckoutInfoOutputDto>({
     endpoint: "GetCheckoutInfo",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

@@ -13,6 +13,7 @@ export type RemoveFromWishlistOutputDto = {
 export const RemoveFromWishlist = () => {
   const { delete: httpDelete } = useFetchWithAuth<RemoveFromWishlistOutputDto>({
     endpoint: "RemoveFromWishlist",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

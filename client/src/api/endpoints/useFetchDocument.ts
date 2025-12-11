@@ -13,6 +13,7 @@ export type GetDocumentInputDto = {
 export const GetDocument = () => {
   const { get } = useFetchNoAuth<GetDocumentOutputDto>({
     endpoint: "GetDocument",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

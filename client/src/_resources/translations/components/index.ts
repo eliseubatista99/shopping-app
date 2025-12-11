@@ -5,8 +5,10 @@ import { translationsItemsListTemplate } from "./itemsListTemplate";
 import { translationsPaymentMethodForm } from "./paymentMethodForm";
 import { translationsPaymentMethodListItem } from "./paymentMethodListItem";
 import { translationsSignUpOrLoginTemplate } from "./signUpOrLoginTemplate";
+import { translationsTryAgainSection } from "./tryAgainSection";
 
 export const translationsComponents: TranslationList = {
+  ...translationsTryAgainSection,
   ...translationsPaymentMethodListItem,
   ...translationsAddressListItem,
   ...translationsItemsListTemplate,

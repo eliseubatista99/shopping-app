@@ -12,6 +12,7 @@ export type ProductOffersOutputDto = {
 export const GetProductOffers = () => {
   const { get } = useFetchNoAuth<ProductOffersOutputDto>({
     endpoint: "ProductOffers",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(async () => {

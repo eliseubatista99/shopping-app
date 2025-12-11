@@ -15,6 +15,7 @@ export type GetWishlistInputDto = {
 export const GetWishlist = () => {
   const { get } = useFetchWithAuth<GetWishlistOutputDto>({
     endpoint: "GetWishlist",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

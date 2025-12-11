@@ -11,6 +11,7 @@ export type UpdateCartProductOutputDto = { products: CartProductDto[] };
 export const UpdateCartProduct = () => {
   const { post } = useFetchWithAuth<UpdateCartProductOutputDto>({
     endpoint: "UpdateCartProduct",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

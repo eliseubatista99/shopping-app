@@ -13,6 +13,7 @@ export type IsExistingAccountInputDto = {
 export const IsExistingAccount = () => {
   const { get } = useFetchNoAuth<IsExistingAccountOutputDto>({
     endpoint: "IsExistingAccount",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

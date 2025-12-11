@@ -11,6 +11,7 @@ export type RemoveFromCartOutputDto = { products: CartProductDto[] };
 export const RemoveFromCart = () => {
   const { delete: httpDelete } = useFetchWithAuth<RemoveFromCartOutputDto>({
     endpoint: "RemoveFromCart",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

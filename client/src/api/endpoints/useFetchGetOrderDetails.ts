@@ -13,6 +13,7 @@ export type GetOrderDetailsInputDto = {
 export const GetOrderDetails = () => {
   const { get } = useFetchWithAuth<GetOrderDetailsOutputDto>({
     endpoint: "GetOrderDetails",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

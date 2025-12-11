@@ -14,6 +14,7 @@ export type UpdateClientInfoOutputDto = { updatedInfo: ClientInfoDto };
 export const UpdateClientInfo = () => {
   const { post } = useFetchWithAuth<UpdateClientInfoOutputDto>({
     endpoint: "UpdateClientInfo",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

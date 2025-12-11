@@ -1,8 +1,8 @@
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
-import { AppButton } from "../appButton";
 import { AppLoader } from "../appLoader";
 import { IsOnScreenTrigger } from "../isOnScreenTrigger";
+import { TryAgainSection } from "../tryAgainSection";
 import type { ItemsListTemplateProps } from "./itemsListTemplate";
 import { useItemsListTemplateHelper } from "./itemsListTemplate.hook";
 
@@ -57,38 +57,7 @@ export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
       )}
 
       {!loading && hasError && (
-        <div
-          style={{
-            width: "100%",
-            padding: "40px 20px",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "20px",
-            flex: 1,
-          }}
-        >
-          <Typography
-            styles={{ textAlign: "center", fontSize: "16px", fontWeight: 400 }}
-          >
-            {i18n.error.text}
-          </Typography>
-          <AppButton
-            text={{
-              content: i18n.error.actions.try,
-              props: {
-                styles: {
-                  textAlign: "center",
-                  fontSize: "14px",
-                  fontWeight: 400,
-                },
-              },
-            }}
-            onClick={() => handleRequestItems()}
-            styles={{
-              width: "80%",
-            }}
-          />
-        </div>
+        <TryAgainSection onClickRetry={handleRequestItems} />
       )}
 
       {loading && (

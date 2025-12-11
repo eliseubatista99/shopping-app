@@ -23,6 +23,7 @@ export type GetProductReviewsOutputDto = {
 export const GetProductReviews = () => {
   const { get } = useFetchNoAuth<GetProductReviewsOutputDto>({
     endpoint: "GetProductReviews",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

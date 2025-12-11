@@ -12,6 +12,7 @@ export type WriteReviewInputDto = {
 export const WriteReview = () => {
   const { post } = useFetchWithAuth<void>({
     endpoint: "WriteReview",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

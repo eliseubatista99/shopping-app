@@ -13,6 +13,7 @@ export type ProductDetailInputDto = {
 export const GetProductDetails = () => {
   const { get } = useFetchNoAuth<ProductDetailOutputDto>({
     endpoint: "ProductDetail",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
