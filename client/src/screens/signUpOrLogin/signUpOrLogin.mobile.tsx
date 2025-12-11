@@ -1,8 +1,9 @@
-import { AppLayout, SignInOrLoginTemplate } from "@components";
+import { AppLayout } from "@components";
+import { FormBlock } from "./blocks";
 import { useSignUpOrLoginPageHelper } from "./signUpOrLogin.hook";
 
 export const SignUpOrLoginMobile: React.FC = () => {
-  const { onClickSubmit } = useSignUpOrLoginPageHelper();
+  const { initialized } = useSignUpOrLoginPageHelper();
 
   return (
     <AppLayout
@@ -14,7 +15,7 @@ export const SignUpOrLoginMobile: React.FC = () => {
         },
       }}
     >
-      <SignInOrLoginTemplate onSubmit={onClickSubmit} />
+      {initialized && <FormBlock />}
     </AppLayout>
   );
 };
