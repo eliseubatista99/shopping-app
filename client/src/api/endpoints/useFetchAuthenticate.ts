@@ -7,11 +7,17 @@ export type AuthenticateInputDto = {
   password?: string;
 };
 
-export type AuthenticateOutputDto = { token: string };
+export type AuthenticateOutputDto = {
+  token: string;
+  invalidEmail?: boolean;
+  invalidPhone?: boolean;
+  wrongPassword?: boolean;
+};
 
 export const Authenticate = () => {
   const { post } = useFetchNoAuth<AuthenticateOutputDto>({
     endpoint: "Authenticate",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

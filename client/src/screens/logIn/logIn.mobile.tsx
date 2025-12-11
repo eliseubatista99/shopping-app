@@ -1,11 +1,10 @@
-import { AppButton, AppInputField, AppLayout } from "@components";
-import { INPUTS, PAGES } from "@constants";
-import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
+import { AppLayout } from "@components";
+import { PAGES } from "@constants";
+import { FormBlock } from "./blocks";
 import { useLogInPageHelper } from "./logIn.hook";
 
 export const LogInMobile: React.FC = () => {
-  const { i18n, form, onClickSubmit, formConfiguration, initialValue } =
-    useLogInPageHelper();
+  const { initialized } = useLogInPageHelper();
 
   return (
     <AppLayout
@@ -22,49 +21,7 @@ export const LogInMobile: React.FC = () => {
         },
       }}
     >
-      <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
-        {i18n.title}
-      </Typography>
-
-      <Form
-        configurations={formConfiguration}
-        submitButton={{
-          content: (
-            <AppButton
-              text={{
-                content: i18n.actions.signIn,
-                props: {
-                  styles: {
-                    fontSize: "16px",
-                  },
-                },
-              }}
-              styles={{ width: "100%", padding: "20px" }}
-            />
-          ),
-          styles: {
-            marginTop: "auto",
-          },
-        }}
-        onSubmit={onClickSubmit}
-        styles={{ flex: 1, gap: "30px", marginTop: "30px" }}
-      >
-        <AppInputField
-          label={i18n.emailOrPhone.title}
-          name={INPUTS.PHONE_OR_EMAIL}
-          initialValue={initialValue}
-          placeHolder={i18n.emailOrPhone.placeholder}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.emailOrPhoneError}
-        />
-        <AppInputField
-          label={i18n.password.title}
-          name={INPUTS.PASSWORD}
-          placeHolder={i18n.password.placeholder}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.passwordError}
-        />
-      </Form>
+      {initialized && <FormBlock />}
     </AppLayout>
   );
 };

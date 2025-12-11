@@ -52,18 +52,14 @@ export const useAuthentication = () => {
           isAuthenticated: false,
         });
 
-        return {
-          success: false,
-        };
+        return res;
       }
       setAuthenticationStoreState({
         token: res.data.token,
         isAuthenticated: true,
       });
 
-      return {
-        success: true,
-      };
+      return res;
     },
     [fetchAuthenticate, setAuthenticationStoreState]
   );

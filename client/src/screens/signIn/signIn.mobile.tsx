@@ -21,7 +21,7 @@ export const SignInMobile: React.FC = () => {
         },
       }}
     >
-      {initialized && <FormBlock />}{" "}
+      {initialized && <FormBlock />}
     </AppLayout>
   );
 };
