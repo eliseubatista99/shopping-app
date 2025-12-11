@@ -3,6 +3,7 @@ export * from "./colors";
 export * from "./drawers";
 export * from "./inputs";
 export * from "./loaders";
+export * from "./modals";
 export * from "./overlays";
 export * from "./pages";
 export * from "./searchParams";

@@ -10,4 +10,6 @@
 
 .\create-toast -Name ToastName
 
+.\create-modal -Name ModalName
+
 
