@@ -6,6 +6,7 @@ export type RefreshAuthenticationOutputDto = { token: string };
 export const RefreshAuthentication = () => {
   const { post } = useFetchNoAuth<RefreshAuthenticationOutputDto>({
     endpoint: "RefreshAuthentication",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(async () => {

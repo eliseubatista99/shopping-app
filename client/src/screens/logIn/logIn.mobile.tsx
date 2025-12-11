@@ -1,17 +1,16 @@
 import { AppLayout } from "@components";
-import { PAGES } from "@constants";
 import { FormBlock } from "./blocks";
 import { useLogInPageHelper } from "./logIn.hook";
 
 export const LogInMobile: React.FC = () => {
-  const { initialized } = useLogInPageHelper();
+  const { initialized, onClickBack } = useLogInPageHelper();
 
   return (
     <AppLayout
       appHeader={{
         back: {
           visible: true,
-          defaultBackPath: PAGES.SIGN_UP_OR_LOGIN,
+          onClick: onClickBack,
         },
 
         styles: {

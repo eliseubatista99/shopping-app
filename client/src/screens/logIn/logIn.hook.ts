@@ -9,7 +9,7 @@ import { useCallback, useState } from "react";
 export const useLogInPageHelper = () => {
   const { goTo } = useNavigation();
 
-  const { allParams } = useAppSearchParams();
+  const { allParams, returnPage } = useAppSearchParams();
   const { isAuthenticated } = useAuthentication();
   const [initialized, setInitialized] = useState(false);
 
@@ -26,11 +26,24 @@ export const useLogInPageHelper = () => {
     }
   }, [allParams, goTo, isAuthenticated]);
 
+  const onClickBack = useCallback(() => {
+    const path = returnPage.value || PAGES.SIGN_UP_OR_LOGIN;
+    const params = returnPage.value ? {} : allParams;
+
+    goTo({
+      path: path,
+      params: {
+        ...params,
+      },
+    });
+  }, [allParams, goTo, returnPage.value]);
+
   useDidMount(() => {
     initScreen();
   });
 
   return {
     initialized,
+    onClickBack,
   };
 };

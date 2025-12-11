@@ -12,9 +12,13 @@ export const useForYouPageHelper = () => {
   const setForYouStoreState = useStoreForYou(
     (state) => state.setForYouStoreState
   );
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
 
   const initScreen = React.useCallback(async () => {
+    if (!isAuthenticated) {
+      return;
+    }
+
     setLoading(true);
     const res = await fetchForYou();
 
@@ -33,7 +37,7 @@ export const useForYouPageHelper = () => {
       });
       setLoading(false);
     }
-  }, [fetchForYou, setForYouStoreState]);
+  }, [fetchForYou, isAuthenticated, setForYouStoreState]);
 
   useDidMount(() => {
     initScreen();

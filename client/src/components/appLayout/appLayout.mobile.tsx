@@ -29,7 +29,7 @@ export const AppLayoutMobile: React.FC<AppLayoutProps> = ({
             }
           : undefined
       }
-      containerStyles={{ ...containerStyles }}
+      containerStyles={{ background: "#ffffff", ...containerStyles }}
       reserveSpaceForScrollbar={reserveSpaceForScrollbar}
     >
       <div
