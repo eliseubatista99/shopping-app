@@ -29,19 +29,19 @@ import {
   Wishlist,
   WriteReview,
 } from "@screens";
-import { useAppHelper } from "./App.hook";
+import { useStoreBase } from "@store";
 
 export interface AppProvidersProps {
   children?: React.ReactNode;
 }
 
 export const AppProviders = ({ children }: AppProvidersProps) => {
-  const { isAppInitialized } = useAppHelper();
+  const clientInfo = useStoreBase((state) => state.client);
 
   return (
     <FeedbackProvider>
       <NavigationProvider
-        isReady={isAppInitialized}
+        isReady={clientInfo !== undefined}
         routes={[
           {
             path: PAGES.SPLASH,

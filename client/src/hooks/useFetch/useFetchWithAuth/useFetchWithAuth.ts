@@ -1,14 +1,12 @@
 import { useCallback } from "react";
 import { useAuthentication } from "../../useAuthentication";
-import { useFetchNoAuth } from "../useFetchCommon";
+import { useFetchNoAuth, type FetchCommonInput } from "../useFetchCommon";
 
-type FetchWithAuthInput = {
-  endpoint: string;
-};
+type FetchWithAuthInput = FetchCommonInput;
 
 type TIn = Record<string, unknown>;
 
-export const useFetchWithAuth = <TOut>({ endpoint }: FetchWithAuthInput) => {
+export const useFetchWithAuth = <TOut>(props: FetchWithAuthInput) => {
   const { isTokenExpired, refreshToken } = useAuthentication();
   const {
     get: httpGet,
@@ -16,7 +14,7 @@ export const useFetchWithAuth = <TOut>({ endpoint }: FetchWithAuthInput) => {
     delete: httpDelete,
     patch: httpPatch,
   } = useFetchNoAuth<TOut>({
-    endpoint,
+    ...props,
   });
 
   const runPreFetch = useCallback(async () => {

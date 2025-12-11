@@ -4,10 +4,10 @@ import { useFeedback, useFetch } from "@eliseubatista99/react-scaffold-core";
 import { useStoreAuthentication } from "@store";
 import { useCallback, useMemo } from "react";
 
-type FetchCommonInput = {
+export type FetchCommonInput = {
   endpoint: string;
-  secure?: boolean;
   showGenericErrorModal?: boolean;
+  onError?: () => void;
 };
 
 type TIn = Record<string, unknown>;
@@ -15,6 +15,7 @@ type TIn = Record<string, unknown>;
 export const useFetchNoAuth = <TOut>({
   endpoint,
   showGenericErrorModal = true,
+  onError,
 }: FetchCommonInput) => {
   const { showItem } = useFeedback();
 
@@ -43,11 +44,15 @@ export const useFetchNoAuth = <TOut>({
 
   const handleFetchResponse = useCallback(
     (response: ApiOutput<TOut>) => {
-      if (!response.metadata.success && showGenericErrorModal) {
-        showItem(MODALS.GENERIC_API_ERROR);
+      if (!response.metadata.success) {
+        if (showGenericErrorModal) {
+          showItem(MODALS.GENERIC_API_ERROR);
+        }
+
+        onError?.();
       }
     },
-    [showGenericErrorModal, showItem]
+    [onError, showGenericErrorModal, showItem]
   );
 
   const runGet = useCallback(

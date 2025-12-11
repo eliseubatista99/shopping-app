@@ -60,7 +60,7 @@ import { AppButton } from "@components";
 import { MODALS } from "@constants";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { AppModal } from "../_appModal";
-import { useGenericApiErrorModalHelper } from "./genericApiError.hook";
+import { use${Name}ModalHelper } from "./${camel}.hook";
 
 export const Modal${Name}Mobile = () => {
   const { i18n, onClickButton } = use${Name}ModalHelper();
