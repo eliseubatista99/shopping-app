@@ -1,24 +1,16 @@
-import { AppButton, AppCheckbox, AppInputField, AppLoader } from "@components";
-import { DRAWERS, INPUTS } from "@constants";
-import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
+import { AddressForm } from "@components";
+import { DRAWERS } from "@constants";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { AppDrawer } from "../_appDrawer";
 import { useAddAddressDrawerHelper } from "./addAddress.hook";
 
 export const DrawerAddAddressMobile = () => {
-  const {
-    i18n,
-    loading,
-    form,
-    onClickSubmit,
-    wantsDefault,
-    onToggleDefault,
-    formConfiguration,
-  } = useAddAddressDrawerHelper();
+  const { i18n, canCloseDrawer, onClickSubmit } = useAddAddressDrawerHelper();
 
   return (
     <AppDrawer
       id={DRAWERS.ADD_ADDRESS}
-      canBeClosed={!loading}
+      canBeClosed={canCloseDrawer}
       topContent={
         <Typography
           styles={{
@@ -32,100 +24,7 @@ export const DrawerAddAddressMobile = () => {
       }
       drawerStyles={{ gap: "12px" }}
     >
-      <AppLoader
-        visible={loading}
-        styles={{ zIndex: 1, background: "#ffffff" }}
-      />
-
-      <Form
-        configurations={formConfiguration}
-        childrenStyles={{
-          gap: "20px",
-        }}
-        submitButton={{
-          content: (
-            <AppButton
-              text={{
-                content: i18n.actions.submit,
-                props: {
-                  styles: {
-                    fontSize: "16px",
-                  },
-                },
-              }}
-              styles={{ width: "100%", padding: "20px" }}
-            />
-          ),
-          styles: {
-            marginTop: "auto",
-          },
-        }}
-        onSubmit={onClickSubmit}
-        styles={{ flex: 1, gap: "30px", marginTop: "10px" }}
-      >
-        <AppInputField
-          name={INPUTS.COUNTRY}
-          label={i18n.form.country.title}
-          placeHolder={i18n.form.country.placeholder}
-          containerStyles={{ marginTop: "15px" }}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.countryError}
-        />
-        <AppInputField
-          name={INPUTS.NAME}
-          label={i18n.form.name.title}
-          placeHolder={i18n.form.name.placeholder}
-          containerStyles={{ marginTop: "15px" }}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.nameError}
-        />
-        <AppInputField
-          name={INPUTS.PHONE}
-          label={i18n.form.phone.title}
-          placeHolder={i18n.form.phone.placeholder}
-          containerStyles={{ marginTop: "15px" }}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.phoneError}
-        />
-        <AppInputField
-          name={INPUTS.STREET}
-          label={i18n.form.street.title}
-          placeHolder={i18n.form.street.placeholder}
-          containerStyles={{ marginTop: "15px" }}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.streetError}
-        />{" "}
-        <AppInputField
-          name={INPUTS.LOCATION}
-          label={i18n.form.location.title}
-          placeHolder={i18n.form.location.placeholder}
-          containerStyles={{ marginTop: "15px" }}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.locationError}
-        />
-        <AppInputField
-          name={INPUTS.CITY}
-          label={i18n.form.city.title}
-          placeHolder={i18n.form.city.placeholder}
-          containerStyles={{ marginTop: "15px" }}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.cityError}
-        />
-        <AppInputField
-          name={INPUTS.POSTAL_CODE}
-          label={i18n.form.postalCode.title}
-          placeHolder={i18n.form.postalCode.placeholder}
-          containerStyles={{ marginTop: "15px" }}
-          inputStyles={{ padding: "10px" }}
-          bottomMessage={form.postalCodeError}
-        />
-        <AppCheckbox
-          name={INPUTS.SET_DEFAULT}
-          label={i18n.actions.setDefault}
-          checked={wantsDefault}
-          onToggle={onToggleDefault}
-        />
-      </Form>
+      <AddressForm onSubmit={onClickSubmit} />
     </AppDrawer>
   );
 };
