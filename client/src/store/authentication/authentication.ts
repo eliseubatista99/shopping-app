@@ -2,8 +2,13 @@ import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
+type AuthForm = {
+  email?: string;
+  phone?: string;
+};
 export interface AuthenticationState {
   token?: string;
+  form?: AuthForm;
   isAuthenticated?: boolean;
 }
 

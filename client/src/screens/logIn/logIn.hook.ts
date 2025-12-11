@@ -10,6 +10,7 @@ import {
   useAppTranslations,
   useAuthentication,
 } from "@hooks";
+import { useStoreAuthentication } from "@store";
 import React from "react";
 
 type SignInForm = {
@@ -21,10 +22,11 @@ export const useLogInPageHelper = () => {
   const { t } = useAppTranslations();
   const { goTo } = useNavigation();
   const { authenticate } = useAuthentication();
+  const storeAuthForm = useStoreAuthentication((state) => state.form);
   const { returnPage } = useAppSearchParams();
 
   const [form, setForm] = React.useState<SignInForm>({});
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
 
   const i18n = React.useMemo(() => {
     return {
@@ -116,5 +118,6 @@ export const useLogInPageHelper = () => {
     onClickSubmit,
     form,
     formConfiguration: getFormConfiguration(),
+    initialValue: storeAuthForm?.email || storeAuthForm?.phone || "",
   };
 };

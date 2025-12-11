@@ -17,12 +17,10 @@ import { translationsProductDetails } from "./productDetails";
 import { translationsSettings } from "./settings";
 import { translationsSignIn } from "./signIn";
 import { translationsSignInAndSecurity } from "./signInAndSecurity";
-import { translationsSignUpOrLogin } from "./signUpOrLogin";
 import { translationsWishlist } from "./wishlist";
 import { translationsWriteReview } from "./writeReview";
 
 export const translationsScreens: TranslationList = {
-  ...translationsSignUpOrLogin,
   ...translationsSignIn,
   ...translationsLogin,
   ...translationsHome,

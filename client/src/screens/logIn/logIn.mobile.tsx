@@ -1,16 +1,18 @@
 import { AppButton, AppInputField, AppLayout } from "@components";
-import { INPUTS } from "@constants";
+import { INPUTS, PAGES } from "@constants";
 import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
 import { useLogInPageHelper } from "./logIn.hook";
 
 export const LogInMobile: React.FC = () => {
-  const { i18n, form, onClickSubmit, formConfiguration } = useLogInPageHelper();
+  const { i18n, form, onClickSubmit, formConfiguration, initialValue } =
+    useLogInPageHelper();
 
   return (
     <AppLayout
       appHeader={{
         back: {
           visible: true,
+          defaultBackPath: PAGES.SIGN_UP_OR_LOGIN,
         },
 
         styles: {
@@ -50,6 +52,7 @@ export const LogInMobile: React.FC = () => {
         <AppInputField
           label={i18n.emailOrPhone.title}
           name={INPUTS.PHONE_OR_EMAIL}
+          initialValue={initialValue}
           placeHolder={i18n.emailOrPhone.placeholder}
           inputStyles={{ padding: "10px" }}
           bottomMessage={form.emailOrPhoneError}

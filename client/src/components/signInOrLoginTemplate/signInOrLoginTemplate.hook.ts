@@ -1,10 +1,13 @@
+import { Api } from "@api";
 import { INPUTS } from "@constants";
 import {
   FormsHelper,
+  TextHelper,
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations, useAuthentication } from "@hooks";
+import { useAppTranslations } from "@hooks";
+import { useStoreAuthentication } from "@store";
 import React from "react";
 import type { SignInOrLoginTemplateProps } from "./signInOrLoginTemplate";
 
@@ -12,25 +15,26 @@ export const useSignInOrLoginTemplateHelper = ({
   onSubmit,
 }: SignInOrLoginTemplateProps) => {
   const { t } = useAppTranslations();
-  const { isExistingAccount } = useAuthentication();
+  const { fetchIsExistingAccount } = Api.IsExistingAccount();
+  const setAuthenticationStoreState = useStoreAuthentication(
+    (state) => state.setAuthenticationStoreState
+  );
 
   const [emailOrPhoneError, setEmailOrPhoneError] = React.useState<
     string | undefined
   >();
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
 
   const i18n = React.useMemo(() => {
     return {
-      title: t("signUpOrLogin.title"),
-
+      title: t("signUpOrLoginTemplate.title"),
       emailOrPhone: {
-        title: t("signUpOrLogin.form.emailOrPhone.title"),
-        placeholder: t("signUpOrLogin.form.emailOrPhone.placeholder"),
-        error: t("signUpOrLogin.form.emailOrPhone.error"),
+        title: t("signUpOrLoginTemplate.form.emailOrPhone.title"),
+        placeholder: t("signUpOrLoginTemplate.form.emailOrPhone.placeholder"),
+        error: t("signUpOrLoginTemplate.form.emailOrPhone.error"),
       },
-
       actions: {
-        signIn: t("signIn.form.actions.submit"),
+        signIn: t("signUpOrLoginTemplate.form.actions.submit"),
       },
     };
   }, [t]);
@@ -44,6 +48,18 @@ export const useSignInOrLoginTemplateHelper = ({
             allow: false,
             errorMessage: i18n.emailOrPhone.error,
           },
+          validations: [
+            (value) => {
+              const isEmail = TextHelper.isEmail(value as string);
+              const isPhone = TextHelper.isPhoneNumber(value as string);
+
+              if (!isEmail && !isPhone) {
+                return i18n.emailOrPhone.error;
+              }
+
+              return undefined;
+            },
+          ],
         },
       ];
     }, [i18n.emailOrPhone.error]);
@@ -57,17 +73,35 @@ export const useSignInOrLoginTemplateHelper = ({
       setEmailOrPhoneError(emailOrPhone?.error);
 
       if (!emailOrPhone?.error) {
-        const res = await isExistingAccount({
-          email: "",
-          phoneNumber: "",
+        const emailOrPhoneValue = FormsHelper.getFieldValueOrDefault(
+          emailOrPhone,
+          ""
+        );
+        const isEmail = TextHelper.isEmail(emailOrPhoneValue);
+        const isPhone = TextHelper.isPhoneNumber(emailOrPhoneValue);
+
+        const res = await fetchIsExistingAccount({
+          email: isEmail ? emailOrPhoneValue : undefined,
+          phoneNumber: isPhone ? emailOrPhoneValue : undefined,
         });
 
-        onSubmit?.(res ? "login" : "signUp");
+        if (res.metadata.success) {
+          setAuthenticationStoreState({
+            form: {
+              email: isEmail ? emailOrPhoneValue : undefined,
+              phone: isPhone ? emailOrPhoneValue : undefined,
+            },
+          });
+
+          onSubmit?.({
+            step: res.data.exists ? "login" : "signUp",
+          });
+        }
       }
 
       setLoading(false);
     },
-    [isExistingAccount, onSubmit]
+    [fetchIsExistingAccount, onSubmit, setAuthenticationStoreState]
   );
 
   return {

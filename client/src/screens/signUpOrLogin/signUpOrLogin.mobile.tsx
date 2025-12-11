@@ -7,10 +7,6 @@ export const SignUpOrLoginMobile: React.FC = () => {
   return (
     <AppLayout
       appHeader={{
-        back: {
-          visible: true,
-        },
-
         styles: {
           borderBottom: "none",
           minHeight: 0,

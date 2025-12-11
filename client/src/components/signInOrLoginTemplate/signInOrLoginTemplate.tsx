@@ -5,8 +5,12 @@ import { SignInOrLoginTemplateMobile } from "./signInOrLoginTemplate.mobile";
 
 export type SignInOrLoginTemplateStep = "login" | "signUp";
 
+export type SignInOrLoginSubmitData = {
+  step: SignInOrLoginTemplateStep;
+};
+
 export interface SignInOrLoginTemplateProps {
-  onSubmit?: (step: SignInOrLoginTemplateStep) => void;
+  onSubmit?: (step: SignInOrLoginSubmitData) => void;
   styles?: React.CSSProperties;
 }
 

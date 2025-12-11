@@ -4,6 +4,7 @@ import { translationsAddressListItem } from "./addressListItem";
 import { translationsItemsListTemplate } from "./itemsListTemplate";
 import { translationsPaymentMethodForm } from "./paymentMethodForm";
 import { translationsPaymentMethodListItem } from "./paymentMethodListItem";
+import { translationsSignUpOrLoginTemplate } from "./signUpOrLoginTemplate";
 
 export const translationsComponents: TranslationList = {
   ...translationsPaymentMethodListItem,
@@ -11,4 +12,5 @@ export const translationsComponents: TranslationList = {
   ...translationsItemsListTemplate,
   ...translationsPaymentMethodForm,
   ...translationsAddressForm,
+  ...translationsSignUpOrLoginTemplate,
 };

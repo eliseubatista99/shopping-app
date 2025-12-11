@@ -1,6 +1,7 @@
 import {
   AppButton,
   AppInputField,
+  AppLoader,
   type SignInOrLoginTemplateProps,
 } from "@components";
 import { INPUTS } from "@constants";
@@ -12,6 +13,7 @@ export const SignInOrLoginTemplateMobile: React.FC<
 > = (props) => {
   const {
     i18n,
+    loading,
     emailOrPhoneError,
     onClickSubmitEmailOrPhone,
     formConfiguration,
@@ -20,11 +22,26 @@ export const SignInOrLoginTemplateMobile: React.FC<
   return (
     <div
       data-testid="signin-or-login-template"
-      style={{ width: "100%", flex: 1, ...props.styles }}
+      style={{ width: "100%", flex: 1, padding: "20px 0 0 0", ...props.styles }}
     >
-      <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
-        {i18n.title}
-      </Typography>
+      <AppLoader
+        visible={loading}
+        styles={{
+          zIndex: 1,
+          background: "#ffffff",
+          position: "absolute",
+          margin: "auto",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      />
+      {!loading && (
+        <Typography styles={{ fontSize: "22px", fontWeight: 600 }}>
+          {i18n.title}
+        </Typography>
+      )}
+
       <Form
         configurations={formConfiguration}
         submitButton={{
@@ -46,7 +63,13 @@ export const SignInOrLoginTemplateMobile: React.FC<
           },
         }}
         onSubmit={onClickSubmitEmailOrPhone}
-        styles={{ flex: 1, gap: "30px", marginTop: "30px" }}
+        styles={{
+          flex: 1,
+          gap: "30px",
+          marginTop: "30px",
+          opacity: loading ? 0 : 1,
+          pointerEvents: loading ? "none" : undefined,
+        }}
       >
         <AppInputField
           label={i18n.emailOrPhone.title}

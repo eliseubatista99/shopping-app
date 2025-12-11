@@ -8,11 +8,16 @@ export type CreateAccountInputDto = {
   password: string;
 };
 
-export type CreateAccountOutputDto = { token: string };
+export type CreateAccountOutputDto = {
+  token: string;
+  mailAlreadyInUse?: boolean;
+  phoneAlreadyInUse?: boolean;
+};
 
 export const CreateAccount = () => {
   const { post } = useFetchNoAuth<CreateAccountOutputDto>({
     endpoint: "CreateAccount",
+    showGenericErrorModal: false,
   });
 
   const fetch = useCallback(

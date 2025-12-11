@@ -6,6 +6,14 @@ export const useAppSearchParams = () => {
 
   return {
     allParams: searchParams.getAll(),
+    email: {
+      value: searchParams.get<string>(SEARCH_PARAMS.EMAIL) ?? undefined,
+      set: (val: string) => searchParams.set(SEARCH_PARAMS.EMAIL, val),
+    },
+    phone: {
+      value: searchParams.get<string>(SEARCH_PARAMS.PHONE) ?? undefined,
+      set: (val: string) => searchParams.set(SEARCH_PARAMS.PHONE, val),
+    },
     productId: {
       value: searchParams.get<string>(SEARCH_PARAMS.PRODUCT_ID) ?? undefined,
     },

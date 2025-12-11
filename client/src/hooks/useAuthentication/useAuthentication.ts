@@ -3,14 +3,15 @@ import { useStoreAuthentication } from "@store";
 import { useCallback } from "react";
 import type { AuthenticateInputDto } from "src/api/endpoints/useFetchAuthenticate";
 import type { CreateAccountInputDto } from "src/api/endpoints/useFetchCreateAccount";
-import type { IsExistingAccountInputDto } from "src/api/endpoints/useFetchIsExistingAccount";
 
 export const useAuthentication = () => {
   const token = useStoreAuthentication((state) => state.token);
   const setAuthenticationStoreState = useStoreAuthentication(
     (state) => state.setAuthenticationStoreState
   );
-  const { fetchIsExistingAccount } = Api.IsExistingAccount();
+  const isAuthenticated = useStoreAuthentication(
+    (state) => state.isAuthenticated
+  );
   const { fetchCreateAccount } = Api.CreateAccount();
   const { fetchAuthenticate } = Api.Authenticate();
   const { fetchRefreshAuthentication } = Api.RefreshAuthentication();
@@ -27,18 +28,14 @@ export const useAuthentication = () => {
           isAuthenticated: false,
         });
 
-        return {
-          success: false,
-        };
+        return res;
       }
       setAuthenticationStoreState({
         token: res.data.token,
         isAuthenticated: true,
       });
 
-      return {
-        success: true,
-      };
+      return res;
     },
     [fetchCreateAccount, setAuthenticationStoreState]
   );
@@ -69,17 +66,6 @@ export const useAuthentication = () => {
       };
     },
     [fetchAuthenticate, setAuthenticationStoreState]
-  );
-
-  const isExistingAccount = useCallback(
-    async (input: IsExistingAccountInputDto) => {
-      const res = await fetchIsExistingAccount({
-        ...input,
-      });
-
-      return res.data?.exists || false;
-    },
-    [fetchIsExistingAccount]
   );
 
   const refreshToken = useCallback(async () => {
@@ -124,7 +110,7 @@ export const useAuthentication = () => {
 
   return {
     token,
-    isExistingAccount,
+    isAuthenticated,
     createAccount,
     authenticate,
     isTokenExpired,

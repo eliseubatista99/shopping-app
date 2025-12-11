@@ -4,6 +4,8 @@
     "errors": []
   },
   "data": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJFbGlkZXVzIiwiaWF0IjoxNzAwMDAwMDAwLCJleHAiOjE3MDAwMDM2MDB9.hZ2tj5o-09pN_6bPEXOJGTyycgQvJrig5gDwj7-kdnI"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJFbGlkZXVzIiwiaWF0IjoxNzAwMDAwMDAwLCJleHAiOjE3MDAwMDM2MDB9.hZ2tj5o-09pN_6bPEXOJGTyycgQvJrig5gDwj7-kdnI",
+    "mailAlreadyInUse": true,
+    "phoneAlreadyInUse": true
   }
 }

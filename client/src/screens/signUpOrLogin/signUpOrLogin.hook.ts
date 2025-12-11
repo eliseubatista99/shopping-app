@@ -1,16 +1,20 @@
-import type { SignInOrLoginTemplateStep } from "@components";
+import type { SignInOrLoginSubmitData } from "@components";
 import { PAGES } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
-import React from "react";
+import {
+  useDidMount,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
+import { useAppSearchParams, useAuthentication } from "@hooks";
+import React, { useCallback } from "react";
 
 export const useSignUpOrLoginPageHelper = () => {
   const { goTo } = useNavigation();
   const { allParams } = useAppSearchParams();
+  const { isAuthenticated } = useAuthentication();
 
   const onClickSubmit = React.useCallback(
-    async (step: SignInOrLoginTemplateStep) => {
-      if (step === "login") {
+    async (data: SignInOrLoginSubmitData) => {
+      if (data.step === "login") {
         goTo({
           path: PAGES.LOG_IN,
           params: {
@@ -28,6 +32,21 @@ export const useSignUpOrLoginPageHelper = () => {
     },
     [allParams, goTo]
   );
+
+  const initScreen = useCallback(() => {
+    if (isAuthenticated) {
+      goTo({
+        path: PAGES.HOME,
+        params: {
+          ...allParams,
+        },
+      });
+    }
+  }, [allParams, goTo, isAuthenticated]);
+
+  useDidMount(() => {
+    initScreen();
+  });
 
   return {
     onClickSubmit,
