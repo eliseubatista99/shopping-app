@@ -1,16 +1,6 @@
 import { Assets } from "@assets";
-import {
-  AppLayout,
-  AppLoader,
-  Chip,
-  ProductOfferBanner,
-  TryAgainSection,
-} from "@components";
-import {
-  Carousel,
-  type CarouselSlideProps,
-} from "@eliseubatista99/react-scaffold-core";
-import { HeaderTriggerBlock, OffersGroupBlock } from "./blocks";
+import { AppLayout, AppLoader, Chip, TryAgainSection } from "@components";
+import { BannersBlock, GroupsListBlock, HeaderTriggerBlock } from "./blocks";
 import { ConditionOffersBlock } from "./blocks/conditionOffers";
 import { useHomePageHelper } from "./home.hook";
 
@@ -18,32 +8,12 @@ export const HomeMobile: React.FC = () => {
   const {
     i18n,
     isAuthenticated,
-    groupsList,
-    banners,
     header,
     onAddressChipClicked,
     retrieveProductOffers,
     hasError,
     loading,
   } = useHomePageHelper();
-
-  const groupsJSX = groupsList.map((g) => (
-    <OffersGroupBlock key={g.title} title={g.title} products={g.products} />
-  ));
-
-  const bannersJSX = (banners || []).map(
-    (b): CarouselSlideProps => ({
-      content: (
-        <ProductOfferBanner
-          key={b.category}
-          category={b.category}
-          onClick={() => {
-            console.log("Clicked banner ", b);
-          }}
-        />
-      ),
-    })
-  );
 
   return (
     <AppLayout
@@ -87,13 +57,9 @@ export const HomeMobile: React.FC = () => {
               }}
             />
           )}
-          {banners?.length && (
-            <Carousel content={bannersJSX} styles={{ marginTop: "30px" }} />
-          )}
+          <BannersBlock />
           <ConditionOffersBlock />
-          <div style={{ width: "100%", gap: "30px", marginTop: "30px" }}>
-            {groupsJSX}
-          </div>
+          <GroupsListBlock />
         </div>
       )}
     </AppLayout>

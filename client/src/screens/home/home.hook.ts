@@ -1,4 +1,4 @@
-import { Api, type ProductDto } from "@api";
+import { Api } from "@api";
 import { DRAWERS } from "@constants";
 import { useDidMount, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -9,21 +9,12 @@ import {
 } from "@store";
 import React from "react";
 
-type OfferGroup = {
-  title: string;
-  products: ProductDto[];
-};
-
 export const useHomePageHelper = () => {
   const isAuthenticated = useStoreAuthentication(
     (state) => state.isAuthenticated
   );
   const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const setStoreHomeState = useStoreHome((state) => state.setHomeStoreState);
-  const groups = useStoreHome((state) => state.groups);
-  const buyAgain = useStoreHome((state) => state.buyAgain);
-  const fromSearchHistory = useStoreHome((state) => state.fromSearchHistory);
-  const banners = useStoreHome((state) => state.banners);
   const { showItem } = useFeedback();
   const { fetchProductOffers } = Api.GetProductOffers();
   const [headerTriggerVisible, setHeaderTriggerVisible] =
@@ -78,40 +69,6 @@ export const useHomePageHelper = () => {
     setLoading(false);
   }, [fetchProductOffers, setStoreHomeState]);
 
-  const groupsList = React.useMemo(() => {
-    const result: OfferGroup[] = [];
-
-    if (buyAgain && buyAgain.length > 0) {
-      result.push({
-        title: i18n.buyAgain.title,
-        products: buyAgain || [],
-      });
-    }
-
-    if (fromSearchHistory && fromSearchHistory.length > 0) {
-      result.push({
-        title: i18n.fromHistory.title,
-        products: fromSearchHistory || [],
-      });
-    }
-
-    const mappedGroups = (groups || []).map(
-      (g): OfferGroup => ({
-        title: i18n.group.title(g.category),
-        products: g.products || [],
-      })
-    );
-
-    return [...result, ...mappedGroups];
-  }, [
-    buyAgain,
-    fromSearchHistory,
-    groups,
-    i18n.buyAgain.title,
-    i18n.fromHistory.title,
-    i18n.group,
-  ]);
-
   const handleHeaderTrigger = React.useCallback((visible: boolean) => {
     setHeaderTriggerVisible(visible);
   }, []);
@@ -127,8 +84,6 @@ export const useHomePageHelper = () => {
   return {
     i18n,
     isAuthenticated,
-    groupsList,
-    banners: banners,
     header: {
       headerTriggerVisible,
       handleHeaderTrigger,
