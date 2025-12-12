@@ -17,7 +17,7 @@ export const useSignInPageHelper = () => {
       goTo({
         path: PAGES.HOME,
         params: {
-          ...allParams,
+          ...allParams.value,
         },
       });
     } else {

@@ -5,8 +5,12 @@ import { AppOverlay } from "../_appOverlay";
 import { useOverlaySearchHelper } from "./searchOverlay.hook";
 
 export const OverlaySearchMobile: React.FC = () => {
-  const { previousSearches, submitSearch, onClickBack } =
-    useOverlaySearchHelper();
+  const {
+    previousSearches,
+    submitSearch,
+    onClickBack,
+    clickSearchFromHistory,
+  } = useOverlaySearchHelper();
 
   const previousSearchesJSX = previousSearches?.map((p, index) => (
     <div
@@ -18,12 +22,12 @@ export const OverlaySearchMobile: React.FC = () => {
         padding: "10px 15px",
         gap: "20px",
       }}
-      onClick={() => submitSearch(p)}
+      onClick={() => clickSearchFromHistory(p)}
     >
       <Typography styles={{ fontSize: "24px", fontWeight: 500 }}>
         {"⌕"}
       </Typography>
-      <Typography styles={{ lineHeight: 2 }}>{p}</Typography>
+      <Typography styles={{ lineHeight: 2 }}>{p.value}</Typography>
     </div>
   ));
 

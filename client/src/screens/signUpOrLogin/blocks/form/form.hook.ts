@@ -14,14 +14,14 @@ export const useFormBlockHelper = () => {
         goTo({
           path: PAGES.LOG_IN,
           params: {
-            ...allParams,
+            ...allParams.value,
           },
         });
       } else {
         goTo({
           path: PAGES.SIGN_UP,
           params: {
-            ...allParams,
+            ...allParams.value,
           },
         });
       }

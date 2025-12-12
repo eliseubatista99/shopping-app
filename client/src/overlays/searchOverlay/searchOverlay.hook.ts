@@ -4,23 +4,21 @@ import {
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams } from "@hooks";
-import { useStoreSearch } from "@store";
+import { useStoreSearch, type SearchHistoryEntry } from "@store";
 import React from "react";
 
 export const useOverlaySearchHelper = () => {
+  const addSearch = useStoreSearch((state) => state.addSearch);
+  const moveEntryToStart = useStoreSearch((state) => state.moveEntryToStart);
   const previousSearches = useStoreSearch((state) => state.previousSearches);
   // const setProductFilters = useStoreProduct((state) => state.setProductFilters);
   const { goTo, currentPath } = useNavigation();
   const { hideItem } = useFeedback();
-  const { searchText } = useAppSearchParams();
+  const { searchText, allParams } = useAppSearchParams();
 
-  const submitSearch = React.useCallback(
-    async (text: string) => {
+  const goToList = React.useCallback(
+    (text: string) => {
       hideItem(OVERLAYS.SEARCH);
-
-      // setProductFilters({
-      //   text,
-      // });
 
       if (currentPath !== PAGES.PRODUCT_LIST) {
         goTo({
@@ -30,10 +28,27 @@ export const useOverlaySearchHelper = () => {
           },
         });
       } else {
+        allParams.clear();
         searchText.set(text);
       }
     },
-    [currentPath, goTo, hideItem, searchText]
+    [allParams, currentPath, goTo, hideItem, searchText]
+  );
+
+  const submitSearch = React.useCallback(
+    async (text: string) => {
+      addSearch(text);
+      goToList(text);
+    },
+    [addSearch, goToList]
+  );
+
+  const clickSearchFromHistory = React.useCallback(
+    async (text: SearchHistoryEntry) => {
+      moveEntryToStart(text.id);
+      goToList(text.value);
+    },
+    [goToList, moveEntryToStart]
   );
 
   const onClickBack = React.useCallback(() => {
@@ -44,5 +59,6 @@ export const useOverlaySearchHelper = () => {
     previousSearches,
     submitSearch,
     onClickBack,
+    clickSearchFromHistory,
   };
 };
