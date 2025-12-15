@@ -66,10 +66,12 @@ export const useProductsBlockHelper = () => {
   );
 
   const onClickAddToCart = React.useCallback(
-    (product: ProductDto) => {
-      addToCart([product.id || ""]);
+    async (product: ProductDto) => {
+      showItem(OVERLAYS.LOADER);
+      await addToCart([product.id || ""]);
+      hideItem(OVERLAYS.LOADER);
     },
-    [addToCart]
+    [addToCart, hideItem, showItem]
   );
 
   const onClickWishlist = React.useCallback(

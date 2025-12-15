@@ -3,6 +3,11 @@ import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
 
+export type ReviewsFilters = {
+  sortFilter?: SortMode;
+  scoreFilter?: number;
+};
+
 export interface ReviewsState {
   productName?: string;
   productId?: string;
@@ -12,8 +17,7 @@ export interface ReviewsState {
   scores?: ScoreCountDto[];
   reviews?: ReviewDto[];
   hasMorePages?: boolean;
-  sortFilter?: SortMode;
-  scoreFilter?: number;
+  filters?: ReviewsFilters;
 }
 
 const initialState: ReviewsState = {};
@@ -21,8 +25,7 @@ const initialState: ReviewsState = {};
 interface UseStoreOutput extends ReviewsState {
   setReviewsStoreState: (data: Partial<ReviewsState>) => void;
   addReviews: (data: ReviewDto[]) => void;
-  setSortFilter: (sort?: SortMode) => void;
-  setScoreFilter: (score?: number) => void;
+  setFilters: (data: Partial<ReviewsFilters>) => void;
 }
 
 export const useStoreReviews = StoreHelper.createStore<UseStoreOutput>(
@@ -44,18 +47,17 @@ export const useStoreReviews = StoreHelper.createStore<UseStoreOutput>(
         "addReviews"
       );
     },
-    setSortFilter: function (sort?: SortMode) {
+    setFilters: function (data: Partial<ReviewsFilters>) {
       set(
-        produce((state: ReviewsState) => ({ ...state, sortFilter: sort })),
+        produce((state: ReviewsState) => ({
+          ...state,
+          filters: {
+            ...state.filters,
+            ...data,
+          },
+        })),
         false,
-        "setSortFilter"
-      );
-    },
-    setScoreFilter: function (score?: number) {
-      set(
-        produce((state: ReviewsState) => ({ ...state, scoreFilter: score })),
-        false,
-        "setScoreFilter"
+        "setFilters"
       );
     },
   }),

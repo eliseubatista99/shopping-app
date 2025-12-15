@@ -5,7 +5,7 @@ import { ItemsListTemplateMobile } from "./itemsListTemplate.mobile";
 
 export interface ItemsListTemplateProps {
   items: unknown[];
-  renderItem: (item: unknown) => JSX.Element;
+  renderItem: (item: unknown, index: number) => JSX.Element;
   retrieveItems: (
     currentPage: number,
     pageSize: number,

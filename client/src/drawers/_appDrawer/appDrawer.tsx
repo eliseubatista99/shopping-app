@@ -8,6 +8,7 @@ export interface AppDrawerProps {
   topContent?: React.ReactNode;
   children?: React.ReactNode;
   drawerStyles?: React.CSSProperties;
+  childrenStyles?: React.CSSProperties;
   id: string;
 }
 

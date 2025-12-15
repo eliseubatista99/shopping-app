@@ -27,8 +27,7 @@ export const useAllReviewsPageHelper = () => {
 
     setReviewsStoreState({
       reviews: undefined,
-      sortFilter: undefined,
-      scoreFilter: undefined,
+      filters: undefined,
       scores: undefined,
       averageScore: undefined,
     });

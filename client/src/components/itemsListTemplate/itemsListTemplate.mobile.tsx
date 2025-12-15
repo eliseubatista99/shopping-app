@@ -19,7 +19,7 @@ export const ItemsListTemplateMobile: React.FC<ItemsListTemplateProps> = (
   } = useItemsListTemplateHelper(props);
   const { renderItem, styles } = props;
 
-  const itemsJSX = items.map((i) => renderItem(i));
+  const itemsJSX = items.map((i, index) => renderItem(i, index));
 
   return (
     <div

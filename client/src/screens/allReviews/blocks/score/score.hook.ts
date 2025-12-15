@@ -1,13 +1,16 @@
-import { Api, SortMode } from "@api";
+import { Api } from "@api";
 import { DRAWERS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   NumberHelper,
-  useDidMount,
   useFeedback,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useAppTranslations } from "@hooks";
-import { useStoreAuthentication, useStoreReviews } from "@store";
+import {
+  useStoreAuthentication,
+  useStoreReviews,
+  type ReviewsFilters,
+} from "@store";
 import React from "react";
 
 export const useScoreBlockHelper = () => {
@@ -28,21 +31,9 @@ export const useScoreBlockHelper = () => {
   const averageScore = useStoreReviews((state) => state.averageScore);
   const reviewsCount = useStoreReviews((state) => state.reviewsCount);
   const allReviews = useStoreReviews((state) => state.reviews);
-  const scoreFilter = useStoreReviews((state) => state.scoreFilter);
-  const sortFilter = useStoreReviews((state) => state.sortFilter);
+  const storeFilters = useStoreReviews((state) => state.filters);
 
   const { goTo } = useNavigation();
-
-  const currentPage = React.useRef<number>(0);
-
-  const hasMorePages = React.useRef<boolean>(true);
-  const isFetching = React.useRef<boolean>(false);
-  const hasRequestedReviewsOnce = React.useRef<boolean>(false);
-
-  const sortFilterCache = React.useRef<SortMode | undefined>(undefined);
-  const scoreFilterCache = React.useRef<number | undefined>(undefined);
-
-  const [loading, setLoading] = React.useState<boolean>(false);
 
   const i18n = React.useMemo(() => {
     return {
@@ -64,6 +55,41 @@ export const useScoreBlockHelper = () => {
     }));
   }, [reviewsCount, scoreCounts]);
 
+  const retrieveItems = React.useCallback(
+    async (currentPage: number, pageSize: number, filters?: object) => {
+      const parsedFilters = filters as ReviewsFilters | undefined;
+
+      const res = await fetchGetProductReviews({
+        productId: productId?.value || "",
+        page: currentPage,
+        pageCount: pageSize,
+        filterByRating: parsedFilters?.scoreFilter,
+        sortMode: parsedFilters?.sortFilter,
+      });
+
+      if (res.metadata.success) {
+        if (currentPage < 1) {
+          setReviewsStoreState({
+            scores: res.data.scores,
+            averageScore: res.data.averageScore,
+            productId: res.data.productId,
+            productName: res.data.productName,
+            reviewsCount: res.data.reviewsCount,
+            reviews: res.data.reviews,
+          });
+        } else {
+          addReviews(res.data.reviews);
+        }
+      }
+
+      return {
+        success: res.metadata.success,
+        hasMorePages: res.data?.hasMorePages,
+      };
+    },
+    [addReviews, fetchGetProductReviews, productId?.value, setReviewsStoreState]
+  );
+
   const onClickCreateReview = React.useCallback(() => {
     if (isAuthenticated) {
       //Go to review screen
@@ -84,99 +110,23 @@ export const useScoreBlockHelper = () => {
     showItem(DRAWERS.REVIEW_FILTERS);
   }, [showItem]);
 
-  const requestReviews = React.useCallback(async () => {
-    isFetching.current = true;
-    setLoading(true);
-
-    const res = await fetchGetProductReviews({
-      productId: productId?.value || "",
-      page: currentPage.current,
-      pageCount: 10,
-      filterByRating: scoreFilter,
-      sortMode: sortFilter,
-    });
-
-    if (res.metadata.success) {
-      if (reviewId.value) {
-        res.data.reviews = res.data.reviews.filter(
-          (r) => r.id === reviewId.value
-        );
-      }
-
-      console.log("ZAU", currentPage.current);
-
-      if (currentPage.current < 1) {
-        setReviewsStoreState({
-          scores: res.data.scores,
-          averageScore: res.data.averageScore,
-          productId: res.data.productId,
-          productName: res.data.productName,
-          reviewsCount: res.data.reviewsCount,
-          reviews: res.data.reviews,
-        });
-      } else {
-        addReviews(res.data.reviews);
-      }
-
-      hasMorePages.current = res.data.hasMorePages;
-    }
-
-    setLoading(false);
-    isFetching.current = false;
-    hasRequestedReviewsOnce.current = true;
-  }, [
-    addReviews,
-    fetchGetProductReviews,
-    productId?.value,
-    reviewId.value,
-    scoreFilter,
-    setReviewsStoreState,
-    sortFilter,
-  ]);
-
-  const handleRequestTrigger = React.useCallback(
-    (visible: boolean) => {
-      if (
-        visible &&
-        !isFetching.current &&
-        hasMorePages.current &&
-        reviewId.value === undefined &&
-        hasRequestedReviewsOnce.current
-      ) {
-        currentPage.current += 1;
-        requestReviews();
-      }
+  const onClickScore = React.useCallback(
+    (score: number) => {
+      setReviewsStoreState({ filters: { scoreFilter: score } });
     },
-    [requestReviews, reviewId]
+    [setReviewsStoreState]
   );
-
-  React.useEffect(() => {
-    if (
-      (sortFilterCache.current !== sortFilter ||
-        scoreFilterCache.current !== scoreFilter) &&
-      hasRequestedReviewsOnce.current
-    ) {
-      sortFilterCache.current = sortFilter;
-      scoreFilterCache.current = scoreFilter;
-      currentPage.current = 0;
-
-      requestReviews();
-    }
-  }, [requestReviews, scoreFilter, sortFilter]);
-
-  useDidMount(() => {
-    requestReviews();
-  });
 
   return {
     i18n,
     isInDetailedReview: reviewId.value !== undefined,
-    loading,
     scoreBars,
     averageScore,
     reviews: allReviews || [],
     onClickCreateReview,
-    handleRequestTrigger,
     onClickFilters,
+    retrieveItems,
+    storeFilters,
+    onClickScore,
   };
 };

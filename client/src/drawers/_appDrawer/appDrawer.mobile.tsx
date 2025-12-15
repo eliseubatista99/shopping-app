@@ -4,7 +4,7 @@ import { useAppDrawerHelper } from "./appDrawer.hook";
 
 export const AppDrawerMobile = (props: AppDrawerProps) => {
   const { isVisible, onClickBackground } = useAppDrawerHelper(props);
-  const { topContent, drawerStyles } = props;
+  const { topContent, drawerStyles, childrenStyles } = props;
   return (
     <>
       {isVisible && (
@@ -62,6 +62,7 @@ export const AppDrawerMobile = (props: AppDrawerProps) => {
                 style={{
                   width: "100%",
                   minHeight: "fit-content",
+                  ...childrenStyles,
                 }}
               >
                 {props.children}
