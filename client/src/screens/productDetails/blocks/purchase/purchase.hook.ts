@@ -1,5 +1,5 @@
 import type { ProductDto } from "@api";
-import { DRAWERS, PAGES } from "@constants";
+import { DRAWERS, OVERLAYS, PAGES } from "@constants";
 import {
   useFeedback,
   useNavigation,
@@ -25,7 +25,7 @@ export const usePurchaseBlockHelper = () => {
   const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const currency = useStoreBase((state) => state.currency);
   const { t, translateDate } = useAppTranslations();
-  const { showItem } = useFeedback();
+  const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
   const { goTo } = useNavigation();
 
@@ -103,14 +103,16 @@ export const usePurchaseBlockHelper = () => {
   }, []);
 
   const onClickAddToCart = React.useCallback(
-    (product: ProductDto) => {
+    async (product: ProductDto) => {
       if (isAuthenticated) {
-        addToCart([product.id || ""]);
+        showItem(OVERLAYS.LOADER);
+        await addToCart([product.id || ""]);
+        hideItem(OVERLAYS.LOADER);
       } else {
         goTo({ path: PAGES.LOG_IN });
       }
     },
-    [addToCart, goTo, isAuthenticated]
+    [addToCart, goTo, hideItem, isAuthenticated, showItem]
   );
 
   const onClickBuyNow = React.useCallback(() => {

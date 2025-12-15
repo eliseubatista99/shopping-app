@@ -1,6 +1,9 @@
 import { type ProductDto } from "@api";
-import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
+import {
+  useFeedback,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
 import { useCart } from "@hooks";
 import { useStoreAuthentication, useStoreProduct } from "@store";
 import React from "react";
@@ -11,6 +14,7 @@ export const useCombinationBlockHelper = () => {
   );
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const { addToCart } = useCart();
+  const { showItem, hideItem } = useFeedback();
   const { goTo } = useNavigation();
 
   const [expanded, setExpanded] = React.useState(false);
@@ -37,14 +41,16 @@ export const useCombinationBlockHelper = () => {
   );
 
   const onClickAddToCart = React.useCallback(
-    (products: ProductDto[]) => {
+    async (products: ProductDto[]) => {
       if (isAuthenticated) {
-        addToCart(products.map((p) => p.id || ""));
+        showItem(OVERLAYS.LOADER);
+        await addToCart(products.map((p) => p.id || ""));
+        hideItem(OVERLAYS.LOADER);
       } else {
         goTo({ path: PAGES.LOG_IN });
       }
     },
-    [addToCart, goTo, isAuthenticated]
+    [addToCart, goTo, hideItem, isAuthenticated, showItem]
   );
 
   const onClickProduct = React.useCallback(
