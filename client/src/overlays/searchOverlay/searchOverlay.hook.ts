@@ -9,6 +9,7 @@ import React from "react";
 
 export const useOverlaySearchHelper = () => {
   const addSearch = useStoreSearch((state) => state.addSearch);
+  const deleteSearch = useStoreSearch((state) => state.deleteSearch);
   const moveEntryToStart = useStoreSearch((state) => state.moveEntryToStart);
   const previousSearches = useStoreSearch((state) => state.previousSearches);
   // const setProductFilters = useStoreProduct((state) => state.setProductFilters);
@@ -51,6 +52,13 @@ export const useOverlaySearchHelper = () => {
     [goToList, moveEntryToStart]
   );
 
+  const clickRemoveEntry = React.useCallback(
+    async (text: SearchHistoryEntry) => {
+      deleteSearch(text.id);
+    },
+    [deleteSearch]
+  );
+
   const onClickBack = React.useCallback(() => {
     hideItem(OVERLAYS.SEARCH);
   }, [hideItem]);
@@ -60,5 +68,6 @@ export const useOverlaySearchHelper = () => {
     submitSearch,
     onClickBack,
     clickSearchFromHistory,
+    clickRemoveEntry,
   };
 };

@@ -1,3 +1,4 @@
+import { Assets } from "@assets";
 import { AppHeader } from "@components";
 import { OVERLAYS } from "@constants";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
@@ -10,6 +11,7 @@ export const OverlaySearchMobile: React.FC = () => {
     submitSearch,
     onClickBack,
     clickSearchFromHistory,
+    clickRemoveEntry,
   } = useOverlaySearchHelper();
 
   const previousSearchesJSX = previousSearches?.map((p, index) => (
@@ -21,13 +23,24 @@ export const OverlaySearchMobile: React.FC = () => {
         borderTop: index === 0 ? undefined : "1px solid #5f5f5f54",
         padding: "10px 15px",
         gap: "20px",
+        alignItems: "center",
+        justifyContent: "space-between",
       }}
-      onClick={() => clickSearchFromHistory(p)}
     >
-      <Typography styles={{ fontSize: "24px", fontWeight: 500 }}>
-        {"⌕"}
-      </Typography>
-      <Typography styles={{ lineHeight: 2 }}>{p.value}</Typography>
+      <div
+        onClick={() => clickSearchFromHistory(p)}
+        style={{ flexDirection: "row", gap: "20px", alignItems: "center" }}
+      >
+        <Typography styles={{ fontSize: "24px", fontWeight: 500 }}>
+          {"⌕"}
+        </Typography>
+        <Typography styles={{ lineHeight: 2 }}>{p?.value}</Typography>
+      </div>
+      <Assets.Icons.Close
+        width="15px"
+        height="15px"
+        onClick={() => clickRemoveEntry(p)}
+      />
     </div>
   ));
 

@@ -52,7 +52,7 @@ export const useStoreSearch = StoreHelper.createStore<UseStoreOutput>(
 
           return {
             ...state,
-            previousSearches: [...(state.previousSearches || []), newEntry],
+            previousSearches: [newEntry, ...(state.previousSearches || [])],
           };
         }),
         false,
@@ -64,7 +64,7 @@ export const useStoreSearch = StoreHelper.createStore<UseStoreOutput>(
         produce((state: SearchState) => ({
           ...state,
           previousSearches: (state.previousSearches || []).filter(
-            (s) => s.id !== id
+            (s) => s !== null && s !== undefined && s.id !== id
           ),
         })),
         false,
@@ -74,9 +74,9 @@ export const useStoreSearch = StoreHelper.createStore<UseStoreOutput>(
     moveEntryToStart: function (id: string) {
       set(
         produce((state: SearchState) => {
-          const entry = state.previousSearches?.find((s) => s.id === id);
+          const entry = state.previousSearches?.find((s) => s?.id === id);
           const remaining = (state.previousSearches || []).filter(
-            (s) => s.id !== id
+            (s) => s !== null && s !== undefined && s.id !== id
           );
 
           return {
