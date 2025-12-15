@@ -5,7 +5,6 @@ import {
   Typography,
   type CarouselSlideProps,
 } from "@eliseubatista99/react-scaffold-core";
-import { AddressHelper } from "@helpers";
 import { AppDrawer } from "../_appDrawer";
 import { useSelectAddressDrawerHelper } from "./selectAddress.hook";
 
@@ -20,7 +19,7 @@ export const DrawerSelectAddressMobile = () => {
   } = useSelectAddressDrawerHelper();
 
   const addressesJSX = (addresses || []).map((a): CarouselSlideProps => {
-    const isSelected = AddressHelper.equals(a, selectedAddress);
+    const isSelected = a.id === selectedAddress?.id;
 
     return {
       content: (
@@ -47,10 +46,6 @@ export const DrawerSelectAddressMobile = () => {
       canBeClosed={!loading}
       drawerStyles={{ gap: "12px" }}
     >
-      <AppLoader
-        visible={loading}
-        styles={{ zIndex: 1, background: "#ffffff" }}
-      />
       <Typography
         styles={{
           fontSize: "18px",
@@ -59,20 +54,29 @@ export const DrawerSelectAddressMobile = () => {
       >
         {i18n.title}
       </Typography>
-      <Typography
-        styles={{
-          fontSize: "14px",
-        }}
-      >
-        {i18n.subtitle}
-      </Typography>
-      <Carousel content={addressesJSX} settings={{ slidesToShow: 2 }} />
+      {!loading && (
+        <>
+          <Typography
+            styles={{
+              fontSize: "14px",
+            }}
+          >
+            {i18n.subtitle}
+          </Typography>
+          <Carousel content={addressesJSX} settings={{ slidesToShow: 2 }} />
 
-      <AppButton
-        text={{
-          content: i18n.button,
-        }}
-        onClick={handleSubmit}
+          <AppButton
+            text={{
+              content: i18n.button,
+            }}
+            onClick={handleSubmit}
+          />
+        </>
+      )}
+
+      <AppLoader
+        visible={loading}
+        styles={{ zIndex: 1, background: "#ffffff" }}
       />
     </AppDrawer>
   );

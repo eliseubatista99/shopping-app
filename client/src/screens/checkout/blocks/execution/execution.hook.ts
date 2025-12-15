@@ -1,4 +1,6 @@
 import { Api } from "@api";
+import { OVERLAYS } from "@constants";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import {
   useStoreAddresses,
@@ -9,6 +11,7 @@ import React from "react";
 
 export const useExecutionBlockHelper = () => {
   const { t } = useAppTranslations();
+  const { showItem, hideItem } = useFeedback();
   const { fetchExecutePurchaseInfo } = Api.ExecutePurchase();
   const wantsFastestOption = useStoreCheckout(
     (state) => state.wantsFastestOption
@@ -26,6 +29,7 @@ export const useExecutionBlockHelper = () => {
   }, [t]);
 
   const onClickBuyNow = React.useCallback(async () => {
+    showItem(OVERLAYS.LOADER);
     const res = await fetchExecutePurchaseInfo({
       products: products || [],
       addressId: selectedAddress?.id || "",
@@ -36,11 +40,15 @@ export const useExecutionBlockHelper = () => {
     if (res.metadata.success) {
       //
     }
+
+    hideItem(OVERLAYS.LOADER);
   }, [
     fetchExecutePurchaseInfo,
+    hideItem,
     products,
     selectedAddress?.id,
     selectedPaymentMethod?.id,
+    showItem,
     wantsFastestOption,
   ]);
 

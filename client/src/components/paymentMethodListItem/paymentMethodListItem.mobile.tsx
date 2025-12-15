@@ -11,6 +11,7 @@ export const PaymentMethodListItemMobile: React.FC<
 
   const {
     paymentMethod,
+    onClick,
     onClickDelete,
     onClickEdit,
     onClickSetDefault,
@@ -43,6 +44,15 @@ export const PaymentMethodListItemMobile: React.FC<
   return (
     <div
       data-testid="paymentMethodListItem"
+      onClick={
+        onClick
+          ? (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onClick();
+            }
+          : undefined
+      }
       style={{
         width: "100%",
         border: "1px solid #bababaff",

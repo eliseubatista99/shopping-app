@@ -1,9 +1,12 @@
+import { DRAWERS } from "@constants";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreCheckout, useStorePaymentMethods } from "@store";
 import React from "react";
 
 export const usePaymentBlockHelper = () => {
   const { t, translatePaymentMethod } = useAppTranslations();
+  const { showItem } = useFeedback();
   const products = useStoreCheckout((state) => state.products);
   const productCost = useStoreCheckout((state) => state.productCost);
   const shippingCost = useStoreCheckout((state) => state.shippingCost);
@@ -18,7 +21,7 @@ export const usePaymentBlockHelper = () => {
   const fastestDeliveryCost = useStoreCheckout(
     (state) => state.fastestDeliveryCost || 0
   );
-  const recalculate = useStoreCheckout((state) => state.recalculate);
+  // const recalculate = useStoreCheckout((state) => state.recalculate);
 
   const i18n = React.useMemo(() => {
     return {
@@ -33,9 +36,10 @@ export const usePaymentBlockHelper = () => {
   }, [selectedPaymentMethod, t, translatePaymentMethod]);
 
   const onClickChangePayment = React.useCallback(() => {
+    showItem(DRAWERS.SELECT_PAYMENT_METHOD);
     //DO SOMETHING
-    recalculate();
-  }, [recalculate]);
+    // recalculate();
+  }, [showItem]);
 
   return {
     i18n,

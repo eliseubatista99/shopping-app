@@ -12,6 +12,8 @@ export const useSelectAddressDrawerHelper = () => {
   const selectedAddressInStore = useStoreAddresses(
     (state) => state.selectedAddress
   );
+  const addresses = useStoreAddresses((state) => state.addresses);
+  const setAddresses = useStoreAddresses((state) => state.setAddresses);
 
   const { fetchSetDefaultAddress } = Api.SetDefaultAddress();
   const { t } = useAppTranslations();
@@ -51,6 +53,9 @@ export const useSelectAddressDrawerHelper = () => {
 
     clientData.addresses = res.data.updatedAddresses || [];
     setClientInfo(clientData);
+    setAddresses(res.data.updatedAddresses);
+
+    setSelectedAddress(res.data.updatedAddresses.find((a) => a.isDefault));
 
     setLoading(false);
 
@@ -59,6 +64,7 @@ export const useSelectAddressDrawerHelper = () => {
     fetchSetDefaultAddress,
     hideItem,
     selectedAddress,
+    setAddresses,
     setClientInfo,
     storeClient,
   ]);
@@ -69,6 +75,6 @@ export const useSelectAddressDrawerHelper = () => {
     handleAddressSelected,
     handleSubmit,
     selectedAddress,
-    addresses: storeClient?.addresses,
+    addresses,
   };
 };

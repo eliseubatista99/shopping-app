@@ -8,6 +8,7 @@ import {
   OrderFiltersDrawer,
   ReviewFiltersDrawer,
   SelectAddressDrawer,
+  SelectPaymentMethodDrawer,
 } from "@drawers";
 import {
   FeedbackProvider,
@@ -170,6 +171,7 @@ export const App = () => {
         <GenericApiErrorModal />
         <TryAgainClientInfoModal />
 
+        <SelectPaymentMethodDrawer />
         <SelectAddressDrawer />
         <AddAddressDrawer />
         <EditAddressDrawer />

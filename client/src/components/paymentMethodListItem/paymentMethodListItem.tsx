@@ -9,6 +9,7 @@ export interface PaymentMethodListItemProps {
   imageSize?: number;
   customText?: string;
   showDefaultTag?: boolean;
+  onClick?: () => void;
   onClickEdit?: () => void;
   onClickDelete?: () => void;
   onClickSetDefault?: () => void;

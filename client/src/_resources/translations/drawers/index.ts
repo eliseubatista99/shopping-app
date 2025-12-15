@@ -6,9 +6,11 @@ import { translationsDrawerEditCardPaymentMethod } from "./editCardPaymentMethod
 import { translationsDrawerOrderFilters } from "./orderFilters";
 import { translationsDrawerReviewFilters } from "./reviewFilters";
 import { translationsDrawerSelectAddress } from "./selectAddress";
+import { translationsDrawerSelectPaymentMethod } from "./selectPaymentMethod";
 
 export const translationsDrawers: TranslationList = {
   ...translationsDrawerSelectAddress,
+  ...translationsDrawerSelectPaymentMethod,
   ...translationsDrawerReviewFilters,
   ...translationsDrawerOrderFilters,
   ...translationsDrawerAddCardPaymentMethod,
