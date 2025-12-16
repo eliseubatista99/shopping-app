@@ -6,39 +6,21 @@ import {
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useCart } from "@hooks";
 import { useStoreAuthentication, type ProductFilters } from "@store";
-import React, { useMemo } from "react";
+import React from "react";
 
 export const useProductsBlockHelper = () => {
   const isAuthenticated = useStoreAuthentication(
     (state) => state.isAuthenticated
   );
+
+  const { searchFilters } = useAppSearchParams();
+
   const { fetchSearchProducts } = Api.SearchProducts();
   const { goTo } = useNavigation();
-  const searchParams = useAppSearchParams();
   const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
 
   const [products, setProducts] = React.useState<ProductDto[]>([]);
-
-  const filters = useMemo((): ProductFilters => {
-    return {
-      text: searchParams.searchText.value,
-      score: searchParams.searchScore.value,
-      maxPrice: searchParams.searchMaxPrice.value,
-      minPrice: searchParams.searchMinPrice.value,
-      bestSeller: searchParams.searchBestSeller.value,
-      freeShipping: searchParams.searchFreeShipping.value,
-      category: searchParams.searchCategory.value,
-    };
-  }, [
-    searchParams.searchBestSeller.value,
-    searchParams.searchCategory.value,
-    searchParams.searchFreeShipping.value,
-    searchParams.searchMaxPrice.value,
-    searchParams.searchMinPrice.value,
-    searchParams.searchScore.value,
-    searchParams.searchText.value,
-  ]);
 
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
@@ -79,6 +61,7 @@ export const useProductsBlockHelper = () => {
         bestSeller: parsedFilters?.bestSeller,
         freeShipping: parsedFilters?.freeShipping,
         category: parsedFilters?.category,
+        sort: parsedFilters?.sort,
       });
 
       if (res.metadata.success) {
@@ -105,6 +88,6 @@ export const useProductsBlockHelper = () => {
     retrieveItems,
     onClickProduct,
     onClickAddToCart,
-    filters,
+    filters: searchFilters.value,
   };
 };

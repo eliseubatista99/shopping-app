@@ -69,8 +69,8 @@ export const useReviewFiltersDrawerHelper = () => {
     [sortFilter]
   );
 
-  const onClickScoreFilter = React.useCallback((value: number) => {
-    setScoreFilter(value);
+  const onClickScoreFilter = React.useCallback((value?: number) => {
+    setScoreFilter(value || 0);
   }, []);
 
   const onClose = React.useCallback(() => {

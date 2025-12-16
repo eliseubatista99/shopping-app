@@ -5,35 +5,12 @@ import { type ProductFilters } from "@store";
 import React from "react";
 
 export const useProductFiltersDrawerHelper = () => {
-  const searchParams = useAppSearchParams();
-
-  const storeFilters = React.useMemo(
-    (): ProductFilters => ({
-      text: searchParams.searchText.value,
-      score: searchParams.searchScore.value,
-      maxPrice: searchParams.searchMaxPrice.value,
-      minPrice: searchParams.searchMinPrice.value,
-      bestSeller: searchParams.searchBestSeller.value,
-      freeShipping: searchParams.searchFreeShipping.value,
-      category: searchParams.searchCategory.value,
-      sort: searchParams.sort.value,
-    }),
-    [
-      searchParams.searchBestSeller.value,
-      searchParams.searchCategory.value,
-      searchParams.searchFreeShipping.value,
-      searchParams.searchMaxPrice.value,
-      searchParams.searchMinPrice.value,
-      searchParams.searchScore.value,
-      searchParams.searchText.value,
-      searchParams.sort.value,
-    ]
-  );
+  const { searchFilters } = useAppSearchParams();
 
   const { t } = useAppTranslations();
 
   const [newFilters, setNewFilters] = React.useState<ProductFilters>(
-    storeFilters || {}
+    searchFilters.value || {}
   );
 
   const i18n = React.useMemo(() => {
@@ -93,31 +70,15 @@ export const useProductFiltersDrawerHelper = () => {
     [newFilters.sort]
   );
 
-  const onClickScoreFilter = React.useCallback((value: number) => {
+  const onClickScoreFilter = React.useCallback((value?: number) => {
     setNewFilters((prevState) => ({ ...prevState, score: value }));
   }, []);
 
   const onClose = React.useCallback(() => {
-    if (!ObjectsHelper.isSameObject(newFilters, storeFilters)) {
-      searchParams.searchScore.set(newFilters.score);
-      searchParams.searchMaxPrice.set(newFilters.maxPrice);
-      searchParams.searchMinPrice.set(newFilters.minPrice);
-      searchParams.searchBestSeller.set(newFilters.bestSeller);
-      searchParams.searchFreeShipping.set(newFilters.freeShipping);
-      searchParams.searchCategory.set(newFilters.category);
-      searchParams.sort.set(newFilters.sort);
+    if (!ObjectsHelper.isSameObject(newFilters, searchFilters)) {
+      searchFilters.set(newFilters);
     }
-  }, [
-    newFilters,
-    searchParams.searchBestSeller,
-    searchParams.searchCategory,
-    searchParams.searchFreeShipping,
-    searchParams.searchMaxPrice,
-    searchParams.searchMinPrice,
-    searchParams.searchScore,
-    searchParams.sort,
-    storeFilters,
-  ]);
+  }, [newFilters, searchFilters]);
 
   return {
     i18n,

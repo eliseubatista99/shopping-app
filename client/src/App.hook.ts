@@ -17,7 +17,7 @@ export const useAppHelper = () => {
     getClientInfo();
   });
 
-  console.log("ZAU", { isReady, isAuthenticated, clientInfo });
+  // console.log("ZAU", { isReady, isAuthenticated, clientInfo });
 
   return {
     isReady,

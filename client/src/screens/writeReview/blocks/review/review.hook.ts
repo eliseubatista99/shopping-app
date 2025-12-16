@@ -46,8 +46,8 @@ export const useReviewBlockHelper = () => {
     };
   }, [t]);
 
-  const onScoreChange = (value: number) => {
-    setScore(value);
+  const onScoreChange = (value?: number) => {
+    setScore(value || 0);
   };
 
   const submitReview = React.useCallback(

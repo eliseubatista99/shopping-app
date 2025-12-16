@@ -7,7 +7,7 @@ export interface ReviewScoreInputProps {
   value: number;
   starsSize?: number;
   styles?: React.CSSProperties;
-  onClick?: (value: number) => void;
+  onClick?: (value?: number) => void;
 }
 
 export const ReviewScoreInput: React.FC<ReviewScoreInputProps> = (props) => {

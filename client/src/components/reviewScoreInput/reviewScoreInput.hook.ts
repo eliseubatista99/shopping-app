@@ -20,10 +20,10 @@ export const useReviewScoreInputHelper = ({
     };
   }, [t]);
 
-  const onClickStar = (index: number) => {
-    if (index > 5) {
+  const onClickStar = (index?: number) => {
+    if (index !== undefined && index > 5) {
       index = 5;
-    } else if (index < 0) {
+    } else if (index !== undefined && index < 0) {
       index = 0;
     }
 

@@ -41,7 +41,7 @@ export const ReviewScoreInputMobile: React.FC<ReviewScoreInputProps> = (
         {scoreJSX}
       </div>
       {value > 0 && (
-        <div onClick={() => onClickStar(0)}>
+        <div onClick={() => onClickStar(undefined)}>
           <Typography styles={{ fontSize: "16px", color: "#0a0d42ff" }}>
             {i18n.title}
           </Typography>

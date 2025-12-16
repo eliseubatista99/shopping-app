@@ -1,6 +1,7 @@
 import type { SortMode } from "@api";
 import { SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
+import type { ProductFilters } from "@store";
 
 export const useAppSearchParams = () => {
   const { searchParams } = useNavigation();
@@ -13,52 +14,36 @@ export const useAppSearchParams = () => {
     productId: {
       value: searchParams.get<string>(SEARCH_PARAMS.PRODUCT_ID) ?? undefined,
     },
-    searchText: {
-      value: searchParams.get<string>(SEARCH_PARAMS.SEARCH_TEXT) ?? undefined,
-      set: (val: string | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SEARCH_TEXT, val),
-    },
-    searchScore: {
-      value: searchParams.get<number>(SEARCH_PARAMS.SEARCH_SCORE) ?? undefined,
-      set: (val: number | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SEARCH_SCORE, val),
-    },
-    searchMaxPrice: {
-      value:
-        searchParams.get<number>(SEARCH_PARAMS.SEARCH_MAX_PRICE) ?? undefined,
-      set: (val: number | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SEARCH_MAX_PRICE, val),
-    },
-    searchMinPrice: {
-      value:
-        searchParams.get<number>(SEARCH_PARAMS.SEARCH_MIN_PRICE) ?? undefined,
-      set: (val: number | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SEARCH_MIN_PRICE, val),
-    },
-    searchBestSeller: {
-      value:
-        searchParams.get<boolean>(SEARCH_PARAMS.SEARCH_BEST_SELLER) ??
-        undefined,
-      set: (val: boolean | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SEARCH_BEST_SELLER, val),
-    },
-    searchFreeShipping: {
-      value:
-        searchParams.get<boolean>(SEARCH_PARAMS.SEARCH_FREE_SHIPPING) ??
-        undefined,
-      set: (val: boolean | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SEARCH_FREE_SHIPPING, val),
-    },
-    searchCategory: {
-      value:
-        searchParams.get<string>(SEARCH_PARAMS.SEARCH_CATEGORY) ?? undefined,
-      set: (val: string | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SEARCH_CATEGORY, val),
-    },
-    sort: {
-      value: searchParams.get<SortMode>(SEARCH_PARAMS.SORT) ?? undefined,
-      set: (val: SortMode | undefined) =>
-        searchParams.set(SEARCH_PARAMS.SORT, val),
+    searchFilters: {
+      value: {
+        text: searchParams.get<string>(SEARCH_PARAMS.SEARCH_TEXT) ?? undefined,
+        score:
+          searchParams.get<number>(SEARCH_PARAMS.SEARCH_SCORE) ?? undefined,
+        maxPrice:
+          searchParams.get<number>(SEARCH_PARAMS.SEARCH_MAX_PRICE) ?? undefined,
+        minPrice:
+          searchParams.get<number>(SEARCH_PARAMS.SEARCH_MIN_PRICE) ?? undefined,
+        bestSeller:
+          searchParams.get<boolean>(SEARCH_PARAMS.SEARCH_BEST_SELLER) ??
+          undefined,
+        freeShipping:
+          searchParams.get<boolean>(SEARCH_PARAMS.SEARCH_FREE_SHIPPING) ??
+          undefined,
+        category:
+          searchParams.get<string>(SEARCH_PARAMS.SEARCH_CATEGORY) ?? undefined,
+        sort: searchParams.get<SortMode>(SEARCH_PARAMS.SORT) ?? undefined,
+      } as ProductFilters,
+      set: (val: ProductFilters | undefined) =>
+        searchParams.setMany({
+          [SEARCH_PARAMS.SEARCH_TEXT]: val?.text,
+          [SEARCH_PARAMS.SEARCH_SCORE]: val?.score,
+          [SEARCH_PARAMS.SEARCH_MAX_PRICE]: val?.maxPrice,
+          [SEARCH_PARAMS.SEARCH_MIN_PRICE]: val?.minPrice,
+          [SEARCH_PARAMS.SEARCH_BEST_SELLER]: val?.bestSeller,
+          [SEARCH_PARAMS.SEARCH_FREE_SHIPPING]: val?.freeShipping,
+          [SEARCH_PARAMS.SEARCH_CATEGORY]: val?.category,
+          [SEARCH_PARAMS.SORT]: val?.sort,
+        }),
     },
     reviewId: {
       value: searchParams.get<string>(SEARCH_PARAMS.REVIEW_ID) ?? undefined,

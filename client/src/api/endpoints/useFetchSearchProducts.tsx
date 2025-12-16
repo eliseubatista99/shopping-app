@@ -1,6 +1,6 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDto } from "../types";
+import type { ProductDto, SortMode } from "../types";
 
 export type SearchProductsInputDto = {
   page?: number;
@@ -12,6 +12,7 @@ export type SearchProductsInputDto = {
   bestSeller?: boolean;
   freeShipping?: boolean;
   category?: string;
+  sort?: SortMode;
 };
 
 export type SearchProductsOutputDto = {
