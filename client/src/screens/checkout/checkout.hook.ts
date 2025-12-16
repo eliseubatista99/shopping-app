@@ -1,0 +1,82 @@
+import { Api } from "@api";
+import { PAGES } from "@constants";
+import {
+  useDidMount,
+  useNavigation,
+} from "@eliseubatista99/react-scaffold-core";
+import {
+  useStoreAddresses,
+  useStoreCheckout,
+  useStorePaymentMethods,
+} from "@store";
+import React from "react";
+
+export const useCheckoutPageHelper = () => {
+  const { goTo } = useNavigation();
+
+  const isFetching = React.useRef(false);
+
+  const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
+  const selectedPaymentMethod = useStorePaymentMethods(
+    (state) => state.selectedPaymentMethod
+  );
+  const productsInStore = useStoreCheckout((state) => state.products);
+  const setCheckoutStoreState = useStoreCheckout(
+    (state) => state.setCheckoutStoreState
+  );
+  const recalculate = useStoreCheckout((state) => state.recalculate);
+
+  const { fetchGetCheckoutInfo } = Api.GetCheckoutInfo();
+
+  const [loading, setLoading] = React.useState(true);
+
+  const initScreen = React.useCallback(async () => {
+    if (isFetching.current) {
+      return;
+    }
+
+    isFetching.current = true;
+    setLoading(true);
+
+    if ((productsInStore || []).length < 1) {
+      goTo({
+        path: PAGES.NOT_FOUND,
+        addToHistory: false,
+      });
+    }
+
+    const res = await fetchGetCheckoutInfo({
+      productIds: (productsInStore || []).map((p) => p.id || ""),
+      addressId: selectedAddress?.id || "",
+      paymentMethodId: selectedPaymentMethod?.id || "",
+    });
+
+    setCheckoutStoreState({
+      shippingCost: res.data.shippingCost,
+      startDeliveryDate: res.data.startDeliveryDate,
+      endDeliveryDate: res.data.endDeliveryDate,
+      fastestDeliveryCost: res.data.fastestDeliveryCost,
+    });
+    recalculate();
+
+    isFetching.current = false;
+    setLoading(false);
+  }, [
+    fetchGetCheckoutInfo,
+    goTo,
+    productsInStore,
+    recalculate,
+    selectedAddress?.id,
+    selectedPaymentMethod?.id,
+    setCheckoutStoreState,
+  ]);
+
+  useDidMount(() => {
+    initScreen();
+  });
+
+  return {
+    products: productsInStore,
+    loading,
+  };
+};

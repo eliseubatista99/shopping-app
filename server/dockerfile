@@ -1,0 +1,18 @@
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /server
+COPY . . 
+RUN dotnet publish -c Release -o /app
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+WORKDIR /app
+
+EXPOSE 5000
+COPY --from=build /app .
+
+# Define URL to listen to in all interfaces (necessary for docker)
+ENV ASPNETCORE_URLS=http://+:5000
+
+# Executar a app
+ENTRYPOINT ["dotnet", "ShoppingServer.dll"]

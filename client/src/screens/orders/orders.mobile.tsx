@@ -1,0 +1,39 @@
+import { AppLayout, AppLoader, AuthenticatedScreen } from "@components";
+import { PAGES } from "@constants";
+import { FiltersBlock, OrdersListBlock } from "./blocks";
+import { useOrdersPageHelper } from "./orders.hook";
+
+export const OrdersMobile: React.FC = () => {
+  const { loading } = useOrdersPageHelper();
+
+  return (
+    <AppLayout
+      appFooter
+      appHeader={{
+        back: {
+          visible: true,
+          styles: {
+            color: "#000000",
+          },
+        },
+        searchBar: {
+          visible: true,
+        },
+        styles: {
+          background: "#ff7300ff",
+        },
+      }}
+      pageStyles={{ padding: 0 }}
+    >
+      <AuthenticatedScreen returnPage={PAGES.ORDERS}>
+        {loading && <AppLoader visible={loading} />}
+        {!loading && (
+          <>
+            <FiltersBlock />
+            <OrdersListBlock />
+          </>
+        )}
+      </AuthenticatedScreen>
+    </AppLayout>
+  );
+};

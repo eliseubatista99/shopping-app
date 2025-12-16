@@ -1,0 +1,78 @@
+import {
+  AppButton,
+  AppInputField,
+  AppTextArea,
+  ReviewScoreInput,
+} from "@components";
+import { INPUTS } from "@constants";
+import { Form, Typography } from "@eliseubatista99/react-scaffold-core";
+import { useReviewBlockHelper } from "./review.hook";
+
+export const ReviewBlockMobile: React.FC = () => {
+  const { i18n, score, onScoreChange, onSubmit, form, formConfiguration } =
+    useReviewBlockHelper();
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        alignItems: "center",
+        flex: 1,
+      }}
+    >
+      <div style={{ width: "100%", padding: "20px 0" }}>
+        <ReviewScoreInput
+          value={score}
+          onClick={(value) => onScoreChange(value)}
+          styles={{ padding: "0 5px" }}
+        />
+        {form.scoreError && (
+          <Typography
+            styles={{ fontSize: "16px", fontWeight: 600, color: "#de1616ff" }}
+          >
+            {form.scoreError}
+          </Typography>
+        )}
+      </div>
+
+      <Form
+        configurations={formConfiguration}
+        submitButton={{
+          content: (
+            <AppButton
+              text={{
+                content: i18n.description.title,
+                props: {
+                  styles: {
+                    fontSize: "16px",
+                  },
+                },
+              }}
+              styles={{ width: "100%", padding: "20px" }}
+            />
+          ),
+          styles: {
+            marginTop: "auto",
+          },
+        }}
+        onSubmit={onSubmit}
+        styles={{ flex: 1, gap: "30px" }}
+      >
+        <AppTextArea
+          label={i18n.description.title}
+          name={INPUTS.REVIEW_DESCRIPTION}
+          placeHolder={i18n.description.placeholder}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.descriptionError}
+        />
+        <AppInputField
+          label={i18n.title.title}
+          name={INPUTS.REVIEW_TITLE}
+          placeHolder={i18n.title.placeholder}
+          inputStyles={{ padding: "10px" }}
+          bottomMessage={form.titleError}
+        />
+      </Form>
+    </div>
+  );
+};

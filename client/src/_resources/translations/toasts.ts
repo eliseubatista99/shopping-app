@@ -1,0 +1,12 @@
+import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
+
+export const translationsToasts: TranslationList = {
+  "toasts.reviewSubmitted.text": {
+    pt: "Avaliação submetida",
+    en: "Review submitted",
+  },
+  "toasts.clientInfoChanged.text": {
+    pt: "Informação atualizada",
+    en: "Information updated",
+  },
+};

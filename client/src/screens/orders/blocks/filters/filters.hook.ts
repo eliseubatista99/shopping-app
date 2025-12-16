@@ -1,0 +1,53 @@
+import { DRAWERS } from "@constants";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { useAppTranslations } from "@hooks";
+import { useStoreOrders } from "@store";
+import React from "react";
+
+export const useFiltersBlockHelper = () => {
+  const { t } = useAppTranslations();
+  const { showItem } = useFeedback();
+
+  const storeFilters = useStoreOrders((state) => state.filters);
+  const setOrderFilters = useStoreOrders((state) => state.setOrderFilters);
+
+  const [isSearchFocused, setIsSearchFocused] = React.useState(false);
+
+  const i18n = React.useMemo(() => {
+    return {
+      placeholder: t("orders.filters.search.placeholder"),
+      filters: t("global.filters"),
+    };
+  }, [t]);
+
+  const onSearchBarFocus = React.useCallback(() => {
+    setIsSearchFocused(true);
+  }, []);
+
+  const onSearchBarBlur = React.useCallback(() => {
+    setIsSearchFocused(false);
+  }, []);
+
+  const onClickFilters = React.useCallback(() => {
+    showItem(DRAWERS.ORDER_FILTERS);
+  }, [showItem]);
+
+  const submitSearch = React.useCallback(
+    async (text: string) => {
+      setOrderFilters({
+        textFilter: text,
+      });
+    },
+    [setOrderFilters]
+  );
+
+  return {
+    i18n,
+    currentTextFilter: storeFilters?.textFilter,
+    isSearchFocused,
+    submitSearch,
+    onSearchBarFocus,
+    onSearchBarBlur,
+    onClickFilters,
+  };
+};

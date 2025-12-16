@@ -1,0 +1,148 @@
+import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
+
+export const translationsGlobal: TranslationList = {
+  "global.language.en": {
+    pt: "Inglês",
+    en: "English",
+  },
+  "global.language.pt": {
+    pt: "Português",
+    en: "Portuguese",
+  },
+  "global.filters": {
+    pt: "Filtros",
+    en: "Filters",
+  },
+  "global.actions.removeFromCart.single": {
+    pt: "Remover",
+    en: "Remove",
+  },
+  "global.actions.addToCart.single": {
+    pt: "Adicionar ao carrinho",
+    en: "Add to cart",
+  },
+  "global.actions.addToCart.multiple": {
+    pt: "Adicionar {{count}} ao carrinho",
+    en: "Add {{count}} to cart",
+  },
+  "global.actions.buyNow": {
+    pt: "Comprar já",
+    en: "Buy now",
+  },
+  "global.tag.bestSeller": {
+    pt: "Mais vendido",
+    en: "Best seller",
+  },
+  "global.tag.freeShipping": {
+    pt: "Envio grátis",
+    en: "Free shipping",
+  },
+  "global.searchBar.placeholder": {
+    pt: "Pesquisa",
+    en: "Search",
+  },
+  "global.quantityField.placeholder": {
+    pt: "Quantidade: {{value}}",
+    en: "Quantity: {{value}}",
+  },
+  "global.score.countOfMax": {
+    pt: "{{score}} de {{max}}",
+    en: "{{score}} of {{max}}",
+  },
+  "reviewScoreInput.clear": {
+    pt: "Limpar",
+    en: "Clear",
+  },
+  "scoreBar.score.stars.single": {
+    pt: "1 Estrela",
+    en: "1 Star",
+  },
+  "scoreBar.score.stars.multiple": {
+    pt: "{{count}} Estrelas",
+    en: "{{count}} Stars",
+  },
+  "global.filters.sort.LowToHighPrice": {
+    pt: "Preço: Ascendente",
+    en: "Price: Low To High",
+  },
+  "global.filters.sort.HighToLowPrice": {
+    pt: "Preço: Descendente",
+    en: "Price: High To Low",
+  },
+  "global.filters.sort.LowToHighScore": {
+    pt: "Classificação: Ascendente",
+    en: "Score: Low To High",
+  },
+  "global.filters.sort.HightToLowScore": {
+    pt: "Classificação: Ascendente",
+    en: "Score: High To Low",
+  },
+  "global.filters.sort.OldToNew": {
+    pt: "Mais antigos primeiro",
+    en: "Oldest first",
+  },
+  "global.filters.sort.NewToOld": {
+    pt: "Mais recentes primeiro",
+    en: "Newest first",
+  },
+  "global.filters.orderStatus.Processing": {
+    pt: "Em processamento",
+    en: "Processing",
+  },
+  "global.filters.orderStatus.Sent": {
+    pt: "Enviado",
+    en: "Sent",
+  },
+  "global.filters.orderStatus.InDelivery": {
+    pt: "Em entrega",
+    en: "In Delivery",
+  },
+  "global.filters.orderStatus.Delivered": {
+    pt: "Entregue",
+    en: "Delivered",
+  },
+  "global.filters.orderStatus.Cancelled": {
+    pt: "Cancelado",
+    en: "Cancelled",
+  },
+  "global.card.network.Mastercard": {
+    pt: "Mastercard",
+    en: "Mastercard",
+  },
+  "global.card.network.Visa": {
+    pt: "Visa",
+    en: "Visa",
+  },
+  "global.actions.seeAll": {
+    pt: "Ver tudo",
+    en: "See all",
+  },
+  "global.orderStatus.history.Sent": {
+    pt: "Enviado a {{date}}",
+    en: "Sent in {{date}}",
+  },
+  "global.orderStatus.history.Delivered": {
+    pt: "Entregue a {{date}}",
+    en: "Delivered in {{date}}",
+  },
+  "global.orderStatus.history.Processing": {
+    pt: "Em processamento",
+    en: "In process",
+  },
+  "global.orderStatus.history.InDelivery": {
+    pt: "Em entrega",
+    en: "In Delivery",
+  },
+  "global.orderStatus.history.Cancelled": {
+    pt: "Cancelado a {{date}}",
+    en: "Cancelled in {{date}}",
+  },
+  "global.paymentMethod.card.name": {
+    pt: "Pagar com {{name}} {{card}}",
+    en: "Pay with {{name}} {{card}}",
+  },
+  "global.paymentMethod.bank.name": {
+    pt: "Pagar com {{name}}",
+    en: "Pay with {{name}}",
+  },
+};

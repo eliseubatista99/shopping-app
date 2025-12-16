@@ -1,0 +1,13 @@
+FROM postgres:16
+
+# Define the env vars
+ENV POSTGRES_USER=el_shopper
+ENV POSTGRES_PASSWORD=el_shopper_pass
+ENV POSTGRES_DB=shopping-app
+
+# Copia o script de inicialização
+COPY init-db.sh /docker-entrypoint-initdb.d/
+COPY seed.sql /docker-entrypoint-initdb.d/
+
+# Garante permissões corretas
+RUN chmod +x /docker-entrypoint-initdb.d/init-db.sh

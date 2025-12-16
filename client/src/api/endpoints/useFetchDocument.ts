@@ -1,0 +1,33 @@
+import { useFetchNoAuth } from "@hooks";
+import { useCallback } from "react";
+import type { DocumentDto } from "../types";
+
+export type GetDocumentOutputDto = {
+  document: DocumentDto;
+};
+
+export type GetDocumentInputDto = {
+  id: string;
+};
+
+export const GetDocument = () => {
+  const { get } = useFetchNoAuth<GetDocumentOutputDto>({
+    endpoint: "GetDocument",
+    showGenericErrorModal: false,
+  });
+
+  const fetch = useCallback(
+    async (input: GetDocumentInputDto) => {
+      const result = await get({
+        ...input,
+      });
+
+      return result;
+    },
+    [get]
+  );
+
+  return {
+    fetchGetDocument: fetch,
+  };
+};

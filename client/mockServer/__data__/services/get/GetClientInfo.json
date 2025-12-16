@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "success": true,
+    "errors": [
+      {
+        "code": "0001",
+        "message": "Error fetchAvailableTransactions"
+      }
+    ]
+  },
+  "data": {
+    "client": {
+      "id": "zau",
+      "image": "https://www.svgrepo.com/show/382109/male-avatar-boy-face-man-user-7.svg",
+      "name": "Elideus Kuduro",
+      "email": "elideus.kuduro@tassebem.com",
+      "phoneNumber": "911111111",
+      "phoneNumberPrefix": "+351",
+      "addresses": [
+        {
+          "id": "1",
+          "name": "Eliseu",
+          "postalCode": "6123-456",
+          "city": "Fundão",
+          "location": "Fundão",
+          "street": "Rua Bonita",
+          "country": "Portugal",
+          "countryCode": "PT",
+          "phone": "911111111",
+          "isDefault": true,
+          "isSelected": true
+        },
+        {
+          "id": "2",
+          "name": "Eliseu",
+          "street": "Rua Bonita",
+          "country": "Portugal",
+          "countryCode": "PT",
+          "postalCode": "1234-567",
+          "phone": "911111111",
+          "city": "Guarda",
+          "location": "Guarda"
+        },
+        {
+          "id": "3",
+          "name": "Eliseu",
+          "street": "Rua Bonita",
+          "country": "Portugal",
+          "countryCode": "PT",
+          "postalCode": "31321-434",
+          "phone": "911111111",
+          "city": "Guarda",
+          "location": "Pinhel"
+        }
+      ],
+      "paymentMethods": [
+        {
+          "id": "1",
+          "type": "Card",
+          "name": "Eliseu Batista",
+          "securityCode": "123",
+          "network": "Mastercard",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKiJB99ZxoMB8pRe4lHhqO9UIfOBqcdeMjKg&s",
+          "cardNumberMasked": "************1234",
+          "cardNumberUnmasked": "1234123412341234",
+          "expirationMonth": 11,
+          "expirationYear": 2025,
+          "isDefault": true
+        },
+        {
+          "id": "3",
+          "type": "Card",
+          "name": "Eliseu Batista",
+          "securityCode": "123",
+          "cardNumberMasked": "************5678",
+          "cardNumberUnmasked": "5678567856785678",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKiJB99ZxoMB8pRe4lHhqO9UIfOBqcdeMjKg&s",
+          "network": "Visa",
+          "expirationMonth": 11,
+          "expirationYear": 2025,
+          "isDefault": false
+        }
+      ]
+    },
+    "itemsInCart": 2
+  }
+}
