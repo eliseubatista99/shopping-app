@@ -1,13 +1,17 @@
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreForYou } from "@store";
+import { useStoreBase, useStoreForYou, useStoreReviews } from "@store";
 import React from "react";
 
 export const useReviewsBlockHelper = () => {
   const { t } = useAppTranslations();
   const { goTo } = useNavigation();
 
+  const setReviewsStoreState = useStoreReviews(
+    (state) => state.setReviewsStoreState
+  );
+  const clientInfo = useStoreBase((state) => state.client);
   const review = useStoreForYou((state) => state.review);
   const needingReviewProduct = useStoreForYou(
     (state) => state.needingReviewProduct
@@ -22,10 +26,11 @@ export const useReviewsBlockHelper = () => {
   }, [t]);
 
   const onClickSeeAll = React.useCallback(() => {
+    setReviewsStoreState({ reviewerId: clientInfo?.id });
     goTo({
-      path: PAGES.ALL_REVIEWS,
+      path: PAGES.MY_REVIEWS,
     });
-  }, [goTo]);
+  }, [clientInfo?.id, goTo, setReviewsStoreState]);
 
   const onClickNeedingReview = React.useCallback(() => {
     goTo({

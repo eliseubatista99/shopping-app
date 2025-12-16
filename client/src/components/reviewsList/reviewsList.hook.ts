@@ -9,6 +9,8 @@ import React from "react";
 
 export const useReviewsListHelper = () => {
   const { productId } = useAppSearchParams();
+  const { reviewId } = useAppSearchParams();
+  const reviewerId = useStoreReviews((state) => state.reviewerId);
   const setReviewsStoreState = useStoreReviews(
     (state) => state.setReviewsStoreState
   );
@@ -20,7 +22,7 @@ export const useReviewsListHelper = () => {
   const initScreen = React.useCallback(async () => {
     setLoading(true);
 
-    if (!productId.value) {
+    if (!productId.value && !reviewId.value && !reviewerId) {
       goTo({ path: PAGES.NOT_FOUND, addToHistory: false });
       return;
     }
@@ -33,7 +35,7 @@ export const useReviewsListHelper = () => {
     });
 
     setLoading(false);
-  }, [goTo, productId.value, setReviewsStoreState]);
+  }, [setReviewsStoreState]);
 
   useDidMount(() => {
     initScreen();

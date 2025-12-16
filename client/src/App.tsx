@@ -28,6 +28,7 @@ import {
   ForYou,
   Home,
   LogIn,
+  MyReviews,
   NotFound404,
   OrderDetails,
   Orders,
@@ -152,6 +153,10 @@ export const App = () => {
           {
             path: PAGES.ADDRESSES,
             render: <Addresses />,
+          },
+          {
+            path: PAGES.MY_REVIEWS,
+            render: <MyReviews />,
           },
         ]}
       >

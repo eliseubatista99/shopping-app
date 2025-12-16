@@ -10,6 +10,7 @@ import { translationsCheckout } from "./checkout";
 import { translationsForYou } from "./forYou";
 import { translationsHome } from "./home";
 import { translationsLogin } from "./logIn";
+import { translationsMyReviews } from "./myReviews";
 import { translationsOrderDetails } from "./orderDetails";
 import { translationsOrders } from "./orders";
 import { translationsPaymentMethods } from "./paymentMethods";
@@ -41,4 +42,5 @@ export const translationsScreens: TranslationList = {
   ...translationsChangePassword,
   ...translationsPaymentMethods,
   ...translationsAddresses,
+  ...translationsMyReviews,
 };

@@ -9,6 +9,7 @@ export * from "./checkout";
 export * from "./forYou";
 export * from "./home";
 export * from "./logIn";
+export * from "./myReviews";
 export * from "./notFound404";
 export * from "./orderDetails";
 export * from "./orders";

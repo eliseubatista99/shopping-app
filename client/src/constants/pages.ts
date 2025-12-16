@@ -23,4 +23,5 @@ export enum PAGES {
   CHANGE_PASSWORD = "/change-password",
   PAYMENT_METHODS = "/payment-methods",
   ADDRESSES = "/addresses",
+  MY_REVIEWS = "/my-reviews",
 }
