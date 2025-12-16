@@ -1,7 +1,8 @@
 import { Api, type ProductDto } from "@api";
-import { PAGES, SEARCH_PARAMS } from "@constants";
+import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useDidMount,
+  useFeedback,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useCart } from "@hooks";
@@ -15,6 +16,7 @@ export const useProductListPageHelper = () => {
   const { fetchSearchProducts } = Api.SearchProducts();
   const { goTo } = useNavigation();
   const searchParams = useAppSearchParams();
+  const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
 
   // const setProductStoreState = useStoreProduct(
@@ -57,14 +59,16 @@ export const useProductListPageHelper = () => {
   );
 
   const onClickAddToCart = React.useCallback(
-    (product: ProductDto) => {
+    async (product: ProductDto) => {
       if (isAuthenticated) {
-        addToCart([product.id || ""]);
+        showItem(OVERLAYS.LOADER);
+        await addToCart([product.id || ""]);
+        hideItem(OVERLAYS.LOADER);
       } else {
         goTo({ path: PAGES.LOG_IN });
       }
     },
-    [addToCart, goTo, isAuthenticated]
+    [addToCart, goTo, hideItem, isAuthenticated, showItem]
   );
 
   const retrieveItems = React.useCallback(
