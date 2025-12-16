@@ -61,7 +61,7 @@ export const DrawerOrderFiltersMobile = () => {
   return (
     <AppDrawer
       id={DRAWERS.ORDER_FILTERS}
-      drawerStyles={{ gap: "12px" }}
+      childrenStyles={{ gap: "12px" }}
       canBeClosed
       onClose={onClose}
     >
