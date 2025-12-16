@@ -9,10 +9,13 @@ export const useProductFiltersDrawerHelper = () => {
 
   const { t } = useAppTranslations();
 
-  const [newFilters, setNewFilters] = React.useState<ProductFilters>(
-    searchFilters.value || {}
-  );
+  const [newFilters, setNewFilters] = React.useState<ProductFilters>({
+    ...searchFilters.value,
+  });
 
+  const cachedParamFilters = React.useRef<ProductFilters | undefined>({
+    ...searchFilters.value,
+  });
   const [priceError, setPriceError] = React.useState<string | undefined>();
 
   const i18n = React.useMemo(() => {
@@ -98,24 +101,13 @@ export const useProductFiltersDrawerHelper = () => {
   }, []);
 
   const handlePriceFilterChanges = React.useCallback(
-    (min?: string, max?: string) => {
-      const numericMinValue = min ? Number(min) : newFilters.minPrice;
-      const numericMaxValue = max ? Number(max) : newFilters.maxPrice;
-
-      if (
-        newFilters.maxPrice !== undefined &&
-        numericMinValue !== undefined &&
-        numericMinValue > newFilters.maxPrice
-      ) {
+    (min?: number, max?: number) => {
+      if (max !== undefined && min !== undefined && min > max) {
         setPriceError(i18n.filters.price.min.errors.greaterThanMax);
         return;
       }
 
-      if (
-        newFilters.minPrice !== undefined &&
-        numericMaxValue !== undefined &&
-        numericMaxValue < newFilters.minPrice
-      ) {
+      if (min !== undefined && max !== undefined && max < min) {
         setPriceError(i18n.filters.price.max.errors.lesserThanMin);
         return;
       }
@@ -124,38 +116,46 @@ export const useProductFiltersDrawerHelper = () => {
 
       setNewFilters((prevState) => ({
         ...prevState,
-        minPrice: numericMinValue,
-        maxPrice: numericMaxValue,
+        minPrice: min,
+        maxPrice: max,
       }));
     },
     [
       i18n.filters.price.max.errors.lesserThanMin,
       i18n.filters.price.min.errors.greaterThanMax,
-      newFilters.maxPrice,
-      newFilters.minPrice,
     ]
   );
 
   const onChangeMinPrice = React.useCallback(
     (value?: string) => {
-      handlePriceFilterChanges(value, undefined);
+      const numericMinValue = value ? Number(value) : undefined;
+
+      handlePriceFilterChanges(numericMinValue, newFilters.maxPrice);
     },
-    [handlePriceFilterChanges]
+    [handlePriceFilterChanges, newFilters.maxPrice]
   );
 
   const onChangeMaxPrice = React.useCallback(
     (value?: string) => {
-      handlePriceFilterChanges(undefined, value);
+      const numericMaxValue = value ? Number(value) : undefined;
+
+      handlePriceFilterChanges(newFilters.minPrice, numericMaxValue);
     },
-    [handlePriceFilterChanges]
+    [handlePriceFilterChanges, newFilters.minPrice]
   );
 
   const onClickFreeShipping = React.useCallback((value: boolean) => {
-    setNewFilters((prevState) => ({ ...prevState, freeShipping: value }));
+    setNewFilters((prevState) => ({
+      ...prevState,
+      freeShipping: value || undefined,
+    }));
   }, []);
 
   const onClickBestSeller = React.useCallback((value: boolean) => {
-    setNewFilters((prevState) => ({ ...prevState, bestSeller: value }));
+    setNewFilters((prevState) => ({
+      ...prevState,
+      bestSeller: value || undefined,
+    }));
   }, []);
 
   const onClose = React.useCallback(() => {
@@ -163,6 +163,18 @@ export const useProductFiltersDrawerHelper = () => {
       searchFilters.set(newFilters);
     }
   }, [newFilters, searchFilters]);
+
+  React.useEffect(() => {
+    if (
+      !ObjectsHelper.isSameObject(
+        cachedParamFilters.current,
+        searchFilters.value
+      )
+    ) {
+      cachedParamFilters.current = searchFilters.value;
+      setNewFilters({ ...cachedParamFilters.current });
+    }
+  }, [searchFilters.value]);
 
   return {
     i18n,

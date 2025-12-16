@@ -155,14 +155,14 @@ export const DrawerProductFiltersMobile = () => {
         <AppCheckbox
           name={INPUTS.FREE_SHIPPING}
           label={i18n.freeShipping}
-          checked={newFilters.freeShipping || false}
+          checked={(newFilters.freeShipping || false) as boolean}
           onToggle={onClickFreeShipping}
         />
 
         <AppCheckbox
           name={INPUTS.BEST_SELLER}
           label={i18n.bestSeller}
-          checked={newFilters.bestSeller || false}
+          checked={(newFilters.bestSeller || false) as boolean}
           onToggle={onClickBestSeller}
         />
       </div>

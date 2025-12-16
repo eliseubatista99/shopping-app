@@ -15,7 +15,7 @@ export const useOverlaySearchHelper = () => {
   // const setProductFilters = useStoreProduct((state) => state.setProductFilters);
   const { goTo, currentPath } = useNavigation();
   const { hideItem } = useFeedback();
-  const { searchText, allParams } = useAppSearchParams();
+  const { searchFilters, allParams } = useAppSearchParams();
 
   const goToList = React.useCallback(
     (text: string) => {
@@ -30,10 +30,10 @@ export const useOverlaySearchHelper = () => {
         });
       } else {
         allParams.clear();
-        searchText.set(text);
+        searchFilters.set({ text });
       }
     },
-    [allParams, currentPath, goTo, hideItem, searchText]
+    [allParams, currentPath, goTo, hideItem, searchFilters]
   );
 
   const submitSearch = React.useCallback(

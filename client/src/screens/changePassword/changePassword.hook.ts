@@ -81,7 +81,6 @@ export const useChangePasswordPageHelper = () => {
 
   const onClickSubmit = React.useCallback(
     async (data: FormFieldOutputData[]) => {
-      console.log("ZAU", { data });
       setLoading(true);
 
       const currentPassword = FormsHelper.getField(data, INPUTS.PASSWORD);
