@@ -6,6 +6,7 @@ import {
   EditAddressDrawer,
   EditCardPaymentMethodDrawer,
   OrderFiltersDrawer,
+  ProductFiltersDrawer,
   ReviewFiltersDrawer,
   SelectAddressDrawer,
   SelectPaymentMethodDrawer,
@@ -177,6 +178,7 @@ export const App = () => {
         <TryAgainClientInfoModal />
 
         <SelectPaymentMethodDrawer />
+        <ProductFiltersDrawer />
         <SelectAddressDrawer />
         <AddAddressDrawer />
         <EditAddressDrawer />

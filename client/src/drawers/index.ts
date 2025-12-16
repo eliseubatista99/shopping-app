@@ -3,6 +3,7 @@ export * from "./addCardPaymentMethod";
 export * from "./editAddress";
 export * from "./editCardPaymentMethod";
 export * from "./orderFilters";
+export * from "./productFilters";
 export * from "./reviewFilters";
 export * from "./selectAddress";
 export * from "./selectPaymentMethod";

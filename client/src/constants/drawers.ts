@@ -7,4 +7,5 @@ export const DRAWERS = {
   ADD_ADDRESS: "add-address",
   EDIT_ADDRESS: "edit-address",
   SELECT_PAYMENT_METHOD: "select-payment-method",
+  PRODUCT_FILTERS: "product-filters",
 };

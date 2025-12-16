@@ -1,29 +1,9 @@
-import type { ProductDto } from "@api";
-import { AppLayout, ItemsListTemplate, ProductListItem } from "@components";
+import { AppLayout } from "@components";
+import { FiltersBlock, ProductsBlock } from "./blocks";
 import { useProductListPageHelper } from "./productList.hook";
 
 export const ProductListMobile: React.FC = () => {
-  const {
-    products,
-    initialized,
-    onClickProduct,
-    onClickAddToCart,
-    filters,
-    retrieveItems,
-  } = useProductListPageHelper();
-
-  const renderItem = (i: unknown) => {
-    const item = i as ProductDto;
-
-    return (
-      <ProductListItem
-        key={item.id}
-        product={item}
-        onClick={() => onClickProduct(item)}
-        onClickAddToCart={() => onClickAddToCart(item)}
-      />
-    );
-  };
+  useProductListPageHelper();
 
   return (
     <AppLayout
@@ -43,14 +23,8 @@ export const ProductListMobile: React.FC = () => {
         },
       }}
     >
-      {initialized && (
-        <ItemsListTemplate
-          items={products}
-          renderItem={renderItem}
-          retrieveItems={retrieveItems}
-          filters={filters}
-        />
-      )}
+      <FiltersBlock />
+      <ProductsBlock />
     </AppLayout>
   );
 };
