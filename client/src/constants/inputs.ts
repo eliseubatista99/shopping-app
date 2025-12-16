@@ -22,4 +22,8 @@ export const INPUTS = {
   CITY: "city",
   POSTAL_CODE: "postal-code",
   SET_DEFAULT: "set-default",
+  MIN_VALUE: "min-value",
+  MAX_VALUE: "max-value",
+  BEST_SELLER: "best-seller",
+  FREE_SHIPPING: "free-shipping",
 };
