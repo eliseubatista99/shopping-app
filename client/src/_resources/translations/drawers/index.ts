@@ -7,6 +7,7 @@ import { translationsDrawerOrderFilters } from "./orderFilters";
 import { translationsDrawerProductFilters } from "./productFilters";
 import { translationsDrawerReviewFilters } from "./reviewFilters";
 import { translationsDrawerSelectAddress } from "./selectAddress";
+import { translationsDrawerSelectLanguage } from "./selectLanguage";
 import { translationsDrawerSelectPaymentMethod } from "./selectPaymentMethod";
 
 export const translationsDrawers: TranslationList = {
@@ -19,4 +20,5 @@ export const translationsDrawers: TranslationList = {
   ...translationsDrawerAddAddress,
   ...translationsDrawerEditAddress,
   ...translationsDrawerProductFilters,
+  ...translationsDrawerSelectLanguage,
 };

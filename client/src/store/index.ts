@@ -3,6 +3,7 @@ export * from "./authentication";
 export * from "./base";
 export * from "./cart";
 export * from "./checkout";
+export * from "./client";
 export * from "./forYou";
 export * from "./home";
 export * from "./orders";

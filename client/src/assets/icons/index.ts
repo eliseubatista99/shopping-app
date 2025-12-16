@@ -14,11 +14,13 @@ import NavLeft from "./navLeft.svg?react";
 import NavRight from "./navRight.svg?react";
 import NavUp from "./navUp.svg?react";
 import Person from "./person.svg?react";
+import PortugueseFlag from "./portuguese-flag.svg?react";
 import Settings from "./settings.svg?react";
 import StarEmpty from "./star_empty.svg?react";
 import StarFull from "./star_full.svg?react";
 import StarHalf from "./star_half.svg?react";
 import Trash from "./trash.svg?react";
+import UkFlag from "./uk-flag.svg?react";
 
 export const Icons = {
   Home,
@@ -41,4 +43,8 @@ export const Icons = {
   HeartEmpty,
   HeartFull,
   Close,
+  Flags: {
+    EN: UkFlag,
+    PT: PortugueseFlag,
+  },
 };

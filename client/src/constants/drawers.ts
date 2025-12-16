@@ -8,4 +8,5 @@ export const DRAWERS = {
   EDIT_ADDRESS: "edit-address",
   SELECT_PAYMENT_METHOD: "select-payment-method",
   PRODUCT_FILTERS: "product-filters",
+  SELECT_LANGUAGE: "select-language",
 };

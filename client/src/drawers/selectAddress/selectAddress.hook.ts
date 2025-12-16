@@ -2,13 +2,13 @@ import { Api, type AddressDto, type ClientInfoDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreAddresses, useStoreBase } from "@store";
+import { useStoreAddresses, useStoreClient } from "@store";
 import React from "react";
 
 export const useSelectAddressDrawerHelper = () => {
   const { hideItem } = useFeedback();
-  const setClientInfo = useStoreBase((state) => state.setClientInfo);
-  const storeClient = useStoreBase((state) => state.client);
+  const setClientInfo = useStoreClient((state) => state.setClientInfo);
+  const storeClient = useStoreClient((state) => state.client);
   const selectedAddressInStore = useStoreAddresses(
     (state) => state.selectedAddress
   );

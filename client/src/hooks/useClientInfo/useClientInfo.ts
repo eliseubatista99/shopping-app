@@ -1,15 +1,17 @@
 import { Api } from "@api";
 import {
   useStoreAddresses,
-  useStoreBase,
   useStoreCart,
+  useStoreClient,
   useStorePaymentMethods,
 } from "@store";
 import { useCallback } from "react";
 
 export const useClientInfo = () => {
-  const clientInfo = useStoreBase((state) => state.client);
-  const setBaseStoreState = useStoreBase((state) => state.setBaseStoreState);
+  const clientInfo = useStoreClient((state) => state.client);
+  const setClientStoreState = useStoreClient(
+    (state) => state.setClientStoreState
+  );
   const setPaymentMethods = useStorePaymentMethods(
     (state) => state.setPaymentMethods
   );
@@ -26,7 +28,7 @@ export const useClientInfo = () => {
     const res = await fetchClientInfo();
 
     if (res.metadata.success) {
-      setBaseStoreState({
+      setClientStoreState({
         client: res.data.client,
       });
 
@@ -43,8 +45,8 @@ export const useClientInfo = () => {
     clientInfo,
     fetchClientInfo,
     setAddresses,
-    setBaseStoreState,
     setCartCount,
+    setClientStoreState,
     setPaymentMethods,
   ]);
 

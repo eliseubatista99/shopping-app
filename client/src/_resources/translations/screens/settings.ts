@@ -17,4 +17,8 @@ export const translationsSettings: TranslationList = {
     pt: "Moradas",
     en: "Addresses",
   },
+  "settings.language": {
+    pt: "Idioma",
+    en: "Language",
+  },
 };

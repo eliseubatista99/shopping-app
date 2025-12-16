@@ -2,13 +2,13 @@ import { Api, type ClientInfoDto, type PaymentMethodDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase, useStorePaymentMethods } from "@store";
+import { useStoreClient, useStorePaymentMethods } from "@store";
 import React from "react";
 
 export const useSelectPaymentMethodDrawerHelper = () => {
   const { hideItem } = useFeedback();
-  const setClientInfo = useStoreBase((state) => state.setClientInfo);
-  const storeClient = useStoreBase((state) => state.client);
+  const setClientInfo = useStoreClient((state) => state.setClientInfo);
+  const storeClient = useStoreClient((state) => state.client);
   const paymentMethods = useStorePaymentMethods(
     (state) => state.paymentMethods
   );

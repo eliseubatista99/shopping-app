@@ -8,7 +8,7 @@ import {
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase, useStoreProduct } from "@store";
+import { useStoreClient, useStoreProduct } from "@store";
 import React from "react";
 
 type ReviewForm = {
@@ -20,7 +20,7 @@ type ReviewForm = {
 export const useReviewBlockHelper = () => {
   const { t } = useAppTranslations();
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
-  const client = useStoreBase((state) => state.client);
+  const client = useStoreClient((state) => state.client);
   const { fetchWriteReview } = Api.WriteReview();
   const { showItem } = useFeedback();
   const { goTo } = useNavigation();

@@ -1,6 +1,14 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
 
 export const translationsGlobal: TranslationList = {
+  "global.language.en": {
+    pt: "Inglês",
+    en: "English",
+  },
+  "global.language.pt": {
+    pt: "Português",
+    en: "Portuguese",
+  },
   "global.filters": {
     pt: "Filtros",
     en: "Filters",

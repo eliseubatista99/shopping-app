@@ -8,7 +8,7 @@ import {
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase } from "@store";
+import { useStoreClient } from "@store";
 import React from "react";
 
 type ChangePoneForm = {
@@ -21,8 +21,8 @@ export const useChangePhonePageHelper = () => {
   const { fetchUpdateClientInfo } = Api.UpdateClientInfo();
   const { goTo, goBack, history } = useNavigation();
   const { showItem } = useFeedback();
-  const client = useStoreBase((state) => state.client);
-  const setClientInfo = useStoreBase((state) => state.setClientInfo);
+  const client = useStoreClient((state) => state.client);
+  const setClientInfo = useStoreClient((state) => state.setClientInfo);
 
   const [loading, setLoading] = React.useState(false);
   const [form, setForm] = React.useState<ChangePoneForm>({});

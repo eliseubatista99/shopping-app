@@ -9,6 +9,7 @@ import {
   ProductFiltersDrawer,
   ReviewFiltersDrawer,
   SelectAddressDrawer,
+  SelectLanguageDrawer,
   SelectPaymentMethodDrawer,
 } from "@drawers";
 import {
@@ -178,6 +179,7 @@ export const App = () => {
         <TryAgainClientInfoModal />
 
         <SelectPaymentMethodDrawer />
+        <SelectLanguageDrawer />
         <ProductFiltersDrawer />
         <SelectAddressDrawer />
         <AddAddressDrawer />

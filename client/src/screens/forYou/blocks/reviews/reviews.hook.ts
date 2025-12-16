@@ -1,7 +1,7 @@
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreBase, useStoreForYou, useStoreReviews } from "@store";
+import { useStoreClient, useStoreForYou, useStoreReviews } from "@store";
 import React from "react";
 
 export const useReviewsBlockHelper = () => {
@@ -11,7 +11,7 @@ export const useReviewsBlockHelper = () => {
   const setReviewsStoreState = useStoreReviews(
     (state) => state.setReviewsStoreState
   );
-  const clientInfo = useStoreBase((state) => state.client);
+  const clientInfo = useStoreClient((state) => state.client);
   const review = useStoreForYou((state) => state.review);
   const needingReviewProduct = useStoreForYou(
     (state) => state.needingReviewProduct

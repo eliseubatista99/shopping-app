@@ -1,4 +1,3 @@
-import { Assets } from "@assets";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useOptionsBlockHelper } from "./options.hook";
 
@@ -20,7 +19,7 @@ export const OptionsBlockMobile: React.FC = () => {
       }}
     >
       <Typography styles={{ fontSize: "18px" }}>{o.text}</Typography>
-      <Assets.Icons.NavRight width="20px" height="20px" />
+      {o.icon}
     </div>
   ));
 
