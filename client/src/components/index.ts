@@ -32,6 +32,7 @@ export * from "./productScore";
 export * from "./quantityField";
 export * from "./reviewListItem";
 export * from "./reviewScoreInput";
+export * from "./reviewsList";
 export * from "./scorePercentageBar";
 export * from "./sellerListItem";
 export * from "./separator";

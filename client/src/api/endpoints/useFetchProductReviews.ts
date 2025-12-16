@@ -3,7 +3,9 @@ import { useCallback } from "react";
 import type { ReviewDto, ScoreCountDto, SortMode } from "../types";
 
 export type GetProductReviewsInputDto = {
-  productId: string;
+  productId?: string;
+  reviewId?: string;
+  authorId?: string;
   page: number;
   pageCount: number;
   filterByRating?: number;

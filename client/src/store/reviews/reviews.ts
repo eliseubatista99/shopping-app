@@ -11,6 +11,7 @@ export type ReviewsFilters = {
 export interface ReviewsState {
   productName?: string;
   productId?: string;
+  reviewerId?: string;
   productImage?: string;
   averageScore?: number;
   reviewsCount?: number;
