@@ -13,8 +13,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@eliseubatista99/react-scaffold-core": "^0.2.19",
-    "@eliseubatista99/react-scaffold-pdf": "^0.1.6",
+    "@eliseubatista99/react-scaffold-core": "^1.0.0",
+    "@eliseubatista99/react-scaffold-pdf": "^1.0.0",
     "@emotion/css": "^11.11.2",
     "@reduxjs/toolkit": "^2.8.2",
     "csstype": "^3.1.3",
