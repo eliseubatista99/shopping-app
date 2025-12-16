@@ -27,7 +27,9 @@
     "react-slick": "^0.31.0",
     "slick-carousel": "^1.8.1",
     "uuid": "^13.0.0",
-    "zustand": "^5.0.6"
+    "zustand": "^5.0.6",
+    "@react-pdf/renderer": "^4.3.0",
+    "react-pdf": "^10.0.1"
   },
   "devDependencies": {
     "@emotion/react": "^11.14.0",

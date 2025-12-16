@@ -6,12 +6,17 @@ export const useOrderListItemHelper = ({ order }: OrderListItemProps) => {
   const { t, translateDate } = useAppTranslations();
 
   const i18n = React.useMemo(() => {
-    const lastStatusDateTranslation = translateDate(order.currentStatus?.date);
+    const lastStatusDateTranslation = translateDate(
+      order.order.currentStatus?.date
+    );
 
     return {
-      status: t(`global.orderStatus.history.${order.currentStatus?.status}`, {
-        date: lastStatusDateTranslation.orderDate,
-      }),
+      status: t(
+        `global.orderStatus.history.${order.order.currentStatus?.status}`,
+        {
+          date: lastStatusDateTranslation.orderDate,
+        }
+      ),
     };
   }, [order, t, translateDate]);
 

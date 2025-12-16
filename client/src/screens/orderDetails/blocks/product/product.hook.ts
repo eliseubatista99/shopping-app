@@ -1,3 +1,4 @@
+import type { ProductDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -39,35 +40,35 @@ export const useProductBlockHelper = () => {
     translateDate,
   ]);
 
-  const onClickProduct = React.useCallback(() => {
-    goTo({
-      path: PAGES.PRODUCT_DETAILS,
-      params: {
-        [SEARCH_PARAMS.PRODUCT_ID]: selectedOrder?.product.id,
-      },
-    });
-  }, [goTo, selectedOrder?.product.id]);
+  const onClickProduct = React.useCallback(
+    (product: ProductDto) => {
+      goTo({
+        path: PAGES.PRODUCT_DETAILS,
+        params: {
+          [SEARCH_PARAMS.PRODUCT_ID]: product.id,
+        },
+      });
+    },
+    [goTo]
+  );
 
-  const onClickWriteReview = React.useCallback(() => {
-    setReviewsStoreState({
-      productId: selectedOrder?.product?.id,
-      productName: selectedOrder?.product.name,
-      productImage: selectedOrder?.product.image,
-    });
+  const onClickWriteReview = React.useCallback(
+    (product: ProductDto) => {
+      setReviewsStoreState({
+        productId: product.id,
+        productName: product.name,
+        productImage: product.image,
+      });
 
-    goTo({
-      path: PAGES.WRITE_REVIEW,
-      params: {
-        [SEARCH_PARAMS.PRODUCT_ID]: selectedOrder?.product?.id,
-      },
-    });
-  }, [
-    goTo,
-    selectedOrder?.product?.id,
-    selectedOrder?.product.image,
-    selectedOrder?.product.name,
-    setReviewsStoreState,
-  ]);
+      goTo({
+        path: PAGES.WRITE_REVIEW,
+        params: {
+          [SEARCH_PARAMS.PRODUCT_ID]: product.id,
+        },
+      });
+    },
+    [goTo, setReviewsStoreState]
+  );
 
   return {
     i18n,

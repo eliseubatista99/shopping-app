@@ -1,4 +1,5 @@
-import { Api, type OrderDto } from "@api";
+import { Api } from "@api";
+import type { OrderAndProduct } from "@components";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -90,20 +91,32 @@ export const useOrdersListBlockHelper = () => {
   );
 
   const onClickOrder = React.useCallback(
-    (order: OrderDto) => {
+    (order: OrderAndProduct) => {
       goTo({
         path: PAGES.ORDER_DETAILS,
         params: {
-          [SEARCH_PARAMS.ORDER_ID]: order.id,
+          [SEARCH_PARAMS.ORDER_ID]: order.order.id,
         },
       });
     },
     [goTo]
   );
 
+  const allOrderProducts = React.useMemo(() => {
+    const result: OrderAndProduct[] = [];
+
+    (allOrders || []).forEach((o) => {
+      (o.products || []).forEach((p) => {
+        result.push({ order: o, product: p });
+      });
+    });
+
+    return result;
+  }, [allOrders]);
+
   return {
     i18n,
-    orders: allOrders || [],
+    orders: allOrderProducts || [],
     handleRequestTrigger,
     onClickOrder,
     retrieveItems,

@@ -162,13 +162,12 @@ export type OrderStatusEntry = {
 
 export type OrderDto = {
   id: string;
-  product: ProductDto;
+  products: ProductDetailDto[];
   date: string;
   currentStatus: OrderStatusEntry;
 };
 
 export type OrderDetailDto = OrderDto & {
-  seller: SellerDto;
   statusHistory: OrderStatusEntry[];
   paymentMethod: PaymentMethodDto;
   address: AddressDto;

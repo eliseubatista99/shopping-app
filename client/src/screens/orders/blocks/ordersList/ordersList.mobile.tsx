@@ -1,5 +1,8 @@
-import type { OrderDto } from "@api";
-import { ItemsListTemplate, OrderListItem } from "@components";
+import {
+  ItemsListTemplate,
+  OrderListItem,
+  type OrderAndProduct,
+} from "@components";
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useOrdersListBlockHelper } from "./ordersList.hook";
 
@@ -15,11 +18,11 @@ export const OrdersListBlockMobile: React.FC = () => {
   } = useOrdersListBlockHelper();
 
   const renderItem = (i: unknown) => {
-    const item = i as OrderDto;
+    const item = i as OrderAndProduct;
 
     return (
       <OrderListItem
-        key={item.id}
+        key={`${item.order.id}${item.product.id}`}
         order={item}
         onClick={() => onClickOrder(item)}
       />

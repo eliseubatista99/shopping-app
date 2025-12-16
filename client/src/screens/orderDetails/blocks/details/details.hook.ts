@@ -1,9 +1,10 @@
-import { useAppTranslations } from "@hooks";
+import { useAppReceipts, useAppTranslations } from "@hooks";
 import { useStoreOrders } from "@store";
 import React from "react";
 
 export const useDetailsBlockHelper = () => {
   const { t, translateDate } = useAppTranslations();
+  const appReceipts = useAppReceipts();
   const selectedOrder = useStoreOrders((state) => state.selectedOrder);
 
   const i18n = React.useMemo(() => {
@@ -19,8 +20,15 @@ export const useDetailsBlockHelper = () => {
     };
   }, [selectedOrder?.date, t, translateDate]);
 
+  const downloadReceipt = React.useCallback(() => {
+    if (selectedOrder) {
+      appReceipts.previewReceipt(selectedOrder);
+    }
+  }, [appReceipts, selectedOrder]);
+
   return {
     i18n,
     selectedOrder,
+    downloadReceipt,
   };
 };

@@ -1,11 +1,16 @@
-import type { OrderDto } from "@api";
+import type { OrderDto, ProductDto } from "@api";
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { OrderListItemDesktop } from "./orderListItem.desktop";
 import { OrderListItemMobile } from "./orderListItem.mobile";
 
-export interface OrderListItemProps {
+export type OrderAndProduct = {
   order: OrderDto;
+  product: ProductDto;
+};
+
+export interface OrderListItemProps {
+  order: OrderAndProduct;
   onClick?: () => void;
   styles?: React.CSSProperties;
 }

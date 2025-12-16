@@ -8,11 +8,18 @@
       {
         "id": "1",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "O1 P1 Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          },
+          {
+            "id": "2",
+            "name": "O1 P2 Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Sent",
           "date": "2025-05-04T21:12:19.77Z"
@@ -21,11 +28,18 @@
       {
         "id": "2",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "O2 P1 Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          },
+          {
+            "id": "2",
+            "name": "O2 P2 Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Processing",
           "date": "2025-05-04T21:12:19.77Z"
@@ -34,11 +48,13 @@
       {
         "id": "3",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Delivered",
           "date": "2025-05-04T21:12:19.77Z"
@@ -47,11 +63,13 @@
       {
         "id": "4",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "InDelivery",
           "date": "2025-05-04T21:12:19.77Z"
@@ -60,11 +78,13 @@
       {
         "id": "5",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Cancelled",
           "date": "2025-05-04T21:12:19.77Z"
@@ -73,11 +93,13 @@
       {
         "id": "6",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Cancelled",
           "date": "2025-05-04T21:12:19.77Z"
@@ -86,11 +108,13 @@
       {
         "id": "7",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Cancelled",
           "date": "2025-05-04T21:12:19.77Z"
@@ -99,11 +123,13 @@
       {
         "id": "8",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Cancelled",
           "date": "2025-05-04T21:12:19.77Z"
@@ -112,11 +138,13 @@
       {
         "id": "9",
         "date": "2025-05-04T21:12:19.77Z",
-        "product": {
-          "id": "1",
-          "name": "Mesinha cebeceira VASAGÇLE",
-          "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
-        },
+        "products": [
+          {
+            "id": "1",
+            "name": "Mesinha cebeceira VASAGÇLE",
+            "image": "https://media-fd.conforama.pt/media/650by551/bf97729cf616b39e305bfcc8a1486e27aba14896_126300_01.JPG"
+          }
+        ],
         "currentStatus": {
           "status": "Cancelled",
           "date": "2025-05-04T21:12:19.77Z"

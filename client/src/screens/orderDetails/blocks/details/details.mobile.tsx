@@ -3,7 +3,7 @@ import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useDetailsBlockHelper } from "./details.hook";
 
 export const DetailsBlockMobile: React.FC = () => {
-  const { i18n } = useDetailsBlockHelper();
+  const { i18n, downloadReceipt } = useDetailsBlockHelper();
 
   return (
     <div style={{ width: "100%", padding: "20px" }}>
@@ -34,7 +34,7 @@ export const DetailsBlockMobile: React.FC = () => {
 
         <div
           onClick={() => {
-            //
+            downloadReceipt();
           }}
           style={{
             width: "100%",
