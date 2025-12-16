@@ -1,4 +1,4 @@
-import type { ProductDetailDto } from "@api";
+import type { ProductDetailDto, SortMode } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
@@ -11,6 +11,7 @@ export type ProductFilters = {
   bestSeller?: boolean;
   freeShipping?: boolean;
   category?: string;
+  sort?: SortMode;
 };
 
 export interface ProductState {

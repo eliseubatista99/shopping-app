@@ -4,8 +4,7 @@ import { useStoreReviews } from "@store";
 import React from "react";
 
 export const useReviewFiltersDrawerHelper = () => {
-  const setStoreScoreFilter = useStoreReviews((state) => state.setScoreFilter);
-  const setStoreSortFilter = useStoreReviews((state) => state.setSortFilter);
+  const setStoreFilters = useStoreReviews((state) => state.setFilters);
   const { t } = useAppTranslations();
 
   const [sortFilter, setSortFilter] = React.useState<SortMode | undefined>(
@@ -75,9 +74,8 @@ export const useReviewFiltersDrawerHelper = () => {
   }, []);
 
   const onClose = React.useCallback(() => {
-    setStoreScoreFilter(scoreFilter);
-    setStoreSortFilter(sortFilter);
-  }, [scoreFilter, setStoreScoreFilter, setStoreSortFilter, sortFilter]);
+    setStoreFilters({ scoreFilter, sortFilter });
+  }, [scoreFilter, setStoreFilters, sortFilter]);
 
   return {
     i18n,

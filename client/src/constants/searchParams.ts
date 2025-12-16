@@ -10,4 +10,5 @@ export const SEARCH_PARAMS = {
   PRODUCT_ID: "productId",
   ORDER_ID: "orderId",
   REVIEW_ID: "reviewId",
+  SORT: "sort",
 };

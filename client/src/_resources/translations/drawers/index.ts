@@ -4,6 +4,7 @@ import { translationsDrawerAddCardPaymentMethod } from "./addCardPaymentMethod";
 import { translationsDrawerEditAddress } from "./editAddress";
 import { translationsDrawerEditCardPaymentMethod } from "./editCardPaymentMethod";
 import { translationsDrawerOrderFilters } from "./orderFilters";
+import { translationsDrawerProductFilters } from "./productFilters";
 import { translationsDrawerReviewFilters } from "./reviewFilters";
 import { translationsDrawerSelectAddress } from "./selectAddress";
 import { translationsDrawerSelectPaymentMethod } from "./selectPaymentMethod";
@@ -17,4 +18,5 @@ export const translationsDrawers: TranslationList = {
   ...translationsDrawerEditCardPaymentMethod,
   ...translationsDrawerAddAddress,
   ...translationsDrawerEditAddress,
+  ...translationsDrawerProductFilters,
 };
