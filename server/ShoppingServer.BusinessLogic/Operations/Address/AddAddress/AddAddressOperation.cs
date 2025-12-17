@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Entities;
 
-namespace ShoppingServer.BusinessLogic.Operations.Address
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class AddAddressOperation : OperationBase<AddAddressOperationInputDto, AddAddressOperationOutputDto>
     {

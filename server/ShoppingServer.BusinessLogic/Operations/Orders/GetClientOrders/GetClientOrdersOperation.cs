@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.Orders
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class GetClientOrdersOperation : OperationBase<GetClientOrdersOperationInputDto, GetClientOrdersOperationOutputDto>
     {

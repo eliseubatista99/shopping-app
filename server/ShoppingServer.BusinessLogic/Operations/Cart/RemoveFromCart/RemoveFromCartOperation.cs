@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.Cart
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class RemoveFromCartOperation : OperationBase<RemoveFromCartOperationInputDto, RemoveFromCartOperationOutputDto>
     {

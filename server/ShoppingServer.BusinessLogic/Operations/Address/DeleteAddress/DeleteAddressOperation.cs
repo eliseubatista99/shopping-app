@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.Address
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class DeleteAddressOperation : OperationBase<DeleteAddressOperationInputDto, DeleteAddressOperationOutputDto>
     {

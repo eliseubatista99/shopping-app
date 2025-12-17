@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.Database.Contracts;
 using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.BusinessLogic.Operations.Authentication;
 
 namespace ShoppingServer.Controllers
 {

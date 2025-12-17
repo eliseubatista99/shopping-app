@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.PaymentMethods
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class UpdatePaymentMethodOperation : OperationBase<UpdatePaymentMethodOperationInputDto, UpdatePaymentMethodOperationOutputDto>
     {

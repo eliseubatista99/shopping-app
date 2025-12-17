@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.Whishlist
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class RemoveFromWishlistOperation : OperationBase<RemoveFromWishlistOperationInputDto, RemoveFromWishlistOperationOutputDto>
     {

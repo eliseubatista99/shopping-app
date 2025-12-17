@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.BusinessLogic.Operations.Cart;
 
 namespace ShoppingServer.Controllers
 {

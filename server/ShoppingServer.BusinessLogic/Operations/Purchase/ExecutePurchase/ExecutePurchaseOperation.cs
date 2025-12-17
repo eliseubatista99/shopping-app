@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.Purchase
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class ExecutePurchaseOperation : OperationBase<ExecutePurchaseOperationInputDto, ExecutePurchaseOperationOutputDto>
     {

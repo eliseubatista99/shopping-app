@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.Authentication
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class IsExistingAccountOperation : OperationBase<IsExistingAccountOperationInputDto, IsExistingAccountOperationOutputDto>
     {

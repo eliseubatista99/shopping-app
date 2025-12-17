@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.Wishlist
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class GetWishlistOperation : OperationBase<GetWishlistOperationInputDto, GetWishlistOperationOutputDto>
     {

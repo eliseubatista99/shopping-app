@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.BusinessLogic.Operations.Whishlist;
-using ShoppingServer.BusinessLogic.Operations.Wishlist;
 
 namespace ShoppingServer.Controllers
 {
