@@ -1,0 +1,23 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ShoppingServer.BusinessLogic.Operations.Product
+{
+    public class SearchProductsOperation : OperationBase<SearchProductsOperationInputDto, SearchProductsOperationOutputDto>
+    {
+        public SearchProductsOperation(ControllerBase _controller) : base(_controller)
+        {
+            controller = _controller;
+        }
+
+        protected override async Task HandleExecution()
+        {
+            await base.HandleExecution();
+
+            output.Data = new SearchProductsOperationOutputDto
+            {
+
+            };
+        }
+    }
+}
