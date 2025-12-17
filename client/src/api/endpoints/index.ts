@@ -1,6 +1,7 @@
 import { ApiAddressMethods } from "./addresses";
 import { ApiCart } from "./cart";
 import { ApiPaymentMethods } from "./paymentMethods";
+import { AddToWishlist } from "./useFetchAddToWishlist";
 import { Authenticate } from "./useFetchAuthenticate";
 import { GetClientInfo } from "./useFetchClientInfo";
 import { CreateAccount } from "./useFetchCreateAccount";
@@ -41,6 +42,7 @@ export const Api = {
   RefreshAuthentication,
   IsExistingAccount,
   UpdateClientInfo,
+  AddToWishlist,
   ...ApiCart,
   ...ApiPaymentMethods,
   ...ApiAddressMethods,
