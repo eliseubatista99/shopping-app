@@ -1,0 +1,24 @@
+using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.BusinessLogic.Operations.Address;
+
+namespace ShoppingServer.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class CommonController : ControllerBase
+    {
+        private AddAddressOperation addAddressOperation;
+
+        public CommonController()
+        {
+            addAddressOperation = new AddAddressOperation(this);
+        }
+
+        [HttpPost("/api/AddAddress")]
+        public Task<OperationOutput<AddAddressOperationOutputDto>> AddAddress([FromBody] AddAddressOperationInputDto input)
+        {
+            return addAddressOperation.Execute(input);
+        }
+    }
+}

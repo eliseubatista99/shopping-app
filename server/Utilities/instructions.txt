@@ -1,1 +1,3 @@
 .\createOperation.ps1 -Name OperationName -Folder FolderName
+
+.\createController.ps1 -Name ControllerName
