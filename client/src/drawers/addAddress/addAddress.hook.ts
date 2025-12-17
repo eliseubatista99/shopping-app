@@ -28,6 +28,8 @@ export const useAddAddressDrawerHelper = () => {
         name: data.name || "",
         postalCode: data.postalCode || "",
         city: data.city || "",
+        location: "",
+        phone: "",
         street: data.street || "",
         country: data.country || "",
         isDefault: data.setDefault || false,

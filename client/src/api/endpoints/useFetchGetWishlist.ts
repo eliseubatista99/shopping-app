@@ -9,7 +9,7 @@ export type GetWishlistOutputDto = {
 
 export type GetWishlistInputDto = {
   page?: number;
-  pageCount?: number;
+  pageSize?: number;
 };
 
 export const GetWishlist = () => {

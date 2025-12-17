@@ -122,14 +122,17 @@ export type PaymentMethodDto = {
   id: string;
   type: PaymentMethodType;
   name: string;
-  securityCode: string;
   network: string;
   image: string;
   cardNumberMasked: string;
-  cardNumberUnmasked: string;
-  expirationMonth: number;
-  expirationYear: number;
   isDefault: boolean;
+};
+
+export type PaymentMethodDetailsDto = PaymentMethodDto & {
+  securityCode?: string;
+  cardNumberUnmasked?: string;
+  expirationMonth?: number;
+  expirationYear?: number;
 };
 
 export type ClientInfoDto = {
@@ -161,7 +164,7 @@ export enum OrderStatus {
   Cancelled = "Cancelled",
 }
 
-export type OrderStatusEntry = {
+export type OrderStatusEntryDto = {
   status: OrderStatus;
   date: string;
 };
@@ -170,11 +173,11 @@ export type OrderDto = {
   id: string;
   products: ProductDetailDto[];
   date: string;
-  currentStatus: OrderStatusEntry;
+  currentStatus: OrderStatusEntryDto;
 };
 
 export type OrderDetailDto = OrderDto & {
-  statusHistory: OrderStatusEntry[];
+  statusHistory: OrderStatusEntryDto[];
   paymentMethod: PaymentMethodDto;
   address: AddressDto;
   productsCost: number;

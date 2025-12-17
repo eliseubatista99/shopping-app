@@ -25,7 +25,7 @@ export const useScoreBlockHelper = () => {
         authorId: authorId,
         reviewId: reviewId.value,
         page: currentPage,
-        pageCount: pageSize,
+        pageSize: pageSize,
         filterByRating: parsedFilters?.scoreFilter,
         sortMode: parsedFilters?.sortFilter,
       });

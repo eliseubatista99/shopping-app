@@ -4,7 +4,7 @@ import type { ProductDto, SortMode } from "../types";
 
 export type SearchProductsInputDto = {
   page?: number;
-  pageCount?: number;
+  pageSize?: number;
   text?: string;
   score?: number;
   maxPrice?: number;

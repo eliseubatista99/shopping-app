@@ -5,6 +5,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class SetDefaultAddressOperationInputDto
     {
-        public string? Test { get; set; }
+        public required string AddressId { get; set; }
     }
 }

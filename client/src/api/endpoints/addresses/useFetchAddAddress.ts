@@ -6,8 +6,10 @@ export type AddAddressInputDto = {
   name: string;
   postalCode: string;
   city: string;
+  location: string;
   street: string;
   country: string;
+  phone: string;
   isDefault: boolean;
 };
 

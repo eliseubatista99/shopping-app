@@ -5,6 +5,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class AddToCartOperationInputDto
     {
-        public string? Test { get; set; }
+        public required List<string> ProductIds { get; set; }
     }
 }

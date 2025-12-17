@@ -16,7 +16,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             output.Data = new AddAddressOperationOutputDto
             {
-                Addresses = new List<AddressDto>
+                UpdatedAddresses = new List<AddressDto>
                 {
                     new AddressDto
                     {

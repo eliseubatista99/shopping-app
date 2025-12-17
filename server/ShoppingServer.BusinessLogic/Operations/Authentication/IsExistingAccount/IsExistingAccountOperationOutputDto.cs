@@ -5,6 +5,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class IsExistingAccountOperationOutputDto
     {
-        public string? Test { get; set; }
+        public bool? Exists { get; set; }
     }
 }

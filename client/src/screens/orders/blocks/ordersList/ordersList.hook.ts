@@ -49,7 +49,7 @@ export const useOrdersListBlockHelper = () => {
       const res = await fetchGetClientOrders({
         filterByText: parsedFilters?.textFilter,
         page: currentPage,
-        pageCount: pageSize,
+        pageSize: pageSize,
         filterByStatus: parsedFilters?.statusFilter,
         sortMode: parsedFilters?.sortFilter,
         filterByStartDate: parsedFilters?.startDateFilter,

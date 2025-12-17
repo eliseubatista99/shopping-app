@@ -6,6 +6,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class AddAddressOperationOutputDto
     {
-        public List<AddressDto>? Addresses { get; set; }
+        public List<AddressDto>? UpdatedAddresses { get; set; }
     }
 }

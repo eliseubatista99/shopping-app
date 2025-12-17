@@ -7,7 +7,7 @@ export type GetProductReviewsInputDto = {
   reviewId?: string;
   authorId?: string;
   page: number;
-  pageCount: number;
+  pageSize: number;
   filterByRating?: number;
   sortMode?: SortMode;
 };

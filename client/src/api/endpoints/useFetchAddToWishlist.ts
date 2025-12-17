@@ -22,6 +22,6 @@ export const AddToWishlist = () => {
   );
 
   return {
-    fetchGetWishlist: fetch,
+    fetchAddToWishlist: fetch,
   };
 };

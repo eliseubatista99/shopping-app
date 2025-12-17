@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class ForYouOperation : OperationBase<ForYouOperationInputDto, ForYouOperationOutputDto>
+    public class ForYouOperation : OperationBase<VoidDto, ForYouOperationOutputDto>
     {
         public ForYouOperation(ControllerBase _controller) : base(_controller)
         {

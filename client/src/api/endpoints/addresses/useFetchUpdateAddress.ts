@@ -4,12 +4,13 @@ import type { AddressDto } from "../../types";
 
 export type UpdateAddressInputDto = {
   id: string;
-  name: string;
-  postalCode: string;
-  city: string;
-  street: string;
-  country: string;
-  isDefault: boolean;
+  name?: string;
+  postalCode?: string;
+  city?: string;
+  location?: string;
+  street?: string;
+  country?: string;
+  isDefault?: boolean;
 };
 
 export type UpdateAddressOutputDto = {

@@ -28,7 +28,7 @@ namespace ShoppingServer.Controllers
         [HttpGet("/api/GetCart")]
         public Task<OperationOutput<GetCartOperationOutputDto>> GetCart()
         {
-            return getCartOperation.Execute(new GetCartOperationInputDto());
+            return getCartOperation.Execute(new VoidDto());
         }
 
         //[HttpDelete("/api/RemoveFromCart")]

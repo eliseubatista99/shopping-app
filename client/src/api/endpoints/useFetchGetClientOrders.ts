@@ -11,7 +11,7 @@ export type GetClientOrdersOutputDto = {
 export type GetClientOrdersInputDto = {
   orderId?: string;
   page?: number;
-  pageCount?: number;
+  pageSize?: number;
   filterByText?: string;
   filterByStatus?: OrderStatus;
   sortMode?: SortMode;

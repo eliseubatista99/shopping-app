@@ -32,7 +32,7 @@ export const useProductsBlockHelper = () => {
     async (currentPage: number, pageSize: number) => {
       const res = await fetchGetWishlist({
         page: currentPage,
-        pageCount: pageSize,
+        pageSize: pageSize,
       });
 
       if (res.metadata.success) {

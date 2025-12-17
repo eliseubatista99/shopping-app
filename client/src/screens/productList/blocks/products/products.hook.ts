@@ -53,7 +53,7 @@ export const useProductsBlockHelper = () => {
 
       const res = await fetchSearchProducts({
         page: currentPage,
-        pageCount: pageSize,
+        pageSize: pageSize,
         text: parsedFilters?.text,
         score: parsedFilters?.score,
         maxPrice: parsedFilters?.maxPrice,

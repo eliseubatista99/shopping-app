@@ -21,7 +21,7 @@ namespace ShoppingServer.Controllers
         [HttpPost("/api/ForYou")]
         public Task<OperationOutput<ForYouOperationOutputDto>> ForYou()
         {
-            return forYouOperation.Execute(new ForYouOperationInputDto());
+            return forYouOperation.Execute(new VoidDto());
         }
 
         //[HttpGet("/api/GetDocument")]

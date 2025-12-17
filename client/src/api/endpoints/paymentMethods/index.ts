@@ -1,5 +1,6 @@
 import { AddPaymentMethod } from "./useFetchAddPaymentMethod";
 import { DeletePaymentMethod } from "./useFetchDeletePaymentMethod";
+import { GetPaymentMethodDetails } from "./useFetchGetPaymentMethodDetails";
 import { SetDefaultPaymentMethod } from "./useFetchSetDefaultPaymentMethod";
 import { UpdatePaymentMethod } from "./useFetchUpdatePaymentMethod";
 
@@ -8,4 +9,5 @@ export const ApiPaymentMethods = {
   AddPaymentMethod,
   DeletePaymentMethod,
   UpdatePaymentMethod,
+  GetPaymentMethodDetails,
 };
