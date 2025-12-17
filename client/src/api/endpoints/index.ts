@@ -1,8 +1,7 @@
 import { ApiAddressMethods } from "./addresses";
+import { ApiCart } from "./cart";
 import { ApiPaymentMethods } from "./paymentMethods";
-import { AddToCard } from "./useFetchAddToCard";
 import { Authenticate } from "./useFetchAuthenticate";
-import { GetCart } from "./useFetchBasket";
 import { GetClientInfo } from "./useFetchClientInfo";
 import { CreateAccount } from "./useFetchCreateAccount";
 import { GetDocument } from "./useFetchDocument";
@@ -17,16 +16,12 @@ import { GetProductDetails } from "./useFetchProductDetail";
 import { GetProductOffers } from "./useFetchProductOffers";
 import { GetProductReviews } from "./useFetchProductReviews";
 import { RefreshAuthentication } from "./useFetchRefreshAuthentication";
-import { RemoveFromCart } from "./useFetchRemoveFromCart";
 import { RemoveFromWishlist } from "./useFetchRemoveFromWishlist";
 import { SearchProducts } from "./useFetchSearchProducts";
-import { UpdateCartProduct } from "./useFetchUpdateCartProduct";
 import { UpdateClientInfo } from "./useFetchUpdateClientInfo";
 import { WriteReview } from "./useFetchWriteReview";
 
 export const Api = {
-  AddToCard,
-  GetCart,
   GetClientInfo,
   GetDocument,
   ExecutePurchase,
@@ -41,13 +36,12 @@ export const Api = {
   RemoveFromWishlist,
   SearchProducts,
   WriteReview,
-  RemoveFromCart,
-  UpdateCartProduct,
   Authenticate,
   CreateAccount,
   RefreshAuthentication,
   IsExistingAccount,
   UpdateClientInfo,
+  ...ApiCart,
   ...ApiPaymentMethods,
   ...ApiAddressMethods,
 };

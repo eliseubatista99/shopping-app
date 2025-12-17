@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.BusinessLogic.Operations.Address;
+using ShoppingServer.BusinessLogic.Operations.Purchase;
 
 namespace ShoppingServer.Controllers
 {
@@ -8,17 +8,25 @@ namespace ShoppingServer.Controllers
     [Route("[controller]")]
     public class PurchaseController : ControllerBase
     {
-        private AddAddressOperation addAddressOperation;
+        private ExecutePurchaseOperation executePurchaseOperation;
+        private GetCheckoutInfoOperation getCheckoutInfoOperation;
 
         public PurchaseController()
         {
-            addAddressOperation = new AddAddressOperation(this);
+            executePurchaseOperation = new ExecutePurchaseOperation(this);
+            getCheckoutInfoOperation = new GetCheckoutInfoOperation(this);
         }
 
-        [HttpPost("/api/AddAddress")]
-        public Task<OperationOutput<AddAddressOperationOutputDto>> AddAddress([FromBody] AddAddressOperationInputDto input)
+        [HttpPost("/api/ExecutePurchase")]
+        public Task<OperationOutput<ExecutePurchaseOperationOutputDto>> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
         {
-            return addAddressOperation.Execute(input);
+            return executePurchaseOperation.Execute(input);
+        }
+
+        [HttpGet("/api/GetCheckoutInfo")]
+        public Task<OperationOutput<GetCheckoutInfoOperationOutputDto>> GetCheckoutInfo([FromBody] GetCheckoutInfoOperationInputDto input)
+        {
+            return getCheckoutInfoOperation.Execute(input);
         }
     }
 }

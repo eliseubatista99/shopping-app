@@ -3,8 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class RemoveFromCartOperationInputDto
+    public class AddToWishlistOperationInputDto
     {
-        public required List<string> ProductIds { get; set; }
+        public string? Test { get; set; }
     }
 }

@@ -43,7 +43,7 @@ export const useProductsBlockHelper = () => {
   const onClickRemoveFromCart = React.useCallback(
     async (product: CartProductDto) => {
       showItem(OVERLAYS.LOADER);
-      await removeFromCart([product.id || ""]);
+      await removeFromCart([product.productId || ""]);
       hideItem(OVERLAYS.LOADER);
     },
     [hideItem, removeFromCart, showItem]
@@ -53,7 +53,7 @@ export const useProductsBlockHelper = () => {
     async (product: CartProductDto, value: boolean) => {
       showItem(OVERLAYS.LOADER);
       await setProductsSelectedState([
-        { productId: product.id || "", selected: value },
+        { productId: product.productId || "", selected: value },
       ]);
       hideItem(OVERLAYS.LOADER);
     },
@@ -64,7 +64,7 @@ export const useProductsBlockHelper = () => {
     showItem(OVERLAYS.LOADER);
     await setProductsSelectedState(
       (products || []).map((p) => ({
-        productId: p.id || "",
+        productId: p.productId || "",
         selected: !allProductsSelected,
       }))
     );
@@ -84,7 +84,7 @@ export const useProductsBlockHelper = () => {
 
       if (value > 0) {
         await changeProductsQuantity([
-          { productId: product.id, quantity: value },
+          { productId: product.productId, quantity: value },
         ]);
       } else {
         await onClickRemoveFromCart(product);

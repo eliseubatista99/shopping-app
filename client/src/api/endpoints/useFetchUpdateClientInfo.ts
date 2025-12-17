@@ -12,18 +12,18 @@ export type UpdateClientInfoInputDto = {
 export type UpdateClientInfoOutputDto = { updatedInfo: ClientInfoDto };
 
 export const UpdateClientInfo = () => {
-  const { post } = useFetchWithAuth<UpdateClientInfoOutputDto>({
+  const { patch } = useFetchWithAuth<UpdateClientInfoOutputDto>({
     endpoint: "UpdateClientInfo",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
     async (input: UpdateClientInfoInputDto) => {
-      const result = await post({ ...input });
+      const result = await patch({ ...input });
 
       return result;
     },
-    [post]
+    [patch]
   );
 
   return {

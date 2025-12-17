@@ -43,7 +43,7 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
         }}
       >
         <Image
-          src={product.image || ""}
+          src={product.product?.image || ""}
           styles={{
             position: "absolute",
             flex: 1,
@@ -81,15 +81,19 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
           minHeight: "130px",
         }}
       >
-        <Typography styles={{ fontSize: "14px" }}>{product.name}</Typography>
-        {product.score !== undefined && <ProductScore score={product.score} />}
+        <Typography styles={{ fontSize: "14px" }}>
+          {product.product?.name}
+        </Typography>
+        {product.product?.score !== undefined && (
+          <ProductScore score={product.product?.score} />
+        )}
         <CurrencyBlock
           value={{
-            value: product.price || 0,
+            value: product.product?.price || 0,
           }}
           currency={currency}
         />
-        {!product.shippingCost && (
+        {!product.product?.shippingCost && (
           <Tag
             text={i18n.tags.bestSeller}
             styles={{

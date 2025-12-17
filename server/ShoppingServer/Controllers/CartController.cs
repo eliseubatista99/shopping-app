@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.BusinessLogic.Operations.Address;
+using ShoppingServer.BusinessLogic.Operations.Cart;
 
 namespace ShoppingServer.Controllers
 {
@@ -8,17 +8,50 @@ namespace ShoppingServer.Controllers
     [Route("[controller]")]
     public class CartController : ControllerBase
     {
-        private AddAddressOperation addAddressOperation;
-
+        private AddToCartOperation addToCartOperation;
+        private GetCartOperation getCartOperation;
+        private RemoveFromCartOperation removeFromCartOperation;
+        private UpdateCartProductOperation updateCartProductOperation;
         public CartController()
         {
-            addAddressOperation = new AddAddressOperation(this);
+            addToCartOperation = new AddToCartOperation(this);
+            getCartOperation = new GetCartOperation(this);
+            removeFromCartOperation = new RemoveFromCartOperation(this);
+            updateCartProductOperation = new UpdateCartProductOperation(this);
         }
 
-        [HttpPost("/api/AddAddress")]
-        public Task<OperationOutput<AddAddressOperationOutputDto>> AddAddress([FromBody] AddAddressOperationInputDto input)
+        [HttpPost("/api/AddToCart")]
+        public Task<OperationOutput<AddToCartOperationOutputDto>> AddToCart([FromBody] AddToCartOperationInputDto input)
         {
-            return addAddressOperation.Execute(input);
+            return addToCartOperation.Execute(input);
+        }
+
+        [HttpGet("/api/GetCart")]
+        public Task<OperationOutput<GetCartOperationOutputDto>> GetCart()
+        {
+            return getCartOperation.Execute(new GetCartOperationInputDto());
+        }
+
+        //[HttpDelete("/api/RemoveFromCart")]
+        //public Task<OperationOutput<RemoveFromCartOperationOutputDto>> RemoveFromCart([FromQuery] List<string> productIds)
+        //{
+        //    return removeFromCartOperation.Execute(new RemoveFromCartOperationInputDto
+        //    {
+        //        ProductIds = productIds,
+        //    });
+        //}
+
+        [HttpDelete("/api/RemoveFromCart")]
+        public Task<OperationOutput<RemoveFromCartOperationOutputDto>> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)
+        {
+            return removeFromCartOperation.Execute(input);
+        }
+
+
+        [HttpPatch("/api/UpdateCartProduct")]
+        public Task<OperationOutput<UpdateCartProductOperationOutputDto>> UpdateCartProduct([FromBody] UpdateCartProductOperationInputDto input)
+        {
+            return updateCartProductOperation.Execute(input);
         }
     }
 }

@@ -17,17 +17,17 @@ export type UpdateAddressOutputDto = {
 };
 
 export const UpdateAddress = () => {
-  const { post } = useFetchWithAuth<UpdateAddressOutputDto>({
+  const { patch } = useFetchWithAuth<UpdateAddressOutputDto>({
     endpoint: "UpdateAddress",
   });
 
   const fetch = useCallback(
     async (input: UpdateAddressInputDto) => {
-      const result = await post({ ...input });
+      const result = await patch({ ...input });
 
       return result;
     },
-    [post]
+    [patch]
   );
 
   return {

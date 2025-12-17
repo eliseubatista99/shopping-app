@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.BusinessLogic.Operations.Address;
+using ShoppingServer.BusinessLogic.Operations.Orders;
 
 namespace ShoppingServer.Controllers
 {
@@ -8,17 +8,34 @@ namespace ShoppingServer.Controllers
     [Route("[controller]")]
     public class OrdersController : ControllerBase
     {
-        private AddAddressOperation addAddressOperation;
+        private GetClientOrdersOperation getClientOrdersOperation;
+        private GetOrderDetailsOperation getOrderDetailsOperation;
 
         public OrdersController()
         {
-            addAddressOperation = new AddAddressOperation(this);
+            getClientOrdersOperation = new GetClientOrdersOperation(this);
+            getOrderDetailsOperation = new GetOrderDetailsOperation(this);
         }
 
-        [HttpPost("/api/AddAddress")]
-        public Task<OperationOutput<AddAddressOperationOutputDto>> AddAddress([FromBody] AddAddressOperationInputDto input)
+        [HttpGet("/api/GetClientOrders")]
+        public Task<OperationOutput<GetClientOrdersOperationOutputDto>> GetClientOrders()
         {
-            return addAddressOperation.Execute(input);
+            return getClientOrdersOperation.Execute(new GetClientOrdersOperationInputDto());
+        }
+
+        //[HttpGet("/api/GetOrderDetails")]
+        //public Task<OperationOutput<GetOrderDetailsOperationOutputDto>> GetOrderDetails([FromQuery] string orderId)
+        //{
+        //    return getOrderDetailsOperation.Execute(new GetOrderDetailsOperationInputDto
+        //    {
+        //        OrderId = orderId,
+        //    });
+        //}
+
+        [HttpGet("/api/GetOrderDetails")]
+        public Task<OperationOutput<GetOrderDetailsOperationOutputDto>> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)
+        {
+            return getOrderDetailsOperation.Execute(input);
         }
     }
 }

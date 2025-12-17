@@ -1,6 +1,6 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { CartProductDto } from "../types";
+import type { CartProductDto } from "../../types";
 
 export type AddToCartInputDto = {
   productIds?: string[];

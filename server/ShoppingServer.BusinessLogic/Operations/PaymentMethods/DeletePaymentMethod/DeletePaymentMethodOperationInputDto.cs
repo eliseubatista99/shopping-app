@@ -5,6 +5,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class DeletePaymentMethodOperationInputDto
     {
-        public string? Test { get; set; }
+        public required string MethodId { get; set; }
     }
 }

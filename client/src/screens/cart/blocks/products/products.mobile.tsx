@@ -19,7 +19,7 @@ export const ProductsBlockMobile: React.FC = () => {
 
     return (
       <CartProductListItem
-        key={item.id}
+        key={item.productId}
         product={item}
         onClick={() => {
           //

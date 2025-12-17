@@ -37,8 +37,9 @@ export const useExecutionBlockHelper = () => {
     let total = 0;
 
     selectedProducts.forEach((p) => {
-      total += (p.price || 0) + (p.shippingCost || 0);
-      totalOriginal += (p.originalPrice || 0) + (p.shippingCost || 0);
+      total += (p.product?.price || 0) + (p.product?.shippingCost || 0);
+      totalOriginal +=
+        (p.product?.originalPrice || 0) + (p.product?.shippingCost || 0);
     });
 
     return { total, totalOriginal };

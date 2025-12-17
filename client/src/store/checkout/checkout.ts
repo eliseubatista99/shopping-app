@@ -42,13 +42,17 @@ export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
       set(
         produce((state: CheckoutState) => {
           if (quantity > 0) {
-            const item = state.products?.find((p) => p.id === product.id);
+            const item = state.products?.find(
+              (p) => p.product?.id === product.product?.id
+            );
 
             if (item) {
               item.quantity = quantity;
             }
           } else {
-            state.products = state.products?.filter((p) => p.id !== product.id);
+            state.products = state.products?.filter(
+              (p) => p.product?.id !== product.product?.id
+            );
           }
         }),
         false,
@@ -61,7 +65,7 @@ export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
           let productCost = 0;
 
           (state.products || []).forEach((p) => {
-            productCost += (p.price || 0) * (p.quantity || 1);
+            productCost += (p.product?.price || 0) * (p.quantity || 1);
           });
 
           let totalCost = productCost + (state.shippingCost || 0);

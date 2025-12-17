@@ -15,17 +15,17 @@ export type UpdatePaymentMethodOutputDto = {
 };
 
 export const UpdatePaymentMethod = () => {
-  const { post } = useFetchWithAuth<UpdatePaymentMethodOutputDto>({
+  const { patch } = useFetchWithAuth<UpdatePaymentMethodOutputDto>({
     endpoint: "UpdatePaymentMethod",
   });
 
   const fetch = useCallback(
     async (input: UpdatePaymentMethodInputDto) => {
-      const result = await post({ ...input });
+      const result = await patch({ ...input });
 
       return result;
     },
-    [post]
+    [patch]
   );
 
   return {

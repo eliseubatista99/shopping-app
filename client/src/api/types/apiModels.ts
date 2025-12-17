@@ -34,13 +34,19 @@ export type ProductDto = {
   isWishlisted?: boolean;
 };
 
-export type CheckoutProductDto = ProductDto & {
+export type CheckoutProductDto = {
   quantity?: number;
+  product?: ProductDto;
 };
 
-export type CartProductDto = ProductDto & {
+export type CartProductDto = {
   quantity?: number;
   isSelected?: boolean;
+  productId?: string;
+};
+
+export type CartProductDetailsDto = CartProductDto & {
+  product?: ProductDto;
 };
 
 export type ProductSpecificationsDto = {

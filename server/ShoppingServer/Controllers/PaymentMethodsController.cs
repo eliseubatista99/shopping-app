@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.BusinessLogic.Operations.Address;
+using ShoppingServer.BusinessLogic.Operations.PaymentMethods;
 
 namespace ShoppingServer.Controllers
 {
@@ -8,17 +8,47 @@ namespace ShoppingServer.Controllers
     [Route("[controller]")]
     public class PaymentMethodsController : ControllerBase
     {
-        private AddAddressOperation addAddressOperation;
+        private AddPaymentMethodOperation addPaymentMethodOperation;
+        private DeletePaymentMethodOperation deletePaymentMethodOperation;
+        private SetDefaultPaymentMethodOperation setDefaultPaymentMethodOperation;
+        private UpdatePaymentMethodOperation updatePaymentMethodOperation;
 
         public PaymentMethodsController()
         {
-            addAddressOperation = new AddAddressOperation(this);
+            addPaymentMethodOperation = new AddPaymentMethodOperation(this);
+            deletePaymentMethodOperation = new DeletePaymentMethodOperation(this);
+            setDefaultPaymentMethodOperation = new SetDefaultPaymentMethodOperation(this);
+            updatePaymentMethodOperation = new UpdatePaymentMethodOperation(this);
         }
 
-        [HttpPost("/api/AddAddress")]
-        public Task<OperationOutput<AddAddressOperationOutputDto>> AddAddress([FromBody] AddAddressOperationInputDto input)
+        [HttpPost("/api/AddPaymentMethod")]
+        public Task<OperationOutput<AddPaymentMethodOperationOutputDto>> AddPaymentMethod([FromBody] AddPaymentMethodOperationInputDto input)
         {
-            return addAddressOperation.Execute(input);
+            return addPaymentMethodOperation.Execute(input);
+        }
+
+        //[HttpDelete("/api/DeletePaymentMethod")]
+        //public Task<OperationOutput<DeletePaymentMethodOperationOutputDto>> DeletePaymentMethod([FromQuery] string methodId)
+        //{
+        //    return deletePaymentMethodOperation.Execute(new DeletePaymentMethodOperationInputDto { MethodId = methodId });
+        //}
+
+        [HttpDelete("/api/DeletePaymentMethod")]
+        public Task<OperationOutput<DeletePaymentMethodOperationOutputDto>> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)
+        {
+            return deletePaymentMethodOperation.Execute(input);
+        }
+
+        [HttpPatch("/api/SetDefaultPaymentMethod")]
+        public Task<OperationOutput<SetDefaultPaymentMethodOperationOutputDto>> SetDefaultPaymentMethod([FromBody] SetDefaultPaymentMethodOperationInputDto input)
+        {
+            return setDefaultPaymentMethodOperation.Execute(input);
+        }
+
+        [HttpPatch("/api/UpdatePaymentMethod")]
+        public Task<OperationOutput<UpdatePaymentMethodOperationOutputDto>> UpdatePaymentMethod([FromBody] UpdatePaymentMethodOperationInputDto input)
+        {
+            return updatePaymentMethodOperation.Execute(input);
         }
     }
 }

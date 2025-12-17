@@ -14,7 +14,7 @@ New-Item -ItemType Directory -Force -Path $basePath | Out-Null
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingServer.BusinessLogic.Operations.$Folder
+namespace ShoppingServer.BusinessLogic.Operations
 {
     public class ${Name}Operation : OperationBase<${Name}OperationInputDto, ${Name}OperationOutputDto>
     {

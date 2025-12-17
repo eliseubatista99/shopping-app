@@ -46,7 +46,7 @@ export const useCheckoutPageHelper = () => {
     }
 
     const res = await fetchGetCheckoutInfo({
-      productIds: (productsInStore || []).map((p) => p.id || ""),
+      productIds: (productsInStore || []).map((p) => p.product?.id || ""),
       addressId: selectedAddress?.id || "",
       paymentMethodId: selectedPaymentMethod?.id || "",
     });

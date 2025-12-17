@@ -1,11 +1,11 @@
-import type { CartProductDto } from "@api";
+import type { CartProductDetailsDto } from "@api";
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { CartProductListItemDesktop } from "./cartProductListItem.desktop";
 import { CartProductListItemMobile } from "./cartProductListItem.mobile";
 
 export interface CartProductListItemProps {
-  product: CartProductDto;
+  product: CartProductDetailsDto;
   onClick?: () => void;
   onClickSelected?: (value: boolean) => void;
   onChangeQuantity?: (value: number) => void;
