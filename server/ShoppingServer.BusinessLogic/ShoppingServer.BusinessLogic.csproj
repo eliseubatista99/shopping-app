@@ -10,4 +10,8 @@
     <ProjectReference Include="..\ShoppingServer.Database\ShoppingServer.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Operations\Address\" />
+  </ItemGroup>
+
 </Project>

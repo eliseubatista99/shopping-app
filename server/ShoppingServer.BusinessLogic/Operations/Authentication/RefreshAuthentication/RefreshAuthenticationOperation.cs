@@ -30,7 +30,7 @@ namespace ShoppingServer.BusinessLogic.Operations.Authentication
 
             output.Data = new RefreshAuthenticationOperationOutputDto
             {
-                Token = refreshToken,
+                Token = newAccessToken,
             };
         }
     }

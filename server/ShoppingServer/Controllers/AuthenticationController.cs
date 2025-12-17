@@ -13,6 +13,7 @@ namespace ShoppingServer.Controllers
         private AuthenticateOperation authenticateOperation;
         private RefreshAuthenticationOperation refreshAuthenticationOperation;
         private LogoutOperation logoutOperation;
+        private CreateAccountOperation createAccountOperation;
 
         private ITestsDatabaseProvider testsDatabase;
         public AuthenticationController(ITestsDatabaseProvider testsDatabaseProvider)
@@ -21,6 +22,7 @@ namespace ShoppingServer.Controllers
             authenticateOperation = new AuthenticateOperation(this);
             refreshAuthenticationOperation = new RefreshAuthenticationOperation(this);
             logoutOperation = new LogoutOperation(this);
+            createAccountOperation = new CreateAccountOperation(this);
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -31,22 +33,30 @@ namespace ShoppingServer.Controllers
             return tests;
         }
 
-        [HttpPost("Authenticate")]
+        [HttpPost("/api/Authenticate")]
         public Task<OperationOutput<AuthenticateOperationOutputDto>> Authenticate([FromBody] AuthenticateOperationInputDto input)
         {
             return authenticateOperation.Execute(input);
         }
 
-        [HttpPost("RefreshAuthentication")]
+        [HttpPost("/api/RefreshAuthentication")]
         public Task<OperationOutput<RefreshAuthenticationOperationOutputDto>> RefreshAuthentication()
         {
             return refreshAuthenticationOperation.Execute();
         }
 
-        [HttpPost("Logout")]
+        [HttpPost("/api/CreateAccount")]
+        public Task<OperationOutput<CreateAccountOperationOutputDto>> CreateAccount([FromBody] CreateAccountOperationInputDto input)
+        {
+            return createAccountOperation.Execute(input);
+        }
+
+        [HttpPost("/api/Logout")]
         public Task<OperationOutput<VoidDto>> Logout()
         {
             return logoutOperation.Execute();
         }
+
+
     }
 }
