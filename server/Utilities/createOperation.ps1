@@ -6,7 +6,7 @@ param(
     [string]$Folder
 )
 
-$basePath = "ShoppingServer.BusinessLogic/Operations/$Folder"
+$basePath = "../ShoppingServer.BusinessLogic/Operations/$Folder/$Name"
 New-Item -ItemType Directory -Force -Path $basePath | Out-Null
 
 # NameOperation.cs
