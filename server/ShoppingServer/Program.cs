@@ -1,5 +1,12 @@
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using ShoppingApp.Database.Contracts;
 using ShoppingApp.Database.Providers;
+using ShoppingServer;
+using ShoppingServer.BusinessLogic.Entities;
+using ShoppingServer.BusinessLogic.Enums;
+using ShoppingServer.Helpers;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +30,26 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddSingleton<ITestsDatabaseProvider, TestDatabaseProvider>();
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Make sure enums are converted to string and not int
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter()
+        );
+    });
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    // Make sure enums are converted to string and not int
+    c.SchemaFilter<EnumSchemaFilter>();
+});
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
