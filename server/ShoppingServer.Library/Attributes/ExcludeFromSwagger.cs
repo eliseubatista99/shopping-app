@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShoppingServer.BusinessLogic.Attributes
+﻿namespace ShoppingServer.Library.Attributes
 {
 
     [AttributeUsage(AttributeTargets.Class)]

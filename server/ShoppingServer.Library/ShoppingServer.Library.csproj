@@ -6,10 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="database-postgresql" Version="0.0.6" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\ShoppingServer.Library\ShoppingServer.Library.csproj" />
 	</ItemGroup>
 </Project>

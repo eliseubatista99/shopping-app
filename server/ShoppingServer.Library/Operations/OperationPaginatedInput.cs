@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 
-namespace ShoppingServer.BusinessLogic.Operations
+namespace ShoppingServer.Library.Operations
 {
     [ExcludeFromCodeCoverage]
     public class OperationPaginatedInput

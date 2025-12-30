@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace ShoppingServer.BusinessLogic.Enums
+﻿namespace ShoppingServer.BusinessLogic.Enums
 {
     public enum PaymentMethodType
     {

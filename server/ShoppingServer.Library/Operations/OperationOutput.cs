@@ -1,9 +1,8 @@
-﻿using ShoppingServer.BusinessLogic.Attributes;
+﻿using ShoppingServer.Library.Entities;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq.Expressions;
 
 
-namespace ShoppingServer.BusinessLogic.Operations
+namespace ShoppingServer.Library.Operations
 {
     [ExcludeFromCodeCoverage]
     public class OperationOutput<TOutput>

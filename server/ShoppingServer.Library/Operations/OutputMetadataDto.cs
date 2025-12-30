@@ -1,6 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using ShoppingServer.Library.Entities;
+using System.Diagnostics.CodeAnalysis;
 
-namespace ShoppingServer.BusinessLogic.Operations
+namespace ShoppingServer.Library.Operations
 {
     [ExcludeFromCodeCoverage]
     public class OutputMetadataDto

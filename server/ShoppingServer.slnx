@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="ShoppingServer.BusinessLogic/ShoppingServer.BusinessLogic.csproj" Id="86735cd0-4d37-47ca-bc9c-ab4131c65053" />
   <Project Path="ShoppingServer.Database/ShoppingServer.Database.csproj" />
+  <Project Path="ShoppingServer.Library/ShoppingServer.Library.csproj" Id="e9266f2a-647f-4996-a8ff-04a242bd1a47" />
   <Project Path="ShoppingServer/ShoppingServer.csproj" />
 </Solution>

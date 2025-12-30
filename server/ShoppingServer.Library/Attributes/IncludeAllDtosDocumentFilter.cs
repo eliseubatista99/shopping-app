@@ -1,20 +1,10 @@
 ﻿using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Linq;
 using System.Reflection;
 
-namespace ShoppingServer.BusinessLogic.Attributes
+namespace ShoppingServer.Library.Attributes
 {
-
-    using Microsoft.OpenApi.Any;
-    using Microsoft.OpenApi.Models;
-    using Swashbuckle.AspNetCore.SwaggerGen;
-    using System;
-    using System.Linq;
-    using System.Reflection;
-
     public class IncludeAllDtosDocumentFilter : IDocumentFilter
     {
         private readonly Assembly _assembly;

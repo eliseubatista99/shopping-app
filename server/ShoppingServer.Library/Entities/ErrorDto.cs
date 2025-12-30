@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 
-namespace ShoppingServer.BusinessLogic.Operations
+namespace ShoppingServer.Library.Entities
 {
     [ExcludeFromCodeCoverage]
     public class ErrorDto

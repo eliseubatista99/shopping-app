@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library.Entities;
+using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {

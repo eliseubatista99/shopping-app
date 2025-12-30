@@ -1,5 +1,4 @@
-﻿using ShoppingServer.BusinessLogic.Enums;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Entities
 {

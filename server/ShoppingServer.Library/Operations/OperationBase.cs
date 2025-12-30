@@ -1,11 +1,8 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ShoppingServer.BusinessLogic.Attributes;
 
-namespace ShoppingServer.BusinessLogic.Operations
+namespace ShoppingServer.Library.Operations
 {
-    [ExcludeFromSwagger]
     public class OperationBase<TInput, TOutput>
     {
         protected ControllerBase controller;

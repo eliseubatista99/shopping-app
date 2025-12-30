@@ -1,9 +1,8 @@
 ﻿using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
-using ShoppingServer.BusinessLogic.Enums;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ShoppingServer.BusinessLogic.Schemas
+namespace ShoppingServer.Library.Schemas
 {
     public class EnumSchemaFilter : ISchemaFilter
     {
