@@ -17,7 +17,7 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/ExecutePurchase")]
-        public Task<OperationOutput<ExecutePurchaseOperationOutputDto>> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
+        public Task<OperationOutput<VoidDto>> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
         {
             return executePurchaseOperation.Execute(input);
         }

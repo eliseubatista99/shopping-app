@@ -37,7 +37,7 @@ namespace ShoppingServer.Controllers
         [HttpGet("/api/ProductOffers")]
         public Task<OperationOutput<ProductOffersOperationOutputDto>> ProductOffers()
         {
-            return productOffersOperation.Execute(new ProductOffersOperationInputDto());
+            return productOffersOperation.Execute(new VoidDto());
         }
 
         [HttpGet("/api/SearchProducts")]
@@ -47,7 +47,7 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/WriteReview")]
-        public Task<OperationOutput<WriteReviewOperationOutputDto>> WriteReview([FromBody] WriteReviewOperationInputDto input)
+        public Task<OperationOutput<VoidDto>> WriteReview([FromBody] WriteReviewOperationInputDto input)
         {
             return writeReviewOperation.Execute(input);
         }
