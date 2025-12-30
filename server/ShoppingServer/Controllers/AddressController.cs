@@ -28,25 +28,25 @@ namespace ShoppingServer.Controllers
         [HttpPost("/api/AddAddress")]
         public Task<AddAddressResponseDto> AddAddress([FromBody] AddAddressOperationInputDto input)
         {
-            return AddAddressResponseDto.AsResponse<AddAddressResponseDto>(addAddressOperation.Execute(input));
+            return addAddressOperation.Execute<AddAddressResponseDto>(input);
         }
 
         [HttpDelete("/api/DeleteAddress")]
         public Task<DeleteAddressResponseDto> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
         {
-            return DeleteAddressResponseDto.AsResponse<DeleteAddressResponseDto>(deleteAddressOperation.Execute(input));
+            return deleteAddressOperation.Execute<DeleteAddressResponseDto>(input);
         }
 
         [HttpPatch("/api/SetDefaultAddress")]
         public Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromBody] SetDefaultAddressOperationInputDto input)
         {
-            return SetDefaultAddressResponseDto.AsResponse<SetDefaultAddressResponseDto>(setDefaultAddressOperation.Execute(input));
+            return setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input);
         }
 
         [HttpPatch("/api/UpdateAddress")]
         public Task<UpdateAddressResponseDto> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
         {
-            return UpdateAddressResponseDto.AsResponse<UpdateAddressResponseDto>(updateAddressOperation.Execute(input));
+            return updateAddressOperation.Execute<UpdateAddressResponseDto>(input);
         }
     }
 }

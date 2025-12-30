@@ -16,12 +16,6 @@ namespace ShoppingServer.BusinessLogic.Operations
 
         }
 
-        public OperationOutput(TOutput data, OutputMetadataDto metadata)
-        {
-            Data = data;
-            Metadata = metadata;
-        }
-
         public void AddError(ErrorDto error)
         {
             AddErrors(new List<ErrorDto> { error });
@@ -34,33 +28,6 @@ namespace ShoppingServer.BusinessLogic.Operations
             }
 
             this.Metadata.AddErrors(errors);
-        }
-
-        public static TResponse AsResponse<TResponse>(OperationOutput<TOutput> operationOut)
-            where TResponse : OperationOutput<TOutput>, new()
-        {
-            return new TResponse
-            {
-                Data = operationOut.Data,
-                Metadata = operationOut.Metadata,
-            };
-        }
-
-        public static async Task<TResponse> AsResponse<TResponse>(Task<OperationOutput<TOutput>> operationOut)
-            where TResponse : OperationOutput<TOutput>, new()
-        {
-            var res = await operationOut;
-
-            if (res is null)
-            {
-                return new TResponse
-                {
-                    Data = default,
-                    Metadata = new OutputMetadataDto(),
-                };
-            }
-
-            return AsResponse<TResponse>(res);
-        }
+        }        
     }
 }
