@@ -4,7 +4,7 @@ namespace ShoppingServer.BusinessLogic.Attributes
 {
 
     [AttributeUsage(AttributeTargets.Class)]
-    public class AddToSwaggerEvenIfUnusedAttribute : Attribute
+    public class ExcludeDtoIfUnusedAttribute : Attribute
     {
     }
 }

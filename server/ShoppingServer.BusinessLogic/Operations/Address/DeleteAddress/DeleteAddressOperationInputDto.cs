@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    [AddToSwaggerEvenIfUnused]
     [ExcludeFromCodeCoverage]
     public class DeleteAddressOperationInputDto
     {

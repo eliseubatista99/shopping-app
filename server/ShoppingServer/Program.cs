@@ -52,8 +52,8 @@ builder.Services.AddSwaggerGen(c =>
     // Make sure enums are converted to string and not int
     c.SchemaFilter<EnumSchemaFilter>();
 
-    // Make sure unused dtos are added to swagger
-    c.DocumentFilter<ForceUnusedDtosDocumentFilter>(); // sem parâmetro
+    // Make sure unused dtos are added to swagger, unless they are marked with ExcludeDtoIfUnused attribute 
+    c.DocumentFilter<IncludeAllDtosDocumentFilter>();
 
 });
 
