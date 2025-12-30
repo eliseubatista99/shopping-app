@@ -1,11 +1,9 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { CartProductDetailsDto } from "../../models";
-
-export type GetCartOutputDto = { products: CartProductDetailsDto[] };
+import type { GetCartResponseDto } from "../../models";
 
 export const GetCart = () => {
-  const { get } = useFetchWithAuth<GetCartOutputDto>({
+  const { get } = useFetchWithAuth<GetCartResponseDto>({
     endpoint: "GetCart",
     showGenericErrorModal: false,
   });

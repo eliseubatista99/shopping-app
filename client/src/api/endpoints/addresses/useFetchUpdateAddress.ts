@@ -1,29 +1,17 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { AddressDto } from "../../models";
-
-export type UpdateAddressInputDto = {
-  id: string;
-  name?: string;
-  postalCode?: string;
-  city?: string;
-  location?: string;
-  street?: string;
-  country?: string;
-  isDefault?: boolean;
-};
-
-export type UpdateAddressOutputDto = {
-  updatedAddresses: AddressDto[];
-};
+import type {
+  UpdateAddressOperationInputDto,
+  UpdateAddressResponseDto,
+} from "../../models";
 
 export const UpdateAddress = () => {
-  const { patch } = useFetchWithAuth<UpdateAddressOutputDto>({
+  const { patch } = useFetchWithAuth<UpdateAddressResponseDto>({
     endpoint: "UpdateAddress",
   });
 
   const fetch = useCallback(
-    async (input: UpdateAddressInputDto) => {
+    async (input: UpdateAddressOperationInputDto) => {
       const result = await patch({ ...input });
 
       return result;

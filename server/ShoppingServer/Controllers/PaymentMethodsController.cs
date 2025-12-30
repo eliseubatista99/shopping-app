@@ -4,6 +4,13 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
+    public class GetPaymentMethodDetailsResponseDto : OperationOutput<GetPaymentMethodDetailsOperationOutputDto>;
+    public class AddPaymentMethodResponseDto : OperationOutput<AddPaymentMethodOperationOutputDto>;
+    public class DeletePaymentMethodResponseDto : OperationOutput<DeletePaymentMethodOperationOutputDto>;
+    public class SetDefaultPaymentMethodResponseDto : OperationOutput<SetDefaultPaymentMethodOperationOutputDto>;
+    public class UpdatePaymentMethodResponseDto : OperationOutput<UpdatePaymentMethodOperationOutputDto>;
+
+
     [ApiController]
     [Route("[controller]")]
     public class PaymentMethodsController : ControllerBase
@@ -24,33 +31,33 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/GetPaymentMethodDetails")]
-        public Task<OperationOutput<GetPaymentMethodDetailsOperationOutputDto>> GetPaymentMethodDetails([FromQuery] GetPaymentMethodDetailsOperationInputDto input)
+        public Task<GetPaymentMethodDetailsResponseDto> GetPaymentMethodDetails([FromQuery] GetPaymentMethodDetailsOperationInputDto input)
         {
-            return getPaymentMethodDetailsOperation.Execute(input);
+            return getPaymentMethodDetailsOperation.Execute<GetPaymentMethodDetailsResponseDto>(input);
         }
 
         [HttpPost("/api/AddPaymentMethod")]
-        public Task<OperationOutput<AddPaymentMethodOperationOutputDto>> AddPaymentMethod([FromBody] AddPaymentMethodOperationInputDto input)
+        public Task<AddPaymentMethodResponseDto> AddPaymentMethod([FromBody] AddPaymentMethodOperationInputDto input)
         {
-            return addPaymentMethodOperation.Execute(input);
+            return addPaymentMethodOperation.Execute<AddPaymentMethodResponseDto>(input);
         }
 
         [HttpDelete("/api/DeletePaymentMethod")]
-        public Task<OperationOutput<DeletePaymentMethodOperationOutputDto>> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)
+        public Task<DeletePaymentMethodResponseDto> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)
         {
-            return deletePaymentMethodOperation.Execute(input);
+            return deletePaymentMethodOperation.Execute<DeletePaymentMethodResponseDto>(input);
         }
 
         [HttpPatch("/api/SetDefaultPaymentMethod")]
-        public Task<OperationOutput<SetDefaultPaymentMethodOperationOutputDto>> SetDefaultPaymentMethod([FromBody] SetDefaultPaymentMethodOperationInputDto input)
+        public Task<SetDefaultPaymentMethodResponseDto> SetDefaultPaymentMethod([FromBody] SetDefaultPaymentMethodOperationInputDto input)
         {
-            return setDefaultPaymentMethodOperation.Execute(input);
+            return setDefaultPaymentMethodOperation.Execute<SetDefaultPaymentMethodResponseDto>(input);
         }
 
         [HttpPatch("/api/UpdatePaymentMethod")]
-        public Task<OperationOutput<UpdatePaymentMethodOperationOutputDto>> UpdatePaymentMethod([FromBody] UpdatePaymentMethodOperationInputDto input)
+        public Task<UpdatePaymentMethodResponseDto> UpdatePaymentMethod([FromBody] UpdatePaymentMethodOperationInputDto input)
         {
-            return updatePaymentMethodOperation.Execute(input);
+            return updatePaymentMethodOperation.Execute<UpdatePaymentMethodResponseDto>(input);
         }
     }
 }

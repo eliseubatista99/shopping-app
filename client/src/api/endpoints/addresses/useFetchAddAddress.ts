@@ -2,11 +2,11 @@ import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type {
   AddAddressOperationInputDto,
-  AddAddressOperationOutputDto,
+  AddAddressResponseDto,
 } from "../../models";
 
 export const AddAddress = () => {
-  const { post } = useFetchWithAuth<AddAddressOperationOutputDto>({
+  const { post } = useFetchWithAuth<AddAddressResponseDto>({
     endpoint: "AddAddress",
   });
 

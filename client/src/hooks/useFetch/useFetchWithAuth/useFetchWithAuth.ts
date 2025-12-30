@@ -1,3 +1,4 @@
+import type { OutputMetadataDto } from "@api";
 import { useCallback } from "react";
 import { useAuthentication } from "../../useAuthentication";
 import { useFetchNoAuth, type FetchCommonInput } from "../useFetchCommon";
@@ -6,7 +7,11 @@ type FetchWithAuthInput = FetchCommonInput;
 
 type TIn = Record<string, unknown>;
 
-export const useFetchWithAuth = <TOut>(props: FetchWithAuthInput) => {
+export const useFetchWithAuth = <
+  TOut extends { metadata?: OutputMetadataDto | null }
+>(
+  props: FetchWithAuthInput
+) => {
   const { isTokenExpired, refreshToken } = useAuthentication();
   const {
     get: httpGet,

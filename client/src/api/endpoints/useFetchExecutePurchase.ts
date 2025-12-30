@@ -1,21 +1,17 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { CheckoutProductDto } from "../types";
-
-export type ExecutePurchaseInputDto = {
-  products: CheckoutProductDto[];
-  addressId: string;
-  paymentMethodId: string;
-  wantsFastShipping: boolean;
-};
+import type {
+  ExecutePurchaseOperationInputDto,
+  ExecutePurchaseResponseDto,
+} from "../models";
 
 export const ExecutePurchase = () => {
-  const { post } = useFetchWithAuth<void>({
+  const { post } = useFetchWithAuth<ExecutePurchaseResponseDto>({
     endpoint: "ExecutePurchase",
   });
 
   const fetch = useCallback(
-    async (input: ExecutePurchaseInputDto) => {
+    async (input: ExecutePurchaseOperationInputDto) => {
       const result = await post({
         ...input,
       });

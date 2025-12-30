@@ -7,6 +7,12 @@ using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
+    public class AuthenticateResponseDto : OperationOutput<AuthenticateOperationOutputDto>;
+    public class RefreshAuthenticationResponseDto : OperationOutput<RefreshAuthenticationOperationOutputDto>;
+    public class LogoutOperationResponseDto : OperationOutput<VoidDto>;
+    public class CreateAccountResponseDto : OperationOutput<CreateAccountOperationOutputDto>;
+    public class IsExistingAccountResponseDto : OperationOutput<IsExistingAccountOperationOutputDto>;
+
     [ApiController]
     [Route("[controller]")]
     public class AuthenticationController : ControllerBase
@@ -15,6 +21,7 @@ namespace ShoppingServer.Controllers
         private RefreshAuthenticationOperation refreshAuthenticationOperation;
         private LogoutOperation logoutOperation;
         private CreateAccountOperation createAccountOperation;
+        private IsExistingAccountOperation isExistingAccountOperation;
 
         private ITestsDatabaseProvider testsDatabase;
         public AuthenticationController(ITestsDatabaseProvider testsDatabaseProvider)
@@ -24,38 +31,37 @@ namespace ShoppingServer.Controllers
             refreshAuthenticationOperation = new RefreshAuthenticationOperation(this);
             logoutOperation = new LogoutOperation(this);
             createAccountOperation = new CreateAccountOperation(this);
+            isExistingAccountOperation = new IsExistingAccountOperation(this);
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<TableTestsEntry> Get()
+        [HttpGet("/api/IsExistingAccount")]
+        public Task<IsExistingAccountResponseDto> IsExistingAccount([FromQuery] IsExistingAccountOperationInputDto input)
         {
-            var tests = testsDatabase.GetAllTests();
-
-            return tests;
+            return isExistingAccountOperation.Execute<IsExistingAccountResponseDto>(input);
         }
 
         [HttpPost("/api/Authenticate")]
-        public Task<OperationOutput<AuthenticateOperationOutputDto>> Authenticate([FromBody] AuthenticateOperationInputDto input)
+        public Task<AuthenticateResponseDto> Authenticate([FromBody] AuthenticateOperationInputDto input)
         {
-            return authenticateOperation.Execute(input);
+            return authenticateOperation.Execute<AuthenticateResponseDto>(input);
         }
 
         [HttpPost("/api/RefreshAuthentication")]
-        public Task<OperationOutput<RefreshAuthenticationOperationOutputDto>> RefreshAuthentication()
+        public Task<RefreshAuthenticationResponseDto> RefreshAuthentication()
         {
-            return refreshAuthenticationOperation.Execute();
+            return refreshAuthenticationOperation.Execute<RefreshAuthenticationResponseDto>();
         }
 
         [HttpPost("/api/CreateAccount")]
-        public Task<OperationOutput<CreateAccountOperationOutputDto>> CreateAccount([FromBody] CreateAccountOperationInputDto input)
+        public Task<CreateAccountResponseDto> CreateAccount([FromBody] CreateAccountOperationInputDto input)
         {
-            return createAccountOperation.Execute(input);
+            return createAccountOperation.Execute<CreateAccountResponseDto>(input);
         }
 
         [HttpPost("/api/Logout")]
-        public Task<OperationOutput<VoidDto>> Logout()
+        public Task<LogoutOperationResponseDto> Logout()
         {
-            return logoutOperation.Execute();
+            return logoutOperation.Execute<LogoutOperationResponseDto>();
         }
 
 

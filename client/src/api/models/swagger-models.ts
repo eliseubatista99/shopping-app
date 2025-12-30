@@ -44,7 +44,7 @@ export interface AddAddressOperationOutputDto {
   updatedAddresses?: AddressDto[] | null;
 }
 
-export interface AddAddressOperationOutputDtoOperationOutput {
+export interface AddAddressResponseDto {
   data?: AddAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -63,7 +63,7 @@ export interface AddPaymentMethodOperationOutputDto {
   updatedMethods?: PaymentMethodDto[] | null;
 }
 
-export interface AddPaymentMethodOperationOutputDtoOperationOutput {
+export interface AddPaymentMethodResponseDto {
   data?: AddPaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -76,7 +76,7 @@ export interface AddToCartOperationOutputDto {
   products?: CartProductDto[] | null;
 }
 
-export interface AddToCartOperationOutputDtoOperationOutput {
+export interface AddToCartResponseDto {
   data?: AddToCartOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -89,7 +89,7 @@ export interface AddToWishlistOperationOutputDto {
   updatedWishlist?: ProductDto[] | null;
 }
 
-export interface AddToWishlistOperationOutputDtoOperationOutput {
+export interface AddToWishlistResponseDto {
   data?: AddToWishlistOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -117,7 +117,7 @@ export interface AuthenticateOperationOutputDto {
   token: string | null;
 }
 
-export interface AuthenticateOperationOutputDtoOperationOutput {
+export interface AuthenticateResponseDto {
   data?: AuthenticateOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -165,7 +165,7 @@ export interface CreateAccountOperationOutputDto {
   token: string | null;
 }
 
-export interface CreateAccountOperationOutputDtoOperationOutput {
+export interface CreateAccountResponseDto {
   data?: CreateAccountOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -174,7 +174,7 @@ export interface DeleteAddressOperationOutputDto {
   updatedAddresses?: AddressDto[] | null;
 }
 
-export interface DeleteAddressOperationOutputDtoOperationOutput {
+export interface DeleteAddressResponseDto {
   data?: DeleteAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -183,7 +183,7 @@ export interface DeletePaymentMethodOperationOutputDto {
   updatedMethods?: PaymentMethodDto[] | null;
 }
 
-export interface DeletePaymentMethodOperationOutputDtoOperationOutput {
+export interface DeletePaymentMethodResponseDto {
   data?: DeletePaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -206,6 +206,11 @@ export interface ExecutePurchaseOperationInputDto {
   wantsFastShipping?: boolean;
 }
 
+export interface ExecutePurchaseResponseDto {
+  data?: VoidDto;
+  metadata?: OutputMetadataDto;
+}
+
 export interface ForYouOperationOutputDto {
   orders?: OrderDto[] | null;
   favoritesImages?: string[] | null;
@@ -216,7 +221,7 @@ export interface ForYouOperationOutputDto {
   review?: ReviewDto;
 }
 
-export interface ForYouOperationOutputDtoOperationOutput {
+export interface ForYouResponseDto {
   data?: ForYouOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -225,7 +230,7 @@ export interface GetCartOperationOutputDto {
   products?: CartProductDetailsDto[] | null;
 }
 
-export interface GetCartOperationOutputDtoOperationOutput {
+export interface GetCartResponseDto {
   data?: GetCartOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -247,8 +252,19 @@ export interface GetCheckoutInfoOperationOutputDto {
   endDeliveryDate?: string | null;
 }
 
-export interface GetCheckoutInfoOperationOutputDtoOperationOutput {
+export interface GetCheckoutInfoResponseDto {
   data?: GetCheckoutInfoOperationOutputDto;
+  metadata?: OutputMetadataDto;
+}
+
+export interface GetClientInfoOperationOutputDto {
+  client?: ClientInfoDto;
+  /** @format int32 */
+  itemsInCart?: number | null;
+}
+
+export interface GetClientInfoResponseDto {
+  data?: GetClientInfoOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
 
@@ -259,7 +275,7 @@ export interface GetClientOrdersOperationOutputDto {
   hasMorePages?: boolean | null;
 }
 
-export interface GetClientOrdersOperationOutputDtoOperationOutput {
+export interface GetClientOrdersResponseDto {
   data?: GetClientOrdersOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -268,7 +284,7 @@ export interface GetDocumentOperationOutputDto {
   document?: DocumentDto;
 }
 
-export interface GetDocumentOperationOutputDtoOperationOutput {
+export interface GetDocumentResponseDto {
   data?: GetDocumentOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -277,7 +293,7 @@ export interface GetOrderDetailsOperationOutputDto {
   order?: OrderDetailDto;
 }
 
-export interface GetOrderDetailsOperationOutputDtoOperationOutput {
+export interface GetOrderDetailsResponseDto {
   data?: GetOrderDetailsOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -286,7 +302,7 @@ export interface GetPaymentMethodDetailsOperationOutputDto {
   method?: PaymentMethodDetailsDto;
 }
 
-export interface GetPaymentMethodDetailsOperationOutputDtoOperationOutput {
+export interface GetPaymentMethodDetailsResponseDto {
   data?: GetPaymentMethodDetailsOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -303,7 +319,7 @@ export interface GetProductReviewsOperationOutputDto {
   hasMorePages?: boolean | null;
 }
 
-export interface GetProductReviewsOperationOutputDtoOperationOutput {
+export interface GetProductReviewsResponseDto {
   data?: GetProductReviewsOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -313,8 +329,22 @@ export interface GetWishlistOperationOutputDto {
   hasMorePages?: boolean | null;
 }
 
-export interface GetWishlistOperationOutputDtoOperationOutput {
+export interface GetWishlistResponseDto {
   data?: GetWishlistOperationOutputDto;
+  metadata?: OutputMetadataDto;
+}
+
+export interface IsExistingAccountOperationOutputDto {
+  exists?: boolean | null;
+}
+
+export interface IsExistingAccountResponseDto {
+  data?: IsExistingAccountOperationOutputDto;
+  metadata?: OutputMetadataDto;
+}
+
+export interface LogoutOperationResponseDto {
+  data?: VoidDto;
   metadata?: OutputMetadataDto;
 }
 
@@ -414,7 +444,7 @@ export interface ProductDetailOperationOutputDto {
   product?: ProductDetailDto;
 }
 
-export interface ProductDetailOperationOutputDtoOperationOutput {
+export interface ProductDetailResponseDto {
   data?: ProductDetailOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -449,7 +479,7 @@ export interface ProductOffersOperationOutputDto {
   banners?: ProductOfferGroupDto[] | null;
 }
 
-export interface ProductOffersOperationOutputDtoOperationOutput {
+export interface ProductOffersdResponseDto {
   data?: ProductOffersOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -483,7 +513,7 @@ export interface RefreshAuthenticationOperationOutputDto {
   token: string | null;
 }
 
-export interface RefreshAuthenticationOperationOutputDtoOperationOutput {
+export interface RefreshAuthenticationResponseDto {
   data?: RefreshAuthenticationOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -492,7 +522,7 @@ export interface RemoveFromCartOperationOutputDto {
   products?: CartProductDto[] | null;
 }
 
-export interface RemoveFromCartOperationOutputDtoOperationOutput {
+export interface RemoveFromCartResponseDto {
   data?: RemoveFromCartOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -505,7 +535,7 @@ export interface RemoveFromWishlistOperationOutputDto {
   updatedWishlist?: ProductDto[] | null;
 }
 
-export interface RemoveFromWishlistOperationOutputDtoOperationOutput {
+export interface RemoveFromWishlistResponseDto {
   data?: RemoveFromWishlistOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -536,7 +566,7 @@ export interface SearchProductsOperationOutputDto {
   hasMorePages?: boolean | null;
 }
 
-export interface SearchProductsOperationOutputDtoOperationOutput {
+export interface SearchProductsResponseDto {
   data?: SearchProductsOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -555,7 +585,7 @@ export interface SetDefaultAddressOperationOutputDto {
   updatedAddresses?: AddressDto[] | null;
 }
 
-export interface SetDefaultAddressOperationOutputDtoOperationOutput {
+export interface SetDefaultAddressResponseDto {
   data?: SetDefaultAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -568,16 +598,9 @@ export interface SetDefaultPaymentMethodOperationOutputDto {
   updatedMethods?: PaymentMethodDto[] | null;
 }
 
-export interface SetDefaultPaymentMethodOperationOutputDtoOperationOutput {
+export interface SetDefaultPaymentMethodResponseDto {
   data?: SetDefaultPaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
-}
-
-export interface TableTestsEntry {
-  nome?: string | null;
-  /** @format int32 */
-  idade?: number;
-  localidade?: string | null;
 }
 
 export interface UpdateAddressOperationInputDto {
@@ -596,7 +619,7 @@ export interface UpdateAddressOperationOutputDto {
   updatedAddresses?: AddressDto[] | null;
 }
 
-export interface UpdateAddressOperationOutputDtoOperationOutput {
+export interface UpdateAddressResponseDto {
   data?: UpdateAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -609,7 +632,7 @@ export interface UpdateCartProductOperationOutputDto {
   products?: CartProductDto[] | null;
 }
 
-export interface UpdateCartProductOperationOutputDtoOperationOutput {
+export interface UpdateCartResponseDto {
   data?: UpdateCartProductOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -625,7 +648,7 @@ export interface UpdateClientInfoOperationOutputDto {
   updatedInfo?: ClientInfoDto;
 }
 
-export interface UpdateClientInfoOperationOutputDtoOperationOutput {
+export interface UpdateClientInfoResponseDto {
   data?: UpdateClientInfoOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
@@ -644,17 +667,12 @@ export interface UpdatePaymentMethodOperationOutputDto {
   updatedMethods?: PaymentMethodDto[] | null;
 }
 
-export interface UpdatePaymentMethodOperationOutputDtoOperationOutput {
+export interface UpdatePaymentMethodResponseDto {
   data?: UpdatePaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
 }
 
 export type VoidDto = object;
-
-export interface VoidDtoOperationOutput {
-  data?: VoidDto;
-  metadata?: OutputMetadataDto;
-}
 
 export interface WriteReviewOperationInputDto {
   reviewerId: string | null;
@@ -665,68 +683,176 @@ export interface WriteReviewOperationInputDto {
   description?: string | null;
 }
 
+export interface WriteReviewResponseDto {
+  data?: VoidDto;
+  metadata?: OutputMetadataDto;
+}
+
+export interface DeleteAddressParams {
+  AddressId: string;
+}
+
+export interface IsExistingAccountListParams {
+  Email?: string;
+  PhoneNumber?: string;
+}
+
+export interface RemoveFromCartDeleteParams {
+  productIds: string[];
+}
+
+export interface GetDocumentListParams {
+  Id: string;
+}
+
+export interface GetClientOrdersListParams {
+  OrderId?: string;
+  FilterByText?: string;
+  FilterByStatus?: OrderStatus;
+  SortMode?: SortMode;
+  /** @format date-time */
+  FilterByStartDate?: string;
+  /** @format date-time */
+  FilterByEndDate?: string;
+  /** @format int32 */
+  Page?: number;
+  /** @format int32 */
+  PageSize?: number;
+}
+
+export interface GetOrderDetailsListParams {
+  orderId: string;
+}
+
+export interface GetPaymentMethodDetailsListParams {
+  methodId: string;
+}
+
+export interface DeletePaymentMethodDeleteParams {
+  methodId: string;
+}
+
+export interface GetProductReviewsListParams {
+  productId?: string;
+  reviewId?: string;
+  authorId?: string;
+  /** @format int32 */
+  page?: number;
+  /** @format int32 */
+  pageSize?: number;
+  /** @format double */
+  filterByRating?: number;
+  sortMode?: SortMode;
+}
+
+export interface ProductDetailListParams {
+  productId: string;
+}
+
+export interface SearchProductsListParams {
+  /** @format int32 */
+  page?: number;
+  /** @format int32 */
+  pageSize?: number;
+  text?: string;
+  /** @format double */
+  score?: number;
+  /** @format double */
+  maxPrice?: number;
+  /** @format double */
+  minPrice?: number;
+  bestSeller?: boolean;
+  freeShipping?: boolean;
+  category?: string;
+  sort?: SortMode;
+}
+
+export interface GetWishlistListParams {
+  /** @format int32 */
+  Page?: number;
+  /** @format int32 */
+  PageSize?: number;
+}
+
 export namespace Api {
   /**
    * No description
    * @tags Address
-   * @name AddAddressCreate
+   * @name AddAddress
    * @request POST:/api/AddAddress
-   * @response `200` `AddAddressOperationOutputDtoOperationOutput` OK
+   * @response `200` `AddAddressResponseDto` OK
    */
-  export namespace AddAddressCreate {
+  export namespace AddAddress {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = AddAddressOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = AddAddressOperationOutputDtoOperationOutput;
+    export type ResponseBody = AddAddressResponseDto;
   }
 
   /**
    * No description
    * @tags Address
-   * @name DeleteAddressDelete
+   * @name DeleteAddress
    * @request DELETE:/api/DeleteAddress
-   * @response `200` `DeleteAddressOperationOutputDtoOperationOutput` OK
+   * @response `200` `DeleteAddressResponseDto` OK
    */
-  export namespace DeleteAddressDelete {
+  export namespace DeleteAddress {
     export type RequestParams = {};
     export type RequestQuery = {
-      addressId: string;
+      AddressId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = DeleteAddressOperationOutputDtoOperationOutput;
+    export type ResponseBody = DeleteAddressResponseDto;
   }
 
   /**
    * No description
    * @tags Address
-   * @name SetDefaultAddressPartialUpdate
+   * @name SetDefaultAddress
    * @request PATCH:/api/SetDefaultAddress
-   * @response `200` `SetDefaultAddressOperationOutputDtoOperationOutput` OK
+   * @response `200` `SetDefaultAddressResponseDto` OK
    */
-  export namespace SetDefaultAddressPartialUpdate {
+  export namespace SetDefaultAddress {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = SetDefaultAddressOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      SetDefaultAddressOperationOutputDtoOperationOutput;
+    export type ResponseBody = SetDefaultAddressResponseDto;
   }
 
   /**
    * No description
    * @tags Address
-   * @name UpdateAddressPartialUpdate
+   * @name UpdateAddress
    * @request PATCH:/api/UpdateAddress
-   * @response `200` `UpdateAddressOperationOutputDtoOperationOutput` OK
+   * @response `200` `UpdateAddressResponseDto` OK
    */
-  export namespace UpdateAddressPartialUpdate {
+  export namespace UpdateAddress {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = UpdateAddressOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = UpdateAddressOperationOutputDtoOperationOutput;
+    export type ResponseBody = UpdateAddressResponseDto;
+  }
+
+  /**
+   * No description
+   * @tags Authentication
+   * @name IsExistingAccountList
+   * @request GET:/api/IsExistingAccount
+   * @response `200` `IsExistingAccountResponseDto` OK
+   */
+  export namespace IsExistingAccountList {
+    export type RequestParams = {};
+    export type RequestQuery = {
+      Email?: string;
+      PhoneNumber?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = IsExistingAccountResponseDto;
   }
 
   /**
@@ -734,14 +860,14 @@ export namespace Api {
    * @tags Authentication
    * @name AuthenticateCreate
    * @request POST:/api/Authenticate
-   * @response `200` `AuthenticateOperationOutputDtoOperationOutput` OK
+   * @response `200` `AuthenticateResponseDto` OK
    */
   export namespace AuthenticateCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = AuthenticateOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = AuthenticateOperationOutputDtoOperationOutput;
+    export type ResponseBody = AuthenticateResponseDto;
   }
 
   /**
@@ -749,15 +875,14 @@ export namespace Api {
    * @tags Authentication
    * @name RefreshAuthenticationCreate
    * @request POST:/api/RefreshAuthentication
-   * @response `200` `RefreshAuthenticationOperationOutputDtoOperationOutput` OK
+   * @response `200` `RefreshAuthenticationResponseDto` OK
    */
   export namespace RefreshAuthenticationCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      RefreshAuthenticationOperationOutputDtoOperationOutput;
+    export type ResponseBody = RefreshAuthenticationResponseDto;
   }
 
   /**
@@ -765,14 +890,14 @@ export namespace Api {
    * @tags Authentication
    * @name CreateAccountCreate
    * @request POST:/api/CreateAccount
-   * @response `200` `CreateAccountOperationOutputDtoOperationOutput` OK
+   * @response `200` `CreateAccountResponseDto` OK
    */
   export namespace CreateAccountCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = CreateAccountOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = CreateAccountOperationOutputDtoOperationOutput;
+    export type ResponseBody = CreateAccountResponseDto;
   }
 
   /**
@@ -780,14 +905,14 @@ export namespace Api {
    * @tags Authentication
    * @name LogoutCreate
    * @request POST:/api/Logout
-   * @response `200` `VoidDtoOperationOutput` OK
+   * @response `200` `LogoutOperationResponseDto` OK
    */
   export namespace LogoutCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = VoidDtoOperationOutput;
+    export type ResponseBody = LogoutOperationResponseDto;
   }
 
   /**
@@ -795,14 +920,14 @@ export namespace Api {
    * @tags Cart
    * @name AddToCartCreate
    * @request POST:/api/AddToCart
-   * @response `200` `AddToCartOperationOutputDtoOperationOutput` OK
+   * @response `200` `AddToCartResponseDto` OK
    */
   export namespace AddToCartCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = AddToCartOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = AddToCartOperationOutputDtoOperationOutput;
+    export type ResponseBody = AddToCartResponseDto;
   }
 
   /**
@@ -810,14 +935,14 @@ export namespace Api {
    * @tags Cart
    * @name GetCartList
    * @request GET:/api/GetCart
-   * @response `200` `GetCartOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetCartResponseDto` OK
    */
   export namespace GetCartList {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = GetCartOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetCartResponseDto;
   }
 
   /**
@@ -825,7 +950,7 @@ export namespace Api {
    * @tags Cart
    * @name RemoveFromCartDelete
    * @request DELETE:/api/RemoveFromCart
-   * @response `200` `RemoveFromCartOperationOutputDtoOperationOutput` OK
+   * @response `200` `RemoveFromCartResponseDto` OK
    */
   export namespace RemoveFromCartDelete {
     export type RequestParams = {};
@@ -834,7 +959,7 @@ export namespace Api {
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = RemoveFromCartOperationOutputDtoOperationOutput;
+    export type ResponseBody = RemoveFromCartResponseDto;
   }
 
   /**
@@ -842,15 +967,29 @@ export namespace Api {
    * @tags Cart
    * @name UpdateCartProductPartialUpdate
    * @request PATCH:/api/UpdateCartProduct
-   * @response `200` `UpdateCartProductOperationOutputDtoOperationOutput` OK
+   * @response `200` `UpdateCartResponseDto` OK
    */
   export namespace UpdateCartProductPartialUpdate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = UpdateCartProductOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      UpdateCartProductOperationOutputDtoOperationOutput;
+    export type ResponseBody = UpdateCartResponseDto;
+  }
+
+  /**
+   * No description
+   * @tags Common
+   * @name GetClientInfoList
+   * @request GET:/api/GetClientInfo
+   * @response `200` `GetClientInfoResponseDto` OK
+   */
+  export namespace GetClientInfoList {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = GetClientInfoResponseDto;
   }
 
   /**
@@ -858,14 +997,14 @@ export namespace Api {
    * @tags Common
    * @name ForYouCreate
    * @request POST:/api/ForYou
-   * @response `200` `ForYouOperationOutputDtoOperationOutput` OK
+   * @response `200` `ForYouResponseDto` OK
    */
   export namespace ForYouCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = ForYouOperationOutputDtoOperationOutput;
+    export type ResponseBody = ForYouResponseDto;
   }
 
   /**
@@ -873,16 +1012,16 @@ export namespace Api {
    * @tags Common
    * @name GetDocumentList
    * @request GET:/api/GetDocument
-   * @response `200` `GetDocumentOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetDocumentResponseDto` OK
    */
   export namespace GetDocumentList {
     export type RequestParams = {};
     export type RequestQuery = {
-      id: string;
+      Id: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = GetDocumentOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetDocumentResponseDto;
   }
 
   /**
@@ -890,15 +1029,14 @@ export namespace Api {
    * @tags Common
    * @name UpdateClientInfoPartialUpdate
    * @request PATCH:/api/UpdateClientInfo
-   * @response `200` `UpdateClientInfoOperationOutputDtoOperationOutput` OK
+   * @response `200` `UpdateClientInfoResponseDto` OK
    */
   export namespace UpdateClientInfoPartialUpdate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = UpdateClientInfoOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      UpdateClientInfoOperationOutputDtoOperationOutput;
+    export type ResponseBody = UpdateClientInfoResponseDto;
   }
 
   /**
@@ -906,14 +1044,27 @@ export namespace Api {
    * @tags Orders
    * @name GetClientOrdersList
    * @request GET:/api/GetClientOrders
-   * @response `200` `GetClientOrdersOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetClientOrdersResponseDto` OK
    */
   export namespace GetClientOrdersList {
     export type RequestParams = {};
-    export type RequestQuery = {};
+    export type RequestQuery = {
+      OrderId?: string;
+      FilterByText?: string;
+      FilterByStatus?: OrderStatus;
+      SortMode?: SortMode;
+      /** @format date-time */
+      FilterByStartDate?: string;
+      /** @format date-time */
+      FilterByEndDate?: string;
+      /** @format int32 */
+      Page?: number;
+      /** @format int32 */
+      PageSize?: number;
+    };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = GetClientOrdersOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetClientOrdersResponseDto;
   }
 
   /**
@@ -921,7 +1072,7 @@ export namespace Api {
    * @tags Orders
    * @name GetOrderDetailsList
    * @request GET:/api/GetOrderDetails
-   * @response `200` `GetOrderDetailsOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetOrderDetailsResponseDto` OK
    */
   export namespace GetOrderDetailsList {
     export type RequestParams = {};
@@ -930,7 +1081,7 @@ export namespace Api {
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = GetOrderDetailsOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetOrderDetailsResponseDto;
   }
 
   /**
@@ -938,7 +1089,7 @@ export namespace Api {
    * @tags PaymentMethods
    * @name GetPaymentMethodDetailsList
    * @request GET:/api/GetPaymentMethodDetails
-   * @response `200` `GetPaymentMethodDetailsOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetPaymentMethodDetailsResponseDto` OK
    */
   export namespace GetPaymentMethodDetailsList {
     export type RequestParams = {};
@@ -947,8 +1098,7 @@ export namespace Api {
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      GetPaymentMethodDetailsOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetPaymentMethodDetailsResponseDto;
   }
 
   /**
@@ -956,15 +1106,14 @@ export namespace Api {
    * @tags PaymentMethods
    * @name AddPaymentMethodCreate
    * @request POST:/api/AddPaymentMethod
-   * @response `200` `AddPaymentMethodOperationOutputDtoOperationOutput` OK
+   * @response `200` `AddPaymentMethodResponseDto` OK
    */
   export namespace AddPaymentMethodCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = AddPaymentMethodOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      AddPaymentMethodOperationOutputDtoOperationOutput;
+    export type ResponseBody = AddPaymentMethodResponseDto;
   }
 
   /**
@@ -972,7 +1121,7 @@ export namespace Api {
    * @tags PaymentMethods
    * @name DeletePaymentMethodDelete
    * @request DELETE:/api/DeletePaymentMethod
-   * @response `200` `DeletePaymentMethodOperationOutputDtoOperationOutput` OK
+   * @response `200` `DeletePaymentMethodResponseDto` OK
    */
   export namespace DeletePaymentMethodDelete {
     export type RequestParams = {};
@@ -981,8 +1130,7 @@ export namespace Api {
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      DeletePaymentMethodOperationOutputDtoOperationOutput;
+    export type ResponseBody = DeletePaymentMethodResponseDto;
   }
 
   /**
@@ -990,15 +1138,14 @@ export namespace Api {
    * @tags PaymentMethods
    * @name SetDefaultPaymentMethodPartialUpdate
    * @request PATCH:/api/SetDefaultPaymentMethod
-   * @response `200` `SetDefaultPaymentMethodOperationOutputDtoOperationOutput` OK
+   * @response `200` `SetDefaultPaymentMethodResponseDto` OK
    */
   export namespace SetDefaultPaymentMethodPartialUpdate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = SetDefaultPaymentMethodOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      SetDefaultPaymentMethodOperationOutputDtoOperationOutput;
+    export type ResponseBody = SetDefaultPaymentMethodResponseDto;
   }
 
   /**
@@ -1006,15 +1153,14 @@ export namespace Api {
    * @tags PaymentMethods
    * @name UpdatePaymentMethodPartialUpdate
    * @request PATCH:/api/UpdatePaymentMethod
-   * @response `200` `UpdatePaymentMethodOperationOutputDtoOperationOutput` OK
+   * @response `200` `UpdatePaymentMethodResponseDto` OK
    */
   export namespace UpdatePaymentMethodPartialUpdate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = UpdatePaymentMethodOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      UpdatePaymentMethodOperationOutputDtoOperationOutput;
+    export type ResponseBody = UpdatePaymentMethodResponseDto;
   }
 
   /**
@@ -1022,7 +1168,7 @@ export namespace Api {
    * @tags Product
    * @name GetProductReviewsList
    * @request GET:/api/GetProductReviews
-   * @response `200` `GetProductReviewsOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetProductReviewsResponseDto` OK
    */
   export namespace GetProductReviewsList {
     export type RequestParams = {};
@@ -1040,8 +1186,7 @@ export namespace Api {
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      GetProductReviewsOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetProductReviewsResponseDto;
   }
 
   /**
@@ -1049,7 +1194,7 @@ export namespace Api {
    * @tags Product
    * @name ProductDetailList
    * @request GET:/api/ProductDetail
-   * @response `200` `ProductDetailOperationOutputDtoOperationOutput` OK
+   * @response `200` `ProductDetailResponseDto` OK
    */
   export namespace ProductDetailList {
     export type RequestParams = {};
@@ -1058,7 +1203,7 @@ export namespace Api {
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = ProductDetailOperationOutputDtoOperationOutput;
+    export type ResponseBody = ProductDetailResponseDto;
   }
 
   /**
@@ -1066,14 +1211,14 @@ export namespace Api {
    * @tags Product
    * @name ProductOffersList
    * @request GET:/api/ProductOffers
-   * @response `200` `ProductOffersOperationOutputDtoOperationOutput` OK
+   * @response `200` `ProductOffersdResponseDto` OK
    */
   export namespace ProductOffersList {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = ProductOffersOperationOutputDtoOperationOutput;
+    export type ResponseBody = ProductOffersdResponseDto;
   }
 
   /**
@@ -1081,7 +1226,7 @@ export namespace Api {
    * @tags Product
    * @name SearchProductsList
    * @request GET:/api/SearchProducts
-   * @response `200` `SearchProductsOperationOutputDtoOperationOutput` OK
+   * @response `200` `SearchProductsResponseDto` OK
    */
   export namespace SearchProductsList {
     export type RequestParams = {};
@@ -1104,7 +1249,7 @@ export namespace Api {
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = SearchProductsOperationOutputDtoOperationOutput;
+    export type ResponseBody = SearchProductsResponseDto;
   }
 
   /**
@@ -1112,14 +1257,14 @@ export namespace Api {
    * @tags Product
    * @name WriteReviewCreate
    * @request POST:/api/WriteReview
-   * @response `200` `VoidDtoOperationOutput` OK
+   * @response `200` `WriteReviewResponseDto` OK
    */
   export namespace WriteReviewCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = WriteReviewOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = VoidDtoOperationOutput;
+    export type ResponseBody = WriteReviewResponseDto;
   }
 
   /**
@@ -1127,14 +1272,14 @@ export namespace Api {
    * @tags Purchase
    * @name ExecutePurchaseCreate
    * @request POST:/api/ExecutePurchase
-   * @response `200` `VoidDtoOperationOutput` OK
+   * @response `200` `ExecutePurchaseResponseDto` OK
    */
   export namespace ExecutePurchaseCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = ExecutePurchaseOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = VoidDtoOperationOutput;
+    export type ResponseBody = ExecutePurchaseResponseDto;
   }
 
   /**
@@ -1142,14 +1287,14 @@ export namespace Api {
    * @tags Purchase
    * @name GetCheckoutInfoList
    * @request GET:/api/GetCheckoutInfo
-   * @response `200` `GetCheckoutInfoOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetCheckoutInfoResponseDto` OK
    */
   export namespace GetCheckoutInfoList {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = GetCheckoutInfoOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = GetCheckoutInfoOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetCheckoutInfoResponseDto;
   }
 
   /**
@@ -1157,14 +1302,14 @@ export namespace Api {
    * @tags Wishlist
    * @name AddToWishlistCreate
    * @request POST:/api/AddToWishlist
-   * @response `200` `AddToWishlistOperationOutputDtoOperationOutput` OK
+   * @response `200` `AddToWishlistResponseDto` OK
    */
   export namespace AddToWishlistCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = AddToWishlistOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody = AddToWishlistOperationOutputDtoOperationOutput;
+    export type ResponseBody = AddToWishlistResponseDto;
   }
 
   /**
@@ -1172,14 +1317,19 @@ export namespace Api {
    * @tags Wishlist
    * @name GetWishlistList
    * @request GET:/api/GetWishlist
-   * @response `200` `GetWishlistOperationOutputDtoOperationOutput` OK
+   * @response `200` `GetWishlistResponseDto` OK
    */
   export namespace GetWishlistList {
     export type RequestParams = {};
-    export type RequestQuery = {};
+    export type RequestQuery = {
+      /** @format int32 */
+      Page?: number;
+      /** @format int32 */
+      PageSize?: number;
+    };
     export type RequestBody = never;
     export type RequestHeaders = {};
-    export type ResponseBody = GetWishlistOperationOutputDtoOperationOutput;
+    export type ResponseBody = GetWishlistResponseDto;
   }
 
   /**
@@ -1187,31 +1337,13 @@ export namespace Api {
    * @tags Wishlist
    * @name RemoveFromWishlistDelete
    * @request DELETE:/api/RemoveFromWishlist
-   * @response `200` `RemoveFromWishlistOperationOutputDtoOperationOutput` OK
+   * @response `200` `RemoveFromWishlistResponseDto` OK
    */
   export namespace RemoveFromWishlistDelete {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = RemoveFromWishlistOperationInputDto;
     export type RequestHeaders = {};
-    export type ResponseBody =
-      RemoveFromWishlistOperationOutputDtoOperationOutput;
-  }
-}
-
-export namespace Authentication {
-  /**
-   * No description
-   * @tags Authentication
-   * @name GetWeatherForecast
-   * @request GET:/Authentication
-   * @response `200` `(TableTestsEntry)[]` OK
-   */
-  export namespace GetWeatherForecast {
-    export type RequestParams = {};
-    export type RequestQuery = {};
-    export type RequestBody = never;
-    export type RequestHeaders = {};
-    export type ResponseBody = TableTestsEntry[];
+    export type ResponseBody = RemoveFromWishlistResponseDto;
   }
 }

@@ -1,21 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { CartProductDto } from "../../models";
-
-export type RemoveFromCartInputDto = {
-  productIds?: string[];
-};
-
-export type RemoveFromCartOutputDto = { products: CartProductDto[] };
+import type {
+  RemoveFromCartDeleteParams,
+  RemoveFromCartResponseDto,
+} from "../../models";
 
 export const RemoveFromCart = () => {
-  const { delete: httpDelete } = useFetchWithAuth<RemoveFromCartOutputDto>({
+  const { delete: httpDelete } = useFetchWithAuth<RemoveFromCartResponseDto>({
     endpoint: "RemoveFromCart",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: RemoveFromCartInputDto) => {
+    async (input: RemoveFromCartDeleteParams) => {
       const result = await httpDelete({ ...input });
 
       return result;

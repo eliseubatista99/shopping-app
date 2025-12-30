@@ -1,4 +1,4 @@
-import { ApiConfigs, type ApiOutput } from "@api";
+import { ApiConfigs, type OutputMetadataDto } from "@api";
 import { MODALS } from "@constants";
 import { useFeedback, useFetch } from "@eliseubatista99/react-scaffold-core";
 import { useStoreAuthentication } from "@store";
@@ -12,7 +12,9 @@ export type FetchCommonInput = {
 
 type TIn = Record<string, unknown>;
 
-export const useFetchNoAuth = <TOut>({
+export const useFetchNoAuth = <
+  TOut extends { metadata?: OutputMetadataDto | null }
+>({
   endpoint,
   showGenericErrorModal = true,
   onError,
@@ -43,8 +45,8 @@ export const useFetchNoAuth = <TOut>({
   }, [token]);
 
   const handleFetchResponse = useCallback(
-    (response: ApiOutput<TOut>) => {
-      if (!response.metadata.success) {
+    (response: TOut) => {
+      if (response.metadata?.success !== true) {
         if (showGenericErrorModal) {
           showItem(MODALS.GENERIC_API_ERROR);
         }
@@ -57,7 +59,7 @@ export const useFetchNoAuth = <TOut>({
 
   const runGet = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpGet<ApiOutput<TOut>>(
+      const result = await httpGet<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
         { ...commonHeaders, ...headers }
@@ -72,7 +74,7 @@ export const useFetchNoAuth = <TOut>({
 
   const runPost = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpPost<ApiOutput<TOut>>(
+      const result = await httpPost<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
         { ...commonHeaders, ...headers }
@@ -87,7 +89,7 @@ export const useFetchNoAuth = <TOut>({
 
   const runDelete = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpDelete<ApiOutput<TOut>>(
+      const result = await httpDelete<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
         { ...commonHeaders, ...headers }
@@ -102,7 +104,7 @@ export const useFetchNoAuth = <TOut>({
 
   const runPatch = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpPatch<ApiOutput<TOut>>(
+      const result = await httpPatch<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
         { ...commonHeaders, ...headers }

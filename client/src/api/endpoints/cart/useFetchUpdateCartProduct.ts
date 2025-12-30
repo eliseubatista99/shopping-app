@@ -1,21 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { CartProductDto } from "../../models";
-
-export type UpdateCartProductInputDto = {
-  products: CartProductDto[];
-};
-
-export type UpdateCartProductOutputDto = { products: CartProductDto[] };
+import type {
+  UpdateCartProductOperationInputDto,
+  UpdateCartResponseDto,
+} from "../../models";
 
 export const UpdateCartProduct = () => {
-  const { patch } = useFetchWithAuth<UpdateCartProductOutputDto>({
+  const { patch } = useFetchWithAuth<UpdateCartResponseDto>({
     endpoint: "UpdateCartProduct",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: UpdateCartProductInputDto) => {
+    async (input: UpdateCartProductOperationInputDto) => {
       const result = await patch({ ...input });
 
       return result;

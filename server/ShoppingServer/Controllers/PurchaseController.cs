@@ -5,6 +5,9 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
+    public class ExecutePurchaseResponseDto : OperationOutput<VoidDto>;
+    public class GetCheckoutInfoResponseDto : OperationOutput<GetCheckoutInfoOperationOutputDto>;
+
     [ApiController]
     [Route("[controller]")]
     public class PurchaseController : ControllerBase
@@ -19,15 +22,15 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/ExecutePurchase")]
-        public Task<OperationOutput<VoidDto>> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
+        public Task<ExecutePurchaseResponseDto> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
         {
-            return executePurchaseOperation.Execute(input);
+            return executePurchaseOperation.Execute<ExecutePurchaseResponseDto>(input);
         }
 
         [HttpGet("/api/GetCheckoutInfo")]
-        public Task<OperationOutput<GetCheckoutInfoOperationOutputDto>> GetCheckoutInfo([FromBody] GetCheckoutInfoOperationInputDto input)
+        public Task<GetCheckoutInfoResponseDto> GetCheckoutInfo([FromBody] GetCheckoutInfoOperationInputDto input)
         {
-            return getCheckoutInfoOperation.Execute(input);
+            return getCheckoutInfoOperation.Execute<GetCheckoutInfoResponseDto>(input);
         }
     }
 }

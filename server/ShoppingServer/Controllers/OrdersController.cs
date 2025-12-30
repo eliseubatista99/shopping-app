@@ -4,6 +4,9 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
+    public class GetClientOrdersResponseDto : OperationOutput<GetClientOrdersOperationOutputDto>;
+    public class GetOrderDetailsResponseDto : OperationOutput<GetOrderDetailsOperationOutputDto>;
+
     [ApiController]
     [Route("[controller]")]
     public class OrdersController : ControllerBase
@@ -18,16 +21,16 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/GetClientOrders")]
-        public Task<OperationOutput<GetClientOrdersOperationOutputDto>> GetClientOrders()
+        public Task<GetClientOrdersResponseDto> GetClientOrders([FromQuery] GetClientOrdersOperationInputDto input)
         {
-            return getClientOrdersOperation.Execute(new GetClientOrdersOperationInputDto());
+            return getClientOrdersOperation.Execute<GetClientOrdersResponseDto>(input);
         }
 
 
         [HttpGet("/api/GetOrderDetails")]
-        public Task<OperationOutput<GetOrderDetailsOperationOutputDto>> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)
+        public Task<GetOrderDetailsResponseDto> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)
         {
-            return getOrderDetailsOperation.Execute(input);
+            return getOrderDetailsOperation.Execute<GetOrderDetailsResponseDto>(input);
         }
     }
 }

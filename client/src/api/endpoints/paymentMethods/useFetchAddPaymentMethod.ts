@@ -1,26 +1,17 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { PaymentMethodDto, PaymentMethodType } from "../../models";
-
-export type AddPaymentMethodInputDto = {
-  type: PaymentMethodType;
-  name: string;
-  cardNumber: string;
-  expirationMonth: number;
-  expirationYear: number;
-};
-
-export type AddPaymentMethodOutputDto = {
-  updatedMethods: PaymentMethodDto[];
-};
+import type {
+  AddPaymentMethodOperationInputDto,
+  AddPaymentMethodResponseDto,
+} from "../../models";
 
 export const AddPaymentMethod = () => {
-  const { post } = useFetchWithAuth<AddPaymentMethodOutputDto>({
+  const { post } = useFetchWithAuth<AddPaymentMethodResponseDto>({
     endpoint: "AddPaymentMethod",
   });
 
   const fetch = useCallback(
-    async (input: AddPaymentMethodInputDto) => {
+    async (input: AddPaymentMethodOperationInputDto) => {
       const result = await post({ ...input });
 
       return result;

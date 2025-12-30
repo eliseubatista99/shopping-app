@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library.Operations;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingServer.Controllers
 {
@@ -27,24 +28,28 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/AddAddress")]
+        [SwaggerOperation(OperationId = "AddAddress")]
         public Task<AddAddressResponseDto> AddAddress([FromBody] AddAddressOperationInputDto input)
         {
             return addAddressOperation.Execute<AddAddressResponseDto>(input);
         }
 
         [HttpDelete("/api/DeleteAddress")]
+        [SwaggerOperation(OperationId = "DeleteAddress")]
         public Task<DeleteAddressResponseDto> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
         {
             return deleteAddressOperation.Execute<DeleteAddressResponseDto>(input);
         }
 
         [HttpPatch("/api/SetDefaultAddress")]
+        [SwaggerOperation(OperationId = "SetDefaultAddress")]
         public Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromBody] SetDefaultAddressOperationInputDto input)
         {
             return setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input);
         }
 
         [HttpPatch("/api/UpdateAddress")]
+        [SwaggerOperation(OperationId = "UpdateAddress")]
         public Task<UpdateAddressResponseDto> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
         {
             return updateAddressOperation.Execute<UpdateAddressResponseDto>(input);

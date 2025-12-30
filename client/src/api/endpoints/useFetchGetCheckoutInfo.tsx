@@ -1,27 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-
-export type GetCheckoutInfoOutputDto = {
-  shippingCost?: number;
-  startDeliveryDate?: string;
-  fastestDeliveryCost?: number;
-  endDeliveryDate?: string;
-};
-
-export type GetCheckoutInfoInputDto = {
-  productIds: string[];
-  addressId: string;
-  paymentMethodId: string;
-};
+import type {
+  GetCheckoutInfoOperationInputDto,
+  GetCheckoutInfoResponseDto,
+} from "../models";
 
 export const GetCheckoutInfo = () => {
-  const { get } = useFetchWithAuth<GetCheckoutInfoOutputDto>({
+  const { get } = useFetchWithAuth<GetCheckoutInfoResponseDto>({
     endpoint: "GetCheckoutInfo",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: GetCheckoutInfoInputDto) => {
+    async (input: GetCheckoutInfoOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

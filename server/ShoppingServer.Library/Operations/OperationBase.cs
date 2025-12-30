@@ -51,11 +51,10 @@ namespace ShoppingServer.Library.Operations
 
             return output;
         }
-        public async Task<TResponse> Execute<TResponse>(TInput _input)
+
+        public async Task<TResponse> Execute<TResponse>()
             where TResponse : OperationOutput<TOutput>, new()
         {
-            this.input = _input;
-
             var res = await Execute();
 
             return new TResponse
@@ -63,6 +62,14 @@ namespace ShoppingServer.Library.Operations
                 Data = res.Data,
                 Metadata = res.Metadata,
             };
+        }
+
+        public Task<TResponse> Execute<TResponse>(TInput _input)
+            where TResponse : OperationOutput<TOutput>, new()
+        {
+            this.input = _input;
+
+            return Execute<TResponse>();
         }
     }
 }

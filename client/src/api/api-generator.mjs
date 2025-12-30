@@ -10,6 +10,7 @@ generateApi({
   generateRouteTypes: true,
   generateUnionEnums: true,
   generateClient: false,
+  extractRequestParams: true,
   hooks: {
     onFormatTypeName: (_typeName, rawTypeName, _schemaType) => {
       const transformedRawTypeName = rawTypeName?.substring(

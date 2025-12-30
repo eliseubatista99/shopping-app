@@ -5,6 +5,11 @@ using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
+    public class AddToCartResponseDto : OperationOutput<AddToCartOperationOutputDto>;
+    public class GetCartResponseDto : OperationOutput<GetCartOperationOutputDto>;
+    public class RemoveFromCartResponseDto : OperationOutput<RemoveFromCartOperationOutputDto>;
+    public class UpdateCartResponseDto : OperationOutput<UpdateCartProductOperationOutputDto>;
+
     [ApiController]
     [Route("[controller]")]
     public class CartController : ControllerBase
@@ -22,29 +27,29 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/AddToCart")]
-        public Task<OperationOutput<AddToCartOperationOutputDto>> AddToCart([FromBody] AddToCartOperationInputDto input)
+        public Task<AddToCartResponseDto> AddToCart([FromBody] AddToCartOperationInputDto input)
         {
-            return addToCartOperation.Execute(input);
+            return addToCartOperation.Execute<AddToCartResponseDto>(input);
         }
 
         [HttpGet("/api/GetCart")]
-        public Task<OperationOutput<GetCartOperationOutputDto>> GetCart()
+        public Task<GetCartResponseDto> GetCart()
         {
-            return getCartOperation.Execute(new VoidDto());
+            return getCartOperation.Execute<GetCartResponseDto>(new VoidDto());
         }
 
 
         [HttpDelete("/api/RemoveFromCart")]
-        public Task<OperationOutput<RemoveFromCartOperationOutputDto>> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)
+        public Task<RemoveFromCartResponseDto> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)
         {
-            return removeFromCartOperation.Execute(input);
+            return removeFromCartOperation.Execute<RemoveFromCartResponseDto>(input);
         }
 
 
         [HttpPatch("/api/UpdateCartProduct")]
-        public Task<OperationOutput<UpdateCartProductOperationOutputDto>> UpdateCartProduct([FromBody] UpdateCartProductOperationInputDto input)
+        public Task<UpdateCartResponseDto> UpdateCartProduct([FromBody] UpdateCartProductOperationInputDto input)
         {
-            return updateCartProductOperation.Execute(input);
+            return updateCartProductOperation.Execute<UpdateCartResponseDto>(input);
         }
     }
 }

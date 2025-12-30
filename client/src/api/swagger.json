@@ -8,6 +8,7 @@
     "/api/AddAddress": {
       "post": {
         "tags": ["Address"],
+        "operationId": "AddAddress",
         "requestBody": {
           "content": {
             "application/json": {
@@ -33,17 +34,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddAddressResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddAddressResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddAddressResponseDto"
                 }
               }
             }
@@ -54,9 +55,10 @@
     "/api/DeleteAddress": {
       "delete": {
         "tags": ["Address"],
+        "operationId": "DeleteAddress",
         "parameters": [
           {
-            "name": "addressId",
+            "name": "AddressId",
             "in": "query",
             "required": true,
             "schema": {
@@ -70,17 +72,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/DeleteAddressResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/DeleteAddressResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/DeleteAddressResponseDto"
                 }
               }
             }
@@ -91,6 +93,7 @@
     "/api/SetDefaultAddress": {
       "patch": {
         "tags": ["Address"],
+        "operationId": "SetDefaultAddress",
         "requestBody": {
           "content": {
             "application/json": {
@@ -116,17 +119,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SetDefaultAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SetDefaultAddressResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SetDefaultAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SetDefaultAddressResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SetDefaultAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SetDefaultAddressResponseDto"
                 }
               }
             }
@@ -137,6 +140,7 @@
     "/api/UpdateAddress": {
       "patch": {
         "tags": ["Address"],
+        "operationId": "UpdateAddress",
         "requestBody": {
           "content": {
             "application/json": {
@@ -162,17 +166,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateAddressResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateAddressResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateAddressOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateAddressResponseDto"
                 }
               }
             }
@@ -180,36 +184,42 @@
         }
       }
     },
-    "/Authentication": {
+    "/api/IsExistingAccount": {
       "get": {
         "tags": ["Authentication"],
-        "operationId": "GetWeatherForecast",
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PhoneNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TableTestsEntry"
-                  }
+                  "$ref": "#/components/schemas/IsExistingAccountResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TableTestsEntry"
-                  }
+                  "$ref": "#/components/schemas/IsExistingAccountResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TableTestsEntry"
-                  }
+                  "$ref": "#/components/schemas/IsExistingAccountResponseDto"
                 }
               }
             }
@@ -245,17 +255,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticateOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AuthenticateResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticateOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AuthenticateResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticateOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AuthenticateResponseDto"
                 }
               }
             }
@@ -272,17 +282,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/RefreshAuthenticationOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RefreshAuthenticationResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RefreshAuthenticationOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RefreshAuthenticationResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RefreshAuthenticationOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RefreshAuthenticationResponseDto"
                 }
               }
             }
@@ -318,17 +328,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateAccountOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/CreateAccountResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateAccountOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/CreateAccountResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateAccountOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/CreateAccountResponseDto"
                 }
               }
             }
@@ -345,17 +355,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/LogoutOperationResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/LogoutOperationResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/LogoutOperationResponseDto"
                 }
               }
             }
@@ -391,17 +401,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddToCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddToCartResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddToCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddToCartResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddToCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddToCartResponseDto"
                 }
               }
             }
@@ -418,17 +428,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetCartResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetCartResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetCartResponseDto"
                 }
               }
             }
@@ -458,17 +468,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/RemoveFromCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RemoveFromCartResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RemoveFromCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RemoveFromCartResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RemoveFromCartOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RemoveFromCartResponseDto"
                 }
               }
             }
@@ -504,17 +514,44 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateCartProductOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateCartResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateCartProductOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateCartResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateCartProductOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateCartResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetClientInfo": {
+      "get": {
+        "tags": ["Common"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientInfoResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientInfoResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientInfoResponseDto"
                 }
               }
             }
@@ -531,17 +568,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForYouOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ForYouResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForYouOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ForYouResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForYouOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ForYouResponseDto"
                 }
               }
             }
@@ -554,7 +591,7 @@
         "tags": ["Common"],
         "parameters": [
           {
-            "name": "id",
+            "name": "Id",
             "in": "query",
             "required": true,
             "schema": {
@@ -568,17 +605,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetDocumentOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetDocumentResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetDocumentOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetDocumentResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetDocumentOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetDocumentResponseDto"
                 }
               }
             }
@@ -614,17 +651,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateClientInfoOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateClientInfoResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateClientInfoOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateClientInfoResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateClientInfoOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdateClientInfoResponseDto"
                 }
               }
             }
@@ -635,23 +672,85 @@
     "/api/GetClientOrders": {
       "get": {
         "tags": ["Orders"],
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FilterByText",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FilterByStatus",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/OrderStatus"
+            }
+          },
+          {
+            "name": "SortMode",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SortMode"
+            }
+          },
+          {
+            "name": "FilterByStartDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "FilterByEndDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetClientOrdersOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetClientOrdersResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetClientOrdersOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetClientOrdersResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetClientOrdersOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetClientOrdersResponseDto"
                 }
               }
             }
@@ -678,17 +777,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOrderDetailsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetOrderDetailsResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOrderDetailsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetOrderDetailsResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOrderDetailsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetOrderDetailsResponseDto"
                 }
               }
             }
@@ -715,17 +814,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsResponseDto"
                 }
               }
             }
@@ -761,17 +860,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddPaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddPaymentMethodResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddPaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddPaymentMethodResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddPaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddPaymentMethodResponseDto"
                 }
               }
             }
@@ -798,17 +897,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/DeletePaymentMethodResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/DeletePaymentMethodResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/DeletePaymentMethodResponseDto"
                 }
               }
             }
@@ -844,17 +943,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SetDefaultPaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SetDefaultPaymentMethodResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SetDefaultPaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SetDefaultPaymentMethodResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SetDefaultPaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SetDefaultPaymentMethodResponseDto"
                 }
               }
             }
@@ -890,17 +989,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdatePaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdatePaymentMethodResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdatePaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdatePaymentMethodResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdatePaymentMethodOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/UpdatePaymentMethodResponseDto"
                 }
               }
             }
@@ -971,17 +1070,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetProductReviewsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetProductReviewsResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetProductReviewsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetProductReviewsResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetProductReviewsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetProductReviewsResponseDto"
                 }
               }
             }
@@ -1008,17 +1107,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProductDetailOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ProductDetailResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProductDetailOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ProductDetailResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProductDetailOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ProductDetailResponseDto"
                 }
               }
             }
@@ -1035,17 +1134,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProductOffersOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ProductOffersdResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProductOffersOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ProductOffersdResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProductOffersOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/ProductOffersdResponseDto"
                 }
               }
             }
@@ -1139,17 +1238,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SearchProductsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SearchProductsResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SearchProductsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SearchProductsResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SearchProductsOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/SearchProductsResponseDto"
                 }
               }
             }
@@ -1185,17 +1284,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/WriteReviewResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/WriteReviewResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/WriteReviewResponseDto"
                 }
               }
             }
@@ -1231,17 +1330,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/ExecutePurchaseResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/ExecutePurchaseResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VoidDtoOperationOutput"
+                  "$ref": "#/components/schemas/ExecutePurchaseResponseDto"
                 }
               }
             }
@@ -1277,17 +1376,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCheckoutInfoOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetCheckoutInfoResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCheckoutInfoOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetCheckoutInfoResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCheckoutInfoOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetCheckoutInfoResponseDto"
                 }
               }
             }
@@ -1323,17 +1422,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddToWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddToWishlistResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddToWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddToWishlistResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddToWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/AddToWishlistResponseDto"
                 }
               }
             }
@@ -1344,23 +1443,41 @@
     "/api/GetWishlist": {
       "get": {
         "tags": ["Wishlist"],
+        "parameters": [
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetWishlistResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetWishlistResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/GetWishlistResponseDto"
                 }
               }
             }
@@ -1396,17 +1513,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/RemoveFromWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RemoveFromWishlistResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RemoveFromWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RemoveFromWishlistResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RemoveFromWishlistOperationOutputDtoOperationOutput"
+                  "$ref": "#/components/schemas/RemoveFromWishlistResponseDto"
                 }
               }
             }
@@ -1477,7 +1594,7 @@
         },
         "additionalProperties": false
       },
-      "AddAddressOperationOutputDtoOperationOutput": {
+      "AddAddressResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1530,7 +1647,7 @@
         },
         "additionalProperties": false
       },
-      "AddPaymentMethodOperationOutputDtoOperationOutput": {
+      "AddPaymentMethodResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1569,7 +1686,7 @@
         },
         "additionalProperties": false
       },
-      "AddToCartOperationOutputDtoOperationOutput": {
+      "AddToCartResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1605,7 +1722,7 @@
         },
         "additionalProperties": false
       },
-      "AddToWishlistOperationOutputDtoOperationOutput": {
+      "AddToWishlistResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1702,7 +1819,7 @@
         },
         "additionalProperties": false
       },
-      "AuthenticateOperationOutputDtoOperationOutput": {
+      "AuthenticateResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1849,7 +1966,7 @@
         },
         "additionalProperties": false
       },
-      "CreateAccountOperationOutputDtoOperationOutput": {
+      "CreateAccountResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1874,7 +1991,7 @@
         },
         "additionalProperties": false
       },
-      "DeleteAddressOperationOutputDtoOperationOutput": {
+      "DeleteAddressResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1899,7 +2016,7 @@
         },
         "additionalProperties": false
       },
-      "DeletePaymentMethodOperationOutputDtoOperationOutput": {
+      "DeletePaymentMethodResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -1969,6 +2086,18 @@
         },
         "additionalProperties": false
       },
+      "ExecutePurchaseResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/VoidDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "ForYouOperationOutputDto": {
         "type": "object",
         "properties": {
@@ -2005,7 +2134,7 @@
         },
         "additionalProperties": false
       },
-      "ForYouOperationOutputDtoOperationOutput": {
+      "ForYouResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2030,7 +2159,7 @@
         },
         "additionalProperties": false
       },
-      "GetCartOperationOutputDtoOperationOutput": {
+      "GetCartResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2090,11 +2219,37 @@
         },
         "additionalProperties": false
       },
-      "GetCheckoutInfoOperationOutputDtoOperationOutput": {
+      "GetCheckoutInfoResponseDto": {
         "type": "object",
         "properties": {
           "data": {
             "$ref": "#/components/schemas/GetCheckoutInfoOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientInfoOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/ClientInfoDto"
+          },
+          "itemsInCart": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetClientInfoOperationOutputDto"
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
@@ -2124,7 +2279,7 @@
         },
         "additionalProperties": false
       },
-      "GetClientOrdersOperationOutputDtoOperationOutput": {
+      "GetClientOrdersResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2145,7 +2300,7 @@
         },
         "additionalProperties": false
       },
-      "GetDocumentOperationOutputDtoOperationOutput": {
+      "GetDocumentResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2166,7 +2321,7 @@
         },
         "additionalProperties": false
       },
-      "GetOrderDetailsOperationOutputDtoOperationOutput": {
+      "GetOrderDetailsResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2187,7 +2342,7 @@
         },
         "additionalProperties": false
       },
-      "GetPaymentMethodDetailsOperationOutputDtoOperationOutput": {
+      "GetPaymentMethodDetailsResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2241,7 +2396,7 @@
         },
         "additionalProperties": false
       },
-      "GetProductReviewsOperationOutputDtoOperationOutput": {
+      "GetProductReviewsResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2270,11 +2425,45 @@
         },
         "additionalProperties": false
       },
-      "GetWishlistOperationOutputDtoOperationOutput": {
+      "GetWishlistResponseDto": {
         "type": "object",
         "properties": {
           "data": {
             "$ref": "#/components/schemas/GetWishlistOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IsExistingAccountOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "exists": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IsExistingAccountResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/IsExistingAccountOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogoutOperationResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/VoidDto"
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
@@ -2624,7 +2813,7 @@
         },
         "additionalProperties": false
       },
-      "ProductDetailOperationOutputDtoOperationOutput": {
+      "ProductDetailResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2744,7 +2933,7 @@
         },
         "additionalProperties": false
       },
-      "ProductOffersOperationOutputDtoOperationOutput": {
+      "ProductOffersdResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2836,7 +3025,7 @@
         },
         "additionalProperties": false
       },
-      "RefreshAuthenticationOperationOutputDtoOperationOutput": {
+      "RefreshAuthenticationResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2861,7 +3050,7 @@
         },
         "additionalProperties": false
       },
-      "RemoveFromCartOperationOutputDtoOperationOutput": {
+      "RemoveFromCartResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2897,7 +3086,7 @@
         },
         "additionalProperties": false
       },
-      "RemoveFromWishlistOperationOutputDtoOperationOutput": {
+      "RemoveFromWishlistResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -2997,7 +3186,7 @@
         },
         "additionalProperties": false
       },
-      "SearchProductsOperationOutputDtoOperationOutput": {
+      "SearchProductsResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -3052,7 +3241,7 @@
         },
         "additionalProperties": false
       },
-      "SetDefaultAddressOperationOutputDtoOperationOutput": {
+      "SetDefaultAddressResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -3088,7 +3277,7 @@
         },
         "additionalProperties": false
       },
-      "SetDefaultPaymentMethodOperationOutputDtoOperationOutput": {
+      "SetDefaultPaymentMethodResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -3111,24 +3300,6 @@
           "OldToNew"
         ],
         "type": "string"
-      },
-      "TableTestsEntry": {
-        "type": "object",
-        "properties": {
-          "nome": {
-            "type": "string",
-            "nullable": true
-          },
-          "idade": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "localidade": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "UpdateAddressOperationInputDto": {
         "required": ["id"],
@@ -3186,7 +3357,7 @@
         },
         "additionalProperties": false
       },
-      "UpdateAddressOperationOutputDtoOperationOutput": {
+      "UpdateAddressResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -3225,7 +3396,7 @@
         },
         "additionalProperties": false
       },
-      "UpdateCartProductOperationOutputDtoOperationOutput": {
+      "UpdateCartResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -3268,7 +3439,7 @@
         },
         "additionalProperties": false
       },
-      "UpdateClientInfoOperationOutputDtoOperationOutput": {
+      "UpdateClientInfoResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -3322,7 +3493,7 @@
         },
         "additionalProperties": false
       },
-      "UpdatePaymentMethodOperationOutputDtoOperationOutput": {
+      "UpdatePaymentMethodResponseDto": {
         "type": "object",
         "properties": {
           "data": {
@@ -3336,18 +3507,6 @@
       },
       "VoidDto": {
         "type": "object",
-        "additionalProperties": false
-      },
-      "VoidDtoOperationOutput": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/VoidDto"
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/OutputMetadataDto"
-          }
-        },
         "additionalProperties": false
       },
       "WriteReviewOperationInputDto": {
@@ -3373,6 +3532,18 @@
           "description": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WriteReviewResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/VoidDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
           }
         },
         "additionalProperties": false

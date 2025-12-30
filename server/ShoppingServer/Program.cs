@@ -1,6 +1,7 @@
 using ShoppingApp.Database.Contracts;
 using ShoppingApp.Database.Providers;
 using ShoppingServer.Library.Attributes;
+using ShoppingServer.Library.Extensions;
 using ShoppingServer.Library.Schemas;
 using System.Text.Json.Serialization;
 
@@ -47,7 +48,10 @@ builder.Services.AddSwaggerGen(c =>
     c.SchemaFilter<EnumSchemaFilter>();
 
     // Make sure unused dtos are added to swagger, unless they are marked with ExcludeDtoIfUnused attribute 
-    c.DocumentFilter<IncludeAllDtosDocumentFilter>();
+    //c.DocumentFilter<IgnoreCompilerGeneratedTypes>();
+
+    // Enable custom operation ids
+    c.EnableAnnotations();
 });
 
 var app = builder.Build();

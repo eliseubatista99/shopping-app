@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.Library.Entities;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
+    public class AddToWishlistResponseDto : OperationOutput<AddToWishlistOperationOutputDto>;
+    public class GetWishlistResponseDto : OperationOutput<GetWishlistOperationOutputDto>;
+    public class RemoveFromWishlistResponseDto : OperationOutput<RemoveFromWishlistOperationOutputDto>;
+
     [ApiController]
     [Route("[controller]")]
     public class WishlistController : ControllerBase
@@ -21,21 +26,21 @@ namespace ShoppingServer.Controllers
 
 
         [HttpPost("/api/AddToWishlist")]
-        public Task<OperationOutput<AddToWishlistOperationOutputDto>> AddToWishlist([FromBody] AddToWishlistOperationInputDto input)
+        public Task<AddToWishlistResponseDto> AddToWishlist([FromBody] AddToWishlistOperationInputDto input)
         {
-            return addToWishlistOperation.Execute(input);
+            return addToWishlistOperation.Execute<AddToWishlistResponseDto>(input);
         }
 
         [HttpGet("/api/GetWishlist")]
-        public Task<OperationOutput<GetWishlistOperationOutputDto>> GetWishlist()
+        public Task<GetWishlistResponseDto> GetWishlist([FromQuery] GetWishlistOperationInputDto input)
         {
-            return getWishlistOperation.Execute(new GetWishlistOperationInputDto());
+            return getWishlistOperation.Execute<GetWishlistResponseDto>(input);
         }
 
         [HttpDelete("/api/RemoveFromWishlist")]
-        public Task<OperationOutput<RemoveFromWishlistOperationOutputDto>> RemoveFromWishlist([FromBody] RemoveFromWishlistOperationInputDto input)
+        public Task<RemoveFromWishlistResponseDto> RemoveFromWishlist([FromBody] RemoveFromWishlistOperationInputDto input)
         {
-            return removeFromWishlistOperation.Execute(input);
+            return removeFromWishlistOperation.Execute<RemoveFromWishlistResponseDto>(input);
         }
     }
 }

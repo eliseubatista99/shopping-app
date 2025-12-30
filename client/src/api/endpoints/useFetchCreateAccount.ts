@@ -1,27 +1,18 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-
-export type CreateAccountInputDto = {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  password: string;
-};
-
-export type CreateAccountOutputDto = {
-  token: string;
-  mailAlreadyInUse?: boolean;
-  phoneAlreadyInUse?: boolean;
-};
+import type {
+  CreateAccountOperationInputDto,
+  CreateAccountResponseDto,
+} from "../models";
 
 export const CreateAccount = () => {
-  const { post } = useFetchNoAuth<CreateAccountOutputDto>({
+  const { post } = useFetchNoAuth<CreateAccountResponseDto>({
     endpoint: "CreateAccount",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: CreateAccountInputDto) => {
+    async (input: CreateAccountOperationInputDto) => {
       const result = await post({ ...input }, { credentials: "include" });
 
       return result;

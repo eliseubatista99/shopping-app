@@ -5,6 +5,12 @@ using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
+    public class GetProductReviewsResponseDto : OperationOutput<GetProductReviewsOperationOutputDto>;
+    public class ProductDetailResponseDto : OperationOutput<ProductDetailOperationOutputDto>;
+    public class ProductOffersdResponseDto : OperationOutput<ProductOffersOperationOutputDto>;
+    public class SearchProductsResponseDto : OperationOutput<SearchProductsOperationOutputDto>;
+    public class WriteReviewResponseDto : OperationOutput<VoidDto>;
+
     [ApiController]
     [Route("[controller]")]
     public class ProductController : ControllerBase
@@ -25,33 +31,33 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/GetProductReviews")]
-        public Task<OperationOutput<GetProductReviewsOperationOutputDto>> AddPaymentMethod([FromQuery] GetProductReviewsOperationInputDto input)
+        public Task<GetProductReviewsResponseDto> AddPaymentMethod([FromQuery] GetProductReviewsOperationInputDto input)
         {
-            return getProductReviewsOperation.Execute(input);
+            return getProductReviewsOperation.Execute<GetProductReviewsResponseDto>(input);
         }
 
         [HttpGet("/api/ProductDetail")]
-        public Task<OperationOutput<ProductDetailOperationOutputDto>> ProductDetail([FromQuery] ProductDetailOperationInputDto input)
+        public Task<ProductDetailResponseDto> ProductDetail([FromQuery] ProductDetailOperationInputDto input)
         {
-            return productDetailOperation.Execute(input);
+            return productDetailOperation.Execute<ProductDetailResponseDto>(input);
         }
 
         [HttpGet("/api/ProductOffers")]
-        public Task<OperationOutput<ProductOffersOperationOutputDto>> ProductOffers()
+        public Task<ProductOffersdResponseDto> ProductOffers()
         {
-            return productOffersOperation.Execute(new VoidDto());
+            return productOffersOperation.Execute<ProductOffersdResponseDto>();
         }
 
         [HttpGet("/api/SearchProducts")]
-        public Task<OperationOutput<SearchProductsOperationOutputDto>> SearchProducts([FromQuery] SearchProductsOperationInputDto input)
+        public Task<SearchProductsResponseDto> SearchProducts([FromQuery] SearchProductsOperationInputDto input)
         {
-            return searchProductsOperation.Execute(input);
+            return searchProductsOperation.Execute<SearchProductsResponseDto>(input);
         }
 
         [HttpPost("/api/WriteReview")]
-        public Task<OperationOutput<VoidDto>> WriteReview([FromBody] WriteReviewOperationInputDto input)
+        public Task<WriteReviewResponseDto> WriteReview([FromBody] WriteReviewOperationInputDto input)
         {
-            return writeReviewOperation.Execute(input);
+            return writeReviewOperation.Execute<WriteReviewResponseDto>(input);
         }
     }
 }
