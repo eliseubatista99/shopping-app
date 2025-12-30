@@ -3,7 +3,7 @@ using Microsoft.OpenApi.Models;
 using ShoppingServer.BusinessLogic.Enums;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ShoppingServer
+namespace ShoppingServer.BusinessLogic.Schemas
 {
     public class EnumSchemaFilter : ISchemaFilter
     {

@@ -7,6 +7,7 @@ using ShoppingServer.BusinessLogic.Attributes;
 using ShoppingServer.BusinessLogic.Entities;
 using ShoppingServer.BusinessLogic.Enums;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.BusinessLogic.Schemas;
 using ShoppingServer.Helpers;
 using System.Text.Json.Serialization;
 
@@ -54,6 +55,8 @@ builder.Services.AddSwaggerGen(c =>
 
     // Make sure unused dtos are added to swagger, unless they are marked with ExcludeDtoIfUnused attribute 
     c.DocumentFilter<IncludeAllDtosDocumentFilter>();
+
+    c.SchemaFilter<OperationOutputSchemaFilter>();
 
 });
 

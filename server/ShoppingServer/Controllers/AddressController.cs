@@ -3,6 +3,11 @@ using ShoppingServer.BusinessLogic.Operations;
 
 namespace ShoppingServer.Controllers
 {
+    public class AddAddressResponseDto : OperationOutput<AddAddressOperationOutputDto>;
+    public class DeleteAddressResponseDto : OperationOutput<DeleteAddressOperationOutputDto>;
+    public class SetDefaultAddressResponseDto : OperationOutput<SetDefaultAddressOperationOutputDto>;
+    public class UpdateAddressResponseDto : OperationOutput<UpdateAddressOperationOutputDto>;
+
     [ApiController]
     [Route("[controller]")]
     public class AddressController : ControllerBase
@@ -21,27 +26,27 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/AddAddress")]
-        public Task<OperationOutput<AddAddressOperationOutputDto>> AddAddress([FromBody] AddAddressOperationInputDto input)
+        public Task<AddAddressResponseDto> AddAddress([FromBody] AddAddressOperationInputDto input)
         {
-            return addAddressOperation.Execute(input);
+            return AddAddressResponseDto.AsResponse<AddAddressResponseDto>(addAddressOperation.Execute(input));
         }
 
         [HttpDelete("/api/DeleteAddress")]
-        public Task<OperationOutput<DeleteAddressOperationOutputDto>> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
+        public Task<DeleteAddressResponseDto> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
         {
-            return deleteAddressOperation.Execute(input);
+            return DeleteAddressResponseDto.AsResponse<DeleteAddressResponseDto>(deleteAddressOperation.Execute(input));
         }
 
         [HttpPatch("/api/SetDefaultAddress")]
-        public Task<OperationOutput<SetDefaultAddressOperationOutputDto>> SetDefaultAddress([FromBody] SetDefaultAddressOperationInputDto input)
+        public Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromBody] SetDefaultAddressOperationInputDto input)
         {
-            return setDefaultAddressOperation.Execute(input);
+            return SetDefaultAddressResponseDto.AsResponse<SetDefaultAddressResponseDto>(setDefaultAddressOperation.Execute(input));
         }
 
         [HttpPatch("/api/UpdateAddress")]
-        public Task<OperationOutput<UpdateAddressOperationOutputDto>> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
+        public Task<UpdateAddressResponseDto> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
         {
-            return updateAddressOperation.Execute(input);
+            return UpdateAddressResponseDto.AsResponse<UpdateAddressResponseDto>(updateAddressOperation.Execute(input));
         }
     }
 }
