@@ -10,7 +10,7 @@ export interface ItemsListTemplateProps {
     currentPage: number,
     pageSize: number,
     filters?: object
-  ) => Promise<{ success: boolean; hasMorePages: boolean }>;
+  ) => Promise<{ success: boolean | null | undefined; hasMorePages: boolean }>;
   filters?: object;
   styles?: React.CSSProperties;
 }

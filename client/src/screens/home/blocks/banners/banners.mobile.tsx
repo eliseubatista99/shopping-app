@@ -13,7 +13,7 @@ export const BannersBlockMobile: React.FC = () => {
       content: (
         <ProductOfferBanner
           key={b.category}
-          category={b.category}
+          category={b.category || ""}
           onClick={b.onClick}
         />
       ),

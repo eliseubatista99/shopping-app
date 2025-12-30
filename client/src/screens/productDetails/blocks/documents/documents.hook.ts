@@ -16,7 +16,9 @@ export const useDocumentsBlockHelper = () => {
 
   const onClickDocument = React.useCallback(
     async (doc: DocumentDto) => {
-      await readDocument(doc.id);
+      if (doc.id) {
+        await readDocument(doc.id);
+      }
     },
     [readDocument]
   );

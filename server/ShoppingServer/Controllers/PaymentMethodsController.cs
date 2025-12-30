@@ -7,6 +7,7 @@ namespace ShoppingServer.Controllers
     [Route("[controller]")]
     public class PaymentMethodsController : ControllerBase
     {
+        private GetPaymentMethodDetailsOperation getPaymentMethodDetailsOperation;
         private AddPaymentMethodOperation addPaymentMethodOperation;
         private DeletePaymentMethodOperation deletePaymentMethodOperation;
         private SetDefaultPaymentMethodOperation setDefaultPaymentMethodOperation;
@@ -18,6 +19,13 @@ namespace ShoppingServer.Controllers
             deletePaymentMethodOperation = new DeletePaymentMethodOperation(this);
             setDefaultPaymentMethodOperation = new SetDefaultPaymentMethodOperation(this);
             updatePaymentMethodOperation = new UpdatePaymentMethodOperation(this);
+            getPaymentMethodDetailsOperation = new GetPaymentMethodDetailsOperation(this);
+        }
+
+        [HttpGet("/api/GetPaymentMethodDetails")]
+        public Task<OperationOutput<GetPaymentMethodDetailsOperationOutputDto>> GetPaymentMethodDetails([FromQuery] GetPaymentMethodDetailsOperationInputDto input)
+        {
+            return getPaymentMethodDetailsOperation.Execute(input);
         }
 
         [HttpPost("/api/AddPaymentMethod")]
@@ -25,12 +33,6 @@ namespace ShoppingServer.Controllers
         {
             return addPaymentMethodOperation.Execute(input);
         }
-
-        //[HttpDelete("/api/DeletePaymentMethod")]
-        //public Task<OperationOutput<DeletePaymentMethodOperationOutputDto>> DeletePaymentMethod([FromQuery] string methodId)
-        //{
-        //    return deletePaymentMethodOperation.Execute(new DeletePaymentMethodOperationInputDto { MethodId = methodId });
-        //}
 
         [HttpDelete("/api/DeletePaymentMethod")]
         public Task<OperationOutput<DeletePaymentMethodOperationOutputDto>> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)

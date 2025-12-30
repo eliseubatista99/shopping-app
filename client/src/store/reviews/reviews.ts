@@ -9,15 +9,15 @@ export type ReviewsFilters = {
 };
 
 export interface ReviewsState {
-  productName?: string;
-  productId?: string;
-  reviewerId?: string;
-  productImage?: string;
-  averageScore?: number;
-  reviewsCount?: number;
-  scores?: ScoreCountDto[];
-  reviews?: ReviewDto[];
-  hasMorePages?: boolean;
+  productName?: string | null;
+  productId?: string | null;
+  reviewerId?: string | null;
+  productImage?: string | null;
+  averageScore?: number | null;
+  reviewsCount?: number | null;
+  scores?: ScoreCountDto[] | null;
+  reviews?: ReviewDto[] | null;
+  hasMorePages?: boolean | null;
   filters?: ReviewsFilters;
 }
 

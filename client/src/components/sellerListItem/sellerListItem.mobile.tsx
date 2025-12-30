@@ -18,7 +18,7 @@ export const SellerListItemMobile: React.FC<SellerListItemProps> = (props) => {
       onClick={() => onClick?.()}
     >
       <Image
-        src={seller.image}
+        src={seller.image || ""}
         styles={{
           borderRadius: "50%",
           width: "30px",

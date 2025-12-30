@@ -6,6 +6,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class GetCartOperationOutputDto
     {
-        public List<CartProductDto>? Products { get; set; }
+        public List<CartProductDetailsDto>? Products { get; set; }
     }
 }

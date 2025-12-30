@@ -1,4 +1,4 @@
-import { Api, PaymentMethodType } from "@api";
+import { Api } from "@api";
 import type { PaymentMethodFormFields } from "@components";
 import { DRAWERS, TOASTS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
@@ -28,7 +28,7 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
       setCanCloseDrawer(false);
 
       const res = await fetchAddPaymentMethod({
-        type: PaymentMethodType.Card,
+        type: "Card",
         name: data.name || "",
         cardNumber: data.cardNumber || "",
         expirationMonth: data.expirationMonth || 0,

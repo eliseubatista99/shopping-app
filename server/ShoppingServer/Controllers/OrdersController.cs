@@ -22,14 +22,6 @@ namespace ShoppingServer.Controllers
             return getClientOrdersOperation.Execute(new GetClientOrdersOperationInputDto());
         }
 
-        //[HttpGet("/api/GetOrderDetails")]
-        //public Task<OperationOutput<GetOrderDetailsOperationOutputDto>> GetOrderDetails([FromQuery] string orderId)
-        //{
-        //    return getOrderDetailsOperation.Execute(new GetOrderDetailsOperationInputDto
-        //    {
-        //        OrderId = orderId,
-        //    });
-        //}
 
         [HttpGet("/api/GetOrderDetails")]
         public Task<OperationOutput<GetOrderDetailsOperationOutputDto>> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)

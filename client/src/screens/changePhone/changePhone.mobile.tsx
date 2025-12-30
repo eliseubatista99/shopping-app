@@ -78,7 +78,7 @@ export const ChangePhoneMobile: React.FC = () => {
             >
               <AppInputField
                 name={INPUTS.PHONE_PREFIX}
-                initialValue={client?.phoneNumberPrefix}
+                initialValue={client?.phoneNumberPrefix || ""}
                 type="number"
                 placeHolder={i18n.prefix.placeholder}
                 inputStyles={{ padding: "10px" }}
@@ -87,7 +87,7 @@ export const ChangePhoneMobile: React.FC = () => {
               <AppInputField
                 name={INPUTS.PHONE}
                 type="number"
-                initialValue={client?.phoneNumber}
+                initialValue={client?.phoneNumber || ""}
                 placeHolder={i18n.phone.placeholder}
                 inputStyles={{ padding: "10px" }}
                 bottomMessage={form.phoneError}

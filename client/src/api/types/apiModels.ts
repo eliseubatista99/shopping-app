@@ -1,20 +1,10 @@
-export type ApiOutputMetadata = {
-  success: boolean;
-};
+import type { OutputMetadataDto } from "../models/swagger-models";
 
 export type ApiOutput<T> = {
   data: T;
-  metadata: ApiOutputMetadata;
+  metadata: OutputMetadataDto;
 };
-
-export enum SortMode {
-  LowToHighScore = "LowToHighScore",
-  HightToLowScore = "HightToLowScore",
-  LowToHighPrice = "LowToHighPrice",
-  HighToLowPrice = "HighToLowPrice",
-  NewToOld = "NewToOld",
-  OldToNew = "OldToNew",
-}
+/*
 
 export enum PaymentMethodType {
   Card = "Card",
@@ -185,3 +175,5 @@ export type OrderDetailDto = OrderDto & {
   discounts: number;
   totalCost: number;
 };
+
+*/

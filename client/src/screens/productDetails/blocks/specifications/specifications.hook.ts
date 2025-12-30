@@ -4,7 +4,7 @@ import React from "react";
 
 type Spec = {
   name: string;
-  value: string;
+  value: string | null | undefined;
 };
 
 export const useSpecificationsBlockHelper = () => {

@@ -3,13 +3,13 @@
 namespace ShoppingServer.BusinessLogic.Entities
 {
     [ExcludeFromCodeCoverage]
-    public class OrderDetailDto
+    public class OrderDetailDto : OrderDto
     {
         public required List<OrderStatusEntryDto> StatusHistory { get; set; }
 
-        public required PaymentMethodDto PaymentMethodDto { get; set; }
+        public required PaymentMethodDto PaymentMethod { get; set; }
 
-        public required AddressDto AddressDto { get; set; }
+        public required AddressDto Address { get; set; }
 
         public required double ProductCost { get; set; }
 

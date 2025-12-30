@@ -56,7 +56,7 @@ export const useSelectPaymentMethodDrawerHelper = () => {
     }
 
     const res = await fetchSetDefaultPaymentMethod({
-      methodId: selectedMethod.id,
+      methodId: selectedMethod.id || "",
     });
 
     clientData.paymentMethods = res.data.updatedMethods || [];

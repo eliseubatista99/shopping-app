@@ -53,7 +53,7 @@ export const usePaymentMethodsPageHelper = () => {
     async (method: PaymentMethodDto) => {
       setLoading(true);
 
-      const res = await fetchDeletePaymentMethod({ methodId: method.id });
+      const res = await fetchDeletePaymentMethod({ methodId: method.id || "" });
 
       if (res.metadata.success) {
         setPaymentMethods(res.data.updatedMethods);
@@ -66,7 +66,9 @@ export const usePaymentMethodsPageHelper = () => {
   const onClickSetDefault = useCallback(
     async (method: PaymentMethodDto) => {
       setLoading(true);
-      const res = await fetchSetDefaultPaymentMethod({ methodId: method.id });
+      const res = await fetchSetDefaultPaymentMethod({
+        methodId: method.id || "",
+      });
 
       if (res.metadata.success) {
         setPaymentMethods(res.data.updatedMethods);

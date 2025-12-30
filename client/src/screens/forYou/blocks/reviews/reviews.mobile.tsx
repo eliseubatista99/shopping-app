@@ -116,7 +116,7 @@ export const ReviewsBlockMobile: React.FC = () => {
                     {review.comment}
                   </Typography>
                   <Image
-                    src={review.productIcon}
+                    src={review.productIcon || ""}
                     styles={{
                       objectFit: "contain",
                       mixBlendMode: "multiply",

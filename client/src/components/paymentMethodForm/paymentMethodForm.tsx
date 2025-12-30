@@ -13,8 +13,10 @@ export type PaymentMethodFormFields = {
 };
 
 export interface PaymentMethodFormProps {
-  onMount?: () => Promise<{ success: boolean }>;
-  onSubmit: (data: PaymentMethodFormFields) => Promise<{ success: boolean }>;
+  onMount?: () => Promise<{ success: boolean | null | undefined }>;
+  onSubmit: (
+    data: PaymentMethodFormFields
+  ) => Promise<{ success: boolean | null | undefined }>;
   initialValue?: PaymentMethodDetailsDto;
   styles?: React.CSSProperties;
 }

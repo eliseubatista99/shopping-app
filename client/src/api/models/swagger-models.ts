@@ -122,6 +122,14 @@ export interface AuthenticateOperationOutputDtoOperationOutput {
   metadata?: OutputMetadataDto;
 }
 
+export interface CartProductDetailsDto {
+  productId: string | null;
+  /** @format int32 */
+  quantity?: number | null;
+  isSelected?: boolean | null;
+  product?: ProductDto;
+}
+
 export interface CartProductDto {
   productId: string | null;
   /** @format int32 */
@@ -214,7 +222,7 @@ export interface ForYouOperationOutputDtoOperationOutput {
 }
 
 export interface GetCartOperationOutputDto {
-  products?: CartProductDto[] | null;
+  products?: CartProductDetailsDto[] | null;
 }
 
 export interface GetCartOperationOutputDtoOperationOutput {
@@ -274,6 +282,15 @@ export interface GetOrderDetailsOperationOutputDtoOperationOutput {
   metadata?: OutputMetadataDto;
 }
 
+export interface GetPaymentMethodDetailsOperationOutputDto {
+  method?: PaymentMethodDetailsDto;
+}
+
+export interface GetPaymentMethodDetailsOperationOutputDtoOperationOutput {
+  data?: GetPaymentMethodDetailsOperationOutputDto;
+  metadata?: OutputMetadataDto;
+}
+
 export interface GetProductReviewsOperationOutputDto {
   productName?: string | null;
   productId?: string | null;
@@ -302,9 +319,14 @@ export interface GetWishlistOperationOutputDtoOperationOutput {
 }
 
 export interface OrderDetailDto {
+  id: string | null;
+  products: ProductDetailDto[] | null;
+  /** @format date-time */
+  date: string;
+  currentStatus: OrderStatusEntryDto;
   statusHistory: OrderStatusEntryDto[] | null;
-  paymentMethodDto: PaymentMethodDto;
-  addressDto: AddressDto;
+  paymentMethod: PaymentMethodDto;
+  address: AddressDto;
   /** @format double */
   productCost: number;
   /** @format double */
@@ -332,6 +354,22 @@ export interface OrderStatusEntryDto {
 export interface OutputMetadataDto {
   success?: boolean | null;
   errors?: ErrorDto[] | null;
+}
+
+export interface PaymentMethodDetailsDto {
+  id: string | null;
+  type: PaymentMethodType;
+  name: string | null;
+  network: string | null;
+  image?: string | null;
+  cardNumberMasked?: string | null;
+  isDefault?: boolean | null;
+  securityCode?: string | null;
+  cardNumberUnmasked?: string | null;
+  /** @format int32 */
+  expirationMonth?: number | null;
+  /** @format int32 */
+  expirationYear?: number | null;
 }
 
 export interface PaymentMethodDto {
@@ -653,7 +691,7 @@ export namespace Api {
   export namespace DeleteAddressDelete {
     export type RequestParams = {};
     export type RequestQuery = {
-      AddressId: string;
+      addressId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -792,7 +830,7 @@ export namespace Api {
   export namespace RemoveFromCartDelete {
     export type RequestParams = {};
     export type RequestQuery = {
-      ProductIds: string[];
+      productIds: string[];
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -840,7 +878,7 @@ export namespace Api {
   export namespace GetDocumentList {
     export type RequestParams = {};
     export type RequestQuery = {
-      Id: string;
+      id: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -888,11 +926,29 @@ export namespace Api {
   export namespace GetOrderDetailsList {
     export type RequestParams = {};
     export type RequestQuery = {
-      OrderId: string;
+      orderId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = GetOrderDetailsOperationOutputDtoOperationOutput;
+  }
+
+  /**
+   * No description
+   * @tags PaymentMethods
+   * @name GetPaymentMethodDetailsList
+   * @request GET:/api/GetPaymentMethodDetails
+   * @response `200` `GetPaymentMethodDetailsOperationOutputDtoOperationOutput` OK
+   */
+  export namespace GetPaymentMethodDetailsList {
+    export type RequestParams = {};
+    export type RequestQuery = {
+      methodId: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody =
+      GetPaymentMethodDetailsOperationOutputDtoOperationOutput;
   }
 
   /**
@@ -921,7 +977,7 @@ export namespace Api {
   export namespace DeletePaymentMethodDelete {
     export type RequestParams = {};
     export type RequestQuery = {
-      MethodId: string;
+      methodId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -971,16 +1027,16 @@ export namespace Api {
   export namespace GetProductReviewsList {
     export type RequestParams = {};
     export type RequestQuery = {
-      ProductId?: string;
-      ReviewId?: string;
-      AuthorId?: string;
+      productId?: string;
+      reviewId?: string;
+      authorId?: string;
       /** @format int32 */
-      Page?: number;
+      page?: number;
       /** @format int32 */
-      PageSize?: number;
+      pageSize?: number;
       /** @format double */
-      FilterByRating?: number;
-      SortMode?: SortMode;
+      filterByRating?: number;
+      sortMode?: SortMode;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -998,7 +1054,7 @@ export namespace Api {
   export namespace ProductDetailList {
     export type RequestParams = {};
     export type RequestQuery = {
-      ProductId: string;
+      productId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1031,20 +1087,20 @@ export namespace Api {
     export type RequestParams = {};
     export type RequestQuery = {
       /** @format int32 */
-      Page?: number;
+      page?: number;
       /** @format int32 */
-      PageSize?: number;
-      Text?: string;
+      pageSize?: number;
+      text?: string;
       /** @format double */
-      Score?: number;
+      score?: number;
       /** @format double */
-      MaxPrice?: number;
+      maxPrice?: number;
       /** @format double */
-      MinPrice?: number;
-      BestSeller?: boolean;
-      FreeShipping?: boolean;
-      Category?: string;
-      Sort?: SortMode;
+      minPrice?: number;
+      bestSeller?: boolean;
+      freeShipping?: boolean;
+      category?: string;
+      sort?: SortMode;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};

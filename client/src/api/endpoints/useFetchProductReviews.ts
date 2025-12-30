@@ -1,6 +1,6 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ReviewDto, ScoreCountDto, SortMode } from "../types";
+import type { ReviewDto, ScoreCountDto, SortMode } from "../models";
 
 export type GetProductReviewsInputDto = {
   productId?: string;

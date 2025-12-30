@@ -1,4 +1,4 @@
-import type { CartProductDetailsDto, ProductDto } from "@api";
+import type { CartProductDetailsDto } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
@@ -39,7 +39,7 @@ export const useStoreCart = StoreHelper.createStore<UseStoreOutput>(
         "setBasketCount"
       );
     },
-    setItemsInCart: function (data: ProductDto[]) {
+    setItemsInCart: function (data: CartProductDetailsDto[]) {
       set(
         produce((state: CartState) => ({
           ...state,

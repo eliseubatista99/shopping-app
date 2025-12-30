@@ -26,12 +26,6 @@ namespace ShoppingServer.Controllers
             return addAddressOperation.Execute(input);
         }
 
-        //[HttpDelete("/api/DeleteAddress")]
-        //public Task<OperationOutput<DeleteAddressOperationOutputDto>> DeleteAddress([FromQuery] string addressId)
-        //{
-        //    return deleteAddressOperation.Execute(new DeleteAddressOperationInputDto { AddressId = addressId });
-        //}
-
         [HttpDelete("/api/DeleteAddress")]
         public Task<OperationOutput<DeleteAddressOperationOutputDto>> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
         {

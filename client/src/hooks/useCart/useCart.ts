@@ -8,7 +8,7 @@ type SetProductsSelectedStateInput = {
 };
 
 type SetProductsQuantityInput = {
-  productId: string | undefined;
+  productId: string | null | undefined;
   quantity: number;
 };
 
@@ -49,7 +49,7 @@ export const useCart = () => {
     async (input: SetProductsQuantityInput[]) => {
       const res = await fetchUpdateCartProduct({
         products: input.map((i) => ({
-          id: i.productId,
+          productId: i.productId || "",
           quantity: i.quantity,
         })),
       });
@@ -65,7 +65,7 @@ export const useCart = () => {
     async (input: SetProductsSelectedStateInput[]) => {
       const res = await fetchUpdateCartProduct({
         products: input.map((i) => ({
-          id: i.productId,
+          productId: i.productId || "",
           isSelected: i.selected,
         })),
       });

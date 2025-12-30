@@ -1,6 +1,6 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { AddressDto } from "../../types";
+import type { AddressDto } from "../../models";
 
 export type DeleteAddressInputDto = {
   addressId: string;

@@ -1,4 +1,4 @@
-import { OrderStatus, SortMode } from "@api";
+import { type OrderStatus, type SortMode } from "@api";
 import {
   ObjectsHelper,
   TimeHelper,
@@ -54,20 +54,29 @@ export const useOrderFiltersDrawerHelper = () => {
   const sortOptions = React.useMemo(() => {
     return [
       {
-        option: SortMode.OldToNew,
-        isSelected: sortFilter === SortMode.OldToNew,
-        text: i18n.filters.sort(SortMode.OldToNew),
+        option: "OldToNew" as SortMode,
+        isSelected: sortFilter === "OldToNew",
+        text: i18n.filters.sort("OldToNew"),
       },
       {
-        option: SortMode.NewToOld,
-        isSelected: sortFilter === SortMode.NewToOld,
-        text: i18n.filters.sort(SortMode.NewToOld),
+        option: "NewToOld" as SortMode,
+        isSelected: sortFilter === "NewToOld",
+        text: i18n.filters.sort("NewToOld"),
       },
     ];
   }, [i18n.filters, sortFilter]);
 
   const statusOptions = React.useMemo(() => {
-    return Object.values(OrderStatus).map((s) => ({
+    const availableStatus: OrderStatus[] = [
+      "None",
+      "Processing",
+      "Sent",
+      "InDelivery",
+      "Delivered",
+      "Cancelled",
+    ];
+
+    return availableStatus.map((s) => ({
       option: s,
       isSelected: statusFilter === s,
       text: i18n.filters.status(s),

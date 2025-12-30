@@ -47,7 +47,10 @@ export const useExecutionBlockHelper = () => {
 
   const onClickBuyNow = React.useCallback(() => {
     setCheckoutStoreState({
-      products: selectedProducts.map((p) => ({ ...p })),
+      products: selectedProducts.map((p) => ({
+        product: p.product!,
+        quantity: p.quantity || 1,
+      })),
     });
 
     goTo({

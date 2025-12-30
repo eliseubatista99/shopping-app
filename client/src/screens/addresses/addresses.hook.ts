@@ -49,7 +49,7 @@ export const useAddressesPageHelper = () => {
     async (address: AddressDto) => {
       setLoading(true);
 
-      const res = await fetchDeleteAddress({ addressId: address.id });
+      const res = await fetchDeleteAddress({ addressId: address.id || "" });
 
       if (res.metadata.success) {
         setAddresses(res.data.updatedAddresses);
@@ -62,7 +62,7 @@ export const useAddressesPageHelper = () => {
   const onClickSetDefault = useCallback(
     async (address: AddressDto) => {
       setLoading(true);
-      const res = await fetchSetDefaultAddress({ addressId: address.id });
+      const res = await fetchSetDefaultAddress({ addressId: address.id || "" });
 
       if (res.metadata.success) {
         setAddresses(res.data.updatedAddresses);

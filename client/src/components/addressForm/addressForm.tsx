@@ -16,7 +16,9 @@ export type AddressFormFields = {
 };
 
 export interface AddressFormProps {
-  onSubmit: (data: AddressFormFields) => Promise<{ success: boolean }>;
+  onSubmit: (
+    data: AddressFormFields
+  ) => Promise<{ success: boolean | null | undefined }>;
   initialValue?: AddressDto;
   styles?: React.CSSProperties;
 }

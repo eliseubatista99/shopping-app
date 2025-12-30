@@ -24,15 +24,6 @@ namespace ShoppingServer.Controllers
             return forYouOperation.Execute(new VoidDto());
         }
 
-        //[HttpGet("/api/GetDocument")]
-        //public Task<OperationOutput<GetDocumentOperationOutputDto>> GetCart([FromQuery] string id)
-        //{
-        //    return getDocumentOperation.Execute(new GetDocumentOperationInputDto
-        //    {
-        //        Id = id,
-        //    });
-        //}
-
         [HttpGet("/api/GetDocument")]
         public Task<OperationOutput<GetDocumentOperationOutputDto>> GetCart([FromQuery] GetDocumentOperationInputDto input)
         {

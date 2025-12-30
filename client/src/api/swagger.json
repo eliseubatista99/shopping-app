@@ -56,7 +56,7 @@
         "tags": ["Address"],
         "parameters": [
           {
-            "name": "AddressId",
+            "name": "addressId",
             "in": "query",
             "required": true,
             "schema": {
@@ -441,7 +441,7 @@
         "tags": ["Cart"],
         "parameters": [
           {
-            "name": "ProductIds",
+            "name": "productIds",
             "in": "query",
             "required": true,
             "schema": {
@@ -554,7 +554,7 @@
         "tags": ["Common"],
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "query",
             "required": true,
             "schema": {
@@ -664,7 +664,7 @@
         "tags": ["Orders"],
         "parameters": [
           {
-            "name": "OrderId",
+            "name": "orderId",
             "in": "query",
             "required": true,
             "schema": {
@@ -689,6 +689,43 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetOrderDetailsOperationOutputDtoOperationOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetPaymentMethodDetails": {
+      "get": {
+        "tags": ["PaymentMethods"],
+        "parameters": [
+          {
+            "name": "methodId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDtoOperationOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDtoOperationOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDtoOperationOutput"
                 }
               }
             }
@@ -747,7 +784,7 @@
         "tags": ["PaymentMethods"],
         "parameters": [
           {
-            "name": "MethodId",
+            "name": "methodId",
             "in": "query",
             "required": true,
             "schema": {
@@ -876,28 +913,28 @@
         "tags": ["Product"],
         "parameters": [
           {
-            "name": "ProductId",
+            "name": "productId",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "ReviewId",
+            "name": "reviewId",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "AuthorId",
+            "name": "authorId",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Page",
+            "name": "page",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -905,7 +942,7 @@
             }
           },
           {
-            "name": "PageSize",
+            "name": "pageSize",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -913,7 +950,7 @@
             }
           },
           {
-            "name": "FilterByRating",
+            "name": "filterByRating",
             "in": "query",
             "schema": {
               "type": "number",
@@ -921,7 +958,7 @@
             }
           },
           {
-            "name": "SortMode",
+            "name": "sortMode",
             "in": "query",
             "schema": {
               "$ref": "#/components/schemas/SortMode"
@@ -957,7 +994,7 @@
         "tags": ["Product"],
         "parameters": [
           {
-            "name": "ProductId",
+            "name": "productId",
             "in": "query",
             "required": true,
             "schema": {
@@ -1021,7 +1058,7 @@
         "tags": ["Product"],
         "parameters": [
           {
-            "name": "Page",
+            "name": "page",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -1029,7 +1066,7 @@
             }
           },
           {
-            "name": "PageSize",
+            "name": "pageSize",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -1037,14 +1074,14 @@
             }
           },
           {
-            "name": "Text",
+            "name": "text",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Score",
+            "name": "score",
             "in": "query",
             "schema": {
               "type": "number",
@@ -1052,7 +1089,7 @@
             }
           },
           {
-            "name": "MaxPrice",
+            "name": "maxPrice",
             "in": "query",
             "schema": {
               "type": "number",
@@ -1060,7 +1097,7 @@
             }
           },
           {
-            "name": "MinPrice",
+            "name": "minPrice",
             "in": "query",
             "schema": {
               "type": "number",
@@ -1068,28 +1105,28 @@
             }
           },
           {
-            "name": "BestSeller",
+            "name": "bestSeller",
             "in": "query",
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "FreeShipping",
+            "name": "freeShipping",
             "in": "query",
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "Category",
+            "name": "category",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Sort",
+            "name": "sort",
             "in": "query",
             "schema": {
               "$ref": "#/components/schemas/SortMode"
@@ -1677,6 +1714,29 @@
         },
         "additionalProperties": false
       },
+      "CartProductDetailsDto": {
+        "required": ["productId"],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isSelected": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "CartProductDto": {
         "required": ["productId"],
         "type": "object",
@@ -1963,7 +2023,7 @@
           "products": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CartProductDto"
+              "$ref": "#/components/schemas/CartProductDetailsDto"
             },
             "nullable": true
           }
@@ -2118,6 +2178,27 @@
         },
         "additionalProperties": false
       },
+      "GetPaymentMethodDetailsOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/PaymentMethodDetailsDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPaymentMethodDetailsOperationOutputDtoOperationOutput": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "GetProductReviewsOperationOutputDto": {
         "type": "object",
         "properties": {
@@ -2203,14 +2284,36 @@
       },
       "OrderDetailDto": {
         "required": [
-          "addressDto",
-          "paymentMethodDto",
+          "address",
+          "currentStatus",
+          "date",
+          "id",
+          "paymentMethod",
           "productCost",
+          "products",
           "statusHistory",
           "totalCost"
         ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDetailDto"
+            },
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentStatus": {
+            "$ref": "#/components/schemas/OrderStatusEntryDto"
+          },
           "statusHistory": {
             "type": "array",
             "items": {
@@ -2218,10 +2321,10 @@
             },
             "nullable": true
           },
-          "paymentMethodDto": {
+          "paymentMethod": {
             "$ref": "#/components/schemas/PaymentMethodDto"
           },
-          "addressDto": {
+          "address": {
             "$ref": "#/components/schemas/AddressDto"
           },
           "productCost": {
@@ -2307,6 +2410,58 @@
             "items": {
               "$ref": "#/components/schemas/ErrorDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentMethodDetailsDto": {
+        "required": ["id", "name", "network", "type"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PaymentMethodType"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "network": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumberMasked": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "securityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumberUnmasked": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationMonth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "expirationYear": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         },

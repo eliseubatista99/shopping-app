@@ -31,14 +31,6 @@ namespace ShoppingServer.Controllers
             return getCartOperation.Execute(new VoidDto());
         }
 
-        //[HttpDelete("/api/RemoveFromCart")]
-        //public Task<OperationOutput<RemoveFromCartOperationOutputDto>> RemoveFromCart([FromQuery] List<string> productIds)
-        //{
-        //    return removeFromCartOperation.Execute(new RemoveFromCartOperationInputDto
-        //    {
-        //        ProductIds = productIds,
-        //    });
-        //}
 
         [HttpDelete("/api/RemoveFromCart")]
         public Task<OperationOutput<RemoveFromCartOperationOutputDto>> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)

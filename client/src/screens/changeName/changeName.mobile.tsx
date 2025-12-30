@@ -67,7 +67,7 @@ export const ChangeNameMobile: React.FC = () => {
             >
               <AppInputField
                 name={INPUTS.NAME}
-                initialValue={client?.name}
+                initialValue={client?.name || ""}
                 placeHolder={i18n.name.placeholder}
                 inputStyles={{ padding: "10px" }}
                 bottomMessage={error}

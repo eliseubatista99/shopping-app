@@ -48,7 +48,7 @@ export const useSelectAddressDrawerHelper = () => {
     }
 
     const res = await fetchSetDefaultAddress({
-      addressId: selectedAddress.id,
+      addressId: selectedAddress.id || "",
     });
 
     clientData.addresses = res.data.updatedAddresses || [];

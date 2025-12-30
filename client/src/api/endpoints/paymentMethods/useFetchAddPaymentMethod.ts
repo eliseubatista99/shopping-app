@@ -1,6 +1,6 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { PaymentMethodDto, PaymentMethodType } from "../../types";
+import type { PaymentMethodDto, PaymentMethodType } from "../../models";
 
 export type AddPaymentMethodInputDto = {
   type: PaymentMethodType;

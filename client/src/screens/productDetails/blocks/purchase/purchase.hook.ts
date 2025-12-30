@@ -119,7 +119,7 @@ export const usePurchaseBlockHelper = () => {
     if (selectedProduct) {
       if (isAuthenticated) {
         setCheckoutStoreState({
-          products: [{ ...selectedProduct, quantity }],
+          products: [{ product: { ...selectedProduct }, quantity }],
         });
         goTo({
           path: PAGES.CHECKOUT,

@@ -13,7 +13,7 @@ export const useSummaryBlockHelper = () => {
       costs: {
         products: {
           text: t("orderDetails.summary.costs.products.text"),
-          value: `${selectedOrder?.productsCost}${currency}`,
+          value: `${selectedOrder?.productCost}${currency}`,
         },
         shipping: {
           text: t("orderDetails.summary.costs.shipping.text"),
@@ -35,7 +35,7 @@ export const useSummaryBlockHelper = () => {
   }, [
     currency,
     selectedOrder?.discounts,
-    selectedOrder?.productsCost,
+    selectedOrder?.productCost,
     selectedOrder?.shippingCost,
     selectedOrder?.totalCost,
     t,

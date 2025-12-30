@@ -48,7 +48,7 @@ export const useGroupsListBlockHelper = () => {
 
     const mappedGroups = (groups || []).map(
       (g): OfferGroup => ({
-        title: i18n.group.title(g.category),
+        title: i18n.group.title(g.category || ""),
         products: g.products || [],
       })
     );

@@ -3,8 +3,10 @@ using Microsoft.OpenApi.Models;
 using ShoppingApp.Database.Contracts;
 using ShoppingApp.Database.Providers;
 using ShoppingServer;
+using ShoppingServer.BusinessLogic.Attributes;
 using ShoppingServer.BusinessLogic.Entities;
 using ShoppingServer.BusinessLogic.Enums;
+using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Helpers;
 using System.Text.Json.Serialization;
 
@@ -49,6 +51,10 @@ builder.Services.AddSwaggerGen(c =>
 {
     // Make sure enums are converted to string and not int
     c.SchemaFilter<EnumSchemaFilter>();
+
+    // Make sure unused dtos are added to swagger
+    c.DocumentFilter<ForceUnusedDtosDocumentFilter>(); // sem parâmetro
+
 });
 
 var app = builder.Build();
