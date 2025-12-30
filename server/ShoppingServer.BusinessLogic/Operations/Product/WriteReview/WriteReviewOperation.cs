@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class WriteReviewOperation : OperationBase<WriteReviewOperationInputDto, WriteReviewOperationOutputDto>
+    public class WriteReviewOperation : OperationBase<WriteReviewOperationInputDto, VoidDto>
     {
         public WriteReviewOperation(ControllerBase _controller) : base(_controller)
         {
@@ -13,7 +13,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            output.Data = new WriteReviewOperationOutputDto
+            output.Data = new VoidDto
             {
 
             };

@@ -5,6 +5,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class GetPaymentMethodDetailsOperationInputDto
     {
-        public string? Test { get; set; }
+        public required string MethodId { get; set; }
     }
 }

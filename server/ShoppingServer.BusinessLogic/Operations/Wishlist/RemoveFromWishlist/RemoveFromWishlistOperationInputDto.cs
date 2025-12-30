@@ -5,6 +5,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class RemoveFromWishlistOperationInputDto
     {
-        public string? Test { get; set; }
+        public required string ProductId { get; set; }
     }
 }

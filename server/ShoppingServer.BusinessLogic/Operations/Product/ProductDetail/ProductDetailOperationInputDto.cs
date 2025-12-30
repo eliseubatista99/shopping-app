@@ -5,6 +5,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class ProductDetailOperationInputDto
     {
-        public string? Test { get; set; }
+        public required string ProductId { get; set; }
     }
 }

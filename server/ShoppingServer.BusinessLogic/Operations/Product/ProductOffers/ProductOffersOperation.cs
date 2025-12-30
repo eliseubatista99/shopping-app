@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class ProductOffersOperation : OperationBase<ProductOffersOperationInputDto, ProductOffersOperationOutputDto>
+    public class ProductOffersOperation : OperationBase<VoidDto, ProductOffersOperationOutputDto>
     {
         public ProductOffersOperation(ControllerBase _controller) : base(_controller)
         {

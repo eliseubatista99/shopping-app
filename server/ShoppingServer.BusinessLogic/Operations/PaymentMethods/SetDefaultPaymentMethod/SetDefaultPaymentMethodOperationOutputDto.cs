@@ -1,3 +1,4 @@
+using ShoppingServer.BusinessLogic.Entities;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
@@ -5,6 +6,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class SetDefaultPaymentMethodOperationOutputDto
     {
-        public string? Test { get; set; }
+        public List<PaymentMethodDto>? UpdatedMethods { get; set; }
     }
 }

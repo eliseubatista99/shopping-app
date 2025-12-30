@@ -5,6 +5,8 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class GetWishlistOperationInputDto
     {
-        public string? Test { get; set; }
+        public int? Page { get; set; }
+
+        public int? PageSize { get; set; }
     }
 }

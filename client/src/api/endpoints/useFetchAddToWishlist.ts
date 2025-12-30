@@ -1,9 +1,8 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDto } from "../types";
 
 export type AddToWishlistInputDto = {
-  product: ProductDto;
+  productId: string;
 };
 
 export const AddToWishlist = () => {

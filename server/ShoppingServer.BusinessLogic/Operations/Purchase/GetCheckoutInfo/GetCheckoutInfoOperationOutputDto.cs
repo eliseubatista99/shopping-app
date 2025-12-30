@@ -5,6 +5,13 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class GetCheckoutInfoOperationOutputDto
     {
-        public string? Test { get; set; }
+        public double? ShippingCost { get; set; }
+
+        public double? FastestDeliveryCost { get; set; }
+
+        public DateTimeOffset? StartDeliveryDate { get; set; }
+
+        public DateTimeOffset? EndDeliveryDate { get; set; }
+
     }
 }

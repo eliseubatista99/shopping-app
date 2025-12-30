@@ -5,6 +5,11 @@ namespace ShoppingServer.BusinessLogic.Operations
     [ExcludeFromCodeCoverage]
     public class GetCheckoutInfoOperationInputDto
     {
-        public string? Test { get; set; }
+        public required List<string> ProductIds { get; set; }
+
+        public required string AddressId { get; set; }
+
+        public required string PaymentMethodId { get; set; }
+
     }
 }
