@@ -267,6 +267,25 @@
     "/api/RefreshAuthentication": {
       "post": {
         "tags": ["Authentication"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshAuthenticationOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshAuthenticationOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshAuthenticationOperationInputDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -551,7 +570,7 @@
       }
     },
     "/api/ForYou": {
-      "post": {
+      "get": {
         "tags": ["Common"],
         "responses": {
           "200": {
@@ -1792,10 +1811,14 @@
         "additionalProperties": false
       },
       "AuthenticateOperationOutputDto": {
-        "required": ["token"],
+        "required": ["refreshToken", "token"],
         "type": "object",
         "properties": {
           "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
             "type": "string",
             "nullable": true
           }
@@ -1939,10 +1962,14 @@
         "additionalProperties": false
       },
       "CreateAccountOperationOutputDto": {
-        "required": ["token"],
+        "required": ["refreshToken", "token"],
         "type": "object",
         "properties": {
           "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
             "type": "string",
             "nullable": true
           }
@@ -3207,11 +3234,26 @@
         },
         "additionalProperties": false
       },
+      "RefreshAuthenticationOperationInputDto": {
+        "required": ["refreshToken"],
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RefreshAuthenticationOperationOutputDto": {
-        "required": ["token"],
+        "required": ["refreshToken", "token"],
         "type": "object",
         "properties": {
           "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
             "type": "string",
             "nullable": true
           }

@@ -8,6 +8,7 @@ type AuthForm = {
 };
 export interface AuthenticationState {
   token?: string;
+  refreshToken?: string;
   form?: AuthForm;
   isAuthenticated?: boolean;
 }

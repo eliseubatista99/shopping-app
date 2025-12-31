@@ -9,10 +9,24 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 
 EXPOSE 5000
+
+# For https
+EXPOSE 5001  
+
 COPY --from=build /app .
+# Copy certificate
+COPY ./certificate/ShoppingAppCert.pfx /root/.aspnet/https/ShoppingAppCert.pfx
 
 # Define URL to listen to in all interfaces (necessary for docker)
 ENV ASPNETCORE_URLS=http://+:5000
 
+
+# Define env for HTTPS
+ENV ASPNETCORE_URLS=http://+:5000;https://+:5001
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.aspnet/https/ShoppingAppCert.pfx
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password=el_shopper_pass
+
+
 # Executar a app
 ENTRYPOINT ["dotnet", "ShoppingServer.dll"]
+

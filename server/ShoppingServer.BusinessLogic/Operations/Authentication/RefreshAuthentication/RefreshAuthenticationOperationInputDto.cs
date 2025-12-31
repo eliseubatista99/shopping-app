@@ -5,9 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class AuthenticateOperationOutputDto : OperationOutputDto
+    public class RefreshAuthenticationOperationInputDto : OperationInputDto
     {
-        public required string Token { get; set; }
         public required string RefreshToken { get; set; }
+
     }
 }

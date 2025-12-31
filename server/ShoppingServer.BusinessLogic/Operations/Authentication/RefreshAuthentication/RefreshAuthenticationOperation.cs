@@ -5,7 +5,7 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class RefreshAuthenticationOperation : OperationBase<OperationInputDto, RefreshAuthenticationOperationOutputDto>
+    public class RefreshAuthenticationOperation : OperationBase<RefreshAuthenticationOperationInputDto, RefreshAuthenticationOperationOutputDto>
     {
         public RefreshAuthenticationOperation(ControllerBase _controller) : base(_controller)
         {
@@ -16,10 +16,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            // Obtem o refresh token do cookie HttpOnly
-            var refreshToken = controller.Request.Cookies["refreshToken"];
-
-            if (refreshToken is null)
+            if (input.RefreshToken == null)
             {
                 controller.Response.StatusCode = StatusCodes.Status401Unauthorized;
                 output.AddError(new ErrorDto("InvalidRefreshToken"));
@@ -29,10 +26,12 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             //var newAccessToken = tokenService.Refresh(refreshToken);
             var newAccessToken = "31312dasdadaddas";
+            var newRefreshToken = "ddas67das567a";
 
             output.Data = new RefreshAuthenticationOperationOutputDto
             {
                 Token = newAccessToken,
+                RefreshToken = newRefreshToken
             };
         }
     }

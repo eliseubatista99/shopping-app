@@ -16,7 +16,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             output.Data = new IsExistingAccountOperationOutputDto
             {
-
+                Exists = true,
             };
         }
     }

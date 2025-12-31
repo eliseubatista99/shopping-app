@@ -33,7 +33,7 @@ namespace ShoppingServer.Controllers
             return getClientInfoOperation.Execute<GetClientInfoResponseDto>();
         }
 
-        [HttpPost("/api/ForYou")]
+        [HttpGet("/api/ForYou")]
         public Task<ForYouResponseDto> ForYou()
         {
             return forYouOperation.Execute<ForYouResponseDto>();

@@ -115,6 +115,7 @@ export interface AuthenticateOperationInputDto {
 
 export interface AuthenticateOperationOutputDto {
   token: string | null;
+  refreshToken: string | null;
 }
 
 export interface AuthenticateResponseDto {
@@ -163,6 +164,7 @@ export interface CreateAccountOperationInputDto {
 
 export interface CreateAccountOperationOutputDto {
   token: string | null;
+  refreshToken: string | null;
 }
 
 export interface CreateAccountResponseDto {
@@ -590,8 +592,13 @@ export interface ProductSpecificationDto {
   warranty?: number | null;
 }
 
+export interface RefreshAuthenticationOperationInputDto {
+  refreshToken: string | null;
+}
+
 export interface RefreshAuthenticationOperationOutputDto {
   token: string | null;
+  refreshToken: string | null;
 }
 
 export interface RefreshAuthenticationResponseDto {
@@ -897,7 +904,7 @@ export namespace Api {
   export namespace RefreshAuthenticationCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
-    export type RequestBody = never;
+    export type RequestBody = RefreshAuthenticationOperationInputDto;
     export type RequestHeaders = {};
     export type ResponseBody = RefreshAuthenticationResponseDto;
   }
@@ -1012,11 +1019,11 @@ export namespace Api {
   /**
    * No description
    * @tags Common
-   * @name ForYouCreate
-   * @request POST:/api/ForYou
+   * @name ForYouList
+   * @request GET:/api/ForYou
    * @response `200` `ForYouResponseDto` OK
    */
-  export namespace ForYouCreate {
+  export namespace ForYouList {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = never;

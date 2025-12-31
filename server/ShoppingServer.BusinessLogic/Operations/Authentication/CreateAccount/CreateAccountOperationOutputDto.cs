@@ -8,5 +8,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     public class CreateAccountOperationOutputDto : OperationOutputDto
     {
         public required string Token { get; set; }
+        public required string RefreshToken { get; set; }
+
     }
 }

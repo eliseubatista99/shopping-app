@@ -8,5 +8,6 @@ namespace ShoppingServer.BusinessLogic.Operations
     public class RefreshAuthenticationOperationOutputDto : OperationOutputDto
     {
         public required string Token { get; set; }
+        public required string RefreshToken { get; set; }
     }
 }

@@ -8,12 +8,14 @@ import { useCallback } from "react";
 
 export const useAuthentication = () => {
   const token = useStoreAuthentication((state) => state.token);
+  const refreshToken = useStoreAuthentication((state) => state.refreshToken);
   const setAuthenticationStoreState = useStoreAuthentication(
     (state) => state.setAuthenticationStoreState
   );
   const isAuthenticated = useStoreAuthentication(
     (state) => state.isAuthenticated
   );
+
   const { fetchCreateAccount } = ApiEndpoints.CreateAccount();
   const { fetchAuthenticate } = ApiEndpoints.Authenticate();
   const { fetchRefreshAuthentication } = ApiEndpoints.RefreshAuthentication();
@@ -27,6 +29,7 @@ export const useAuthentication = () => {
       if (!res.metadata?.success) {
         setAuthenticationStoreState({
           token: undefined,
+          refreshToken: undefined,
           isAuthenticated: false,
         });
 
@@ -34,6 +37,7 @@ export const useAuthentication = () => {
       }
       setAuthenticationStoreState({
         token: res.data?.token || "",
+        refreshToken: res.data?.refreshToken || "",
         isAuthenticated: true,
       });
 
@@ -51,6 +55,7 @@ export const useAuthentication = () => {
       if (!res.metadata?.success) {
         setAuthenticationStoreState({
           token: undefined,
+          refreshToken: undefined,
           isAuthenticated: false,
         });
 
@@ -58,6 +63,7 @@ export const useAuthentication = () => {
       }
       setAuthenticationStoreState({
         token: res.data?.token || "",
+        refreshToken: res.data?.refreshToken || "",
         isAuthenticated: true,
       });
 
@@ -66,11 +72,17 @@ export const useAuthentication = () => {
     [fetchAuthenticate, setAuthenticationStoreState]
   );
 
-  const refreshToken = useCallback(async () => {
-    const res = await fetchRefreshAuthentication();
+  const handleRefreshToken = useCallback(async () => {
+    const res = await fetchRefreshAuthentication({
+      refreshToken: refreshToken || "",
+    });
 
     if (!res.metadata?.success) {
-      setAuthenticationStoreState({ token: undefined, isAuthenticated: false });
+      setAuthenticationStoreState({
+        token: undefined,
+        refreshToken: undefined,
+        isAuthenticated: false,
+      });
 
       return {
         success: false,
@@ -78,13 +90,14 @@ export const useAuthentication = () => {
     }
     setAuthenticationStoreState({
       token: res.data?.token || "",
+      refreshToken: res.data?.refreshToken || "",
       isAuthenticated: true,
     });
 
     return {
       success: true,
     };
-  }, [fetchRefreshAuthentication, setAuthenticationStoreState]);
+  }, [fetchRefreshAuthentication, refreshToken, setAuthenticationStoreState]);
 
   const isTokenExpired = useCallback(() => {
     try {
@@ -112,6 +125,6 @@ export const useAuthentication = () => {
     createAccount,
     authenticate,
     isTokenExpired,
-    refreshToken,
+    refreshToken: handleRefreshToken,
   };
 };

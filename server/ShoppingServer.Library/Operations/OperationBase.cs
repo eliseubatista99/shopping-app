@@ -26,10 +26,25 @@ namespace ShoppingServer.Library.Operations
             };
         }
 
-        public Task<OperationResponseDto<TOutput>> Execute(TInput _input)
+        protected virtual void LogOperationExecution()
         {
-            this.input = _input;
-            return Execute();
+            var data = System.Text.Json.JsonSerializer.Serialize(new
+            {
+                Input = this.input,
+                //Headers = controller?.Request.Headers,
+            }, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+
+            Console.WriteLine($" Shopping App Server > {this.GetType().Name} > Executing request with > {data}");
+        }
+
+        protected virtual void LogOperationResponse()
+        {
+            var data = System.Text.Json.JsonSerializer.Serialize(new
+            {
+                Output = this.output,
+            }, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+
+            Console.WriteLine($" Shopping App Server > {this.GetType().Name} > Executing responded with > {data}");
         }
 
         protected virtual Task HandleExecution()
@@ -39,17 +54,21 @@ namespace ShoppingServer.Library.Operations
 
         public async Task<OperationResponseDto<TOutput>> Execute()
         {
+            LogOperationExecution();
+
             controller.Response.StatusCode = StatusCodes.Status200OK;
             await HandleExecution();
 
             if (output is null)
             {
-                return new OperationResponseDto<TOutput>
+                output = new OperationResponseDto<TOutput>
                 {
                     Data = default,
                     Metadata = new OutputMetadataDto(),
                 };
             }
+
+            LogOperationResponse();
 
             return output;
         }

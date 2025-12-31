@@ -47,9 +47,9 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/RefreshAuthentication")]
-        public Task<RefreshAuthenticationResponseDto> RefreshAuthentication()
+        public Task<RefreshAuthenticationResponseDto> RefreshAuthentication([FromBody] RefreshAuthenticationOperationInputDto input)
         {
-            return refreshAuthenticationOperation.Execute<RefreshAuthenticationResponseDto>();
+            return refreshAuthenticationOperation.Execute<RefreshAuthenticationResponseDto>(input);
         }
 
         [HttpPost("/api/CreateAccount")]

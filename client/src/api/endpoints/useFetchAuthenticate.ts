@@ -13,7 +13,9 @@ export const Authenticate = () => {
 
   const fetch = useCallback(
     async (input: AuthenticateOperationInputDto) => {
-      const result = await post({ ...input }, { credentials: "include" });
+      const result = await post({ ...input });
+
+      console.log("RES", document.cookie);
 
       return result;
     },

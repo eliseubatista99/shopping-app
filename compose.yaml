@@ -43,29 +43,30 @@ services:
       context: ./server
       dockerfile: dockerfile
     ports:
+      #http
       - "5000:5000"
+      #https
+      - "5001:5001"
     environment:
       ConnectionStrings__DefaultConnection: "Host=db;Database=shopping-app;Username=el_shopper;Password=el_shopper_pass"
-      ASPNETCORE_URLS: http://+:5000
+      ASPNETCORE_URLS: "http://+:5000;https://+:5001"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/root/.aspnet/https/ShoppingAppCert.pfx"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "el_shopper_pass"
     depends_on:
       - db
-
-  client:
-    build:
-      context: ./client
-      dockerfile: dockerfile
-    ports:
-      - 3000:3000
-    working_dir: /client
-    volumes:
-      - ./client:/client
-    environment:
-      POSTGRES_HOST: db
-      POSTGRES_USER: el_shopper
-      POSTGRES_PASSWORD: el_shopper_pass
-      POSTGRES_DB: shopping-app
-    depends_on:
-      - db
+  # client:
+  #   build:
+  #     context: ./client
+  #     dockerfile: dockerfile
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     POSTGRES_HOST: db
+  #     POSTGRES_USER: el_shopper
+  #     POSTGRES_PASSWORD: el_shopper_pass
+  #     POSTGRES_DB: shopping-app
+  #   depends_on:
+  #     - db
 
 volumes:
   db:

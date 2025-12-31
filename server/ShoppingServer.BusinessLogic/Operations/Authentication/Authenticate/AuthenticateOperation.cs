@@ -17,25 +17,15 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             // Gerar refresh token (exemplo)
             //var refreshToken = tokenService.GenerateRefreshToken();
-
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.Unspecified,
-                Path = "/RefreshAuthentication",
-                Expires = DateTime.UtcNow.AddDays(1)
-            };
-
-            //Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
-            controller.Response.Cookies.Append("refreshToken", "example-refresh-token-zau-zau", cookieOptions);
+            var refreshToken = "example-refresh-token-zau-zau";
 
             //var accessToken = tokenService.GenerateAccessToken(request.Email);
             var accessToken = "example-token";
 
             output.Data = new AuthenticateOperationOutputDto
             {
-                Token = accessToken
+                Token = accessToken,
+                RefreshToken = refreshToken
             };
         }
     }
