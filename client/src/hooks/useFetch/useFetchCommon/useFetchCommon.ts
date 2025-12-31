@@ -1,7 +1,7 @@
 import { ApiConfigs, type OutputMetadataDto } from "@api";
 import { MODALS } from "@constants";
 import { useFeedback, useFetch } from "@eliseubatista99/react-scaffold-core";
-import { useStoreAuthentication } from "@store";
+import { AppHelper } from "@helpers";
 import { useCallback, useMemo } from "react";
 
 export type FetchCommonInput = {
@@ -21,13 +21,14 @@ export const useFetchNoAuth = <
 }: FetchCommonInput) => {
   const { showItem } = useFeedback();
 
-  const token = useStoreAuthentication((state) => state.token);
   const {
     get: httpGet,
     post: httpPost,
     delete: httpDelete,
     patch: httpPatch,
   } = useFetch();
+
+  const token = AppHelper.getToken();
 
   const commonHeaders = useMemo((): HeadersInit => {
     let headers: HeadersInit = {

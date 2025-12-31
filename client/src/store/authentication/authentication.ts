@@ -7,7 +7,6 @@ type AuthForm = {
   phone?: string;
 };
 export interface AuthenticationState {
-  token?: string;
   refreshToken?: string;
   form?: AuthForm;
   isAuthenticated?: boolean;

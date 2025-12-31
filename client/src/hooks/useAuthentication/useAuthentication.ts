@@ -3,11 +3,11 @@ import {
   type AuthenticateOperationInputDto,
   type CreateAccountOperationInputDto,
 } from "@api";
+import { AppHelper } from "@helpers";
 import { useStoreAuthentication } from "@store";
 import { useCallback } from "react";
 
 export const useAuthentication = () => {
-  const token = useStoreAuthentication((state) => state.token);
   const refreshToken = useStoreAuthentication((state) => state.refreshToken);
   const setAuthenticationStoreState = useStoreAuthentication(
     (state) => state.setAuthenticationStoreState
@@ -20,6 +20,8 @@ export const useAuthentication = () => {
   const { fetchAuthenticate } = ApiEndpoints.Authenticate();
   const { fetchRefreshAuthentication } = ApiEndpoints.RefreshAuthentication();
 
+  const token = AppHelper.getToken();
+
   const createAccount = useCallback(
     async (input: CreateAccountOperationInputDto) => {
       const res = await fetchCreateAccount({
@@ -28,15 +30,16 @@ export const useAuthentication = () => {
 
       if (!res.metadata?.success) {
         setAuthenticationStoreState({
-          token: undefined,
           refreshToken: undefined,
           isAuthenticated: false,
         });
+        AppHelper.setToken(undefined);
 
         return res;
       }
+
+      AppHelper.setToken(res.data?.token);
       setAuthenticationStoreState({
-        token: res.data?.token || "",
         refreshToken: res.data?.refreshToken || "",
         isAuthenticated: true,
       });
@@ -54,15 +57,16 @@ export const useAuthentication = () => {
 
       if (!res.metadata?.success) {
         setAuthenticationStoreState({
-          token: undefined,
           refreshToken: undefined,
           isAuthenticated: false,
         });
+        AppHelper.setToken(undefined);
 
         return res;
       }
+
+      AppHelper.setToken(res.data?.token);
       setAuthenticationStoreState({
-        token: res.data?.token || "",
         refreshToken: res.data?.refreshToken || "",
         isAuthenticated: true,
       });
@@ -79,17 +83,18 @@ export const useAuthentication = () => {
 
     if (!res.metadata?.success) {
       setAuthenticationStoreState({
-        token: undefined,
         refreshToken: undefined,
         isAuthenticated: false,
       });
+      AppHelper.setToken(undefined);
 
       return {
         success: false,
       };
     }
+
+    AppHelper.setToken(res.data?.token);
     setAuthenticationStoreState({
-      token: res.data?.token || "",
       refreshToken: res.data?.refreshToken || "",
       isAuthenticated: true,
     });
@@ -120,7 +125,6 @@ export const useAuthentication = () => {
   }, [token]);
 
   return {
-    token,
     isAuthenticated,
     createAccount,
     authenticate,
