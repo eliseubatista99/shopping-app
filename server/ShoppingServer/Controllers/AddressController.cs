@@ -5,10 +5,10 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingServer.Controllers
 {
-    public class AddAddressResponseDto : OperationOutput<AddAddressOperationOutputDto>;
-    public class DeleteAddressResponseDto : OperationOutput<DeleteAddressOperationOutputDto>;
-    public class SetDefaultAddressResponseDto : OperationOutput<SetDefaultAddressOperationOutputDto>;
-    public class UpdateAddressResponseDto : OperationOutput<UpdateAddressOperationOutputDto>;
+    public class AddAddressResponseDto : OperationResponseDto<AddAddressOperationOutputDto>;
+    public class DeleteAddressResponseDto : OperationResponseDto<DeleteAddressOperationOutputDto>;
+    public class SetDefaultAddressResponseDto : OperationResponseDto<SetDefaultAddressOperationOutputDto>;
+    public class UpdateAddressResponseDto : OperationResponseDto<UpdateAddressOperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]
@@ -43,7 +43,7 @@ namespace ShoppingServer.Controllers
 
         [HttpPatch("/api/SetDefaultAddress")]
         [SwaggerOperation(OperationId = "SetDefaultAddress")]
-        public Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromBody] SetDefaultAddressOperationInputDto input)
+        public Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromQuery] SetDefaultAddressOperationInputDto input)
         {
             return setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input);
         }

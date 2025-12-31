@@ -1,7 +1,7 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type {
-  GetOrderDetailsListParams,
+  GetOrderDetailsOperationInputDto,
   GetOrderDetailsResponseDto,
 } from "../models";
 
@@ -12,7 +12,7 @@ export const GetOrderDetails = () => {
   });
 
   const fetch = useCallback(
-    async (input: GetOrderDetailsListParams) => {
+    async (input: GetOrderDetailsOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

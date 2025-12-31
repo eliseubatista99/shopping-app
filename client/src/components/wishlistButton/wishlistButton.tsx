@@ -4,7 +4,7 @@ import { WishlistButtonDesktop } from "./wishlistButton.desktop";
 import { WishlistButtonMobile } from "./wishlistButton.mobile";
 
 export interface WishlistButtonProps {
-  isWishlisted?: boolean;
+  isWishlisted?: boolean | null | undefined;
   onClick?: () => void;
   styles?: React.CSSProperties;
 }

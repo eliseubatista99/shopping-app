@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace ShoppingServer.Library.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class OutputMetadataDto
+    public class OutputMetadataDto: Dto
     {
         public bool? Success { get; set; }
 

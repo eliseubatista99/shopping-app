@@ -1,9 +1,10 @@
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class GetCheckoutInfoOperationInputDto
+    public class GetCheckoutInfoOperationInputDto : OperationInputDto
     {
         public required List<string> ProductIds { get; set; }
 

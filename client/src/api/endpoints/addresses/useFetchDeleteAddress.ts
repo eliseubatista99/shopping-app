@@ -1,7 +1,7 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type {
-  DeleteAddressParams,
+  DeleteAddressOperationInputDto,
   DeleteAddressResponseDto,
 } from "../../models";
 
@@ -11,7 +11,7 @@ export const DeleteAddress = () => {
   });
 
   const fetch = useCallback(
-    async (input: DeleteAddressParams) => {
+    async (input: DeleteAddressOperationInputDto) => {
       const result = await httpDelete({ ...input });
 
       return result;

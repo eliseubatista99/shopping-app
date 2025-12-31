@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { INPUTS } from "@constants";
 import {
   FormsHelper,
@@ -15,7 +15,7 @@ export const useSignInOrLoginTemplateHelper = ({
   onSubmit,
 }: SignInOrLoginTemplateProps) => {
   const { t } = useAppTranslations();
-  const { fetchIsExistingAccount } = Api.IsExistingAccount();
+  const { fetchIsExistingAccount } = ApiEndpoints.IsExistingAccount();
   const setAuthenticationStoreState = useStoreAuthentication(
     (state) => state.setAuthenticationStoreState
   );
@@ -85,7 +85,7 @@ export const useSignInOrLoginTemplateHelper = ({
           phoneNumber: isPhone ? emailOrPhoneValue : undefined,
         });
 
-        if (res.metadata.success) {
+        if (res.metadata?.success) {
           setAuthenticationStoreState({
             form: {
               email: isEmail ? emailOrPhoneValue : undefined,
@@ -94,7 +94,7 @@ export const useSignInOrLoginTemplateHelper = ({
           });
 
           onSubmit?.({
-            step: res.data.exists ? "login" : "signUp",
+            step: res.data?.exists ? "login" : "signUp",
           });
         }
       }

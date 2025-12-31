@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import type { OrderAndProduct } from "@components";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
@@ -8,7 +8,7 @@ import React from "react";
 
 export const useOrdersListBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchGetClientOrders } = Api.GetClientOrders();
+  const { fetchGetClientOrders } = ApiEndpoints.GetClientOrders();
   const { goTo } = useNavigation();
 
   const setOrdersStoreState = useStoreOrders(
@@ -56,19 +56,19 @@ export const useOrdersListBlockHelper = () => {
         filterByEndDate: parsedFilters?.endDateFilter,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         if (currentPage < 1) {
           setOrdersStoreState({
-            orders: res.data.orders,
-            oldestOrderDate: res.data.oldestOrderDate,
+            orders: res.data?.orders || [],
+            oldestOrderDate: res.data?.oldestOrderDate || "",
           });
         } else {
-          addOrders(res.data.orders);
+          addOrders(res.data?.orders || []);
         }
       }
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
         hasMorePages: res.data?.hasMorePages,
       };
     },

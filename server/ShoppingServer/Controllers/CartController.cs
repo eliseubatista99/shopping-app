@@ -5,10 +5,10 @@ using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
-    public class AddToCartResponseDto : OperationOutput<AddToCartOperationOutputDto>;
-    public class GetCartResponseDto : OperationOutput<GetCartOperationOutputDto>;
-    public class RemoveFromCartResponseDto : OperationOutput<RemoveFromCartOperationOutputDto>;
-    public class UpdateCartResponseDto : OperationOutput<UpdateCartProductOperationOutputDto>;
+    public class AddToCartResponseDto : OperationResponseDto<AddToCartOperationOutputDto>;
+    public class GetCartResponseDto : OperationResponseDto<GetCartOperationOutputDto>;
+    public class RemoveFromCartResponseDto : OperationResponseDto<RemoveFromCartOperationOutputDto>;
+    public class UpdateCartResponseDto : OperationResponseDto<UpdateCartProductOperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]
@@ -35,7 +35,7 @@ namespace ShoppingServer.Controllers
         [HttpGet("/api/GetCart")]
         public Task<GetCartResponseDto> GetCart()
         {
-            return getCartOperation.Execute<GetCartResponseDto>(new VoidDto());
+            return getCartOperation.Execute<GetCartResponseDto>();
         }
 
 

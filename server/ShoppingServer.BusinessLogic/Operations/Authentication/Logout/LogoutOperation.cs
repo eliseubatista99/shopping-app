@@ -5,7 +5,7 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class LogoutOperation : OperationBase<VoidDto, VoidDto>
+    public class LogoutOperation : OperationBase<OperationInputDto, OperationOutputDto>
     {
         public LogoutOperation(ControllerBase _controller) : base(_controller)
         {
@@ -21,7 +21,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 Path = "/RefreshAuthentication",
             });
 
-            output.Data = new VoidDto();
+            output.Data = new OperationOutputDto();
         }
     }
 }

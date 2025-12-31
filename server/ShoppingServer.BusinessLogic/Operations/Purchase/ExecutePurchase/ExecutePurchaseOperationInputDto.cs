@@ -1,10 +1,11 @@
 using ShoppingServer.BusinessLogic.Entities;
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class ExecutePurchaseOperationInputDto
+    public class ExecutePurchaseOperationInputDto : OperationInputDto
     {
         public required List<CheckoutProductDto> Products { get; set; }
     

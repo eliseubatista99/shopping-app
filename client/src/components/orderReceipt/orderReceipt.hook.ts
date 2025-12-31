@@ -59,15 +59,15 @@ export const useOrderReceiptHelper = (props: OrderReceiptProps) => {
         title: t("orderReceipt.summary.title"),
         products: {
           text: t("orderReceipt.summary.products"),
-          value: `${props.order.productsCost.toFixed(2)}${currency}`,
+          value: `${props.order.productCost.toFixed(2)}${currency}`,
         },
         shipping: {
           text: t("orderReceipt.summary.shipping"),
-          value: `${props.order.shippingCost.toFixed(2)}${currency}`,
+          value: `${props.order.shippingCost?.toFixed(2)}${currency}`,
         },
         discounts: {
           text: t("orderReceipt.summary.discounts"),
-          value: `${(-props.order.discounts).toFixed(2)}${currency}`,
+          value: `${(-(props.order.discounts || 0)).toFixed(2)}${currency}`,
         },
         total: {
           text: t("orderReceipt.summary.total"),
@@ -82,7 +82,7 @@ export const useOrderReceiptHelper = (props: OrderReceiptProps) => {
     props.order.date,
     props.order.discounts,
     props.order.id,
-    props.order.productsCost,
+    props.order.productCost,
     props.order.shippingCost,
     props.order.totalCost,
     t,

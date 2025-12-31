@@ -5,11 +5,11 @@ using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
-    public class GetProductReviewsResponseDto : OperationOutput<GetProductReviewsOperationOutputDto>;
-    public class ProductDetailResponseDto : OperationOutput<ProductDetailOperationOutputDto>;
-    public class ProductOffersdResponseDto : OperationOutput<ProductOffersOperationOutputDto>;
-    public class SearchProductsResponseDto : OperationOutput<SearchProductsOperationOutputDto>;
-    public class WriteReviewResponseDto : OperationOutput<VoidDto>;
+    public class GetProductReviewsResponseDto : OperationResponseDto<GetProductReviewsOperationOutputDto>;
+    public class ProductDetailResponseDto : OperationResponseDto<ProductDetailOperationOutputDto>;
+    public class ProductOffersdResponseDto : OperationResponseDto<ProductOffersOperationOutputDto>;
+    public class SearchProductsResponseDto : OperationResponseDto<SearchProductsOperationOutputDto>;
+    public class WriteReviewResponseDto : OperationResponseDto<OperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]

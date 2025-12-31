@@ -4,7 +4,7 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class WriteReviewOperation : OperationBase<WriteReviewOperationInputDto, VoidDto>
+    public class WriteReviewOperation : OperationBase<WriteReviewOperationInputDto, OperationOutputDto>
     {
         public WriteReviewOperation(ControllerBase _controller) : base(_controller)
         {
@@ -15,7 +15,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            output.Data = new VoidDto
+            output.Data = new OperationOutputDto
             {
 
             };

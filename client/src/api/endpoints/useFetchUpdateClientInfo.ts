@@ -1,24 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ClientInfoDto } from "../types";
-
-export type UpdateClientInfoInputDto = {
-  name?: string;
-  email?: string;
-  phone?: string;
-  password?: string;
-};
-
-export type UpdateClientInfoOutputDto = { updatedInfo: ClientInfoDto };
+import type {
+  UpdateClientInfoOperationInputDto,
+  UpdateClientInfoResponseDto,
+} from "../models";
 
 export const UpdateClientInfo = () => {
-  const { patch } = useFetchWithAuth<UpdateClientInfoOutputDto>({
+  const { patch } = useFetchWithAuth<UpdateClientInfoResponseDto>({
     endpoint: "UpdateClientInfo",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: UpdateClientInfoInputDto) => {
+    async (input: UpdateClientInfoOperationInputDto) => {
       const result = await patch({ ...input });
 
       return result;

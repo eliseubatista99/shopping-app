@@ -1,7 +1,7 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
 import type {
-  IsExistingAccountListParams,
+  IsExistingAccountOperationInputDto,
   IsExistingAccountResponseDto,
 } from "../models";
 
@@ -12,7 +12,7 @@ export const IsExistingAccount = () => {
   });
 
   const fetch = useCallback(
-    async (input: IsExistingAccountListParams) => {
+    async (input: IsExistingAccountOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

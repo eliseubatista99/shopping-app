@@ -5,12 +5,12 @@ using System.Diagnostics.CodeAnalysis;
 namespace ShoppingServer.Library.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class OperationOutput<TOutput>
+    public class OperationResponseDto<TOutput> where TOutput : OperationOutputDto
     {
         public TOutput? Data { get; set; }
         public OutputMetadataDto? Metadata { get; set; }
 
-        public OperationOutput()
+        public OperationResponseDto()
         {
 
         }

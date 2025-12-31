@@ -1,12 +1,10 @@
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class GetWishlistOperationInputDto
+    public class GetWishlistOperationInputDto : OperationPaginatedInputDto
     {
-        public int? Page { get; set; }
-
-        public int? PageSize { get; set; }
     }
 }

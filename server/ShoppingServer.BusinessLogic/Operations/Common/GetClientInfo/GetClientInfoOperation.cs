@@ -5,7 +5,7 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class GetClientInfoOperation : OperationBase<VoidDto, GetClientInfoOperationOutputDto>
+    public class GetClientInfoOperation : OperationBase<OperationInputDto, GetClientInfoOperationOutputDto>
     {
         public GetClientInfoOperation(ControllerBase _controller) : base(_controller)
         {

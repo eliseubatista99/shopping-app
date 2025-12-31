@@ -1,7 +1,7 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
 import type {
-  RemoveFromCartDeleteParams,
+  RemoveFromCartOperationInputDto,
   RemoveFromCartResponseDto,
 } from "../../models";
 
@@ -12,7 +12,7 @@ export const RemoveFromCart = () => {
   });
 
   const fetch = useCallback(
-    async (input: RemoveFromCartDeleteParams) => {
+    async (input: RemoveFromCartOperationInputDto) => {
       const result = await httpDelete({ ...input });
 
       return result;

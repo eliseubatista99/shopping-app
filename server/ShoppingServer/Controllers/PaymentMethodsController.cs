@@ -4,11 +4,11 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
-    public class GetPaymentMethodDetailsResponseDto : OperationOutput<GetPaymentMethodDetailsOperationOutputDto>;
-    public class AddPaymentMethodResponseDto : OperationOutput<AddPaymentMethodOperationOutputDto>;
-    public class DeletePaymentMethodResponseDto : OperationOutput<DeletePaymentMethodOperationOutputDto>;
-    public class SetDefaultPaymentMethodResponseDto : OperationOutput<SetDefaultPaymentMethodOperationOutputDto>;
-    public class UpdatePaymentMethodResponseDto : OperationOutput<UpdatePaymentMethodOperationOutputDto>;
+    public class GetPaymentMethodDetailsResponseDto : OperationResponseDto<GetPaymentMethodDetailsOperationOutputDto>;
+    public class AddPaymentMethodResponseDto : OperationResponseDto<AddPaymentMethodOperationOutputDto>;
+    public class DeletePaymentMethodResponseDto : OperationResponseDto<DeletePaymentMethodOperationOutputDto>;
+    public class SetDefaultPaymentMethodResponseDto : OperationResponseDto<SetDefaultPaymentMethodOperationOutputDto>;
+    public class UpdatePaymentMethodResponseDto : OperationResponseDto<UpdatePaymentMethodOperationOutputDto>;
 
 
     [ApiController]

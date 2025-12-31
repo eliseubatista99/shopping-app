@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class GetClientOrdersOperationInputDto : OperationPaginatedInput
+    public class GetClientOrdersOperationInputDto : OperationPaginatedInputDto
     {
         public string? OrderId { get; set; }
 

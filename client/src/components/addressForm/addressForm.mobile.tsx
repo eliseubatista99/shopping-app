@@ -80,7 +80,7 @@ export const AddressFormMobile: React.FC<AddressFormProps> = (props) => {
         <AppInputField
           name={INPUTS.COUNTRY}
           label={i18n.form.country.title}
-          initialValue={initialValue?.country}
+          initialValue={initialValue?.country || ""}
           placeHolder={i18n.form.country.placeholder}
           containerStyles={{ marginTop: "15px" }}
           inputStyles={{ padding: "10px" }}
@@ -89,7 +89,7 @@ export const AddressFormMobile: React.FC<AddressFormProps> = (props) => {
         <AppInputField
           name={INPUTS.NAME}
           label={i18n.form.name.title}
-          initialValue={initialValue?.name}
+          initialValue={initialValue?.name || ""}
           placeHolder={i18n.form.name.placeholder}
           containerStyles={{ marginTop: "15px" }}
           inputStyles={{ padding: "10px" }}
@@ -98,7 +98,7 @@ export const AddressFormMobile: React.FC<AddressFormProps> = (props) => {
         <AppInputField
           name={INPUTS.PHONE}
           label={i18n.form.phone.title}
-          initialValue={initialValue?.phone}
+          initialValue={initialValue?.phone || ""}
           placeHolder={i18n.form.phone.placeholder}
           containerStyles={{ marginTop: "15px" }}
           inputStyles={{ padding: "10px" }}
@@ -107,7 +107,7 @@ export const AddressFormMobile: React.FC<AddressFormProps> = (props) => {
         <AppInputField
           name={INPUTS.STREET}
           label={i18n.form.street.title}
-          initialValue={initialValue?.street}
+          initialValue={initialValue?.street || ""}
           placeHolder={i18n.form.street.placeholder}
           containerStyles={{ marginTop: "15px" }}
           inputStyles={{ padding: "10px" }}
@@ -116,7 +116,7 @@ export const AddressFormMobile: React.FC<AddressFormProps> = (props) => {
         <AppInputField
           name={INPUTS.LOCATION}
           label={i18n.form.location.title}
-          initialValue={initialValue?.location}
+          initialValue={initialValue?.location || ""}
           placeHolder={i18n.form.location.placeholder}
           containerStyles={{ marginTop: "15px" }}
           inputStyles={{ padding: "10px" }}
@@ -125,7 +125,7 @@ export const AddressFormMobile: React.FC<AddressFormProps> = (props) => {
         <AppInputField
           name={INPUTS.CITY}
           label={i18n.form.city.title}
-          initialValue={initialValue?.city}
+          initialValue={initialValue?.city || ""}
           placeHolder={i18n.form.city.placeholder}
           containerStyles={{ marginTop: "15px" }}
           inputStyles={{ padding: "10px" }}
@@ -134,7 +134,7 @@ export const AddressFormMobile: React.FC<AddressFormProps> = (props) => {
         <AppInputField
           name={INPUTS.POSTAL_CODE}
           label={i18n.form.postalCode.title}
-          initialValue={initialValue?.postalCode}
+          initialValue={initialValue?.postalCode || ""}
           placeHolder={i18n.form.postalCode.placeholder}
           containerStyles={{ marginTop: "15px" }}
           inputStyles={{ padding: "10px" }}

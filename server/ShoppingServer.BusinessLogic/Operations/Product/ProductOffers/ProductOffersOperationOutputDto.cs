@@ -1,10 +1,11 @@
 using ShoppingServer.BusinessLogic.Entities;
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class ProductOffersOperationOutputDto
+    public class ProductOffersOperationOutputDto : OperationOutputDto
     {
         public List<ProductDto>? FromSearchHistory { get; set; }
        

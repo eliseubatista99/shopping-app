@@ -94,25 +94,16 @@
       "patch": {
         "tags": ["Address"],
         "operationId": "SetDefaultAddress",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetDefaultAddressOperationInputDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetDefaultAddressOperationInputDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetDefaultAddressOperationInputDto"
-              }
+        "parameters": [
+          {
+            "name": "AddressId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -451,7 +442,7 @@
         "tags": ["Cart"],
         "parameters": [
           {
-            "name": "productIds",
+            "name": "ProductIds",
             "in": "query",
             "required": true,
             "schema": {
@@ -763,7 +754,7 @@
         "tags": ["Orders"],
         "parameters": [
           {
-            "name": "orderId",
+            "name": "OrderId",
             "in": "query",
             "required": true,
             "schema": {
@@ -800,7 +791,7 @@
         "tags": ["PaymentMethods"],
         "parameters": [
           {
-            "name": "methodId",
+            "name": "MethodId",
             "in": "query",
             "required": true,
             "schema": {
@@ -883,7 +874,7 @@
         "tags": ["PaymentMethods"],
         "parameters": [
           {
-            "name": "methodId",
+            "name": "MethodId",
             "in": "query",
             "required": true,
             "schema": {
@@ -1012,44 +1003,28 @@
         "tags": ["Product"],
         "parameters": [
           {
-            "name": "productId",
+            "name": "ProductId",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "reviewId",
+            "name": "ReviewId",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "authorId",
+            "name": "AuthorId",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "filterByRating",
+            "name": "FilterByRating",
             "in": "query",
             "schema": {
               "type": "number",
@@ -1057,10 +1032,26 @@
             }
           },
           {
-            "name": "sortMode",
+            "name": "SortMode",
             "in": "query",
             "schema": {
               "$ref": "#/components/schemas/SortMode"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -1093,7 +1084,7 @@
         "tags": ["Product"],
         "parameters": [
           {
-            "name": "productId",
+            "name": "ProductId",
             "in": "query",
             "required": true,
             "schema": {
@@ -1157,30 +1148,14 @@
         "tags": ["Product"],
         "parameters": [
           {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "text",
+            "name": "Text",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "score",
+            "name": "Score",
             "in": "query",
             "schema": {
               "type": "number",
@@ -1188,7 +1163,7 @@
             }
           },
           {
-            "name": "maxPrice",
+            "name": "MaxPrice",
             "in": "query",
             "schema": {
               "type": "number",
@@ -1196,7 +1171,7 @@
             }
           },
           {
-            "name": "minPrice",
+            "name": "MinPrice",
             "in": "query",
             "schema": {
               "type": "number",
@@ -1204,31 +1179,47 @@
             }
           },
           {
-            "name": "bestSeller",
+            "name": "BestSeller",
             "in": "query",
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "freeShipping",
+            "name": "FreeShipping",
             "in": "query",
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "category",
+            "name": "Category",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "sort",
+            "name": "Sort",
             "in": "query",
             "schema": {
               "$ref": "#/components/schemas/SortMode"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -1443,6 +1434,7 @@
     "/api/GetWishlist": {
       "get": {
         "tags": ["Wishlist"],
+        "operationId": "GetWishlist",
         "parameters": [
           {
             "name": "Page",
@@ -1488,25 +1480,16 @@
     "/api/RemoveFromWishlist": {
       "delete": {
         "tags": ["Wishlist"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RemoveFromWishlistOperationInputDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RemoveFromWishlistOperationInputDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RemoveFromWishlistOperationInputDto"
-              }
+        "parameters": [
+          {
+            "name": "ProductId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1978,6 +1961,17 @@
         },
         "additionalProperties": false
       },
+      "DeleteAddressOperationInputDto": {
+        "required": ["addressId"],
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DeleteAddressOperationOutputDto": {
         "type": "object",
         "properties": {
@@ -1999,6 +1993,17 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeletePaymentMethodOperationInputDto": {
+        "required": ["methodId"],
+        "type": "object",
+        "properties": {
+          "methodId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2047,6 +2052,10 @@
         },
         "additionalProperties": false
       },
+      "Dto": {
+        "type": "object",
+        "additionalProperties": false
+      },
       "ErrorDto": {
         "type": "object",
         "properties": {
@@ -2090,7 +2099,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/VoidDto"
+            "$ref": "#/components/schemas/OperationOutputDto"
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
@@ -2257,9 +2266,53 @@
         },
         "additionalProperties": false
       },
+      "GetClientOrdersOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "filterByText": {
+            "type": "string",
+            "nullable": true
+          },
+          "filterByStatus": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "sortMode": {
+            "$ref": "#/components/schemas/SortMode"
+          },
+          "filterByStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "filterByEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "GetClientOrdersOperationOutputDto": {
         "type": "object",
         "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
           "orders": {
             "type": "array",
             "items": {
@@ -2270,10 +2323,6 @@
           "oldestOrderDate": {
             "type": "string",
             "format": "date-time",
-            "nullable": true
-          },
-          "hasMorePages": {
-            "type": "boolean",
             "nullable": true
           }
         },
@@ -2287,6 +2336,17 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetDocumentOperationInputDto": {
+        "required": ["id"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2312,6 +2372,17 @@
         },
         "additionalProperties": false
       },
+      "GetOrderDetailsOperationInputDto": {
+        "required": ["orderId"],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "GetOrderDetailsOperationOutputDto": {
         "type": "object",
         "properties": {
@@ -2329,6 +2400,17 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPaymentMethodDetailsOperationInputDto": {
+        "required": ["methodId"],
+        "type": "object",
+        "properties": {
+          "methodId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2354,9 +2436,49 @@
         },
         "additionalProperties": false
       },
+      "GetProductReviewsOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewId": {
+            "type": "string",
+            "nullable": true
+          },
+          "authorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "filterByRating": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sortMode": {
+            "$ref": "#/components/schemas/SortMode"
+          }
+        },
+        "additionalProperties": false
+      },
       "GetProductReviewsOperationOutputDto": {
         "type": "object",
         "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
           "productName": {
             "type": "string",
             "nullable": true
@@ -2388,10 +2510,6 @@
               "$ref": "#/components/schemas/ReviewDto"
             },
             "nullable": true
-          },
-          "hasMorePages": {
-            "type": "boolean",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2408,18 +2526,34 @@
         },
         "additionalProperties": false
       },
+      "GetWishlistOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "GetWishlistOperationOutputDto": {
         "type": "object",
         "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
           "products": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProductDto"
             },
-            "nullable": true
-          },
-          "hasMorePages": {
-            "type": "boolean",
             "nullable": true
           }
         },
@@ -2433,6 +2567,20 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IsExistingAccountOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2463,10 +2611,44 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/VoidDto"
+            "$ref": "#/components/schemas/OperationOutputDto"
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OperationInputDto": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OperationOutputDto": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OperationPaginatedInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OperationPaginatedOutputDto": {
+        "type": "object",
+        "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2804,6 +2986,17 @@
         },
         "additionalProperties": false
       },
+      "ProductDetailOperationInputDto": {
+        "required": ["productId"],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProductDetailOperationOutputDto": {
         "type": "object",
         "properties": {
@@ -3037,6 +3230,20 @@
         },
         "additionalProperties": false
       },
+      "RemoveFromCartOperationInputDto": {
+        "required": ["productIds"],
+        "type": "object",
+        "properties": {
+          "productIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RemoveFromCartOperationOutputDto": {
         "type": "object",
         "properties": {
@@ -3169,18 +3376,68 @@
         },
         "additionalProperties": false
       },
+      "SearchProductsOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "maxPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "minPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bestSeller": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "freeShipping": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortMode"
+          }
+        },
+        "additionalProperties": false
+      },
       "SearchProductsOperationOutputDto": {
         "type": "object",
         "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
           "products": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProductDto"
             },
-            "nullable": true
-          },
-          "hasMorePages": {
-            "type": "boolean",
             "nullable": true
           }
         },
@@ -3505,10 +3762,6 @@
         },
         "additionalProperties": false
       },
-      "VoidDto": {
-        "type": "object",
-        "additionalProperties": false
-      },
       "WriteReviewOperationInputDto": {
         "required": ["productId", "reviewerId", "score", "title"],
         "type": "object",
@@ -3540,7 +3793,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/VoidDto"
+            "$ref": "#/components/schemas/OperationOutputDto"
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"

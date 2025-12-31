@@ -1,4 +1,4 @@
-import { Api, type ProductDto } from "@api";
+import { ApiEndpoints, type ProductDto } from "@api";
 import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useFeedback,
@@ -15,7 +15,7 @@ export const useProductsBlockHelper = () => {
 
   const { searchFilters } = useAppSearchParams();
 
-  const { fetchSearchProducts } = Api.SearchProducts();
+  const { fetchSearchProducts } = ApiEndpoints.SearchProducts();
   const { goTo } = useNavigation();
   const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
@@ -64,19 +64,19 @@ export const useProductsBlockHelper = () => {
         sort: parsedFilters?.sort,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         if (currentPage < 1) {
-          setProducts(res.data.products || []);
+          setProducts(res.data?.products || []);
         } else {
           setProducts((prevState) => [
             ...prevState,
-            ...(res.data.products || []),
+            ...(res.data?.products || []),
           ]);
         }
       }
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
         hasMorePages: res.data?.hasMorePages || false,
       };
     },

@@ -48,7 +48,7 @@ export const useItemsListTemplateHelper = (props: ItemsListTemplateProps) => {
     );
 
     if (res.success) {
-      hasMorePages.current = res.hasMorePages;
+      hasMorePages.current = res.hasMorePages || false;
       setHasError(false);
     } else {
       setHasError(true);

@@ -4,7 +4,7 @@
 namespace ShoppingServer.Library.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class OperationPaginatedInput
+    public class OperationPaginatedInputDto: OperationInputDto
     {
         public int? Page { get; set; }
 

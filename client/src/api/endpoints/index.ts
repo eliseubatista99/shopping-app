@@ -22,7 +22,7 @@ import { SearchProducts } from "./useFetchSearchProducts";
 import { UpdateClientInfo } from "./useFetchUpdateClientInfo";
 import { WriteReview } from "./useFetchWriteReview";
 
-export const Api = {
+export const ApiEndpoints = {
   GetClientInfo,
   GetDocument,
   ExecutePurchase,

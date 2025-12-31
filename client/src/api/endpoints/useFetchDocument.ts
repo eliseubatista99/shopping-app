@@ -1,6 +1,9 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-import type { GetDocumentListParams, GetDocumentResponseDto } from "../models";
+import type {
+  GetDocumentOperationInputDto,
+  GetDocumentResponseDto,
+} from "../models";
 
 export const GetDocument = () => {
   const { get } = useFetchNoAuth<GetDocumentResponseDto>({
@@ -9,7 +12,7 @@ export const GetDocument = () => {
   });
 
   const fetch = useCallback(
-    async (input: GetDocumentListParams) => {
+    async (input: GetDocumentOperationInputDto) => {
       const result = await get({
         ...input,
       });

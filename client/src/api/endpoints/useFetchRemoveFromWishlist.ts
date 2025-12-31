@@ -1,23 +1,19 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDto } from "../types";
-
-export type RemoveFromWishlistInputDto = {
-  productId: string;
-};
-
-export type RemoveFromWishlistOutputDto = {
-  updatedWishlist?: ProductDto[];
-};
+import type {
+  RemoveFromWishlistOperationInputDto,
+  RemoveFromWishlistResponseDto,
+} from "../models";
 
 export const RemoveFromWishlist = () => {
-  const { delete: httpDelete } = useFetchWithAuth<RemoveFromWishlistOutputDto>({
-    endpoint: "RemoveFromWishlist",
-    showGenericErrorModal: false,
-  });
+  const { delete: httpDelete } =
+    useFetchWithAuth<RemoveFromWishlistResponseDto>({
+      endpoint: "RemoveFromWishlist",
+      showGenericErrorModal: false,
+    });
 
   const fetch = useCallback(
-    async (input: RemoveFromWishlistInputDto) => {
+    async (input: RemoveFromWishlistOperationInputDto) => {
       const result = await httpDelete({ ...input });
 
       return result;

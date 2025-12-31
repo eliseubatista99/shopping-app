@@ -1,22 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-
-export type WriteReviewInputDto = {
-  reviewerId: string;
-  productId: string;
-  score: number;
-  title: string;
-  description: string;
-};
+import type {
+  WriteReviewOperationInputDto,
+  WriteReviewResponseDto,
+} from "../models";
 
 export const WriteReview = () => {
-  const { post } = useFetchWithAuth<void>({
+  const { post } = useFetchWithAuth<WriteReviewResponseDto>({
     endpoint: "WriteReview",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: WriteReviewInputDto) => {
+    async (input: WriteReviewOperationInputDto) => {
       const result = await post({ ...input });
 
       return result;

@@ -1,4 +1,4 @@
-import { Api, type AddressDto } from "@api";
+import { ApiEndpoints, type AddressDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -14,8 +14,8 @@ export const useAddressesPageHelper = () => {
 
   const setAddresses = useStoreAddresses((state) => state.setAddresses);
 
-  const { fetchDeleteAddress } = Api.DeleteAddress();
-  const { fetchSetDefaultAddress } = Api.SetDefaultAddress();
+  const { fetchDeleteAddress } = ApiEndpoints.DeleteAddress();
+  const { fetchSetDefaultAddress } = ApiEndpoints.SetDefaultAddress();
   const { showItem } = useFeedback();
 
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -51,8 +51,8 @@ export const useAddressesPageHelper = () => {
 
       const res = await fetchDeleteAddress({ addressId: address.id || "" });
 
-      if (res.metadata.success) {
-        setAddresses(res.data.updatedAddresses);
+      if (res.metadata?.success) {
+        setAddresses(res.data?.updatedAddresses || []);
       }
       setLoading(false);
     },
@@ -64,8 +64,8 @@ export const useAddressesPageHelper = () => {
       setLoading(true);
       const res = await fetchSetDefaultAddress({ addressId: address.id || "" });
 
-      if (res.metadata.success) {
-        setAddresses(res.data.updatedAddresses);
+      if (res.metadata?.success) {
+        setAddresses(res.data?.updatedAddresses || []);
       }
       setLoading(false);
     },

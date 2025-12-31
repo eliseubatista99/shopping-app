@@ -1,4 +1,4 @@
-import { Api, type ProductDto } from "@api";
+import { ApiEndpoints, type ProductDto } from "@api";
 import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useFeedback,
@@ -11,8 +11,8 @@ import React from "react";
 export const useProductsBlockHelper = () => {
   const { t } = useAppTranslations();
 
-  const { fetchGetWishlist } = Api.GetWishlist();
-  const { fetchRemoveFromWishlist } = Api.RemoveFromWishlist();
+  const { fetchGetWishlist } = ApiEndpoints.GetWishlist();
+  const { fetchRemoveFromWishlist } = ApiEndpoints.RemoveFromWishlist();
   const products = useStoreWishlist((state) => state.products);
   const addProducts = useStoreWishlist((state) => state.addProducts);
   const setWishlistStoreState = useStoreWishlist(
@@ -35,18 +35,18 @@ export const useProductsBlockHelper = () => {
         pageSize: pageSize,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         if (currentPage < 1) {
           setWishlistStoreState({
-            products: res.data.products,
+            products: res.data?.products || [],
           });
         } else {
-          addProducts(res.data.products);
+          addProducts(res.data?.products || []);
         }
       }
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
         hasMorePages: res.data?.hasMorePages,
       };
     },
@@ -81,8 +81,8 @@ export const useProductsBlockHelper = () => {
         productId: product.id || "",
       });
 
-      if (res.metadata.success) {
-        setWishlistStoreState({ products: res.data.updatedWishlist });
+      if (res.metadata?.success) {
+        setWishlistStoreState({ products: res.data?.updatedWishlist || [] });
       }
       hideItem(OVERLAYS.LOADER);
     },

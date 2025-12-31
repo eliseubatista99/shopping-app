@@ -87,7 +87,7 @@ export const PaymentMethodListItemMobile: React.FC<
         }}
       >
         <Image
-          src={paymentMethod.image}
+          src={paymentMethod.image || ""}
           styles={{
             minWidth: `${imageSize}px`,
             maxWidth: `${imageSize}px`,

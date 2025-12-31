@@ -35,7 +35,7 @@ export const useProductsBlockHelper = () => {
     setShowSelectAction(true);
 
     return {
-      success: res.metadata.success,
+      success: res.metadata?.success,
       hasMorePages: false,
     };
   }, [getCart]);

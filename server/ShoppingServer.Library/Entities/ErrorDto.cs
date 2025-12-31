@@ -4,7 +4,7 @@
 namespace ShoppingServer.Library.Entities
 {
     [ExcludeFromCodeCoverage]
-    public class ErrorDto
+    public class ErrorDto : Dto
     {
         public string Code { get; set; }
 

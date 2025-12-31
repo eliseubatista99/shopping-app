@@ -7,11 +7,11 @@ using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
-    public class AuthenticateResponseDto : OperationOutput<AuthenticateOperationOutputDto>;
-    public class RefreshAuthenticationResponseDto : OperationOutput<RefreshAuthenticationOperationOutputDto>;
-    public class LogoutOperationResponseDto : OperationOutput<VoidDto>;
-    public class CreateAccountResponseDto : OperationOutput<CreateAccountOperationOutputDto>;
-    public class IsExistingAccountResponseDto : OperationOutput<IsExistingAccountOperationOutputDto>;
+    public class AuthenticateResponseDto : OperationResponseDto<AuthenticateOperationOutputDto>;
+    public class RefreshAuthenticationResponseDto : OperationResponseDto<RefreshAuthenticationOperationOutputDto>;
+    public class LogoutOperationResponseDto : OperationResponseDto<OperationOutputDto>;
+    public class CreateAccountResponseDto : OperationResponseDto<CreateAccountOperationOutputDto>;
+    public class IsExistingAccountResponseDto : OperationResponseDto<IsExistingAccountOperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]

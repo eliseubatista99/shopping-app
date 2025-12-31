@@ -1,8 +1,10 @@
-import { Api } from "@api";
+import {
+  ApiEndpoints,
+  type AuthenticateOperationInputDto,
+  type CreateAccountOperationInputDto,
+} from "@api";
 import { useStoreAuthentication } from "@store";
 import { useCallback } from "react";
-import type { AuthenticateInputDto } from "src/api/endpoints/useFetchAuthenticate";
-import type { CreateAccountInputDto } from "src/api/endpoints/useFetchCreateAccount";
 
 export const useAuthentication = () => {
   const token = useStoreAuthentication((state) => state.token);
@@ -12,17 +14,17 @@ export const useAuthentication = () => {
   const isAuthenticated = useStoreAuthentication(
     (state) => state.isAuthenticated
   );
-  const { fetchCreateAccount } = Api.CreateAccount();
-  const { fetchAuthenticate } = Api.Authenticate();
-  const { fetchRefreshAuthentication } = Api.RefreshAuthentication();
+  const { fetchCreateAccount } = ApiEndpoints.CreateAccount();
+  const { fetchAuthenticate } = ApiEndpoints.Authenticate();
+  const { fetchRefreshAuthentication } = ApiEndpoints.RefreshAuthentication();
 
   const createAccount = useCallback(
-    async (input: CreateAccountInputDto) => {
+    async (input: CreateAccountOperationInputDto) => {
       const res = await fetchCreateAccount({
         ...input,
       });
 
-      if (!res.metadata.success) {
+      if (!res.metadata?.success) {
         setAuthenticationStoreState({
           token: undefined,
           isAuthenticated: false,
@@ -31,7 +33,7 @@ export const useAuthentication = () => {
         return res;
       }
       setAuthenticationStoreState({
-        token: res.data.token,
+        token: res.data?.token || "",
         isAuthenticated: true,
       });
 
@@ -41,12 +43,12 @@ export const useAuthentication = () => {
   );
 
   const authenticate = useCallback(
-    async (input: AuthenticateInputDto) => {
+    async (input: AuthenticateOperationInputDto) => {
       const res = await fetchAuthenticate({
         ...input,
       });
 
-      if (!res.metadata.success) {
+      if (!res.metadata?.success) {
         setAuthenticationStoreState({
           token: undefined,
           isAuthenticated: false,
@@ -55,7 +57,7 @@ export const useAuthentication = () => {
         return res;
       }
       setAuthenticationStoreState({
-        token: res.data.token,
+        token: res.data?.token || "",
         isAuthenticated: true,
       });
 
@@ -67,7 +69,7 @@ export const useAuthentication = () => {
   const refreshToken = useCallback(async () => {
     const res = await fetchRefreshAuthentication();
 
-    if (!res.metadata.success) {
+    if (!res.metadata?.success) {
       setAuthenticationStoreState({ token: undefined, isAuthenticated: false });
 
       return {
@@ -75,7 +77,7 @@ export const useAuthentication = () => {
       };
     }
     setAuthenticationStoreState({
-      token: res.data.token,
+      token: res.data?.token || "",
       isAuthenticated: true,
     });
 

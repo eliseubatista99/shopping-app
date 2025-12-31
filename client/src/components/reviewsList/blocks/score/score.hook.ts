@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { useAppSearchParams } from "@hooks";
 import { useStoreReviews, type ReviewsFilters } from "@store";
 import React from "react";
@@ -6,7 +6,7 @@ import React from "react";
 export const useScoreBlockHelper = () => {
   const { reviewId } = useAppSearchParams();
   const { productId } = useAppSearchParams();
-  const { fetchGetProductReviews } = Api.GetProductReviews();
+  const { fetchGetProductReviews } = ApiEndpoints.GetProductReviews();
 
   const setReviewsStoreState = useStoreReviews(
     (state) => state.setReviewsStoreState
@@ -30,23 +30,23 @@ export const useScoreBlockHelper = () => {
         sortMode: parsedFilters?.sortFilter,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         if (currentPage < 1) {
           setReviewsStoreState({
-            scores: res.data.scores,
-            averageScore: res.data.averageScore,
-            productId: res.data.productId,
-            productName: res.data.productName,
-            reviewsCount: res.data.reviewsCount,
-            reviews: res.data.reviews,
+            scores: res.data?.scores,
+            averageScore: res.data?.averageScore,
+            productId: res.data?.productId,
+            productName: res.data?.productName,
+            reviewsCount: res.data?.reviewsCount,
+            reviews: res.data?.reviews,
           });
         } else {
-          addReviews(res.data.reviews);
+          addReviews(res.data?.reviews || []);
         }
       }
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
         hasMorePages: res.data?.hasMorePages,
       };
     },

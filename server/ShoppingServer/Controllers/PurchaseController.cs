@@ -5,8 +5,8 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
-    public class ExecutePurchaseResponseDto : OperationOutput<VoidDto>;
-    public class GetCheckoutInfoResponseDto : OperationOutput<GetCheckoutInfoOperationOutputDto>;
+    public class ExecutePurchaseResponseDto : OperationResponseDto<OperationOutputDto>;
+    public class GetCheckoutInfoResponseDto : OperationResponseDto<GetCheckoutInfoOperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]

@@ -1,6 +1,9 @@
 // biome-ignore lint/correctness/noNodejsModules: <explanation>
+
 import path from "node:path";
 import { generateApi } from "swagger-typescript-api";
+
+const toCamelCase = (str) => str.replace(/^[A-Z]/, (c) => c.toLowerCase());
 
 generateApi({
   fileName: "swagger-models.ts",
@@ -10,13 +13,14 @@ generateApi({
   generateRouteTypes: true,
   generateUnionEnums: true,
   generateClient: false,
-  extractRequestParams: true,
+  extractRequestParams: false,
+  generateApi: false,
+  // modular: true,
+
   hooks: {
-    onFormatTypeName: (_typeName, rawTypeName, _schemaType) => {
-      const transformedRawTypeName = rawTypeName?.substring(
-        rawTypeName?.lastIndexOf(".") + 1
-      );
-      return transformedRawTypeName;
+    onFormatTypeName: (_typeName, rawTypeName) => {
+      console.log("ZAUUUU", { _typeName, rawTypeName });
+      return rawTypeName?.substring(rawTypeName.lastIndexOf(".") + 1);
     },
   },
 });

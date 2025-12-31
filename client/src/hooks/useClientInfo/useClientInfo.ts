@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import {
   useStoreAddresses,
   useStoreCart,
@@ -18,7 +18,7 @@ export const useClientInfo = () => {
   const setAddresses = useStoreAddresses((state) => state.setAddresses);
   const setCartCount = useStoreCart((state) => state.setCartCount);
 
-  const { fetchClientInfo } = Api.GetClientInfo();
+  const { fetchClientInfo } = ApiEndpoints.GetClientInfo();
 
   const getClientInfo = useCallback(async () => {
     if (clientInfo) {
@@ -27,17 +27,17 @@ export const useClientInfo = () => {
 
     const res = await fetchClientInfo();
 
-    if (res.metadata.success) {
+    if (res.metadata?.success) {
       setClientStoreState({
-        client: res.data.client,
+        client: res.data?.client,
       });
 
-      setAddresses(res.data.client.addresses || []);
-      setPaymentMethods(res.data.client.paymentMethods || []);
+      setAddresses(res.data?.client?.addresses || []);
+      setPaymentMethods(res.data?.client?.paymentMethods || []);
 
-      setCartCount(res.data.itemsInCart || 0);
+      setCartCount(res.data?.itemsInCart || 0);
 
-      return res.data.client;
+      return res.data?.client;
     } else {
       return undefined;
     }

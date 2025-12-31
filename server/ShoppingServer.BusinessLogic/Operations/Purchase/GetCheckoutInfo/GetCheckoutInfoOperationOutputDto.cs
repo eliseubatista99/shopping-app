@@ -1,9 +1,10 @@
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class GetCheckoutInfoOperationOutputDto
+    public class GetCheckoutInfoOperationOutputDto : OperationOutputDto
     {
         public double? ShippingCost { get; set; }
 

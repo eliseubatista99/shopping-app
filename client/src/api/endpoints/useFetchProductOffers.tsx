@@ -1,16 +1,9 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDto, ProductOfferGroupDto } from "../types";
-
-export type ProductOffersOutputDto = {
-  fromSearchHistory: ProductDto[];
-  buyAgain: ProductDto[];
-  groups: ProductOfferGroupDto[];
-  banners: ProductOfferGroupDto[];
-};
+import type { ProductOffersdResponseDto } from "../models";
 
 export const GetProductOffers = () => {
-  const { get } = useFetchNoAuth<ProductOffersOutputDto>({
+  const { get } = useFetchNoAuth<ProductOffersdResponseDto>({
     endpoint: "ProductOffers",
     showGenericErrorModal: false,
   });

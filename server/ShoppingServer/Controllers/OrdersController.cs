@@ -4,8 +4,8 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
-    public class GetClientOrdersResponseDto : OperationOutput<GetClientOrdersOperationOutputDto>;
-    public class GetOrderDetailsResponseDto : OperationOutput<GetOrderDetailsOperationOutputDto>;
+    public class GetClientOrdersResponseDto : OperationResponseDto<GetClientOrdersOperationOutputDto>;
+    public class GetOrderDetailsResponseDto : OperationResponseDto<GetOrderDetailsOperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]

@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import type { AddressFormFields } from "@components";
 import { DRAWERS, TOASTS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
@@ -8,7 +8,7 @@ import React from "react";
 
 export const useAddAddressDrawerHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchAddAddress } = Api.AddAddress();
+  const { fetchAddAddress } = ApiEndpoints.AddAddress();
   const { showItem, hideItem } = useFeedback();
   const setAddresses = useStoreAddresses((state) => state.setAddresses);
 
@@ -35,8 +35,8 @@ export const useAddAddressDrawerHelper = () => {
         isDefault: data.setDefault || false,
       });
 
-      if (res.metadata.success) {
-        setAddresses(res.data.updatedAddresses);
+      if (res.metadata?.success) {
+        setAddresses(res.data?.updatedAddresses || []);
 
         showItem(TOASTS.CLIENT_INFO_CHANGED);
 
@@ -46,7 +46,7 @@ export const useAddAddressDrawerHelper = () => {
       setCanCloseDrawer(true);
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
       };
     },
     [fetchAddAddress, hideItem, setAddresses, showItem]

@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
   FormsHelper,
@@ -18,7 +18,7 @@ type ChangePoneForm = {
 
 export const useChangePasswordPageHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchUpdateClientInfo } = Api.UpdateClientInfo();
+  const { fetchUpdateClientInfo } = ApiEndpoints.UpdateClientInfo();
   const { goTo, goBack, history } = useNavigation();
   const { showItem } = useFeedback();
   const client = useStoreClient((state) => state.client);
@@ -121,8 +121,8 @@ export const useChangePasswordPageHelper = () => {
           password: FormsHelper.getFieldValueOrDefault(password, ""),
         });
 
-        if (res.metadata.success) {
-          setClientInfo(res.data.updatedInfo);
+        if (res.metadata?.success && res.data?.updatedInfo) {
+          setClientInfo(res.data?.updatedInfo);
 
           showItem(TOASTS.CLIENT_INFO_CHANGED);
 

@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { INPUTS, PAGES, SEARCH_PARAMS, TOASTS } from "@constants";
 import {
   FormsHelper,
@@ -21,7 +21,7 @@ export const useReviewBlockHelper = () => {
   const { t } = useAppTranslations();
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const client = useStoreClient((state) => state.client);
-  const { fetchWriteReview } = Api.WriteReview();
+  const { fetchWriteReview } = ApiEndpoints.WriteReview();
   const { showItem } = useFeedback();
   const { goTo } = useNavigation();
 
@@ -60,7 +60,7 @@ export const useReviewBlockHelper = () => {
         score,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         showItem(TOASTS.REVIEW_SUBMITTED);
         goTo({
           path: PAGES.PRODUCT_DETAILS,

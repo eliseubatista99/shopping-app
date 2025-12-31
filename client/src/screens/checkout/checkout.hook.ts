@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { PAGES } from "@constants";
 import {
   useDidMount,
@@ -26,7 +26,7 @@ export const useCheckoutPageHelper = () => {
   );
   const recalculate = useStoreCheckout((state) => state.recalculate);
 
-  const { fetchGetCheckoutInfo } = Api.GetCheckoutInfo();
+  const { fetchGetCheckoutInfo } = ApiEndpoints.GetCheckoutInfo();
 
   const [loading, setLoading] = React.useState(true);
 
@@ -52,10 +52,10 @@ export const useCheckoutPageHelper = () => {
     });
 
     setCheckoutStoreState({
-      shippingCost: res.data.shippingCost,
-      startDeliveryDate: res.data.startDeliveryDate,
-      endDeliveryDate: res.data.endDeliveryDate,
-      fastestDeliveryCost: res.data.fastestDeliveryCost,
+      shippingCost: res.data?.shippingCost || 0,
+      startDeliveryDate: res.data?.startDeliveryDate || "",
+      endDeliveryDate: res.data?.endDeliveryDate || "",
+      fastestDeliveryCost: res.data?.fastestDeliveryCost || 0,
     });
     recalculate();
 

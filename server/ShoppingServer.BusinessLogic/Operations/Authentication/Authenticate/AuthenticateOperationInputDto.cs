@@ -1,10 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using ShoppingServer.Library.Operations;
+using System.Diagnostics.CodeAnalysis;
 
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class AuthenticateOperationInputDto
+    public class AuthenticateOperationInputDto : OperationInputDto
     {
         public string? Email { get; set; }
 

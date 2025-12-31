@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import type { PaymentMethodFormFields } from "@components";
 import { DRAWERS, TOASTS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
@@ -8,7 +8,7 @@ import React from "react";
 
 export const useAddCardPaymentMethodDrawerHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchAddPaymentMethod } = Api.AddPaymentMethod();
+  const { fetchAddPaymentMethod } = ApiEndpoints.AddPaymentMethod();
   const { showItem, hideItem } = useFeedback();
   const setPaymentMethods = useStorePaymentMethods(
     (state) => state.setPaymentMethods
@@ -35,8 +35,8 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
         expirationYear: data.expirationYear || 0,
       });
 
-      if (res.metadata.success) {
-        setPaymentMethods(res.data.updatedMethods);
+      if (res.metadata?.success) {
+        setPaymentMethods(res.data?.updatedMethods || []);
 
         showItem(TOASTS.CLIENT_INFO_CHANGED);
 
@@ -45,7 +45,7 @@ export const useAddCardPaymentMethodDrawerHelper = () => {
 
       setCanCloseDrawer(true);
 
-      return { success: res.metadata.success };
+      return { success: res.metadata?.success };
     },
     [fetchAddPaymentMethod, hideItem, setPaymentMethods, showItem]
   );

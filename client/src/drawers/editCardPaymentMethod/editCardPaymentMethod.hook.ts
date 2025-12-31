@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import type { PaymentMethodFormFields } from "@components";
 import { DRAWERS, TOASTS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
@@ -8,8 +8,9 @@ import React from "react";
 
 export const useEditCardPaymentMethodDrawerHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchUpdatePaymentMethod } = Api.UpdatePaymentMethod();
-  const { fetchGetPaymentMethodDetails } = Api.GetPaymentMethodDetails();
+  const { fetchUpdatePaymentMethod } = ApiEndpoints.UpdatePaymentMethod();
+  const { fetchGetPaymentMethodDetails } =
+    ApiEndpoints.GetPaymentMethodDetails();
   const { showItem, hideItem } = useFeedback();
 
   const paymentMethodInEdit = useStorePaymentMethods(
@@ -44,8 +45,8 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
         expirationYear: data.expirationYear || 0,
       });
 
-      if (res.metadata.success) {
-        setPaymentMethods(res.data.updatedMethods);
+      if (res.metadata?.success) {
+        setPaymentMethods(res.data?.updatedMethods || []);
 
         showItem(TOASTS.CLIENT_INFO_CHANGED);
 
@@ -54,7 +55,7 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
 
       setCanCloseDrawer(true);
 
-      return { success: res.metadata.success };
+      return { success: res.metadata?.success };
     },
     [
       fetchUpdatePaymentMethod,
@@ -71,14 +72,14 @@ export const useEditCardPaymentMethodDrawerHelper = () => {
       methodId: paymentMethodInEdit?.id || "",
     });
 
-    if (res.metadata.success) {
-      setStorePaymentMethodsState({ paymentMethodInEdit: res.data.method });
+    if (res.metadata?.success) {
+      setStorePaymentMethodsState({ paymentMethodInEdit: res.data?.method });
     }
 
     setCanCloseDrawer(true);
 
     return {
-      success: res.metadata.success,
+      success: res.metadata?.success,
     };
   }, [
     fetchGetPaymentMethodDetails,

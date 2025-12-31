@@ -1,10 +1,11 @@
 using ShoppingServer.BusinessLogic.Entities;
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class GetProductReviewsOperationOutputDto
+    public class GetProductReviewsOperationOutputDto : OperationPaginatedOutputDto
     {
         public string? ProductName { get; set; }
 
@@ -17,7 +18,5 @@ namespace ShoppingServer.BusinessLogic.Operations
         public List<ScoreCountDto>? Scores { get; set; }
 
         public List<ReviewDto>? Reviews { get; set; }
-
-        public bool? HasMorePages { get; set; }
     }
 }

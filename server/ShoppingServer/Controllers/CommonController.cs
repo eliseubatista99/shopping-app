@@ -5,10 +5,10 @@ using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
-    public class GetClientInfoResponseDto : OperationOutput<GetClientInfoOperationOutputDto>;
-    public class ForYouResponseDto : OperationOutput<ForYouOperationOutputDto>;
-    public class GetDocumentResponseDto : OperationOutput<GetDocumentOperationOutputDto>;
-    public class UpdateClientInfoResponseDto : OperationOutput<UpdateClientInfoOperationOutputDto>;
+    public class GetClientInfoResponseDto : OperationResponseDto<GetClientInfoOperationOutputDto>;
+    public class ForYouResponseDto : OperationResponseDto<ForYouOperationOutputDto>;
+    public class GetDocumentResponseDto : OperationResponseDto<GetDocumentOperationOutputDto>;
+    public class UpdateClientInfoResponseDto : OperationResponseDto<UpdateClientInfoOperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]

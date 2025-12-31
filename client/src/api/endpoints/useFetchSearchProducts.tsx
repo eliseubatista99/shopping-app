@@ -1,33 +1,18 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDto, SortMode } from "../types";
-
-export type SearchProductsInputDto = {
-  page?: number;
-  pageSize?: number;
-  text?: string;
-  score?: number;
-  maxPrice?: number;
-  minPrice?: number;
-  bestSeller?: boolean;
-  freeShipping?: boolean;
-  category?: string;
-  sort?: SortMode;
-};
-
-export type SearchProductsOutputDto = {
-  products?: ProductDto[];
-  hasMorePages?: boolean;
-};
+import type {
+  SearchProductsOperationInputDto,
+  SearchProductsResponseDto,
+} from "../models";
 
 export const SearchProducts = () => {
-  const { get } = useFetchNoAuth<SearchProductsOutputDto>({
+  const { get } = useFetchNoAuth<SearchProductsResponseDto>({
     endpoint: "SearchProducts",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: SearchProductsInputDto) => {
+    async (input: SearchProductsOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

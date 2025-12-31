@@ -3,19 +3,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingServer.Library.Operations
 {
-    public class OperationBase<TInput, TOutput>
+    public class OperationBase<TInput, TOutput> 
+        where TInput : OperationInputDto
+        where TOutput : OperationOutputDto
     {
         protected ControllerBase controller;
 
         protected TInput input;
 
-        protected OperationOutput<TOutput> output;
+        protected OperationResponseDto<TOutput> output;
 
         public OperationBase(ControllerBase _controller)
         {
             controller = _controller;
 
-            output = new OperationOutput<TOutput> { 
+            output = new OperationResponseDto<TOutput> { 
                 Metadata = new OutputMetadataDto
                 {
                     Success = true,
@@ -24,7 +26,7 @@ namespace ShoppingServer.Library.Operations
             };
         }
 
-        public Task<OperationOutput<TOutput>> Execute(TInput _input)
+        public Task<OperationResponseDto<TOutput>> Execute(TInput _input)
         {
             this.input = _input;
             return Execute();
@@ -35,14 +37,14 @@ namespace ShoppingServer.Library.Operations
             return Task.CompletedTask;
         }
 
-        public async Task<OperationOutput<TOutput>> Execute()
+        public async Task<OperationResponseDto<TOutput>> Execute()
         {
             controller.Response.StatusCode = StatusCodes.Status200OK;
             await HandleExecution();
 
             if (output is null)
             {
-                return new OperationOutput<TOutput>
+                return new OperationResponseDto<TOutput>
                 {
                     Data = default,
                     Metadata = new OutputMetadataDto(),
@@ -53,7 +55,7 @@ namespace ShoppingServer.Library.Operations
         }
 
         public async Task<TResponse> Execute<TResponse>()
-            where TResponse : OperationOutput<TOutput>, new()
+            where TResponse : OperationResponseDto<TOutput>, new()
         {
             var res = await Execute();
 
@@ -65,7 +67,7 @@ namespace ShoppingServer.Library.Operations
         }
 
         public Task<TResponse> Execute<TResponse>(TInput _input)
-            where TResponse : OperationOutput<TOutput>, new()
+            where TResponse : OperationResponseDto<TOutput>, new()
         {
             this.input = _input;
 

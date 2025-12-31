@@ -1,4 +1,4 @@
-import { Api, type AddressDto, type ClientInfoDto } from "@api";
+import { ApiEndpoints, type AddressDto, type ClientInfoDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -15,7 +15,7 @@ export const useSelectAddressDrawerHelper = () => {
   const addresses = useStoreAddresses((state) => state.addresses);
   const setAddresses = useStoreAddresses((state) => state.setAddresses);
 
-  const { fetchSetDefaultAddress } = Api.SetDefaultAddress();
+  const { fetchSetDefaultAddress } = ApiEndpoints.SetDefaultAddress();
   const { t } = useAppTranslations();
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -51,11 +51,11 @@ export const useSelectAddressDrawerHelper = () => {
       addressId: selectedAddress.id || "",
     });
 
-    clientData.addresses = res.data.updatedAddresses || [];
+    clientData.addresses = res.data?.updatedAddresses || [];
     setClientInfo(clientData);
-    setAddresses(res.data.updatedAddresses);
+    setAddresses(res.data?.updatedAddresses || []);
 
-    setSelectedAddress(res.data.updatedAddresses.find((a) => a.isDefault));
+    setSelectedAddress(res.data?.updatedAddresses?.find((a) => a.isDefault));
 
     setLoading(false);
 

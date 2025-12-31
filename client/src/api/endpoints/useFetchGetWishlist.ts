@@ -1,6 +1,9 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { GetWishlistListParams, GetWishlistResponseDto } from "../models";
+import type {
+  GetWishlistOperationInputDto,
+  GetWishlistResponseDto,
+} from "../models";
 
 export const GetWishlist = () => {
   const { get } = useFetchWithAuth<GetWishlistResponseDto>({
@@ -9,7 +12,7 @@ export const GetWishlist = () => {
   });
 
   const fetch = useCallback(
-    async (input: GetWishlistListParams) => {
+    async (input: GetWishlistOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

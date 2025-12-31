@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class ProductDetailOperationInputDto
+    public class ProductDetailOperationInputDto : OperationInputDto
     {
-        [FromQuery(Name = "productId")]
-
         public required string ProductId { get; set; }
     }
 }

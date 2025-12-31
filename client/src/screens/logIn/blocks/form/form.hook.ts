@@ -7,6 +7,7 @@ import {
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
+import { ErrorHelper } from "@helpers";
 import {
   useAppSearchParams,
   useAppTranslations,
@@ -14,6 +15,7 @@ import {
 } from "@hooks";
 import { useStoreAuthentication } from "@store";
 import React from "react";
+import { ERRORS } from "src/api/errors";
 
 type LoginInForm = {
   emailOrPhoneError?: string;
@@ -121,7 +123,7 @@ export const useFormBlockHelper = () => {
           phoneNumber: isPhone ? emailOrPhoneValue : undefined,
         });
 
-        if (res.metadata.success) {
+        if (res.metadata?.success) {
           if (returnPage.value) {
             goTo({
               path: returnPage.value,
@@ -134,17 +136,30 @@ export const useFormBlockHelper = () => {
             });
           }
         } else {
-          if (res.data.invalidEmail) {
+          const invalidEmailError = ErrorHelper.containsError(
+            res.metadata?.errors,
+            ERRORS.INVALID_EMAIL
+          );
+          const invalidPhoneError = ErrorHelper.containsError(
+            res.metadata?.errors,
+            ERRORS.INVALID_PHONE
+          );
+          const wrongPasswordError = ErrorHelper.containsError(
+            res.metadata?.errors,
+            ERRORS.WRONG_PASSWORD
+          );
+
+          if (invalidEmailError) {
             setForm((prevState) => ({
               ...prevState,
               emailOrPhoneError: i18n.emailOrPhone.errors.wrongEmail,
             }));
-          } else if (res.data.invalidPhone) {
+          } else if (invalidPhoneError) {
             setForm((prevState) => ({
               ...prevState,
               emailOrPhoneError: i18n.emailOrPhone.errors.wrongPhone,
             }));
-          } else if (res.data.wrongPassword) {
+          } else if (wrongPasswordError) {
             setForm((prevState) => ({
               ...prevState,
               passwordError: i18n.password.errors.wrong,

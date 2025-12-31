@@ -2,12 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library.Entities;
 using ShoppingServer.Library.Operations;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingServer.Controllers
 {
-    public class AddToWishlistResponseDto : OperationOutput<AddToWishlistOperationOutputDto>;
-    public class GetWishlistResponseDto : OperationOutput<GetWishlistOperationOutputDto>;
-    public class RemoveFromWishlistResponseDto : OperationOutput<RemoveFromWishlistOperationOutputDto>;
+    public class AddToWishlistResponseDto : OperationResponseDto<AddToWishlistOperationOutputDto>;
+    public class GetWishlistResponseDto : OperationResponseDto<GetWishlistOperationOutputDto>;
+    public class RemoveFromWishlistResponseDto : OperationResponseDto<RemoveFromWishlistOperationOutputDto>;
 
     [ApiController]
     [Route("[controller]")]
@@ -31,6 +32,7 @@ namespace ShoppingServer.Controllers
             return addToWishlistOperation.Execute<AddToWishlistResponseDto>(input);
         }
 
+        [SwaggerOperation(OperationId = "GetWishlist")]
         [HttpGet("/api/GetWishlist")]
         public Task<GetWishlistResponseDto> GetWishlist([FromQuery] GetWishlistOperationInputDto input)
         {
@@ -38,7 +40,7 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpDelete("/api/RemoveFromWishlist")]
-        public Task<RemoveFromWishlistResponseDto> RemoveFromWishlist([FromBody] RemoveFromWishlistOperationInputDto input)
+        public Task<RemoveFromWishlistResponseDto> RemoveFromWishlist([FromQuery] RemoveFromWishlistOperationInputDto input)
         {
             return removeFromWishlistOperation.Execute<RemoveFromWishlistResponseDto>(input);
         }

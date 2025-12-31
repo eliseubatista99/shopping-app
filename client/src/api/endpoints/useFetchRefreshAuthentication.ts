@@ -1,10 +1,9 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-
-export type RefreshAuthenticationOutputDto = { token: string };
+import type { RefreshAuthenticationResponseDto } from "../models";
 
 export const RefreshAuthentication = () => {
-  const { post } = useFetchNoAuth<RefreshAuthenticationOutputDto>({
+  const { post } = useFetchNoAuth<RefreshAuthenticationResponseDto>({
     endpoint: "RefreshAuthentication",
     showGenericErrorModal: false,
   });

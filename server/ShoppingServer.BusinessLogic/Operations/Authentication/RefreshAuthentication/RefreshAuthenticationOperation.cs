@@ -5,7 +5,7 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class RefreshAuthenticationOperation : OperationBase<VoidDto, RefreshAuthenticationOperationOutputDto>
+    public class RefreshAuthenticationOperation : OperationBase<OperationInputDto, RefreshAuthenticationOperationOutputDto>
     {
         public RefreshAuthenticationOperation(ControllerBase _controller) : base(_controller)
         {

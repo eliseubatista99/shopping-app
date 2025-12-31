@@ -1,9 +1,10 @@
+using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     [ExcludeFromCodeCoverage]
-    public class UpdateClientInfoOperationInputDto
+    public class UpdateClientInfoOperationInputDto : OperationInputDto
     {
         public string? Name { get; set; }
 

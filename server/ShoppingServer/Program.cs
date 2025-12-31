@@ -49,6 +49,7 @@ builder.Services.AddSwaggerGen(c =>
 
     // Make sure unused dtos are added to swagger, unless they are marked with ExcludeDtoIfUnused attribute 
     //c.DocumentFilter<IgnoreCompilerGeneratedTypes>();
+    c.DocumentFilter<ForceAllDtosDocumentFilter>();
 
     // Enable custom operation ids
     c.EnableAnnotations();

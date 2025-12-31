@@ -1,35 +1,18 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ReviewDto, ScoreCountDto, SortMode } from "../models";
-
-export type GetProductReviewsInputDto = {
-  productId?: string;
-  reviewId?: string;
-  authorId?: string;
-  page: number;
-  pageSize: number;
-  filterByRating?: number;
-  sortMode?: SortMode;
-};
-
-export type GetProductReviewsOutputDto = {
-  productName: string;
-  productId: string;
-  averageScore: number;
-  reviewsCount: number;
-  scores: ScoreCountDto[];
-  reviews: ReviewDto[];
-  hasMorePages: boolean;
-};
+import type {
+  GetProductReviewsOperationInputDto,
+  GetProductReviewsResponseDto,
+} from "../models";
 
 export const GetProductReviews = () => {
-  const { get } = useFetchNoAuth<GetProductReviewsOutputDto>({
+  const { get } = useFetchNoAuth<GetProductReviewsResponseDto>({
     endpoint: "GetProductReviews",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: GetProductReviewsInputDto) => {
+    async (input: GetProductReviewsOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

@@ -170,6 +170,10 @@ export interface CreateAccountResponseDto {
   metadata?: OutputMetadataDto;
 }
 
+export interface DeleteAddressOperationInputDto {
+  addressId: string | null;
+}
+
 export interface DeleteAddressOperationOutputDto {
   updatedAddresses?: AddressDto[] | null;
 }
@@ -177,6 +181,10 @@ export interface DeleteAddressOperationOutputDto {
 export interface DeleteAddressResponseDto {
   data?: DeleteAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
+}
+
+export interface DeletePaymentMethodOperationInputDto {
+  methodId: string | null;
 }
 
 export interface DeletePaymentMethodOperationOutputDto {
@@ -194,6 +202,8 @@ export interface DocumentDto {
   content?: string | null;
 }
 
+export type Dto = object;
+
 export interface ErrorDto {
   code?: string | null;
   message?: string | null;
@@ -207,7 +217,7 @@ export interface ExecutePurchaseOperationInputDto {
 }
 
 export interface ExecutePurchaseResponseDto {
-  data?: VoidDto;
+  data?: OperationOutputDto;
   metadata?: OutputMetadataDto;
 }
 
@@ -268,16 +278,35 @@ export interface GetClientInfoResponseDto {
   metadata?: OutputMetadataDto;
 }
 
+export interface GetClientOrdersOperationInputDto {
+  /** @format int32 */
+  page?: number | null;
+  /** @format int32 */
+  pageSize?: number | null;
+  orderId?: string | null;
+  filterByText?: string | null;
+  filterByStatus?: OrderStatus;
+  sortMode?: SortMode;
+  /** @format date-time */
+  filterByStartDate?: string | null;
+  /** @format date-time */
+  filterByEndDate?: string | null;
+}
+
 export interface GetClientOrdersOperationOutputDto {
+  hasMorePages?: boolean | null;
   orders?: OrderDto[] | null;
   /** @format date-time */
   oldestOrderDate?: string | null;
-  hasMorePages?: boolean | null;
 }
 
 export interface GetClientOrdersResponseDto {
   data?: GetClientOrdersOperationOutputDto;
   metadata?: OutputMetadataDto;
+}
+
+export interface GetDocumentOperationInputDto {
+  id: string | null;
 }
 
 export interface GetDocumentOperationOutputDto {
@@ -289,6 +318,10 @@ export interface GetDocumentResponseDto {
   metadata?: OutputMetadataDto;
 }
 
+export interface GetOrderDetailsOperationInputDto {
+  orderId: string | null;
+}
+
 export interface GetOrderDetailsOperationOutputDto {
   order?: OrderDetailDto;
 }
@@ -296,6 +329,10 @@ export interface GetOrderDetailsOperationOutputDto {
 export interface GetOrderDetailsResponseDto {
   data?: GetOrderDetailsOperationOutputDto;
   metadata?: OutputMetadataDto;
+}
+
+export interface GetPaymentMethodDetailsOperationInputDto {
+  methodId: string | null;
 }
 
 export interface GetPaymentMethodDetailsOperationOutputDto {
@@ -307,7 +344,21 @@ export interface GetPaymentMethodDetailsResponseDto {
   metadata?: OutputMetadataDto;
 }
 
+export interface GetProductReviewsOperationInputDto {
+  /** @format int32 */
+  page?: number | null;
+  /** @format int32 */
+  pageSize?: number | null;
+  productId?: string | null;
+  reviewId?: string | null;
+  authorId?: string | null;
+  /** @format double */
+  filterByRating?: number | null;
+  sortMode?: SortMode;
+}
+
 export interface GetProductReviewsOperationOutputDto {
+  hasMorePages?: boolean | null;
   productName?: string | null;
   productId?: string | null;
   /** @format double */
@@ -316,7 +367,6 @@ export interface GetProductReviewsOperationOutputDto {
   reviewsCount?: number | null;
   scores?: ScoreCountDto[] | null;
   reviews?: ReviewDto[] | null;
-  hasMorePages?: boolean | null;
 }
 
 export interface GetProductReviewsResponseDto {
@@ -324,14 +374,26 @@ export interface GetProductReviewsResponseDto {
   metadata?: OutputMetadataDto;
 }
 
+export interface GetWishlistOperationInputDto {
+  /** @format int32 */
+  page?: number | null;
+  /** @format int32 */
+  pageSize?: number | null;
+}
+
 export interface GetWishlistOperationOutputDto {
-  products?: ProductDto[] | null;
   hasMorePages?: boolean | null;
+  products?: ProductDto[] | null;
 }
 
 export interface GetWishlistResponseDto {
   data?: GetWishlistOperationOutputDto;
   metadata?: OutputMetadataDto;
+}
+
+export interface IsExistingAccountOperationInputDto {
+  email?: string | null;
+  phoneNumber?: string | null;
 }
 
 export interface IsExistingAccountOperationOutputDto {
@@ -344,8 +406,23 @@ export interface IsExistingAccountResponseDto {
 }
 
 export interface LogoutOperationResponseDto {
-  data?: VoidDto;
+  data?: OperationOutputDto;
   metadata?: OutputMetadataDto;
+}
+
+export type OperationInputDto = object;
+
+export type OperationOutputDto = object;
+
+export interface OperationPaginatedInputDto {
+  /** @format int32 */
+  page?: number | null;
+  /** @format int32 */
+  pageSize?: number | null;
+}
+
+export interface OperationPaginatedOutputDto {
+  hasMorePages?: boolean | null;
 }
 
 export interface OrderDetailDto {
@@ -440,6 +517,10 @@ export interface ProductDetailDto {
   estimatedDeliveryDate?: string | null;
 }
 
+export interface ProductDetailOperationInputDto {
+  productId: string | null;
+}
+
 export interface ProductDetailOperationOutputDto {
   product?: ProductDetailDto;
 }
@@ -518,6 +599,10 @@ export interface RefreshAuthenticationResponseDto {
   metadata?: OutputMetadataDto;
 }
 
+export interface RemoveFromCartOperationInputDto {
+  productIds: string[] | null;
+}
+
 export interface RemoveFromCartOperationOutputDto {
   products?: CartProductDto[] | null;
 }
@@ -561,9 +646,27 @@ export interface ScoreCountDto {
   count: number;
 }
 
+export interface SearchProductsOperationInputDto {
+  /** @format int32 */
+  page?: number | null;
+  /** @format int32 */
+  pageSize?: number | null;
+  text?: string | null;
+  /** @format double */
+  score?: number | null;
+  /** @format double */
+  maxPrice?: number | null;
+  /** @format double */
+  minPrice?: number | null;
+  bestSeller?: boolean | null;
+  freeShipping?: boolean | null;
+  category?: string | null;
+  sort?: SortMode;
+}
+
 export interface SearchProductsOperationOutputDto {
-  products?: ProductDto[] | null;
   hasMorePages?: boolean | null;
+  products?: ProductDto[] | null;
 }
 
 export interface SearchProductsResponseDto {
@@ -672,8 +775,6 @@ export interface UpdatePaymentMethodResponseDto {
   metadata?: OutputMetadataDto;
 }
 
-export type VoidDto = object;
-
 export interface WriteReviewOperationInputDto {
   reviewerId: string | null;
   productId: string | null;
@@ -684,94 +785,8 @@ export interface WriteReviewOperationInputDto {
 }
 
 export interface WriteReviewResponseDto {
-  data?: VoidDto;
+  data?: OperationOutputDto;
   metadata?: OutputMetadataDto;
-}
-
-export interface DeleteAddressParams {
-  AddressId: string;
-}
-
-export interface IsExistingAccountListParams {
-  Email?: string;
-  PhoneNumber?: string;
-}
-
-export interface RemoveFromCartDeleteParams {
-  productIds: string[];
-}
-
-export interface GetDocumentListParams {
-  Id: string;
-}
-
-export interface GetClientOrdersListParams {
-  OrderId?: string;
-  FilterByText?: string;
-  FilterByStatus?: OrderStatus;
-  SortMode?: SortMode;
-  /** @format date-time */
-  FilterByStartDate?: string;
-  /** @format date-time */
-  FilterByEndDate?: string;
-  /** @format int32 */
-  Page?: number;
-  /** @format int32 */
-  PageSize?: number;
-}
-
-export interface GetOrderDetailsListParams {
-  orderId: string;
-}
-
-export interface GetPaymentMethodDetailsListParams {
-  methodId: string;
-}
-
-export interface DeletePaymentMethodDeleteParams {
-  methodId: string;
-}
-
-export interface GetProductReviewsListParams {
-  productId?: string;
-  reviewId?: string;
-  authorId?: string;
-  /** @format int32 */
-  page?: number;
-  /** @format int32 */
-  pageSize?: number;
-  /** @format double */
-  filterByRating?: number;
-  sortMode?: SortMode;
-}
-
-export interface ProductDetailListParams {
-  productId: string;
-}
-
-export interface SearchProductsListParams {
-  /** @format int32 */
-  page?: number;
-  /** @format int32 */
-  pageSize?: number;
-  text?: string;
-  /** @format double */
-  score?: number;
-  /** @format double */
-  maxPrice?: number;
-  /** @format double */
-  minPrice?: number;
-  bestSeller?: boolean;
-  freeShipping?: boolean;
-  category?: string;
-  sort?: SortMode;
-}
-
-export interface GetWishlistListParams {
-  /** @format int32 */
-  Page?: number;
-  /** @format int32 */
-  PageSize?: number;
 }
 
 export namespace Api {
@@ -816,8 +831,10 @@ export namespace Api {
    */
   export namespace SetDefaultAddress {
     export type RequestParams = {};
-    export type RequestQuery = {};
-    export type RequestBody = SetDefaultAddressOperationInputDto;
+    export type RequestQuery = {
+      AddressId: string;
+    };
+    export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = SetDefaultAddressResponseDto;
   }
@@ -955,7 +972,7 @@ export namespace Api {
   export namespace RemoveFromCartDelete {
     export type RequestParams = {};
     export type RequestQuery = {
-      productIds: string[];
+      ProductIds: string[];
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1077,7 +1094,7 @@ export namespace Api {
   export namespace GetOrderDetailsList {
     export type RequestParams = {};
     export type RequestQuery = {
-      orderId: string;
+      OrderId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1094,7 +1111,7 @@ export namespace Api {
   export namespace GetPaymentMethodDetailsList {
     export type RequestParams = {};
     export type RequestQuery = {
-      methodId: string;
+      MethodId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1126,7 +1143,7 @@ export namespace Api {
   export namespace DeletePaymentMethodDelete {
     export type RequestParams = {};
     export type RequestQuery = {
-      methodId: string;
+      MethodId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1173,16 +1190,16 @@ export namespace Api {
   export namespace GetProductReviewsList {
     export type RequestParams = {};
     export type RequestQuery = {
-      productId?: string;
-      reviewId?: string;
-      authorId?: string;
-      /** @format int32 */
-      page?: number;
-      /** @format int32 */
-      pageSize?: number;
+      ProductId?: string;
+      ReviewId?: string;
+      AuthorId?: string;
       /** @format double */
-      filterByRating?: number;
-      sortMode?: SortMode;
+      FilterByRating?: number;
+      SortMode?: SortMode;
+      /** @format int32 */
+      Page?: number;
+      /** @format int32 */
+      PageSize?: number;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1199,7 +1216,7 @@ export namespace Api {
   export namespace ProductDetailList {
     export type RequestParams = {};
     export type RequestQuery = {
-      productId: string;
+      ProductId: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1231,21 +1248,21 @@ export namespace Api {
   export namespace SearchProductsList {
     export type RequestParams = {};
     export type RequestQuery = {
+      Text?: string;
+      /** @format double */
+      Score?: number;
+      /** @format double */
+      MaxPrice?: number;
+      /** @format double */
+      MinPrice?: number;
+      BestSeller?: boolean;
+      FreeShipping?: boolean;
+      Category?: string;
+      Sort?: SortMode;
       /** @format int32 */
-      page?: number;
+      Page?: number;
       /** @format int32 */
-      pageSize?: number;
-      text?: string;
-      /** @format double */
-      score?: number;
-      /** @format double */
-      maxPrice?: number;
-      /** @format double */
-      minPrice?: number;
-      bestSeller?: boolean;
-      freeShipping?: boolean;
-      category?: string;
-      sort?: SortMode;
+      PageSize?: number;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -1315,11 +1332,11 @@ export namespace Api {
   /**
    * No description
    * @tags Wishlist
-   * @name GetWishlistList
+   * @name GetWishlist
    * @request GET:/api/GetWishlist
    * @response `200` `GetWishlistResponseDto` OK
    */
-  export namespace GetWishlistList {
+  export namespace GetWishlist {
     export type RequestParams = {};
     export type RequestQuery = {
       /** @format int32 */
@@ -1341,8 +1358,10 @@ export namespace Api {
    */
   export namespace RemoveFromWishlistDelete {
     export type RequestParams = {};
-    export type RequestQuery = {};
-    export type RequestBody = RemoveFromWishlistOperationInputDto;
+    export type RequestQuery = {
+      ProductId: string;
+    };
+    export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = RemoveFromWishlistResponseDto;
   }
