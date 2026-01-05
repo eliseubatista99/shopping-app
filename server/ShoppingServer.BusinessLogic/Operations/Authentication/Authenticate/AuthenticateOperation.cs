@@ -1,25 +1,59 @@
-﻿using ShoppingApp.Database.Contracts;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using ShoppingApp.Database.Models;
+using ShoppingServer.Database.Providers.Users;
 using ShoppingServer.Library;
+using ShoppingServer.Library.Entities;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class AuthenticateOperation: OperationBase<AuthenticateOperationInputDto, AuthenticateOperationOutputDto>
     {
+        private readonly PasswordHasher<UserEntry> _passwordHasher;
+        private IUsersDatabaseProvider usersDatabaseProvider;
+
         public AuthenticateOperation(BaseAppController _controller) : base(_controller)
         {
+            _passwordHasher = new PasswordHasher<UserEntry>();
+            usersDatabaseProvider = ExecutionContext.GetService<IUsersDatabaseProvider>();
         }
 
         protected override async Task HandleExecution()
         {
             await base.HandleExecution();
 
-            var testDb = ExecutionContext.GetService<ITestsDatabaseProvider>();
+            UserEntry? userInDb = null;
 
-            var zau = testDb.GetAllTests();
+            if(input.Email != null)
+            {
+                userInDb = usersDatabaseProvider.GetUserByEmail(input.Email);
+            } else if(input.PhoneNumber != null)
+            {
+                userInDb = usersDatabaseProvider.GetUserByPhoneNumber(input.PhoneNumber);
+            } else
+            {
+                output.AddError(new ErrorDto("MissingEmailOrPhoneNumber"));
+                SetStatusCode(StatusCodes.Status400BadRequest);
+                return;
+            }
 
-            Console.WriteLine($"ZAU ZAU {zau.FirstOrDefault()?.ToString()}");
+            if(userInDb == null)
+            {
+                output.AddError(new ErrorDto("InvalidUser"));
+                SetStatusCode(StatusCodes.Status404NotFound);
+                return;
+            }
 
+            var result = _passwordHasher.VerifyHashedPassword(userInDb, userInDb.PasswordHash, input.Password);
+
+            if (result != PasswordVerificationResult.Success)
+            {
+                output.AddError(new ErrorDto("InvalidPassword"));
+                SetStatusCode(StatusCodes.Status401Unauthorized);
+                return;
+            }
+                
         //    // 1. Validar user/password (ex: DB)
         //    var user = AuthenticateUser(request);
 

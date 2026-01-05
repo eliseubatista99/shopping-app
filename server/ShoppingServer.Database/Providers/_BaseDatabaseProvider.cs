@@ -7,13 +7,9 @@ namespace ShoppingApp.Database.Providers
 
     public class BaseDatabaseProvider<T> : DatabasePackage.Providers.NpgsqlDatabaseProvider<T>
     {
-        protected IConfiguration _configuration { get; }
-
-        public BaseDatabaseProvider(IConfiguration configuration) : base()
+        public BaseDatabaseProvider(IConfiguration configuration) : base(configuration)
         {
-            _configuration = configuration;
         }
-
 
         protected override string GetConnectionString()
         {

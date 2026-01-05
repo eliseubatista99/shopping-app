@@ -1,5 +1,5 @@
-﻿using ShoppingApp.Database.Contracts;
-using ShoppingApp.Database.Providers;
+﻿using ShoppingApp.Database.Providers;
+using ShoppingServer.Database.Providers.Users;
 using ShoppingServer.Library;
 
 namespace ShoppingApp
@@ -15,7 +15,7 @@ namespace ShoppingApp
 
             if (Builder != null)
             {
-                Builder.Services.AddSingleton<ITestsDatabaseProvider, TestDatabaseProvider>();
+                Builder.Services.AddSingleton<IUsersDatabaseProvider, UsersDatabaseProvider>();
             }
         }
 

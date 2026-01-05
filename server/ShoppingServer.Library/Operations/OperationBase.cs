@@ -28,6 +28,11 @@ namespace ShoppingServer.Library.Operations
             };
         }
 
+        protected void SetStatusCode(int code)
+        {
+            controller.Response.StatusCode = code;
+        }
+
         protected virtual void LogOperationExecution()
         {
             var data = System.Text.Json.JsonSerializer.Serialize(new
@@ -58,7 +63,7 @@ namespace ShoppingServer.Library.Operations
         {
             LogOperationExecution();
 
-            controller.Response.StatusCode = StatusCodes.Status200OK;
+            SetStatusCode(StatusCodes.Status200OK);
             await HandleExecution();
 
             if (output is null)
