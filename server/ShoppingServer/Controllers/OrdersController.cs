@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
@@ -9,12 +10,12 @@ namespace ShoppingServer.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class OrdersController : ControllerBase
+    public class OrdersController : BaseAppController
     {
         private GetClientOrdersOperation getClientOrdersOperation;
         private GetOrderDetailsOperation getOrderDetailsOperation;
 
-        public OrdersController()
+        public OrdersController(IExecutionContext executionContext) : base(executionContext)
         {
             getClientOrdersOperation = new GetClientOrdersOperation(this);
             getOrderDetailsOperation = new GetOrderDetailsOperation(this);

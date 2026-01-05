@@ -1,5 +1,4 @@
-﻿using ShoppingServer.Library.Entities;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 
 namespace ShoppingServer.Library.Operations

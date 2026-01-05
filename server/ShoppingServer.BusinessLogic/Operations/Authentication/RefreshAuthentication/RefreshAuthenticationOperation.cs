@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Entities;
 using ShoppingServer.Library.Operations;
 
@@ -7,7 +7,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 {
     public class RefreshAuthenticationOperation : OperationBase<RefreshAuthenticationOperationInputDto, RefreshAuthenticationOperationOutputDto>
     {
-        public RefreshAuthenticationOperation(ControllerBase _controller) : base(_controller)
+        public RefreshAuthenticationOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

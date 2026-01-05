@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class GetProductReviewsOperation : OperationBase<GetProductReviewsOperationInputDto, GetProductReviewsOperationOutputDto>
     {
-        public GetProductReviewsOperation(ControllerBase _controller) : base(_controller)
+        public GetProductReviewsOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

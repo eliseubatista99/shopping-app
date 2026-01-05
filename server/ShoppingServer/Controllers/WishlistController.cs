@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
-using ShoppingServer.Library.Entities;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,13 +12,13 @@ namespace ShoppingServer.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class WishlistController : ControllerBase
+    public class WishlistController : BaseAppController
     {
         private AddToWishlistOperation addToWishlistOperation;
         private GetWishlistOperation getWishlistOperation;
         private RemoveFromWishlistOperation removeFromWishlistOperation;
 
-        public WishlistController()
+        public WishlistController(IExecutionContext executionContext) : base(executionContext)
         {
             addToWishlistOperation = new AddToWishlistOperation(this);
             getWishlistOperation = new GetWishlistOperation(this);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,14 +13,14 @@ namespace ShoppingServer.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class AddressController : ControllerBase
+    public class AddressController : BaseAppController
     {
         private AddAddressOperation addAddressOperation;
         private DeleteAddressOperation deleteAddressOperation;
         private SetDefaultAddressOperation setDefaultAddressOperation;
         private UpdateAddressOperation updateAddressOperation;
 
-        public AddressController()
+        public AddressController(IExecutionContext executionContext) : base(executionContext)
         {
             addAddressOperation = new AddAddressOperation(this);
             deleteAddressOperation = new DeleteAddressOperation(this);

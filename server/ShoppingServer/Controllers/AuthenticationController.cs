@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using ShoppingApp.Database.Contracts;
-using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
-using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
@@ -15,7 +13,7 @@ namespace ShoppingServer.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : BaseAppController
     {
         private AuthenticateOperation authenticateOperation;
         private RefreshAuthenticationOperation refreshAuthenticationOperation;
@@ -23,10 +21,8 @@ namespace ShoppingServer.Controllers
         private CreateAccountOperation createAccountOperation;
         private IsExistingAccountOperation isExistingAccountOperation;
 
-        private ITestsDatabaseProvider testsDatabase;
-        public AuthenticationController(ITestsDatabaseProvider testsDatabaseProvider)
-        {
-            testsDatabase = testsDatabaseProvider;
+        public AuthenticationController(IExecutionContext executionContext) : base(executionContext)
+        {           
             authenticateOperation = new AuthenticateOperation(this);
             refreshAuthenticationOperation = new RefreshAuthenticationOperation(this);
             logoutOperation = new LogoutOperation(this);

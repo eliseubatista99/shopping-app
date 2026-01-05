@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class GetCheckoutInfoOperation : OperationBase<GetCheckoutInfoOperationInputDto, GetCheckoutInfoOperationOutputDto>
     {
-        public GetCheckoutInfoOperation(ControllerBase _controller) : base(_controller)
+        public GetCheckoutInfoOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
-using ShoppingServer.Library.Entities;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class WriteReviewOperation : OperationBase<WriteReviewOperationInputDto, OperationOutputDto>
     {
-        public WriteReviewOperation(ControllerBase _controller) : base(_controller)
+        public WriteReviewOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

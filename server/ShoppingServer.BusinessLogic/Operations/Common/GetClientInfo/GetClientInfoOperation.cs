@@ -1,13 +1,11 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ShoppingServer.Library.Entities;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class GetClientInfoOperation : OperationBase<OperationInputDto, GetClientInfoOperationOutputDto>
     {
-        public GetClientInfoOperation(ControllerBase _controller) : base(_controller)
+        public GetClientInfoOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

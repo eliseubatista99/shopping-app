@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.Library.Operations;
 using System.Diagnostics.CodeAnalysis;
 

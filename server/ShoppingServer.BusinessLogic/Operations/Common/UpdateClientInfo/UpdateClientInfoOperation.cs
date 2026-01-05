@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class UpdateClientInfoOperation : OperationBase<UpdateClientInfoOperationInputDto, UpdateClientInfoOperationOutputDto>
     {
-        public UpdateClientInfoOperation(ControllerBase _controller) : base(_controller)
+        public UpdateClientInfoOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

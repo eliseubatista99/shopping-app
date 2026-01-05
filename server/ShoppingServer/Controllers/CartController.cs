@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
-using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
@@ -12,13 +12,13 @@ namespace ShoppingServer.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class CartController : ControllerBase
+    public class CartController : BaseAppController
     {
         private AddToCartOperation addToCartOperation;
         private GetCartOperation getCartOperation;
         private RemoveFromCartOperation removeFromCartOperation;
         private UpdateCartProductOperation updateCartProductOperation;
-        public CartController()
+        public CartController(IExecutionContext executionContext) : base(executionContext)
         {
             addToCartOperation = new AddToCartOperation(this);
             getCartOperation = new GetCartOperation(this);

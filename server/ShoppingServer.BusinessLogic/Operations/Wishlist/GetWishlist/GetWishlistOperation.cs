@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class GetWishlistOperation : OperationBase<GetWishlistOperationInputDto, GetWishlistOperationOutputDto>
     {
-        public GetWishlistOperation(ControllerBase _controller) : base(_controller)
+        public GetWishlistOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

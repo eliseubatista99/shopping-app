@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ShoppingServer.Library.Entities;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class LogoutOperation : OperationBase<OperationInputDto, OperationOutputDto>
     {
-        public LogoutOperation(ControllerBase _controller) : base(_controller)
+        public LogoutOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

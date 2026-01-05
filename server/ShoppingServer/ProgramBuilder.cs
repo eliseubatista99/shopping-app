@@ -7,6 +7,7 @@ namespace ShoppingApp
     public class ProgramBuilder : BaseProgramBuilder
     {
         protected new bool UseAuthorization = true;
+        protected new bool UseAuthentication = true;
 
         protected override void InjectDependencies()
         {

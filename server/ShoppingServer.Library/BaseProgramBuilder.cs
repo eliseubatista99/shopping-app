@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Protocols.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using ShoppingServer.Library.Authentication;
 using ShoppingServer.Library.Schemas;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace ShoppingServer.Library
@@ -10,6 +15,7 @@ namespace ShoppingServer.Library
     public class BaseProgramBuilder
     {
         protected bool UseAuthorization = false;
+        protected bool UseAuthentication = false;
 
         protected string[] corsOrigins = new[] 
         { 
@@ -26,6 +32,16 @@ namespace ShoppingServer.Library
 
         protected virtual void InjectDependencies()
         {
+            if (Builder != null)
+            {
+                Builder.Services.AddScoped<IExecutionContext, ExecutionContext>();
+
+                if (UseAuthentication)
+                {
+                    Builder.Services.AddScoped<JwtTokenProvider>();
+                }
+            }
+
         }
 
         protected virtual void ConfigureControllers()
@@ -65,6 +81,36 @@ namespace ShoppingServer.Library
             {
             });
 
+            if (UseAuthorization)
+            {
+                var jwt = Builder.Configuration
+                    .GetSection("Jwt")
+                    .Get<JwtSettings>();
+
+                if (jwt == null)
+                {
+                    throw new InvalidConfigurationException("Jwt missing in appsettings");
+                }
+
+                Builder.Services
+                    .AddAuthentication("Bearer")
+                    .AddJwtBearer("Bearer", options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+
+                            ValidIssuer = jwt.Issuer,
+                            ValidAudience = jwt.Audience,
+                            IssuerSigningKey = new SymmetricSecurityKey(
+                                Encoding.UTF8.GetBytes(jwt.Key))
+                        };
+                    });
+            }
+
             // Configuração do CORS
             Builder.Services.AddCors(options =>
             {
@@ -77,6 +123,8 @@ namespace ShoppingServer.Library
                         .AllowCredentials();
                 });
             });
+
+
 
             InjectDependencies();
 
@@ -101,6 +149,7 @@ namespace ShoppingServer.Library
             {
                 App.UseAuthorization();
             }
+
             App.MapControllers();
 
             return (Builder, App);

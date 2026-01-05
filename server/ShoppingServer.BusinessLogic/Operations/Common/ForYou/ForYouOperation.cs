@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
-using ShoppingServer.Library.Entities;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class ForYouOperation : OperationBase<OperationInputDto, ForYouOperationOutputDto>
     {
-        public ForYouOperation(ControllerBase _controller) : base(_controller)
+        public ForYouOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

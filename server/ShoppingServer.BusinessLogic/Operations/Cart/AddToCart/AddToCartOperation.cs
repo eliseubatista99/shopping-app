@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class AddToCartOperation : OperationBase<AddToCartOperationInputDto, AddToCartOperationOutputDto>
     {
-        public AddToCartOperation(ControllerBase _controller) : base(_controller)
+        public AddToCartOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

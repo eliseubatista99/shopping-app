@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Entities;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
     public class AddAddressOperation : OperationBase<AddAddressOperationInputDto, AddAddressOperationOutputDto>
     {
-        public AddAddressOperation(ControllerBase _controller) : base(_controller)
+        public AddAddressOperation(BaseAppController _controller) : base(_controller)
         {
             controller = _controller;
         }

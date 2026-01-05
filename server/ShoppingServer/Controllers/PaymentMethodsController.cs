@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
@@ -13,7 +14,7 @@ namespace ShoppingServer.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class PaymentMethodsController : ControllerBase
+    public class PaymentMethodsController : BaseAppController
     {
         private GetPaymentMethodDetailsOperation getPaymentMethodDetailsOperation;
         private AddPaymentMethodOperation addPaymentMethodOperation;
@@ -21,7 +22,7 @@ namespace ShoppingServer.Controllers
         private SetDefaultPaymentMethodOperation setDefaultPaymentMethodOperation;
         private UpdatePaymentMethodOperation updatePaymentMethodOperation;
 
-        public PaymentMethodsController()
+        public PaymentMethodsController(IExecutionContext executionContext) : base(executionContext)
         {
             addPaymentMethodOperation = new AddPaymentMethodOperation(this);
             deletePaymentMethodOperation = new DeletePaymentMethodOperation(this);

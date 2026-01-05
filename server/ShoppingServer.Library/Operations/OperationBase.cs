@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingServer.Library.Operations
 {
@@ -7,15 +6,18 @@ namespace ShoppingServer.Library.Operations
         where TInput : OperationInputDto
         where TOutput : OperationOutputDto
     {
-        protected ControllerBase controller;
+        protected BaseAppController controller;
 
-        protected TInput input;
+        protected IExecutionContext ExecutionContext;
+
+        protected TInput? input;
 
         protected OperationResponseDto<TOutput> output;
 
-        public OperationBase(ControllerBase _controller)
+        public OperationBase(BaseAppController _controller)
         {
             controller = _controller;
+            ExecutionContext = _controller.GetExecutionContext();
 
             output = new OperationResponseDto<TOutput> { 
                 Metadata = new OutputMetadataDto

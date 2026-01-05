@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using ShoppingServer.Library.Entities;
 using Swashbuckle.AspNetCore.SwaggerGen;
 

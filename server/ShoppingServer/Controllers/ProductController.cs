@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
+using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
-using ShoppingServer.Library.Entities;
 
 namespace ShoppingServer.Controllers
 {
@@ -13,7 +13,7 @@ namespace ShoppingServer.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseAppController
     {
         private GetProductReviewsOperation getProductReviewsOperation;
         private ProductDetailOperation productDetailOperation;
@@ -21,7 +21,7 @@ namespace ShoppingServer.Controllers
         private SearchProductsOperation searchProductsOperation;
         private WriteReviewOperation writeReviewOperation;
 
-        public ProductController()
+        public ProductController(IExecutionContext executionContext) : base(executionContext)
         {
             getProductReviewsOperation = new GetProductReviewsOperation(this);
             productDetailOperation = new ProductDetailOperation(this);
