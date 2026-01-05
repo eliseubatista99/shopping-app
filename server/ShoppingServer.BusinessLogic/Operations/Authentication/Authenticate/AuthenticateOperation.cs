@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using ShoppingApp.Database.Models;
 using ShoppingServer.Database.Providers.Users;
 using ShoppingServer.Library;
+using ShoppingServer.Library.Authentication;
 using ShoppingServer.Library.Entities;
 using ShoppingServer.Library.Operations;
 
@@ -10,12 +11,10 @@ namespace ShoppingServer.BusinessLogic.Operations
 {
     public class AuthenticateOperation: OperationBase<AuthenticateOperationInputDto, AuthenticateOperationOutputDto>
     {
-        private readonly PasswordHasher<UserEntry> _passwordHasher;
         private IUsersDatabaseProvider usersDatabaseProvider;
 
         public AuthenticateOperation(BaseAppController _controller) : base(_controller)
         {
-            _passwordHasher = new PasswordHasher<UserEntry>();
             usersDatabaseProvider = ExecutionContext.GetService<IUsersDatabaseProvider>();
         }
 
@@ -45,7 +44,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            var result = _passwordHasher.VerifyHashedPassword(userInDb, userInDb.PasswordHash, input.Password);
+            var result = AuthenticationHelper.DecryptPassword(userInDb, userInDb.PasswordHash, input.Password);
 
             if (result != PasswordVerificationResult.Success)
             {

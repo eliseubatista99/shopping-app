@@ -1,4 +1,5 @@
-﻿using Database.PostgreSql.Helpers;
+﻿using Database.PostgreSql.Extensions;
+using Database.PostgreSql.Models;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using ShoppingApp.Database.Models;
@@ -14,13 +15,17 @@ namespace ShoppingApp.Database.Providers
 
         public bool AddUser(UserEntry entry)
         {
-            var command = $"INSERT INTO {TableUsers.TABLE_NAME} " +
-            $"({TableUsers.COLUMN_ID}, {TableUsers.COLUMN_PASSWORD_HASH}, {TableUsers.COLUMN_NAME}, {TableUsers.COLUMN_SURNAME}, {TableUsers.COLUMN_EMAIL}, " +
-            $"{TableUsers.COLUMN_PHONE_NUMBER}, {TableUsers.COLUMN_PHONE_NUMBER_PREFIX}, {TableUsers.COLUMN_IMAGE}) " +
-            $"VALUES " +
-            $"('{entry.Id}', '{entry.PasswordHash}', '{entry.Name}', '{entry.Surname}', '{entry.Email}', '{entry.PhoneNumber}', '{entry.PhoneNumberPrefix}', '{entry.Image}');";
-
-            return ExecuteWrite(command);
+            return ExecuteInsertCommand(TableUsers.TABLE_NAME,
+            [
+                new TableField{ FieldName = TableUsers.COLUMN_ID, DataType = NpgsqlTypes.NpgsqlDbType.Varchar, FieldValue = entry.Id },
+                new TableField{ FieldName = TableUsers.COLUMN_PASSWORD_HASH, DataType = NpgsqlTypes.NpgsqlDbType.Varchar, FieldValue = entry.PasswordHash },
+                new TableField{ FieldName = TableUsers.COLUMN_NAME, DataType = NpgsqlTypes.NpgsqlDbType.Varchar, FieldValue = entry.Name },
+                new TableField{ FieldName = TableUsers.COLUMN_SURNAME, DataType = NpgsqlTypes.NpgsqlDbType.Varchar, FieldValue = entry.Surname },
+                new TableField{ FieldName = TableUsers.COLUMN_EMAIL, DataType = NpgsqlTypes.NpgsqlDbType.Varchar, FieldValue = entry.Email },
+                new TableField{ FieldName = TableUsers.COLUMN_PHONE_NUMBER, DataType = NpgsqlTypes.NpgsqlDbType.Varchar, FieldValue = entry.PhoneNumber },
+                new TableField{ FieldName = TableUsers.COLUMN_PHONE_NUMBER_PREFIX, DataType = NpgsqlTypes.NpgsqlDbType.Varchar, FieldValue = entry.PhoneNumberPrefix},
+                new TableField{ FieldName = TableUsers.COLUMN_IMAGE, DataType = NpgsqlTypes.NpgsqlDbType.Bytea, FieldValue = entry.Image },
+            ]);
         }
 
         public UserEntry? GetUserByEmail(string email)
@@ -41,14 +46,14 @@ namespace ShoppingApp.Database.Providers
         {
             return new UserEntry
             {
-                Id = NpgsqlDatabaseHelper.ReadColumnValue(dataReader, TableUsers.COLUMN_ID)!,
-                PasswordHash = NpgsqlDatabaseHelper.ReadColumnValue(dataReader, TableUsers.COLUMN_PASSWORD_HASH),
-                Name = NpgsqlDatabaseHelper.ReadColumnValue(dataReader, TableUsers.COLUMN_NAME)!,
-                Surname = NpgsqlDatabaseHelper.ReadColumnValue(dataReader, TableUsers.COLUMN_SURNAME)!,
-                Email = NpgsqlDatabaseHelper.ReadColumnValue(dataReader, TableUsers.COLUMN_EMAIL),
-                PhoneNumber = NpgsqlDatabaseHelper.ReadColumnValue(dataReader, TableUsers.COLUMN_PHONE_NUMBER),
-                PhoneNumberPrefix = NpgsqlDatabaseHelper.ReadColumnValue(dataReader, TableUsers.COLUMN_PHONE_NUMBER_PREFIX),
-                Image = NpgsqlDatabaseHelper.ReadColumnValue<byte[]>(dataReader, TableUsers.COLUMN_IMAGE),
+                Id = dataReader.ReadColumnValue(TableUsers.COLUMN_ID)!,
+                PasswordHash = dataReader.ReadColumnValue(TableUsers.COLUMN_PASSWORD_HASH),
+                Name = dataReader.ReadColumnValue(TableUsers.COLUMN_NAME)!,
+                Surname = dataReader.ReadColumnValue(TableUsers.COLUMN_SURNAME)!,
+                Email = dataReader.ReadColumnValue(TableUsers.COLUMN_EMAIL),
+                PhoneNumber = dataReader.ReadColumnValue(TableUsers.COLUMN_PHONE_NUMBER),
+                PhoneNumberPrefix = dataReader.ReadColumnValue(TableUsers.COLUMN_PHONE_NUMBER_PREFIX),
+                Image = dataReader.ReadColumnValue<byte[]>(TableUsers.COLUMN_IMAGE),
             };
         }
 

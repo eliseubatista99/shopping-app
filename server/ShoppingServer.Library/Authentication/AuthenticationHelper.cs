@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace ShoppingServer.Library.Authentication
 {
-    internal class AuthenticationHelper
+    public class AuthenticationHelper
     {
+        public static string EncryptPassword<TUser>(TUser user, string? password) where TUser : class
+        {
+            var _passwordHasher = new PasswordHasher<TUser>();
+
+            return _passwordHasher.HashPassword(user, password ?? string.Empty);
+        }
+
+        public static PasswordVerificationResult DecryptPassword<TUser>(TUser user, string? passwordHash, string? password) where TUser : class
+        {
+            var _passwordHasher = new PasswordHasher<TUser>();
+
+            return _passwordHasher.VerifyHashedPassword(user, passwordHash ?? string.Empty, password ?? string.Empty);
+        }
     }
 }

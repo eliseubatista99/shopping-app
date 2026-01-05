@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using ShoppingApp.Database.Models;
-using ShoppingApp.Database.Providers;
 using ShoppingServer.Database.Providers.Users;
 using ShoppingServer.Library;
+using ShoppingServer.Library.Authentication;
 using ShoppingServer.Library.Entities;
 using ShoppingServer.Library.Operations;
 
@@ -12,11 +11,9 @@ namespace ShoppingServer.BusinessLogic.Operations
     public class CreateAccountOperation : OperationBase<CreateAccountOperationInputDto, CreateAccountOperationOutputDto>
     {
         private IUsersDatabaseProvider usersDatabaseProvider;
-        private readonly PasswordHasher<UserEntry> _passwordHasher;
 
         public CreateAccountOperation(BaseAppController _controller) : base(_controller)
         {
-            _passwordHasher = new PasswordHasher<UserEntry>();
             usersDatabaseProvider = ExecutionContext.GetService<IUsersDatabaseProvider>();
         }
 
@@ -68,7 +65,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 Image = null,
             };
 
-            userInDb.PasswordHash = _passwordHasher.HashPassword(userInDb, input.Password);
+            userInDb.PasswordHash = AuthenticationHelper.EncryptPassword(userInDb, input.Password);
 
             var success = usersDatabaseProvider.AddUser(userInDb);
 
