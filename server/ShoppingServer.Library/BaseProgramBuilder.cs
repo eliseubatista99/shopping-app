@@ -35,12 +35,12 @@ namespace ShoppingServer.Library
             if (Builder != null)
             {
                 Builder.Services.AddScoped<IExecutionContext, ExecutionContext>();
-
-                if (UseAuthentication)
-                {
-                    Builder.Services.AddScoped<JwtTokenProvider>();
-                }
             }
+
+        }
+
+        protected virtual void ConfigureDatabase()
+        {
 
         }
 
@@ -124,7 +124,7 @@ namespace ShoppingServer.Library
                 });
             });
 
-
+            ConfigureDatabase();
 
             InjectDependencies();
 

@@ -35,6 +35,13 @@ namespace ShoppingApp.Database.Providers
             return ExecuteRead(command);
         }
 
+        public UserEntry? GetUserById(string id)
+        {
+            var command = $"SELECT * FROM {TableUsers.TABLE_NAME} WHERE {TableUsers.COLUMN_ID} = '{id}'";
+
+            return ExecuteRead(command);
+        }
+
         public UserEntry? GetUserByPhoneNumber(string phoneNumber)
         {
             var command = $"SELECT * FROM {TableUsers.TABLE_NAME} WHERE {TableUsers.COLUMN_PHONE_NUMBER} = '{phoneNumber}'";

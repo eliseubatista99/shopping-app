@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using ShoppingApp.Database.Models;
+using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Providers.Users;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Authentication;
@@ -12,10 +13,14 @@ namespace ShoppingServer.BusinessLogic.Operations
     public class AuthenticateOperation: OperationBase<AuthenticateOperationInputDto, AuthenticateOperationOutputDto>
     {
         private IUsersDatabaseProvider usersDatabaseProvider;
+        private ITokensDatabaseProvider tokensDatabaseProvider;
+        private IAppTokenProvider appTokenProvider;
 
         public AuthenticateOperation(BaseAppController _controller) : base(_controller)
         {
             usersDatabaseProvider = ExecutionContext.GetService<IUsersDatabaseProvider>();
+            tokensDatabaseProvider = ExecutionContext.GetService<ITokensDatabaseProvider>();
+            appTokenProvider = ExecutionContext.GetService<IAppTokenProvider>();
         }
 
         protected override async Task HandleExecution()
@@ -24,10 +29,10 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             UserEntry? userInDb = null;
 
-            if(input.Email != null)
+            if(input?.Email != null)
             {
                 userInDb = usersDatabaseProvider.GetUserByEmail(input.Email);
-            } else if(input.PhoneNumber != null)
+            } else if(input?.PhoneNumber != null)
             {
                 userInDb = usersDatabaseProvider.GetUserByPhoneNumber(input.PhoneNumber);
             } else
@@ -52,45 +57,17 @@ namespace ShoppingServer.BusinessLogic.Operations
                 SetStatusCode(StatusCodes.Status401Unauthorized);
                 return;
             }
-                
-        //    // 1. Validar user/password (ex: DB)
-        //    var user = AuthenticateUser(request);
 
-        //    if (user == null)
-        //        return Unauthorized();
+            var accessToken = appTokenProvider.GenerateToken(userInDb);
+            var refreshToken = appTokenProvider.GenerateRefreshToken(userInDb);
 
-        //    // 2. Criar claims
-        //    var claims = new List<Claim>
-        //    {
-        //      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-        //      new Claim(ClaimTypes.Role, user.Role)
-        //    };
-
-        //    // 3. Gerar tokens
-        //    var accessToken = _tokenService.GenerateAccessToken(claims);
-        //    var refreshToken = _tokenService.GenerateRefreshToken();
-
-        //    // 4. Guardar refresh token na DB
-        //    SaveRefreshToken(user.Id, refreshToken);
-
-        //    // 5. Retornar
-        //    return Ok(new
-        //    {
-        //        accessToken,
-        //        refreshToken
-        //    });
-
-            // Gerar refresh token (exemplo)
-            //var refreshToken = tokenService.GenerateRefreshToken();
-            var refreshToken = "example-refresh-token-zau-zau";
-
-            //var accessToken = tokenService.GenerateAccessToken(request.Email);
-            var accessToken = "example-token";
+            tokensDatabaseProvider.DeleteByUserId(refreshToken.UserId);
+            tokensDatabaseProvider.Add(refreshToken);
 
             output.Data = new AuthenticateOperationOutputDto
             {
                 Token = accessToken,
-                RefreshToken = refreshToken
+                RefreshToken = refreshToken.Token
             };
         }
     }

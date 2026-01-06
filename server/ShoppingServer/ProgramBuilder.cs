@@ -1,6 +1,10 @@
-﻿using ShoppingApp.Database.Providers;
+﻿using Database.PostgreSql.Extensions;
+using ShoppingApp.Database.Providers;
+using ShoppingServer.BusinessLogic.Providers;
+using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Providers.Users;
 using ShoppingServer.Library;
+using System;
 
 namespace ShoppingApp
 {
@@ -15,7 +19,20 @@ namespace ShoppingApp
 
             if (Builder != null)
             {
+                Builder.Services.AddSingleton<IAppTokenProvider, AppTokenProvider>();
+
                 Builder.Services.AddSingleton<IUsersDatabaseProvider, UsersDatabaseProvider>();
+                Builder.Services.AddSingleton<ITokensDatabaseProvider, TokensDatabaseProvider>();
+            }
+        }
+
+        protected override void ConfigureDatabase()
+        {
+            base.ConfigureDatabase();
+
+            if (Builder != null)
+            {
+                Builder.AddPostgresDbContext(enableLogging: true);
             }
         }
 

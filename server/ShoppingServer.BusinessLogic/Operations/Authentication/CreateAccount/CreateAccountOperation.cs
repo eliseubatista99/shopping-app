@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using ShoppingApp.Database.Models;
+using ShoppingApp.Database.Providers;
+using ShoppingServer.BusinessLogic.Providers;
+using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Providers.Users;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Authentication;
@@ -11,10 +14,14 @@ namespace ShoppingServer.BusinessLogic.Operations
     public class CreateAccountOperation : OperationBase<CreateAccountOperationInputDto, CreateAccountOperationOutputDto>
     {
         private IUsersDatabaseProvider usersDatabaseProvider;
+        private ITokensDatabaseProvider tokensDatabaseProvider;
+        private IAppTokenProvider appTokenProvider;
 
         public CreateAccountOperation(BaseAppController _controller) : base(_controller)
         {
             usersDatabaseProvider = ExecutionContext.GetService<IUsersDatabaseProvider>();
+            tokensDatabaseProvider = ExecutionContext.GetService<ITokensDatabaseProvider>();
+            appTokenProvider = ExecutionContext.GetService<IAppTokenProvider>();
         }
 
         protected override async Task HandleExecution()
@@ -76,18 +83,16 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            // Gerar refresh token (exemplo)
-            //var refreshToken = tokenService.GenerateRefreshToken();
+            var accessToken = appTokenProvider.GenerateToken(userInDb);
+            var refreshToken = appTokenProvider.GenerateRefreshToken(userInDb);
 
-            //var accessToken = tokenService.GenerateAccessToken(request.Email);
-            var accessToken = "example-token";
-            var refreshToken = "example-token";
+            tokensDatabaseProvider.DeleteByUserId(refreshToken.UserId);
+            tokensDatabaseProvider.Add(refreshToken);
 
             output.Data = new CreateAccountOperationOutputDto
             {
                 Token = accessToken,
-                RefreshToken = refreshToken,
-
+                RefreshToken = refreshToken.Token,
             };
         }
     }
