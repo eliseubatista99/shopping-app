@@ -14,8 +14,8 @@ namespace ShoppingServer.Library
 {
     public class BaseProgramBuilder
     {
-        protected bool UseAuthorization = false;
-        protected bool UseAuthentication = false;
+        protected virtual bool UseAuthorization { get; } = false;
+        protected virtual bool UseAuthentication { get; } = false;
 
         protected string[] corsOrigins = new[] 
         { 
@@ -81,7 +81,7 @@ namespace ShoppingServer.Library
             {
             });
 
-            if (UseAuthorization)
+            if (UseAuthentication)
             {
                 var jwt = Builder.Configuration
                     .GetSection("Jwt")

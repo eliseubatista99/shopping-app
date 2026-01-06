@@ -1,17 +1,16 @@
 ﻿using Database.PostgreSql.Extensions;
-using ShoppingApp.Database.Providers;
 using ShoppingServer.BusinessLogic.Providers;
 using ShoppingServer.BusinessLogic.Providers.AppToken;
-using ShoppingServer.Database.Providers.Users;
+using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
-using System;
 
 namespace ShoppingApp
 {
     public class ProgramBuilder : BaseProgramBuilder
     {
-        protected new bool UseAuthorization = true;
-        protected new bool UseAuthentication = true;
+        protected override bool UseAuthorization => true;
+        protected override bool UseAuthentication => true;
+
 
         protected override void InjectDependencies()
         {
@@ -21,8 +20,8 @@ namespace ShoppingApp
             {
                 Builder.Services.AddSingleton<IAppTokenProvider, AppTokenProvider>();
 
-                Builder.Services.AddSingleton<IUsersDatabaseProvider, UsersDatabaseProvider>();
-                Builder.Services.AddSingleton<ITokensDatabaseProvider, TokensDatabaseProvider>();
+                Builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+                Builder.Services.AddScoped<ITokensRepository, TokensRepository>();
             }
         }
 
@@ -32,7 +31,7 @@ namespace ShoppingApp
 
             if (Builder != null)
             {
-                Builder.AddPostgresDbContext(enableLogging: true);
+                Builder.AddPostgresDbContext<AppDbContext>(enableLogging: true);
             }
         }
 

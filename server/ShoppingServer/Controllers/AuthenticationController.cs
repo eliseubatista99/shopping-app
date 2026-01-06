@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -31,6 +32,7 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/IsExistingAccount")]
+        [Authorize]
         public Task<IsExistingAccountResponseDto> IsExistingAccount([FromQuery] IsExistingAccountOperationInputDto input)
         {
             return isExistingAccountOperation.Execute<IsExistingAccountResponseDto>(input);
@@ -55,9 +57,9 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/Logout")]
-        public Task<LogoutOperationResponseDto> Logout()
+        public Task<LogoutOperationResponseDto> Logout([FromBody] LogoutOperationInputDto input)
         {
-            return logoutOperation.Execute<LogoutOperationResponseDto>();
+            return logoutOperation.Execute<LogoutOperationResponseDto>(input);
         }
 
 

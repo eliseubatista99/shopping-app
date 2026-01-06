@@ -2,29 +2,29 @@
 CREATE TABLE
   IF NOT EXISTS users (
     id VARCHAR(100) PRIMARY KEY,
-    passwordHash TEXT NOT NULL,
+    password_hash TEXT NOT NULL,
     name VARCHAR(100),
     surname VARCHAR(100),
     email VARCHAR(100) UNIQUE,
-    phoneNumber VARCHAR(20) UNIQUE,
-    phoneNumberPrefix VARCHAR(4),
+    phone_number VARCHAR(20) UNIQUE,
+    phone_number_prefix VARCHAR(4),
     image BYTEA NULL
   );
 
 WITH
   new_values (
     id,
-    passwordHash,
+    password_hash,
     name,
     surname,
     email,
-    phoneNumber,
-    phoneNumberPrefix,
+    phone_number,
+    phone_number_prefix,
     image
   ) AS (
     VALUES
       (
-        '1',
+        '29bf7b07-defd-4fca-ba6d-22b248c971ee',
         'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
         'Eliseu',
         'Batista',
@@ -37,12 +37,12 @@ WITH
 INSERT INTO
   users (
     id,
-    passwordHash,
+    password_hash,
     name,
     surname,
     email,
-    phoneNumber,
-    phoneNumberPrefix,
+    phone_number,
+    phone_number_prefix,
     image
   )
 SELECT
