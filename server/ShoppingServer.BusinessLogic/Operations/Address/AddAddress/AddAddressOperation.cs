@@ -45,10 +45,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            await addressesRepository.SaveChangesAsync();
-
             var updatedAddresses = await addressesRepository.GetByUserId(userId);
-
 
             output.Data = new AddAddressOperationOutputDto
             {

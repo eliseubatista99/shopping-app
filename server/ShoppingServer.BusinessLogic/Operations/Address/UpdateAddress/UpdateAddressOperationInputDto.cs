@@ -21,7 +21,5 @@ namespace ShoppingServer.BusinessLogic.Operations
         public string? Country { get; set; }
 
         public string? Phone { get; set; }
-
-        public bool? IsDefault { get; set; }
     }
 }

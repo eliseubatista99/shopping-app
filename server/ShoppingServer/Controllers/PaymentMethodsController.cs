@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -32,30 +33,35 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/GetPaymentMethodDetails")]
+        [Authorize]
         public Task<GetPaymentMethodDetailsResponseDto> GetPaymentMethodDetails([FromQuery] GetPaymentMethodDetailsOperationInputDto input)
         {
             return getPaymentMethodDetailsOperation.Execute<GetPaymentMethodDetailsResponseDto>(input);
         }
 
         [HttpPost("/api/AddPaymentMethod")]
+        [Authorize]
         public Task<AddPaymentMethodResponseDto> AddPaymentMethod([FromBody] AddPaymentMethodOperationInputDto input)
         {
             return addPaymentMethodOperation.Execute<AddPaymentMethodResponseDto>(input);
         }
 
         [HttpDelete("/api/DeletePaymentMethod")]
+        [Authorize]
         public Task<DeletePaymentMethodResponseDto> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)
         {
             return deletePaymentMethodOperation.Execute<DeletePaymentMethodResponseDto>(input);
         }
 
         [HttpPatch("/api/SetDefaultPaymentMethod")]
+        [Authorize]
         public Task<SetDefaultPaymentMethodResponseDto> SetDefaultPaymentMethod([FromBody] SetDefaultPaymentMethodOperationInputDto input)
         {
             return setDefaultPaymentMethodOperation.Execute<SetDefaultPaymentMethodResponseDto>(input);
         }
 
         [HttpPatch("/api/UpdatePaymentMethod")]
+        [Authorize]
         public Task<UpdatePaymentMethodResponseDto> UpdatePaymentMethod([FromBody] UpdatePaymentMethodOperationInputDto input)
         {
             return updatePaymentMethodOperation.Execute<UpdatePaymentMethodResponseDto>(input);

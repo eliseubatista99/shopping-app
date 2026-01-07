@@ -9,11 +9,6 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
-        public override Task<bool> AddAsync(TokenModel entity)
-        {
-            return base.AddAsync(entity);
-        }
-
         public override Task<TokenModel?> GetByIdAsync(string id)
         {
             return base.GetByIdAsync(id);
@@ -29,18 +24,18 @@ namespace ShoppingServer.Database.Repositories
             return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.UserId == userId);
         }
 
-        public async Task<int> DeleteByUserIdAsync(string userId)
+        public async Task<bool> DeleteByUserIdAsync(string userId, bool saveChanges = true)
         {
-            return await DeleteAsync(i => i.UserId == userId);
-            //return await _dbSet.Where(i => i.UserId == userId).ExecuteDeleteAsync();
+            return await DeleteAsync(i => i.UserId == userId, saveChanges);
         }
 
-        public async Task<int> RevokeByUserId(string userId)
+        public async Task<bool> RevokeByUserId(string userId, bool saveChanges = true)
         {
             return await UpdateAsync(
                 filter: i => i.UserId == userId,
                 set: setters => setters
-                        .SetProperty(e => e.RevokedAt, _ => DateTimeOffset.UtcNow)
+                        .SetProperty(e => e.RevokedAt, _ => DateTimeOffset.UtcNow),
+                saveChanges: saveChanges
             );
         }
     }

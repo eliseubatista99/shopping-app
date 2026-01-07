@@ -23,10 +23,5 @@ namespace ShoppingServer.Database.Repositories
         {
             return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.PhoneNumber == phoneNumber);
         }
-
-        public override Task<bool> AddAsync(UserModel entity)
-        {
-            return base.AddAsync(entity);
-        }
     }
 }

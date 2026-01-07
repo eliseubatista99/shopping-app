@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -27,6 +28,7 @@ namespace ShoppingServer.Controllers
 
 
         [HttpPost("/api/AddToWishlist")]
+        [Authorize]
         public Task<AddToWishlistResponseDto> AddToWishlist([FromBody] AddToWishlistOperationInputDto input)
         {
             return addToWishlistOperation.Execute<AddToWishlistResponseDto>(input);
@@ -34,12 +36,14 @@ namespace ShoppingServer.Controllers
 
         [SwaggerOperation(OperationId = "GetWishlist")]
         [HttpGet("/api/GetWishlist")]
+        [Authorize]
         public Task<GetWishlistResponseDto> GetWishlist([FromQuery] GetWishlistOperationInputDto input)
         {
             return getWishlistOperation.Execute<GetWishlistResponseDto>(input);
         }
 
         [HttpDelete("/api/RemoveFromWishlist")]
+        [Authorize]
         public Task<RemoveFromWishlistResponseDto> RemoveFromWishlist([FromQuery] RemoveFromWishlistOperationInputDto input)
         {
             return removeFromWishlistOperation.Execute<RemoveFromWishlistResponseDto>(input);

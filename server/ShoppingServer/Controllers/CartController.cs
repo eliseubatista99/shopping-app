@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -27,12 +28,14 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/AddToCart")]
+        [Authorize]
         public Task<AddToCartResponseDto> AddToCart([FromBody] AddToCartOperationInputDto input)
         {
             return addToCartOperation.Execute<AddToCartResponseDto>(input);
         }
 
         [HttpGet("/api/GetCart")]
+        [Authorize]
         public Task<GetCartResponseDto> GetCart()
         {
             return getCartOperation.Execute<GetCartResponseDto>();
@@ -40,6 +43,7 @@ namespace ShoppingServer.Controllers
 
 
         [HttpDelete("/api/RemoveFromCart")]
+        [Authorize]
         public Task<RemoveFromCartResponseDto> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)
         {
             return removeFromCartOperation.Execute<RemoveFromCartResponseDto>(input);
@@ -47,6 +51,7 @@ namespace ShoppingServer.Controllers
 
 
         [HttpPatch("/api/UpdateCartProduct")]
+        [Authorize]
         public Task<UpdateCartResponseDto> UpdateCartProduct([FromBody] UpdateCartProductOperationInputDto input)
         {
             return updateCartProductOperation.Execute<UpdateCartResponseDto>(input);

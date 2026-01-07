@@ -80,14 +80,11 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            await usersRepository.SaveChangesAsync();
-
             var accessToken = appTokenProvider.GenerateToken(userInDb);
             var refreshToken = appTokenProvider.GenerateRefreshToken(userInDb);
 
             await tokensRepository.DeleteByUserIdAsync(refreshToken.UserId);
             await tokensRepository.AddAsync(refreshToken);
-            await tokensRepository.SaveChangesAsync();
 
             output.Data = new CreateAccountOperationOutputDto
             {

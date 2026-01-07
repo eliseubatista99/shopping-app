@@ -63,9 +63,6 @@ namespace ShoppingServer.BusinessLogic.Operations
             await tokensRepository.DeleteByUserIdAsync(refreshToken.UserId);
             await tokensRepository.AddAsync(refreshToken);
 
-            await tokensRepository.SaveChangesAsync();
-            await usersRepository.SaveChangesAsync();
-
             output.Data = new RefreshAuthenticationOperationOutputDto
             {
                 Token = accessToken,

@@ -7,6 +7,8 @@ namespace ShoppingServer.Database.Repositories
     {
         public Task<List<AddressModel>> GetByUserId(string userId);
 
-        public Task<AddressModel?> GetDefaultAddressOfUser(string userId);
+        public Task<bool> SetNewDefaultAddress(string addressId, bool saveChanges = true);
+
+        public Task<bool> DeleteById(string id, bool saveChanges = true);
     }
 }

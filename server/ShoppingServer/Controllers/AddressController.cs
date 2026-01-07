@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Operations;
@@ -30,6 +31,7 @@ namespace ShoppingServer.Controllers
 
         [HttpPost("/api/AddAddress")]
         [SwaggerOperation(OperationId = "AddAddress")]
+        [Authorize]
         public Task<AddAddressResponseDto> AddAddress([FromBody] AddAddressOperationInputDto input)
         {
             return addAddressOperation.Execute<AddAddressResponseDto>(input);
@@ -37,6 +39,7 @@ namespace ShoppingServer.Controllers
 
         [HttpDelete("/api/DeleteAddress")]
         [SwaggerOperation(OperationId = "DeleteAddress")]
+        [Authorize]
         public Task<DeleteAddressResponseDto> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
         {
             return deleteAddressOperation.Execute<DeleteAddressResponseDto>(input);
@@ -44,13 +47,15 @@ namespace ShoppingServer.Controllers
 
         [HttpPatch("/api/SetDefaultAddress")]
         [SwaggerOperation(OperationId = "SetDefaultAddress")]
+        [Authorize]
         public Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromQuery] SetDefaultAddressOperationInputDto input)
         {
             return setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input);
         }
 
-        [HttpPatch("/api/UpdateAddress")]
+        [HttpPost("/api/UpdateAddress")]
         [SwaggerOperation(OperationId = "UpdateAddress")]
+        [Authorize]
         public Task<UpdateAddressResponseDto> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
         {
             return updateAddressOperation.Execute<UpdateAddressResponseDto>(input);

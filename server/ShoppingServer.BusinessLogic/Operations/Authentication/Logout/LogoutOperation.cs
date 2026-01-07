@@ -61,9 +61,6 @@ namespace ShoppingServer.BusinessLogic.Operations
            
             await tokensRepository.RevokeByUserId(userInDb.Id);
 
-            await tokensRepository.SaveChangesAsync();
-
-
             output.Data = new OperationOutputDto
             {
                 

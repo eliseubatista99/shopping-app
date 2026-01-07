@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -28,24 +29,28 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/GetClientInfo")]
+        [Authorize]
         public Task<GetClientInfoResponseDto> GetClientInfo()
         {
             return getClientInfoOperation.Execute<GetClientInfoResponseDto>();
         }
 
         [HttpGet("/api/ForYou")]
+        [Authorize]
         public Task<ForYouResponseDto> ForYou()
         {
             return forYouOperation.Execute<ForYouResponseDto>();
         }
 
         [HttpGet("/api/GetDocument")]
+        [Authorize]
         public Task<GetDocumentResponseDto> GetCart([FromQuery] GetDocumentOperationInputDto input)
         {
             return getDocumentOperation.Execute<GetDocumentResponseDto>(input);
         }
 
         [HttpPatch("/api/UpdateClientInfo")]
+        [Authorize]
         public Task<UpdateClientInfoResponseDto> UpdateClientInfo([FromBody] UpdateClientInfoOperationInputDto input)
         {
             return updateClientInfoOperation.Execute<UpdateClientInfoResponseDto>(input);

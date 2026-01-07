@@ -9,8 +9,8 @@ namespace ShoppingServer.Database.Repositories
 
         public Task<TokenModel?> GetByUserId(string userId);
 
-        public Task<int> DeleteByUserIdAsync(string userId);
+        public Task<bool> DeleteByUserIdAsync(string userId, bool saveChanges = true);
 
-        public Task<int> RevokeByUserId(string userId);
+        public Task<bool> RevokeByUserId(string userId, bool saveChanges = true);
     }
 }

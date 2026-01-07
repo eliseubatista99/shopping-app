@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -55,6 +56,7 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/WriteReview")]
+        [Authorize]
         public Task<WriteReviewResponseDto> WriteReview([FromBody] WriteReviewOperationInputDto input)
         {
             return writeReviewOperation.Execute<WriteReviewResponseDto>(input);

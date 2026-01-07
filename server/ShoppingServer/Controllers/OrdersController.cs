@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -22,6 +23,7 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/GetClientOrders")]
+        [Authorize]
         public Task<GetClientOrdersResponseDto> GetClientOrders([FromQuery] GetClientOrdersOperationInputDto input)
         {
             return getClientOrdersOperation.Execute<GetClientOrdersResponseDto>(input);
@@ -29,6 +31,7 @@ namespace ShoppingServer.Controllers
 
 
         [HttpGet("/api/GetOrderDetails")]
+        [Authorize]
         public Task<GetOrderDetailsResponseDto> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)
         {
             return getOrderDetailsOperation.Execute<GetOrderDetailsResponseDto>(input);

@@ -9,14 +9,39 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
+        public async Task<bool> DeleteById(string id, bool saveChanges = true)
+        {
+            return await DeleteAsync(i => i.Id == id, saveChanges);
+        }
+
         public async Task<List<AddressModel>> GetByUserId(string userId)
         {
             return await _dbSet.AsNoTracking().Where(i => i.UserId == userId).ToListAsync();
         }
 
-        public async Task<AddressModel?> GetDefaultAddressOfUser(string userId)
+        public async Task<bool> SetNewDefaultAddress(string addressId, bool saveChanges = true)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.UserId == userId && i.IsDefault.GetValueOrDefault());
+            // Remove default address
+            var success = await UpdateAsync(
+                filter: i => i.IsDefault == true,
+                set: setters => setters
+                        .SetProperty(e => e.IsDefault, _ => false),
+                saveChanges: saveChanges
+            );
+
+            if (!success)
+            {
+                return false;
+            }
+
+            // Set new default address
+            success = await UpdateAsync(
+                filter: i => i.Id == addressId,
+                set: setters => setters
+                        .SetProperty(e => e.IsDefault, _ => true)
+            );
+
+            return success;
         }
     }
 }

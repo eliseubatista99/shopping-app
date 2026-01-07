@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingServer.BusinessLogic.Operations;
 using ShoppingServer.Library;
@@ -22,12 +23,14 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpPost("/api/ExecutePurchase")]
+        [Authorize]
         public Task<ExecutePurchaseResponseDto> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
         {
             return executePurchaseOperation.Execute<ExecutePurchaseResponseDto>(input);
         }
 
         [HttpGet("/api/GetCheckoutInfo")]
+        [Authorize]
         public Task<GetCheckoutInfoResponseDto> GetCheckoutInfo([FromBody] GetCheckoutInfoOperationInputDto input)
         {
             return getCheckoutInfoOperation.Execute<GetCheckoutInfoResponseDto>(input);
