@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class SetDefaultPaymentMethodOperation : OperationBase<SetDefaultPaymentMethodOperationInputDto, SetDefaultPaymentMethodOperationOutputDto>
+    public class SetDefaultPaymentMethodOperation : AppOperationBase<SetDefaultPaymentMethodOperationInputDto, SetDefaultPaymentMethodOperationOutputDto>
     {
         public SetDefaultPaymentMethodOperation(BaseAppController _controller) : base(_controller)
         {

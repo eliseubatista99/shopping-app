@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class UpdateAddressOperation : OperationBase<UpdateAddressOperationInputDto, UpdateAddressOperationOutputDto>
+    public class UpdateAddressOperation : AppOperationBase<UpdateAddressOperationInputDto, UpdateAddressOperationOutputDto>
     {
         public UpdateAddressOperation(BaseAppController _controller) : base(_controller)
         {

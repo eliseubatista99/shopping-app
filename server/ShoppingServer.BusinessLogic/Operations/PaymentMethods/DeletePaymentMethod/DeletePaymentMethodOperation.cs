@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class DeletePaymentMethodOperation : OperationBase<DeletePaymentMethodOperationInputDto, DeletePaymentMethodOperationOutputDto>
+    public class DeletePaymentMethodOperation : AppOperationBase<DeletePaymentMethodOperationInputDto, DeletePaymentMethodOperationOutputDto>
     {
         public DeletePaymentMethodOperation(BaseAppController _controller) : base(_controller)
         {

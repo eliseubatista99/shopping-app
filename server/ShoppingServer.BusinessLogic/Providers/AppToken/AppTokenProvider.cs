@@ -16,7 +16,7 @@ namespace ShoppingServer.BusinessLogic.Providers
             jwtSettings = configuration.GetSection("Jwt").Get<JwtSettings>()!;
         }
 
-        public string GenerateToken(UserEntry user)
+        public string GenerateToken(UserModel user)
         {
             var claims = new List<Claim>
             {
@@ -39,11 +39,11 @@ namespace ShoppingServer.BusinessLogic.Providers
             return AuthenticationHelper.GenerateAccessToken(claims, jwtSettings);
         }
 
-        public TokenEntry GenerateRefreshToken(UserEntry user)
+        public TokenModel GenerateRefreshToken(UserModel user)
         {
             var refreshToken = AuthenticationHelper.GenerateRefreshToken();
 
-            var refreshTokenEntity = new TokenEntry
+            var refreshTokenEntity = new TokenModel
             {
                 Id = Guid.NewGuid().ToString(),
                 Token = refreshToken,

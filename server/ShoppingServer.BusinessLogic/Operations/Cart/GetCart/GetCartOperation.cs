@@ -3,7 +3,7 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class GetCartOperation : OperationBase<OperationInputDto, GetCartOperationOutputDto>
+    public class GetCartOperation : AppOperationBase<OperationInputDto, GetCartOperationOutputDto>
     {
         public GetCartOperation(BaseAppController _controller) : base(_controller)
         {

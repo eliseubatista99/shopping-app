@@ -1,18 +1,20 @@
--- Creates table if not exists
+-- ==========================
+-- USERS
+-- ==========================
 CREATE TABLE
   IF NOT EXISTS users (
     id VARCHAR(100) PRIMARY KEY,
     password_hash TEXT NOT NULL,
-    name VARCHAR(100),
-    surname VARCHAR(100),
+    name VARCHAR(100) NOT NULL,
+    surname VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
     phone_number VARCHAR(20) UNIQUE,
     phone_number_prefix VARCHAR(4),
-    image BYTEA NULL
+    image BYTEA
   );
 
 WITH
-  new_values (
+  new_users (
     id,
     password_hash,
     name,
@@ -48,7 +50,7 @@ INSERT INTO
 SELECT
   *
 FROM
-  new_values
+  new_users
 WHERE
   NOT EXISTS (
     SELECT
@@ -56,5 +58,5 @@ WHERE
     FROM
       users u
     WHERE
-      u.id = new_values.id
+      u.id = new_users.id
   );

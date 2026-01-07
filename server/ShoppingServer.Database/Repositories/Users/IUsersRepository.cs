@@ -3,10 +3,10 @@ using ShoppingApp.Database.Models;
 
 namespace ShoppingServer.Database.Repositories
 {
-    public interface IUsersRepository : IRepository<UserEntry>
+    public interface IUsersRepository : IRepository<UserModel>
     {
-        public Task<UserEntry?> GetByEmail(string email);
+        public Task<UserModel?> GetByEmail(string email);
 
-        public Task<UserEntry?> GetUserByPhoneNumber(string phoneNumber);
+        public Task<UserModel?> GetUserByPhoneNumber(string phoneNumber);
     }
 }

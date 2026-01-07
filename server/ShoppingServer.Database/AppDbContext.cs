@@ -6,12 +6,14 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
-    public DbSet<UserEntry> Users => Set<UserEntry>();
-    public DbSet<TokenEntry> Tokens => Set<TokenEntry>();
+    public DbSet<UserModel> Users => Set<UserModel>();
+    public DbSet<TokenModel> Tokens => Set<TokenModel>();
+    public DbSet<AddressModel> Addresses => Set<AddressModel>();
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<UserEntry>(entity =>
+        modelBuilder.Entity<UserModel>(entity =>
         {
             entity.HasKey(e => e.Id);
 

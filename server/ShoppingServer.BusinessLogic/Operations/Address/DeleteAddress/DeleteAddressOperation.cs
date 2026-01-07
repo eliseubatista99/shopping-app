@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class DeleteAddressOperation : OperationBase<DeleteAddressOperationInputDto, DeleteAddressOperationOutputDto>
+    public class DeleteAddressOperation : AppOperationBase<DeleteAddressOperationInputDto, DeleteAddressOperationOutputDto>
     {
         public DeleteAddressOperation(BaseAppController _controller) : base(_controller)
         {

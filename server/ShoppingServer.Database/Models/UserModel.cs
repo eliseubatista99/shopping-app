@@ -1,10 +1,10 @@
 ﻿namespace ShoppingApp.Database.Models
 {
-    public class UserEntry
+    public class UserModel
     {
         public required string Id { get; set; }
 
-        public string PasswordHash { get; set; }
+        public string? PasswordHash { get; set; }
 
         public required string Name { get; set; }
 

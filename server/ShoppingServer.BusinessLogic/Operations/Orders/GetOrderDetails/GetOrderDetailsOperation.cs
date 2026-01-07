@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class GetOrderDetailsOperation : OperationBase<GetOrderDetailsOperationInputDto, GetOrderDetailsOperationOutputDto>
+    public class GetOrderDetailsOperation : AppOperationBase<GetOrderDetailsOperationInputDto, GetOrderDetailsOperationOutputDto>
     {
         public GetOrderDetailsOperation(BaseAppController _controller) : base(_controller)
         {

@@ -6,20 +6,19 @@ using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Authentication;
 using ShoppingServer.Library.Entities;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class AuthenticateOperation: OperationBase<AuthenticateOperationInputDto, AuthenticateOperationOutputDto>
+    public class AuthenticateOperation: AppOperationBase<AuthenticateOperationInputDto, AuthenticateOperationOutputDto>
     {
-        private IUsersRepository usersDatabaseProvider;
-        private ITokensRepository tokensDatabaseProvider;
+        private IUsersRepository usersRepository;
+        private ITokensRepository tokensRepository;
         private IAppTokenProvider appTokenProvider;
 
         public AuthenticateOperation(BaseAppController _controller) : base(_controller)
         {
-            usersDatabaseProvider = ExecutionContext.GetService<IUsersRepository>();
-            tokensDatabaseProvider = ExecutionContext.GetService<ITokensRepository>();
+            usersRepository = ExecutionContext.GetService<IUsersRepository>();
+            tokensRepository = ExecutionContext.GetService<ITokensRepository>();
             appTokenProvider = ExecutionContext.GetService<IAppTokenProvider>();
         }
 
@@ -27,14 +26,14 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            UserEntry? userInDb = null;
+            UserModel? userInDb = null;
 
             if(input?.Email != null)
             {
-                userInDb = await usersDatabaseProvider.GetByEmail(input.Email);
+                userInDb = await usersRepository.GetByEmail(input.Email);
             } else if(input?.PhoneNumber != null)
             {
-                userInDb = await usersDatabaseProvider.GetUserByPhoneNumber(input.PhoneNumber);
+                userInDb = await usersRepository.GetUserByPhoneNumber(input.PhoneNumber);
             } else
             {
                 output.AddError(new ErrorDto("MissingEmailOrPhoneNumber"));
@@ -61,11 +60,11 @@ namespace ShoppingServer.BusinessLogic.Operations
             var accessToken = appTokenProvider.GenerateToken(userInDb);
             var refreshToken = appTokenProvider.GenerateRefreshToken(userInDb);
 
-            await tokensDatabaseProvider.DeleteByUserIdAsync(refreshToken.UserId);
-            await tokensDatabaseProvider.AddAsync(refreshToken);
+            await tokensRepository.DeleteByUserIdAsync(refreshToken.UserId);
+            await tokensRepository.AddAsync(refreshToken);
 
-            await tokensDatabaseProvider.SaveChangesAsync();
-            await usersDatabaseProvider.SaveChangesAsync();
+            await tokensRepository.SaveChangesAsync();
+            await usersRepository.SaveChangesAsync();
 
             output.Data = new AuthenticateOperationOutputDto
             {

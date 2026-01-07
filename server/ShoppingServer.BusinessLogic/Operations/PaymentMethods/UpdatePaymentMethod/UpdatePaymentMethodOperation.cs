@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class UpdatePaymentMethodOperation : OperationBase<UpdatePaymentMethodOperationInputDto, UpdatePaymentMethodOperationOutputDto>
+    public class UpdatePaymentMethodOperation : AppOperationBase<UpdatePaymentMethodOperationInputDto, UpdatePaymentMethodOperationOutputDto>
     {
         public UpdatePaymentMethodOperation(BaseAppController _controller) : base(_controller)
         {

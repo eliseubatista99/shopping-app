@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class RemoveFromCartOperation : OperationBase<RemoveFromCartOperationInputDto, RemoveFromCartOperationOutputDto>
+    public class RemoveFromCartOperation : AppOperationBase<RemoveFromCartOperationInputDto, RemoveFromCartOperationOutputDto>
     {
         public RemoveFromCartOperation(BaseAppController _controller) : base(_controller)
         {

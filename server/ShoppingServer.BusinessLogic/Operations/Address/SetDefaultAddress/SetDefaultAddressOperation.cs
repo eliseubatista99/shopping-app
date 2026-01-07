@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class SetDefaultAddressOperation : OperationBase<SetDefaultAddressOperationInputDto, SetDefaultAddressOperationOutputDto>
+    public class SetDefaultAddressOperation : AppOperationBase<SetDefaultAddressOperationInputDto, SetDefaultAddressOperationOutputDto>
     {
         public SetDefaultAddressOperation(BaseAppController _controller) : base(_controller)
         {

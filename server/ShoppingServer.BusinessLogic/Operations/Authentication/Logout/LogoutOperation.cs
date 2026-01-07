@@ -8,16 +8,16 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class LogoutOperation : OperationBase<LogoutOperationInputDto, OperationOutputDto>
+    public class LogoutOperation : AppOperationBase<LogoutOperationInputDto, OperationOutputDto>
     {
-        private IUsersRepository usersDatabaseProvider;
-        private ITokensRepository tokensDatabaseProvider;
+        private IUsersRepository usersRepository;
+        private ITokensRepository tokensRepository;
         private IAppTokenProvider appTokenProvider;
 
         public LogoutOperation(BaseAppController _controller) : base(_controller)
         {
-            usersDatabaseProvider = ExecutionContext.GetService<IUsersRepository>();
-            tokensDatabaseProvider = ExecutionContext.GetService<ITokensRepository>();
+            usersRepository = ExecutionContext.GetService<IUsersRepository>();
+            tokensRepository = ExecutionContext.GetService<ITokensRepository>();
             appTokenProvider = ExecutionContext.GetService<IAppTokenProvider>();
         }
 
@@ -32,7 +32,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            TokenEntry? tokenInDb = await tokensDatabaseProvider.GetByToken(input.RefreshToken);
+            TokenModel? tokenInDb = await tokensRepository.GetByToken(input.RefreshToken);
             var now = DateTimeOffset.UtcNow;
 
             if (tokenInDb == null)
@@ -49,7 +49,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            UserEntry? userInDb = await usersDatabaseProvider.GetByIdAsync(tokenInDb.UserId);
+            UserModel? userInDb = await usersRepository.GetByIdAsync(tokenInDb.UserId);
 
             if (userInDb == null)
             {
@@ -59,9 +59,9 @@ namespace ShoppingServer.BusinessLogic.Operations
             }
 
            
-            await tokensDatabaseProvider.RevokeByUserId(userInDb.Id);
+            await tokensRepository.RevokeByUserId(userInDb.Id);
 
-            await tokensDatabaseProvider.SaveChangesAsync();
+            await tokensRepository.SaveChangesAsync();
 
 
             output.Data = new OperationOutputDto

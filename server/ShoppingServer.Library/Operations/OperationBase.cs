@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 
 namespace ShoppingServer.Library.Operations
 {
@@ -10,6 +11,8 @@ namespace ShoppingServer.Library.Operations
 
         protected IExecutionContext ExecutionContext;
 
+        protected IMapper MapperProvider;
+
         protected TInput? input;
 
         protected OperationResponseDto<TOutput> output;
@@ -18,6 +21,8 @@ namespace ShoppingServer.Library.Operations
         {
             controller = _controller;
             ExecutionContext = _controller.GetExecutionContext();
+
+            MapperProvider = ExecutionContext.GetService<IMapper>();
 
             output = new OperationResponseDto<TOutput> { 
                 Metadata = new OutputMetadataDto

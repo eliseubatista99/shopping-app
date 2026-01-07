@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +38,11 @@ namespace ShoppingServer.Library
                 Builder.Services.AddScoped<IExecutionContext, ExecutionContext>();
             }
 
+        }
+
+        protected virtual Profile[] GetMapperProfiles()
+        {
+            return [];    
         }
 
         protected virtual void ConfigureDatabase()
@@ -122,6 +128,16 @@ namespace ShoppingServer.Library
                         .AllowAnyMethod()
                         .AllowCredentials();
                 });
+            });
+
+            Builder.Services.AddAutoMapper(cfg =>
+            {
+                var mapperProfiles = GetMapperProfiles();
+
+                foreach (var profile in mapperProfiles)
+                {
+                    cfg.AddProfile(profile);
+                }
             });
 
             ConfigureDatabase();

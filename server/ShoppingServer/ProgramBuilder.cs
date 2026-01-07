@@ -1,4 +1,6 @@
-﻿using Database.PostgreSql.Extensions;
+﻿using AutoMapper;
+using Database.PostgreSql.Extensions;
+using ShoppingServer.BusinessLogic.MapperProfiles;
 using ShoppingServer.BusinessLogic.Providers;
 using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Repositories;
@@ -20,9 +22,18 @@ namespace ShoppingApp
             {
                 Builder.Services.AddSingleton<IAppTokenProvider, AppTokenProvider>();
 
-                Builder.Services.AddScoped<IUsersRepository, UsersRepository>();
                 Builder.Services.AddScoped<ITokensRepository, TokensRepository>();
+                Builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+                Builder.Services.AddScoped<IAddressesRepository, AddressesRepository>();
             }
+        }
+
+        protected override Profile[] GetMapperProfiles()
+        {
+            return
+            [
+                new ModelToDtoProfile()
+            ];
         }
 
         protected override void ConfigureDatabase()

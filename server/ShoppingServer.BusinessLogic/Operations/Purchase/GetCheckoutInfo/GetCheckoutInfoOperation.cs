@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class GetCheckoutInfoOperation : OperationBase<GetCheckoutInfoOperationInputDto, GetCheckoutInfoOperationOutputDto>
+    public class GetCheckoutInfoOperation : AppOperationBase<GetCheckoutInfoOperationInputDto, GetCheckoutInfoOperationOutputDto>
     {
         public GetCheckoutInfoOperation(BaseAppController _controller) : base(_controller)
         {

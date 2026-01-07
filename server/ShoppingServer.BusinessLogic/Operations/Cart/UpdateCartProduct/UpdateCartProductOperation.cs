@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class UpdateCartProductOperation : OperationBase<UpdateCartProductOperationInputDto, UpdateCartProductOperationOutputDto>
+    public class UpdateCartProductOperation : AppOperationBase<UpdateCartProductOperationInputDto, UpdateCartProductOperationOutputDto>
     {
         public UpdateCartProductOperation(BaseAppController _controller) : base(_controller)
         {

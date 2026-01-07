@@ -1,10 +1,9 @@
--- Creates table if not exists
 CREATE TABLE
   IF NOT EXISTS tokens (
-    id VARCHAR(100),
-    user_id VARCHAR(100) NOT NULL REFERENCES "users" (id),
+    id VARCHAR(100) PRIMARY KEY,
+    user_id VARCHAR(100) NOT NULL REFERENCES users (id),
     token TEXT NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     expires_at TIMESTAMPTZ NOT NULL,
     revoked_at TIMESTAMPTZ
   );
@@ -30,8 +29,8 @@ WHERE
     SELECT
       1
     FROM
-      tokens r
+      tokens t
     WHERE
-      r.user_id = new_tokens.user_id
-      AND r.token = new_tokens.token
+      t.user_id = new_tokens.user_id
+      AND t.token = new_tokens.token
   );

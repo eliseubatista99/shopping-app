@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class AddToWishlistOperation : OperationBase<AddToWishlistOperationInputDto, AddToWishlistOperationOutputDto>
+    public class AddToWishlistOperation : AppOperationBase<AddToWishlistOperationInputDto, AddToWishlistOperationOutputDto>
     {
         public AddToWishlistOperation(BaseAppController _controller) : base(_controller)
         {

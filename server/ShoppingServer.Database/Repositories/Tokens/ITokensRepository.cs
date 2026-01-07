@@ -3,11 +3,11 @@ using ShoppingApp.Database.Models;
 
 namespace ShoppingServer.Database.Repositories
 {
-    public interface ITokensRepository: IRepository<TokenEntry>
+    public interface ITokensRepository: IRepository<TokenModel>
     {
-        public Task<TokenEntry?> GetByToken(string token);
+        public Task<TokenModel?> GetByToken(string token);
 
-        public Task<TokenEntry?> GetByUserId(string userId);
+        public Task<TokenModel?> GetByUserId(string userId);
 
         public Task<int> DeleteByUserIdAsync(string userId);
 

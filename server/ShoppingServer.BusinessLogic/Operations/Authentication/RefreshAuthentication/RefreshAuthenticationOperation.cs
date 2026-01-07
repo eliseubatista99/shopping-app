@@ -4,20 +4,19 @@ using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Entities;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class RefreshAuthenticationOperation : OperationBase<RefreshAuthenticationOperationInputDto, RefreshAuthenticationOperationOutputDto>
+    public class RefreshAuthenticationOperation : AppOperationBase<RefreshAuthenticationOperationInputDto, RefreshAuthenticationOperationOutputDto>
     {
-        private IUsersRepository usersDatabaseProvider;
-        private ITokensRepository tokensDatabaseProvider;
+        private IUsersRepository usersRepository;
+        private ITokensRepository tokensRepository;
         private IAppTokenProvider appTokenProvider;
 
         public RefreshAuthenticationOperation(BaseAppController _controller) : base(_controller)
         {
-            usersDatabaseProvider = ExecutionContext.GetService<IUsersRepository>();
-            tokensDatabaseProvider = ExecutionContext.GetService<ITokensRepository>();
+            usersRepository = ExecutionContext.GetService<IUsersRepository>();
+            tokensRepository = ExecutionContext.GetService<ITokensRepository>();
             appTokenProvider = ExecutionContext.GetService<IAppTokenProvider>();
         }
 
@@ -32,7 +31,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            TokenEntry? tokenInDb = await tokensDatabaseProvider.GetByToken(input.RefreshToken);
+            TokenModel? tokenInDb = await tokensRepository.GetByToken(input.RefreshToken);
             var now = DateTimeOffset.UtcNow;
 
             if (tokenInDb == null)
@@ -49,7 +48,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            UserEntry? userInDb = await usersDatabaseProvider.GetByIdAsync(tokenInDb.UserId);
+            UserModel? userInDb = await usersRepository.GetByIdAsync(tokenInDb.UserId);
 
             if (userInDb == null)
             {
@@ -61,11 +60,11 @@ namespace ShoppingServer.BusinessLogic.Operations
             var accessToken = appTokenProvider.GenerateToken(userInDb);
             var refreshToken = appTokenProvider.GenerateRefreshToken(userInDb);
 
-            await tokensDatabaseProvider.DeleteByUserIdAsync(refreshToken.UserId);
-            await tokensDatabaseProvider.AddAsync(refreshToken);
+            await tokensRepository.DeleteByUserIdAsync(refreshToken.UserId);
+            await tokensRepository.AddAsync(refreshToken);
 
-            await tokensDatabaseProvider.SaveChangesAsync();
-            await usersDatabaseProvider.SaveChangesAsync();
+            await tokensRepository.SaveChangesAsync();
+            await usersRepository.SaveChangesAsync();
 
             output.Data = new RefreshAuthenticationOperationOutputDto
             {

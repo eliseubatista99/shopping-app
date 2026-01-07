@@ -4,8 +4,8 @@ namespace ShoppingServer.BusinessLogic.Providers.AppToken
 {
     public interface IAppTokenProvider
     {
-        public string GenerateToken(UserEntry user);
+        public string GenerateToken(UserModel user);
 
-        public TokenEntry GenerateRefreshToken(UserEntry user);
+        public TokenModel GenerateRefreshToken(UserModel user);
     }
 }

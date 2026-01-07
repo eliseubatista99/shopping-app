@@ -5,20 +5,19 @@ using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Authentication;
 using ShoppingServer.Library.Entities;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class CreateAccountOperation : OperationBase<CreateAccountOperationInputDto, CreateAccountOperationOutputDto>
+    public class CreateAccountOperation : AppOperationBase<CreateAccountOperationInputDto, CreateAccountOperationOutputDto>
     {
-        private IUsersRepository usersDatabaseProvider;
-        private ITokensRepository tokensDatabaseProvider;
+        private IUsersRepository usersRepository;
+        private ITokensRepository tokensRepository;
         private IAppTokenProvider appTokenProvider;
 
         public CreateAccountOperation(BaseAppController _controller) : base(_controller)
         {
-            usersDatabaseProvider = ExecutionContext.GetService<IUsersRepository>();
-            tokensDatabaseProvider = ExecutionContext.GetService<ITokensRepository>();
+            usersRepository = ExecutionContext.GetService<IUsersRepository>();
+            tokensRepository = ExecutionContext.GetService<ITokensRepository>();
             appTokenProvider = ExecutionContext.GetService<IAppTokenProvider>();
         }
 
@@ -26,11 +25,11 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            UserEntry? userInDb = null;
+            UserModel? userInDb = null;
 
             if (input?.Email != null)
             {
-                userInDb = await usersDatabaseProvider.GetByEmail(input.Email);
+                userInDb = await usersRepository.GetByEmail(input.Email);
 
                 if(userInDb != null)
                 {
@@ -42,7 +41,7 @@ namespace ShoppingServer.BusinessLogic.Operations
             
             if (input?.PhoneNumber != null)
             {
-                userInDb = await usersDatabaseProvider.GetUserByPhoneNumber(input.PhoneNumber);
+                userInDb = await usersRepository.GetUserByPhoneNumber(input.PhoneNumber);
 
                 if (userInDb != null)
                 {
@@ -59,7 +58,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            userInDb = new UserEntry
+            userInDb = new UserModel
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = input.Name ?? string.Empty,
@@ -72,7 +71,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             userInDb.PasswordHash = AuthenticationHelper.EncryptPassword(userInDb, input.Password);
 
-            var success = await usersDatabaseProvider.AddAsync(userInDb);
+            var success = await usersRepository.AddAsync(userInDb);
 
             if (!success)
             {
@@ -81,14 +80,14 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            await usersDatabaseProvider.SaveChangesAsync();
+            await usersRepository.SaveChangesAsync();
 
             var accessToken = appTokenProvider.GenerateToken(userInDb);
             var refreshToken = appTokenProvider.GenerateRefreshToken(userInDb);
 
-            await tokensDatabaseProvider.DeleteByUserIdAsync(refreshToken.UserId);
-            await tokensDatabaseProvider.AddAsync(refreshToken);
-            await tokensDatabaseProvider.SaveChangesAsync();
+            await tokensRepository.DeleteByUserIdAsync(refreshToken.UserId);
+            await tokensRepository.AddAsync(refreshToken);
+            await tokensRepository.SaveChangesAsync();
 
             output.Data = new CreateAccountOperationOutputDto
             {

@@ -3,28 +3,28 @@ using ShoppingApp.Database.Models;
 
 namespace ShoppingServer.Database.Repositories
 {
-    public class TokensRepository : BaseAppRepository<TokenEntry>, ITokensRepository
+    public class TokensRepository : BaseAppRepository<TokenModel>, ITokensRepository
     {
         public TokensRepository(AppDbContext context) : base(context)
         {
         }
 
-        public override Task<bool> AddAsync(TokenEntry entity)
+        public override Task<bool> AddAsync(TokenModel entity)
         {
             return base.AddAsync(entity);
         }
 
-        public override Task<TokenEntry?> GetByIdAsync(string id)
+        public override Task<TokenModel?> GetByIdAsync(string id)
         {
             return base.GetByIdAsync(id);
         }
 
-        public async Task<TokenEntry?> GetByToken(string token)
+        public async Task<TokenModel?> GetByToken(string token)
         {
             return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.Token == token);
         }
 
-        public async Task<TokenEntry?> GetByUserId(string userId)
+        public async Task<TokenModel?> GetByUserId(string userId)
         {
             return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.UserId == userId);
         }

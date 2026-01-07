@@ -2,20 +2,19 @@ using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class IsExistingAccountOperation : OperationBase<IsExistingAccountOperationInputDto, IsExistingAccountOperationOutputDto>
+    public class IsExistingAccountOperation : AppOperationBase<IsExistingAccountOperationInputDto, IsExistingAccountOperationOutputDto>
     {
-        private IUsersRepository usersDatabaseProvider;
-        private ITokensRepository tokensDatabaseProvider;
+        private IUsersRepository usersRepository;
+        private ITokensRepository tokensRepository;
         private IAppTokenProvider appTokenProvider;
 
         public IsExistingAccountOperation(BaseAppController _controller) : base(_controller)
         {
-            usersDatabaseProvider = ExecutionContext.GetService<IUsersRepository>();
-            tokensDatabaseProvider = ExecutionContext.GetService<ITokensRepository>();
+            usersRepository = ExecutionContext.GetService<IUsersRepository>();
+            tokensRepository = ExecutionContext.GetService<ITokensRepository>();
             appTokenProvider = ExecutionContext.GetService<IAppTokenProvider>();
         }
 
@@ -23,16 +22,16 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            UserEntry? userInDb = null;
+            UserModel? userInDb = null;
 
             if (input?.Email != null)
             {
-                userInDb = await usersDatabaseProvider.GetByEmail(input.Email);
+                userInDb = await usersRepository.GetByEmail(input.Email);
             }
 
             if (userInDb == null && input?.PhoneNumber != null)
             {
-                userInDb = await usersDatabaseProvider.GetUserByPhoneNumber(input.PhoneNumber);
+                userInDb = await usersRepository.GetUserByPhoneNumber(input.PhoneNumber);
             }
 
             output.Data = new IsExistingAccountOperationOutputDto

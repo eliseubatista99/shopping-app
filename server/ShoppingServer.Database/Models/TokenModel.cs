@@ -1,6 +1,6 @@
 ﻿namespace ShoppingApp.Database.Models
 {
-    public class TokenEntry
+    public class TokenModel
     {
         public required string Id { get; set; }
 

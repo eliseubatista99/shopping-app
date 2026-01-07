@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class RemoveFromWishlistOperation : OperationBase<RemoveFromWishlistOperationInputDto, RemoveFromWishlistOperationOutputDto>
+    public class RemoveFromWishlistOperation : AppOperationBase<RemoveFromWishlistOperationInputDto, RemoveFromWishlistOperationOutputDto>
     {
         public RemoveFromWishlistOperation(BaseAppController _controller) : base(_controller)
         {

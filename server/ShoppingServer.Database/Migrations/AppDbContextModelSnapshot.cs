@@ -21,7 +21,67 @@ namespace ShoppingServer.Database.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ShoppingApp.Database.Models.TokenEntry", b =>
+            modelBuilder.Entity("ShoppingApp.Database.Models.AddressModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("city");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("country");
+
+                    b.Property<string>("CountryCode")
+                        .HasColumnType("text")
+                        .HasColumnName("country_code");
+
+                    b.Property<bool?>("IsDefault")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_default");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("location");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("phone");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("postal_code");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("street");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_addresses");
+
+                    b.ToTable("addresses", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.TokenModel", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text")
@@ -55,7 +115,7 @@ namespace ShoppingServer.Database.Migrations
                     b.ToTable("tokens", (string)null);
                 });
 
-            modelBuilder.Entity("ShoppingApp.Database.Models.UserEntry", b =>
+            modelBuilder.Entity("ShoppingApp.Database.Models.UserModel", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text")
@@ -75,7 +135,6 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnName("name");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("password_hash");
 

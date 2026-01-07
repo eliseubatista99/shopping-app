@@ -1,9 +1,8 @@
 using ShoppingServer.Library;
-using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class SearchProductsOperation : OperationBase<SearchProductsOperationInputDto, SearchProductsOperationOutputDto>
+    public class SearchProductsOperation : AppOperationBase<SearchProductsOperationInputDto, SearchProductsOperationOutputDto>
     {
         public SearchProductsOperation(BaseAppController _controller) : base(_controller)
         {
