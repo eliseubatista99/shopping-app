@@ -2,4 +2,4 @@
 
 .\createController.ps1 -Name ControllerName
 
-.\createController.ps1 -ModelName Cart
+.\createRepository.ps1 -ModelName Cart

@@ -14,7 +14,7 @@ CREATE TABLE
   );
 
 WITH
-  new_users (
+  new_values (
     id,
     password_hash,
     name,
@@ -50,7 +50,7 @@ INSERT INTO
 SELECT
   *
 FROM
-  new_users
+  new_values
 WHERE
   NOT EXISTS (
     SELECT
@@ -58,5 +58,5 @@ WHERE
     FROM
       users u
     WHERE
-      u.id = new_users.id
+      u.id = new_values.id
   );

@@ -9,7 +9,7 @@ CREATE TABLE
   );
 
 WITH
-  new_tokens (id, user_id, token, expires_at) AS (
+  new_values (id, user_id, token, expires_at) AS (
     VALUES
       (
         '0f44274a-6083-47de-a8eb-133d248ee0f8',
@@ -23,7 +23,7 @@ INSERT INTO
 SELECT
   *
 FROM
-  new_tokens
+  new_values
 WHERE
   NOT EXISTS (
     SELECT
@@ -31,6 +31,6 @@ WHERE
     FROM
       tokens t
     WHERE
-      t.user_id = new_tokens.user_id
-      AND t.token = new_tokens.token
+      t.user_id = new_values.user_id
+      AND t.token = new_values.token
   );

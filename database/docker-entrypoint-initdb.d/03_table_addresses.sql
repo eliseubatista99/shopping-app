@@ -17,7 +17,7 @@ CREATE TABLE
   );
 
 WITH
-  new_addresses (
+  new_values (
     id,
     user_id,
     name,
@@ -62,7 +62,7 @@ INSERT INTO
 SELECT
   *
 FROM
-  new_addresses
+  new_values
 WHERE
   NOT EXISTS (
     SELECT
@@ -70,5 +70,5 @@ WHERE
     FROM
       addresses a
     WHERE
-      a.id = new_addresses.id
+      a.id = new_values.id
   );
