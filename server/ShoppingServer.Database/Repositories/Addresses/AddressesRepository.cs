@@ -16,7 +16,7 @@ namespace ShoppingServer.Database.Repositories
 
         public async Task<List<AddressModel>> GetByUserId(string userId)
         {
-            return await _dbSet.AsNoTracking().Where(i => i.UserId == userId).ToListAsync();
+            return await this.ReadQuery().Where(i => i.UserId == userId).ToListAsync();
         }
 
         public async Task<bool> SetNewDefaultAddress(string addressId, bool saveChanges = true)

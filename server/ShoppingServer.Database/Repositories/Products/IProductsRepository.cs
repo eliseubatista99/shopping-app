@@ -5,5 +5,9 @@ namespace ShoppingServer.Database.Repositories
 {
     public interface IProductsRepository : IRepository<ProductModel>
     {
+        public Task<(List<ProductModel> Data, bool HasMorePages)> Search(string? text, decimal? score, double? maxPrice, double? minPrice, bool? bestSeller, bool? freeShipping, string? category, int? page = 1, int? pageSize = 10);
+
+        public Task<List<ProductModel>> GetVariations(string groupId);
+
     }
 }

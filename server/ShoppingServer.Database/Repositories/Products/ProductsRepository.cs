@@ -13,6 +13,53 @@ namespace ShoppingServer.Database.Repositories
         {
             return base.GetByIdAsync(id);
         }
+
+        public Task<List<ProductModel>> GetVariations(string groupId)
+        {
+            return this.ReadQuery().Where(p => p.GroupId == groupId).ToListAsync();
+        }
+
+        public Task<(List<ProductModel> Data, bool HasMorePages)> Search(string? text, decimal? score, double? maxPrice, double? minPrice, bool? bestSeller, bool? freeShipping, string? category, int? page = 1, int? pageSize = 10)
+        {
+            var query = this.ReadQuery();
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                query = query.Where(p => p.Name.Contains(text));
+            }
+
+            if (score != null)
+            {
+                query = query.Where(p => p.Score == score);
+            }
+
+            if (maxPrice != null)
+            {
+                query = query.Where(p => p.Price <= maxPrice);
+            }
+
+            if (minPrice != null)
+            {
+                query = query.Where(p => p.Price >= minPrice);
+            }
+
+            if (bestSeller != null)
+            {
+                query = query.Where(p => p.BestSeller == bestSeller);
+            }
+
+            if (freeShipping != null)
+            {
+                query = query.Where(p => freeShipping.Value ? p.ShippingCost == 0 : p.ShippingCost > 0);
+            }
+
+            if (!string.IsNullOrEmpty(category))
+            {
+                //query = query.Where(p => p.Category == category);
+            }
+
+            return query.ExecutePaginatedRead(page, pageSize);
+        }
     }
 }
 

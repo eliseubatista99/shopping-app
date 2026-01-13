@@ -6,8 +6,6 @@ namespace ShoppingApp.Database.Models
 
         public required string Name { get; set; }
 
-        public required byte[]? Image { get; set; }
-
         public required double Price { get; set; }
 
         public required decimal Score { get; set; }
@@ -19,6 +17,8 @@ namespace ShoppingApp.Database.Models
         public required bool BestSeller { get; set; }
 
         public required string SellerId { get; set; }
+
+        public required string GroupId { get; set; }
 
         public double OriginalPrice { get; set; }
 

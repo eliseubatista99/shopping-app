@@ -16,12 +16,12 @@ namespace ShoppingServer.Database.Repositories
 
         public async Task<UserModel?> GetByEmail(string email)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.Email == email);
+            return await this.ReadQuery().FirstOrDefaultAsync(i => i.Email == email);
         }
 
         public async Task<UserModel?> GetUserByPhoneNumber(string phoneNumber)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.PhoneNumber == phoneNumber);
+            return await this.ReadQuery().FirstOrDefaultAsync(i => i.PhoneNumber == phoneNumber);
         }
     }
 }

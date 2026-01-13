@@ -16,12 +16,12 @@ namespace ShoppingServer.Database.Repositories
 
         public async Task<TokenModel?> GetByToken(string token)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.Token == token);
+            return await this.ReadQuery().FirstOrDefaultAsync(i => i.Token == token);
         }
 
         public async Task<TokenModel?> GetByUserId(string userId)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(i => i.UserId == userId);
+            return await this.ReadQuery().FirstOrDefaultAsync(i => i.UserId == userId);
         }
 
         public async Task<bool> DeleteByUserIdAsync(string userId, bool saveChanges = true)

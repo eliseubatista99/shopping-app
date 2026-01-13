@@ -5,6 +5,6 @@ namespace ShoppingServer.Database.Repositories
 {
     public interface IRelatedProductsRepository : IRepository<RelatedProductModel>
     {
-        public Task<bool> DeleteById(string id, bool saveChanges = true);
+        public Task<List<RelatedProductModel>> GetRelatedProducts(string id);
     }
 }

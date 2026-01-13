@@ -16,7 +16,7 @@ namespace ShoppingServer.Database.Repositories
 
         public Task<List<DocumentModel>> GetByProductId(string productId)
         {
-            return _dbSet.AsNoTracking().Where(p => p.ProductId == productId).ToListAsync();
+            return this.ReadQuery().Where(p => p.ProductId == productId).ToListAsync();
         }
     }
 }

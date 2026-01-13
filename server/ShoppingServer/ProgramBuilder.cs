@@ -22,12 +22,16 @@ namespace ShoppingApp
             {
                 Builder.Services.AddSingleton<IAppTokenProvider, AppTokenProvider>();
 
-                Builder.Services.AddScoped<ITokensRepository, TokensRepository>();
                 Builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+                Builder.Services.AddScoped<ITokensRepository, TokensRepository>();
                 Builder.Services.AddScoped<IAddressesRepository, AddressesRepository>();
                 Builder.Services.AddScoped<ISellersRepository, SellersRepository>();
-                Builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
+                Builder.Services.AddScoped<IProductVariantGroupsRepository, ProductVariantGroupsRepository>();
                 Builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+                Builder.Services.AddScoped<IProductImagesRepository, ProductImagesRepository>();
+                Builder.Services.AddScoped<IRelatedProductsRepository, RelatedProductsRepository>();
+                Builder.Services.AddScoped<IProductCombinationsRepository, ProductCombinationsRepository>();
+                Builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
                 Builder.Services.AddScoped<ICartsRepository, CartsRepository>();
             }
         }
