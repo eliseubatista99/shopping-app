@@ -14,9 +14,9 @@ namespace ShoppingServer.Database.Repositories
             return base.GetByIdAsync(id);
         }
 
-        public async Task<bool> DeleteById(string id, bool saveChanges = true)
+        public Task<List<DocumentModel>> GetByProductId(string productId)
         {
-            return await DeleteAsync(i => i.Id == id, saveChanges);
+            return _dbSet.AsNoTracking().Where(p => p.ProductId == productId).ToListAsync();
         }
     }
 }

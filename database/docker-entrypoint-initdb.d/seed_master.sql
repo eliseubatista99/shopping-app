@@ -2,5 +2,9 @@
 \i /docker-entrypoint-initdb.d/02_table_tokens.sql
 \i /docker-entrypoint-initdb.d/03_table_addresses.sql
 \i /docker-entrypoint-initdb.d/04_table_sellers.sql
-\i /docker-entrypoint-initdb.d/05_table_products.sql
-\i /docker-entrypoint-initdb.d/06_table_documents.sql
+\i /docker-entrypoint-initdb.d/05_table_products_variant_group.sql
+\i /docker-entrypoint-initdb.d/06_table_products.sql
+\i /docker-entrypoint-initdb.d/07_table_product_images.sql
+\i /docker-entrypoint-initdb.d/08_table_related_products.sql
+\i /docker-entrypoint-initdb.d/09_table_product_combinations.sql
+\i /docker-entrypoint-initdb.d/10_table_documents.sql

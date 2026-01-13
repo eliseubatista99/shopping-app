@@ -6,6 +6,8 @@ namespace ShoppingApp.Database.Models
 
         public required string Name { get; set; }
 
+        public string? ProductId { get; set; }
+
         public string? Content { get; set; }
     }
 }

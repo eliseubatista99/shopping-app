@@ -13,11 +13,6 @@ namespace ShoppingServer.Database.Repositories
         {
             return base.GetByIdAsync(id);
         }
-
-        public async Task<bool> DeleteById(string id, bool saveChanges = true)
-        {
-            return await DeleteAsync(i => i.Id == id, saveChanges);
-        }
     }
 }
 
