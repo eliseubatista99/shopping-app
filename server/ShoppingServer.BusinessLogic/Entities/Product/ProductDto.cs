@@ -9,6 +9,8 @@ namespace ShoppingServer.BusinessLogic.Entities
 
         public required string Name { get; set; }
 
+        public required string Category { get; set; }
+
         public required string Image { get; set; }
 
         public required double Price { get; set; }
@@ -24,5 +26,7 @@ namespace ShoppingServer.BusinessLogic.Entities
         public required bool BestSeller { get; set; }
 
         public bool? IsWishlisted { get; set; }
+
+        public DateTimeOffset? CreatedAt { get; set; }
     }
 }

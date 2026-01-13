@@ -6,6 +6,12 @@ namespace ShoppingServer.Database.Repositories
     {
         public BaseAppRepository(AppDbContext context) : base(context)
         {
+
+        }
+
+        protected virtual AppDbContext GetDbContext()
+        {
+            return (this._context as AppDbContext)!;
         }
     }
 }

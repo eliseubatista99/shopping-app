@@ -6,6 +6,8 @@ namespace ShoppingApp.Database.Models
 
         public required string Name { get; set; }
 
+        public required string Category { get; set; }
+
         public required double Price { get; set; }
 
         public required decimal Score { get; set; }
@@ -40,6 +42,6 @@ namespace ShoppingApp.Database.Models
 
         public int? Warranty { get; set; }
 
-        public DateTimeOffset? EstimatedDeliveryDate { get; set; }
+        public DateTimeOffset? CreatedAt { get; set; }
     }
 }

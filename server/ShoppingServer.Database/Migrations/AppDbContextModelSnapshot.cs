@@ -81,6 +81,58 @@ namespace ShoppingServer.Database.Migrations
                     b.ToTable("addresses", (string)null);
                 });
 
+            modelBuilder.Entity("ShoppingApp.Database.Models.CartModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("product_id");
+
+                    b.Property<string>("Quantity")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("quantity");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_carts");
+
+                    b.ToTable("carts", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.DocumentModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text")
+                        .HasColumnName("content");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("text")
+                        .HasColumnName("product_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_documents");
+
+                    b.ToTable("documents", (string)null);
+                });
+
             modelBuilder.Entity("ShoppingApp.Database.Models.ProductCombinationModel", b =>
                 {
                     b.Property<string>("ProductId")
@@ -92,15 +144,41 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnName("combined_product_id");
 
                     b.HasKey("ProductId", "CombinedProductId")
-                        .HasName("pk_product_combination_model");
+                        .HasName("pk_product_combinations");
 
                     b.HasIndex("CombinedProductId")
-                        .HasDatabaseName("ix_product_combination_model_combined_product_id");
+                        .HasDatabaseName("ix_product_combinations_combined_product_id");
 
-                    b.ToTable("product_combination_model", null, t =>
+                    b.ToTable("product_combinations", null, t =>
                         {
                             t.HasCheckConstraint("CK_ProductCombination_SelfReference", "\"ProductId\" <> \"CombinedProductId\"");
                         });
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.ProductImageModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("bytea")
+                        .HasColumnName("image");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("product_id");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer")
+                        .HasColumnName("sort_order");
+
+                    b.HasKey("Id")
+                        .HasName("pk_product_images");
+
+                    b.ToTable("product_images", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.ProductModel", b =>
@@ -117,13 +195,18 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("text")
                         .HasColumnName("brand");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("category");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<decimal?>("Depth")
                         .HasColumnType("numeric")
                         .HasColumnName("depth");
-
-                    b.Property<DateTimeOffset?>("EstimatedDeliveryDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("estimated_delivery_date");
 
                     b.Property<string>("GroupId")
                         .IsRequired()
@@ -189,9 +272,26 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnName("width");
 
                     b.HasKey("Id")
-                        .HasName("pk_product_model");
+                        .HasName("pk_products");
 
-                    b.ToTable("product_model", (string)null);
+                    b.ToTable("products", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.ProductVariantGroupModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_product_variants");
+
+                    b.ToTable("product_variants", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.RelatedProductModel", b =>
@@ -205,15 +305,36 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnName("related_product_id");
 
                     b.HasKey("ProductId", "RelatedProductId")
-                        .HasName("pk_related_product_model");
+                        .HasName("pk_related_products");
 
                     b.HasIndex("RelatedProductId")
-                        .HasDatabaseName("ix_related_product_model_related_product_id");
+                        .HasDatabaseName("ix_related_products_related_product_id");
 
-                    b.ToTable("related_product_model", null, t =>
+                    b.ToTable("related_products", null, t =>
                         {
                             t.HasCheckConstraint("CK_RelatedProduct_SelfReference", "\"ProductId\" <> \"RelatedProductId\"");
                         });
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.SellerModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("bytea")
+                        .HasColumnName("image");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_sellers");
+
+                    b.ToTable("sellers", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.TokenModel", b =>
@@ -299,14 +420,14 @@ namespace ShoppingServer.Database.Migrations
                         .HasForeignKey("CombinedProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_product_combination_model_product_model_combined_product_id");
+                        .HasConstraintName("fk_product_combinations_products_combined_product_id");
 
                     b.HasOne("ShoppingApp.Database.Models.ProductModel", null)
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_product_combination_model_product_model_product_id");
+                        .HasConstraintName("fk_product_combinations_products_product_id");
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.RelatedProductModel", b =>
@@ -316,14 +437,14 @@ namespace ShoppingServer.Database.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_related_product_model_product_model_product_id");
+                        .HasConstraintName("fk_related_products_products_product_id");
 
                     b.HasOne("ShoppingApp.Database.Models.ProductModel", null)
                         .WithMany()
                         .HasForeignKey("RelatedProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_related_product_model_product_model_related_product_id");
+                        .HasConstraintName("fk_related_products_products_related_product_id");
                 });
 #pragma warning restore 612, 618
         }

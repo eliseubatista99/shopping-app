@@ -1,3 +1,4 @@
+using Database.PostgreSql.Extensions;
 using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Database.Models;
 

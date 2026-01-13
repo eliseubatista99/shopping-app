@@ -5,6 +5,7 @@ CREATE TABLE
   IF NOT EXISTS products (
     id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
+    category VARCHAR(100),
     price DOUBLE PRECISION NOT NULL,
     score NUMERIC(3, 2) NOT NULL,
     score_count INTEGER NOT NULL,
@@ -22,7 +23,7 @@ CREATE TABLE
     width NUMERIC(10, 2),
     depth NUMERIC(10, 2),
     warranty INTEGER,
-    estimated_delivery_date TIMESTAMPTZ
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
 CREATE INDEX idx_groups ON products (group_id);
@@ -31,6 +32,7 @@ WITH
   new_values (
     id,
     name,
+    category,
     price,
     score,
     score_count,
@@ -47,13 +49,13 @@ WITH
     height,
     width,
     depth,
-    warranty,
-    estimated_delivery_date
+    warranty
   ) AS (
     VALUES
       (
         'crazy274a-6083-47de-a8eb-133d248ee0f8',
         'Gamer Chair',
+        'Office',
         199.99,
         4.75,
         124,
@@ -70,12 +72,12 @@ WITH
         120.00,
         60.00,
         65.00,
-        24,
-        NOW () + INTERVAL '5 days'
+        24
       ),
       (
         'atlas274a-6083-47de-a8eb-133d248ee0f8',
         'Gamer Chair',
+        'Office',
         199.99,
         4.75,
         124,
@@ -92,14 +94,14 @@ WITH
         120.00,
         60.00,
         65.00,
-        24,
-        NOW () + INTERVAL '5 days'
+        24
       )
   )
 INSERT INTO
   products (
     id,
     name,
+    category,
     price,
     score,
     score_count,
@@ -116,8 +118,7 @@ INSERT INTO
     height,
     width,
     depth,
-    warranty,
-    estimated_delivery_date
+    warranty
   )
 SELECT
   *
