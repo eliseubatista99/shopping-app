@@ -10,4 +10,5 @@
 \i /docker-entrypoint-initdb.d/10_table_product_combinations.sql
 \i /docker-entrypoint-initdb.d/11_table_carts.sql
 \i /docker-entrypoint-initdb.d/12_table_orders.sql
-\i /docker-entrypoint-initdb.d/13_table_documents.sql
+\i /docker-entrypoint-initdb.d/13_table_order_status.sql
+\i /docker-entrypoint-initdb.d/14_table_documents.sql
