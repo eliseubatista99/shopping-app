@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Database.PostgreSql.Extensions;
 using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Entities;
 
@@ -20,20 +21,64 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.CountryCode, opt => opt.MapFrom(s => s.CountryCode))
             .ForMember(d => d.IsDefault, opt => opt.MapFrom(s => s.IsDefault));
 
+            CreateMap<SellerModel, SellerDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image));
 
             CreateMap<ProductModel, ProductDto>()
-                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
-                .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
-                .ForMember(d => d.Category, opt => opt.MapFrom(s => s.Category))
-                .ForMember(d => d.Image, opt => opt.Ignore())
-                .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
-                .ForMember(d => d.OriginalPrice, opt => opt.MapFrom(s => s.OriginalPrice))
-                .ForMember(d => d.Score, opt => opt.MapFrom(s => s.Score))
-                .ForMember(d => d.ScoreCount, opt => opt.MapFrom(s => s.ScoreCount))
-                .ForMember(d => d.ShippingCost, opt => opt.MapFrom(s => s.ShippingCost))
-                .ForMember(d => d.BestSeller, opt => opt.MapFrom(s => s.BestSeller))
-                .ForMember(d => d.IsWishlisted, opt => opt.MapFrom(s => s.IsWishlisted))
-                .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt));
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+            .ForMember(d => d.Category, opt => opt.MapFrom(s => s.Category))
+            .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
+            .ForMember(d => d.OriginalPrice, opt => opt.MapFrom(s => s.OriginalPrice))
+            .ForMember(d => d.Score, opt => opt.MapFrom(s => s.Score))
+            .ForMember(d => d.ScoreCount, opt => opt.MapFrom(s => s.ScoreCount))
+            .ForMember(d => d.ShippingCost, opt => opt.MapFrom(s => s.ShippingCost))
+            .ForMember(d => d.BestSeller, opt => opt.MapFrom(s => s.BestSeller))
+            .ForMember(d => d.IsWishlisted, opt => opt.MapFrom(s => s.IsWishlisted))
+            .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt));
+
+            CreateMap<ProductModel, ProductDetailDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(d => d.Category, opt => opt.MapFrom(s => s.Category))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+            .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
+            .ForMember(d => d.OriginalPrice, opt => opt.MapFrom(s => s.OriginalPrice))
+            .ForMember(d => d.Score, opt => opt.MapFrom(s => s.Score))
+            .ForMember(d => d.ScoreCount, opt => opt.MapFrom(s => s.ScoreCount))
+            .ForMember(d => d.ShippingCost, opt => opt.MapFrom(s => s.ShippingCost))
+            .ForMember(d => d.BestSeller, opt => opt.MapFrom(s => s.BestSeller))
+            .ForMember(d => d.IsWishlisted, opt => opt.MapFrom(s => s.IsWishlisted))
+            .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt))
+            .ForMember(d => d.Specifications, opt => opt.MapFrom(s => new ProductSpecificationDto
+            {
+                Brand = s.Brand,
+                Origin = s.Origin,
+                Manufacturer = s.Manufacturer,
+                Height = s.Height,
+                Width = s.Width,
+                Depth = s.Depth,
+                Warranty = s.Warranty,
+            }))
+            .ForMember(d => d.Seller, opt => opt.Ignore())
+            .ForMember(d => d.Documents, opt => opt.Ignore())
+            .ForMember(d => d.DetailImages, opt => opt.Ignore())
+            .ForMember(d => d.ProductOptions, opt => opt.Ignore())
+            .ForMember(d => d.RelatedProducts, opt => opt.Ignore())
+            .ForMember(d => d.ComboProducts, opt => opt.Ignore())
+            .ForMember(d => d.Reviews, opt => opt.Ignore())
+            .ForMember(d => d.EstimatedDeliveryDate, opt => opt.Ignore());
+
+            CreateMap<ProductModel, ProductOptionDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+            .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
+            .ForMember(d => d.OriginalPrice, opt => opt.MapFrom(s => s.OriginalPrice));
+
         }
     }
 }

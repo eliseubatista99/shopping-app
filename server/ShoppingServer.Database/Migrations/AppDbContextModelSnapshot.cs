@@ -217,6 +217,11 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("height");
 
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("bytea")
+                        .HasColumnName("image");
+
                     b.Property<bool?>("IsWishlisted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_wishlisted");

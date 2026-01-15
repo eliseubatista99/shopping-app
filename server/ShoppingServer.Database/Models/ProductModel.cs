@@ -6,6 +6,8 @@ namespace ShoppingApp.Database.Models
 
         public required string Name { get; set; }
 
+        public required byte[] Image { get; set; }
+
         public required string Category { get; set; }
 
         public required double Price { get; set; }

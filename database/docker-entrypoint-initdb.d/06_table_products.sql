@@ -5,6 +5,7 @@ CREATE TABLE
   IF NOT EXISTS products (
     id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
+    image BYTEA,
     category VARCHAR(100),
     price DOUBLE PRECISION NOT NULL,
     score NUMERIC(3, 2) NOT NULL,
@@ -32,6 +33,7 @@ WITH
   new_values (
     id,
     name,
+    image,
     category,
     price,
     score,
@@ -55,6 +57,7 @@ WITH
       (
         'crazy274a-6083-47de-a8eb-133d248ee0f8',
         'Gamer Chair',
+        pg_read_binary_file ('/docker-entrypoint-initdb.d/product.jpg'),
         'Office',
         199.99,
         4.75,
@@ -77,6 +80,7 @@ WITH
       (
         'atlas274a-6083-47de-a8eb-133d248ee0f8',
         'Gamer Chair',
+        pg_read_binary_file ('/docker-entrypoint-initdb.d/product.jpg'),
         'Office',
         199.99,
         4.75,
@@ -101,6 +105,7 @@ INSERT INTO
   products (
     id,
     name,
+    image,
     category,
     price,
     score,

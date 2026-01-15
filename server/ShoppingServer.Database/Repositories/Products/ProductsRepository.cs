@@ -15,6 +15,11 @@ namespace ShoppingServer.Database.Repositories
             return base.GetByIdAsync(id);
         }
 
+        public Task<List<ProductModel>> GetByIds(IEnumerable<string> Ids)
+        {
+            return this.ReadQuery().Where(i => Ids.Contains(i.Id)).ToListAsync();
+        }
+
         public Task<List<ProductModel>> GetVariations(string groupId)
         {
             return this.ReadQuery().Where(p => p.GroupId == groupId).ToListAsync();

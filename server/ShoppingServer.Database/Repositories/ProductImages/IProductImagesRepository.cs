@@ -9,6 +9,6 @@ namespace ShoppingServer.Database.Repositories
 
         public Task<List<ProductImageModel>> GetProductImages(string id);
 
-        public Task<List<IGrouping<string, ProductImageModel>>> GetProductsImages(IEnumerable<string> productIds);
+        //public Task<List<IGrouping<string, ProductImageModel>>> GetProductsImages(IEnumerable<string> productIds);
     }
 }

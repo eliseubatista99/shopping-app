@@ -25,21 +25,21 @@ namespace ShoppingServer.Database.Repositories
         }
 
         //public Task<List<ProductImageModel>> GetProductsImages(List<string> productIds)
-        public Task<List<IGrouping<string, ProductImageModel>>> GetProductsImages(IEnumerable<string> productIds)
-        {
-            return this.ReadQuery().
-                  Where(i => productIds.Contains(i.ProductId))
-                  .OrderBy(i => i.SortOrder)
-                  .GroupBy(i => i.ProductId)
-                  //.Select(g => new ProductImageModel
-                  //{
-                  //    Id = g.Key,
-                  //    ProductId = g.Key,
-                  //    Image = g.OrderBy(i => i.SortOrder).First().Image,
-                  //    SortOrder = 0,
-                  //})
-                  .ToListAsync();
-        }
+        //public Task<List<IGrouping<string, ProductImageModel>>> GetProductsImages(IEnumerable<string> productIds)
+        //{
+        //    return this.ReadQuery().
+        //          Where(i => productIds.Contains(i.ProductId))
+        //          .OrderBy(i => i.SortOrder)
+        //          .GroupBy(i => i.ProductId)
+        //          //.Select(g => new ProductImageModel
+        //          //{
+        //          //    Id = g.Key,
+        //          //    ProductId = g.Key,
+        //          //    Image = g.OrderBy(i => i.SortOrder).First().Image,
+        //          //    SortOrder = 0,
+        //          //})
+        //          .ToListAsync();
+        //}
     }
 }
 

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260113155012_InitialMigration")]
+    [Migration("20260114145226_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -219,6 +219,11 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<decimal?>("Height")
                         .HasColumnType("numeric")
                         .HasColumnName("height");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("bytea")
+                        .HasColumnName("image");
 
                     b.Property<bool?>("IsWishlisted")
                         .HasColumnType("boolean")
