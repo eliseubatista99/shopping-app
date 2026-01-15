@@ -87,14 +87,17 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("text")
                         .HasColumnName("id");
 
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_selected");
+
                     b.Property<string>("ProductId")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("product_id");
 
-                    b.Property<string>("Quantity")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer")
                         .HasColumnName("quantity");
 
                     b.Property<string>("UserId")

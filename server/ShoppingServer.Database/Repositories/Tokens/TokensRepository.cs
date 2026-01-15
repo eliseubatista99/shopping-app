@@ -31,12 +31,23 @@ namespace ShoppingServer.Database.Repositories
 
         public async Task<bool> RevokeByUserId(string userId, bool saveChanges = true)
         {
-            return await UpdateAsync(
+            var success = false;
+
+            success = await UpdateAsync(
                 filter: i => i.UserId == userId,
-                set: setters => setters
-                        .SetProperty(e => e.RevokedAt, _ => DateTimeOffset.UtcNow),
-                saveChanges: saveChanges
+                updateAction: entity =>
+                {
+                    entity.RevokedAt = DateTimeOffset.UtcNow;
+                },
+                saveChanges: false
             );
+
+            if (saveChanges && success)
+            {
+                return await SaveChangesAsync();
+            }
+
+            return success;
         }
     }
 }

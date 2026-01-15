@@ -37,7 +37,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            var product = await ProductsHelper.BuildProductDetails(productInDb, this.ExecutionContext);
+            var product = await ObjectsFactory.BuildProductDetails(productInDb, this.ExecutionContext);
 
             output.Data = new ProductDetailOperationOutputDto
             {

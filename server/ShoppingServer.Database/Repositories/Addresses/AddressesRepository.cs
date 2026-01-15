@@ -21,12 +21,15 @@ namespace ShoppingServer.Database.Repositories
 
         public async Task<bool> SetNewDefaultAddress(string addressId, bool saveChanges = true)
         {
-            // Remove default address
-            var success = await UpdateAsync(
+            var success = false;
+
+            success = await UpdateAsync(
                 filter: i => i.IsDefault == true,
-                set: setters => setters
-                        .SetProperty(e => e.IsDefault, _ => false),
-                saveChanges: saveChanges
+                updateAction: entity =>
+                {
+                    entity.IsDefault = false;
+                },
+                saveChanges: false
             );
 
             if (!success)
@@ -34,12 +37,19 @@ namespace ShoppingServer.Database.Repositories
                 return false;
             }
 
-            // Set new default address
             success = await UpdateAsync(
                 filter: i => i.Id == addressId,
-                set: setters => setters
-                        .SetProperty(e => e.IsDefault, _ => true)
+                updateAction: entity =>
+                {
+                    entity.IsDefault = true;
+                },
+                saveChanges: false
             );
+
+            if (saveChanges && success)
+            {
+                return await SaveChangesAsync();
+            }
 
             return success;
         }

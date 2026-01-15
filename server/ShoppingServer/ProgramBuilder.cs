@@ -40,7 +40,8 @@ namespace ShoppingApp
         {
             return
             [
-                new ModelToDtoProfile()
+                new ModelToDtoProfile(),
+                new DtoToModelProfile()
             ];
         }
 

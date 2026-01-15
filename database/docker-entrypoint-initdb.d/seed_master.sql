@@ -7,4 +7,5 @@
 \i /docker-entrypoint-initdb.d/07_table_product_images.sql
 \i /docker-entrypoint-initdb.d/08_table_related_products.sql
 \i /docker-entrypoint-initdb.d/09_table_product_combinations.sql
-\i /docker-entrypoint-initdb.d/10_table_documents.sql
+\i /docker-entrypoint-initdb.d/10_table_carts.sql
+\i /docker-entrypoint-initdb.d/11_table_documents.sql

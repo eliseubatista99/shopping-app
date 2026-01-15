@@ -7,7 +7,7 @@ using ShoppingServer.Library;
 
 namespace ShoppingServer.BusinessLogic.Helpers
 {
-    public static class ProductsHelper
+    public static class ObjectsFactory
     {
         public static async Task<ProductDetailDto> BuildProductDetails(ProductModel source, IExecutionContext executionContext)
         {
@@ -56,6 +56,25 @@ namespace ShoppingServer.BusinessLogic.Helpers
             product.EstimatedDeliveryDate = null;
 
             return product;
+        }
+
+        public static async Task<List<CartProductDetailsDto>> BuildCartProductsDetails(List<CartModel> source, IExecutionContext executionContext)
+        {
+            var mapperProvider = executionContext.GetService<IMapper>();
+            var productsRepository = executionContext.GetService<IProductsRepository>();
+            var sellersRepository = executionContext.GetService<ISellersRepository>();
+
+            var cartItems = mapperProvider.Map<List<CartModel>, List<CartProductDetailsDto>>(source);
+
+            var productInDb = await productsRepository.GetByIds(source.Select(i => i.ProductId));
+            var products = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(productInDb);
+
+            cartItems.ForEach(c =>
+            {
+                c.Product = products.FirstOrDefault(p => p.Id == c.ProductId);
+            });
+
+            return cartItems;
         }
     }
 }

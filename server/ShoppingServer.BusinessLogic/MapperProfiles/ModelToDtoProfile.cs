@@ -79,6 +79,16 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
             .ForMember(d => d.OriginalPrice, opt => opt.MapFrom(s => s.OriginalPrice));
 
+            CreateMap<CartModel, CartProductDto>()
+            .ForMember(d => d.ProductId, opt => opt.MapFrom(s => s.ProductId))
+            .ForMember(d => d.Quantity, opt => opt.MapFrom(s => s.Quantity))
+            .ForMember(d => d.IsSelected, opt => opt.MapFrom(s => s.IsSelected));
+
+            CreateMap<CartModel, CartProductDetailsDto>()
+            .ForMember(d => d.ProductId, opt => opt.MapFrom(s => s.ProductId))
+            .ForMember(d => d.Quantity, opt => opt.MapFrom(s => s.Quantity))
+            .ForMember(d => d.IsSelected, opt => opt.MapFrom(s => s.IsSelected))
+            .ForMember(d => d.Product, opt => opt.Ignore());
         }
     }
 }
