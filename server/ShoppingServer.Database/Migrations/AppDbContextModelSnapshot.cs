@@ -136,6 +136,61 @@ namespace ShoppingServer.Database.Migrations
                     b.ToTable("documents", (string)null);
                 });
 
+            modelBuilder.Entity("ShoppingApp.Database.Models.PaymentMethodModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("text")
+                        .HasColumnName("card_number");
+
+                    b.Property<int?>("ExpirationMonth")
+                        .HasColumnType("integer")
+                        .HasColumnName("expiration_month");
+
+                    b.Property<int?>("ExpirationYear")
+                        .HasColumnType("integer")
+                        .HasColumnName("expiration_year");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("bytea")
+                        .HasColumnName("image");
+
+                    b.Property<bool?>("IsDefault")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_default");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Network")
+                        .HasColumnType("text")
+                        .HasColumnName("network");
+
+                    b.Property<string>("SecurityCode")
+                        .HasColumnType("text")
+                        .HasColumnName("security_code");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("type");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_payment_methods");
+
+                    b.ToTable("payment_methods", (string)null);
+                });
+
             modelBuilder.Entity("ShoppingApp.Database.Models.ProductCombinationModel", b =>
                 {
                     b.Property<string>("ProductId")

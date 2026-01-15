@@ -55,7 +55,7 @@ namespace ShoppingServer.Controllers
 
         [HttpPatch("/api/SetDefaultPaymentMethod")]
         [Authorize]
-        public Task<SetDefaultPaymentMethodResponseDto> SetDefaultPaymentMethod([FromBody] SetDefaultPaymentMethodOperationInputDto input)
+        public Task<SetDefaultPaymentMethodResponseDto> SetDefaultPaymentMethod([FromQuery] SetDefaultPaymentMethodOperationInputDto input)
         {
             return setDefaultPaymentMethodOperation.Execute<SetDefaultPaymentMethodResponseDto>(input);
         }

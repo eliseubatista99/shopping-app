@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
     public DbSet<UserModel> Users => Set<UserModel>();
     public DbSet<TokenModel> Tokens => Set<TokenModel>();
     public DbSet<AddressModel> Addresses => Set<AddressModel>();
+    public DbSet<PaymentMethodModel> PaymentMethods => Set<PaymentMethodModel>();
     public DbSet<SellerModel> Sellers => Set<SellerModel>();
     public DbSet<ProductVariantGroupModel> ProductVariants => Set<ProductVariantGroupModel>();
     public DbSet<ProductModel> Products => Set<ProductModel>();

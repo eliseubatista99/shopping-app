@@ -2,6 +2,8 @@
 using Database.PostgreSql.Extensions;
 using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Entities;
+using ShoppingServer.BusinessLogic.Enums;
+using ShoppingServer.BusinessLogic.Helpers;
 
 namespace ShoppingServer.BusinessLogic.MapperProfiles
 {
@@ -20,6 +22,28 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.Phone, opt => opt.MapFrom(s => s.Phone))
             .ForMember(d => d.CountryCode, opt => opt.MapFrom(s => s.CountryCode))
             .ForMember(d => d.IsDefault, opt => opt.MapFrom(s => s.IsDefault));
+
+            CreateMap<PaymentMethodModel, PaymentMethodDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Type, opt => opt.MapFrom(s => this.MapPaymentMethodType(s.Type)))
+            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(d => d.Network, opt => opt.MapFrom(s => s.Network))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+            .ForMember(d => d.CardNumberMasked, opt => opt.MapFrom(s => PaymentMethodHelper.MaskCardNumber(s.CardNumber)))
+            .ForMember(d => d.IsDefault, opt => opt.MapFrom(s => s.IsDefault));
+
+            CreateMap<PaymentMethodModel, PaymentMethodDetailsDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Type, opt => opt.MapFrom(s => this.MapPaymentMethodType(s.Type)))
+            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(d => d.Network, opt => opt.MapFrom(s => s.Network))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+            .ForMember(d => d.CardNumberMasked, opt => opt.MapFrom(s => PaymentMethodHelper.MaskCardNumber(s.CardNumber)))
+            .ForMember(d => d.IsDefault, opt => opt.MapFrom(s => s.IsDefault))
+            .ForMember(d => d.SecurityCode, opt => opt.MapFrom(s => s.SecurityCode))
+            .ForMember(d => d.CardNumberUnmasked, opt => opt.MapFrom(s => s.CardNumber))
+            .ForMember(d => d.ExpirationMonth, opt => opt.MapFrom(s => s.ExpirationMonth))
+            .ForMember(d => d.ExpirationYear, opt => opt.MapFrom(s => s.ExpirationYear));
 
             CreateMap<SellerModel, SellerDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
@@ -89,6 +113,19 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.Quantity, opt => opt.MapFrom(s => s.Quantity))
             .ForMember(d => d.IsSelected, opt => opt.MapFrom(s => s.IsSelected))
             .ForMember(d => d.Product, opt => opt.Ignore());
+        }
+
+        private PaymentMethodType MapPaymentMethodType(string type)
+        {
+            switch (type)
+            {
+                case "Card":
+                    return PaymentMethodType.Card;
+                case "Bank":
+                    return PaymentMethodType.Bank;
+                default:
+                    return PaymentMethodType.None;
+            }
         }
     }
 }
