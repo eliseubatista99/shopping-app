@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260116114335_InitialMigration")]
+    [Migration("20260116143740_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -129,6 +129,10 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("text")
                         .HasColumnName("name");
 
+                    b.Property<string>("OrderId")
+                        .HasColumnType("text")
+                        .HasColumnName("order_id");
+
                     b.Property<string>("ProductId")
                         .HasColumnType("text")
                         .HasColumnName("product_id");
@@ -234,9 +238,9 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnName("status_date");
 
                     b.HasKey("Id")
-                        .HasName("pk_order_status");
+                        .HasName("pk_orders_status");
 
-                    b.ToTable("order_status", (string)null);
+                    b.ToTable("orders_status", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.PaymentMethodModel", b =>
@@ -480,6 +484,45 @@ namespace ShoppingServer.Database.Migrations
                         {
                             t.HasCheckConstraint("CK_RelatedProduct_SelfReference", "\"ProductId\" <> \"RelatedProductId\"");
                         });
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.ReviewModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("product_id");
+
+                    b.Property<string>("ReviewerId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("reviewer_id");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("integer")
+                        .HasColumnName("score");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("title");
+
+                    b.HasKey("Id")
+                        .HasName("pk_reviews");
+
+                    b.ToTable("reviews", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.SellerModel", b =>

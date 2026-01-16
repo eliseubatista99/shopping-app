@@ -14,6 +14,11 @@ namespace ShoppingServer.Database.Repositories
             return base.GetByIdAsync(id);
         }
 
+        public Task<List<UserModel>> GetByIds(IEnumerable<string> ids)
+        {
+            return this.ReadQuery().Where(i => ids.Contains(i.Id)).ToListAsync();
+        }
+
         public async Task<UserModel?> GetByEmail(string email)
         {
             return await this.ReadQuery().FirstOrDefaultAsync(i => i.Email == email);

@@ -21,6 +21,7 @@ public class AppDbContext : DbContext
     public DbSet<OrderModel> Orders => Set<OrderModel>();
     public DbSet<OrderProductModel> OrderProducts => Set<OrderProductModel>();
     public DbSet<DocumentModel> Documents => Set<DocumentModel>();
+    public DbSet<ReviewModel> Reviews => Set<ReviewModel>();
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

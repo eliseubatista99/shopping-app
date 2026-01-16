@@ -9,13 +9,16 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
-        //public override Task<OrderModel?> GetByIdAsync(string id)
-        //{
-        //    return base.GetByIdAsync(id);
-        //}
 
 
-        public Task<(List<OrderModel> Data, bool HasMorePages)> GetByUserId(string userId, string? orderId, string? status, DateTimeOffset? startDate, DateTimeOffset? endDate, int? page = 1, int? pageSize = 10)
+        public Task<(List<OrderModel> Data, bool HasMorePages)> GetByUserId(
+            string userId,
+            string? orderId = null,
+            string? status = null,
+            DateTimeOffset? startDate = null,
+            DateTimeOffset? endDate = null,
+            int? page = 1,
+            int? pageSize = 10)
         {
             var query = this.ReadQuery();
 
@@ -41,8 +44,12 @@ namespace ShoppingServer.Database.Repositories
                 query = query.Where(p => p.StatusDate <= endDate);
             }
 
+            query.OrderByDescending(o => o.CreatedAt);
+
             return query.ExecutePaginatedRead(page, pageSize);
         }
+
+
     }
 }
 

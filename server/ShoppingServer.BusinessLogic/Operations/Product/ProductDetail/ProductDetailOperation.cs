@@ -9,12 +9,10 @@ namespace ShoppingServer.BusinessLogic.Operations
     public class ProductDetailOperation : AppOperationBase<ProductDetailOperationInputDto, ProductDetailOperationOutputDto>
     {
         private IProductsRepository productsRepository;
-        private IProductImagesRepository productImagesRepository;
 
         public ProductDetailOperation(BaseAppController _controller) : base(_controller)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
-            productImagesRepository = ExecutionContext.GetService<IProductImagesRepository>();
         }
 
         protected override async Task HandleExecution()

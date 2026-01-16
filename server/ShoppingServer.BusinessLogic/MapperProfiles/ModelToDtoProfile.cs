@@ -11,17 +11,27 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
     {
         public ModelToDtoProfile()
         {
-            CreateMap<AddressModel, AddressDto>()
+            CreateMap<UserModel, ClientInfoDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
             .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
-            .ForMember(d => d.PostalCode, opt => opt.MapFrom(s => s.PostalCode))
-            .ForMember(d => d.City, opt => opt.MapFrom(s => s.City))
-            .ForMember(d => d.Location, opt => opt.MapFrom(s => s.Location))
-            .ForMember(d => d.Street, opt => opt.MapFrom(s => s.Street))
-            .ForMember(d => d.Country, opt => opt.MapFrom(s => s.Country))
-            .ForMember(d => d.Phone, opt => opt.MapFrom(s => s.Phone))
-            .ForMember(d => d.CountryCode, opt => opt.MapFrom(s => s.CountryCode))
-            .ForMember(d => d.IsDefault, opt => opt.MapFrom(s => s.IsDefault));
+            .ForMember(d => d.Email, opt => opt.MapFrom(s => s.Email))
+            .ForMember(d => d.PhoneNumber, opt => opt.MapFrom(s => s.PhoneNumber))
+            .ForMember(d => d.PhoneNumberPrefix, opt => opt.MapFrom(s => s.PhoneNumberPrefix))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+            .ForMember(d => d.Addresses, opt => opt.Ignore())
+            .ForMember(d => d.PaymentMethods, opt => opt.Ignore());
+
+            CreateMap<AddressModel, AddressDto>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+                .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+                .ForMember(d => d.PostalCode, opt => opt.MapFrom(s => s.PostalCode))
+                .ForMember(d => d.City, opt => opt.MapFrom(s => s.City))
+                .ForMember(d => d.Location, opt => opt.MapFrom(s => s.Location))
+                .ForMember(d => d.Street, opt => opt.MapFrom(s => s.Street))
+                .ForMember(d => d.Country, opt => opt.MapFrom(s => s.Country))
+                .ForMember(d => d.Phone, opt => opt.MapFrom(s => s.Phone))
+                .ForMember(d => d.CountryCode, opt => opt.MapFrom(s => s.CountryCode))
+                .ForMember(d => d.IsDefault, opt => opt.MapFrom(s => s.IsDefault));
 
             CreateMap<PaymentMethodModel, PaymentMethodDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
@@ -97,11 +107,11 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.EstimatedDeliveryDate, opt => opt.Ignore());
 
             CreateMap<ProductModel, ProductOptionDto>()
-            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
-            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
-            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
-            .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
-            .ForMember(d => d.OriginalPrice, opt => opt.MapFrom(s => s.OriginalPrice));
+                    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+                    .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+                    .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+                    .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
+                    .ForMember(d => d.OriginalPrice, opt => opt.MapFrom(s => s.OriginalPrice));
 
             CreateMap<CartModel, CartProductDto>()
             .ForMember(d => d.ProductId, opt => opt.MapFrom(s => s.ProductId))
@@ -115,15 +125,15 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.Product, opt => opt.Ignore());
 
             CreateMap<OrderModel, OrderDto>()
-            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
-            .ForMember(d => d.Products, opt => opt.Ignore())
-            .ForMember(d => d.Date, opt => opt.MapFrom(s => s.CreatedAt))
-            .ForMember(d => d.CurrentStatus, opt => opt.MapFrom(s => new OrderStatusEntryDto
-            {
-                Status = this.MapOrderStatus(s.Status),
-                Date = s.StatusDate.GetValueOrDefault(),
-            }))
-            .ForMember(d => d.TotalCost, opt => opt.MapFrom(s => s.TotalCost));
+                    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+                    .ForMember(d => d.Products, opt => opt.Ignore())
+                    .ForMember(d => d.Date, opt => opt.MapFrom(s => s.CreatedAt))
+                    .ForMember(d => d.CurrentStatus, opt => opt.MapFrom(s => new OrderStatusEntryDto
+                    {
+                        Status = this.MapOrderStatus(s.Status),
+                        Date = s.StatusDate.GetValueOrDefault(),
+                    }))
+                    .ForMember(d => d.TotalCost, opt => opt.MapFrom(s => s.TotalCost));
 
             CreateMap<OrderModel, OrderDetailDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
@@ -145,6 +155,24 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             CreateMap<OrdersStatusModel, OrderStatusEntryDto>()
             .ForMember(d => d.Status, opt => opt.MapFrom(s => this.MapOrderStatus(s.Status)))
             .ForMember(d => d.Date, opt => opt.MapFrom(s => s.StatusDate));
+
+            CreateMap<DocumentModel, DocumentDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(d => d.Content, opt => opt.MapFrom(s => s.Content));
+
+            CreateMap<ReviewModel, ReviewDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.ReviewerId, opt => opt.MapFrom(s => s.ReviewerId))
+            .ForMember(d => d.ReviewerName, opt => opt.Ignore())
+            .ForMember(d => d.ReviewerIcon, opt => opt.Ignore())
+            .ForMember(d => d.Score, opt => opt.MapFrom(s => s.Score))
+            .ForMember(d => d.Title, opt => opt.MapFrom(s => s.Title))
+            .ForMember(d => d.Comment, opt => opt.MapFrom(s => s.Comment))
+            .ForMember(d => d.ProductId, opt => opt.MapFrom(s => s.ProductId))
+            .ForMember(d => d.ProductName, opt => opt.Ignore())
+            .ForMember(d => d.ProductIcon, opt => opt.Ignore())
+            .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt));
         }
 
         private PaymentMethodType MapPaymentMethodType(string type)

@@ -9,6 +9,5 @@ namespace ShoppingServer.Database.Repositories
 
         public Task<List<ProductModel>> GetByIds(IEnumerable<string> Ids);
         public Task<List<ProductModel>> GetVariations(string groupId);
-
     }
 }

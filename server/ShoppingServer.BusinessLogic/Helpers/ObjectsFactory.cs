@@ -9,14 +9,21 @@ namespace ShoppingServer.BusinessLogic.Helpers
 {
     public static class ObjectsFactory
     {
-        public static async Task<ProductDetailDto> BuildProductDetails(ProductModel source, IExecutionContext executionContext)
+        public static async Task<ProductDetailDto?> BuildProductDetails(ProductModel? source, IExecutionContext executionContext)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             var mapperProvider = executionContext.GetService<IMapper>();
             var imagesRepository = executionContext.GetService<IProductImagesRepository>();
             var productsRepository = executionContext.GetService<IProductsRepository>();
             var relatedProductsRepository = executionContext.GetService<IRelatedProductsRepository>();
             var productCombinationsRepository = executionContext.GetService<IProductCombinationsRepository>();
             var sellersRepository = executionContext.GetService<ISellersRepository>();
+            var reviewsRepository = executionContext.GetService<IReviewsRepository>();
+            var documentsRepository = executionContext.GetService<IDocumentsRepository>();
 
             var product = mapperProvider.Map<ProductModel, ProductDetailDto>(source);
 
@@ -31,28 +38,22 @@ namespace ShoppingServer.BusinessLogic.Helpers
 
             var seller = await sellersRepository.GetByIdAsync(source.SellerId);
 
+            var reviews = await reviewsRepository.SearchReviews(productId: source.Id);
+
+            var documents = await documentsRepository.GetByProductId(source.Id);
+
 
             product.DetailImages = productImages?.Select(i => i.Image?.ToBase64DataUri() ?? string.Empty).ToList();
             product.ProductOptions = mapperProvider.Map<List<ProductModel>, List<ProductOptionDto>>(variations);
             product.RelatedProducts = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(relatedProducts);
             product.ComboProducts = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(productCombinations);
-            //product.Specifications = new ProductSpecificationDto
-            //{
-            //    Brand = source.Brand,
-            //    Origin = source.Origin,
-            //    Manufacturer = source.Manufacturer,
-            //    Height = source.Height,
-            //    Width = source.Width,
-            //    Depth = source.Depth,
-            //    Warranty = source.Warranty,
-            //};
+            product.Reviews = mapperProvider.Map<List<ReviewModel>, List<ReviewDto>>(reviews.Data);
+            product.Documents = mapperProvider.Map<List<DocumentModel>, List<DocumentDto>>(documents);
 
             if (seller != null)
             {
                 product.Seller = mapperProvider.Map<SellerModel, SellerDto>(seller);
             }
-            product.Documents = null;
-            product.Reviews = null;
             product.EstimatedDeliveryDate = null;
 
             return product;
@@ -127,6 +128,78 @@ namespace ShoppingServer.BusinessLogic.Helpers
             }
 
             return orderDetails;
+        }
+
+        public static async Task<List<ReviewDto>> BuildReviews(List<ReviewModel> source, IExecutionContext executionContext)
+        {
+            var mapperProvider = executionContext.GetService<IMapper>();
+            var productsRepository = executionContext.GetService<IProductsRepository>();
+            var usersRepository = executionContext.GetService<IUsersRepository>();
+
+            var reviews = mapperProvider.Map<List<ReviewModel>, List<ReviewDto>>(source);
+
+            var producstInDb = await productsRepository.GetByIds(source.Select(s => s.ProductId));
+            var reviewersInDb = await usersRepository.GetByIds(source.Select(s => s.ReviewerId));
+
+            reviews.ForEach(r =>
+            {
+                var productInDb = producstInDb.FirstOrDefault(p => p.Id == r.ProductId);
+                var reviewerInDb = reviewersInDb.FirstOrDefault(u => u.Id == r.ReviewerId);
+
+                if (productInDb != null)
+                {
+                    r.ProductName = productInDb.Name;
+                    r.ProductIcon = productInDb.Image.ToBase64DataUri();
+                }
+                if (reviewerInDb != null)
+                {
+                    r.ReviewerName = reviewerInDb.Name;
+                    r.ReviewerIcon = reviewerInDb.Image.ToBase64DataUri();
+                }
+            });
+
+            return reviews;
+        }
+
+        public static async Task<ReviewDto?> BuildReview(ReviewModel? source, IExecutionContext executionContext)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            var reviews = await BuildReviews(new List<ReviewModel> { source }, executionContext);
+
+            return reviews.FirstOrDefault();
+        }
+
+        public static async Task<ClientInfoDto?> BuildClientInfo(UserModel? source, IExecutionContext executionContext)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            var mapperProvider = executionContext.GetService<IMapper>();
+            var paymentMethodsRepository = executionContext.GetService<IPaymentMethodsRepository>();
+            var addressesRepository = executionContext.GetService<IAddressesRepository>();
+
+            var clientInfo = mapperProvider.Map<UserModel, ClientInfoDto>(source);
+
+            var paymentMethodsInDb = await paymentMethodsRepository.GetByUserId(clientInfo.Id);
+            var addressesInDb = await addressesRepository.GetByUserId(clientInfo.Id);
+
+            if (paymentMethodsInDb != null)
+            {
+                clientInfo.PaymentMethods = mapperProvider.Map<List<PaymentMethodModel>, List<PaymentMethodDto>>(paymentMethodsInDb);
+            }
+
+            if (addressesInDb != null)
+            {
+                clientInfo.Addresses = mapperProvider.Map<List<AddressModel>, List<AddressDto>>(addressesInDb);
+            }
+
+            return clientInfo;
         }
 
         private static async Task<List<(OrderDto order, List<ProductDto> products)>> GetOrdersProducts(List<OrderModel> source, IExecutionContext executionContext)

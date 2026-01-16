@@ -13,3 +13,4 @@
 \i /docker-entrypoint-initdb.d/13_table_order_status.sql
 \i /docker-entrypoint-initdb.d/14_table_order_products.sql
 \i /docker-entrypoint-initdb.d/15_table_documents.sql
+\i /docker-entrypoint-initdb.d/16_table_reviews.sql

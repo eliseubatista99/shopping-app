@@ -23,7 +23,10 @@ namespace ShoppingServer.BusinessLogic.Entities
 
         public required string ProductName { get; set; }
 
+        public required DateTimeOffset CreatedAt { get; set; }
+
         public string? ProductIcon { get; set; }
+
 
     }
 }

@@ -19,6 +19,11 @@ namespace ShoppingServer.Database.Repositories
             return await DeleteAsync(i => ids.Contains(i.ProductId) && i.UserId == userId, saveChanges);
         }
 
+        public Task<int> GetCartCount(string userId)
+        {
+            return this.ReadQuery().CountAsync(i => i.UserId == userId);
+        }
+
         public Task<List<CartModel>> GetUserCart(string userId)
         {
             return this.ReadQuery().Where(I => I.UserId == userId).ToListAsync();

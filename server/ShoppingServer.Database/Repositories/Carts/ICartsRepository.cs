@@ -7,6 +7,8 @@ namespace ShoppingServer.Database.Repositories
     {
         public Task<List<CartModel>> GetUserCart(string userId);
 
+        public Task<int> GetCartCount(string userId);
+
         public Task<bool> DeleteByIds(IEnumerable<string> ids, string userId, bool saveChanges = true);
 
         public Task<bool> UpdateCartItems(IEnumerable<CartModel> items, string userId, bool saveChanges = true);

@@ -37,6 +37,7 @@ namespace ShoppingApp
                 Builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
                 Builder.Services.AddScoped<IOrderProductsRepository, OrderProductsRepository>();
                 Builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
+                Builder.Services.AddScoped<IReviewsRepository, ReviewsRepository>();
 
             }
         }
