@@ -136,6 +136,106 @@ namespace ShoppingServer.Database.Migrations
                     b.ToTable("documents", (string)null);
                 });
 
+            modelBuilder.Entity("ShoppingApp.Database.Models.OrderModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("AddressId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("address_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<double?>("Discounts")
+                        .HasColumnType("double precision")
+                        .HasColumnName("discounts");
+
+                    b.Property<string>("PaymentMethodId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("payment_method_id");
+
+                    b.Property<double>("ProductCost")
+                        .HasColumnType("double precision")
+                        .HasColumnName("product_cost");
+
+                    b.Property<double>("ShippingCost")
+                        .HasColumnType("double precision")
+                        .HasColumnName("shipping_cost");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.Property<DateTimeOffset?>("StatusDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("status_date");
+
+                    b.Property<double>("TotalCost")
+                        .HasColumnType("double precision")
+                        .HasColumnName("total_cost");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_orders");
+
+                    b.ToTable("orders", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.OrderProductModel", b =>
+                {
+                    b.Property<string>("ProductId")
+                        .HasColumnType("text")
+                        .HasColumnName("product_id");
+
+                    b.Property<string>("OrderId")
+                        .HasColumnType("text")
+                        .HasColumnName("order_id");
+
+                    b.HasKey("ProductId", "OrderId")
+                        .HasName("pk_order_products");
+
+                    b.HasIndex("OrderId")
+                        .HasDatabaseName("ix_order_products_order_id");
+
+                    b.ToTable("order_products", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.OrdersStatusModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("OrderId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("order_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.Property<DateTimeOffset>("StatusDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("status_date");
+
+                    b.HasKey("Id")
+                        .HasName("pk_order_status");
+
+                    b.ToTable("order_status", (string)null);
+                });
+
             modelBuilder.Entity("ShoppingApp.Database.Models.PaymentMethodModel", b =>
                 {
                     b.Property<string>("Id")
@@ -474,6 +574,23 @@ namespace ShoppingServer.Database.Migrations
                         .HasName("pk_users");
 
                     b.ToTable("users", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.OrderProductModel", b =>
+                {
+                    b.HasOne("ShoppingApp.Database.Models.OrderModel", null)
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_order_products_orders_order_id");
+
+                    b.HasOne("ShoppingApp.Database.Models.ProductModel", null)
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_order_products_products_product_id");
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.ProductCombinationModel", b =>

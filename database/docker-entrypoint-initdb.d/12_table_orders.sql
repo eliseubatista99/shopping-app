@@ -8,7 +8,6 @@ CREATE TABLE
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) NOT NULL,
     status_date TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    total_amount DOUBLE PRECISION,
     payment_method_id VARCHAR(100) REFERENCES payment_methods(id),
     address_id VARCHAR(100) REFERENCES addresses(id),
     product_cost DOUBLE PRECISION,
@@ -17,13 +16,12 @@ CREATE TABLE
     discounts DOUBLE PRECISION
   );
 WITH
-  new_values (id, user_id,  status, total_amount,payment_method_id,address_id,product_cost, shipping_cost,total_cost,discounts) AS (
+  new_values (id, user_id,  status, payment_method_id,address_id,product_cost, shipping_cost,total_cost,discounts) AS (
     VALUES
       (
         'order54274a-6083-47de-a8eb-133d248ee0f8',
         '29bf7b07-defd-4fca-ba6d-22b248c971ee',
         'None',
-        30,
         'method54274a-6083-47de-a8eb-133d248ee0f8',
         '5t44274a-6083-47de-a8eb-133d248ee0f8',
         30,
@@ -33,7 +31,7 @@ WITH
       )
   )
 INSERT INTO
-  orders (id, user_id,  status, total_amount,payment_method_id,address_id,product_cost, shipping_cost,total_cost,discounts)
+  orders (id, user_id,  status, payment_method_id,address_id,product_cost, shipping_cost,total_cost,discounts)
 SELECT
   *
 FROM

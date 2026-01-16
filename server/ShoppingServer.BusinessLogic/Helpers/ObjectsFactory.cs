@@ -76,5 +76,82 @@ namespace ShoppingServer.BusinessLogic.Helpers
 
             return cartItems;
         }
+
+        public static async Task<List<OrderDto>> BuildOrdersList(List<OrderModel> source, IExecutionContext executionContext)
+        {
+            var mapperProvider = executionContext.GetService<IMapper>();
+
+            var orderItems = mapperProvider.Map<List<OrderModel>, List<OrderDto>>(source);
+            var orderProducts = await GetOrdersProducts(source, executionContext);
+
+            orderItems.ForEach(o =>
+            {
+                o.Products = orderProducts.FirstOrDefault(op => op.order.Id == o.Id).products;
+            });
+
+            return orderItems;
+        }
+
+        public static async Task<OrderDetailDto> BuildOrderDetails(OrderModel source, IExecutionContext executionContext)
+        {
+            var mapperProvider = executionContext.GetService<IMapper>();
+            var orderStatusRepository = executionContext.GetService<IOrdersStatusRepository>();
+            var paymentMethodsRepository = executionContext.GetService<IPaymentMethodsRepository>();
+            var addressesRepository = executionContext.GetService<IAddressesRepository>();
+
+            var orderDetails = mapperProvider.Map<OrderModel, OrderDetailDto>(source);
+
+            var orderProducts = await GetOrdersProducts(new List<OrderModel> { source }, executionContext);
+
+            var orderStatusInDb = await orderStatusRepository.GetByOrderId(source.Id);
+
+            var paymentMethodInDb = await paymentMethodsRepository.GetByIdAsync(source.PaymentMethodId);
+
+            var addressInDb = await addressesRepository.GetByIdAsync(source.AddressId);
+
+            orderDetails.Products = orderProducts.FirstOrDefault(op => op.order.Id == orderDetails.Id).products;
+
+            if (orderStatusInDb != null)
+            {
+                orderDetails.StatusHistory = mapperProvider.Map<List<OrdersStatusModel>, List<OrderStatusEntryDto>>(orderStatusInDb);
+            }
+
+            if (paymentMethodInDb != null)
+            {
+                orderDetails.PaymentMethod = mapperProvider.Map<PaymentMethodModel, PaymentMethodDto>(paymentMethodInDb);
+            }
+
+            if (addressInDb != null)
+            {
+                orderDetails.Address = mapperProvider.Map<AddressModel, AddressDto>(addressInDb);
+            }
+
+            return orderDetails;
+        }
+
+        private static async Task<List<(OrderDto order, List<ProductDto> products)>> GetOrdersProducts(List<OrderModel> source, IExecutionContext executionContext)
+        {
+            var mapperProvider = executionContext.GetService<IMapper>();
+            var orderProductsRepository = executionContext.GetService<IOrderProductsRepository>();
+            var productsRepository = executionContext.GetService<IProductsRepository>();
+
+            var orderItems = mapperProvider.Map<List<OrderModel>, List<OrderDto>>(source);
+
+            var orderProductsInDb = await orderProductsRepository.GetByOrderIds(source.Select(i => i.Id));
+            var productsInDb = await productsRepository.GetByIds(orderProductsInDb.Select(i => i.ProductId));
+
+            List<(OrderDto order, List<ProductDto> products)> result = new List<(OrderDto order, List<ProductDto> products)>();
+
+            orderItems.ForEach(o =>
+            {
+                var orderProductIds = orderProductsInDb.FindAll(op => op.OrderId == o.Id).Select(p => p.ProductId);
+                var productsOfOrder = productsInDb.FindAll(p => orderProductIds.Contains(p.Id));
+
+
+                result.Add((o, mapperProvider.Map<List<ProductModel>, List<ProductDto>>(productsInDb)));
+            });
+
+            return result;
+        }
     }
 }

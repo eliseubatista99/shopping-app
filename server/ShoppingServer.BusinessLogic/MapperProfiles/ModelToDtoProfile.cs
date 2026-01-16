@@ -113,6 +113,38 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.Quantity, opt => opt.MapFrom(s => s.Quantity))
             .ForMember(d => d.IsSelected, opt => opt.MapFrom(s => s.IsSelected))
             .ForMember(d => d.Product, opt => opt.Ignore());
+
+            CreateMap<OrderModel, OrderDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Products, opt => opt.Ignore())
+            .ForMember(d => d.Date, opt => opt.MapFrom(s => s.CreatedAt))
+            .ForMember(d => d.CurrentStatus, opt => opt.MapFrom(s => new OrderStatusEntryDto
+            {
+                Status = this.MapOrderStatus(s.Status),
+                Date = s.StatusDate.GetValueOrDefault(),
+            }))
+            .ForMember(d => d.TotalCost, opt => opt.MapFrom(s => s.TotalCost));
+
+            CreateMap<OrderModel, OrderDetailDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Products, opt => opt.Ignore())
+            .ForMember(d => d.Date, opt => opt.MapFrom(s => s.CreatedAt))
+            .ForMember(d => d.CurrentStatus, opt => opt.MapFrom(s => new OrderStatusEntryDto
+            {
+                Status = this.MapOrderStatus(s.Status),
+                Date = s.StatusDate.GetValueOrDefault(),
+            }))
+            .ForMember(d => d.TotalCost, opt => opt.MapFrom(s => s.TotalCost))
+            .ForMember(d => d.StatusHistory, opt => opt.Ignore())
+            .ForMember(d => d.PaymentMethod, opt => opt.Ignore())
+            .ForMember(d => d.Address, opt => opt.Ignore())
+            .ForMember(d => d.ProductCost, opt => opt.MapFrom(s => s.ProductCost))
+            .ForMember(d => d.ShippingCost, opt => opt.MapFrom(s => s.ShippingCost))
+            .ForMember(d => d.Discounts, opt => opt.MapFrom(s => s.Discounts));
+
+            CreateMap<OrdersStatusModel, OrderStatusEntryDto>()
+            .ForMember(d => d.Status, opt => opt.MapFrom(s => this.MapOrderStatus(s.Status)))
+            .ForMember(d => d.Date, opt => opt.MapFrom(s => s.StatusDate));
         }
 
         private PaymentMethodType MapPaymentMethodType(string type)
@@ -125,6 +157,25 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
                     return PaymentMethodType.Bank;
                 default:
                     return PaymentMethodType.None;
+            }
+        }
+
+        private OrderStatus MapOrderStatus(string? status)
+        {
+            switch (status)
+            {
+                case "Processing":
+                    return OrderStatus.Processing;
+                case "Sent":
+                    return OrderStatus.Sent;
+                case "InDelivery":
+                    return OrderStatus.InDelivery;
+                case "Delivered":
+                    return OrderStatus.Delivered;
+                case "Cancelled":
+                    return OrderStatus.Cancelled;
+                default:
+                    return OrderStatus.None;
             }
         }
     }

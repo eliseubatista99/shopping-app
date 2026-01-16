@@ -13,8 +13,6 @@ namespace ShoppingServer.BusinessLogic.Entities
 
         public required double ProductCost { get; set; }
 
-        public required double TotalCost { get; set; }
-
         public double? ShippingCost { get; set; }
 
         public double? Discounts { get; set; }

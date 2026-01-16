@@ -16,8 +16,11 @@ public class AppDbContext : DbContext
     public DbSet<ProductImageModel> ProductImages => Set<ProductImageModel>();
     public DbSet<RelatedProductModel> RelatedProducts => Set<RelatedProductModel>();
     public DbSet<ProductCombinationModel> ProductCombinations => Set<ProductCombinationModel>();
-    public DbSet<DocumentModel> Documents => Set<DocumentModel>();
     public DbSet<CartModel> Carts => Set<CartModel>();
+    public DbSet<OrdersStatusModel> OrdersStatus => Set<OrdersStatusModel>();
+    public DbSet<OrderModel> Orders => Set<OrderModel>();
+    public DbSet<OrderProductModel> OrderProducts => Set<OrderProductModel>();
+    public DbSet<DocumentModel> Documents => Set<DocumentModel>();
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -68,6 +71,21 @@ public class AppDbContext : DbContext
                 "CK_ProductCombination_SelfReference",
                 "\"ProductId\" <> \"CombinedProductId\""
             ));
+        });
+
+        modelBuilder.Entity<OrderProductModel>(entity =>
+        {
+            entity.HasKey(pc => new { pc.ProductId, pc.OrderId });
+
+            entity.HasOne<ProductModel>()
+                  .WithMany()
+                  .HasForeignKey(pc => pc.ProductId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne<OrderModel>()
+                  .WithMany()
+                  .HasForeignKey(pc => pc.OrderId)
+                  .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }
