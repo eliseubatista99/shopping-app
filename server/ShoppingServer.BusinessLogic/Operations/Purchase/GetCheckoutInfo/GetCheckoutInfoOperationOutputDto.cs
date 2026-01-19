@@ -14,5 +14,9 @@ namespace ShoppingServer.BusinessLogic.Operations
 
         public DateTimeOffset? EndDeliveryDate { get; set; }
 
+        public DateTimeOffset? FastestStartDeliveryDate { get; set; }
+
+        public DateTimeOffset? FastestEndDeliveryDate { get; set; }
+
     }
 }

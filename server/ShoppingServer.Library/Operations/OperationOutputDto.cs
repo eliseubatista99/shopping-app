@@ -7,6 +7,6 @@ namespace ShoppingServer.Library.Operations
     [ExcludeFromCodeCoverage]
     public class OperationOutputDto : Dto
     {
-        
+
     }
 }

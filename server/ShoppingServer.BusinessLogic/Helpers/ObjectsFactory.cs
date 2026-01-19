@@ -202,7 +202,7 @@ namespace ShoppingServer.BusinessLogic.Helpers
             return clientInfo;
         }
 
-        private static async Task<List<(OrderDto order, List<ProductDto> products)>> GetOrdersProducts(List<OrderModel> source, IExecutionContext executionContext)
+        private static async Task<List<(OrderDto order, List<CheckoutProductDetailsDto> products)>> GetOrdersProducts(List<OrderModel> source, IExecutionContext executionContext)
         {
             var mapperProvider = executionContext.GetService<IMapper>();
             var orderProductsRepository = executionContext.GetService<IOrderProductsRepository>();
@@ -210,21 +210,53 @@ namespace ShoppingServer.BusinessLogic.Helpers
 
             var orderItems = mapperProvider.Map<List<OrderModel>, List<OrderDto>>(source);
 
-            var orderProductsInDb = await orderProductsRepository.GetByOrderIds(source.Select(i => i.Id));
+            var orderProductsInDb = await orderProductsRepository.GetByOrderIds(source.Select(i => i.Id).ToList());
             var productsInDb = await productsRepository.GetByIds(orderProductsInDb.Select(i => i.ProductId));
 
-            List<(OrderDto order, List<ProductDto> products)> result = new List<(OrderDto order, List<ProductDto> products)>();
+            var result = new List<(OrderDto order, List<CheckoutProductDetailsDto> products)>();
 
             orderItems.ForEach(o =>
             {
-                var orderProductIds = orderProductsInDb.FindAll(op => op.OrderId == o.Id).Select(p => p.ProductId);
+                var orderProducts = mapperProvider.Map<List<OrderProductModel>, List<CheckoutProductDetailsDto>>(orderProductsInDb.FindAll(op => op.OrderId == o.Id));
+                var orderProductIds = orderProducts.Select(p => p.ProductId);
+
                 var productsOfOrder = productsInDb.FindAll(p => orderProductIds.Contains(p.Id));
 
+                orderProducts.ForEach(op =>
+                {
+                    var product = productsOfOrder.FirstOrDefault(p => p.Id == op.ProductId);
+                    if (product != null)
+                    {
+                        op.Product = mapperProvider.Map<ProductModel, ProductDto>(product);
+                    }
+                });
 
-                result.Add((o, mapperProvider.Map<List<ProductModel>, List<ProductDto>>(productsInDb)));
+                result.Add((o, orderProducts));
             });
 
             return result;
+        }
+
+        public static (double ProductCost, double ShippingCost, double Discounts, double TotalCost, double FastestDeliveryCost) CalculateCheckoutCosts(List<CheckoutProductDetailsDto> products)
+        {
+            double productsCost = 0;
+            double shippingCost = 0;
+            double discounts = 0;
+            double totalCost = 0;
+
+            products.ForEach(p =>
+            {
+                var discount = p.Product!.OriginalPrice - p.Product!.Price;
+
+                productsCost += (p.Product!.Price * p.Quantity);
+                shippingCost += p.Product!.ShippingCost;
+                discounts += (discount * p.Quantity);
+            });
+
+            totalCost = productsCost + shippingCost - discounts;
+
+
+            return (productsCost, shippingCost, discounts, totalCost, 3.99);
         }
     }
 }

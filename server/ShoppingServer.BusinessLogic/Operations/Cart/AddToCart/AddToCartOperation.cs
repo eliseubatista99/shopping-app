@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Entities;
+using ShoppingServer.BusinessLogic.Helpers;
 using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Entities;
@@ -29,16 +30,12 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             var userId = this.GetUserIdFromToken();
 
-            var productsWithQuantity = input!.ProductIds.GroupBy(i => i).Select(g => new
-            {
-                productId = g.Key,
-                Quantity = g.Count()
-            });
+            var productsWithQuantity = CartHelper.GetProductsWithQuantity(input!.ProductIds);
 
             var items = productsWithQuantity.Select(i => new CartModel
             {
                 Id = Guid.NewGuid().ToString(),
-                ProductId = i.productId,
+                ProductId = i.ProductId,
                 UserId = userId,
                 Quantity = i.Quantity,
                 IsSelected = true,

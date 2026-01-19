@@ -205,6 +205,10 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("text")
                         .HasColumnName("order_id");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer")
+                        .HasColumnName("quantity");
+
                     b.HasKey("ProductId", "OrderId")
                         .HasName("pk_order_products");
 

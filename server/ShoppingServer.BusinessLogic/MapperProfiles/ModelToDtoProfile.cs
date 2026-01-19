@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Database.PostgreSql.Extensions;
 using ShoppingApp.Database.Models;
+using ShoppingServer.BusinessLogic.Constants;
 using ShoppingServer.BusinessLogic.Entities;
 using ShoppingServer.BusinessLogic.Enums;
 using ShoppingServer.BusinessLogic.Helpers;
@@ -173,15 +174,24 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.ProductName, opt => opt.Ignore())
             .ForMember(d => d.ProductIcon, opt => opt.Ignore())
             .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt));
+
+            CreateMap<OrderProductModel, CheckoutProductDto>()
+            .ForMember(d => d.ProductId, opt => opt.MapFrom(s => s.ProductId))
+            .ForMember(d => d.Quantity, opt => opt.MapFrom(s => s.Quantity));
+
+            CreateMap<OrderProductModel, CheckoutProductDetailsDto>()
+            .ForMember(d => d.ProductId, opt => opt.MapFrom(s => s.ProductId))
+            .ForMember(d => d.Quantity, opt => opt.MapFrom(s => s.Quantity))
+            .ForMember(d => d.Product, opt => opt.Ignore());
         }
 
         private PaymentMethodType MapPaymentMethodType(string type)
         {
             switch (type)
             {
-                case "Card":
+                case ShoppingServerConstants.PAYMENT_METHOD_CARD:
                     return PaymentMethodType.Card;
-                case "Bank":
+                case ShoppingServerConstants.PAYMENT_METHOD_BANK:
                     return PaymentMethodType.Bank;
                 default:
                     return PaymentMethodType.None;
@@ -192,15 +202,15 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
         {
             switch (status)
             {
-                case "Processing":
+                case ShoppingServerConstants.ORDER_STATUS_PROCESSING:
                     return OrderStatus.Processing;
-                case "Sent":
+                case ShoppingServerConstants.ORDER_STATUS_SENT:
                     return OrderStatus.Sent;
-                case "InDelivery":
+                case ShoppingServerConstants.ORDER_STATUS_IN_DELIVERY:
                     return OrderStatus.InDelivery;
-                case "Delivered":
+                case ShoppingServerConstants.ORDER_STATUS_DELIVERED:
                     return OrderStatus.Delivered;
-                case "Cancelled":
+                case ShoppingServerConstants.ORDER_STATUS_CANCELLED:
                     return OrderStatus.Cancelled;
                 default:
                     return OrderStatus.None;

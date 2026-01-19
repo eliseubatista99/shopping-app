@@ -7,7 +7,7 @@ namespace ShoppingServer.BusinessLogic.Entities
     {
         public required string Id { get; set; }
 
-        public required List<ProductDto> Products { get; set; }
+        public required List<CheckoutProductDetailsDto> Products { get; set; }
 
         public required DateTimeOffset Date { get; set; }
 

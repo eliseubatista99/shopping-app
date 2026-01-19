@@ -6,7 +6,7 @@ using ShoppingServer.Library.Operations;
 
 namespace ShoppingServer.Controllers
 {
-    public class ExecutePurchaseResponseDto : OperationResponseDto<OperationOutputDto>;
+    public class ExecutePurchaseResponseDto : OperationResponseDto<ExecutePurchaseOperationOutputDto>;
     public class GetCheckoutInfoResponseDto : OperationResponseDto<GetCheckoutInfoOperationOutputDto>;
 
     [ApiController]
@@ -31,7 +31,7 @@ namespace ShoppingServer.Controllers
 
         [HttpGet("/api/GetCheckoutInfo")]
         [Authorize]
-        public Task<GetCheckoutInfoResponseDto> GetCheckoutInfo([FromBody] GetCheckoutInfoOperationInputDto input)
+        public Task<GetCheckoutInfoResponseDto> GetCheckoutInfo([FromQuery] GetCheckoutInfoOperationInputDto input)
         {
             return getCheckoutInfoOperation.Execute<GetCheckoutInfoResponseDto>(input);
         }

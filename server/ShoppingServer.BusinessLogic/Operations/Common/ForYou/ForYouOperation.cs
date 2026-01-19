@@ -56,7 +56,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             orders.ForEach(order =>
             {
-                allOrderProductids.AddRange(order.Products.Select(p => p.Id));
+                allOrderProductids.AddRange(order.Products.Select(p => p.ProductId));
             });
 
             var allProductsWithReviewInDb = await reviewsRepository.GetByProductIds(userId, allOrderProductids);

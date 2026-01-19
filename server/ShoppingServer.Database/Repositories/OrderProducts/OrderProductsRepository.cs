@@ -9,14 +9,9 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
-        //public override Task<OrderProductModel?> GetByIdAsync(string id)
-        //{
-        //    return base.GetByIdAsync(id);
-        //}
-
-        public Task<List<OrderProductModel>> GetByOrderIds(IEnumerable<string> orderId)
+        public Task<List<OrderProductModel>> GetByOrderIds(IEnumerable<string> ordersIds)
         {
-            return this.ReadQuery().Where(i => orderId.Contains(i.OrderId)).ToListAsync();
+            return this.ReadQuery().Where(i => ordersIds.Contains(i.OrderId)).ToListAsync();
         }
     }
 }

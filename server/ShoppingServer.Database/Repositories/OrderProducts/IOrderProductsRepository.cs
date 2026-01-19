@@ -5,6 +5,6 @@ namespace ShoppingServer.Database.Repositories
 {
     public interface IOrderProductsRepository : IRepository<OrderProductModel>
     {
-        public Task<List<OrderProductModel>> GetByOrderIds(IEnumerable<string> orderId);
+        public Task<List<OrderProductModel>> GetByOrderIds(IEnumerable<string> ordersIds);
     }
 }

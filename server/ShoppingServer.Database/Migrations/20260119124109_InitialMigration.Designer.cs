@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260116143740_InitialMigration")]
+    [Migration("20260119124109_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -207,6 +207,10 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<string>("OrderId")
                         .HasColumnType("text")
                         .HasColumnName("order_id");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer")
+                        .HasColumnName("quantity");
 
                     b.HasKey("ProductId", "OrderId")
                         .HasName("pk_order_products");
