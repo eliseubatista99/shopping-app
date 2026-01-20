@@ -111,6 +111,23 @@ namespace ShoppingServer.Database.Migrations
                     b.ToTable("carts", (string)null);
                 });
 
+            modelBuilder.Entity("ShoppingApp.Database.Models.CategoryModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_categories");
+
+                    b.ToTable("categories", (string)null);
+                });
+
             modelBuilder.Entity("ShoppingApp.Database.Models.DocumentModel", b =>
                 {
                     b.Property<string>("Id")
@@ -297,6 +314,25 @@ namespace ShoppingServer.Database.Migrations
                         .HasName("pk_payment_methods");
 
                     b.ToTable("payment_methods", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.ProductCategoryModel", b =>
+                {
+                    b.Property<string>("ProductId")
+                        .HasColumnType("text")
+                        .HasColumnName("product_id");
+
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("text")
+                        .HasColumnName("category_id");
+
+                    b.HasKey("ProductId", "CategoryId")
+                        .HasName("pk_product_categories");
+
+                    b.HasIndex("CategoryId")
+                        .HasDatabaseName("ix_product_categories_category_id");
+
+                    b.ToTable("product_categories", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.ProductCombinationModel", b =>
@@ -661,6 +697,23 @@ namespace ShoppingServer.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_order_products_products_product_id");
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.ProductCategoryModel", b =>
+                {
+                    b.HasOne("ShoppingApp.Database.Models.CategoryModel", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_product_categories_categories_category_id");
+
+                    b.HasOne("ShoppingApp.Database.Models.ProductModel", null)
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_product_categories_products_product_id");
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.ProductCombinationModel", b =>

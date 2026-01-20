@@ -11,8 +11,10 @@ public class AppDbContext : DbContext
     public DbSet<AddressModel> Addresses => Set<AddressModel>();
     public DbSet<PaymentMethodModel> PaymentMethods => Set<PaymentMethodModel>();
     public DbSet<SellerModel> Sellers => Set<SellerModel>();
+    public DbSet<CategoryModel> Categories => Set<CategoryModel>();
     public DbSet<ProductVariantGroupModel> ProductVariants => Set<ProductVariantGroupModel>();
     public DbSet<ProductModel> Products => Set<ProductModel>();
+    public DbSet<ProductCategoryModel> ProductCategories => Set<ProductCategoryModel>();
     public DbSet<ProductImageModel> ProductImages => Set<ProductImageModel>();
     public DbSet<RelatedProductModel> RelatedProducts => Set<RelatedProductModel>();
     public DbSet<ProductCombinationModel> ProductCombinations => Set<ProductCombinationModel>();
@@ -73,6 +75,21 @@ public class AppDbContext : DbContext
                 "CK_ProductCombination_SelfReference",
                 "\"ProductId\" <> \"CombinedProductId\""
             ));
+        });
+
+        modelBuilder.Entity<ProductCategoryModel>(entity =>
+        {
+            entity.HasKey(pc => new { pc.ProductId, pc.CategoryId });
+
+            entity.HasOne<ProductModel>()
+                  .WithMany()
+                  .HasForeignKey(pc => pc.ProductId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne<CategoryModel>()
+                  .WithMany()
+                  .HasForeignKey(pc => pc.CategoryId)
+                  .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<OrderProductModel>(entity =>

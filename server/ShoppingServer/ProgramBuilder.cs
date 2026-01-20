@@ -27,8 +27,10 @@ namespace ShoppingApp
                 Builder.Services.AddScoped<IAddressesRepository, AddressesRepository>();
                 Builder.Services.AddScoped<IPaymentMethodsRepository, PaymentMethodsRepository>();
                 Builder.Services.AddScoped<ISellersRepository, SellersRepository>();
+                Builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
                 Builder.Services.AddScoped<IProductVariantGroupsRepository, ProductVariantGroupsRepository>();
                 Builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+                Builder.Services.AddScoped<IProductCategoriesRepository, ProductCategoriesRepository>();
                 Builder.Services.AddScoped<IProductImagesRepository, ProductImagesRepository>();
                 Builder.Services.AddScoped<IRelatedProductsRepository, RelatedProductsRepository>();
                 Builder.Services.AddScoped<IProductCombinationsRepository, ProductCombinationsRepository>();

@@ -44,6 +44,7 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/ProductOffers")]
+        [AllowAnonymous]
         public Task<ProductOffersdResponseDto> ProductOffers()
         {
             return productOffersOperation.Execute<ProductOffersdResponseDto>();

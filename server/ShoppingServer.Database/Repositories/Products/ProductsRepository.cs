@@ -20,6 +20,20 @@ namespace ShoppingServer.Database.Repositories
             return this.ReadQuery().Where(i => Ids.Contains(i.Id)).ToListAsync();
         }
 
+        public Task<List<string>> GetFirstNCategories(int count)
+        {
+            return this.ReadQuery().Select(p => p.Category).Distinct().Take(4).ToListAsync();
+        }
+
+        public Task<List<(string category, List<ProductModel> products)>> GetProductsByCategories(IEnumerable<string> categories)
+        {
+            return this.ReadQuery()
+                .Where(p => categories.Contains(p.Category))
+                .GroupBy(p => p.Category)
+                .Select(g => new ValueTuple<string, List<ProductModel>>(g.Key, g.ToList()))
+                .ToListAsync();
+        }
+
         public Task<List<ProductModel>> GetVariations(string groupId)
         {
             return this.ReadQuery().Where(p => p.GroupId == groupId).ToListAsync();
