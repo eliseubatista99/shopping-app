@@ -12,9 +12,34 @@ WITH
   new_values (id, name, image) AS (
     VALUES
       (
-        'dr54274a-6083-47de-a8eb-133d248ee0f8',
-        'La Tienda',
-        pg_read_binary_file ('/docker-entrypoint-initdb.d/seller.png')
+        'seller-0001',
+        'TechZone',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/seller-0001.jpg')
+      ),
+      (
+        'seller-0002',
+        'Home & Confort',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/seller-0002.jpg')
+      ),
+      (
+        'seller-0003',
+        'Urban Fashion',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/seller-0003.jpg')
+      ),
+      (
+        'seller-0004',
+        'Green Market',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/seller-0004.jpg')
+      ),
+      (
+        'seller-0005',
+        'Pet Lovers',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/seller-0005.jpg')
+      ),
+      (
+        'seller-0006',
+        'Sports Hub',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/seller-0006.jpg')
       )
   )
 INSERT INTO
@@ -28,7 +53,7 @@ WHERE
     SELECT
       1
     FROM
-      sellers a
+      sellers s
     WHERE
-      a.id = new_values.id
+      s.id = new_values.id
   );

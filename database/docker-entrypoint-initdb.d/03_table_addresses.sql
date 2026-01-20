@@ -32,17 +32,43 @@ WITH
   ) AS (
     VALUES
       (
-        '5t44274a-6083-47de-a8eb-133d248ee0f8',
-        '29bf7b07-defd-4fca-ba6d-22b248c971ee',
+        'address-001',
+        'user-0001',
         'Eliseu Batista',
-        '6100-123',
-        'Xangai',
-        'Xangai',
-        'Ruazinha 25, Porta X',
+        '1000-001',
+        'Lisboa',
+        'Lisboa',
+        'Av. da Liberdade 245, 3º Esq',
         'Portugal',
         '911111111',
         'PT',
         TRUE
+      ),
+      (
+        'address-002',
+        'user-0001',
+        'Eliseu Batista',
+        '08007',
+        'Barcelona',
+        'Catalunha',
+        'Carrer de Provença 312',
+        'Espanha',
+        '622333444',
+        'ES',
+        FALSE
+      ),
+      (
+        'address-003',
+        'user-0001',
+        'Eliseu Batista',
+        '75008',
+        'Paris',
+        'Île-de-France',
+        'Rue du Faubourg Saint-Honoré 128',
+        'França',
+        '612345678',
+        'FR',
+        FALSE
       )
   )
 INSERT INTO

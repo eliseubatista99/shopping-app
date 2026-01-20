@@ -13,5 +13,7 @@
         Delivered,
 
         Cancelled,
+
+        Returned
     }
 }

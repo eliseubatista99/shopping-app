@@ -26,14 +26,74 @@ WITH
   ) AS (
     VALUES
       (
-        '29bf7b07-defd-4fca-ba6d-22b248c971ee',
+        'user-0001',
         'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
         'Eliseu',
         'Batista',
         'eliseu@mail.com',
         '911111111',
         '+351',
-        pg_read_binary_file ('/docker-entrypoint-initdb.d/pepe.jpg')
+        pg_read_binary_file ('/docker-entrypoint-initdb.d/images/user-001.jpg')
+      ),
+      (
+        'user-0002',
+        'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
+        'Marta',
+        'Silva',
+        'marta.silva@mail.com',
+        '922222222',
+        '+351',
+        NULL
+      ),
+      (
+        'user-0003',
+        'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
+        'João',
+        'Costa',
+        'joao.costa@mail.com',
+        '933333333',
+        '+351',
+        NULL
+      ),
+      (
+        'user-0004',
+        'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
+        'Ana',
+        'Pereira',
+        'ana.pereira@mail.com',
+        '944444444',
+        '+351',
+        NULL
+      ),
+      (
+        'user-0005',
+        'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
+        'Ricardo',
+        'Mendes',
+        'ricardo.mendes@mail.com',
+        '955555555',
+        '+351',
+        NULL
+      ),
+      (
+        'user-0006',
+        'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
+        'Sofia',
+        'Gomes',
+        'sofia.gomes@mail.com',
+        '966666666',
+        '+351',
+        NULL
+      ),
+      (
+        'user-0007',
+        'AQAAAAIAAYagAAAAEFte+OmxfTNgdsClXxUrdP/dQA4fLBqAKibuvjM6m/7kPUWFO75cI1ooBAfoEe9GtQ==',
+        'Pedro',
+        'Alves',
+        'pedro.alves@mail.com',
+        '977777777',
+        '+351',
+        NULL
       )
   )
 INSERT INTO

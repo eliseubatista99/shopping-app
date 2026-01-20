@@ -6,7 +6,7 @@ CREATE TABLE
     id VARCHAR(100) PRIMARY KEY,
     title VARCHAR(150) NOT NULL,
     subtitle VARCHAR(150),
-    category VARCHAR(100),    
+    category VARCHAR(100),
     image BYTEA,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
@@ -15,11 +15,25 @@ WITH
   new_values (id, title, subtitle, category, image) AS (
     VALUES
       (
-        'banners274a-6083-47de-a8eb-133d248ee0f8',
+        'banner-0001',
         'Christmas Gifts',
-        'Until 23 December',
+        'Até 23 de Dezembro',
         'Christmas',
-        pg_read_binary_file ('/docker-entrypoint-initdb.d/product.jpg')
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/banner-0001.jpg')
+      ),
+      (
+        'banner-0002',
+        'Back to School Deals',
+        'Volta às aulas com descontos',
+        'Back to School',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/banner-0002.jpg')
+      ),
+      (
+        'banner-0003',
+        'Home Office Essentials',
+        'Tudo para o teu escritório',
+        'Office',
+        pg_read_binary_file('/docker-entrypoint-initdb.d/images/banner-0003.jpg')
       )
   )
 INSERT INTO
@@ -34,6 +48,6 @@ WHERE
       1
     FROM
       banners b
-        WHERE
+    WHERE
       b.id = new_values.id
   );

@@ -10,10 +10,26 @@ CREATE TABLE
 WITH
   new_values (id, name) AS (
     VALUES
-      (
-        'zau274a-6083-47de-a8eb-133d248ee0f8',
-        'Gamer Chair'
-      )
+      ('pvg-001', 'Office Desk'),
+      ('pvg-002', 'Standing Desk'),
+      ('pvg-003', 'Gaming Chair'),
+      ('pvg-004', 'Ergonomic Chair'),
+      ('pvg-005', 'LED Desk Lamp'),
+      ('pvg-006', 'Wireless Mouse'),
+      ('pvg-007', 'Mechanical Keyboard'),
+      ('pvg-008', 'Noise Cancelling Headphones'),
+      ('pvg-009', 'Smartphone Case'),
+      ('pvg-010', 'Laptop Sleeve'),
+      ('pvg-011', 'Bluetooth Speaker'),
+      ('pvg-012', 'Coffee Maker'),
+      ('pvg-013', 'Air Fryer'),
+      ('pvg-014', 'Yoga Mat'),
+      ('pvg-015', 'Running Shoes'),
+      ('pvg-016', 'Backpack'),
+      ('pvg-017', 'Water Bottle'),
+      ('pvg-018', 'Sunglasses'),
+      ('pvg-019', 'Smart Watch'),
+      ('pvg-020', 'Wall Art Poster')
   )
 INSERT INTO
   product_variant_groups (id, name)

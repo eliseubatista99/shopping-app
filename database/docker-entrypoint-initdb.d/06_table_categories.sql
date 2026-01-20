@@ -10,10 +10,21 @@ CREATE TABLE
 WITH
   new_values (id, name) AS (
     VALUES
-      (
-        'category54274a-6083-47de-a8eb-133d248ee0f8',
-        'Office'
-      )
+      ('cat-001', 'Office'),
+      ('cat-002', 'Garden'),
+      ('cat-003', 'Electronics'),
+      ('cat-004', 'Home Decor'),
+      ('cat-005', 'Kitchen'),
+      ('cat-006', 'Sports'),
+      ('cat-007', 'Beauty'),
+      ('cat-008', 'Toys'),
+      ('cat-009', 'Christmas'),
+      ('cat-010', 'Back to School'),
+      ('cat-011', 'Under €10'),
+      ('cat-012', 'Fathers Day'),
+      ('cat-013', 'Mothers Day'),
+      ('cat-014', 'Eco Friendly'),
+      ('cat-015', 'Limited Edition')
   )
 INSERT INTO
   categories (id, name)
@@ -29,5 +40,5 @@ WHERE
       categories c
     WHERE
       c.id = new_values.id
-      AND c.name = new_values.name
+        OR c.name = new_values.name
   );

@@ -7,6 +7,7 @@
         public const string ORDER_STATUS_IN_DELIVERY = "InDelivery";
         public const string ORDER_STATUS_DELIVERED = "Delivered";
         public const string ORDER_STATUS_CANCELLED = "Cancelled";
+        public const string ORDER_STATUS_RETURNED = "Returned";
 
         public const string PAYMENT_METHOD_BANK = "Bank";
         public const string PAYMENT_METHOD_CARD = "Card";

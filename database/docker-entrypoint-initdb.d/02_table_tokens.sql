@@ -13,7 +13,7 @@ WITH
     VALUES
       (
         '0f44274a-6083-47de-a8eb-133d248ee0f8',
-        '29bf7b07-defd-4fca-ba6d-22b248c971ee',
+        'user-0001',
         'FTVIRkwwtJwMHV3YQhWpXso3nvugIqm+rNUtPYoJX8KEXasG3Y02rcd9pc5DMOp3K0IMNJBqMdS7XADutRhP7A==',
         CURRENT_TIMESTAMP + INTERVAL '7 days'
       )

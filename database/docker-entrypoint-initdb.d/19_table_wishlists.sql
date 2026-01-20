@@ -12,14 +12,13 @@ CREATE TABLE
 WITH
   new_values (product_id, user_id) AS (
     VALUES
-      (
-        'crazy274a-6083-47de-a8eb-133d248ee0f8',
-        '29bf7b07-defd-4fca-ba6d-22b248c971ee'
-      ),
-      (
-        'atlas274a-6083-47de-a8eb-133d248ee0f8',
-        '29bf7b07-defd-4fca-ba6d-22b248c971ee'
-      )
+      ('prod-002', 'user-0001'),
+      ('prod-004', 'user-0001'),
+      ('prod-006', 'user-0001'),
+      ('prod-008', 'user-0001'),
+      ('prod-014', 'user-0001'),
+      ('prod-019', 'user-0001'),
+      ('prod-023', 'user-0001')
   )
 INSERT INTO
   wishlists (product_id, user_id)
@@ -33,7 +32,7 @@ WHERE
       1
     FROM
       wishlists w
-        WHERE
+    WHERE
       w.product_id = new_values.product_id
-      AND w.user_id = new_values.user_id
+        AND w.user_id = new_values.user_id
   );

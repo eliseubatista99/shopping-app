@@ -214,6 +214,8 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
                     return OrderStatus.Delivered;
                 case ShoppingServerConstants.ORDER_STATUS_CANCELLED:
                     return OrderStatus.Cancelled;
+                case ShoppingServerConstants.ORDER_STATUS_RETURNED:
+                    return OrderStatus.Returned;
                 default:
                     return OrderStatus.None;
             }
