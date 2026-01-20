@@ -11,11 +11,13 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private IProductsRepository productsRepository;
         private IOrdersRepository ordersRepository;
+        private IProductCategoriesRepository productCategoriesRepository;
 
         public ProductOffersOperation(BaseAppController _controller) : base(_controller)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             ordersRepository = ExecutionContext.GetService<IOrdersRepository>();
+            productCategoriesRepository = ExecutionContext.GetService<IProductCategoriesRepository>();
         }
 
         protected override async Task HandleExecution()
@@ -40,9 +42,11 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             var userId = this.GetUserIdFromToken();
 
-            var categories = await productsRepository.GetFirstNCategories(4);
-            var productGroupsInDb = await productsRepository.GetProductsByCategories(categories);
-            var allProductsInDb = productGroupsInDb.SelectMany(o => o.products).ToList();
+            var categories = await productCategoriesRepository.GetFirstNCategories(4);
+            var productGroupsInDb = await productCategoriesRepository.GetProductsByCategories(categories);
+            var allProductIdsInCategoriesDb = productGroupsInDb.SelectMany(o => o.products).Select(p => p.ProductId).ToList();
+
+            var allProductsInDb = await productsRepository.GetByIds(allProductIdsInCategoriesDb);
 
 
             var builtProducts = await ObjectsFactory.BuildProducts(allProductsInDb, this.ExecutionContext);

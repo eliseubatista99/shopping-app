@@ -11,6 +11,8 @@ namespace ShoppingServer.BusinessLogic.Entities
 
         public required string Category { get; set; }
 
+        public required List<string> Categories { get; set; }
+
         public required string Image { get; set; }
 
         public required double Price { get; set; }

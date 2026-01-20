@@ -5,6 +5,6 @@ namespace ShoppingServer.Database.Repositories
 {
     public interface ICategoriesRepository : IRepository<CategoryModel>
     {
-        public Task<bool> DeleteById(string id, bool saveChanges = true);
+        public Task<List<CategoryModel>> GetByIds(IEnumerable<string> ids);
     }
 }

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260120112022_InitialMigration")]
+    [Migration("20260120115302_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -329,6 +329,10 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("text")
                         .HasColumnName("category_id");
 
+                    b.Property<bool?>("IsMain")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_main");
+
                     b.HasKey("ProductId", "CategoryId")
                         .HasName("pk_product_categories");
 
@@ -399,11 +403,6 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("text")
                         .HasColumnName("brand");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("category");
 
                     b.Property<DateTimeOffset?>("CreatedAt")
                         .HasColumnType("timestamp with time zone")

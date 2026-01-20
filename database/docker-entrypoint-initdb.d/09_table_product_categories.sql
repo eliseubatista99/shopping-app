@@ -5,21 +5,23 @@ CREATE TABLE
   IF NOT EXISTS product_categories (
     product_id VARCHAR(100) NOT NULL REFERENCES products (id) ON DELETE CASCADE,
     category_id VARCHAR(100) NOT NULL REFERENCES categories (id) ON DELETE CASCADE,
+    is_main BOOLEAN,
     PRIMARY KEY (product_id, category_id)
   );
 
 CREATE INDEX idx_categories ON product_categories (category_id);
 
 WITH
-  new_values (product_id, category_id) AS (
+  new_values (product_id, category_id,is_main) AS (
     VALUES
       (
         'crazy274a-6083-47de-a8eb-133d248ee0f8',
-        'category54274a-6083-47de-a8eb-133d248ee0f8'
+        'category54274a-6083-47de-a8eb-133d248ee0f8',
+        TRUE
       )
   )
 INSERT INTO
-  product_categories (product_id, category_id)
+  product_categories (product_id, category_id,is_main)
 SELECT
   *
 FROM

@@ -18,15 +18,31 @@ namespace ShoppingServer.BusinessLogic.Helpers
 
             var mapperProvider = executionContext.GetService<IMapper>();
             var wishlistsRepository = executionContext.GetService<IWishlistsRepository>();
+            var productCategoriesRepository = executionContext.GetService<IProductCategoriesRepository>();
+            var categoriesRepository = executionContext.GetService<ICategoriesRepository>();
 
             var products = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(source!);
 
             var wishlistedProducts = await wishlistsRepository.GetByProductIds(products.Select(p => p.Id));
+            var productsCategoriesInDb = await productCategoriesRepository.GetByProductsId(products.Select(p => p.Id));
+
+            var categoriesIds = productsCategoriesInDb.SelectMany(pc => pc.categories).Select(c => c.CategoryId).Distinct();
+            var categoriesInDb = await categoriesRepository.GetByIds(categoriesIds);
 
             products.ForEach(p =>
             {
                 var wishlistedProduct = wishlistedProducts.FirstOrDefault(wp => wp.ProductId == p.Id);
+
+                // Get the categories ids for the product
+                var productCategories = productsCategoriesInDb.FindAll(pc => pc.productId == p.Id).SelectMany(pc => pc.categories);
+                var productCategoriesIds = productCategories.Select(c => c.CategoryId).Distinct();
+
+                var mainCategoryId = productCategories.FirstOrDefault(pc => pc.IsMain.GetValueOrDefault())?.CategoryId;
+                var categories = categoriesInDb.FindAll(c => productCategoriesIds.Contains(c.Id));
+
                 p.IsWishlisted = wishlistedProduct != null;
+                p.Category = categories.Find(c => c.Id == mainCategoryId)?.Name ?? string.Empty;
+                p.Categories = categories.Select(c => c.Name).ToList();
             });
 
             return products;
@@ -40,6 +56,13 @@ namespace ShoppingServer.BusinessLogic.Helpers
                 return null;
             }
 
+            var baseProductData = (await BuildProducts(new List<ProductModel> { source }, executionContext)).FirstOrDefault();
+
+            if (baseProductData == null)
+            {
+                return null;
+            }
+
             var mapperProvider = executionContext.GetService<IMapper>();
             var imagesRepository = executionContext.GetService<IProductImagesRepository>();
             var productsRepository = executionContext.GetService<IProductsRepository>();
@@ -48,8 +71,6 @@ namespace ShoppingServer.BusinessLogic.Helpers
             var sellersRepository = executionContext.GetService<ISellersRepository>();
             var reviewsRepository = executionContext.GetService<IReviewsRepository>();
             var documentsRepository = executionContext.GetService<IDocumentsRepository>();
-            var wishlistsRepository = executionContext.GetService<IWishlistsRepository>();
-
 
             var product = mapperProvider.Map<ProductModel, ProductDetailDto>(source);
 
@@ -68,15 +89,14 @@ namespace ShoppingServer.BusinessLogic.Helpers
 
             var documents = await documentsRepository.GetByProductId(source.Id);
 
-            var wishlistedProduct = await wishlistsRepository.GetByProductId(product.Id);
-
             product.DetailImages = productImages?.Select(i => i.Image?.ToBase64DataUri() ?? string.Empty).ToList();
             product.ProductOptions = mapperProvider.Map<List<ProductModel>, List<ProductOptionDto>>(variations);
             product.RelatedProducts = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(relatedProducts);
             product.ComboProducts = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(productCombinations);
             product.Reviews = mapperProvider.Map<List<ReviewModel>, List<ReviewDto>>(reviews.Data);
             product.Documents = mapperProvider.Map<List<DocumentModel>, List<DocumentDto>>(documents);
-            product.IsWishlisted = wishlistedProduct != null;
+            product.IsWishlisted = baseProductData.IsWishlisted;
+            product.Categories = baseProductData.Categories;
 
             if (seller != null)
             {
