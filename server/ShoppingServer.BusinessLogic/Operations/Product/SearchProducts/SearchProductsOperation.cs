@@ -1,6 +1,6 @@
-using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Entities;
 using ShoppingServer.BusinessLogic.Enums;
+using ShoppingServer.BusinessLogic.Helpers;
 using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
 
@@ -32,7 +32,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 page: input?.Page,
                 pageSize: input?.PageSize);
 
-            var products = this.MapperProvider.Map<List<ProductModel>, List<ProductDto>>(searchResult.Data);
+            var products = await ObjectsFactory.BuildProducts(searchResult.Data, this.ExecutionContext);
 
             if (input?.Sort != null)
             {

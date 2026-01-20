@@ -9,6 +9,30 @@ namespace ShoppingServer.BusinessLogic.Helpers
 {
     public static class ObjectsFactory
     {
+        public static async Task<List<ProductDto>> BuildProducts(List<ProductModel> source, IExecutionContext executionContext)
+        {
+            if (source == null || source?.Count < 1)
+            {
+                return new List<ProductDto>();
+            }
+
+            var mapperProvider = executionContext.GetService<IMapper>();
+            var wishlistsRepository = executionContext.GetService<IWishlistsRepository>();
+
+            var products = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(source!);
+
+            var wishlistedProducts = await wishlistsRepository.GetByProductIds(products.Select(p => p.Id));
+
+            products.ForEach(p =>
+            {
+                var wishlistedProduct = wishlistedProducts.FirstOrDefault(wp => wp.ProductId == p.Id);
+                p.IsWishlisted = wishlistedProduct != null;
+            });
+
+            return products;
+        }
+
+
         public static async Task<ProductDetailDto?> BuildProductDetails(ProductModel? source, IExecutionContext executionContext)
         {
             if (source == null)
@@ -24,6 +48,8 @@ namespace ShoppingServer.BusinessLogic.Helpers
             var sellersRepository = executionContext.GetService<ISellersRepository>();
             var reviewsRepository = executionContext.GetService<IReviewsRepository>();
             var documentsRepository = executionContext.GetService<IDocumentsRepository>();
+            var wishlistsRepository = executionContext.GetService<IWishlistsRepository>();
+
 
             var product = mapperProvider.Map<ProductModel, ProductDetailDto>(source);
 
@@ -42,6 +68,7 @@ namespace ShoppingServer.BusinessLogic.Helpers
 
             var documents = await documentsRepository.GetByProductId(source.Id);
 
+            var wishlistedProduct = await wishlistsRepository.GetByProductId(product.Id);
 
             product.DetailImages = productImages?.Select(i => i.Image?.ToBase64DataUri() ?? string.Empty).ToList();
             product.ProductOptions = mapperProvider.Map<List<ProductModel>, List<ProductOptionDto>>(variations);
@@ -49,6 +76,7 @@ namespace ShoppingServer.BusinessLogic.Helpers
             product.ComboProducts = mapperProvider.Map<List<ProductModel>, List<ProductDto>>(productCombinations);
             product.Reviews = mapperProvider.Map<List<ReviewModel>, List<ReviewDto>>(reviews.Data);
             product.Documents = mapperProvider.Map<List<DocumentModel>, List<DocumentDto>>(documents);
+            product.IsWishlisted = wishlistedProduct != null;
 
             if (seller != null)
             {

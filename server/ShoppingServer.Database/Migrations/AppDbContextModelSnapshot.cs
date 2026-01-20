@@ -623,6 +623,29 @@ namespace ShoppingServer.Database.Migrations
                     b.ToTable("users", (string)null);
                 });
 
+            modelBuilder.Entity("ShoppingApp.Database.Models.WishlistModel", b =>
+                {
+                    b.Property<string>("ProductId")
+                        .HasColumnType("text")
+                        .HasColumnName("product_id");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.HasKey("ProductId", "UserId")
+                        .HasName("pk_wishlists");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_wishlists_user_id");
+
+                    b.ToTable("wishlists", (string)null);
+                });
+
             modelBuilder.Entity("ShoppingApp.Database.Models.OrderProductModel", b =>
                 {
                     b.HasOne("ShoppingApp.Database.Models.OrderModel", null)
@@ -672,6 +695,23 @@ namespace ShoppingServer.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_related_products_products_related_product_id");
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.WishlistModel", b =>
+                {
+                    b.HasOne("ShoppingApp.Database.Models.ProductModel", null)
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_wishlists_products_product_id");
+
+                    b.HasOne("ShoppingApp.Database.Models.UserModel", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_wishlists_users_user_id");
                 });
 #pragma warning restore 612, 618
         }

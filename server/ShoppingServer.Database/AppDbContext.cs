@@ -22,6 +22,7 @@ public class AppDbContext : DbContext
     public DbSet<OrderProductModel> OrderProducts => Set<OrderProductModel>();
     public DbSet<DocumentModel> Documents => Set<DocumentModel>();
     public DbSet<ReviewModel> Reviews => Set<ReviewModel>();
+    public DbSet<WishlistModel> Wishlists => Set<WishlistModel>();
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -86,6 +87,21 @@ public class AppDbContext : DbContext
             entity.HasOne<OrderModel>()
                   .WithMany()
                   .HasForeignKey(pc => pc.OrderId)
+                  .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<WishlistModel>(entity =>
+        {
+            entity.HasKey(pc => new { pc.ProductId, pc.UserId });
+
+            entity.HasOne<ProductModel>()
+                  .WithMany()
+                  .HasForeignKey(pc => pc.ProductId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne<UserModel>()
+                  .WithMany()
+                  .HasForeignKey(pc => pc.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
         });
     }
