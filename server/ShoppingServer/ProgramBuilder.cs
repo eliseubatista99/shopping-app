@@ -41,6 +41,7 @@ namespace ShoppingApp
                 Builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
                 Builder.Services.AddScoped<IReviewsRepository, ReviewsRepository>();
                 Builder.Services.AddScoped<IWishlistsRepository, WishlistsRepository>();
+                Builder.Services.AddScoped<IBannersRepository, BannersRepository>();
 
             }
         }

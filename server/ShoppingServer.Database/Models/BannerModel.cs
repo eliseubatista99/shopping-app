@@ -1,19 +1,13 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace ShoppingServer.BusinessLogic.Entities
+namespace ShoppingApp.Database.Models
 {
-    [ExcludeFromCodeCoverage]
-    public class ProductsBannerDto
+    public class BannerModel
     {
         public required string Id { get; set; }
-
         public required string Title { get; set; }
-
         public required string Subtitle { get; set; }
-
         public required string Category { get; set; }
-
-        public required string Image { get; set; }
+        public required byte[] Image { get; set; }
+        public required DateTimeOffset CreatedAt { get; set; }
 
         public required string TextColor { get; set; }
     }

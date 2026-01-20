@@ -185,6 +185,14 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.ProductId, opt => opt.MapFrom(s => s.ProductId))
             .ForMember(d => d.Quantity, opt => opt.MapFrom(s => s.Quantity))
             .ForMember(d => d.Product, opt => opt.Ignore());
+
+            CreateMap<BannerModel, ProductsBannerDto>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(d => d.Title, opt => opt.MapFrom(s => s.Title))
+            .ForMember(d => d.Subtitle, opt => opt.MapFrom(s => s.Subtitle))
+            .ForMember(d => d.Category, opt => opt.MapFrom(s => s.Category))
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()))
+            .ForMember(d => d.TextColor, opt => opt.MapFrom(s => s.TextColor));
         }
 
         private PaymentMethodType MapPaymentMethodType(string type)

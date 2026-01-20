@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260120115302_InitialMigration")]
+    [Migration("20260120144227_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -82,6 +82,47 @@ namespace ShoppingServer.Database.Migrations
                         .HasName("pk_addresses");
 
                     b.ToTable("addresses", (string)null);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Database.Models.BannerModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("category");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("bytea")
+                        .HasColumnName("image");
+
+                    b.Property<string>("Subtitle")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("subtitle");
+
+                    b.Property<string>("TextColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("text_color");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("title");
+
+                    b.HasKey("Id")
+                        .HasName("pk_banners");
+
+                    b.ToTable("banners", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Database.Models.CartModel", b =>

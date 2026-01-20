@@ -7,18 +7,20 @@ CREATE TABLE
     title VARCHAR(150) NOT NULL,
     subtitle VARCHAR(150),
     category VARCHAR(100),
+    text_color VARCHAR(12),
     image BYTEA,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
 WITH
-  new_values (id, title, subtitle, category, image) AS (
+  new_values (id, title, subtitle, category, text_color, image) AS (
     VALUES
       (
         'banner-0001',
         'Christmas Gifts',
         'Até 23 de Dezembro',
         'Christmas',
+        '#ffffff',
         pg_read_binary_file('/docker-entrypoint-initdb.d/images/banner-0001.jpg')
       ),
       (
@@ -26,6 +28,7 @@ WITH
         'Back to School Deals',
         'Volta às aulas com descontos',
         'Back to School',
+        '#000000',
         pg_read_binary_file('/docker-entrypoint-initdb.d/images/banner-0002.jpg')
       ),
       (
@@ -33,11 +36,12 @@ WITH
         'Home Office Essentials',
         'Tudo para o teu escritório',
         'Office',
+        '#ffffff',
         pg_read_binary_file('/docker-entrypoint-initdb.d/images/banner-0003.jpg')
       )
   )
 INSERT INTO
-  banners (id, title, subtitle, category, image)
+  banners (id, title, subtitle, category, text_color, image)
 SELECT
   *
 FROM

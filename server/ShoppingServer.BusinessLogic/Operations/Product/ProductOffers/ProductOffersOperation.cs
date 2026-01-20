@@ -12,12 +12,14 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IProductsRepository productsRepository;
         private IOrdersRepository ordersRepository;
         private IProductCategoriesRepository productCategoriesRepository;
+        private IBannersRepository bannersRepository;
 
         public ProductOffersOperation(BaseAppController _controller) : base(_controller)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             ordersRepository = ExecutionContext.GetService<IOrdersRepository>();
             productCategoriesRepository = ExecutionContext.GetService<IProductCategoriesRepository>();
+            bannersRepository = ExecutionContext.GetService<IBannersRepository>();
         }
 
         protected override async Task HandleExecution()
@@ -30,10 +32,13 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             var productGroups = await GetProductGroups();
 
+            var bannersInDb = await bannersRepository.GetAllAsync();
+
             output.Data = new ProductOffersOperationOutputDto
             {
                 BuyAgain = buyAgainProducts,
-                Groups = productGroups
+                Groups = productGroups,
+                Banners = this.MapperProvider.Map<List<BannerModel>, List<ProductsBannerDto>>(bannersInDb)
             };
         }
 

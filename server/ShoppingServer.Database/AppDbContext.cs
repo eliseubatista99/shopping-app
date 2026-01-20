@@ -25,6 +25,7 @@ public class AppDbContext : DbContext
     public DbSet<DocumentModel> Documents => Set<DocumentModel>();
     public DbSet<ReviewModel> Reviews => Set<ReviewModel>();
     public DbSet<WishlistModel> Wishlists => Set<WishlistModel>();
+    public DbSet<BannerModel> Banners => Set<BannerModel>();
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
