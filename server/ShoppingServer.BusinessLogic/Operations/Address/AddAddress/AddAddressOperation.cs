@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using ShoppingApp.Database.Models;
 using ShoppingServer.BusinessLogic.Entities;
-using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
 using ShoppingServer.Library.Entities;
@@ -34,6 +33,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 Phone = input?.Phone ?? string.Empty,
                 CountryCode = null,
                 IsDefault = input?.IsDefault.GetValueOrDefault(),
+                IsDbActive = true,
             };
 
             var success = await addressesRepository.AddAsync(address);

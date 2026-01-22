@@ -13,7 +13,8 @@ CREATE TABLE
     is_default BOOLEAN,
     security_code VARCHAR(5),
     expiration_month INTEGER,
-    expiration_year INTEGER
+    expiration_year INTEGER,
+    is_db_active BOOLEAN NOT NULL DEFAULT TRUE
   );
 
 WITH

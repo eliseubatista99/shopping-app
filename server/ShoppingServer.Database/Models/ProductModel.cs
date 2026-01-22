@@ -43,5 +43,7 @@ namespace ShoppingApp.Database.Models
         public int? Warranty { get; set; }
 
         public DateTimeOffset? CreatedAt { get; set; }
+
+        public required bool IsDbActive { get; set; }
     }
 }

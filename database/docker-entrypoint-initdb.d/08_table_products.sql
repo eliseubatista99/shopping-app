@@ -23,7 +23,8 @@ CREATE TABLE
     width NUMERIC(10, 2),
     depth NUMERIC(10, 2),
     warranty INTEGER,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    is_db_active BOOLEAN NOT NULL DEFAULT TRUE
   );
 
 CREATE INDEX IF NOT EXISTS idx_groups ON products (group_id);

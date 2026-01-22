@@ -23,5 +23,7 @@ namespace ShoppingApp.Database.Models
         public int? ExpirationMonth { get; set; }
 
         public int? ExpirationYear { get; set; }
+
+        public required bool IsDbActive { get; set; }
     }
 }

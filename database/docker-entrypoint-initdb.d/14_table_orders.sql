@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS orders (
   product_cost DOUBLE PRECISION,
   shipping_cost DOUBLE PRECISION,
   total_cost DOUBLE PRECISION,
-  discounts DOUBLE PRECISION
+  discounts DOUBLE PRECISION,
+  is_db_active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 WITH

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260120144227_InitialMigration")]
+    [Migration("20260122093853_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -43,6 +43,10 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<string>("CountryCode")
                         .HasColumnType("text")
                         .HasColumnName("country_code");
+
+                    b.Property<bool>("IsDbActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_db_active");
 
                     b.Property<bool?>("IsDefault")
                         .HasColumnType("boolean")
@@ -220,6 +224,10 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("discounts");
 
+                    b.Property<bool>("IsDbActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_db_active");
+
                     b.Property<string>("PaymentMethodId")
                         .IsRequired()
                         .HasColumnType("text")
@@ -326,6 +334,10 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("bytea")
                         .HasColumnName("image");
+
+                    b.Property<bool>("IsDbActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_db_active");
 
                     b.Property<bool?>("IsDefault")
                         .HasColumnType("boolean")
@@ -467,6 +479,10 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("bytea")
                         .HasColumnName("image");
 
+                    b.Property<bool>("IsDbActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_db_active");
+
                     b.Property<bool?>("IsWishlisted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_wishlisted");
@@ -532,6 +548,10 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text")
                         .HasColumnName("id");
+
+                    b.Property<bool>("IsDbActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_db_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -615,6 +635,10 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("bytea")
                         .HasColumnName("image");
 
+                    b.Property<bool>("IsDbActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_db_active");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -673,6 +697,10 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("bytea")
                         .HasColumnName("image");
+
+                    b.Property<bool>("IsDbActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_db_active");
 
                     b.Property<string>("Name")
                         .IsRequired()

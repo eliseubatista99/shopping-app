@@ -31,14 +31,14 @@ namespace ShoppingServer.BusinessLogic.Operations
             {
                 userInDb = await usersRepository.GetByEmail(input.Email);
 
-                if(userInDb != null)
+                if (userInDb != null)
                 {
                     output.AddError(new ErrorDto("EmailInUse"));
                     SetStatusCode(StatusCodes.Status400BadRequest);
                     return;
                 }
             }
-            
+
             if (input?.PhoneNumber != null)
             {
                 userInDb = await usersRepository.GetUserByPhoneNumber(input.PhoneNumber);
@@ -67,6 +67,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 PhoneNumber = input.PhoneNumber,
                 PhoneNumberPrefix = string.Empty,
                 Image = null,
+                IsDbActive = true,
             };
 
             userInDb.PasswordHash = AuthenticationHelper.EncryptPassword(userInDb, input.Password);

@@ -13,6 +13,7 @@ namespace ShoppingApp.Database.Models
         public double? Discounts { get; set; }
         public string? Status { get; set; }
         public DateTimeOffset? StatusDate { get; set; }
+        public required bool IsDbActive { get; set; }
 
     }
 }

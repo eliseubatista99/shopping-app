@@ -10,7 +10,8 @@ CREATE TABLE
     email VARCHAR(100) UNIQUE,
     phone_number VARCHAR(20) UNIQUE,
     phone_number_prefix VARCHAR(4),
-    image BYTEA
+    image BYTEA,
+    is_db_active BOOLEAN NOT NULL DEFAULT TRUE
   );
 
 WITH

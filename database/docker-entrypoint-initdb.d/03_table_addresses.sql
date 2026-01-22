@@ -13,7 +13,8 @@ CREATE TABLE
     country VARCHAR(40) NOT NULL,
     phone VARCHAR(20) NOT NULL,
     country_code VARCHAR(5),
-    is_default BOOLEAN
+    is_default BOOLEAN,
+    is_db_active BOOLEAN NOT NULL DEFAULT TRUE
   );
 
 WITH

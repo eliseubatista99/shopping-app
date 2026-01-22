@@ -41,6 +41,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 SecurityCode = input?.SecurityCode,
                 ExpirationMonth = input?.ExpirationMonth,
                 ExpirationYear = input?.ExpirationYear,
+                IsDbActive = true,
             };
 
             var result = await paymentMethodsRepository.AddItemAsync(method, true);

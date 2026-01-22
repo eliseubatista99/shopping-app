@@ -7,5 +7,7 @@ namespace ShoppingApp.Database.Models
         public required string Name { get; set; }
 
         public byte[]? Image { get; set; }
+
+        public required bool IsDbActive { get; set; }
     }
 }

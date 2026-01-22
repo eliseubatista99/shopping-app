@@ -5,7 +5,8 @@ CREATE TABLE
   IF NOT EXISTS sellers (
     id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    image BYTEA
+    image BYTEA,
+    is_db_active BOOLEAN NOT NULL DEFAULT TRUE
   );
 
 WITH

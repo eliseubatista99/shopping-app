@@ -76,6 +76,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 Discounts = costs.Discounts,
                 Status = ShoppingServerConstants.ORDER_STATUS_PROCESSING,
                 StatusDate = DateTimeOffset.UtcNow,
+                IsDbActive = true,
             };
 
             var orderStatus = new OrdersStatusModel

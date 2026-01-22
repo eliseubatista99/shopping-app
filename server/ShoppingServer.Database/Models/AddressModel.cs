@@ -23,5 +23,7 @@
         public string? CountryCode { get; set; }
 
         public bool? IsDefault { get; set; }
+
+        public required bool IsDbActive { get; set; }
     }
 }

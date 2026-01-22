@@ -18,5 +18,6 @@
 
         public byte[]? Image { get; set; }
 
+        public required bool IsDbActive { get; set; }
     }
 }
