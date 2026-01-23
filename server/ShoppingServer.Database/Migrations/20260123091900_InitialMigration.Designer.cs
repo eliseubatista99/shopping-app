@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260122093853_InitialMigration")]
+    [Migration("20260123091900_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -223,10 +223,6 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<double?>("Discounts")
                         .HasColumnType("double precision")
                         .HasColumnName("discounts");
-
-                    b.Property<bool>("IsDbActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_db_active");
 
                     b.Property<string>("PaymentMethodId")
                         .IsRequired()
@@ -548,10 +544,6 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text")
                         .HasColumnName("id");
-
-                    b.Property<bool>("IsDbActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_db_active");
 
                     b.Property<string>("Name")
                         .IsRequired()

@@ -74,7 +74,8 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.ShippingCost, opt => opt.MapFrom(s => s.ShippingCost))
             .ForMember(d => d.BestSeller, opt => opt.MapFrom(s => s.BestSeller))
             .ForMember(d => d.IsWishlisted, opt => opt.MapFrom(s => s.IsWishlisted))
-            .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt));
+            .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt))
+            .ForMember(d => d.IsAvailable, opt => opt.MapFrom(s => s.IsDbActive));
 
             CreateMap<ProductModel, ProductDetailDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
@@ -107,7 +108,8 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             .ForMember(d => d.RelatedProducts, opt => opt.Ignore())
             .ForMember(d => d.ComboProducts, opt => opt.Ignore())
             .ForMember(d => d.Reviews, opt => opt.Ignore())
-            .ForMember(d => d.EstimatedDeliveryDate, opt => opt.Ignore());
+            .ForMember(d => d.EstimatedDeliveryDate, opt => opt.Ignore())
+            .ForMember(d => d.IsAvailable, opt => opt.MapFrom(s => s.IsDbActive));
 
             CreateMap<ProductModel, ProductOptionDto>()
                     .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))

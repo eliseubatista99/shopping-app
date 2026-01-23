@@ -32,7 +32,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            var addressValidation = await ValidateAddress(input.AddressId);
+            var addressValidation = await ValidateAddress(input?.AddressId);
 
             if (addressValidation.error != null)
             {
@@ -76,7 +76,6 @@ namespace ShoppingServer.BusinessLogic.Operations
                 Discounts = costs.Discounts,
                 Status = ShoppingServerConstants.ORDER_STATUS_PROCESSING,
                 StatusDate = DateTimeOffset.UtcNow,
-                IsDbActive = true,
             };
 
             var orderStatus = new OrdersStatusModel

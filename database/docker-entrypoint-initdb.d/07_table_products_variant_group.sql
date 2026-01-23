@@ -4,8 +4,7 @@
 CREATE TABLE
   IF NOT EXISTS product_variant_groups (
     id VARCHAR(100) PRIMARY KEY,
-    name VARCHAR(150) NOT NULL,
-    is_db_active BOOLEAN NOT NULL DEFAULT TRUE
+    name VARCHAR(150) NOT NULL
   );
 
 WITH

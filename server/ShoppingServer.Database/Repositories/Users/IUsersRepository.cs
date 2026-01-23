@@ -5,6 +5,8 @@ namespace ShoppingServer.Database.Repositories
 {
     public interface IUsersRepository : IRepository<UserModel>
     {
+        Task<UserModel?> GetByIdAsync(string id, bool onlyActive = true);
+
         public Task<List<UserModel>> GetByIds(IEnumerable<string> ids);
 
         public Task<UserModel?> GetByEmail(string email);

@@ -26,7 +26,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         {
             await base.HandleExecution();
 
-            var addressValidation = await ValidateAddress(input.AddressId);
+            var addressValidation = await ValidateAddress(input?.AddressId);
 
             if (addressValidation.error != null)
             {

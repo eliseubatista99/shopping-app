@@ -221,10 +221,6 @@ namespace ShoppingServer.Database.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("discounts");
 
-                    b.Property<bool>("IsDbActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_db_active");
-
                     b.Property<string>("PaymentMethodId")
                         .IsRequired()
                         .HasColumnType("text")
@@ -545,10 +541,6 @@ namespace ShoppingServer.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text")
                         .HasColumnName("id");
-
-                    b.Property<bool>("IsDbActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_db_active");
 
                     b.Property<string>("Name")
                         .IsRequired()

@@ -10,22 +10,43 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
-        public override Task<ProductModel?> GetByIdAsync(string id)
+        public Task<ProductModel?> GetByIdAsync(string id, bool onlyActive = true)
         {
-            return base.GetByIdAsync(id);
+            var query = this.ReadQuery();
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public Task<List<ProductModel>> GetByIds(IEnumerable<string> Ids)
+        public Task<List<ProductModel>> GetByIds(IEnumerable<string> Ids, bool onlyActive = true)
         {
-            return this.ReadQuery().Where(i => Ids.Contains(i.Id)).ToListAsync();
+            var query = this.ReadQuery().Where(i => Ids.Contains(i.Id));
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.ToListAsync();
         }
 
-        public Task<List<ProductModel>> GetVariations(string groupId)
+        public Task<List<ProductModel>> GetVariations(string groupId, bool onlyActive = true)
         {
-            return this.ReadQuery().Where(p => p.GroupId == groupId).ToListAsync();
+            var query = this.ReadQuery().Where(i => i.GroupId == groupId);
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.ToListAsync();
         }
 
-        public Task<(List<ProductModel> Data, bool HasMorePages)> Search(string? text, decimal? score, double? maxPrice, double? minPrice, bool? bestSeller, bool? freeShipping, string? category, int? page = 1, int? pageSize = 10)
+        public Task<(List<ProductModel> Data, bool HasMorePages)> Search(string? text, decimal? score, double? maxPrice, double? minPrice, bool? bestSeller, bool? freeShipping, string? category, int? page = 1, int? pageSize = 10, bool onlyActive = true)
         {
             var query = this.ReadQuery();
 
@@ -62,6 +83,11 @@ namespace ShoppingServer.Database.Repositories
             if (!string.IsNullOrEmpty(category))
             {
                 //query = query.Where(p => p.Category == category);
+            }
+
+            if (onlyActive)
+            {
+                query = query.Where(p => p.IsDbActive);
             }
 
             return query.ExecutePaginatedRead(page, pageSize);

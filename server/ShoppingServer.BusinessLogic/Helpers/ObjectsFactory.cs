@@ -83,7 +83,7 @@ namespace ShoppingServer.BusinessLogic.Helpers
             var productCombinationIds = await productCombinationsRepository.GetProductCombinations(source.Id);
             var productCombinations = await productsRepository.GetByIds(productCombinationIds.Select(i => i.CombinedProductId));
 
-            var seller = await sellersRepository.GetByIdAsync(source.SellerId);
+            var seller = await sellersRepository.GetByIdAsync(source.SellerId, false);
 
             var reviews = await reviewsRepository.SearchReviews(productId: source.Id);
 
@@ -111,7 +111,6 @@ namespace ShoppingServer.BusinessLogic.Helpers
         {
             var mapperProvider = executionContext.GetService<IMapper>();
             var productsRepository = executionContext.GetService<IProductsRepository>();
-            var sellersRepository = executionContext.GetService<ISellersRepository>();
 
             var cartItems = mapperProvider.Map<List<CartModel>, List<CartProductDetailsDto>>(source);
 
@@ -154,9 +153,9 @@ namespace ShoppingServer.BusinessLogic.Helpers
 
             var orderStatusInDb = await orderStatusRepository.GetByOrderId(source.Id);
 
-            var paymentMethodInDb = await paymentMethodsRepository.GetByIdAsync(source.PaymentMethodId);
+            var paymentMethodInDb = await paymentMethodsRepository.GetByIdAsync(source.PaymentMethodId, false);
 
-            var addressInDb = await addressesRepository.GetByIdAsync(source.AddressId);
+            var addressInDb = await addressesRepository.GetByIdAsync(source.AddressId, false);
 
             orderDetails.Products = orderProducts.FirstOrDefault(op => op.order.Id == orderDetails.Id).products;
 

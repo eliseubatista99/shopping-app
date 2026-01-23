@@ -9,14 +9,33 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
+        public Task<AddressModel?> GetByIdAsync(string id, bool onlyActive = true)
+        {
+            var query = this.ReadQuery();
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.FirstOrDefaultAsync(i => i.Id == id);
+        }
+
         public async Task<bool> DeleteById(string id, bool saveChanges = true)
         {
             return await DeleteAsync(i => i.Id == id, saveChanges);
         }
 
-        public async Task<List<AddressModel>> GetByUserId(string userId)
+        public Task<List<AddressModel>> GetByUserId(string userId, bool onlyActive = true)
         {
-            return await this.ReadQuery().Where(i => i.UserId == userId).ToListAsync();
+            var query = this.ReadQuery().Where(i => i.UserId == userId);
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.ToListAsync();
         }
 
         public async Task<bool> SetNewDefaultAddress(string addressId, bool saveChanges = true)

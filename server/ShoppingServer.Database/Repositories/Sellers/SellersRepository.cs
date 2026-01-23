@@ -9,9 +9,16 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
-        public override Task<SellerModel?> GetByIdAsync(string id)
+        public Task<SellerModel?> GetByIdAsync(string id, bool onlyActive = true)
         {
-            return base.GetByIdAsync(id);
+            var query = this.ReadQuery();
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.FirstOrDefaultAsync(i => i.Id == id);
         }
     }
 }

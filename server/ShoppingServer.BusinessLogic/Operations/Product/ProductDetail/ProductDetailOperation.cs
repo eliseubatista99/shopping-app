@@ -26,7 +26,7 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-            var productInDb = await productsRepository.GetByIdAsync(input.ProductId);
+            var productInDb = await productsRepository.GetByIdAsync(input.ProductId, false);
 
             if (productInDb == null)
             {

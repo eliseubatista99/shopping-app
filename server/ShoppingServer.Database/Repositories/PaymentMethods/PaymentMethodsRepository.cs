@@ -9,15 +9,28 @@ namespace ShoppingServer.Database.Repositories
         {
         }
 
-
-        public override Task<PaymentMethodModel?> GetByIdAsync(string id)
+        public Task<PaymentMethodModel?> GetByIdAsync(string id, bool onlyActive = true)
         {
-            return base.GetByIdAsync(id);
+            var query = this.ReadQuery();
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public Task<List<PaymentMethodModel>> GetByUserId(string userId)
+        public Task<List<PaymentMethodModel>> GetByUserId(string userId, bool onlyActive = true)
         {
-            return this.ReadQuery().Where(i => i.UserId == userId).ToListAsync();
+            var query = this.ReadQuery().Where(i => i.UserId == userId);
+
+            if (onlyActive)
+            {
+                query = query.Where(i => i.IsDbActive);
+            }
+
+            return query.ToListAsync();
         }
 
         public async Task<bool> SetDefault(string id, bool saveChanges = true)

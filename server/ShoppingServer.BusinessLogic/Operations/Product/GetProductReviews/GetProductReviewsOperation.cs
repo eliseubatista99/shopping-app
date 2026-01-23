@@ -45,7 +45,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             if (input.ProductId != null)
             {
-                var productInDb = await productsRepository.GetByIdAsync(input.ProductId);
+                var productInDb = await productsRepository.GetByIdAsync(input.ProductId, false);
                 var product = await ObjectsFactory.BuildProductDetails(productInDb, this.ExecutionContext);
                 var scoreDetails = await reviewsRepository.GetProductScoreDetails(input.ProductId);
 

@@ -30,5 +30,8 @@ namespace ShoppingServer.BusinessLogic.Entities
         public bool? IsWishlisted { get; set; }
 
         public DateTimeOffset? CreatedAt { get; set; }
+
+        public bool? IsAvailable { get; set; }
+
     }
 }
