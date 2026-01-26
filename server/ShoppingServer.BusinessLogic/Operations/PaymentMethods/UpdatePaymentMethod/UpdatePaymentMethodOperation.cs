@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private IPaymentMethodsRepository paymentMethodsRepository;
 
-        public UpdatePaymentMethodOperation(BaseAppController _controller) : base(_controller)
+        public UpdatePaymentMethodOperation(IExecutionContext _context) : base(_context)
         {
             paymentMethodsRepository = this.ExecutionContext.GetService<IPaymentMethodsRepository>();
         }

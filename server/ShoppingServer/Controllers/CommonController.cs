@@ -22,38 +22,50 @@ namespace ShoppingServer.Controllers
 
         public CommonController(IExecutionContext executionContext) : base(executionContext)
         {
-            getClientInfoOperation = new GetClientInfoOperation(this);
-            forYouOperation = new ForYouOperation(this);
-            getDocumentOperation = new GetDocumentOperation(this);
-            updateClientInfoOperation = new UpdateClientInfoOperation(this);
+            getClientInfoOperation = new GetClientInfoOperation(executionContext);
+            forYouOperation = new ForYouOperation(executionContext);
+            getDocumentOperation = new GetDocumentOperation(executionContext);
+            updateClientInfoOperation = new UpdateClientInfoOperation(executionContext);
         }
 
         [HttpGet("/api/GetClientInfo")]
         [Authorize]
-        public Task<GetClientInfoResponseDto> GetClientInfo()
+        public async Task<GetClientInfoResponseDto> GetClientInfo()
         {
-            return getClientInfoOperation.Execute<GetClientInfoResponseDto>();
+            var response = await getClientInfoOperation.Execute<GetClientInfoResponseDto>();
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpGet("/api/ForYou")]
         [Authorize]
-        public Task<ForYouResponseDto> ForYou()
+        public async Task<ForYouResponseDto> ForYou()
         {
-            return forYouOperation.Execute<ForYouResponseDto>();
+            var response = await forYouOperation.Execute<ForYouResponseDto>();
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpGet("/api/GetDocument")]
         [Authorize]
-        public Task<GetDocumentResponseDto> GetCart([FromQuery] GetDocumentOperationInputDto input)
+        public async Task<GetDocumentResponseDto> GetCart([FromQuery] GetDocumentOperationInputDto input)
         {
-            return getDocumentOperation.Execute<GetDocumentResponseDto>(input);
+            var response = await getDocumentOperation.Execute<GetDocumentResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPatch("/api/UpdateClientInfo")]
         [Authorize]
-        public Task<UpdateClientInfoResponseDto> UpdateClientInfo([FromBody] UpdateClientInfoOperationInputDto input)
+        public async Task<UpdateClientInfoResponseDto> UpdateClientInfo([FromBody] UpdateClientInfoOperationInputDto input)
         {
-            return updateClientInfoOperation.Execute<UpdateClientInfoResponseDto>(input);
+            var response = await updateClientInfoOperation.Execute<UpdateClientInfoResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
     }

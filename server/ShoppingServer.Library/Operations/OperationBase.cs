@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace ShoppingServer.Library.Operations
 {
-    public class OperationBase<TInput, TOutput> 
+    public class OperationBase<TInput, TOutput>
         where TInput : OperationInputDto
         where TOutput : OperationOutputDto
     {
-        protected BaseAppController controller;
+        //protected BaseAppController controller;
 
         protected IExecutionContext ExecutionContext;
 
@@ -15,16 +15,19 @@ namespace ShoppingServer.Library.Operations
 
         protected TInput? input;
 
+        protected System.Security.Claims.ClaimsPrincipal? User;
+
         protected OperationResponseDto<TOutput> output;
 
-        public OperationBase(BaseAppController _controller)
+        public OperationBase(IExecutionContext executionContext)
         {
-            controller = _controller;
-            ExecutionContext = _controller.GetExecutionContext();
+            //controller = _controller;
+            ExecutionContext = executionContext;
 
             MapperProvider = ExecutionContext.GetService<IMapper>();
 
-            output = new OperationResponseDto<TOutput> { 
+            output = new OperationResponseDto<TOutput>
+            {
                 Metadata = new OutputMetadataDto
                 {
                     Success = true,
@@ -35,7 +38,16 @@ namespace ShoppingServer.Library.Operations
 
         protected void SetStatusCode(int code)
         {
-            controller.Response.StatusCode = code;
+            output.StatusCode = code;
+
+            //controller.Response.StatusCode = code;
+        }
+
+        protected void SetUser(System.Security.Claims.ClaimsPrincipal _user)
+        {
+            this.User = _user;
+
+            //controller.Response.StatusCode = code;
         }
 
         protected virtual void LogOperationExecution()
@@ -85,9 +97,14 @@ namespace ShoppingServer.Library.Operations
             return output;
         }
 
-        public async Task<TResponse> Execute<TResponse>()
+        public async Task<TResponse> Execute<TResponse>(System.Security.Claims.ClaimsPrincipal? User = null)
             where TResponse : OperationResponseDto<TOutput>, new()
         {
+            if (User != null)
+            {
+                SetUser(User);
+            }
+
             var res = await Execute();
 
             return new TResponse
@@ -97,12 +114,12 @@ namespace ShoppingServer.Library.Operations
             };
         }
 
-        public Task<TResponse> Execute<TResponse>(TInput _input)
+        public Task<TResponse> Execute<TResponse>(TInput _input, System.Security.Claims.ClaimsPrincipal? User = null)
             where TResponse : OperationResponseDto<TOutput>, new()
         {
             this.input = _input;
 
-            return Execute<TResponse>();
+            return Execute<TResponse>(User);
         }
     }
 }

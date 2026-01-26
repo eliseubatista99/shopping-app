@@ -11,7 +11,7 @@ import React from "react";
 
 export const useHomePageHelper = () => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
   const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const setStoreHomeState = useStoreHome((state) => state.setHomeStoreState);
@@ -31,15 +31,6 @@ export const useHomePageHelper = () => {
           address: selectedAddress?.postalCode,
         }),
       },
-      group: {
-        title: (category: string) => t(`home.group.${category}.title`),
-      },
-      buyAgain: {
-        title: t("home.group.buyAgain.title"),
-      },
-      fromHistory: {
-        title: t("home.group.fromHistory.title"),
-      },
     };
   }, [selectedAddress?.postalCode, t]);
 
@@ -49,14 +40,14 @@ export const useHomePageHelper = () => {
 
     if (res.metadata?.success) {
       setStoreHomeState({
-        fromSearchHistory: res.data?.fromSearchHistory || [],
+        // fromSearchHistory: res.data?.fromSearchHistory || [],
         buyAgain: res.data?.buyAgain || [],
         groups: res.data?.groups || [],
         banners: res.data?.banners || [],
       });
 
       const hasContent =
-        (res.data?.fromSearchHistory || []).length > 0 ||
+        // (res.data?.fromSearchHistory || []).length > 0 ||
         (res.data?.buyAgain || []).length > 0 ||
         (res.data?.groups || []).length > 0 ||
         (res.data?.banners || []).length > 0;

@@ -17,5 +17,8 @@
         public const int DELIVERY_DAYS_GAP = 6;
         public const int DELIVERY_DAYS_FAST_GAP = 3;
 
+        public const double FAST_DELIVERY_COST = 3.99;
+
+
     }
 }

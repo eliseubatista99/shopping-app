@@ -12,7 +12,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IProductsRepository productsRepository;
         private IWishlistsRepository wishlistsRepository;
 
-        public AddToWishlistOperation(BaseAppController _controller) : base(_controller)
+        public AddToWishlistOperation(IExecutionContext _context) : base(_context)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             wishlistsRepository = ExecutionContext.GetService<IWishlistsRepository>();

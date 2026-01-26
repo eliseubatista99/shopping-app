@@ -1,25 +1,25 @@
 import { TimeHelper } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppTranslations, useCheckout } from "@hooks";
 import { useStoreBase, useStoreCheckout } from "@store";
 import React from "react";
 
 export const useScheduleBlockHelper = () => {
   const { t, translateDate } = useAppTranslations();
   const startDeliveryDate = useStoreCheckout(
-    (state) => state.startDeliveryDate
+    (state) => state.startDeliveryDate,
   );
   const currency = useStoreBase((state) => state.currency);
   const endDeliveryDate = useStoreCheckout((state) => state.endDeliveryDate);
   const fastestDeliveryCost = useStoreCheckout(
-    (state) => state.fastestDeliveryCost || 0
+    (state) => state.fastestDeliveryCost || 0,
   );
   const wantsFastestOption = useStoreCheckout(
-    (state) => state.wantsFastestOption
+    (state) => state.wantsFastestOption,
   );
   const setStoreCheckoutState = useStoreCheckout(
-    (state) => state.setCheckoutStoreState
+    (state) => state.setCheckoutStoreState,
   );
-  const recalculate = useStoreCheckout((state) => state.recalculate);
+  const { updateCheckoutInfo } = useCheckout();
 
   const i18n = React.useMemo(() => {
     const startDateData = TimeHelper.getDateInUTC(startDeliveryDate);
@@ -40,11 +40,11 @@ export const useScheduleBlockHelper = () => {
   }, [endDeliveryDate, startDeliveryDate, t, translateDate]);
 
   const onClickOption = React.useCallback(
-    (fastest: boolean) => {
+    async (fastest: boolean) => {
       setStoreCheckoutState({ wantsFastestOption: fastest });
-      recalculate();
+      await updateCheckoutInfo();
     },
-    [recalculate, setStoreCheckoutState]
+    [setStoreCheckoutState, updateCheckoutInfo],
   );
 
   return {

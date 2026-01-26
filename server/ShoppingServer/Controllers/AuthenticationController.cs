@@ -23,43 +23,58 @@ namespace ShoppingServer.Controllers
         private IsExistingAccountOperation isExistingAccountOperation;
 
         public AuthenticationController(IExecutionContext executionContext) : base(executionContext)
-        {           
-            authenticateOperation = new AuthenticateOperation(this);
-            refreshAuthenticationOperation = new RefreshAuthenticationOperation(this);
-            logoutOperation = new LogoutOperation(this);
-            createAccountOperation = new CreateAccountOperation(this);
-            isExistingAccountOperation = new IsExistingAccountOperation(this);
+        {
+            authenticateOperation = new AuthenticateOperation(executionContext);
+            refreshAuthenticationOperation = new RefreshAuthenticationOperation(executionContext);
+            logoutOperation = new LogoutOperation(executionContext);
+            createAccountOperation = new CreateAccountOperation(executionContext);
+            isExistingAccountOperation = new IsExistingAccountOperation(executionContext);
         }
 
         [HttpGet("/api/IsExistingAccount")]
         [Authorize]
-        public Task<IsExistingAccountResponseDto> IsExistingAccount([FromQuery] IsExistingAccountOperationInputDto input)
+        public async Task<IsExistingAccountResponseDto> IsExistingAccount([FromQuery] IsExistingAccountOperationInputDto input)
         {
-            return isExistingAccountOperation.Execute<IsExistingAccountResponseDto>(input);
+            var response = await isExistingAccountOperation.Execute<IsExistingAccountResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPost("/api/Authenticate")]
-        public Task<AuthenticateResponseDto> Authenticate([FromBody] AuthenticateOperationInputDto input)
+        public async Task<AuthenticateResponseDto> Authenticate([FromBody] AuthenticateOperationInputDto input)
         {
-            return authenticateOperation.Execute<AuthenticateResponseDto>(input);
+            var response = await authenticateOperation.Execute<AuthenticateResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPost("/api/RefreshAuthentication")]
-        public Task<RefreshAuthenticationResponseDto> RefreshAuthentication([FromBody] RefreshAuthenticationOperationInputDto input)
+        public async Task<RefreshAuthenticationResponseDto> RefreshAuthentication([FromBody] RefreshAuthenticationOperationInputDto input)
         {
-            return refreshAuthenticationOperation.Execute<RefreshAuthenticationResponseDto>(input);
+            var response = await refreshAuthenticationOperation.Execute<RefreshAuthenticationResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPost("/api/CreateAccount")]
-        public Task<CreateAccountResponseDto> CreateAccount([FromBody] CreateAccountOperationInputDto input)
+        public async Task<CreateAccountResponseDto> CreateAccount([FromBody] CreateAccountOperationInputDto input)
         {
-            return createAccountOperation.Execute<CreateAccountResponseDto>(input);
+            var response = await createAccountOperation.Execute<CreateAccountResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPost("/api/Logout")]
-        public Task<LogoutOperationResponseDto> Logout([FromBody] LogoutOperationInputDto input)
+        public async Task<LogoutOperationResponseDto> Logout([FromBody] LogoutOperationInputDto input)
         {
-            return logoutOperation.Execute<LogoutOperationResponseDto>(input);
+            var response = await logoutOperation.Execute<LogoutOperationResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
 

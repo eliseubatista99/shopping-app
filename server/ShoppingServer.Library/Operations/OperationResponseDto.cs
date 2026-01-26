@@ -1,4 +1,5 @@
-﻿using ShoppingServer.Library.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using ShoppingServer.Library.Entities;
 using System.Diagnostics.CodeAnalysis;
 
 
@@ -9,10 +10,11 @@ namespace ShoppingServer.Library.Operations
     {
         public TOutput? Data { get; set; }
         public OutputMetadataDto? Metadata { get; set; }
+        public int StatusCode { get; set; }
 
         public OperationResponseDto()
         {
-
+            StatusCode = StatusCodes.Status200OK;
         }
 
         public void AddError(ErrorDto error)
@@ -22,11 +24,17 @@ namespace ShoppingServer.Library.Operations
 
         public void AddErrors(List<ErrorDto> errors)
         {
-            if (this.Metadata == null) {
+            if (this.Metadata == null)
+            {
                 this.Metadata = new OutputMetadataDto();
             }
 
             this.Metadata.AddErrors(errors);
-        }        
+        }
+
+        protected void SetStatusCode(int code)
+        {
+            StatusCode = code;
+        }
     }
 }

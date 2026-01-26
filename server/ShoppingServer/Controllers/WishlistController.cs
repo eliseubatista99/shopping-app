@@ -21,32 +21,41 @@ namespace ShoppingServer.Controllers
 
         public WishlistController(IExecutionContext executionContext) : base(executionContext)
         {
-            addToWishlistOperation = new AddToWishlistOperation(this);
-            getWishlistOperation = new GetWishlistOperation(this);
-            removeFromWishlistOperation = new RemoveFromWishlistOperation(this);
+            addToWishlistOperation = new AddToWishlistOperation(executionContext);
+            getWishlistOperation = new GetWishlistOperation(executionContext);
+            removeFromWishlistOperation = new RemoveFromWishlistOperation(executionContext);
         }
 
 
         [HttpPost("/api/AddToWishlist")]
         [Authorize]
-        public Task<AddToWishlistResponseDto> AddToWishlist([FromBody] AddToWishlistOperationInputDto input)
+        public async Task<AddToWishlistResponseDto> AddToWishlist([FromBody] AddToWishlistOperationInputDto input)
         {
-            return addToWishlistOperation.Execute<AddToWishlistResponseDto>(input);
+            var response = await addToWishlistOperation.Execute<AddToWishlistResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [SwaggerOperation(OperationId = "GetWishlist")]
         [HttpGet("/api/GetWishlist")]
         [Authorize]
-        public Task<GetWishlistResponseDto> GetWishlist([FromQuery] GetWishlistOperationInputDto input)
+        public async Task<GetWishlistResponseDto> GetWishlist([FromQuery] GetWishlistOperationInputDto input)
         {
-            return getWishlistOperation.Execute<GetWishlistResponseDto>(input);
+            var response = await getWishlistOperation.Execute<GetWishlistResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpDelete("/api/RemoveFromWishlist")]
         [Authorize]
-        public Task<RemoveFromWishlistResponseDto> RemoveFromWishlist([FromQuery] RemoveFromWishlistOperationInputDto input)
+        public async Task<RemoveFromWishlistResponseDto> RemoveFromWishlist([FromQuery] RemoveFromWishlistOperationInputDto input)
         {
-            return removeFromWishlistOperation.Execute<RemoveFromWishlistResponseDto>(input);
+            var response = await removeFromWishlistOperation.Execute<RemoveFromWishlistResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
     }
 }

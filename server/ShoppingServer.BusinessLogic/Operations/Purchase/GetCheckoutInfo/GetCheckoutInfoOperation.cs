@@ -15,7 +15,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IPaymentMethodsRepository paymentMethodsRepository;
         private IAddressesRepository addressesRepository;
 
-        public GetCheckoutInfoOperation(BaseAppController _controller) : base(_controller)
+        public GetCheckoutInfoOperation(IExecutionContext _context) : base(_context)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             paymentMethodsRepository = ExecutionContext.GetService<IPaymentMethodsRepository>();
@@ -55,7 +55,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             var userId = this.GetUserIdFromToken();
 
-            var costs = ObjectsFactory.CalculateCheckoutCosts(productsValidation.Data);
+            var costs = CalculateCosts(productsValidation.Data, input.WantsFastShipping);
 
             var startDeliveryDate = DateTimeOffset.UtcNow.AddDays(ShoppingServerConstants.DELIVERY_STANDARD_DAYS);
             var fastStartDeliveryDate = DateTimeOffset.UtcNow.AddDays(ShoppingServerConstants.DELIVERY_FAST_SHIPPING_DAYS);
@@ -64,6 +64,8 @@ namespace ShoppingServer.BusinessLogic.Operations
             {
                 ShippingCost = costs.ShippingCost,
                 FastestDeliveryCost = costs.FastestDeliveryCost,
+                ProductCost = costs.ProductCost,
+                TotalCost = costs.TotalCost,
                 StartDeliveryDate = startDeliveryDate,
                 EndDeliveryDate = startDeliveryDate.AddDays(ShoppingServerConstants.DELIVERY_DAYS_GAP),
                 FastestStartDeliveryDate = fastStartDeliveryDate,
@@ -130,6 +132,20 @@ namespace ShoppingServer.BusinessLogic.Operations
             }
 
             return (addressInDb, null);
+        }
+
+        private (double ProductCost, double ShippingCost, double Discounts, double TotalCost, double FastestDeliveryCost) CalculateCosts(List<CheckoutProductDetailsDto> products, bool wantsFastShipping)
+        {
+            var costs = ObjectsFactory.CalculateCheckoutCosts(products);
+
+            if (wantsFastShipping)
+            {
+                //costs.ShippingCost += costs.FastestDeliveryCost;
+                costs.TotalCost += costs.FastestDeliveryCost;
+            }
+
+
+            return (costs.ProductCost, costs.ShippingCost, costs.Discounts, costs.TotalCost, costs.FastestDeliveryCost);
         }
     }
 }

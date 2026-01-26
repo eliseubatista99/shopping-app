@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private ICartsRepository cartsRepository;
 
-        public RemoveFromCartOperation(BaseAppController _controller) : base(_controller)
+        public RemoveFromCartOperation(IExecutionContext _context) : base(_context)
         {
             cartsRepository = this.ExecutionContext.GetService<ICartsRepository>();
         }

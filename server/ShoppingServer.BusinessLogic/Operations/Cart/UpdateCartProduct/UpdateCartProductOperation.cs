@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private ICartsRepository cartsRepository;
 
-        public UpdateCartProductOperation(BaseAppController _controller) : base(_controller)
+        public UpdateCartProductOperation(IExecutionContext _context) : base(_context)
         {
             cartsRepository = this.ExecutionContext.GetService<ICartsRepository>();
         }

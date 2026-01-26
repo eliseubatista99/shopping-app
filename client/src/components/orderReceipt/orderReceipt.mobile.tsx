@@ -185,7 +185,7 @@ export const OrderReceiptMobile = (props: OrderReceiptProps) => {
               >
                 {productColumn([
                   i18n.details.product,
-                  ...(order.products || []).map((p) => p.name || ""),
+                  ...(order.products || []).map((p) => p.product?.name || ""),
                 ])}
               </View>
 
@@ -199,28 +199,28 @@ export const OrderReceiptMobile = (props: OrderReceiptProps) => {
                 {productColumn([
                   i18n.details.price.text,
                   ...(order.products || []).map((p) =>
-                    i18n.details.price.value(p)
+                    i18n.details.price.value(p.product),
                   ),
                 ])}
 
                 {productColumn([
                   i18n.details.shipping.text,
                   ...(order.products || []).map((p) =>
-                    i18n.details.shipping.value(p)
+                    i18n.details.shipping.value(p.product),
                   ),
                 ])}
 
                 {productColumn([
                   i18n.details.discount.text,
                   ...(order.products || []).map((p) =>
-                    i18n.details.discount.value(p)
+                    i18n.details.discount.value(p.product),
                   ),
                 ])}
 
                 {productColumn([
                   i18n.details.total.text,
                   ...(order.products || []).map((p) =>
-                    i18n.details.total.value(p)
+                    i18n.details.total.value(p.product),
                   ),
                 ])}
               </View>
@@ -248,19 +248,19 @@ export const OrderReceiptMobile = (props: OrderReceiptProps) => {
               </Text>
               {totalCostsLine(
                 i18n.summary.products.text,
-                i18n.summary.products.value
+                i18n.summary.products.value,
               )}
               {totalCostsLine(
                 i18n.summary.shipping.text,
-                i18n.summary.shipping.value
+                i18n.summary.shipping.value,
               )}
               {totalCostsLine(
                 i18n.summary.discounts.text,
-                i18n.summary.discounts.value
+                i18n.summary.discounts.value,
               )}
               {totalCostsLine(
                 i18n.summary.total.text,
-                i18n.summary.total.value
+                i18n.summary.total.value,
               )}
             </View>
           </Page>

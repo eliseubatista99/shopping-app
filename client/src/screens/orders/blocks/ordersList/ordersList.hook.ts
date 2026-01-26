@@ -12,7 +12,7 @@ export const useOrdersListBlockHelper = () => {
   const { goTo } = useNavigation();
 
   const setOrdersStoreState = useStoreOrders(
-    (state) => state.setOrdersStoreState
+    (state) => state.setOrdersStoreState,
   );
   const addOrders = useStoreOrders((state) => state.addOrders);
   const allOrders = useStoreOrders((state) => state.orders);
@@ -72,7 +72,7 @@ export const useOrdersListBlockHelper = () => {
         hasMorePages: res.data?.hasMorePages,
       };
     },
-    [addOrders, fetchGetClientOrders, setOrdersStoreState]
+    [addOrders, fetchGetClientOrders, setOrdersStoreState],
   );
 
   const handleRequestTrigger = React.useCallback(
@@ -87,7 +87,7 @@ export const useOrdersListBlockHelper = () => {
         retrieveItems(currentPage.current, 10, storeFilters);
       }
     },
-    [retrieveItems, storeFilters]
+    [retrieveItems, storeFilters],
   );
 
   const onClickOrder = React.useCallback(
@@ -99,7 +99,7 @@ export const useOrdersListBlockHelper = () => {
         },
       });
     },
-    [goTo]
+    [goTo],
   );
 
   const allOrderProducts = React.useMemo(() => {
@@ -107,7 +107,9 @@ export const useOrdersListBlockHelper = () => {
 
     (allOrders || []).forEach((o) => {
       (o.products || []).forEach((p) => {
-        result.push({ order: o, product: p });
+        if (p.product) {
+          result.push({ order: o, product: p.product });
+        }
       });
     });
 

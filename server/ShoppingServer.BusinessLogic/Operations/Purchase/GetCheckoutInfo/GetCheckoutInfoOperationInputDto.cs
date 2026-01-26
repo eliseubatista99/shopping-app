@@ -12,5 +12,6 @@ namespace ShoppingServer.BusinessLogic.Operations
 
         public required string PaymentMethodId { get; set; }
 
+        public bool WantsFastShipping { get; set; }
     }
 }

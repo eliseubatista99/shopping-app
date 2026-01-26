@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private IDocumentsRepository documentsRepository;
 
-        public GetDocumentOperation(BaseAppController _controller) : base(_controller)
+        public GetDocumentOperation(IExecutionContext _context) : base(_context)
         {
             documentsRepository = this.ExecutionContext.GetService<IDocumentsRepository>();
         }

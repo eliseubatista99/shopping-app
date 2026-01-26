@@ -6,5 +6,8 @@ namespace ShoppingServer.BusinessLogic.Entities
     public class CheckoutProductDetailsDto : CheckoutProductDto
     {
         public ProductDto? Product { get; set; }
+
+        public SellerDto? Seller { get; set; }
+
     }
 }

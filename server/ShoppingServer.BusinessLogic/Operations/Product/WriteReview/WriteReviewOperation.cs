@@ -12,7 +12,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IProductsRepository productsRepository;
         private IReviewsRepository reviewsRepository;
 
-        public WriteReviewOperation(BaseAppController _controller) : base(_controller)
+        public WriteReviewOperation(IExecutionContext _context) : base(_context)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             reviewsRepository = ExecutionContext.GetService<IReviewsRepository>();

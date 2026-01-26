@@ -59,7 +59,7 @@ namespace ShoppingServer.BusinessLogic.MapperProfiles
             CreateMap<SellerModel, SellerDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
             .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
-            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image));
+            .ForMember(d => d.Image, opt => opt.MapFrom(s => s.Image.ToBase64DataUri()));
 
             CreateMap<ProductModel, ProductDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))

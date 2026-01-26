@@ -18,23 +18,29 @@ namespace ShoppingServer.Controllers
 
         public OrdersController(IExecutionContext executionContext) : base(executionContext)
         {
-            getClientOrdersOperation = new GetClientOrdersOperation(this);
-            getOrderDetailsOperation = new GetOrderDetailsOperation(this);
+            getClientOrdersOperation = new GetClientOrdersOperation(executionContext);
+            getOrderDetailsOperation = new GetOrderDetailsOperation(executionContext);
         }
 
         [HttpGet("/api/GetClientOrders")]
         [Authorize]
-        public Task<GetClientOrdersResponseDto> GetClientOrders([FromQuery] GetClientOrdersOperationInputDto input)
+        public async Task<GetClientOrdersResponseDto> GetClientOrders([FromQuery] GetClientOrdersOperationInputDto input)
         {
-            return getClientOrdersOperation.Execute<GetClientOrdersResponseDto>(input);
+            var response = await getClientOrdersOperation.Execute<GetClientOrdersResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
 
         [HttpGet("/api/GetOrderDetails")]
         [Authorize]
-        public Task<GetOrderDetailsResponseDto> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)
+        public async Task<GetOrderDetailsResponseDto> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)
         {
-            return getOrderDetailsOperation.Execute<GetOrderDetailsResponseDto>(input);
+            var response = await getOrderDetailsOperation.Execute<GetOrderDetailsResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
     }
 }

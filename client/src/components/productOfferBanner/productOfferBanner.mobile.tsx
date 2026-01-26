@@ -1,13 +1,11 @@
 import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import type { ProductOfferBannerProps } from "./productOfferBanner";
-import { useProductOfferBannerHelper } from "./productOfferBanner.hook";
 
 export const ProductOfferBannerMobile: React.FC<ProductOfferBannerProps> = (
-  props
+  props,
 ) => {
-  const { i18n } = useProductOfferBannerHelper(props);
-  const { onClick } = props;
+  const { onClick, banner } = props;
 
   return (
     <div
@@ -17,21 +15,21 @@ export const ProductOfferBannerMobile: React.FC<ProductOfferBannerProps> = (
         width: "200px",
         height: "300px",
         borderRadius: "20px",
-        backgroundImage: `url('${i18n.image}')`,
+        backgroundImage: `url('${banner.image}')`,
         backgroundSize: "cover",
         padding: "10px",
-        color: i18n.color,
+        color: banner.textColor || "#000000",
       }}
     >
       <Typography
         styles={{ color: "inherit", fontSize: "20px", fontWeight: "600" }}
       >
-        {i18n.title}
+        {banner.title}
       </Typography>
       <Typography
         styles={{ color: "inherit", fontSize: "14px", fontWeight: "400" }}
       >
-        {i18n.subtitle}
+        {banner.subtitle}
       </Typography>
     </div>
   );

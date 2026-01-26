@@ -1,4 +1,4 @@
-import type { ProductDto, ProductOfferGroupDto } from "@api";
+import type { ProductDto, ProductOfferGroupDto, ProductsBannerDto } from "@api";
 import { produce } from "immer";
 import { createJSONStorage } from "zustand/middleware";
 import { StoreHelper } from "../storeHelper";
@@ -7,7 +7,7 @@ export interface HomeState {
   fromSearchHistory?: ProductDto[];
   buyAgain?: ProductDto[];
   groups?: ProductOfferGroupDto[];
-  banners?: ProductOfferGroupDto[];
+  banners?: ProductsBannerDto[];
 }
 
 const initialState: HomeState = {
@@ -28,10 +28,10 @@ export const useStoreHome = StoreHelper.createStore<UseStoreOutput>(
       set(
         produce((state: HomeState) => ({ ...state, ...data })),
         false,
-        "setPartialState"
+        "setPartialState",
       );
     },
   }),
   "Home",
-  createJSONStorage(() => sessionStorage)
+  createJSONStorage(() => sessionStorage),
 );

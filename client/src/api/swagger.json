@@ -7,7 +7,9 @@
   "paths": {
     "/api/AddAddress": {
       "post": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "operationId": "AddAddress",
         "requestBody": {
           "content": {
@@ -54,7 +56,9 @@
     },
     "/api/DeleteAddress": {
       "delete": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "operationId": "DeleteAddress",
         "parameters": [
           {
@@ -92,7 +96,9 @@
     },
     "/api/SetDefaultAddress": {
       "patch": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "operationId": "SetDefaultAddress",
         "parameters": [
           {
@@ -129,8 +135,10 @@
       }
     },
     "/api/UpdateAddress": {
-      "patch": {
-        "tags": ["Address"],
+      "post": {
+        "tags": [
+          "Address"
+        ],
         "operationId": "UpdateAddress",
         "requestBody": {
           "content": {
@@ -177,7 +185,9 @@
     },
     "/api/IsExistingAccount": {
       "get": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "parameters": [
           {
             "name": "Email",
@@ -220,7 +230,9 @@
     },
     "/api/Authenticate": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -266,7 +278,9 @@
     },
     "/api/RefreshAuthentication": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -312,7 +326,9 @@
     },
     "/api/CreateAccount": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -358,7 +374,28 @@
     },
     "/api/Logout": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutOperationInputDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -385,7 +422,9 @@
     },
     "/api/AddToCart": {
       "post": {
-        "tags": ["Cart"],
+        "tags": [
+          "Cart"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -431,7 +470,9 @@
     },
     "/api/GetCart": {
       "get": {
-        "tags": ["Cart"],
+        "tags": [
+          "Cart"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -458,7 +499,9 @@
     },
     "/api/RemoveFromCart": {
       "delete": {
-        "tags": ["Cart"],
+        "tags": [
+          "Cart"
+        ],
         "parameters": [
           {
             "name": "ProductIds",
@@ -498,7 +541,9 @@
     },
     "/api/UpdateCartProduct": {
       "patch": {
-        "tags": ["Cart"],
+        "tags": [
+          "Cart"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -544,7 +589,9 @@
     },
     "/api/GetClientInfo": {
       "get": {
-        "tags": ["Common"],
+        "tags": [
+          "Common"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -571,7 +618,9 @@
     },
     "/api/ForYou": {
       "get": {
-        "tags": ["Common"],
+        "tags": [
+          "Common"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -598,7 +647,9 @@
     },
     "/api/GetDocument": {
       "get": {
-        "tags": ["Common"],
+        "tags": [
+          "Common"
+        ],
         "parameters": [
           {
             "name": "Id",
@@ -635,7 +686,9 @@
     },
     "/api/UpdateClientInfo": {
       "patch": {
-        "tags": ["Common"],
+        "tags": [
+          "Common"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -681,7 +734,9 @@
     },
     "/api/GetClientOrders": {
       "get": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "parameters": [
           {
             "name": "OrderId",
@@ -770,7 +825,9 @@
     },
     "/api/GetOrderDetails": {
       "get": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "parameters": [
           {
             "name": "OrderId",
@@ -807,7 +864,9 @@
     },
     "/api/GetPaymentMethodDetails": {
       "get": {
-        "tags": ["PaymentMethods"],
+        "tags": [
+          "PaymentMethods"
+        ],
         "parameters": [
           {
             "name": "MethodId",
@@ -844,7 +903,9 @@
     },
     "/api/AddPaymentMethod": {
       "post": {
-        "tags": ["PaymentMethods"],
+        "tags": [
+          "PaymentMethods"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -890,7 +951,9 @@
     },
     "/api/DeletePaymentMethod": {
       "delete": {
-        "tags": ["PaymentMethods"],
+        "tags": [
+          "PaymentMethods"
+        ],
         "parameters": [
           {
             "name": "MethodId",
@@ -927,26 +990,19 @@
     },
     "/api/SetDefaultPaymentMethod": {
       "patch": {
-        "tags": ["PaymentMethods"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetDefaultPaymentMethodOperationInputDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetDefaultPaymentMethodOperationInputDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetDefaultPaymentMethodOperationInputDto"
-              }
+        "tags": [
+          "PaymentMethods"
+        ],
+        "parameters": [
+          {
+            "name": "MethodId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -973,7 +1029,9 @@
     },
     "/api/UpdatePaymentMethod": {
       "patch": {
-        "tags": ["PaymentMethods"],
+        "tags": [
+          "PaymentMethods"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1019,7 +1077,9 @@
     },
     "/api/GetProductReviews": {
       "get": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "parameters": [
           {
             "name": "ProductId",
@@ -1100,7 +1160,9 @@
     },
     "/api/ProductDetail": {
       "get": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "parameters": [
           {
             "name": "ProductId",
@@ -1137,7 +1199,9 @@
     },
     "/api/ProductOffers": {
       "get": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1164,7 +1228,9 @@
     },
     "/api/SearchProducts": {
       "get": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "parameters": [
           {
             "name": "Text",
@@ -1268,7 +1334,9 @@
     },
     "/api/WriteReview": {
       "post": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1314,7 +1382,9 @@
     },
     "/api/ExecutePurchase": {
       "post": {
-        "tags": ["Purchase"],
+        "tags": [
+          "Purchase"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1360,26 +1430,45 @@
     },
     "/api/GetCheckoutInfo": {
       "get": {
-        "tags": ["Purchase"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCheckoutInfoOperationInputDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCheckoutInfoOperationInputDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCheckoutInfoOperationInputDto"
+        "tags": [
+          "Purchase"
+        ],
+        "parameters": [
+          {
+            "name": "ProductIds",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
               }
             }
+          },
+          {
+            "name": "AddressId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PaymentMethodId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "WantsFastShipping",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1406,7 +1495,9 @@
     },
     "/api/AddToWishlist": {
       "post": {
-        "tags": ["Wishlist"],
+        "tags": [
+          "Wishlist"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1452,7 +1543,9 @@
     },
     "/api/GetWishlist": {
       "get": {
-        "tags": ["Wishlist"],
+        "tags": [
+          "Wishlist"
+        ],
         "operationId": "GetWishlist",
         "parameters": [
           {
@@ -1498,7 +1591,9 @@
     },
     "/api/RemoveFromWishlist": {
       "delete": {
-        "tags": ["Wishlist"],
+        "tags": [
+          "Wishlist"
+        ],
         "parameters": [
           {
             "name": "ProductId",
@@ -1604,12 +1699,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "AddPaymentMethodOperationInputDto": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "type": {
@@ -1620,6 +1721,22 @@
             "nullable": true
           },
           "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "network": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "securityCode": {
             "type": "string",
             "nullable": true
           },
@@ -1657,12 +1774,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "AddToCartOperationInputDto": {
-        "required": ["productIds"],
+        "required": [
+          "productIds"
+        ],
         "type": "object",
         "properties": {
           "productIds": {
@@ -1696,12 +1819,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "AddToWishlistOperationInputDto": {
-        "required": ["productId"],
+        "required": [
+          "productId"
+        ],
         "type": "object",
         "properties": {
           "productId": {
@@ -1732,6 +1861,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1811,7 +1944,10 @@
         "additionalProperties": false
       },
       "AuthenticateOperationOutputDto": {
-        "required": ["refreshToken", "token"],
+        "required": [
+          "refreshToken",
+          "token"
+        ],
         "type": "object",
         "properties": {
           "token": {
@@ -1833,12 +1969,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "CartProductDetailsDto": {
-        "required": ["productId"],
+        "required": [
+          "productId"
+        ],
         "type": "object",
         "properties": {
           "productId": {
@@ -1861,7 +2003,9 @@
         "additionalProperties": false
       },
       "CartProductDto": {
-        "required": ["productId"],
+        "required": [
+          "productId"
+        ],
         "type": "object",
         "properties": {
           "productId": {
@@ -1880,12 +2024,40 @@
         },
         "additionalProperties": false
       },
-      "CheckoutProductDto": {
-        "required": ["product", "quantity"],
+      "CheckoutProductDetailsDto": {
+        "required": [
+          "productId",
+          "quantity"
+        ],
         "type": "object",
         "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
           "product": {
             "$ref": "#/components/schemas/ProductDto"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/SellerDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CheckoutProductDto": {
+        "required": [
+          "productId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
           },
           "quantity": {
             "type": "integer",
@@ -1895,7 +2067,10 @@
         "additionalProperties": false
       },
       "ClientInfoDto": {
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -1946,6 +2121,10 @@
             "type": "string",
             "nullable": true
           },
+          "surname": {
+            "type": "string",
+            "nullable": true
+          },
           "email": {
             "type": "string",
             "nullable": true
@@ -1962,7 +2141,10 @@
         "additionalProperties": false
       },
       "CreateAccountOperationOutputDto": {
-        "required": ["refreshToken", "token"],
+        "required": [
+          "refreshToken",
+          "token"
+        ],
         "type": "object",
         "properties": {
           "token": {
@@ -1984,12 +2166,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "DeleteAddressOperationInputDto": {
-        "required": ["addressId"],
+        "required": [
+          "addressId"
+        ],
         "type": "object",
         "properties": {
           "addressId": {
@@ -2020,12 +2208,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "DeletePaymentMethodOperationInputDto": {
-        "required": ["methodId"],
+        "required": [
+          "methodId"
+        ],
         "type": "object",
         "properties": {
           "methodId": {
@@ -2056,12 +2250,19 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "DocumentDto": {
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2098,7 +2299,11 @@
         "additionalProperties": false
       },
       "ExecutePurchaseOperationInputDto": {
-        "required": ["addressId", "paymentMethodId", "products"],
+        "required": [
+          "addressId",
+          "paymentMethodId",
+          "products"
+        ],
         "type": "object",
         "properties": {
           "products": {
@@ -2122,14 +2327,27 @@
         },
         "additionalProperties": false
       },
+      "ExecutePurchaseOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "$ref": "#/components/schemas/OrderDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "ExecutePurchaseResponseDto": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/OperationOutputDto"
+            "$ref": "#/components/schemas/ExecutePurchaseOperationOutputDto"
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2178,6 +2396,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2203,12 +2425,20 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "GetCheckoutInfoOperationInputDto": {
-        "required": ["addressId", "paymentMethodId", "productIds"],
+        "required": [
+          "addressId",
+          "paymentMethodId",
+          "productIds"
+        ],
         "type": "object",
         "properties": {
           "productIds": {
@@ -2225,6 +2455,9 @@
           "paymentMethodId": {
             "type": "string",
             "nullable": true
+          },
+          "wantsFastShipping": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2242,12 +2475,32 @@
             "format": "double",
             "nullable": true
           },
+          "productCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
           "startDeliveryDate": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
           "endDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fastestStartDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fastestEndDeliveryDate": {
             "type": "string",
             "format": "date-time",
             "nullable": true
@@ -2263,6 +2516,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2289,6 +2546,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2363,12 +2624,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "GetDocumentOperationInputDto": {
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2395,12 +2662,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "GetOrderDetailsOperationInputDto": {
-        "required": ["orderId"],
+        "required": [
+          "orderId"
+        ],
         "type": "object",
         "properties": {
           "orderId": {
@@ -2427,12 +2700,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "GetPaymentMethodDetailsOperationInputDto": {
-        "required": ["methodId"],
+        "required": [
+          "methodId"
+        ],
         "type": "object",
         "properties": {
           "methodId": {
@@ -2459,6 +2738,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2549,6 +2832,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2594,6 +2881,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2630,6 +2921,23 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogoutOperationInputDto": {
+        "required": [
+          "refreshToken"
+        ],
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2642,6 +2950,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2701,7 +3013,7 @@
           "products": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductDetailDto"
+              "$ref": "#/components/schemas/CheckoutProductDetailsDto"
             },
             "nullable": true
           },
@@ -2711,6 +3023,10 @@
           },
           "currentStatus": {
             "$ref": "#/components/schemas/OrderStatusEntryDto"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
           },
           "statusHistory": {
             "type": "array",
@@ -2729,10 +3045,6 @@
             "type": "number",
             "format": "double"
           },
-          "totalCost": {
-            "type": "number",
-            "format": "double"
-          },
           "shippingCost": {
             "type": "number",
             "format": "double",
@@ -2747,7 +3059,13 @@
         "additionalProperties": false
       },
       "OrderDto": {
-        "required": ["currentStatus", "date", "id", "products"],
+        "required": [
+          "currentStatus",
+          "date",
+          "id",
+          "products",
+          "totalCost"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2757,7 +3075,7 @@
           "products": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductDetailDto"
+              "$ref": "#/components/schemas/CheckoutProductDetailsDto"
             },
             "nullable": true
           },
@@ -2767,6 +3085,10 @@
           },
           "currentStatus": {
             "$ref": "#/components/schemas/OrderStatusEntryDto"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -2778,12 +3100,16 @@
           "Sent",
           "InDelivery",
           "Delivered",
-          "Cancelled"
+          "Cancelled",
+          "Returned"
         ],
         "type": "string"
       },
       "OrderStatusEntryDto": {
-        "required": ["date", "status"],
+        "required": [
+          "date",
+          "status"
+        ],
         "type": "object",
         "properties": {
           "status": {
@@ -2814,7 +3140,12 @@
         "additionalProperties": false
       },
       "PaymentMethodDetailsDto": {
-        "required": ["id", "name", "network", "type"],
+        "required": [
+          "id",
+          "name",
+          "network",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2866,7 +3197,12 @@
         "additionalProperties": false
       },
       "PaymentMethodDto": {
-        "required": ["id", "name", "network", "type"],
+        "required": [
+          "id",
+          "name",
+          "network",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2900,12 +3236,18 @@
         "additionalProperties": false
       },
       "PaymentMethodType": {
-        "enum": ["None", "Card", "Bank"],
+        "enum": [
+          "None",
+          "Card",
+          "Bank"
+        ],
         "type": "string"
       },
       "ProductDetailDto": {
         "required": [
           "bestSeller",
+          "categories",
+          "category",
           "id",
           "image",
           "name",
@@ -2924,6 +3266,17 @@
           },
           "name": {
             "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "image": {
@@ -2954,6 +3307,15 @@
             "type": "boolean"
           },
           "isWishlisted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isAvailable": {
             "type": "boolean",
             "nullable": true
           },
@@ -3014,7 +3376,9 @@
         "additionalProperties": false
       },
       "ProductDetailOperationInputDto": {
-        "required": ["productId"],
+        "required": [
+          "productId"
+        ],
         "type": "object",
         "properties": {
           "productId": {
@@ -3041,6 +3405,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -3048,6 +3416,8 @@
       "ProductDto": {
         "required": [
           "bestSeller",
+          "categories",
+          "category",
           "id",
           "image",
           "name",
@@ -3065,6 +3435,17 @@
           },
           "name": {
             "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "image": {
@@ -3097,12 +3478,24 @@
           "isWishlisted": {
             "type": "boolean",
             "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
       "ProductOfferGroupDto": {
-        "required": ["category", "products"],
+        "required": [
+          "category",
+          "products"
+        ],
         "type": "object",
         "properties": {
           "products": {
@@ -3122,13 +3515,6 @@
       "ProductOffersOperationOutputDto": {
         "type": "object",
         "properties": {
-          "fromSearchHistory": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductDto"
-            },
-            "nullable": true
-          },
           "buyAgain": {
             "type": "array",
             "items": {
@@ -3146,7 +3532,7 @@
           "banners": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductOfferGroupDto"
+              "$ref": "#/components/schemas/ProductsBannerDto"
             },
             "nullable": true
           }
@@ -3161,12 +3547,21 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "ProductOptionDto": {
-        "required": ["id", "name", "originalPrice", "price"],
+        "required": [
+          "id",
+          "name",
+          "originalPrice",
+          "price"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -3234,8 +3629,48 @@
         },
         "additionalProperties": false
       },
+      "ProductsBannerDto": {
+        "required": [
+          "category",
+          "id",
+          "image",
+          "subtitle",
+          "textColor",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "textColor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RefreshAuthenticationOperationInputDto": {
-        "required": ["refreshToken"],
+        "required": [
+          "refreshToken"
+        ],
         "type": "object",
         "properties": {
           "refreshToken": {
@@ -3246,7 +3681,10 @@
         "additionalProperties": false
       },
       "RefreshAuthenticationOperationOutputDto": {
-        "required": ["refreshToken", "token"],
+        "required": [
+          "refreshToken",
+          "token"
+        ],
         "type": "object",
         "properties": {
           "token": {
@@ -3268,12 +3706,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "RemoveFromCartOperationInputDto": {
-        "required": ["productIds"],
+        "required": [
+          "productIds"
+        ],
         "type": "object",
         "properties": {
           "productIds": {
@@ -3307,12 +3751,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "RemoveFromWishlistOperationInputDto": {
-        "required": ["productId"],
+        "required": [
+          "productId"
+        ],
         "type": "object",
         "properties": {
           "productId": {
@@ -3343,6 +3793,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -3350,6 +3804,7 @@
       "ReviewDto": {
         "required": [
           "comment",
+          "createdAt",
           "id",
           "productId",
           "productName",
@@ -3396,6 +3851,10 @@
             "type": "string",
             "nullable": true
           },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "productIcon": {
             "type": "string",
             "nullable": true
@@ -3404,7 +3863,10 @@
         "additionalProperties": false
       },
       "ScoreCountDto": {
-        "required": ["count", "score"],
+        "required": [
+          "count",
+          "score"
+        ],
         "type": "object",
         "properties": {
           "score": {
@@ -3493,12 +3955,19 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "SellerDto": {
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -3517,7 +3986,9 @@
         "additionalProperties": false
       },
       "SetDefaultAddressOperationInputDto": {
-        "required": ["addressId"],
+        "required": [
+          "addressId"
+        ],
         "type": "object",
         "properties": {
           "addressId": {
@@ -3548,12 +4019,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "SetDefaultPaymentMethodOperationInputDto": {
-        "required": ["methodId"],
+        "required": [
+          "methodId"
+        ],
         "type": "object",
         "properties": {
           "methodId": {
@@ -3584,6 +4061,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -3601,7 +4082,9 @@
         "type": "string"
       },
       "UpdateAddressOperationInputDto": {
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -3635,10 +4118,6 @@
           "phone": {
             "type": "string",
             "nullable": true
-          },
-          "isDefault": {
-            "type": "boolean",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3664,12 +4143,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "UpdateCartProductOperationInputDto": {
-        "required": ["products"],
+        "required": [
+          "products"
+        ],
         "type": "object",
         "properties": {
           "products": {
@@ -3703,6 +4188,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -3746,12 +4235,18 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "UpdatePaymentMethodOperationInputDto": {
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -3800,25 +4295,29 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "WriteReviewOperationInputDto": {
-        "required": ["productId", "reviewerId", "score", "title"],
+        "required": [
+          "productId",
+          "score",
+          "title"
+        ],
         "type": "object",
         "properties": {
-          "reviewerId": {
-            "type": "string",
-            "nullable": true
-          },
           "productId": {
             "type": "string",
             "nullable": true
           },
           "score": {
-            "type": "number",
-            "format": "double"
+            "type": "integer",
+            "format": "int32"
           },
           "title": {
             "type": "string",
@@ -3839,6 +4338,10 @@
           },
           "metadata": {
             "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

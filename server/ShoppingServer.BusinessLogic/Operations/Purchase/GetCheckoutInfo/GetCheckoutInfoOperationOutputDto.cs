@@ -10,6 +10,10 @@ namespace ShoppingServer.BusinessLogic.Operations
 
         public double? FastestDeliveryCost { get; set; }
 
+        public double? ProductCost { get; set; }
+
+        public double? TotalCost { get; set; }
+
         public DateTimeOffset? StartDeliveryDate { get; set; }
 
         public DateTimeOffset? EndDeliveryDate { get; set; }

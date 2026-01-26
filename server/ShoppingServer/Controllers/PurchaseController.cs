@@ -18,22 +18,28 @@ namespace ShoppingServer.Controllers
 
         public PurchaseController(IExecutionContext executionContext) : base(executionContext)
         {
-            executePurchaseOperation = new ExecutePurchaseOperation(this);
-            getCheckoutInfoOperation = new GetCheckoutInfoOperation(this);
+            executePurchaseOperation = new ExecutePurchaseOperation(executionContext);
+            getCheckoutInfoOperation = new GetCheckoutInfoOperation(executionContext);
         }
 
         [HttpPost("/api/ExecutePurchase")]
         [Authorize]
-        public Task<ExecutePurchaseResponseDto> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
+        public async Task<ExecutePurchaseResponseDto> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
         {
-            return executePurchaseOperation.Execute<ExecutePurchaseResponseDto>(input);
+            var response = await executePurchaseOperation.Execute<ExecutePurchaseResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpGet("/api/GetCheckoutInfo")]
         [Authorize]
-        public Task<GetCheckoutInfoResponseDto> GetCheckoutInfo([FromQuery] GetCheckoutInfoOperationInputDto input)
+        public async Task<GetCheckoutInfoResponseDto> GetCheckoutInfo([FromQuery] GetCheckoutInfoOperationInputDto input)
         {
-            return getCheckoutInfoOperation.Execute<GetCheckoutInfoResponseDto>(input);
+            var response = await getCheckoutInfoOperation.Execute<GetCheckoutInfoResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
     }
 }

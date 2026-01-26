@@ -10,7 +10,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IUsersRepository usersRepository;
         private ICartsRepository cartsRepository;
 
-        public GetClientInfoOperation(BaseAppController _controller) : base(_controller)
+        public GetClientInfoOperation(IExecutionContext _context) : base(_context)
         {
             usersRepository = this.ExecutionContext.GetService<IUsersRepository>();
             cartsRepository = this.ExecutionContext.GetService<ICartsRepository>();

@@ -10,14 +10,14 @@ export const useExecutionBlockHelper = () => {
   const products = useStoreCart((state) => state.products);
 
   const setCheckoutStoreState = useStoreCheckout(
-    (state) => state.setCheckoutStoreState
+    (state) => state.setCheckoutStoreState,
   );
 
   const { goTo } = useNavigation();
 
   const selectedProducts = useMemo(
     () => (products || []).filter((p) => p.isSelected),
-    [products]
+    [products],
   );
 
   const i18n = React.useMemo(() => {
@@ -48,7 +48,7 @@ export const useExecutionBlockHelper = () => {
   const onClickBuyNow = React.useCallback(() => {
     setCheckoutStoreState({
       products: selectedProducts.map((p) => ({
-        product: p.product!,
+        productId: p.productId,
         quantity: p.quantity || 1,
       })),
     });

@@ -25,46 +25,61 @@ namespace ShoppingServer.Controllers
 
         public PaymentMethodsController(IExecutionContext executionContext) : base(executionContext)
         {
-            addPaymentMethodOperation = new AddPaymentMethodOperation(this);
-            deletePaymentMethodOperation = new DeletePaymentMethodOperation(this);
-            setDefaultPaymentMethodOperation = new SetDefaultPaymentMethodOperation(this);
-            updatePaymentMethodOperation = new UpdatePaymentMethodOperation(this);
-            getPaymentMethodDetailsOperation = new GetPaymentMethodDetailsOperation(this);
+            addPaymentMethodOperation = new AddPaymentMethodOperation(executionContext);
+            deletePaymentMethodOperation = new DeletePaymentMethodOperation(executionContext);
+            setDefaultPaymentMethodOperation = new SetDefaultPaymentMethodOperation(executionContext);
+            updatePaymentMethodOperation = new UpdatePaymentMethodOperation(executionContext);
+            getPaymentMethodDetailsOperation = new GetPaymentMethodDetailsOperation(executionContext);
         }
 
         [HttpGet("/api/GetPaymentMethodDetails")]
         [Authorize]
-        public Task<GetPaymentMethodDetailsResponseDto> GetPaymentMethodDetails([FromQuery] GetPaymentMethodDetailsOperationInputDto input)
+        public async Task<GetPaymentMethodDetailsResponseDto> GetPaymentMethodDetails([FromQuery] GetPaymentMethodDetailsOperationInputDto input)
         {
-            return getPaymentMethodDetailsOperation.Execute<GetPaymentMethodDetailsResponseDto>(input);
+            var response = await getPaymentMethodDetailsOperation.Execute<GetPaymentMethodDetailsResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPost("/api/AddPaymentMethod")]
         [Authorize]
-        public Task<AddPaymentMethodResponseDto> AddPaymentMethod([FromBody] AddPaymentMethodOperationInputDto input)
+        public async Task<AddPaymentMethodResponseDto> AddPaymentMethod([FromBody] AddPaymentMethodOperationInputDto input)
         {
-            return addPaymentMethodOperation.Execute<AddPaymentMethodResponseDto>(input);
+            var response = await addPaymentMethodOperation.Execute<AddPaymentMethodResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpDelete("/api/DeletePaymentMethod")]
         [Authorize]
-        public Task<DeletePaymentMethodResponseDto> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)
+        public async Task<DeletePaymentMethodResponseDto> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)
         {
-            return deletePaymentMethodOperation.Execute<DeletePaymentMethodResponseDto>(input);
+            var response = await deletePaymentMethodOperation.Execute<DeletePaymentMethodResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPatch("/api/SetDefaultPaymentMethod")]
         [Authorize]
-        public Task<SetDefaultPaymentMethodResponseDto> SetDefaultPaymentMethod([FromQuery] SetDefaultPaymentMethodOperationInputDto input)
+        public async Task<SetDefaultPaymentMethodResponseDto> SetDefaultPaymentMethod([FromQuery] SetDefaultPaymentMethodOperationInputDto input)
         {
-            return setDefaultPaymentMethodOperation.Execute<SetDefaultPaymentMethodResponseDto>(input);
+            var response = await setDefaultPaymentMethodOperation.Execute<SetDefaultPaymentMethodResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPatch("/api/UpdatePaymentMethod")]
         [Authorize]
-        public Task<UpdatePaymentMethodResponseDto> UpdatePaymentMethod([FromBody] UpdatePaymentMethodOperationInputDto input)
+        public async Task<UpdatePaymentMethodResponseDto> UpdatePaymentMethod([FromBody] UpdatePaymentMethodOperationInputDto input)
         {
-            return updatePaymentMethodOperation.Execute<UpdatePaymentMethodResponseDto>(input);
+            var response = await updatePaymentMethodOperation.Execute<UpdatePaymentMethodResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
     }
 }

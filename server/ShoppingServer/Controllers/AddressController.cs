@@ -23,42 +23,54 @@ namespace ShoppingServer.Controllers
 
         public AddressController(IExecutionContext executionContext) : base(executionContext)
         {
-            addAddressOperation = new AddAddressOperation(this);
-            deleteAddressOperation = new DeleteAddressOperation(this);
-            setDefaultAddressOperation = new SetDefaultAddressOperation(this);
-            updateAddressOperation = new UpdateAddressOperation(this);
+            addAddressOperation = new AddAddressOperation(executionContext);
+            deleteAddressOperation = new DeleteAddressOperation(executionContext);
+            setDefaultAddressOperation = new SetDefaultAddressOperation(executionContext);
+            updateAddressOperation = new UpdateAddressOperation(executionContext);
         }
 
         [HttpPost("/api/AddAddress")]
         [SwaggerOperation(OperationId = "AddAddress")]
         [Authorize]
-        public Task<AddAddressResponseDto> AddAddress([FromBody] AddAddressOperationInputDto input)
+        public async Task<AddAddressResponseDto> AddAddress([FromBody] AddAddressOperationInputDto input)
         {
-            return addAddressOperation.Execute<AddAddressResponseDto>(input);
+            var response = await addAddressOperation.Execute<AddAddressResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpDelete("/api/DeleteAddress")]
         [SwaggerOperation(OperationId = "DeleteAddress")]
         [Authorize]
-        public Task<DeleteAddressResponseDto> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
+        public async Task<DeleteAddressResponseDto> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
         {
-            return deleteAddressOperation.Execute<DeleteAddressResponseDto>(input);
+            var response = await deleteAddressOperation.Execute<DeleteAddressResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPatch("/api/SetDefaultAddress")]
         [SwaggerOperation(OperationId = "SetDefaultAddress")]
         [Authorize]
-        public Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromQuery] SetDefaultAddressOperationInputDto input)
+        public async Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromQuery] SetDefaultAddressOperationInputDto input)
         {
-            return setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input);
+            var response = await setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPost("/api/UpdateAddress")]
         [SwaggerOperation(OperationId = "UpdateAddress")]
         [Authorize]
-        public Task<UpdateAddressResponseDto> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
+        public async Task<UpdateAddressResponseDto> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
         {
-            return updateAddressOperation.Execute<UpdateAddressResponseDto>(input);
+            var response = await updateAddressOperation.Execute<UpdateAddressResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
     }
 }

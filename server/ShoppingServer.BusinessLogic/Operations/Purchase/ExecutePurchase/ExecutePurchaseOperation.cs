@@ -18,7 +18,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IPaymentMethodsRepository paymentMethodsRepository;
         private IAddressesRepository addressesRepository;
 
-        public ExecutePurchaseOperation(BaseAppController _controller) : base(_controller)
+        public ExecutePurchaseOperation(IExecutionContext _context) : base(_context)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             orderProductsRepository = ExecutionContext.GetService<IOrderProductsRepository>();

@@ -12,7 +12,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private ICartsRepository cartsRepository;
 
-        public AddToCartOperation(BaseAppController _controller) : base(_controller)
+        public AddToCartOperation(IExecutionContext _context) : base(_context)
         {
             cartsRepository = this.ExecutionContext.GetService<ICartsRepository>();
         }

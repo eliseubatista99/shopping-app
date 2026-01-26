@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private IUsersRepository usersRepository;
 
-        public UpdateClientInfoOperation(BaseAppController _controller) : base(_controller)
+        public UpdateClientInfoOperation(IExecutionContext _context) : base(_context)
         {
             usersRepository = this.ExecutionContext.GetService<IUsersRepository>();
         }

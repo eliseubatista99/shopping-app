@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IProductsRepository productsRepository;
         private IWishlistsRepository wishlistsRepository;
 
-        public RemoveFromWishlistOperation(BaseAppController _controller) : base(_controller)
+        public RemoveFromWishlistOperation(IExecutionContext _context) : base(_context)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             wishlistsRepository = ExecutionContext.GetService<IWishlistsRepository>();

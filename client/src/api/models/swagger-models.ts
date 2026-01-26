@@ -27,7 +27,8 @@ export type OrderStatus =
   | "Sent"
   | "InDelivery"
   | "Delivered"
-  | "Cancelled";
+  | "Cancelled"
+  | "Returned";
 
 export interface AddAddressOperationInputDto {
   name: string | null;
@@ -47,12 +48,18 @@ export interface AddAddressOperationOutputDto {
 export interface AddAddressResponseDto {
   data?: AddAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface AddPaymentMethodOperationInputDto {
   type?: PaymentMethodType;
   name: string | null;
   cardNumber?: string | null;
+  network?: string | null;
+  image?: string | null;
+  isDefault?: boolean | null;
+  securityCode?: string | null;
   /** @format int32 */
   expirationMonth?: number | null;
   /** @format int32 */
@@ -66,6 +73,8 @@ export interface AddPaymentMethodOperationOutputDto {
 export interface AddPaymentMethodResponseDto {
   data?: AddPaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface AddToCartOperationInputDto {
@@ -79,6 +88,8 @@ export interface AddToCartOperationOutputDto {
 export interface AddToCartResponseDto {
   data?: AddToCartOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface AddToWishlistOperationInputDto {
@@ -92,6 +103,8 @@ export interface AddToWishlistOperationOutputDto {
 export interface AddToWishlistResponseDto {
   data?: AddToWishlistOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface AddressDto {
@@ -121,6 +134,8 @@ export interface AuthenticateOperationOutputDto {
 export interface AuthenticateResponseDto {
   data?: AuthenticateOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface CartProductDetailsDto {
@@ -138,8 +153,16 @@ export interface CartProductDto {
   isSelected?: boolean | null;
 }
 
+export interface CheckoutProductDetailsDto {
+  productId: string | null;
+  /** @format int32 */
+  quantity: number;
+  product?: ProductDto;
+  seller?: SellerDto;
+}
+
 export interface CheckoutProductDto {
-  product: ProductDto;
+  productId: string | null;
   /** @format int32 */
   quantity: number;
 }
@@ -157,6 +180,7 @@ export interface ClientInfoDto {
 
 export interface CreateAccountOperationInputDto {
   name?: string | null;
+  surname?: string | null;
   email?: string | null;
   phoneNumber?: string | null;
   password?: string | null;
@@ -170,6 +194,8 @@ export interface CreateAccountOperationOutputDto {
 export interface CreateAccountResponseDto {
   data?: CreateAccountOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface DeleteAddressOperationInputDto {
@@ -183,6 +209,8 @@ export interface DeleteAddressOperationOutputDto {
 export interface DeleteAddressResponseDto {
   data?: DeleteAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface DeletePaymentMethodOperationInputDto {
@@ -196,6 +224,8 @@ export interface DeletePaymentMethodOperationOutputDto {
 export interface DeletePaymentMethodResponseDto {
   data?: DeletePaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface DocumentDto {
@@ -218,9 +248,15 @@ export interface ExecutePurchaseOperationInputDto {
   wantsFastShipping?: boolean;
 }
 
+export interface ExecutePurchaseOperationOutputDto {
+  order?: OrderDetailDto;
+}
+
 export interface ExecutePurchaseResponseDto {
-  data?: OperationOutputDto;
+  data?: ExecutePurchaseOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface ForYouOperationOutputDto {
@@ -236,6 +272,8 @@ export interface ForYouOperationOutputDto {
 export interface ForYouResponseDto {
   data?: ForYouOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetCartOperationOutputDto {
@@ -245,12 +283,15 @@ export interface GetCartOperationOutputDto {
 export interface GetCartResponseDto {
   data?: GetCartOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetCheckoutInfoOperationInputDto {
   productIds: string[] | null;
   addressId: string | null;
   paymentMethodId: string | null;
+  wantsFastShipping?: boolean;
 }
 
 export interface GetCheckoutInfoOperationOutputDto {
@@ -258,15 +299,25 @@ export interface GetCheckoutInfoOperationOutputDto {
   shippingCost?: number | null;
   /** @format double */
   fastestDeliveryCost?: number | null;
+  /** @format double */
+  productCost?: number | null;
+  /** @format double */
+  totalCost?: number | null;
   /** @format date-time */
   startDeliveryDate?: string | null;
   /** @format date-time */
   endDeliveryDate?: string | null;
+  /** @format date-time */
+  fastestStartDeliveryDate?: string | null;
+  /** @format date-time */
+  fastestEndDeliveryDate?: string | null;
 }
 
 export interface GetCheckoutInfoResponseDto {
   data?: GetCheckoutInfoOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetClientInfoOperationOutputDto {
@@ -278,6 +329,8 @@ export interface GetClientInfoOperationOutputDto {
 export interface GetClientInfoResponseDto {
   data?: GetClientInfoOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetClientOrdersOperationInputDto {
@@ -305,6 +358,8 @@ export interface GetClientOrdersOperationOutputDto {
 export interface GetClientOrdersResponseDto {
   data?: GetClientOrdersOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetDocumentOperationInputDto {
@@ -318,6 +373,8 @@ export interface GetDocumentOperationOutputDto {
 export interface GetDocumentResponseDto {
   data?: GetDocumentOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetOrderDetailsOperationInputDto {
@@ -331,6 +388,8 @@ export interface GetOrderDetailsOperationOutputDto {
 export interface GetOrderDetailsResponseDto {
   data?: GetOrderDetailsOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetPaymentMethodDetailsOperationInputDto {
@@ -344,6 +403,8 @@ export interface GetPaymentMethodDetailsOperationOutputDto {
 export interface GetPaymentMethodDetailsResponseDto {
   data?: GetPaymentMethodDetailsOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetProductReviewsOperationInputDto {
@@ -374,6 +435,8 @@ export interface GetProductReviewsOperationOutputDto {
 export interface GetProductReviewsResponseDto {
   data?: GetProductReviewsOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface GetWishlistOperationInputDto {
@@ -391,6 +454,8 @@ export interface GetWishlistOperationOutputDto {
 export interface GetWishlistResponseDto {
   data?: GetWishlistOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface IsExistingAccountOperationInputDto {
@@ -405,11 +470,19 @@ export interface IsExistingAccountOperationOutputDto {
 export interface IsExistingAccountResponseDto {
   data?: IsExistingAccountOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
+}
+
+export interface LogoutOperationInputDto {
+  refreshToken: string | null;
 }
 
 export interface LogoutOperationResponseDto {
   data?: OperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export type OperationInputDto = object;
@@ -429,17 +502,17 @@ export interface OperationPaginatedOutputDto {
 
 export interface OrderDetailDto {
   id: string | null;
-  products: ProductDetailDto[] | null;
+  products: CheckoutProductDetailsDto[] | null;
   /** @format date-time */
   date: string;
   currentStatus: OrderStatusEntryDto;
+  /** @format double */
+  totalCost: number;
   statusHistory: OrderStatusEntryDto[] | null;
   paymentMethod: PaymentMethodDto;
   address: AddressDto;
   /** @format double */
   productCost: number;
-  /** @format double */
-  totalCost: number;
   /** @format double */
   shippingCost?: number | null;
   /** @format double */
@@ -448,10 +521,12 @@ export interface OrderDetailDto {
 
 export interface OrderDto {
   id: string | null;
-  products: ProductDetailDto[] | null;
+  products: CheckoutProductDetailsDto[] | null;
   /** @format date-time */
   date: string;
   currentStatus: OrderStatusEntryDto;
+  /** @format double */
+  totalCost: number;
 }
 
 export interface OrderStatusEntryDto {
@@ -494,6 +569,8 @@ export interface PaymentMethodDto {
 export interface ProductDetailDto {
   id: string | null;
   name: string | null;
+  category: string | null;
+  categories: string[] | null;
   image: string | null;
   /** @format double */
   price: number;
@@ -507,6 +584,9 @@ export interface ProductDetailDto {
   shippingCost: number;
   bestSeller: boolean;
   isWishlisted?: boolean | null;
+  /** @format date-time */
+  createdAt?: string | null;
+  isAvailable?: boolean | null;
   specifications?: ProductSpecificationDto;
   seller: SellerDto;
   documents?: DocumentDto[] | null;
@@ -530,11 +610,15 @@ export interface ProductDetailOperationOutputDto {
 export interface ProductDetailResponseDto {
   data?: ProductDetailOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface ProductDto {
   id: string | null;
   name: string | null;
+  category: string | null;
+  categories: string[] | null;
   image: string | null;
   /** @format double */
   price: number;
@@ -548,6 +632,9 @@ export interface ProductDto {
   shippingCost: number;
   bestSeller: boolean;
   isWishlisted?: boolean | null;
+  /** @format date-time */
+  createdAt?: string | null;
+  isAvailable?: boolean | null;
 }
 
 export interface ProductOfferGroupDto {
@@ -556,15 +643,16 @@ export interface ProductOfferGroupDto {
 }
 
 export interface ProductOffersOperationOutputDto {
-  fromSearchHistory?: ProductDto[] | null;
   buyAgain?: ProductDto[] | null;
   groups?: ProductOfferGroupDto[] | null;
-  banners?: ProductOfferGroupDto[] | null;
+  banners?: ProductsBannerDto[] | null;
 }
 
 export interface ProductOffersdResponseDto {
   data?: ProductOffersOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface ProductOptionDto {
@@ -592,6 +680,15 @@ export interface ProductSpecificationDto {
   warranty?: number | null;
 }
 
+export interface ProductsBannerDto {
+  id: string | null;
+  title: string | null;
+  subtitle: string | null;
+  category: string | null;
+  image: string | null;
+  textColor: string | null;
+}
+
 export interface RefreshAuthenticationOperationInputDto {
   refreshToken: string | null;
 }
@@ -604,6 +701,8 @@ export interface RefreshAuthenticationOperationOutputDto {
 export interface RefreshAuthenticationResponseDto {
   data?: RefreshAuthenticationOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface RemoveFromCartOperationInputDto {
@@ -617,6 +716,8 @@ export interface RemoveFromCartOperationOutputDto {
 export interface RemoveFromCartResponseDto {
   data?: RemoveFromCartOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface RemoveFromWishlistOperationInputDto {
@@ -630,6 +731,8 @@ export interface RemoveFromWishlistOperationOutputDto {
 export interface RemoveFromWishlistResponseDto {
   data?: RemoveFromWishlistOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface ReviewDto {
@@ -643,6 +746,8 @@ export interface ReviewDto {
   comment: string | null;
   productId: string | null;
   productName: string | null;
+  /** @format date-time */
+  createdAt: string;
   productIcon?: string | null;
 }
 
@@ -679,6 +784,8 @@ export interface SearchProductsOperationOutputDto {
 export interface SearchProductsResponseDto {
   data?: SearchProductsOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface SellerDto {
@@ -698,6 +805,8 @@ export interface SetDefaultAddressOperationOutputDto {
 export interface SetDefaultAddressResponseDto {
   data?: SetDefaultAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface SetDefaultPaymentMethodOperationInputDto {
@@ -711,6 +820,8 @@ export interface SetDefaultPaymentMethodOperationOutputDto {
 export interface SetDefaultPaymentMethodResponseDto {
   data?: SetDefaultPaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface UpdateAddressOperationInputDto {
@@ -722,7 +833,6 @@ export interface UpdateAddressOperationInputDto {
   street?: string | null;
   country?: string | null;
   phone?: string | null;
-  isDefault?: boolean | null;
 }
 
 export interface UpdateAddressOperationOutputDto {
@@ -732,6 +842,8 @@ export interface UpdateAddressOperationOutputDto {
 export interface UpdateAddressResponseDto {
   data?: UpdateAddressOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface UpdateCartProductOperationInputDto {
@@ -745,6 +857,8 @@ export interface UpdateCartProductOperationOutputDto {
 export interface UpdateCartResponseDto {
   data?: UpdateCartProductOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface UpdateClientInfoOperationInputDto {
@@ -761,6 +875,8 @@ export interface UpdateClientInfoOperationOutputDto {
 export interface UpdateClientInfoResponseDto {
   data?: UpdateClientInfoOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface UpdatePaymentMethodOperationInputDto {
@@ -780,12 +896,13 @@ export interface UpdatePaymentMethodOperationOutputDto {
 export interface UpdatePaymentMethodResponseDto {
   data?: UpdatePaymentMethodOperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export interface WriteReviewOperationInputDto {
-  reviewerId: string | null;
   productId: string | null;
-  /** @format double */
+  /** @format int32 */
   score: number;
   title: string | null;
   description?: string | null;
@@ -794,6 +911,8 @@ export interface WriteReviewOperationInputDto {
 export interface WriteReviewResponseDto {
   data?: OperationOutputDto;
   metadata?: OutputMetadataDto;
+  /** @format int32 */
+  statusCode?: number;
 }
 
 export namespace Api {
@@ -850,7 +969,7 @@ export namespace Api {
    * No description
    * @tags Address
    * @name UpdateAddress
-   * @request PATCH:/api/UpdateAddress
+   * @request POST:/api/UpdateAddress
    * @response `200` `UpdateAddressResponseDto` OK
    */
   export namespace UpdateAddress {
@@ -934,7 +1053,7 @@ export namespace Api {
   export namespace LogoutCreate {
     export type RequestParams = {};
     export type RequestQuery = {};
-    export type RequestBody = never;
+    export type RequestBody = LogoutOperationInputDto;
     export type RequestHeaders = {};
     export type ResponseBody = LogoutOperationResponseDto;
   }
@@ -1166,8 +1285,10 @@ export namespace Api {
    */
   export namespace SetDefaultPaymentMethodPartialUpdate {
     export type RequestParams = {};
-    export type RequestQuery = {};
-    export type RequestBody = SetDefaultPaymentMethodOperationInputDto;
+    export type RequestQuery = {
+      MethodId: string;
+    };
+    export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = SetDefaultPaymentMethodResponseDto;
   }
@@ -1315,8 +1436,13 @@ export namespace Api {
    */
   export namespace GetCheckoutInfoList {
     export type RequestParams = {};
-    export type RequestQuery = {};
-    export type RequestBody = GetCheckoutInfoOperationInputDto;
+    export type RequestQuery = {
+      ProductIds: string[];
+      AddressId: string;
+      PaymentMethodId: string;
+      WantsFastShipping?: boolean;
+    };
+    export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = GetCheckoutInfoResponseDto;
   }

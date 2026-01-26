@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private IAddressesRepository addressesRepository;
 
-        public SetDefaultAddressOperation(BaseAppController _controller) : base(_controller)
+        public SetDefaultAddressOperation(IExecutionContext _context) : base(_context)
         {
             addressesRepository = ExecutionContext.GetService<IAddressesRepository>();
         }

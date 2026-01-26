@@ -10,7 +10,7 @@ namespace ShoppingServer.BusinessLogic.Operations
     {
         private IOrdersRepository ordersRepository;
 
-        public GetClientOrdersOperation(BaseAppController _controller) : base(_controller)
+        public GetClientOrdersOperation(IExecutionContext _context) : base(_context)
         {
             ordersRepository = this.ExecutionContext.GetService<IOrdersRepository>();
         }

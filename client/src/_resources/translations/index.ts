@@ -1,5 +1,5 @@
 import type { TranslationList } from "@eliseubatista99/react-scaffold-core";
-import { translationsBanners } from "./banners";
+import { translationsCategories } from "./categories";
 import { translationsComponents } from "./components";
 import { translationsDrawers } from "./drawers";
 import { translationsGlobal } from "./global";
@@ -10,9 +10,9 @@ import { translationsToasts } from "./toasts";
 
 export const translations: TranslationList = {
   ...translationsGlobal,
+  ...translationsCategories,
   ...translationsTime,
   ...translationsComponents,
-  ...translationsBanners,
   ...translationsDrawers,
   ...translationsModals,
   ...translationsToasts,

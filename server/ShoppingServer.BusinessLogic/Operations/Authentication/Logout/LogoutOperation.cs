@@ -14,7 +14,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private ITokensRepository tokensRepository;
         private IAppTokenProvider appTokenProvider;
 
-        public LogoutOperation(BaseAppController _controller) : base(_controller)
+        public LogoutOperation(IExecutionContext _context) : base(_context)
         {
             usersRepository = ExecutionContext.GetService<IUsersRepository>();
             tokensRepository = ExecutionContext.GetService<ITokensRepository>();
@@ -27,7 +27,7 @@ namespace ShoppingServer.BusinessLogic.Operations
 
             if (input?.RefreshToken == null)
             {
-                controller.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                SetStatusCode(StatusCodes.Status401Unauthorized);
                 output.AddError(new ErrorDto("InvalidRefreshToken"));
                 return;
             }
@@ -58,12 +58,12 @@ namespace ShoppingServer.BusinessLogic.Operations
                 return;
             }
 
-           
+
             await tokensRepository.RevokeByUserId(userInDb.Id);
 
             output.Data = new OperationOutputDto
             {
-                
+
             };
         }
     }

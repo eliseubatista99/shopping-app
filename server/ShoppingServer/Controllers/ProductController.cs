@@ -24,43 +24,58 @@ namespace ShoppingServer.Controllers
 
         public ProductController(IExecutionContext executionContext) : base(executionContext)
         {
-            getProductReviewsOperation = new GetProductReviewsOperation(this);
-            productDetailOperation = new ProductDetailOperation(this);
-            productOffersOperation = new ProductOffersOperation(this);
-            searchProductsOperation = new SearchProductsOperation(this);
-            writeReviewOperation = new WriteReviewOperation(this);
+            getProductReviewsOperation = new GetProductReviewsOperation(executionContext);
+            productDetailOperation = new ProductDetailOperation(executionContext);
+            productOffersOperation = new ProductOffersOperation(executionContext);
+            searchProductsOperation = new SearchProductsOperation(executionContext);
+            writeReviewOperation = new WriteReviewOperation(executionContext);
         }
 
         [HttpGet("/api/GetProductReviews")]
-        public Task<GetProductReviewsResponseDto> AddPaymentMethod([FromQuery] GetProductReviewsOperationInputDto input)
+        public async Task<GetProductReviewsResponseDto> AddPaymentMethod([FromQuery] GetProductReviewsOperationInputDto input)
         {
-            return getProductReviewsOperation.Execute<GetProductReviewsResponseDto>(input);
+            var response = await getProductReviewsOperation.Execute<GetProductReviewsResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpGet("/api/ProductDetail")]
-        public Task<ProductDetailResponseDto> ProductDetail([FromQuery] ProductDetailOperationInputDto input)
+        public async Task<ProductDetailResponseDto> ProductDetail([FromQuery] ProductDetailOperationInputDto input)
         {
-            return productDetailOperation.Execute<ProductDetailResponseDto>(input);
+            var response = await productDetailOperation.Execute<ProductDetailResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpGet("/api/ProductOffers")]
         [AllowAnonymous]
-        public Task<ProductOffersdResponseDto> ProductOffers()
+        public async Task<ProductOffersdResponseDto> ProductOffers()
         {
-            return productOffersOperation.Execute<ProductOffersdResponseDto>();
+            var response = await productOffersOperation.Execute<ProductOffersdResponseDto>();
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpGet("/api/SearchProducts")]
-        public Task<SearchProductsResponseDto> SearchProducts([FromQuery] SearchProductsOperationInputDto input)
+        public async Task<SearchProductsResponseDto> SearchProducts([FromQuery] SearchProductsOperationInputDto input)
         {
-            return searchProductsOperation.Execute<SearchProductsResponseDto>(input);
+            var response = await searchProductsOperation.Execute<SearchProductsResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpPost("/api/WriteReview")]
         [Authorize]
-        public Task<WriteReviewResponseDto> WriteReview([FromBody] WriteReviewOperationInputDto input)
+        public async Task<WriteReviewResponseDto> WriteReview([FromBody] WriteReviewOperationInputDto input)
         {
-            return writeReviewOperation.Execute<WriteReviewResponseDto>(input);
+            var response = await writeReviewOperation.Execute<WriteReviewResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
     }
 }

@@ -13,9 +13,9 @@ namespace ShoppingServer.Library
             ExecutionContext = _executionContext;
         }
 
-        public IExecutionContext GetExecutionContext()
-        {
-            return ExecutionContext;
-        }
+        //protected IExecutionContext GetExecutionContext()
+        //{
+        //    return ExecutionContext;
+        //}
     }
 }

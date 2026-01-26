@@ -32,7 +32,6 @@ export const useEditAddressDrawerHelper = () => {
         city: data.city || "",
         street: data.street || "",
         country: data.country || "",
-        isDefault: data.setDefault || false,
       });
 
       if (res.metadata?.success) {
@@ -49,7 +48,7 @@ export const useEditAddressDrawerHelper = () => {
         success: res.metadata?.success,
       };
     },
-    [addressInEdit?.id, fetchUpdateAddress, hideItem, setAddresses, showItem]
+    [addressInEdit?.id, fetchUpdateAddress, hideItem, setAddresses, showItem],
   );
 
   return {

@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private IProductsRepository productsRepository;
         private IProductImagesRepository productImagesRepository;
 
-        public SearchProductsOperation(BaseAppController _controller) : base(_controller)
+        public SearchProductsOperation(IExecutionContext _context) : base(_context)
         {
             productsRepository = ExecutionContext.GetService<IProductsRepository>();
             productImagesRepository = ExecutionContext.GetService<IProductImagesRepository>();

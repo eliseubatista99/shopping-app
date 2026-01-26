@@ -4,20 +4,20 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace ShoppingServer.BusinessLogic.Operations
 {
-    public class AppOperationBase<TInput, TOutput>  : OperationBase<TInput, TOutput> 
+    public class AppOperationBase<TInput, TOutput> : OperationBase<TInput, TOutput>
         where TInput : OperationInputDto
         where TOutput : OperationOutputDto
     {
-        public AppOperationBase(BaseAppController _controller) : base(_controller)
+        public AppOperationBase(IExecutionContext _context) : base(_context)
         {
-            
+
         }
-    
+
         protected string GetUserIdFromToken()
         {
-            var claims = controller.User;
+            //var claims = ôperation.User
 
-            return claims.FindFirst(JwtRegisteredClaimNames.Jti)?.Value ?? string.Empty;
+            return this.User?.FindFirst(JwtRegisteredClaimNames.Jti)?.Value ?? string.Empty;
         }
     }
 }

@@ -10,7 +10,7 @@ import React from "react";
 
 export const useProductsBlockHelper = () => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
 
   const { searchFilters } = useAppSearchParams();
@@ -31,7 +31,7 @@ export const useProductsBlockHelper = () => {
         },
       });
     },
-    [goTo]
+    [goTo],
   );
 
   const onClickAddToCart = React.useCallback(
@@ -44,7 +44,7 @@ export const useProductsBlockHelper = () => {
         goTo({ path: PAGES.LOG_IN });
       }
     },
-    [addToCart, goTo, hideItem, isAuthenticated, showItem]
+    [addToCart, goTo, hideItem, isAuthenticated, showItem],
   );
 
   const retrieveItems = React.useCallback(
@@ -52,7 +52,7 @@ export const useProductsBlockHelper = () => {
       const parsedFilters = filters as ProductFilters | undefined;
 
       const res = await fetchSearchProducts({
-        page: currentPage,
+        page: currentPage < 1 ? 1 : currentPage,
         pageSize: pageSize,
         text: parsedFilters?.text,
         score: parsedFilters?.score,
@@ -80,7 +80,7 @@ export const useProductsBlockHelper = () => {
         hasMorePages: res.data?.hasMorePages || false,
       };
     },
-    [fetchSearchProducts]
+    [fetchSearchProducts],
   );
 
   return {

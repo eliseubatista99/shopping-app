@@ -21,40 +21,52 @@ namespace ShoppingServer.Controllers
         private UpdateCartProductOperation updateCartProductOperation;
         public CartController(IExecutionContext executionContext) : base(executionContext)
         {
-            addToCartOperation = new AddToCartOperation(this);
-            getCartOperation = new GetCartOperation(this);
-            removeFromCartOperation = new RemoveFromCartOperation(this);
-            updateCartProductOperation = new UpdateCartProductOperation(this);
+            addToCartOperation = new AddToCartOperation(executionContext);
+            getCartOperation = new GetCartOperation(executionContext);
+            removeFromCartOperation = new RemoveFromCartOperation(executionContext);
+            updateCartProductOperation = new UpdateCartProductOperation(executionContext);
         }
 
         [HttpPost("/api/AddToCart")]
         [Authorize]
-        public Task<AddToCartResponseDto> AddToCart([FromBody] AddToCartOperationInputDto input)
+        public async Task<AddToCartResponseDto> AddToCart([FromBody] AddToCartOperationInputDto input)
         {
-            return addToCartOperation.Execute<AddToCartResponseDto>(input);
+            var response = await addToCartOperation.Execute<AddToCartResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
         [HttpGet("/api/GetCart")]
         [Authorize]
-        public Task<GetCartResponseDto> GetCart()
+        public async Task<GetCartResponseDto> GetCart()
         {
-            return getCartOperation.Execute<GetCartResponseDto>();
+            var response = await getCartOperation.Execute<GetCartResponseDto>();
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
 
         [HttpDelete("/api/RemoveFromCart")]
         [Authorize]
-        public Task<RemoveFromCartResponseDto> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)
+        public async Task<RemoveFromCartResponseDto> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)
         {
-            return removeFromCartOperation.Execute<RemoveFromCartResponseDto>(input);
+            var response = await removeFromCartOperation.Execute<RemoveFromCartResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
 
 
         [HttpPatch("/api/UpdateCartProduct")]
         [Authorize]
-        public Task<UpdateCartResponseDto> UpdateCartProduct([FromBody] UpdateCartProductOperationInputDto input)
+        public async Task<UpdateCartResponseDto> UpdateCartProduct([FromBody] UpdateCartProductOperationInputDto input)
         {
-            return updateCartProductOperation.Execute<UpdateCartResponseDto>(input);
+            var response = await updateCartProductOperation.Execute<UpdateCartResponseDto>(input);
+            this.Response.StatusCode = response.StatusCode;
+
+            return response;
         }
     }
 }

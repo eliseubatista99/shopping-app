@@ -1,15 +1,16 @@
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
+import type { ProductsBannerDto } from "../../api";
 import { ProductOfferBannerDesktop } from "./productOfferBanner.desktop";
 import { ProductOfferBannerMobile } from "./productOfferBanner.mobile";
 
 export interface ProductOfferBannerProps {
-  category: string;
+  banner: ProductsBannerDto;
   onClick?: () => void;
 }
 
 export const ProductOfferBanner: React.FC<ProductOfferBannerProps> = (
-  props
+  props,
 ) => {
   const { currentSize } = useResponsive();
 

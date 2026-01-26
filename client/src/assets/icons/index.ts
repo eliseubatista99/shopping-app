@@ -3,6 +3,8 @@ import ArrowLeft from "./arrow_left.svg?react";
 import Basket from "./basket.svg?react";
 import Check from "./check.svg?react";
 import Close from "./close.svg?react";
+import DefaultAvatar from "./default-avatar.svg?react";
+import DefaultSeller from "./default-seller.svg?react";
 import Document from "./doc.svg?react";
 import Hamburger from "./hamburguer.svg?react";
 import HeartEmpty from "./heart_empty.svg?react";
@@ -47,4 +49,6 @@ export const Icons = {
     EN: UkFlag,
     PT: PortugueseFlag,
   },
+  DefaultAvatar,
+  DefaultSeller,
 };

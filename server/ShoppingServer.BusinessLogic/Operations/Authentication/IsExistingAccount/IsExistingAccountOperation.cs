@@ -11,7 +11,7 @@ namespace ShoppingServer.BusinessLogic.Operations
         private ITokensRepository tokensRepository;
         private IAppTokenProvider appTokenProvider;
 
-        public IsExistingAccountOperation(BaseAppController _controller) : base(_controller)
+        public IsExistingAccountOperation(IExecutionContext _context) : base(_context)
         {
             usersRepository = ExecutionContext.GetService<IUsersRepository>();
             tokensRepository = ExecutionContext.GetService<ITokensRepository>();

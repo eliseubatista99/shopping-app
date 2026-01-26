@@ -9,7 +9,7 @@ import type { ProductListItemProps } from "./productListItem";
 import { useProductListItemHelper } from "./productListItem.hook";
 
 export const ProductListItemMobile: React.FC<ProductListItemProps> = (
-  props
+  props,
 ) => {
   const { i18n, currency } = useProductListItemHelper();
   const { product, onClick, onClickAddToCart, onClickWishlist } = props;
@@ -45,6 +45,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
             objectFit: "contain",
             background: "none",
             mixBlendMode: "multiply",
+            padding: "5px",
           }}
         />
         {product.bestSeller && (

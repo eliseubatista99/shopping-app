@@ -5,7 +5,7 @@ import type { ProductGridItemProps } from "./productGridItem";
 import { useProductGridItemHelper } from "./productGridItem.hook";
 
 export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
-  props
+  props,
 ) => {
   const { product, onClick } = props;
   const { currency } = useProductGridItemHelper();
@@ -21,10 +21,14 @@ export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
         src={product.image || ""}
         styles={{
           width: "100%",
-          aspectRatio: "1/1",
-          background: "#e4e4e4ff",
           border: "1px solid #8a8a8a52",
-          objectFit: "cover",
+          flex: 1,
+          zIndex: 0,
+          aspectRatio: "1 / 1",
+          objectFit: "contain",
+          background: "none",
+          mixBlendMode: "multiply",
+          padding: "5px",
         }}
       />
       <div style={{ width: "100%", gap: "5px" }}>

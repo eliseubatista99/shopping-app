@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Database.PostgreSql.Extensions;
 using ShoppingApp.Database.Models;
+using ShoppingServer.BusinessLogic.Constants;
 using ShoppingServer.BusinessLogic.Entities;
 using ShoppingServer.Database.Repositories;
 using ShoppingServer.Library;
@@ -254,11 +255,13 @@ namespace ShoppingServer.BusinessLogic.Helpers
             var mapperProvider = executionContext.GetService<IMapper>();
             var orderProductsRepository = executionContext.GetService<IOrderProductsRepository>();
             var productsRepository = executionContext.GetService<IProductsRepository>();
+            var sellersRepository = executionContext.GetService<ISellersRepository>();
 
             var orderItems = mapperProvider.Map<List<OrderModel>, List<OrderDto>>(source);
 
             var orderProductsInDb = await orderProductsRepository.GetByOrderIds(source.Select(i => i.Id).ToList());
             var productsInDb = await productsRepository.GetByIds(orderProductsInDb.Select(i => i.ProductId));
+            var sellersInDb = await sellersRepository.GetByIds(productsInDb.Select(p => p.SellerId), false);
 
             var result = new List<(OrderDto order, List<CheckoutProductDetailsDto> products)>();
 
@@ -272,9 +275,16 @@ namespace ShoppingServer.BusinessLogic.Helpers
                 orderProducts.ForEach(op =>
                 {
                     var product = productsOfOrder.FirstOrDefault(p => p.Id == op.ProductId);
+                    var seller = sellersInDb.FirstOrDefault(s => s.Id == product?.SellerId);
+
                     if (product != null)
                     {
                         op.Product = mapperProvider.Map<ProductModel, ProductDto>(product);
+                    }
+
+                    if (seller != null)
+                    {
+                        op.Seller = mapperProvider.Map<SellerModel, SellerDto>(seller);
                     }
                 });
 
@@ -303,7 +313,7 @@ namespace ShoppingServer.BusinessLogic.Helpers
             totalCost = productsCost + shippingCost - discounts;
 
 
-            return (productsCost, shippingCost, discounts, totalCost, 3.99);
+            return (productsCost, shippingCost, discounts, totalCost, ShoppingServerConstants.FAST_DELIVERY_COST);
         }
     }
 }
