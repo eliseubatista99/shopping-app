@@ -6,6 +6,7 @@ import { ProductImageMobile } from "./productImage.mobile";
 export interface ProductImageProps {
   image: string | null | undefined;
   styles?: React.CSSProperties;
+  imageStyles?: React.CSSProperties;
   onClick?: () => void;
 }
 

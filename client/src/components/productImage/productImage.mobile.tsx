@@ -3,16 +3,18 @@ import React from "react";
 import type { ProductImageProps } from "./productImage";
 
 export const ProductImageMobile: React.FC<ProductImageProps> = (props) => {
-  const { image, onClick, styles: styles } = props;
+  const { image, onClick, styles, imageStyles } = props;
 
   return (
     <div
       style={{
         width: "100%",
-        flex: 1,
         zIndex: 0,
-        aspectRatio: "1/1 important!",
-        padding: "5px",
+        aspectRatio: "1/1",
+        objectFit: "contain",
+        background: "none",
+        mixBlendMode: "multiply",
+        borderRadius: "10px",
         ...styles,
       }}
       onClick={() => onClick?.()}
@@ -21,11 +23,12 @@ export const ProductImageMobile: React.FC<ProductImageProps> = (props) => {
         src={image || ""}
         styles={{
           width: "100%",
-          height: "100%",
           aspectRatio: "1 / 1",
           objectFit: "contain",
           background: "none",
           mixBlendMode: "multiply",
+          borderRadius: styles?.["borderRadius"] ?? "10px",
+          ...imageStyles,
         }}
       />
     </div>

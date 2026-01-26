@@ -39,8 +39,8 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
           flex: 1,
           background: "#e4e4e4ff",
           position: "relative",
-          overflow: "hidden",
           borderRadius: "8px",
+          justifyContent: "center",
         }}
       >
         <ProductImage image={product.product?.image} />

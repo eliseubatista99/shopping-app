@@ -30,6 +30,8 @@ export const ProductBlockMobile: React.FC = () => {
               styles={{
                 width: "70px",
                 height: "70px",
+                border: "1px solid #8a8a8a52",
+                borderRadius: "10px",
               }}
             />
             <div style={{ flex: 1, gap: "5px" }}>

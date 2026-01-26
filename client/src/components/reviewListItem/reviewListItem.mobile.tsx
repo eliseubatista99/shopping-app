@@ -37,7 +37,6 @@ export const ReviewListItemMobile: React.FC<ReviewListItemProps> = (props) => {
             width: "30px",
             height: "30px",
             border: "1px solid #a3a3a3ff",
-            overflow: "hidden",
             alignItems: "center",
             justifyContent: "center",
           }}

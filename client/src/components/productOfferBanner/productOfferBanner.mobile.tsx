@@ -1,4 +1,4 @@
-import { Typography } from "@eliseubatista99/react-scaffold-core";
+import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import type { ProductOfferBannerProps } from "./productOfferBanner";
 
@@ -15,22 +15,35 @@ export const ProductOfferBannerMobile: React.FC<ProductOfferBannerProps> = (
         width: "200px",
         height: "300px",
         borderRadius: "20px",
-        backgroundImage: `url('${banner.image}')`,
-        backgroundSize: "cover",
-        padding: "10px",
         color: banner.textColor || "#000000",
       }}
     >
-      <Typography
-        styles={{ color: "inherit", fontSize: "20px", fontWeight: "600" }}
-      >
-        {banner.title}
-      </Typography>
-      <Typography
-        styles={{ color: "inherit", fontSize: "14px", fontWeight: "400" }}
-      >
-        {banner.subtitle}
-      </Typography>
+      <Image
+        src={banner.image || ""}
+        styles={{
+          position: "absolute",
+          objectFit: "cover",
+          // background: "none",
+          // mixBlendMode: "multiply",
+          height: "100%",
+          width: "100%",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+        }}
+      />
+      <div style={{ padding: "10px", zIndex: 1, width: "100%" }}>
+        <Typography
+          styles={{ color: "inherit", fontSize: "20px", fontWeight: "600" }}
+        >
+          {banner.title}
+        </Typography>
+        <Typography
+          styles={{ color: "inherit", fontSize: "14px", fontWeight: "400" }}
+        >
+          {banner.subtitle}
+        </Typography>
+      </div>
     </div>
   );
 };

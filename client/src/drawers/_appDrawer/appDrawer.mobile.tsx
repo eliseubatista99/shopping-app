@@ -33,10 +33,10 @@ export const AppDrawerMobile = (props: AppDrawerProps) => {
               maxHeight: "80%",
               overflow: "hidden",
             }}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   e.stopPropagation();
+            // }}
           >
             {topContent && (
               <div

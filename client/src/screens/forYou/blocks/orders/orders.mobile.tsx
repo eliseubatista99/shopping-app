@@ -13,7 +13,6 @@ export const OrdersBlockMobile: React.FC = () => {
           height: "150px",
           borderRadius: "20px",
           border: "1px solid #a2a2a2ff",
-          padding: "5px",
         }}
       >
         <ProductImage

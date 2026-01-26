@@ -31,7 +31,6 @@ export const ProductsCombinationOverviewMobile: React.FC<
         image={item.image}
         styles={{
           width: "75%",
-          height: "150px",
         }}
         onClick={() => onClickProduct?.(item)}
       />

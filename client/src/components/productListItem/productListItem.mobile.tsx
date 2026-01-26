@@ -30,13 +30,16 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
       <div
         style={{
           flex: 1,
-          background: "#e4e4e4ff",
           position: "relative",
-          overflow: "hidden",
           borderRadius: "8px",
+          maxWidth: "33%",
+          aspectRatio: "1/1",
         }}
       >
-        <ProductImage image={product?.image} />
+        <ProductImage
+          image={product?.image}
+          styles={{ background: "#e4e4e4ff" }}
+        />
         {product.bestSeller && (
           <Tag
             text={i18n.tags.bestSeller}
@@ -58,7 +61,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
 
       <div
         style={{
-          width: "65%",
+          flex: 1,
           gap: "5px",
           padding: "5px 0",
           height: "fit-content",

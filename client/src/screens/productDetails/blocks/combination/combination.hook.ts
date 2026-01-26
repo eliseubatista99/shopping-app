@@ -10,7 +10,7 @@ import React from "react";
 
 export const useCombinationBlockHelper = () => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const { addToCart } = useCart();
@@ -31,13 +31,13 @@ export const useCombinationBlockHelper = () => {
     (item: ProductDto) => {
       if (selectedItems.includes(item)) {
         setSelectedItems((prevItems) =>
-          prevItems.filter((i) => i.id !== item.id)
+          prevItems.filter((i) => i.id !== item.id),
         );
       } else {
         setSelectedItems((prevItems) => [...prevItems, item]);
       }
     },
-    [selectedItems]
+    [selectedItems],
   );
 
   const onClickAddToCart = React.useCallback(
@@ -50,7 +50,7 @@ export const useCombinationBlockHelper = () => {
         goTo({ path: PAGES.LOG_IN });
       }
     },
-    [addToCart, goTo, hideItem, isAuthenticated, showItem]
+    [addToCart, goTo, hideItem, isAuthenticated, showItem],
   );
 
   const onClickProduct = React.useCallback(
@@ -62,10 +62,11 @@ export const useCombinationBlockHelper = () => {
         },
       });
     },
-    [goTo]
+    [goTo],
   );
 
   return {
+    canCombo: (selectedProduct?.comboProducts || []).length > 0,
     product: selectedProduct,
     expanded,
     selectedItems,
