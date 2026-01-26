@@ -1,7 +1,8 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductImage } from "../productImage";
 import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
 import { WishlistButton } from "../wishlistButton";
@@ -35,19 +36,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
           borderRadius: "8px",
         }}
       >
-        <Image
-          src={product.image || ""}
-          styles={{
-            position: "absolute",
-            flex: 1,
-            zIndex: 0,
-            aspectRatio: "1 / 1",
-            objectFit: "contain",
-            background: "none",
-            mixBlendMode: "multiply",
-            padding: "5px",
-          }}
-        />
+        <ProductImage image={product?.image} />
         {product.bestSeller && (
           <Tag
             text={i18n.tags.bestSeller}

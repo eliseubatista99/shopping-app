@@ -8,11 +8,15 @@ import { devtools, persist, type PersistStorage } from "zustand/middleware";
 export class StoreHelper {
   static createStore = <
     T,
-    Mos extends [StoreMutatorIdentifier, unknown][] = []
+    Mos extends [StoreMutatorIdentifier, unknown][] = [],
   >(
-    innerStore: StateCreator<T, [["zustand/devtools", never]], Mos>,
+    innerStore: StateCreator<
+      T,
+      [["zustand/persist", unknown], ["zustand/devtools", never]],
+      Mos
+    >,
     storeName: string,
-    storage?: PersistStorage<unknown>
+    storage?: PersistStorage<unknown>,
   ) =>
     create<T>()(
       devtools(
@@ -20,9 +24,7 @@ export class StoreHelper {
           name: storeName,
           storage,
         }),
-        {
-          name: storeName,
-        }
-      )
+        { name: storeName },
+      ),
     );
 }

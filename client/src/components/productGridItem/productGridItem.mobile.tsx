@@ -1,6 +1,7 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductImage } from "../productImage";
 import type { ProductGridItemProps } from "./productGridItem";
 import { useProductGridItemHelper } from "./productGridItem.hook";
 
@@ -17,20 +18,11 @@ export const ProductGridItemMobile: React.FC<ProductGridItemProps> = (
       style={{ gap: "5px" }}
       onClick={() => onClick?.()}
     >
-      <Image
-        src={product.image || ""}
-        styles={{
-          width: "100%",
-          border: "1px solid #8a8a8a52",
-          flex: 1,
-          zIndex: 0,
-          aspectRatio: "1 / 1",
-          objectFit: "contain",
-          background: "none",
-          mixBlendMode: "multiply",
-          padding: "5px",
-        }}
+      <ProductImage
+        image={product?.image}
+        styles={{ border: "1px solid #8a8a8a52" }}
       />
+
       <div style={{ width: "100%", gap: "5px" }}>
         <Typography overflowEllipsis styles={{ fontSize: "14px" }}>
           {product.name}

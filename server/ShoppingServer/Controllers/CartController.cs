@@ -31,7 +31,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<AddToCartResponseDto> AddToCart([FromBody] AddToCartOperationInputDto input)
         {
-            var response = await addToCartOperation.Execute<AddToCartResponseDto>(input);
+            var response = await addToCartOperation.Execute<AddToCartResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -41,7 +41,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetCartResponseDto> GetCart()
         {
-            var response = await getCartOperation.Execute<GetCartResponseDto>();
+            var response = await getCartOperation.Execute<GetCartResponseDto>(User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -52,7 +52,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<RemoveFromCartResponseDto> RemoveFromCart([FromQuery] RemoveFromCartOperationInputDto input)
         {
-            var response = await removeFromCartOperation.Execute<RemoveFromCartResponseDto>(input);
+            var response = await removeFromCartOperation.Execute<RemoveFromCartResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -63,7 +63,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<UpdateCartResponseDto> UpdateCartProduct([FromBody] UpdateCartProductOperationInputDto input)
         {
-            var response = await updateCartProductOperation.Execute<UpdateCartResponseDto>(input);
+            var response = await updateCartProductOperation.Execute<UpdateCartResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

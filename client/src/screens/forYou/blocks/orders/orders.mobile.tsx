@@ -1,8 +1,5 @@
-import {
-  Carousel,
-  Image,
-  Typography,
-} from "@eliseubatista99/react-scaffold-core";
+import { Carousel, Typography } from "@eliseubatista99/react-scaffold-core";
+import { ProductImage } from "../../../../components";
 import { useOrdersBlockHelper } from "./orders.hook";
 
 export const OrdersBlockMobile: React.FC = () => {
@@ -13,22 +10,21 @@ export const OrdersBlockMobile: React.FC = () => {
       <div
         style={{
           width: "150px",
+          height: "150px",
           borderRadius: "20px",
           border: "1px solid #a2a2a2ff",
-          padding: "10px",
+          padding: "5px",
         }}
       >
-        <Image
+        <ProductImage
           key={o.id}
-          src={o.products?.[0]?.product?.image || ""}
-          onClick={() => onClickOrder(o)}
+          image={o.products?.[0]?.product?.image}
           styles={{
-            objectFit: "contain",
-            mixBlendMode: "multiply",
-            width: "100%",
-            height: "100%",
+            borderRadius: "20px",
           }}
+          onClick={() => onClickOrder(o)}
         />
+        ,
       </div>
     ),
   }));

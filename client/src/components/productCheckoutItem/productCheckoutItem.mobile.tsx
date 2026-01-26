@@ -1,12 +1,13 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductImage } from "../productImage";
 import { ProductQuantityChip } from "../productQuantityChip";
 import type { ProductCheckoutItemProps } from "./productCheckoutItem";
 import { useProductCheckoutItemHelper } from "./productCheckoutItem.hook";
 
 export const ProductCheckoutItemMobile: React.FC<ProductCheckoutItemProps> = (
-  props
+  props,
 ) => {
   const { currency, onClickChangeQuantity } =
     useProductCheckoutItemHelper(props);
@@ -22,14 +23,9 @@ export const ProductCheckoutItemMobile: React.FC<ProductCheckoutItemProps> = (
       }}
     >
       <div style={{ width: "100%", flexDirection: "row", gap: "5px" }}>
-        <Image
-          src={product.product?.image || ""}
-          styles={{
-            height: "60px",
-            width: "60px",
-            objectFit: "contain",
-            mixBlendMode: "multiply",
-          }}
+        <ProductImage
+          image={product.product?.image}
+          styles={{ height: "60px", width: "60px" }}
         />
         <div style={{ flex: 1, justifyContent: "center" }}>
           <Typography>{product.product?.name}</Typography>

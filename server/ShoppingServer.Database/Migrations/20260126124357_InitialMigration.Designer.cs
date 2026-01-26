@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260123091900_InitialMigration")]
+    [Migration("20260126124357_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

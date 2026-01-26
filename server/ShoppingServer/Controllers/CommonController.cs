@@ -32,7 +32,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetClientInfoResponseDto> GetClientInfo()
         {
-            var response = await getClientInfoOperation.Execute<GetClientInfoResponseDto>();
+            var response = await getClientInfoOperation.Execute<GetClientInfoResponseDto>(User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -42,7 +42,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<ForYouResponseDto> ForYou()
         {
-            var response = await forYouOperation.Execute<ForYouResponseDto>();
+            var response = await forYouOperation.Execute<ForYouResponseDto>(User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -52,7 +52,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetDocumentResponseDto> GetCart([FromQuery] GetDocumentOperationInputDto input)
         {
-            var response = await getDocumentOperation.Execute<GetDocumentResponseDto>(input);
+            var response = await getDocumentOperation.Execute<GetDocumentResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -62,7 +62,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<UpdateClientInfoResponseDto> UpdateClientInfo([FromBody] UpdateClientInfoOperationInputDto input)
         {
-            var response = await updateClientInfoOperation.Execute<UpdateClientInfoResponseDto>(input);
+            var response = await updateClientInfoOperation.Execute<UpdateClientInfoResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

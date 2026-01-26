@@ -26,7 +26,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<ExecutePurchaseResponseDto> ExecutePurchase([FromBody] ExecutePurchaseOperationInputDto input)
         {
-            var response = await executePurchaseOperation.Execute<ExecutePurchaseResponseDto>(input);
+            var response = await executePurchaseOperation.Execute<ExecutePurchaseResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -36,7 +36,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetCheckoutInfoResponseDto> GetCheckoutInfo([FromQuery] GetCheckoutInfoOperationInputDto input)
         {
-            var response = await getCheckoutInfoOperation.Execute<GetCheckoutInfoResponseDto>(input);
+            var response = await getCheckoutInfoOperation.Execute<GetCheckoutInfoResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

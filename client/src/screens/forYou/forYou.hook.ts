@@ -7,10 +7,10 @@ export const useForYouPageHelper = () => {
   const { fetchForYou } = ApiEndpoints.GetForYou();
 
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
   const setForYouStoreState = useStoreForYou(
-    (state) => state.setForYouStoreState
+    (state) => state.setForYouStoreState,
   );
   const [loading, setLoading] = React.useState(false);
 

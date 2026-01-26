@@ -34,7 +34,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<AddAddressResponseDto> AddAddress([FromBody] AddAddressOperationInputDto input)
         {
-            var response = await addAddressOperation.Execute<AddAddressResponseDto>(input);
+            var response = await addAddressOperation.Execute<AddAddressResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -45,7 +45,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<DeleteAddressResponseDto> DeleteAddress([FromQuery] DeleteAddressOperationInputDto input)
         {
-            var response = await deleteAddressOperation.Execute<DeleteAddressResponseDto>(input);
+            var response = await deleteAddressOperation.Execute<DeleteAddressResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -56,7 +56,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<SetDefaultAddressResponseDto> SetDefaultAddress([FromQuery] SetDefaultAddressOperationInputDto input)
         {
-            var response = await setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input);
+            var response = await setDefaultAddressOperation.Execute<SetDefaultAddressResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -67,7 +67,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<UpdateAddressResponseDto> UpdateAddress([FromBody] UpdateAddressOperationInputDto input)
         {
-            var response = await updateAddressOperation.Execute<UpdateAddressResponseDto>(input);
+            var response = await updateAddressOperation.Execute<UpdateAddressResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

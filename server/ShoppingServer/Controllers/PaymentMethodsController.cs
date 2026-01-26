@@ -36,7 +36,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetPaymentMethodDetailsResponseDto> GetPaymentMethodDetails([FromQuery] GetPaymentMethodDetailsOperationInputDto input)
         {
-            var response = await getPaymentMethodDetailsOperation.Execute<GetPaymentMethodDetailsResponseDto>(input);
+            var response = await getPaymentMethodDetailsOperation.Execute<GetPaymentMethodDetailsResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -46,7 +46,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<AddPaymentMethodResponseDto> AddPaymentMethod([FromBody] AddPaymentMethodOperationInputDto input)
         {
-            var response = await addPaymentMethodOperation.Execute<AddPaymentMethodResponseDto>(input);
+            var response = await addPaymentMethodOperation.Execute<AddPaymentMethodResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -56,7 +56,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<DeletePaymentMethodResponseDto> DeletePaymentMethod([FromQuery] DeletePaymentMethodOperationInputDto input)
         {
-            var response = await deletePaymentMethodOperation.Execute<DeletePaymentMethodResponseDto>(input);
+            var response = await deletePaymentMethodOperation.Execute<DeletePaymentMethodResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -66,7 +66,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<SetDefaultPaymentMethodResponseDto> SetDefaultPaymentMethod([FromQuery] SetDefaultPaymentMethodOperationInputDto input)
         {
-            var response = await setDefaultPaymentMethodOperation.Execute<SetDefaultPaymentMethodResponseDto>(input);
+            var response = await setDefaultPaymentMethodOperation.Execute<SetDefaultPaymentMethodResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -76,7 +76,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<UpdatePaymentMethodResponseDto> UpdatePaymentMethod([FromBody] UpdatePaymentMethodOperationInputDto input)
         {
-            var response = await updatePaymentMethodOperation.Execute<UpdatePaymentMethodResponseDto>(input);
+            var response = await updatePaymentMethodOperation.Execute<UpdatePaymentMethodResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

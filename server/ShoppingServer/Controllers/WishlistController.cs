@@ -31,7 +31,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<AddToWishlistResponseDto> AddToWishlist([FromBody] AddToWishlistOperationInputDto input)
         {
-            var response = await addToWishlistOperation.Execute<AddToWishlistResponseDto>(input);
+            var response = await addToWishlistOperation.Execute<AddToWishlistResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -42,7 +42,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetWishlistResponseDto> GetWishlist([FromQuery] GetWishlistOperationInputDto input)
         {
-            var response = await getWishlistOperation.Execute<GetWishlistResponseDto>(input);
+            var response = await getWishlistOperation.Execute<GetWishlistResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -52,7 +52,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<RemoveFromWishlistResponseDto> RemoveFromWishlist([FromQuery] RemoveFromWishlistOperationInputDto input)
         {
-            var response = await removeFromWishlistOperation.Execute<RemoveFromWishlistResponseDto>(input);
+            var response = await removeFromWishlistOperation.Execute<RemoveFromWishlistResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

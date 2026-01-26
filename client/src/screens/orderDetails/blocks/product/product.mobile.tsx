@@ -1,5 +1,5 @@
-import { AppButton, Separator } from "@components";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { AppButton, ProductImage, Separator } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useProductBlockHelper } from "./product.hook";
 
 export const ProductBlockMobile: React.FC = () => {
@@ -25,15 +25,11 @@ export const ProductBlockMobile: React.FC = () => {
               marginTop: "15px",
             }}
           >
-            <Image
-              src={p.product.image || ""}
+            <ProductImage
+              image={p.product.image}
               styles={{
                 width: "70px",
                 height: "70px",
-                aspectRatio: "1 / 1",
-                objectFit: "contain",
-                background: "none",
-                mixBlendMode: "multiply",
               }}
             />
             <div style={{ flex: 1, gap: "5px" }}>

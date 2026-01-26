@@ -17,7 +17,7 @@ export const RefreshAuthentication = () => {
 
       return result;
     },
-    [post]
+    [post],
   );
 
   return {

@@ -97,7 +97,7 @@ namespace ShoppingServer.Library.Operations
             return output;
         }
 
-        public async Task<TResponse> Execute<TResponse>(System.Security.Claims.ClaimsPrincipal? User = null)
+        public async Task<TResponse> Execute<TResponse>(System.Security.Claims.ClaimsPrincipal? User)
             where TResponse : OperationResponseDto<TOutput>, new()
         {
             if (User != null)
@@ -114,7 +114,7 @@ namespace ShoppingServer.Library.Operations
             };
         }
 
-        public Task<TResponse> Execute<TResponse>(TInput _input, System.Security.Claims.ClaimsPrincipal? User = null)
+        public Task<TResponse> Execute<TResponse>(TInput _input, System.Security.Claims.ClaimsPrincipal? User)
             where TResponse : OperationResponseDto<TOutput>, new()
         {
             this.input = _input;

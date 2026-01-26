@@ -8,11 +8,11 @@ type FetchWithAuthInput = FetchCommonInput;
 type TIn = Record<string, unknown>;
 
 export const useFetchWithAuth = <
-  TOut extends { metadata?: OutputMetadataDto | null }
+  TOut extends { metadata?: OutputMetadataDto | null },
 >(
-  props: FetchWithAuthInput
+  props: FetchWithAuthInput,
 ) => {
-  const { isTokenExpired, refreshToken } = useAuthentication();
+  const { refreshToken, isTokenExpired } = useAuthentication();
   const {
     get: httpGet,
     post: httpPost,
@@ -38,7 +38,7 @@ export const useFetchWithAuth = <
 
       return result;
     },
-    [httpGet, runPreFetch]
+    [httpGet, runPreFetch],
   );
 
   const runPost = useCallback(
@@ -49,7 +49,7 @@ export const useFetchWithAuth = <
 
       return result;
     },
-    [httpPost, runPreFetch]
+    [httpPost, runPreFetch],
   );
 
   const runDelete = useCallback(
@@ -60,7 +60,7 @@ export const useFetchWithAuth = <
 
       return result;
     },
-    [httpDelete, runPreFetch]
+    [httpDelete, runPreFetch],
   );
 
   const runPatch = useCallback(
@@ -71,7 +71,7 @@ export const useFetchWithAuth = <
 
       return result;
     },
-    [httpPatch, runPreFetch]
+    [httpPatch, runPreFetch],
   );
 
   return {

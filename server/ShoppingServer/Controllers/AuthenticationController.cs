@@ -32,10 +32,9 @@ namespace ShoppingServer.Controllers
         }
 
         [HttpGet("/api/IsExistingAccount")]
-        [Authorize]
         public async Task<IsExistingAccountResponseDto> IsExistingAccount([FromQuery] IsExistingAccountOperationInputDto input)
         {
-            var response = await isExistingAccountOperation.Execute<IsExistingAccountResponseDto>(input);
+            var response = await isExistingAccountOperation.Execute<IsExistingAccountResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -44,16 +43,17 @@ namespace ShoppingServer.Controllers
         [HttpPost("/api/Authenticate")]
         public async Task<AuthenticateResponseDto> Authenticate([FromBody] AuthenticateOperationInputDto input)
         {
-            var response = await authenticateOperation.Execute<AuthenticateResponseDto>(input);
+            var response = await authenticateOperation.Execute<AuthenticateResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
         }
 
         [HttpPost("/api/RefreshAuthentication")]
+        [Authorize]
         public async Task<RefreshAuthenticationResponseDto> RefreshAuthentication([FromBody] RefreshAuthenticationOperationInputDto input)
         {
-            var response = await refreshAuthenticationOperation.Execute<RefreshAuthenticationResponseDto>(input);
+            var response = await refreshAuthenticationOperation.Execute<RefreshAuthenticationResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -62,7 +62,7 @@ namespace ShoppingServer.Controllers
         [HttpPost("/api/CreateAccount")]
         public async Task<CreateAccountResponseDto> CreateAccount([FromBody] CreateAccountOperationInputDto input)
         {
-            var response = await createAccountOperation.Execute<CreateAccountResponseDto>(input);
+            var response = await createAccountOperation.Execute<CreateAccountResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -71,7 +71,7 @@ namespace ShoppingServer.Controllers
         [HttpPost("/api/Logout")]
         public async Task<LogoutOperationResponseDto> Logout([FromBody] LogoutOperationInputDto input)
         {
-            var response = await logoutOperation.Execute<LogoutOperationResponseDto>(input);
+            var response = await logoutOperation.Execute<LogoutOperationResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

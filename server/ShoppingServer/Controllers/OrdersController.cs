@@ -26,7 +26,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetClientOrdersResponseDto> GetClientOrders([FromQuery] GetClientOrdersOperationInputDto input)
         {
-            var response = await getClientOrdersOperation.Execute<GetClientOrdersResponseDto>(input);
+            var response = await getClientOrdersOperation.Execute<GetClientOrdersResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -37,7 +37,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<GetOrderDetailsResponseDto> GetOrderDetails([FromQuery] GetOrderDetailsOperationInputDto input)
         {
-            var response = await getOrderDetailsOperation.Execute<GetOrderDetailsResponseDto>(input);
+            var response = await getOrderDetailsOperation.Execute<GetOrderDetailsResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;

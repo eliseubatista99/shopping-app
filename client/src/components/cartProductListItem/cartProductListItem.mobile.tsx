@@ -1,8 +1,9 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
 import { AppCheckbox } from "../appCheckbox";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductImage } from "../productImage";
 import { ProductQuantityChip } from "../productQuantityChip";
 import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
@@ -10,7 +11,7 @@ import type { CartProductListItemProps } from "./cartProductListItem";
 import { useCartProductListItemHelper } from "./cartProductListItem.hook";
 
 export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
-  props
+  props,
 ) => {
   const { i18n, currency } = useCartProductListItemHelper();
   const {
@@ -42,18 +43,7 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
           borderRadius: "8px",
         }}
       >
-        <Image
-          src={product.product?.image || ""}
-          styles={{
-            position: "absolute",
-            flex: 1,
-            zIndex: 0,
-            aspectRatio: "1 / 1",
-            objectFit: "contain",
-            background: "none",
-            mixBlendMode: "multiply",
-          }}
-        />
+        <ProductImage image={product.product?.image} />
         <div
           style={{
             flexDirection: "row",

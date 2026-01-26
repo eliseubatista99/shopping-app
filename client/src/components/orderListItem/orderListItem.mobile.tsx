@@ -1,5 +1,6 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
+import { ProductImage } from "../productImage";
 import type { OrderListItemProps } from "./orderListItem";
 import { useOrderListItemHelper } from "./orderListItem.hook";
 
@@ -20,14 +21,9 @@ export const OrderListItemMobile: React.FC<OrderListItemProps> = (props) => {
       }}
     >
       <div style={{ width: "80px", background: "#ecececff" }}>
-        <Image
-          src={order?.product.image || ""}
-          styles={{
-            aspectRatio: "1 / 1",
-            objectFit: "contain",
-            background: "none",
-            mixBlendMode: "multiply",
-          }}
+        <ProductImage
+          image={order?.product.image}
+          styles={{ borderRight: "1px solid #bbbbbbff" }}
         />
       </div>
       <div

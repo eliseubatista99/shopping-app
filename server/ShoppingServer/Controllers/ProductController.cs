@@ -34,7 +34,7 @@ namespace ShoppingServer.Controllers
         [HttpGet("/api/GetProductReviews")]
         public async Task<GetProductReviewsResponseDto> AddPaymentMethod([FromQuery] GetProductReviewsOperationInputDto input)
         {
-            var response = await getProductReviewsOperation.Execute<GetProductReviewsResponseDto>(input);
+            var response = await getProductReviewsOperation.Execute<GetProductReviewsResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -43,7 +43,7 @@ namespace ShoppingServer.Controllers
         [HttpGet("/api/ProductDetail")]
         public async Task<ProductDetailResponseDto> ProductDetail([FromQuery] ProductDetailOperationInputDto input)
         {
-            var response = await productDetailOperation.Execute<ProductDetailResponseDto>(input);
+            var response = await productDetailOperation.Execute<ProductDetailResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -53,7 +53,7 @@ namespace ShoppingServer.Controllers
         [AllowAnonymous]
         public async Task<ProductOffersdResponseDto> ProductOffers()
         {
-            var response = await productOffersOperation.Execute<ProductOffersdResponseDto>();
+            var response = await productOffersOperation.Execute<ProductOffersdResponseDto>(User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -62,7 +62,7 @@ namespace ShoppingServer.Controllers
         [HttpGet("/api/SearchProducts")]
         public async Task<SearchProductsResponseDto> SearchProducts([FromQuery] SearchProductsOperationInputDto input)
         {
-            var response = await searchProductsOperation.Execute<SearchProductsResponseDto>(input);
+            var response = await searchProductsOperation.Execute<SearchProductsResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
@@ -72,7 +72,7 @@ namespace ShoppingServer.Controllers
         [Authorize]
         public async Task<WriteReviewResponseDto> WriteReview([FromBody] WriteReviewOperationInputDto input)
         {
-            var response = await writeReviewOperation.Execute<WriteReviewResponseDto>(input);
+            var response = await writeReviewOperation.Execute<WriteReviewResponseDto>(input, User);
             this.Response.StatusCode = response.StatusCode;
 
             return response;
