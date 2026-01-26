@@ -8,7 +8,7 @@ type FetchWithAuthInput = FetchCommonInput;
 type TIn = Record<string, unknown>;
 
 export const useFetchWithAuth = <
-  TOut extends { metadata?: OutputMetadataDto | null },
+  TOut extends { metadata?: OutputMetadataDto | null; statusCode?: number },
 >(
   props: FetchWithAuthInput,
 ) => {
@@ -22,56 +22,64 @@ export const useFetchWithAuth = <
     ...props,
   });
 
-  const runPreFetch = useCallback(async () => {
-    const expired = isTokenExpired();
+  const runFetchWithAuth = useCallback(
+    async (fetchFn: () => Promise<TOut>): Promise<TOut> => {
+      const expired = isTokenExpired();
+      let success = !expired;
 
-    if (expired) {
-      await refreshToken();
-    }
-  }, [isTokenExpired, refreshToken]);
+      if (expired) {
+        const refreshRes = await refreshToken();
+        success = refreshRes.success;
+      }
+
+      if (!success) {
+        return {
+          metadata: {
+            success: false,
+          },
+          statusCode: 401,
+        } as TOut;
+      }
+
+      return await fetchFn();
+    },
+    [isTokenExpired, refreshToken],
+  );
 
   const runGet = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      await runPreFetch();
-
-      const result = await httpGet({ ...input }, { ...headers });
-
-      return result;
+      return await runFetchWithAuth(() =>
+        httpGet({ ...input }, { ...headers }),
+      );
     },
-    [httpGet, runPreFetch],
+    [httpGet, runFetchWithAuth],
   );
 
   const runPost = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      await runPreFetch();
-
-      const result = await httpPost({ ...input }, { ...headers });
-
-      return result;
+      return await runFetchWithAuth(() =>
+        httpPost({ ...input }, { ...headers }),
+      );
     },
-    [httpPost, runPreFetch],
+    [httpPost, runFetchWithAuth],
   );
 
   const runDelete = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      await runPreFetch();
-
-      const result = await httpDelete({ ...input }, { ...headers });
-
-      return result;
+      return await runFetchWithAuth(() =>
+        httpDelete({ ...input }, { ...headers }),
+      );
     },
-    [httpDelete, runPreFetch],
+    [httpDelete, runFetchWithAuth],
   );
 
   const runPatch = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      await runPreFetch();
-
-      const result = await httpPatch({ ...input }, { ...headers });
-
-      return result;
+      return await runFetchWithAuth(() =>
+        httpPatch({ ...input }, { ...headers }),
+      );
     },
-    [httpPatch, runPreFetch],
+    [httpPatch, runFetchWithAuth],
   );
 
   return {

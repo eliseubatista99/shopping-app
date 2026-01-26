@@ -24,7 +24,6 @@ export const OrdersBlockMobile: React.FC = () => {
           }}
           onClick={() => onClickOrder(o)}
         />
-        ,
       </div>
     ),
   }));

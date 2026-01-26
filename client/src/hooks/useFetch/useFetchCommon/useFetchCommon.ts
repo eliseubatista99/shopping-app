@@ -64,25 +64,22 @@ export const useFetchNoAuth = <TOut extends BaseOut>({
     [onError, showGenericErrorModal, showItem],
   );
 
-  const parseResponse = useCallback(
-    (response: FetchOutput<TOut>) => {
-      let result: Partial<BaseOut> = {};
+  const parseResponse = useCallback((response: FetchOutput<TOut>) => {
+    let result: Partial<BaseOut> = {};
 
-      try {
-        if (response.result) {
-          result = response.result as TOut;
-        }
-      } catch {
-        result = {};
+    try {
+      if (response.result) {
+        result = response.result as TOut;
       }
+    } catch {
+      result = {};
+    }
 
-      result.metadata = result.metadata ?? { success: false };
-      result.statusCode = response.statusCode;
+    result.metadata = result.metadata ?? { success: false };
+    result.statusCode = response.statusCode;
 
-      return result as TOut;
-    },
-    [token],
-  );
+    return result as TOut;
+  }, []);
 
   const runGet = useCallback(
     async (input: TIn, headers?: HeadersInit) => {

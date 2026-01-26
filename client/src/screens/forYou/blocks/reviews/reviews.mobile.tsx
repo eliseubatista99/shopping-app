@@ -69,7 +69,6 @@ export const ReviewsBlockMobile: React.FC = () => {
                   <ProductImage
                     image={needingReviewProduct.image}
                     styles={{
-                      height: "70%",
                       width: "70%",
                       border: "1px solid #bbbbbbff",
                       borderRadius: "10px",
