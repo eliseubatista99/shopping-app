@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Database.PostgreSql.Extensions;
+using Microsoft.EntityFrameworkCore;
 using ShoppingServer.BusinessLogic.MapperProfiles;
 using ShoppingServer.BusinessLogic.Providers;
 using ShoppingServer.BusinessLogic.Providers.AppToken;
 using ShoppingServer.Database.Repositories;
+using ShoppingServer.Database.Seed;
 using ShoppingServer.Library;
 
 namespace ShoppingApp
@@ -62,6 +64,19 @@ namespace ShoppingApp
             if (Builder != null)
             {
                 Builder.AddPostgresDbContext<AppDbContext>(enableLogging: true);
+            }
+        }
+
+        protected override void SeedDatabase()
+        {
+            base.SeedDatabase();
+
+            using (var scope = App!.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.Migrate();
+
+                DatabaseSeeder.Seed(db);
             }
         }
 

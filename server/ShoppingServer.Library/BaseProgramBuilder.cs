@@ -51,6 +51,11 @@ namespace ShoppingServer.Library
 
         }
 
+        protected virtual void SeedDatabase()
+        {
+
+        }
+
         protected virtual void ConfigureControllers()
         {
             if (Builder != null)
@@ -178,6 +183,8 @@ namespace ShoppingServer.Library
 
         public void Run()
         {
+            SeedDatabase();
+
             App!.Run();
         }
 

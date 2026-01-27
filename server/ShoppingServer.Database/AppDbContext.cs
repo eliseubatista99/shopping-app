@@ -30,14 +30,6 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //modelBuilder.Entity<UserModel>(entity =>
-        //{
-        //    entity.HasKey(e => e.Id);
-
-        //    entity.Property(e => e.Id)
-        //          .ValueGeneratedNever(); // Dont auto generate id
-        //});
-
         modelBuilder.Entity<RelatedProductModel>(entity =>
         {
             entity.HasKey(rp => new { rp.ProductId, rp.RelatedProductId });
@@ -54,7 +46,7 @@ public class AppDbContext : DbContext
 
             entity.ToTable(tb => tb.HasCheckConstraint(
                 "CK_RelatedProduct_SelfReference",
-                "\"ProductId\" <> \"RelatedProductId\""
+                "\"product_id\" <> \"related_product_id\""
             ));
         });
 
@@ -74,7 +66,7 @@ public class AppDbContext : DbContext
 
             entity.ToTable(tb => tb.HasCheckConstraint(
                 "CK_ProductCombination_SelfReference",
-                "\"ProductId\" <> \"CombinedProductId\""
+                "\"product_id\" <> \"combined_product_id\""
             ));
         });
 

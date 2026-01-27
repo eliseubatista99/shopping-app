@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShoppingServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260126124357_InitialMigration")]
+    [Migration("20260127163601_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -409,7 +409,7 @@ namespace ShoppingServer.Database.Migrations
 
                     b.ToTable("product_combinations", null, t =>
                         {
-                            t.HasCheckConstraint("CK_ProductCombination_SelfReference", "\"ProductId\" <> \"CombinedProductId\"");
+                            t.HasCheckConstraint("CK_ProductCombination_SelfReference", "\"product_id\" <> \"combined_product_id\"");
                         });
                 });
 
@@ -574,7 +574,7 @@ namespace ShoppingServer.Database.Migrations
 
                     b.ToTable("related_products", null, t =>
                         {
-                            t.HasCheckConstraint("CK_RelatedProduct_SelfReference", "\"ProductId\" <> \"RelatedProductId\"");
+                            t.HasCheckConstraint("CK_RelatedProduct_SelfReference", "\"product_id\" <> \"related_product_id\"");
                         });
                 });
 
