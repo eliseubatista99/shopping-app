@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DotNetEnv;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,13 +19,13 @@ namespace ShoppingServer.Library
         protected virtual bool UseAuthorization { get; } = false;
         protected virtual bool UseAuthentication { get; } = false;
 
-        protected string[] corsOrigins = new[] 
-        { 
+        protected string[] corsOrigins = new[]
+        {
             "http://localhost:3000",
             "https://localhost:3000",
             "http://127.0.0.1:3000",
             "http://client:3000",
-            "https://client:3000" 
+            "https://client:3000"
         };
 
         protected WebApplicationBuilder? Builder;
@@ -42,7 +43,7 @@ namespace ShoppingServer.Library
 
         protected virtual Profile[] GetMapperProfiles()
         {
-            return [];    
+            return [];
         }
 
         protected virtual void ConfigureDatabase()
@@ -60,7 +61,7 @@ namespace ShoppingServer.Library
                     // Enums as string instead of int
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 });
-            }  
+            }
         }
 
         protected virtual void ConfigureSwagger()
@@ -75,12 +76,16 @@ namespace ShoppingServer.Library
                     c.DocumentFilter<ForceAllDtosDocumentFilter>();
                     c.EnableAnnotations();
                 });
-            }   
+            }
         }
 
         public (WebApplicationBuilder builder, WebApplication app) Build(string[] args)
         {
+
             Builder = WebApplication.CreateBuilder(args);
+
+            Env.Load();
+            Builder.Configuration.AddEnvironmentVariables();
 
             // Kestrel uses env vars by default
             Builder.WebHost.ConfigureKestrel(options =>

@@ -16,7 +16,7 @@ services:
     volumes:
       - db:/data/postgres
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d postgres" ]
+      test: ["CMD-SHELL", "pg_isready -d postgres"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -37,23 +37,17 @@ services:
       - ./pgadmin/pgpass:/pgpass
     depends_on:
       - db
-  # server:
-  #   build:
-  #     context: ./server
-  #     dockerfile: dockerfile
-  #   ports:
-  #     #http
-  #     - "5000:5000"
-  #     #https
-  #     - "5001:5001"
-  #   environment:
-  #     ConnectionStrings__DefaultConnection: "Host=db;Database=shopping-app;Username=el_shopper;Password=el_shopper_pass"
-  #     ASPNETCORE_URLS: "http://+:5000;https://+:5001"
-  #     ASPNETCORE_Kestrel__Certificates__Default__Path: "/root/.aspnet/https/ShoppingAppCert.pfx"
-  #     ASPNETCORE_Kestrel__Certificates__Default__Password: "el_shopper_pass"
-  #   depends_on:
-  #     - db
-
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    env_file:
+      - ./server/.env
+    depends_on:
+      - db
 
   # client:
   #   build:
