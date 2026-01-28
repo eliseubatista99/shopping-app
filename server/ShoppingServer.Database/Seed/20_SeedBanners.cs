@@ -16,7 +16,7 @@ namespace ShoppingServer.Database.Seed
                     Subtitle = "Até 23 de Dezembro",
                     Category = "Christmas",
                     TextColor = "#ffffff",
-                    Image = File.ReadAllBytes("Seed/Images/Banners/banner-0001.jpg"),
+                    Image = SeedHelper.ReadImage("Seed/Images/Banners/banner-0001.jpg"),
                     CreatedAt = DateTimeOffset.UtcNow
                 },
                 new BannerModel
@@ -26,7 +26,7 @@ namespace ShoppingServer.Database.Seed
                     Subtitle = "Volta às aulas com descontos",
                     Category = "Back to School",
                     TextColor = "#000000",
-                    Image = File.ReadAllBytes("Seed/Images/Banners/banner-0002.jpg"),
+                    Image = SeedHelper.ReadImage("Seed/Images/Banners/banner-0002.jpg"),
                     CreatedAt = DateTimeOffset.UtcNow
                 },
                 new BannerModel
@@ -36,7 +36,7 @@ namespace ShoppingServer.Database.Seed
                     Subtitle = "Tudo para o teu escritório",
                     Category = "Office",
                     TextColor = "#ffffff",
-                    Image = File.ReadAllBytes("Seed/Images/Banners/banner-0003.jpg"),
+                    Image = SeedHelper.ReadImage("Seed/Images/Banners/banner-0003.jpg"),
                     CreatedAt = DateTimeOffset.UtcNow
                 }
             );

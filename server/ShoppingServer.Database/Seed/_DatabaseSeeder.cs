@@ -32,15 +32,15 @@
             SeedProducts.Seed(db);
             SeedProductCategories.Seed(db);
             SeedProductImages.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
-            SeedUsers.Seed(db);
+            SeedRelatedProducts.Seed(db);
+            SeedProductCombinations.Seed(db);
+            SeedCarts.Seed(db);
+            SeedOrders.Seed(db);
+            SeedOrdersStatus.Seed(db);
+            SeedOrderProducts.Seed(db);
+            SeedDocuments.Seed(db);
+            SeedWishlists.Seed(db);
+            SeedBanners.Seed(db);
 
             Console.WriteLine("SEEDING DONE");
         }
