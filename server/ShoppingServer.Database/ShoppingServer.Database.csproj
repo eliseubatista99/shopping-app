@@ -14,8 +14,8 @@
 	  <ProjectReference Include="..\ShoppingServer.Library\ShoppingServer.Library.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Update="SeedData\Images\**\*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
+		<Content Include="Seed\Images\**\*.*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 </Project>

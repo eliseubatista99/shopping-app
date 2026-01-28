@@ -2,20 +2,35 @@
 {
     public static class SeedHelper
     {
-        public static byte[] ReadImage(string path)
+        public static byte[] ReadImage(string relativePath)
         {
-            return File.Exists(path) ? File.ReadAllBytes(path) : new byte[0];
-        }
+            var path = Path.Combine(AppContext.BaseDirectory, relativePath);
 
-        public static string ReadText(string path)
-        {
             if (!File.Exists(path))
-                return string.Empty;
+                return new byte[0];
 
-            var content = File.ReadAllText(path).Trim();
 
             try
             {
+                return File.ReadAllBytes(path);
+            }
+            catch
+            {
+                return new byte[0];
+            }
+        }
+
+        public static string ReadText(string relativePath)
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, relativePath);
+
+            if (!File.Exists(path))
+                return string.Empty;
+
+            try
+            {
+                var content = File.ReadAllText(path).Trim();
+
                 Convert.FromBase64String(content);
                 return content;
             }

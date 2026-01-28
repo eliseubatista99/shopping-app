@@ -6,6 +6,16 @@ namespace ShoppingServer.Database.Seed
     {
         public static void Seed(AppDbContext db)
         {
+            //Console.WriteLine("ZAAAAAAAAAAAAAAAAAAAAUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+
+            //var path = "Seed/Images/Products/pvg-001/prod-001-001.jpg";
+
+            //Console.WriteLine(Path.GetFullPath(path));
+            //Console.WriteLine(File.Exists(path));
+
+            //var bytes = File.ReadAllBytes(path);
+            //Console.WriteLine(bytes.Length);
+
             db.ChangeTracker.Clear();
 
             db.Products.AddRange(new[]
