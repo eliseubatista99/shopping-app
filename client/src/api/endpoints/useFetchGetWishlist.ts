@@ -1,25 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDto } from "../types";
-
-export type GetWishlistOutputDto = {
-  products: ProductDto[];
-  hasMorePages: boolean;
-};
-
-export type GetWishlistInputDto = {
-  page?: number;
-  pageCount?: number;
-};
+import type {
+  GetWishlistOperationInputDto,
+  GetWishlistResponseDto,
+} from "../models";
 
 export const GetWishlist = () => {
-  const { get } = useFetchWithAuth<GetWishlistOutputDto>({
+  const { get } = useFetchWithAuth<GetWishlistResponseDto>({
     endpoint: "GetWishlist",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: GetWishlistInputDto) => {
+    async (input: GetWishlistOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

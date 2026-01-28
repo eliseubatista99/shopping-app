@@ -1,5 +1,5 @@
-import { ProductScore } from "@components";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { ProductImage, ProductScore } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import { useReviewsBlockHelper } from "./reviews.hook";
 
 export const ReviewsBlockMobile: React.FC = () => {
@@ -15,7 +15,7 @@ export const ReviewsBlockMobile: React.FC = () => {
   const box = (
     content: React.ReactNode,
     onClick: () => void,
-    styles?: React.CSSProperties
+    styles?: React.CSSProperties,
   ) => (
     <div
       onClick={onClick}
@@ -66,15 +66,12 @@ export const ReviewsBlockMobile: React.FC = () => {
             {needingReviewProduct &&
               box(
                 <>
-                  <Image
-                    src={needingReviewProduct.image}
+                  <ProductImage
+                    image={needingReviewProduct.image}
                     styles={{
-                      objectFit: "contain",
-                      mixBlendMode: "multiply",
-                      aspectRatio: "1/1",
-                      position: "absolute",
-                      top: 0,
-                      height: "70%",
+                      width: "70%",
+                      border: "1px solid #bbbbbbff",
+                      borderRadius: "10px",
                     }}
                   />
                   <Typography
@@ -89,8 +86,8 @@ export const ReviewsBlockMobile: React.FC = () => {
                 </>,
                 () => onClickNeedingReview(),
                 {
-                  justifyContent: "flex-end",
-                }
+                  justifyContent: "space-between",
+                },
               )}
             {review &&
               box(
@@ -115,18 +112,16 @@ export const ReviewsBlockMobile: React.FC = () => {
                   >
                     {review.comment}
                   </Typography>
-                  <Image
-                    src={review.productIcon}
+                  <ProductImage
+                    image={review.productIcon}
                     styles={{
-                      objectFit: "contain",
-                      mixBlendMode: "multiply",
                       bottom: "10px",
                       right: "10px",
                       position: "absolute",
                       width: "60px",
                       height: "60px",
-                      borderRadius: "10px",
                       border: "1px solid #bbbbbbff",
+                      borderRadius: "10px",
                     }}
                   />
                 </>,
@@ -135,7 +130,7 @@ export const ReviewsBlockMobile: React.FC = () => {
                   justifyContent: "flex-start",
                   alignItems: "flex-start",
                   gap: "5px",
-                }
+                },
               )}
           </div>
         </div>

@@ -1,23 +1,18 @@
 import { useFetchNoAuth } from "@hooks";
 import { useCallback } from "react";
-import type { ProductDetailDto } from "../types";
-
-export type ProductDetailOutputDto = {
-  product: ProductDetailDto;
-};
-
-export type ProductDetailInputDto = {
-  productId: string;
-};
+import type {
+  ProductDetailOperationInputDto,
+  ProductDetailResponseDto,
+} from "../models";
 
 export const GetProductDetails = () => {
-  const { get } = useFetchNoAuth<ProductDetailOutputDto>({
+  const { get } = useFetchNoAuth<ProductDetailResponseDto>({
     endpoint: "ProductDetail",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: ProductDetailInputDto) => {
+    async (input: ProductDetailOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

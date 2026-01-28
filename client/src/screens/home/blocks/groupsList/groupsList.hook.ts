@@ -17,8 +17,8 @@ export const useGroupsListBlockHelper = () => {
 
   const i18n = React.useMemo(() => {
     return {
-      group: {
-        title: (category: string) => t(`home.group.${category}.title`),
+      category: {
+        title: (category: string) => t(`category.${category}`),
       },
       buyAgain: {
         title: t("home.group.buyAgain.title"),
@@ -48,9 +48,9 @@ export const useGroupsListBlockHelper = () => {
 
     const mappedGroups = (groups || []).map(
       (g): OfferGroup => ({
-        title: i18n.group.title(g.category),
+        title: i18n.category.title(g.category || ""),
         products: g.products || [],
-      })
+      }),
     );
 
     return [...result, ...mappedGroups];
@@ -59,8 +59,8 @@ export const useGroupsListBlockHelper = () => {
     fromSearchHistory,
     groups,
     i18n.buyAgain.title,
+    i18n.category,
     i18n.fromHistory.title,
-    i18n.group,
   ]);
 
   return {

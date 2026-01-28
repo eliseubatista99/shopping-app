@@ -11,13 +11,9 @@ export const BannersBlockMobile: React.FC = () => {
   const bannersJSX = (banners || []).map(
     (b): CarouselSlideProps => ({
       content: (
-        <ProductOfferBanner
-          key={b.category}
-          category={b.category}
-          onClick={b.onClick}
-        />
+        <ProductOfferBanner key={b.category} banner={b} onClick={b.onClick} />
       ),
-    })
+    }),
   );
 
   return (

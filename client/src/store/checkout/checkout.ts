@@ -20,7 +20,7 @@ interface UseStoreOutput extends CheckoutState {
   setCheckoutStoreState: (data: Partial<CheckoutState>) => void;
   changeProductQuantity: (
     product: CheckoutProductDto,
-    quantity: number
+    quantity: number,
   ) => void;
   recalculate: () => void;
 }
@@ -32,27 +32,31 @@ export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
       set(
         produce((state: CheckoutState) => ({ ...state, ...data })),
         false,
-        "setPartialState"
+        "setPartialState",
       );
     },
     changeProductQuantity: function (
       product: CheckoutProductDto,
-      quantity: number
+      quantity: number,
     ) {
       set(
         produce((state: CheckoutState) => {
           if (quantity > 0) {
-            const item = state.products?.find((p) => p.id === product.id);
+            const item = state.products?.find(
+              (p) => p.productId === product.productId,
+            );
 
             if (item) {
               item.quantity = quantity;
             }
           } else {
-            state.products = state.products?.filter((p) => p.id !== product.id);
+            state.products = state.products?.filter(
+              (p) => p.productId !== p.productId,
+            );
           }
         }),
         false,
-        "changeProductQuantity"
+        "changeProductQuantity",
       );
     },
     recalculate: function () {
@@ -60,11 +64,7 @@ export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
         produce((state: CheckoutState) => {
           let productCost = 0;
 
-          (state.products || []).forEach((p) => {
-            productCost += (p.price || 0) * (p.quantity || 1);
-          });
-
-          let totalCost = productCost + (state.shippingCost || 0);
+          let totalCost = (state.productCost || 0) + (state.shippingCost || 0);
 
           if (state.wantsFastestOption) {
             totalCost += state.fastestDeliveryCost || 0;
@@ -74,10 +74,10 @@ export const useStoreCheckout = StoreHelper.createStore<UseStoreOutput>(
           state.totalCost = totalCost;
         }),
         false,
-        "recalculate"
+        "recalculate",
       );
     },
   }),
   "Checkout",
-  createJSONStorage(() => sessionStorage)
+  createJSONStorage(() => sessionStorage),
 );

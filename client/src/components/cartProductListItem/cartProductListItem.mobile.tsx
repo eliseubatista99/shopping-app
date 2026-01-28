@@ -1,8 +1,9 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
 import { AppCheckbox } from "../appCheckbox";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductImage } from "../productImage";
 import { ProductQuantityChip } from "../productQuantityChip";
 import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
@@ -10,7 +11,7 @@ import type { CartProductListItemProps } from "./cartProductListItem";
 import { useCartProductListItemHelper } from "./cartProductListItem.hook";
 
 export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
-  props
+  props,
 ) => {
   const { i18n, currency } = useCartProductListItemHelper();
   const {
@@ -38,22 +39,11 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
           flex: 1,
           background: "#e4e4e4ff",
           position: "relative",
-          overflow: "hidden",
           borderRadius: "8px",
+          justifyContent: "center",
         }}
       >
-        <Image
-          src={product.image || ""}
-          styles={{
-            position: "absolute",
-            flex: 1,
-            zIndex: 0,
-            aspectRatio: "1 / 1",
-            objectFit: "contain",
-            background: "none",
-            mixBlendMode: "multiply",
-          }}
-        />
+        <ProductImage image={product.product?.image} />
         <div
           style={{
             flexDirection: "row",
@@ -81,15 +71,19 @@ export const CartProductListItemMobile: React.FC<CartProductListItemProps> = (
           minHeight: "130px",
         }}
       >
-        <Typography styles={{ fontSize: "14px" }}>{product.name}</Typography>
-        {product.score !== undefined && <ProductScore score={product.score} />}
+        <Typography styles={{ fontSize: "14px" }}>
+          {product.product?.name}
+        </Typography>
+        {product.product?.score !== undefined && (
+          <ProductScore score={product.product?.score} />
+        )}
         <CurrencyBlock
           value={{
-            value: product.price || 0,
+            value: product.product?.price || 0,
           }}
           currency={currency}
         />
-        {!product.shippingCost && (
+        {!product.product?.shippingCost && (
           <Tag
             text={i18n.tags.bestSeller}
             styles={{

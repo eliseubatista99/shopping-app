@@ -1,4 +1,4 @@
-import { SortMode } from "@api";
+import { type SortMode } from "@api";
 import { ObjectsHelper } from "@eliseubatista99/react-scaffold-core";
 import { useAppSearchParams, useAppTranslations } from "@hooks";
 import { type ProductFilters } from "@store";
@@ -53,34 +53,34 @@ export const useProductFiltersDrawerHelper = () => {
   const sortOptions = React.useMemo(() => {
     return [
       {
-        option: SortMode.LowToHighPrice,
-        isSelected: newFilters.sort === SortMode.LowToHighPrice,
-        text: i18n.filters.sort(SortMode.LowToHighPrice),
+        option: "LowToHighPrice" as SortMode,
+        isSelected: newFilters.sort === "LowToHighPrice",
+        text: i18n.filters.sort("LowToHighPrice"),
       },
       {
-        option: SortMode.HighToLowPrice,
-        isSelected: newFilters.sort === SortMode.HighToLowPrice,
-        text: i18n.filters.sort(SortMode.HighToLowPrice),
+        option: "HighToLowPrice" as SortMode,
+        isSelected: newFilters.sort === "HighToLowPrice",
+        text: i18n.filters.sort("HighToLowPrice"),
       },
       {
-        option: SortMode.LowToHighScore,
-        isSelected: newFilters.sort === SortMode.LowToHighScore,
-        text: i18n.filters.sort(SortMode.LowToHighScore),
+        option: "LowToHighScore" as SortMode,
+        isSelected: newFilters.sort === "LowToHighScore",
+        text: i18n.filters.sort("LowToHighScore"),
       },
       {
-        option: SortMode.HightToLowScore,
-        isSelected: newFilters.sort === SortMode.HightToLowScore,
-        text: i18n.filters.sort(SortMode.HightToLowScore),
+        option: "HightToLowScore" as SortMode,
+        isSelected: newFilters.sort === "HightToLowScore",
+        text: i18n.filters.sort("HightToLowScore"),
       },
       {
-        option: SortMode.OldToNew,
-        isSelected: newFilters.sort === SortMode.OldToNew,
-        text: i18n.filters.sort(SortMode.OldToNew),
+        option: "OldToNew" as SortMode,
+        isSelected: newFilters.sort === "OldToNew",
+        text: i18n.filters.sort("OldToNew"),
       },
       {
-        option: SortMode.NewToOld,
-        isSelected: newFilters.sort === SortMode.NewToOld,
-        text: i18n.filters.sort(SortMode.NewToOld),
+        option: "NewToOld" as SortMode,
+        isSelected: newFilters.sort === "NewToOld",
+        text: i18n.filters.sort("NewToOld"),
       },
     ];
   }, [i18n.filters, newFilters.sort]);

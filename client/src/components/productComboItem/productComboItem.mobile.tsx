@@ -1,11 +1,12 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductImage } from "../productImage";
 import { ProductScore } from "../productScore";
 import type { ProductsComboItemProps } from "./productComboItem";
 
 export const ProductsComboItemMobile: React.FC<ProductsComboItemProps> = (
-  props
+  props,
 ) => {
   const { onClick, product, styles, currency, imageStyles } = props;
 
@@ -18,20 +19,18 @@ export const ProductsComboItemMobile: React.FC<ProductsComboItemProps> = (
         flexDirection: "column",
         alignItems: "center",
         minHeight: "100px",
-        background: "#e4e4e4ff",
         borderRadius: "8px",
         padding: "8px",
         gap: "5px",
         ...styles,
       }}
     >
-      <Image
-        src={product?.image || ""}
+      <ProductImage
+        image={product?.image}
         styles={{
           width: "100%",
-          height: "120px",
-          objectFit: "contain",
-          mixBlendMode: "multiply",
+          border: "1px solid #8a8a8a52",
+          borderRadius: "10px",
           ...imageStyles,
         }}
       />

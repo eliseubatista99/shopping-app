@@ -25,7 +25,7 @@ export const ProfileBlockMobile: React.FC = () => {
             }}
           >
             <Image
-              src={client.image}
+              src={client.image || ""}
               styles={{ width: "25px", height: "25px" }}
             />
             <Typography>{i18n.greetings}</Typography>

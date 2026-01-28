@@ -50,7 +50,8 @@ export const ProductsCombinationSelectionMobile: React.FC<
           flexDirection: item.id === product.id ? "row" : "column",
         }}
         imageStyles={{
-          width: item.id === product.id ? "130px" : "100%",
+          maxWidth: item.id === product.id ? "130px" : "80%",
+          minWidth: item.id === product.id ? "130px" : "80%",
         }}
         onClick={() => onClickProduct?.(item)}
       />
@@ -87,7 +88,7 @@ export const ProductsCombinationSelectionMobile: React.FC<
       <AppButton
         text={{
           content: `${i18n.actions.addToCard}: ${combinationCost.toFixed(
-            2
+            2,
           )}${currency}`,
           props: {
             styles: {

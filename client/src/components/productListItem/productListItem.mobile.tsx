@@ -1,7 +1,8 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { AppButton } from "../appButton";
 import { CurrencyBlock } from "../currencyBlock";
+import { ProductImage } from "../productImage";
 import { ProductScore } from "../productScore";
 import { Tag } from "../tag";
 import { WishlistButton } from "../wishlistButton";
@@ -9,7 +10,7 @@ import type { ProductListItemProps } from "./productListItem";
 import { useProductListItemHelper } from "./productListItem.hook";
 
 export const ProductListItemMobile: React.FC<ProductListItemProps> = (
-  props
+  props,
 ) => {
   const { i18n, currency } = useProductListItemHelper();
   const { product, onClick, onClickAddToCart, onClickWishlist } = props;
@@ -29,23 +30,15 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
       <div
         style={{
           flex: 1,
-          background: "#e4e4e4ff",
           position: "relative",
-          overflow: "hidden",
           borderRadius: "8px",
+          maxWidth: "33%",
+          aspectRatio: "1/1",
         }}
       >
-        <Image
-          src={product.image || ""}
-          styles={{
-            position: "absolute",
-            flex: 1,
-            zIndex: 0,
-            aspectRatio: "1 / 1",
-            objectFit: "contain",
-            background: "none",
-            mixBlendMode: "multiply",
-          }}
+        <ProductImage
+          image={product?.image}
+          styles={{ background: "#e4e4e4ff" }}
         />
         {product.bestSeller && (
           <Tag
@@ -68,7 +61,7 @@ export const ProductListItemMobile: React.FC<ProductListItemProps> = (
 
       <div
         style={{
-          width: "65%",
+          flex: 1,
           gap: "5px",
           padding: "5px 0",
           height: "fit-content",

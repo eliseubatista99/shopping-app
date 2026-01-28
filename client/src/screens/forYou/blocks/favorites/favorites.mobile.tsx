@@ -1,5 +1,6 @@
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import type { Key } from "react";
+import { ProductImage } from "../../../../components";
 import { useFavoritesBlockHelper } from "./favorites.hook";
 
 export const FavoritesBlockMobile: React.FC = () => {
@@ -8,7 +9,7 @@ export const FavoritesBlockMobile: React.FC = () => {
   const box = (
     key: Key,
     content: React.ReactNode,
-    styles?: React.CSSProperties
+    styles?: React.CSSProperties,
   ) => (
     <div
       key={key}
@@ -30,17 +31,15 @@ export const FavoritesBlockMobile: React.FC = () => {
   const favoriteImages = favorites.images.map((f, index) =>
     box(
       index,
-      <Image
+      <ProductImage
         key={index}
-        src={f}
+        image={f}
         styles={{
-          objectFit: "contain",
-          mixBlendMode: "multiply",
           width: "100%",
           height: "100%",
         }}
-      />
-    )
+      />,
+    ),
   );
 
   return (
@@ -82,7 +81,7 @@ export const FavoritesBlockMobile: React.FC = () => {
                 <Typography>{`+${favorites.remaining}`}</Typography>,
                 {
                   width: "50px",
-                }
+                },
               )}
           </div>
         </div>

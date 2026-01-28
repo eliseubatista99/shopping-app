@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { useStoreCart } from "@store";
 import { useCallback } from "react";
 
@@ -8,15 +8,15 @@ type SetProductsSelectedStateInput = {
 };
 
 type SetProductsQuantityInput = {
-  productId: string | undefined;
+  productId: string | null | undefined;
   quantity: number;
 };
 
 export const useCart = () => {
-  const { fetchAddToCart } = Api.AddToCard();
-  const { fetchCart } = Api.GetCart();
-  const { fetchRemoveFromCart } = Api.RemoveFromCart();
-  const { fetchUpdateCartProduct } = Api.UpdateCartProduct();
+  const { fetchAddToCart } = ApiEndpoints.AddToCard();
+  const { fetchCart } = ApiEndpoints.GetCart();
+  const { fetchRemoveFromCart } = ApiEndpoints.RemoveFromCart();
+  const { fetchUpdateCartProduct } = ApiEndpoints.UpdateCartProduct();
   const itemsInBasket = useStoreCart((state) => state.products);
   const numberOfProductsInBasket = useStoreCart(
     (state) => state.numberOfProductsInBasket
@@ -49,7 +49,7 @@ export const useCart = () => {
     async (input: SetProductsQuantityInput[]) => {
       const res = await fetchUpdateCartProduct({
         products: input.map((i) => ({
-          id: i.productId,
+          productId: i.productId || "",
           quantity: i.quantity,
         })),
       });
@@ -65,7 +65,7 @@ export const useCart = () => {
     async (input: SetProductsSelectedStateInput[]) => {
       const res = await fetchUpdateCartProduct({
         products: input.map((i) => ({
-          id: i.productId,
+          productId: i.productId || "",
           isSelected: i.selected,
         })),
       });

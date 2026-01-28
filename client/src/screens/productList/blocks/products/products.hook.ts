@@ -1,4 +1,4 @@
-import { Api, type ProductDto } from "@api";
+import { ApiEndpoints, type ProductDto } from "@api";
 import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   useFeedback,
@@ -10,12 +10,12 @@ import React from "react";
 
 export const useProductsBlockHelper = () => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
 
   const { searchFilters } = useAppSearchParams();
 
-  const { fetchSearchProducts } = Api.SearchProducts();
+  const { fetchSearchProducts } = ApiEndpoints.SearchProducts();
   const { goTo } = useNavigation();
   const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
@@ -31,7 +31,7 @@ export const useProductsBlockHelper = () => {
         },
       });
     },
-    [goTo]
+    [goTo],
   );
 
   const onClickAddToCart = React.useCallback(
@@ -44,7 +44,7 @@ export const useProductsBlockHelper = () => {
         goTo({ path: PAGES.LOG_IN });
       }
     },
-    [addToCart, goTo, hideItem, isAuthenticated, showItem]
+    [addToCart, goTo, hideItem, isAuthenticated, showItem],
   );
 
   const retrieveItems = React.useCallback(
@@ -52,8 +52,8 @@ export const useProductsBlockHelper = () => {
       const parsedFilters = filters as ProductFilters | undefined;
 
       const res = await fetchSearchProducts({
-        page: currentPage,
-        pageCount: pageSize,
+        page: currentPage < 1 ? 1 : currentPage,
+        pageSize: pageSize,
         text: parsedFilters?.text,
         score: parsedFilters?.score,
         maxPrice: parsedFilters?.maxPrice,
@@ -64,23 +64,23 @@ export const useProductsBlockHelper = () => {
         sort: parsedFilters?.sort,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         if (currentPage < 1) {
-          setProducts(res.data.products || []);
+          setProducts(res.data?.products || []);
         } else {
           setProducts((prevState) => [
             ...prevState,
-            ...(res.data.products || []),
+            ...(res.data?.products || []),
           ]);
         }
       }
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
         hasMorePages: res.data?.hasMorePages || false,
       };
     },
-    [fetchSearchProducts]
+    [fetchSearchProducts],
   );
 
   return {

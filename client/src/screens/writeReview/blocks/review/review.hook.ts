@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { INPUTS, PAGES, SEARCH_PARAMS, TOASTS } from "@constants";
 import {
   FormsHelper,
@@ -8,7 +8,7 @@ import {
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
-import { useStoreClient, useStoreProduct } from "@store";
+import { useStoreProduct } from "@store";
 import React from "react";
 
 type ReviewForm = {
@@ -20,8 +20,7 @@ type ReviewForm = {
 export const useReviewBlockHelper = () => {
   const { t } = useAppTranslations();
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
-  const client = useStoreClient((state) => state.client);
-  const { fetchWriteReview } = Api.WriteReview();
+  const { fetchWriteReview } = ApiEndpoints.WriteReview();
   const { showItem } = useFeedback();
   const { goTo } = useNavigation();
 
@@ -53,14 +52,13 @@ export const useReviewBlockHelper = () => {
   const submitReview = React.useCallback(
     async (score: number, title: string, description: string) => {
       const res = await fetchWriteReview({
-        reviewerId: client?.id || "",
         productId: selectedProduct?.id || "",
         title,
         description,
         score,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         showItem(TOASTS.REVIEW_SUBMITTED);
         goTo({
           path: PAGES.PRODUCT_DETAILS,
@@ -71,7 +69,7 @@ export const useReviewBlockHelper = () => {
         });
       }
     },
-    [client?.id, fetchWriteReview, goTo, selectedProduct?.id, showItem]
+    [fetchWriteReview, goTo, selectedProduct?.id, showItem],
   );
 
   const getFormConfiguration =
@@ -111,11 +109,11 @@ export const useReviewBlockHelper = () => {
         submitReview(
           score,
           FormsHelper.getFieldValueOrDefault(title, ""),
-          FormsHelper.getFieldValueOrDefault(description, "")
+          FormsHelper.getFieldValueOrDefault(description, ""),
         );
       }
     },
-    [i18n.score.error, score, submitReview]
+    [i18n.score.error, score, submitReview],
   );
 
   return {

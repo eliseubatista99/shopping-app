@@ -16,11 +16,11 @@ import React from "react";
 
 export const usePurchaseBlockHelper = () => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const setCheckoutStoreState = useStoreCheckout(
-    (state) => state.setCheckoutStoreState
+    (state) => state.setCheckoutStoreState,
   );
   const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const currency = useStoreBase((state) => state.currency);
@@ -33,7 +33,7 @@ export const usePurchaseBlockHelper = () => {
 
   const i18n = React.useMemo(() => {
     const { extenseDate } = translateDate(
-      selectedProduct?.estimatedDeliveryDate || ""
+      selectedProduct?.estimatedDeliveryDate || "",
     );
 
     return {
@@ -112,14 +112,15 @@ export const usePurchaseBlockHelper = () => {
         goTo({ path: PAGES.LOG_IN });
       }
     },
-    [addToCart, goTo, hideItem, isAuthenticated, showItem]
+    [addToCart, goTo, hideItem, isAuthenticated, showItem],
   );
 
   const onClickBuyNow = React.useCallback(() => {
     if (selectedProduct) {
       if (isAuthenticated) {
         setCheckoutStoreState({
-          products: [{ ...selectedProduct, quantity }],
+          // products: [{ product: { ...selectedProduct }, quantity }],
+          products: [{ productId: selectedProduct.id, quantity }],
         });
         goTo({
           path: PAGES.CHECKOUT,

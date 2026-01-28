@@ -6,6 +6,7 @@ import { useCombinationBlockHelper } from "./combination.hook";
 
 export const CombinationBlockMobile: React.FC = () => {
   const {
+    canCombo,
     product,
     selectedItems,
     expanded,
@@ -17,24 +18,28 @@ export const CombinationBlockMobile: React.FC = () => {
 
   return (
     <>
-      {!expanded && product && (
-        <ProductsCombinationOverview
-          product={product}
-          combinations={product?.comboProducts || []}
-          onClickExpand={() => onClickExpand()}
-          onClickProduct={(p) => onClickProduct(p)}
-        />
-      )}
+      {canCombo && (
+        <>
+          {!expanded && product && (
+            <ProductsCombinationOverview
+              product={product}
+              combinations={product?.comboProducts || []}
+              onClickExpand={() => onClickExpand()}
+              onClickProduct={(p) => onClickProduct(p)}
+            />
+          )}
 
-      {expanded && product && (
-        <ProductsCombinationSelection
-          product={product}
-          combinations={product?.comboProducts || []}
-          selectedProducts={selectedItems}
-          onClickProduct={(p) => onClickProduct(p)}
-          onClickAddToCard={(products) => onClickAddToCart(products)}
-          onToggleProduct={(item) => onToggleSelectedItem(item)}
-        />
+          {expanded && product && (
+            <ProductsCombinationSelection
+              product={product}
+              combinations={product?.comboProducts || []}
+              selectedProducts={selectedItems}
+              onClickProduct={(p) => onClickProduct(p)}
+              onClickAddToCard={(products) => onClickAddToCart(products)}
+              onToggleProduct={(item) => onToggleSelectedItem(item)}
+            />
+          )}
+        </>
       )}
     </>
   );

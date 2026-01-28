@@ -1,20 +1,10 @@
-export type ApiOutputMetadata = {
-  success: boolean;
-};
+import type { OutputMetadataDto } from "../models/swagger-models";
 
 export type ApiOutput<T> = {
   data: T;
-  metadata: ApiOutputMetadata;
+  metadata: OutputMetadataDto;
 };
-
-export enum SortMode {
-  LowToHighScore = "LowToHighScore",
-  HightToLowScore = "HightToLowScore",
-  LowToHighPrice = "LowToHighPrice",
-  HighToLowPrice = "HighToLowPrice",
-  NewToOld = "NewToOld",
-  OldToNew = "OldToNew",
-}
+/*
 
 export enum PaymentMethodType {
   Card = "Card",
@@ -34,13 +24,19 @@ export type ProductDto = {
   isWishlisted?: boolean;
 };
 
-export type CheckoutProductDto = ProductDto & {
+export type CheckoutProductDto = {
   quantity?: number;
+  product?: ProductDto;
 };
 
-export type CartProductDto = ProductDto & {
+export type CartProductDto = {
   quantity?: number;
   isSelected?: boolean;
+  productId?: string;
+};
+
+export type CartProductDetailsDto = CartProductDto & {
+  product?: ProductDto;
 };
 
 export type ProductSpecificationsDto = {
@@ -116,14 +112,17 @@ export type PaymentMethodDto = {
   id: string;
   type: PaymentMethodType;
   name: string;
-  securityCode: string;
   network: string;
   image: string;
   cardNumberMasked: string;
-  cardNumberUnmasked: string;
-  expirationMonth: number;
-  expirationYear: number;
   isDefault: boolean;
+};
+
+export type PaymentMethodDetailsDto = PaymentMethodDto & {
+  securityCode?: string;
+  cardNumberUnmasked?: string;
+  expirationMonth?: number;
+  expirationYear?: number;
 };
 
 export type ClientInfoDto = {
@@ -155,7 +154,7 @@ export enum OrderStatus {
   Cancelled = "Cancelled",
 }
 
-export type OrderStatusEntry = {
+export type OrderStatusEntryDto = {
   status: OrderStatus;
   date: string;
 };
@@ -164,11 +163,11 @@ export type OrderDto = {
   id: string;
   products: ProductDetailDto[];
   date: string;
-  currentStatus: OrderStatusEntry;
+  currentStatus: OrderStatusEntryDto;
 };
 
 export type OrderDetailDto = OrderDto & {
-  statusHistory: OrderStatusEntry[];
+  statusHistory: OrderStatusEntryDto[];
   paymentMethod: PaymentMethodDto;
   address: AddressDto;
   productsCost: number;
@@ -176,3 +175,5 @@ export type OrderDetailDto = OrderDto & {
   discounts: number;
   totalCost: number;
 };
+
+*/

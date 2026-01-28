@@ -24,6 +24,7 @@ export * from "./productCheckoutItem";
 export * from "./productCombinationSelection";
 export * from "./productComboItem";
 export * from "./productGridItem";
+export * from "./productImage";
 export * from "./productListItem";
 export * from "./productOfferBanner";
 export * from "./productOptionItem";

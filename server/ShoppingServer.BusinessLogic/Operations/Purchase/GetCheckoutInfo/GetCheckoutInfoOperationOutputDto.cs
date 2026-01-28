@@ -1,0 +1,26 @@
+using ShoppingServer.Library.Operations;
+using System.Diagnostics.CodeAnalysis;
+
+namespace ShoppingServer.BusinessLogic.Operations
+{
+    [ExcludeFromCodeCoverage]
+    public class GetCheckoutInfoOperationOutputDto : OperationOutputDto
+    {
+        public double? ShippingCost { get; set; }
+
+        public double? FastestDeliveryCost { get; set; }
+
+        public double? ProductCost { get; set; }
+
+        public double? TotalCost { get; set; }
+
+        public DateTimeOffset? StartDeliveryDate { get; set; }
+
+        public DateTimeOffset? EndDeliveryDate { get; set; }
+
+        public DateTimeOffset? FastestStartDeliveryDate { get; set; }
+
+        public DateTimeOffset? FastestEndDeliveryDate { get; set; }
+
+    }
+}

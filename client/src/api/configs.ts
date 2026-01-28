@@ -1,3 +1,4 @@
 export const ApiConfigs = {
-  endpoint: "http://localhost:5000",
+  endpoint: "https://localhost:5001/api",
+  // endpoint: "http://localhost:5000/api",
 };

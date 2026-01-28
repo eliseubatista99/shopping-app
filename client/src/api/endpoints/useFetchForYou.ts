@@ -1,18 +1,9 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { OrderDto, ReviewDto } from "../types";
-
-export type ForYouOutputDto = {
-  orders: OrderDto[];
-  favoritesImages: string[];
-  favoriteCount: number;
-  needingReviewProductId: string;
-  needingReviewProductImage: string;
-  review: ReviewDto;
-};
+import type { ForYouResponseDto } from "../models";
 
 export const GetForYou = () => {
-  const { get } = useFetchWithAuth<ForYouOutputDto>({
+  const { get } = useFetchWithAuth<ForYouResponseDto>({
     endpoint: "ForYou",
     showGenericErrorModal: false,
   });

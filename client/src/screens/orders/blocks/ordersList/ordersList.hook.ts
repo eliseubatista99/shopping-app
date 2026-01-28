@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import type { OrderAndProduct } from "@components";
 import { PAGES, SEARCH_PARAMS } from "@constants";
 import { useNavigation } from "@eliseubatista99/react-scaffold-core";
@@ -8,11 +8,11 @@ import React from "react";
 
 export const useOrdersListBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchGetClientOrders } = Api.GetClientOrders();
+  const { fetchGetClientOrders } = ApiEndpoints.GetClientOrders();
   const { goTo } = useNavigation();
 
   const setOrdersStoreState = useStoreOrders(
-    (state) => state.setOrdersStoreState
+    (state) => state.setOrdersStoreState,
   );
   const addOrders = useStoreOrders((state) => state.addOrders);
   const allOrders = useStoreOrders((state) => state.orders);
@@ -49,30 +49,30 @@ export const useOrdersListBlockHelper = () => {
       const res = await fetchGetClientOrders({
         filterByText: parsedFilters?.textFilter,
         page: currentPage,
-        pageCount: pageSize,
+        pageSize: pageSize,
         filterByStatus: parsedFilters?.statusFilter,
         sortMode: parsedFilters?.sortFilter,
         filterByStartDate: parsedFilters?.startDateFilter,
         filterByEndDate: parsedFilters?.endDateFilter,
       });
 
-      if (res.metadata.success) {
+      if (res.metadata?.success) {
         if (currentPage < 1) {
           setOrdersStoreState({
-            orders: res.data.orders,
-            oldestOrderDate: res.data.oldestOrderDate,
+            orders: res.data?.orders || [],
+            oldestOrderDate: res.data?.oldestOrderDate || "",
           });
         } else {
-          addOrders(res.data.orders);
+          addOrders(res.data?.orders || []);
         }
       }
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
         hasMorePages: res.data?.hasMorePages,
       };
     },
-    [addOrders, fetchGetClientOrders, setOrdersStoreState]
+    [addOrders, fetchGetClientOrders, setOrdersStoreState],
   );
 
   const handleRequestTrigger = React.useCallback(
@@ -87,7 +87,7 @@ export const useOrdersListBlockHelper = () => {
         retrieveItems(currentPage.current, 10, storeFilters);
       }
     },
-    [retrieveItems, storeFilters]
+    [retrieveItems, storeFilters],
   );
 
   const onClickOrder = React.useCallback(
@@ -99,7 +99,7 @@ export const useOrdersListBlockHelper = () => {
         },
       });
     },
-    [goTo]
+    [goTo],
   );
 
   const allOrderProducts = React.useMemo(() => {
@@ -107,7 +107,9 @@ export const useOrdersListBlockHelper = () => {
 
     (allOrders || []).forEach((o) => {
       (o.products || []).forEach((p) => {
-        result.push({ order: o, product: p });
+        if (p.product) {
+          result.push({ order: o, product: p.product });
+        }
       });
     });
 

@@ -1,9 +1,5 @@
-import { Tag } from "@components";
-import {
-  Carousel,
-  Image,
-  Typography,
-} from "@eliseubatista99/react-scaffold-core";
+import { ProductImage, Tag } from "@components";
+import { Carousel, Typography } from "@eliseubatista99/react-scaffold-core";
 import { ProductOptionItem } from "src/components/productOptionItem";
 import { Separator } from "src/components/separator";
 import { useBaseInfoBlockHelper } from "./baseInfo.hook";
@@ -13,19 +9,8 @@ export const BaseInfoBlockMobile: React.FC = () => {
 
   const productImagesSlides = (product?.detailImages || []).map(
     (image, index) => ({
-      content: (
-        <Image
-          key={index}
-          src={image}
-          styles={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            mixBlendMode: "multiply",
-          }}
-        />
-      ),
-    })
+      content: <ProductImage key={index} image={image} />,
+    }),
   );
 
   const productOptionsSlides = (product?.productOptions || []).map(
@@ -45,7 +30,7 @@ export const BaseInfoBlockMobile: React.FC = () => {
           onClick={() => onClickProduct(option)}
         />
       ),
-    })
+    }),
   );
 
   return (

@@ -12,7 +12,7 @@ const FileUtils = require("./utils/file");
 
 const port = process.env.port || 5000;
 const app = express();
-const REQUEST_PREFIX = "/:file";
+const REQUEST_PREFIX = "/api/:file";
 
 app.use(bodyParser({ limit: "30mb" }));
 app.use(bodyParser.json());

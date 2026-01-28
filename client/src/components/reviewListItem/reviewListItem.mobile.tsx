@@ -1,5 +1,6 @@
 import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
+import { Assets } from "../../assets";
 import { ProductScore } from "../productScore";
 import type { ReviewListItemProps } from "./reviewListItem";
 import { useReviewsListItemHelper } from "./reviewListItem.hook";
@@ -30,15 +31,30 @@ export const ReviewListItemMobile: React.FC<ReviewListItemProps> = (props) => {
           alignItems: "center",
         }}
       >
-        <Image
-          src={review.reviewerIcon || ""}
-          styles={{
+        <div
+          style={{
             borderRadius: "50%",
             width: "30px",
             height: "30px",
             border: "1px solid #a3a3a3ff",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-        />
+        >
+          {review.reviewerIcon && (
+            <Image
+              src={review.reviewerIcon}
+              styles={{
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          )}
+          {!review.reviewerIcon && (
+            <Assets.Icons.DefaultAvatar width="75%" height="75%" />
+          )}
+        </div>
+
         <Typography styles={{ fontWeight: 400, fontSize: "16px" }}>
           {review.reviewerName}
         </Typography>

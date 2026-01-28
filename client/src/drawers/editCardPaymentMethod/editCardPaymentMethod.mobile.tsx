@@ -5,7 +5,7 @@ import { AppDrawer } from "../_appDrawer";
 import { useEditCardPaymentMethodDrawerHelper } from "./editCardPaymentMethod.hook";
 
 export const DrawerEditCardPaymentMethodMobile = () => {
-  const { i18n, canCloseDrawer, onClickSubmit, paymentMethodInEdit } =
+  const { i18n, canCloseDrawer, onClickSubmit, paymentMethodInEdit, onMount } =
     useEditCardPaymentMethodDrawerHelper();
 
   return (
@@ -24,6 +24,7 @@ export const DrawerEditCardPaymentMethodMobile = () => {
       </Typography>
 
       <PaymentMethodForm
+        onMount={onMount}
         initialValue={paymentMethodInEdit}
         onSubmit={onClickSubmit}
       />

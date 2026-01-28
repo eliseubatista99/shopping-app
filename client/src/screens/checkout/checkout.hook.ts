@@ -1,32 +1,20 @@
-import { Api } from "@api";
 import { PAGES } from "@constants";
 import {
   useDidMount,
   useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
-import {
-  useStoreAddresses,
-  useStoreCheckout,
-  useStorePaymentMethods,
-} from "@store";
+import { useStoreCheckout } from "@store";
 import React from "react";
+import { useCheckout } from "../../hooks";
 
 export const useCheckoutPageHelper = () => {
   const { goTo } = useNavigation();
 
   const isFetching = React.useRef(false);
 
-  const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
-  const selectedPaymentMethod = useStorePaymentMethods(
-    (state) => state.selectedPaymentMethod
-  );
   const productsInStore = useStoreCheckout((state) => state.products);
-  const setCheckoutStoreState = useStoreCheckout(
-    (state) => state.setCheckoutStoreState
-  );
-  const recalculate = useStoreCheckout((state) => state.recalculate);
 
-  const { fetchGetCheckoutInfo } = Api.GetCheckoutInfo();
+  const { updateCheckoutInfo } = useCheckout();
 
   const [loading, setLoading] = React.useState(true);
 
@@ -45,31 +33,27 @@ export const useCheckoutPageHelper = () => {
       });
     }
 
-    const res = await fetchGetCheckoutInfo({
-      productIds: (productsInStore || []).map((p) => p.id || ""),
-      addressId: selectedAddress?.id || "",
-      paymentMethodId: selectedPaymentMethod?.id || "",
-    });
+    await updateCheckoutInfo();
 
-    setCheckoutStoreState({
-      shippingCost: res.data.shippingCost,
-      startDeliveryDate: res.data.startDeliveryDate,
-      endDeliveryDate: res.data.endDeliveryDate,
-      fastestDeliveryCost: res.data.fastestDeliveryCost,
-    });
-    recalculate();
+    // const res = await fetchGetCheckoutInfo({
+    //   productIds: (productsInStore || []).map((p) => p.productId || ""),
+    //   addressId: selectedAddress?.id || "",
+    //   paymentMethodId: selectedPaymentMethod?.id || "",
+    // });
+
+    // setCheckoutStoreState({
+    //   totalCost: res.data?.totalCost || 0,
+    //   productCost: res.data?.productCost || 0,
+    //   shippingCost: res.data?.shippingCost || 0,
+    //   startDeliveryDate: res.data?.startDeliveryDate || "",
+    //   endDeliveryDate: res.data?.endDeliveryDate || "",
+    //   fastestDeliveryCost: res.data?.fastestDeliveryCost || 0,
+    // });
 
     isFetching.current = false;
+    // recalculate();
     setLoading(false);
-  }, [
-    fetchGetCheckoutInfo,
-    goTo,
-    productsInStore,
-    recalculate,
-    selectedAddress?.id,
-    selectedPaymentMethod?.id,
-    setCheckoutStoreState,
-  ]);
+  }, [goTo, productsInStore, updateCheckoutInfo]);
 
   useDidMount(() => {
     initScreen();

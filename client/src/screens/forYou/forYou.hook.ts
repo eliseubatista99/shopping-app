@@ -1,16 +1,16 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { useStoreAuthentication, useStoreForYou } from "@store";
 import React from "react";
 
 export const useForYouPageHelper = () => {
-  const { fetchForYou } = Api.GetForYou();
+  const { fetchForYou } = ApiEndpoints.GetForYou();
 
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
   const setForYouStoreState = useStoreForYou(
-    (state) => state.setForYouStoreState
+    (state) => state.setForYouStoreState,
   );
   const [loading, setLoading] = React.useState(false);
 
@@ -22,18 +22,18 @@ export const useForYouPageHelper = () => {
     setLoading(true);
     const res = await fetchForYou();
 
-    if (res.metadata.success) {
+    if (res.metadata?.success) {
       setForYouStoreState({
-        orders: res.data.orders,
+        orders: res.data?.orders || [],
         favorites: {
-          images: res.data.favoritesImages || [],
-          count: res.data.favoritesImages?.length,
+          images: res.data?.favoritesImages || [],
+          count: (res.data?.favoritesImages || []).length,
         },
         needingReviewProduct: {
-          id: res.data.needingReviewProductId,
-          image: res.data.needingReviewProductImage,
+          id: res.data?.needingReviewProductId || "",
+          image: res.data?.needingReviewProductImage || "",
         },
-        review: res.data.review,
+        review: res.data?.review,
       });
       setLoading(false);
     }

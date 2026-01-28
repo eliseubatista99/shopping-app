@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import type { AddressFormFields } from "@components";
 import { DRAWERS, TOASTS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
@@ -8,7 +8,7 @@ import React from "react";
 
 export const useEditAddressDrawerHelper = () => {
   const { t } = useAppTranslations();
-  const { fetchUpdateAddress } = Api.UpdateAddress();
+  const { fetchUpdateAddress } = ApiEndpoints.UpdateAddress();
   const { showItem, hideItem } = useFeedback();
   const setAddresses = useStoreAddresses((state) => state.setAddresses);
   const addressInEdit = useStoreAddresses((state) => state.addressInEdit);
@@ -32,11 +32,10 @@ export const useEditAddressDrawerHelper = () => {
         city: data.city || "",
         street: data.street || "",
         country: data.country || "",
-        isDefault: data.setDefault || false,
       });
 
-      if (res.metadata.success) {
-        setAddresses(res.data.updatedAddresses);
+      if (res.metadata?.success) {
+        setAddresses(res.data?.updatedAddresses || []);
 
         showItem(TOASTS.CLIENT_INFO_CHANGED);
 
@@ -46,10 +45,10 @@ export const useEditAddressDrawerHelper = () => {
       setCanCloseDrawer(true);
 
       return {
-        success: res.metadata.success,
+        success: res.metadata?.success,
       };
     },
-    [addressInEdit?.id, fetchUpdateAddress, hideItem, setAddresses, showItem]
+    [addressInEdit?.id, fetchUpdateAddress, hideItem, setAddresses, showItem],
   );
 
   return {

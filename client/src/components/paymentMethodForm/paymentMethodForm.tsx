@@ -1,4 +1,4 @@
-import type { PaymentMethodDto } from "@api";
+import type { PaymentMethodDetailsDto } from "@api";
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { PaymentMethodFormDesktop } from "./paymentMethodForm.desktop";
@@ -13,8 +13,11 @@ export type PaymentMethodFormFields = {
 };
 
 export interface PaymentMethodFormProps {
-  onSubmit: (data: PaymentMethodFormFields) => Promise<{ success: boolean }>;
-  initialValue?: PaymentMethodDto;
+  onMount?: () => Promise<{ success: boolean | null | undefined }>;
+  onSubmit: (
+    data: PaymentMethodFormFields
+  ) => Promise<{ success: boolean | null | undefined }>;
+  initialValue?: PaymentMethodDetailsDto;
   styles?: React.CSSProperties;
 }
 

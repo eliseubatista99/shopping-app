@@ -1,4 +1,4 @@
-import { PaymentMethodType, type PaymentMethodDto } from "@api";
+import { type PaymentMethodDto } from "@api";
 import {
   TimeHelper,
   useTranslations,
@@ -80,7 +80,7 @@ export const useAppTranslations = () => {
       const network = t(`global.card.network.${paymentMethod?.network}`);
 
       const methodName =
-        paymentMethod.type === PaymentMethodType.Card
+        paymentMethod.type === "Card"
           ? t("global.paymentMethod.card.name", {
               name: network,
               card: `•••• ${cardNum}`,

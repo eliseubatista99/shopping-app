@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import react from "@vitejs/plugin-react";
+import fs from "fs";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -7,6 +8,11 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // https://vite.dev/config/
 export default defineConfig({
   server: {
+    https: {
+      key: fs.readFileSync("./certificate/ShoppingAppCert.key.pem"),
+      cert: fs.readFileSync("./certificate/ShoppingAppCert.cert.pem"),
+    },
+    host: true,
     port: 3000,
   },
   plugins: [react(), tsconfigPaths(), svgr()],

@@ -6,7 +6,7 @@ export const ProductsBlockMobile: React.FC = () => {
 
   const productsJSX = products.map((p) => (
     <ProductCheckoutItem
-      key={p.id}
+      key={p.productId}
       product={p}
       onChangeQuantity={(value) => onChangeProductQuantity(p, value)}
     />

@@ -1,6 +1,7 @@
 import { INPUTS } from "@constants";
 import {
   FormsHelper,
+  useDidMount,
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
@@ -150,6 +151,24 @@ export const usePaymentMethodFormHelper = (props: PaymentMethodFormProps) => {
     },
     [props]
   );
+
+  const executeMount = React.useCallback(async () => {
+    if (props.onMount) {
+      setLoading(true);
+
+      const res = await props.onMount?.();
+
+      if (!res?.success) {
+        // Handle mount error if needed
+      }
+
+      setLoading(false);
+    }
+  }, [props]);
+
+  useDidMount(() => {
+    executeMount();
+  });
 
   return {
     i18n,

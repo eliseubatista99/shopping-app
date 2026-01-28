@@ -1,23 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { OrderDetailDto } from "../types";
-
-export type GetOrderDetailsOutputDto = {
-  order: OrderDetailDto;
-};
-
-export type GetOrderDetailsInputDto = {
-  orderId: string;
-};
+import type {
+  GetOrderDetailsOperationInputDto,
+  GetOrderDetailsResponseDto,
+} from "../models";
 
 export const GetOrderDetails = () => {
-  const { get } = useFetchWithAuth<GetOrderDetailsOutputDto>({
+  const { get } = useFetchWithAuth<GetOrderDetailsResponseDto>({
     endpoint: "GetOrderDetails",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: GetOrderDetailsInputDto) => {
+    async (input: GetOrderDetailsOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

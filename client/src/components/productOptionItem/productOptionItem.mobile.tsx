@@ -1,5 +1,5 @@
-import { CurrencyBlock } from "@components";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { CurrencyBlock, ProductImage } from "@components";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import type { ProductOptionItemProps } from "./productOptionItem";
 
 export const ProductOptionItemMobile: React.FC<ProductOptionItemProps> = ({
@@ -22,15 +22,14 @@ export const ProductOptionItemMobile: React.FC<ProductOptionItemProps> = ({
         ...styles,
       }}
     >
-      <Image
-        src={option?.image || ""}
+      <ProductImage
+        image={option?.image}
         styles={{
           width: "100%",
           height: "120px",
-          objectFit: "contain",
-          mixBlendMode: "multiply",
         }}
       />
+
       <Typography styles={{ fontSize: "14px", fontWeight: 600 }}>
         {option.name}
       </Typography>

@@ -1,27 +1,17 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { AddressDto } from "../../types";
-
-export type AddAddressInputDto = {
-  name: string;
-  postalCode: string;
-  city: string;
-  street: string;
-  country: string;
-  isDefault: boolean;
-};
-
-export type AddAddressOutputDto = {
-  updatedAddresses: AddressDto[];
-};
+import type {
+  AddAddressOperationInputDto,
+  AddAddressResponseDto,
+} from "../../models";
 
 export const AddAddress = () => {
-  const { post } = useFetchWithAuth<AddAddressOutputDto>({
+  const { post } = useFetchWithAuth<AddAddressResponseDto>({
     endpoint: "AddAddress",
   });
 
   const fetch = useCallback(
-    async (input: AddAddressInputDto) => {
+    async (input: AddAddressOperationInputDto) => {
       const result = await post({ ...input });
 
       return result;

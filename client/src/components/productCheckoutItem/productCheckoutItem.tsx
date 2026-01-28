@@ -1,17 +1,17 @@
-import type { CheckoutProductDto } from "@api";
+import type { CheckoutProductDetailsDto } from "@api";
 import { useResponsive } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
 import { ProductCheckoutItemDesktop } from "./productCheckoutItem.desktop";
 import { ProductCheckoutItemMobile } from "./productCheckoutItem.mobile";
 
 export interface ProductCheckoutItemProps {
-  product: CheckoutProductDto;
+  product: CheckoutProductDetailsDto;
   onChangeQuantity?: (value: number) => void;
   styles?: React.CSSProperties;
 }
 
 export const ProductCheckoutItem: React.FC<ProductCheckoutItemProps> = (
-  props
+  props,
 ) => {
   const { currentSize } = useResponsive();
 

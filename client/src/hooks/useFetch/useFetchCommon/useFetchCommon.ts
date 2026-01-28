@@ -1,8 +1,12 @@
-import { ApiConfigs, type ApiOutput } from "@api";
+import { ApiConfigs, type OutputMetadataDto } from "@api";
 import { MODALS } from "@constants";
-import { useFeedback, useFetch } from "@eliseubatista99/react-scaffold-core";
-import { useStoreAuthentication } from "@store";
+import {
+  useFeedback,
+  useFetch,
+  type FetchOutput,
+} from "@eliseubatista99/react-scaffold-core";
 import { useCallback, useMemo } from "react";
+import { useStoreAuthentication } from "../../../store";
 
 export type FetchCommonInput = {
   endpoint: string;
@@ -12,14 +16,19 @@ export type FetchCommonInput = {
 
 type TIn = Record<string, unknown>;
 
-export const useFetchNoAuth = <TOut>({
+type BaseOut = {
+  metadata?: OutputMetadataDto | null;
+  statusCode?: number;
+};
+
+export const useFetchNoAuth = <TOut extends BaseOut>({
   endpoint,
   showGenericErrorModal = true,
   onError,
 }: FetchCommonInput) => {
   const { showItem } = useFeedback();
-
   const token = useStoreAuthentication((state) => state.token);
+
   const {
     get: httpGet,
     post: httpPost,
@@ -43,8 +52,8 @@ export const useFetchNoAuth = <TOut>({
   }, [token]);
 
   const handleFetchResponse = useCallback(
-    (response: ApiOutput<TOut>) => {
-      if (!response.metadata.success) {
+    (metadata?: OutputMetadataDto | null) => {
+      if (metadata?.success !== true) {
         if (showGenericErrorModal) {
           showItem(MODALS.GENERIC_API_ERROR);
         }
@@ -52,67 +61,88 @@ export const useFetchNoAuth = <TOut>({
         onError?.();
       }
     },
-    [onError, showGenericErrorModal, showItem]
+    [onError, showGenericErrorModal, showItem],
   );
+
+  const parseResponse = useCallback((response: FetchOutput<TOut>) => {
+    let result: Partial<BaseOut> = {};
+
+    try {
+      if (response.result) {
+        result = response.result as TOut;
+      }
+    } catch {
+      result = {};
+    }
+
+    result.metadata = result.metadata ?? { success: false };
+    result.statusCode = response.statusCode;
+
+    return result as TOut;
+  }, []);
 
   const runGet = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpGet<ApiOutput<TOut>>(
+      const fetchRes = await httpGet<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        { ...commonHeaders, ...headers }
+        { ...commonHeaders, ...headers },
       );
 
-      handleFetchResponse(result);
+      const result = parseResponse(fetchRes);
+      handleFetchResponse(result.metadata);
 
       return result;
     },
-    [commonHeaders, endpoint, handleFetchResponse, httpGet]
+    [commonHeaders, endpoint, handleFetchResponse, httpGet, parseResponse],
   );
 
   const runPost = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpPost<ApiOutput<TOut>>(
+      const fetchRes = await httpPost<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        { ...commonHeaders, ...headers }
+        { ...commonHeaders, ...headers },
       );
 
-      handleFetchResponse(result);
+      const result = parseResponse(fetchRes);
+      handleFetchResponse(result.metadata);
 
       return result;
     },
-    [commonHeaders, endpoint, handleFetchResponse, httpPost]
+    [commonHeaders, endpoint, handleFetchResponse, httpPost, parseResponse],
   );
 
   const runDelete = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpDelete<ApiOutput<TOut>>(
+      const fetchRes = await httpDelete<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        { ...commonHeaders, ...headers }
+        { ...commonHeaders, ...headers },
       );
 
-      handleFetchResponse(result);
+      const result = parseResponse(fetchRes);
+      handleFetchResponse(result.metadata);
 
       return result;
     },
-    [commonHeaders, endpoint, handleFetchResponse, httpDelete]
+    [commonHeaders, endpoint, handleFetchResponse, httpDelete, parseResponse],
   );
 
   const runPatch = useCallback(
     async (input: TIn, headers?: HeadersInit) => {
-      const result = await httpPatch<ApiOutput<TOut>>(
+      const fetchRes = await httpPatch<TOut>(
         `${ApiConfigs.endpoint}/${endpoint}`,
         { ...input },
-        { ...commonHeaders, ...headers }
+        { ...commonHeaders, ...headers },
       );
 
-      handleFetchResponse(result);
+      const result = parseResponse(fetchRes);
+      handleFetchResponse(result.metadata);
 
       return result;
     },
-    [commonHeaders, endpoint, handleFetchResponse, httpPatch]
+    [commonHeaders, endpoint, handleFetchResponse, httpPatch, parseResponse],
   );
 
   return {

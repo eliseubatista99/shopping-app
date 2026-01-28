@@ -7,6 +7,7 @@ import {
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
+import { ErrorHelper } from "@helpers";
 import {
   useAppSearchParams,
   useAppTranslations,
@@ -14,6 +15,7 @@ import {
 } from "@hooks";
 import { useStoreAuthentication } from "@store";
 import React from "react";
+import { ERRORS } from "src/api/errors";
 
 type SignInForm = {
   nameError?: string;
@@ -192,7 +194,7 @@ export const useFormBlockHelper = () => {
           email: FormsHelper.getFieldValueOrDefault(email, ""),
         });
 
-        if (res.metadata.success) {
+        if (res.metadata?.success) {
           if (returnPage.value) {
             goTo({
               path: returnPage.value,
@@ -205,13 +207,21 @@ export const useFormBlockHelper = () => {
             });
           }
         } else {
-          if (res.data.mailAlreadyInUse || res.data.phoneAlreadyInUse) {
+          const hasMailError = ErrorHelper.containsError(
+            res.metadata?.errors,
+            ERRORS.MAIL_ALREADY_IN_USE
+          );
+          const hasPhoneError = ErrorHelper.containsError(
+            res.metadata?.errors,
+            ERRORS.PHONE_ALREADY_IN_USE
+          );
+          if (hasMailError || hasPhoneError) {
             setForm((prevState) => ({
               ...prevState,
-              emailError: res.data.mailAlreadyInUse
+              emailError: hasMailError
                 ? i18n.email.errors.alreadyInUse
                 : undefined,
-              phoneError: res.data.phoneAlreadyInUse
+              phoneError: hasPhoneError
                 ? i18n.phone.errors.alreadyInUse
                 : undefined,
             }));

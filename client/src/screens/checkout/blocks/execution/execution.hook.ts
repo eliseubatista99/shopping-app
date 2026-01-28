@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { OVERLAYS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -12,7 +12,7 @@ import React from "react";
 export const useExecutionBlockHelper = () => {
   const { t } = useAppTranslations();
   const { showItem, hideItem } = useFeedback();
-  const { fetchExecutePurchaseInfo } = Api.ExecutePurchase();
+  const { fetchExecutePurchaseInfo } = ApiEndpoints.ExecutePurchase();
   const wantsFastestOption = useStoreCheckout(
     (state) => state.wantsFastestOption
   );
@@ -37,7 +37,7 @@ export const useExecutionBlockHelper = () => {
       wantsFastShipping: wantsFastestOption || false,
     });
 
-    if (res.metadata.success) {
+    if (res.metadata?.success) {
       //
     }
 

@@ -1,6 +1,7 @@
 import { Assets } from "@assets";
-import { Image, Typography } from "@eliseubatista99/react-scaffold-core";
+import { Typography } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
+import { ProductImage } from "../productImage";
 import { Separator } from "../separator";
 import type { ProductsCombinationOverviewProps } from "./productsCombinationOverview";
 import { useProductsCombinationOverviewHelper } from "./productsCombinationOverview.hook";
@@ -16,16 +17,20 @@ export const ProductsCombinationOverviewMobile: React.FC<
   const itemsJSX = items.map((item, index) => (
     <div
       key={item.id}
-      style={{ flexDirection: "row", alignItems: "center", width: "30%" }}
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        width: "30%",
+        justifyContent: "center",
+        gap: "10px",
+      }}
     >
       {index !== 0 && <Typography>+</Typography>}
-      <Image
-        src={item.image || ""}
+
+      <ProductImage
+        image={item.image}
         styles={{
-          width: "100%",
-          height: "150px",
-          objectFit: "contain",
-          mixBlendMode: "multiply",
+          width: "75%",
         }}
         onClick={() => onClickProduct?.(item)}
       />

@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { PAGES } from "@constants";
 import {
   useDidMount,
@@ -21,7 +21,7 @@ export const useProductDetailsPageHelper = () => {
   const setProductStoreState = useStoreProduct(
     (state) => state.setProductStoreState
   );
-  const { fetchProductDetail } = Api.GetProductDetails();
+  const { fetchProductDetail } = ApiEndpoints.GetProductDetails();
 
   const [loading, setLoading] = React.useState(true);
 
@@ -41,7 +41,7 @@ export const useProductDetailsPageHelper = () => {
       productId: searchParams.productId.value || "",
     });
 
-    setProductStoreState({ selectedProduct: res.data.product });
+    setProductStoreState({ selectedProduct: res.data?.product });
 
     isFetching.current = false;
     setLoading(false);

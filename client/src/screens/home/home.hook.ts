@@ -1,4 +1,4 @@
-import { Api } from "@api";
+import { ApiEndpoints } from "@api";
 import { DRAWERS } from "@constants";
 import { useDidMount, useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -11,12 +11,12 @@ import React from "react";
 
 export const useHomePageHelper = () => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
   const selectedAddress = useStoreAddresses((state) => state.selectedAddress);
   const setStoreHomeState = useStoreHome((state) => state.setHomeStoreState);
   const { showItem } = useFeedback();
-  const { fetchProductOffers } = Api.GetProductOffers();
+  const { fetchProductOffers } = ApiEndpoints.GetProductOffers();
   const [headerTriggerVisible, setHeaderTriggerVisible] =
     React.useState<boolean>(true);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -31,15 +31,6 @@ export const useHomePageHelper = () => {
           address: selectedAddress?.postalCode,
         }),
       },
-      group: {
-        title: (category: string) => t(`home.group.${category}.title`),
-      },
-      buyAgain: {
-        title: t("home.group.buyAgain.title"),
-      },
-      fromHistory: {
-        title: t("home.group.fromHistory.title"),
-      },
     };
   }, [selectedAddress?.postalCode, t]);
 
@@ -47,19 +38,19 @@ export const useHomePageHelper = () => {
     setLoading(true);
     const res = await fetchProductOffers();
 
-    if (res.metadata.success) {
+    if (res.metadata?.success) {
       setStoreHomeState({
-        fromSearchHistory: res.data.fromSearchHistory,
-        buyAgain: res.data.buyAgain,
-        groups: res.data.groups,
-        banners: res.data.banners,
+        // fromSearchHistory: res.data?.fromSearchHistory || [],
+        buyAgain: res.data?.buyAgain || [],
+        groups: res.data?.groups || [],
+        banners: res.data?.banners || [],
       });
 
       const hasContent =
-        res.data.fromSearchHistory?.length > 0 ||
-        res.data.buyAgain?.length > 0 ||
-        res.data.groups?.length > 0 ||
-        res.data.banners?.length > 0;
+        // (res.data?.fromSearchHistory || []).length > 0 ||
+        (res.data?.buyAgain || []).length > 0 ||
+        (res.data?.groups || []).length > 0 ||
+        (res.data?.banners || []).length > 0;
 
       setHasError(!hasContent);
     } else {

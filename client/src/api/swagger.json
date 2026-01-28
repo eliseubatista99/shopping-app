@@ -1,0 +1,4351 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "ShoppingServer",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/AddAddress": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "operationId": "AddAddress",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAddressOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAddressOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAddressOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddAddressResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddAddressResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddAddressResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DeleteAddress": {
+      "delete": {
+        "tags": [
+          "Address"
+        ],
+        "operationId": "DeleteAddress",
+        "parameters": [
+          {
+            "name": "AddressId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAddressResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAddressResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAddressResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SetDefaultAddress": {
+      "patch": {
+        "tags": [
+          "Address"
+        ],
+        "operationId": "SetDefaultAddress",
+        "parameters": [
+          {
+            "name": "AddressId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetDefaultAddressResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetDefaultAddressResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetDefaultAddressResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UpdateAddress": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "operationId": "UpdateAddress",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAddressOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAddressOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAddressOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateAddressResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateAddressResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateAddressResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IsExistingAccount": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PhoneNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IsExistingAccountResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IsExistingAccountResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IsExistingAccountResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Authenticate": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticateOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticateOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticateOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticateResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticateResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticateResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RefreshAuthentication": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshAuthenticationOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshAuthenticationOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshAuthenticationOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshAuthenticationResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshAuthenticationResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshAuthenticationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CreateAccount": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAccountOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAccountOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAccountOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateAccountResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateAccountResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateAccountResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutOperationResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutOperationResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutOperationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AddToCart": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddToCartOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddToCartOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddToCartOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddToCartResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddToCartResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddToCartResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetCart": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCartResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCartResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCartResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RemoveFromCart": {
+      "delete": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "name": "ProductIds",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveFromCartResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveFromCartResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveFromCartResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UpdateCartProduct": {
+      "patch": {
+        "tags": [
+          "Cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCartProductOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCartProductOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCartProductOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCartResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCartResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCartResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetClientInfo": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientInfoResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientInfoResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientInfoResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ForYou": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForYouResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForYouResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForYouResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetDocument": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDocumentResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDocumentResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDocumentResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UpdateClientInfo": {
+      "patch": {
+        "tags": [
+          "Common"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClientInfoOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClientInfoOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClientInfoOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateClientInfoResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateClientInfoResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateClientInfoResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetClientOrders": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FilterByText",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FilterByStatus",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/OrderStatus"
+            }
+          },
+          {
+            "name": "SortMode",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SortMode"
+            }
+          },
+          {
+            "name": "FilterByStartDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "FilterByEndDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientOrdersResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientOrdersResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClientOrdersResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetOrderDetails": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrderDetailsResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrderDetailsResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrderDetailsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetPaymentMethodDetails": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "parameters": [
+          {
+            "name": "MethodId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentMethodDetailsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AddPaymentMethod": {
+      "post": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPaymentMethodOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPaymentMethodOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPaymentMethodOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddPaymentMethodResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddPaymentMethodResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddPaymentMethodResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DeletePaymentMethod": {
+      "delete": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "parameters": [
+          {
+            "name": "MethodId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletePaymentMethodResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletePaymentMethodResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletePaymentMethodResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SetDefaultPaymentMethod": {
+      "patch": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "parameters": [
+          {
+            "name": "MethodId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetDefaultPaymentMethodResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetDefaultPaymentMethodResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetDefaultPaymentMethodResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UpdatePaymentMethod": {
+      "patch": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentMethodOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentMethodOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentMethodOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatePaymentMethodResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatePaymentMethodResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatePaymentMethodResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetProductReviews": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "ProductId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ReviewId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthorId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FilterByRating",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "SortMode",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SortMode"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetProductReviewsResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetProductReviewsResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetProductReviewsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ProductDetail": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "ProductId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDetailResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDetailResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDetailResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ProductOffers": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductOffersdResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductOffersdResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductOffersdResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SearchProducts": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "Text",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Score",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "MaxPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "MinPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "BestSeller",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "FreeShipping",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SortMode"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchProductsResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchProductsResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchProductsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WriteReview": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteReviewOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteReviewOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteReviewOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteReviewResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteReviewResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteReviewResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ExecutePurchase": {
+      "post": {
+        "tags": [
+          "Purchase"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecutePurchaseOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecutePurchaseOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecutePurchaseOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutePurchaseResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutePurchaseResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutePurchaseResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetCheckoutInfo": {
+      "get": {
+        "tags": [
+          "Purchase"
+        ],
+        "parameters": [
+          {
+            "name": "ProductIds",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "AddressId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PaymentMethodId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "WantsFastShipping",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCheckoutInfoResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCheckoutInfoResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCheckoutInfoResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AddToWishlist": {
+      "post": {
+        "tags": [
+          "Wishlist"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddToWishlistOperationInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddToWishlistOperationInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddToWishlistOperationInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddToWishlistResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddToWishlistResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddToWishlistResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GetWishlist": {
+      "get": {
+        "tags": [
+          "Wishlist"
+        ],
+        "operationId": "GetWishlist",
+        "parameters": [
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWishlistResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWishlistResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWishlistResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RemoveFromWishlist": {
+      "delete": {
+        "tags": [
+          "Wishlist"
+        ],
+        "parameters": [
+          {
+            "name": "ProductId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveFromWishlistResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveFromWishlistResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveFromWishlistResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddAddressOperationInputDto": {
+        "required": [
+          "city",
+          "country",
+          "location",
+          "name",
+          "phone",
+          "postalCode",
+          "street"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddAddressOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddAddressResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AddAddressOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddPaymentMethodOperationInputDto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/PaymentMethodType"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "network": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "securityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationMonth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "expirationYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddPaymentMethodOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentMethodDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddPaymentMethodResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AddPaymentMethodOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddToCartOperationInputDto": {
+        "required": [
+          "productIds"
+        ],
+        "type": "object",
+        "properties": {
+          "productIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddToCartOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CartProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddToCartResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AddToCartOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddToWishlistOperationInputDto": {
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddToWishlistOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedWishlist": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddToWishlistResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AddToWishlistOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressDto": {
+        "required": [
+          "city",
+          "country",
+          "id",
+          "location",
+          "name",
+          "phone",
+          "postalCode",
+          "street"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthenticateOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthenticateOperationOutputDto": {
+        "required": [
+          "refreshToken",
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthenticateResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AuthenticateOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CartProductDetailsDto": {
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isSelected": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CartProductDto": {
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isSelected": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CheckoutProductDetailsDto": {
+        "required": [
+          "productId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductDto"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/SellerDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CheckoutProductDto": {
+        "required": [
+          "productId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClientInfoDto": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberPrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDto"
+            },
+            "nullable": true
+          },
+          "paymentMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentMethodDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAccountOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAccountOperationOutputDto": {
+        "required": [
+          "refreshToken",
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAccountResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CreateAccountOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeleteAddressOperationInputDto": {
+        "required": [
+          "addressId"
+        ],
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeleteAddressOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeleteAddressResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DeleteAddressOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeletePaymentMethodOperationInputDto": {
+        "required": [
+          "methodId"
+        ],
+        "type": "object",
+        "properties": {
+          "methodId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeletePaymentMethodOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentMethodDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeletePaymentMethodResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DeletePaymentMethodOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentDto": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Dto": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ErrorDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutePurchaseOperationInputDto": {
+        "required": [
+          "addressId",
+          "paymentMethodId",
+          "products"
+        ],
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckoutProductDto"
+            },
+            "nullable": true
+          },
+          "addressId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "wantsFastShipping": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutePurchaseOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "$ref": "#/components/schemas/OrderDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutePurchaseResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ExecutePurchaseOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForYouOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderDto"
+            },
+            "nullable": true
+          },
+          "favoritesImages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "favoritesCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "needingReviewProductId": {
+            "type": "string",
+            "nullable": true
+          },
+          "needingReviewProductImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "review": {
+            "$ref": "#/components/schemas/ReviewDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForYouResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ForYouOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCartOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CartProductDetailsDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCartResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetCartOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCheckoutInfoOperationInputDto": {
+        "required": [
+          "addressId",
+          "paymentMethodId",
+          "productIds"
+        ],
+        "type": "object",
+        "properties": {
+          "productIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "addressId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "wantsFastShipping": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCheckoutInfoOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "shippingCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "fastestDeliveryCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "productCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "startDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fastestStartDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fastestEndDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCheckoutInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetCheckoutInfoOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientInfoOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/ClientInfoDto"
+          },
+          "itemsInCart": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetClientInfoOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientOrdersOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "filterByText": {
+            "type": "string",
+            "nullable": true
+          },
+          "filterByStatus": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "sortMode": {
+            "$ref": "#/components/schemas/SortMode"
+          },
+          "filterByStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "filterByEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientOrdersOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderDto"
+            },
+            "nullable": true
+          },
+          "oldestOrderDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientOrdersResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetClientOrdersOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetDocumentOperationInputDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetDocumentOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "document": {
+            "$ref": "#/components/schemas/DocumentDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetDocumentResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetDocumentOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetOrderDetailsOperationInputDto": {
+        "required": [
+          "orderId"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetOrderDetailsOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "$ref": "#/components/schemas/OrderDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetOrderDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetOrderDetailsOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPaymentMethodDetailsOperationInputDto": {
+        "required": [
+          "methodId"
+        ],
+        "type": "object",
+        "properties": {
+          "methodId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPaymentMethodDetailsOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/PaymentMethodDetailsDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPaymentMethodDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetPaymentMethodDetailsOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetProductReviewsOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewId": {
+            "type": "string",
+            "nullable": true
+          },
+          "authorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "filterByRating": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sortMode": {
+            "$ref": "#/components/schemas/SortMode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetProductReviewsOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          },
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "averageScore": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "reviewsCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "scores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScoreCountDto"
+            },
+            "nullable": true
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetProductReviewsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetProductReviewsOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetWishlistOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetWishlistOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetWishlistResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetWishlistOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IsExistingAccountOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IsExistingAccountOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "exists": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IsExistingAccountResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/IsExistingAccountOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogoutOperationInputDto": {
+        "required": [
+          "refreshToken"
+        ],
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogoutOperationResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/OperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OperationInputDto": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OperationOutputDto": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OperationPaginatedInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OperationPaginatedOutputDto": {
+        "type": "object",
+        "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderDetailDto": {
+        "required": [
+          "address",
+          "currentStatus",
+          "date",
+          "id",
+          "paymentMethod",
+          "productCost",
+          "products",
+          "statusHistory",
+          "totalCost"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckoutProductDetailsDto"
+            },
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentStatus": {
+            "$ref": "#/components/schemas/OrderStatusEntryDto"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "statusHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderStatusEntryDto"
+            },
+            "nullable": true
+          },
+          "paymentMethod": {
+            "$ref": "#/components/schemas/PaymentMethodDto"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "productCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discounts": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderDto": {
+        "required": [
+          "currentStatus",
+          "date",
+          "id",
+          "products",
+          "totalCost"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckoutProductDetailsDto"
+            },
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentStatus": {
+            "$ref": "#/components/schemas/OrderStatusEntryDto"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderStatus": {
+        "enum": [
+          "None",
+          "Processing",
+          "Sent",
+          "InDelivery",
+          "Delivered",
+          "Cancelled",
+          "Returned"
+        ],
+        "type": "string"
+      },
+      "OrderStatusEntryDto": {
+        "required": [
+          "date",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OutputMetadataDto": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentMethodDetailsDto": {
+        "required": [
+          "id",
+          "name",
+          "network",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PaymentMethodType"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "network": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumberMasked": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "securityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumberUnmasked": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationMonth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "expirationYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentMethodDto": {
+        "required": [
+          "id",
+          "name",
+          "network",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PaymentMethodType"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "network": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumberMasked": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentMethodType": {
+        "enum": [
+          "None",
+          "Card",
+          "Bank"
+        ],
+        "type": "string"
+      },
+      "ProductDetailDto": {
+        "required": [
+          "bestSeller",
+          "categories",
+          "category",
+          "id",
+          "image",
+          "name",
+          "originalPrice",
+          "price",
+          "score",
+          "scoreCount",
+          "seller",
+          "shippingCost"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "originalPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "scoreCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "shippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "bestSeller": {
+            "type": "boolean"
+          },
+          "isWishlisted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "specifications": {
+            "$ref": "#/components/schemas/ProductSpecificationDto"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/SellerDto"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentDto"
+            },
+            "nullable": true
+          },
+          "detailImages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "productOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductOptionDto"
+            },
+            "nullable": true
+          },
+          "relatedProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          },
+          "comboProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewDto"
+            },
+            "nullable": true
+          },
+          "estimatedDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductDetailOperationInputDto": {
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductDetailOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "product": {
+            "$ref": "#/components/schemas/ProductDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductDetailResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProductDetailOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductDto": {
+        "required": [
+          "bestSeller",
+          "categories",
+          "category",
+          "id",
+          "image",
+          "name",
+          "originalPrice",
+          "price",
+          "score",
+          "scoreCount",
+          "shippingCost"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "originalPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "scoreCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "shippingCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "bestSeller": {
+            "type": "boolean"
+          },
+          "isWishlisted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductOfferGroupDto": {
+        "required": [
+          "category",
+          "products"
+        ],
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductOffersOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "buyAgain": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductOfferGroupDto"
+            },
+            "nullable": true
+          },
+          "banners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductsBannerDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductOffersdResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProductOffersOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductOptionDto": {
+        "required": [
+          "id",
+          "name",
+          "originalPrice",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "originalPrice": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductSpecificationDto": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "origin": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "height": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "width": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "depth": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "warranty": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductsBannerDto": {
+        "required": [
+          "category",
+          "id",
+          "image",
+          "subtitle",
+          "textColor",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "textColor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshAuthenticationOperationInputDto": {
+        "required": [
+          "refreshToken"
+        ],
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshAuthenticationOperationOutputDto": {
+        "required": [
+          "refreshToken",
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshAuthenticationResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/RefreshAuthenticationOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoveFromCartOperationInputDto": {
+        "required": [
+          "productIds"
+        ],
+        "type": "object",
+        "properties": {
+          "productIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoveFromCartOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CartProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoveFromCartResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/RemoveFromCartOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoveFromWishlistOperationInputDto": {
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoveFromWishlistOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedWishlist": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoveFromWishlistResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/RemoveFromWishlistOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewDto": {
+        "required": [
+          "comment",
+          "createdAt",
+          "id",
+          "productId",
+          "productName",
+          "reviewerId",
+          "reviewerName",
+          "score",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewerIcon": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "productIcon": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScoreCountDto": {
+        "required": [
+          "count",
+          "score"
+        ],
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchProductsOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "maxPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "minPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bestSeller": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "freeShipping": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortMode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchProductsOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "hasMorePages": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchProductsResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SearchProductsOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SellerDto": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetDefaultAddressOperationInputDto": {
+        "required": [
+          "addressId"
+        ],
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetDefaultAddressOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetDefaultAddressResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SetDefaultAddressOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetDefaultPaymentMethodOperationInputDto": {
+        "required": [
+          "methodId"
+        ],
+        "type": "object",
+        "properties": {
+          "methodId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetDefaultPaymentMethodOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentMethodDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetDefaultPaymentMethodResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SetDefaultPaymentMethodOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SortMode": {
+        "enum": [
+          "None",
+          "LowToHighScore",
+          "HightToLowScore",
+          "LowToHighPrice",
+          "HighToLowPrice",
+          "NewToOld",
+          "OldToNew"
+        ],
+        "type": "string"
+      },
+      "UpdateAddressOperationInputDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateAddressOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateAddressResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UpdateAddressOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateCartProductOperationInputDto": {
+        "required": [
+          "products"
+        ],
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CartProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateCartProductOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CartProductDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateCartResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UpdateCartProductOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateClientInfoOperationInputDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateClientInfoOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedInfo": {
+            "$ref": "#/components/schemas/ClientInfoDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateClientInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UpdateClientInfoOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePaymentMethodOperationInputDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationMonth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "expirationYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePaymentMethodOperationOutputDto": {
+        "type": "object",
+        "properties": {
+          "updatedMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentMethodDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePaymentMethodResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UpdatePaymentMethodOperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WriteReviewOperationInputDto": {
+        "required": [
+          "productId",
+          "score",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WriteReviewResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/OperationOutputDto"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/OutputMetadataDto"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

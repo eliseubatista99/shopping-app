@@ -1,4 +1,4 @@
-import { Api, type PaymentMethodDto } from "@api";
+import { ApiEndpoints, type PaymentMethodDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -18,8 +18,9 @@ export const usePaymentMethodsPageHelper = () => {
     (state) => state.setPaymentMethods
   );
 
-  const { fetchDeletePaymentMethod } = Api.DeletePaymentMethod();
-  const { fetchSetDefaultPaymentMethod } = Api.SetDefaultPaymentMethod();
+  const { fetchDeletePaymentMethod } = ApiEndpoints.DeletePaymentMethod();
+  const { fetchSetDefaultPaymentMethod } =
+    ApiEndpoints.SetDefaultPaymentMethod();
   const { showItem } = useFeedback();
 
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -53,10 +54,10 @@ export const usePaymentMethodsPageHelper = () => {
     async (method: PaymentMethodDto) => {
       setLoading(true);
 
-      const res = await fetchDeletePaymentMethod({ methodId: method.id });
+      const res = await fetchDeletePaymentMethod({ methodId: method.id || "" });
 
-      if (res.metadata.success) {
-        setPaymentMethods(res.data.updatedMethods);
+      if (res.metadata?.success) {
+        setPaymentMethods(res.data?.updatedMethods || []);
       }
       setLoading(false);
     },
@@ -66,10 +67,12 @@ export const usePaymentMethodsPageHelper = () => {
   const onClickSetDefault = useCallback(
     async (method: PaymentMethodDto) => {
       setLoading(true);
-      const res = await fetchSetDefaultPaymentMethod({ methodId: method.id });
+      const res = await fetchSetDefaultPaymentMethod({
+        methodId: method.id || "",
+      });
 
-      if (res.metadata.success) {
-        setPaymentMethods(res.data.updatedMethods);
+      if (res.metadata?.success) {
+        setPaymentMethods(res.data?.updatedMethods || []);
       }
       setLoading(false);
     },

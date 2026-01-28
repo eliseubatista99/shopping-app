@@ -1,32 +1,18 @@
 import { useFetchWithAuth } from "@hooks";
 import { useCallback } from "react";
-import type { OrderDto, OrderStatus, SortMode } from "../types";
-
-export type GetClientOrdersOutputDto = {
-  orders: OrderDto[];
-  oldestOrderDate?: string;
-  hasMorePages: boolean;
-};
-
-export type GetClientOrdersInputDto = {
-  orderId?: string;
-  page?: number;
-  pageCount?: number;
-  filterByText?: string;
-  filterByStatus?: OrderStatus;
-  sortMode?: SortMode;
-  filterByStartDate?: string;
-  filterByEndDate?: string;
-};
+import type {
+  GetClientOrdersOperationInputDto,
+  GetClientOrdersResponseDto,
+} from "../models";
 
 export const GetClientOrders = () => {
-  const { get } = useFetchWithAuth<GetClientOrdersOutputDto>({
+  const { get } = useFetchWithAuth<GetClientOrdersResponseDto>({
     endpoint: "GetClientOrders",
     showGenericErrorModal: false,
   });
 
   const fetch = useCallback(
-    async (input: GetClientOrdersInputDto) => {
+    async (input: GetClientOrdersOperationInputDto) => {
       const result = await get({ ...input });
 
       return result;

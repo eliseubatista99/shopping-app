@@ -1,4 +1,4 @@
-import { Api, type ClientInfoDto, type PaymentMethodDto } from "@api";
+import { ApiEndpoints, type ClientInfoDto, type PaymentMethodDto } from "@api";
 import { DRAWERS } from "@constants";
 import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { useAppTranslations } from "@hooks";
@@ -19,7 +19,8 @@ export const useSelectPaymentMethodDrawerHelper = () => {
     (state) => state.setPaymentMethods
   );
 
-  const { fetchSetDefaultPaymentMethod } = Api.SetDefaultPaymentMethod();
+  const { fetchSetDefaultPaymentMethod } =
+    ApiEndpoints.SetDefaultPaymentMethod();
   const { t, translatePaymentMethod } = useAppTranslations();
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -56,13 +57,13 @@ export const useSelectPaymentMethodDrawerHelper = () => {
     }
 
     const res = await fetchSetDefaultPaymentMethod({
-      methodId: selectedMethod.id,
+      methodId: selectedMethod.id || "",
     });
 
-    clientData.paymentMethods = res.data.updatedMethods || [];
+    clientData.paymentMethods = res.data?.updatedMethods || [];
     setClientInfo(clientData);
-    setPaymentMethods(res.data.updatedMethods);
-    setSelectedMethod(res.data.updatedMethods.find((m) => m.isDefault));
+    setPaymentMethods(res.data?.updatedMethods || []);
+    setSelectedMethod(res.data?.updatedMethods?.find((m) => m.isDefault));
 
     setLoading(false);
 
