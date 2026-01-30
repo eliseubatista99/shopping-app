@@ -19,7 +19,7 @@ namespace ShoppingServer.Library
         protected virtual bool UseAuthorization { get; } = false;
         protected virtual bool UseAuthentication { get; } = false;
 
-        protected string[] corsOrigins = new[]
+        protected virtual string[] corsOrigins { get; } = new[]
         {
             "http://localhost:3000",
             "https://localhost:3000",
@@ -166,9 +166,9 @@ namespace ShoppingServer.Library
                 App.MapOpenApi();
                 App.UseSwagger();
                 App.UseSwaggerUI();
+                App.UseHttpsRedirection();
             }
 
-            App.UseHttpsRedirection();
             App.UseCors("CorsPolicy");
 
             if (UseAuthorization)
