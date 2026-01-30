@@ -1,15 +1,14 @@
 import { ApiEndpoints } from "@api";
 import { PAGES } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useAppNavigation, useAppSearchParams } from "@hooks";
 import { useStoreOrders } from "@store";
 import React, { useEffect } from "react";
 
 export const useOrderDetailsPageHelper = () => {
   const { orderId } = useAppSearchParams();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const setOrdersStoreState = useStoreOrders(
-    (state) => state.setOrdersStoreState
+    (state) => state.setOrdersStoreState,
   );
   const selectedOrder = useStoreOrders((state) => state.selectedOrder);
 
@@ -29,7 +28,7 @@ export const useOrderDetailsPageHelper = () => {
     setLoading(true);
 
     if (!orderId.value) {
-      goTo({ path: PAGES.NOT_FOUND, addToHistory: false });
+      goTo({ path: PAGES.NOT_FOUND, addToHistory: true });
     }
 
     const res = await fetchGetOrderDetails({

@@ -1,22 +1,19 @@
 import { Assets } from "@assets";
 import { DRAWERS, PAGES } from "@constants";
-import {
-  useFeedback,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
 import { LanguageHelper } from "@helpers";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreAuthentication, useStoreBase } from "@store";
 import React from "react";
 
 export const useOptionsBlockHelper = () => {
   const { t } = useAppTranslations();
   const currentLanguage = useStoreBase((state) => state.language);
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { showItem } = useFeedback();
 
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
 
   const i18n = React.useMemo(() => {
@@ -37,6 +34,7 @@ export const useOptionsBlockHelper = () => {
       onClick: () =>
         goTo({
           path: PAGES.SIGN_IN_AND_SECURITY,
+          addToHistory: true,
         }),
     },
     {
@@ -46,6 +44,7 @@ export const useOptionsBlockHelper = () => {
       onClick: () =>
         goTo({
           path: PAGES.PAYMENT_METHODS,
+          addToHistory: true,
         }),
     },
     {
@@ -55,6 +54,7 @@ export const useOptionsBlockHelper = () => {
       onClick: () =>
         goTo({
           path: PAGES.ADDRESSES,
+          addToHistory: true,
         }),
     },
     {

@@ -1,13 +1,14 @@
 import { PAGES } from "@constants";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams, useAuthentication } from "@hooks";
+  useAppNavigation,
+  useAppSearchParams,
+  useAuthentication,
+} from "@hooks";
 import { useCallback, useState } from "react";
 
 export const useSignUpOrLoginPageHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { allParams } = useAppSearchParams();
   const { isAuthenticated } = useAuthentication();
   const [initialized, setInitialized] = useState(false);

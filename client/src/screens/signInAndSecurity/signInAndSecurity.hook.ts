@@ -1,11 +1,10 @@
 import { PAGES } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import React from "react";
 
 export const useSignInAndSecurityPageHelper = () => {
   const { t } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const i18n = React.useMemo(() => {
     return {
@@ -37,6 +36,7 @@ export const useSignInAndSecurityPageHelper = () => {
       onClick: () => {
         goTo({
           path: PAGES.CHANGE_NAME,
+          addToHistory: true,
         });
       },
     },
@@ -47,6 +47,7 @@ export const useSignInAndSecurityPageHelper = () => {
       onClick: () => {
         goTo({
           path: PAGES.CHANGE_EMAIL,
+          addToHistory: true,
         });
       },
     },
@@ -57,6 +58,7 @@ export const useSignInAndSecurityPageHelper = () => {
       onClick: () => {
         goTo({
           path: PAGES.CHANGE_PHONE,
+          addToHistory: true,
         });
       },
     },
@@ -67,6 +69,7 @@ export const useSignInAndSecurityPageHelper = () => {
       onClick: () => {
         goTo({
           path: PAGES.CHANGE_PASSWORD,
+          addToHistory: true,
         });
       },
     },

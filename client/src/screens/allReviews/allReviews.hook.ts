@@ -2,9 +2,9 @@ import { DRAWERS, PAGES, SEARCH_PARAMS } from "@constants";
 import {
   NumberHelper,
   useFeedback,
-  useNavigation,
 } from "@eliseubatista99/react-scaffold-core";
 import {
+  useAppNavigation,
   useAppSearchParams,
   useAppTranslations,
   useAuthentication,
@@ -20,10 +20,10 @@ export const useAllReviewsPageHelper = () => {
   const scoreCounts = useStoreReviews((state) => state.scores);
 
   const setReviewsStoreState = useStoreReviews(
-    (state) => state.setReviewsStoreState
+    (state) => state.setReviewsStoreState,
   );
   const { showItem } = useFeedback();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const { t } = useAppTranslations();
 
@@ -55,10 +55,12 @@ export const useAllReviewsPageHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: productId?.value,
         },
+        addToHistory: true,
       });
     } else {
       goTo({
         path: PAGES.LOG_IN,
+        addToHistory: true,
       });
     }
   }, [goTo, isAuthenticated, productId?.value]);
@@ -71,7 +73,7 @@ export const useAllReviewsPageHelper = () => {
     (score: number) => {
       setReviewsStoreState({ filters: { scoreFilter: score } });
     },
-    [setReviewsStoreState]
+    [setReviewsStoreState],
   );
 
   return {

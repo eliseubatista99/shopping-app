@@ -3,12 +3,12 @@ import {
   FormsHelper,
   TextHelper,
   useFeedback,
-  useNavigation,
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { ErrorHelper } from "@helpers";
 import {
+  useAppNavigation,
   useAppSearchParams,
   useAppTranslations,
   useAuthentication,
@@ -27,7 +27,7 @@ type SignInForm = {
 
 export const useFormBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { createAccount } = useAuthentication();
   const storeAuthForm = useStoreAuthentication((state) => state.form);
   const { returnPage } = useAppSearchParams();
@@ -160,7 +160,7 @@ export const useFormBlockHelper = () => {
       const password = FormsHelper.getField(data, INPUTS.PASSWORD);
       const passwordConfirmation = FormsHelper.getField(
         data,
-        INPUTS.PASSWORD_CONFIRMATION
+        INPUTS.PASSWORD_CONFIRMATION,
       );
 
       if (
@@ -209,11 +209,11 @@ export const useFormBlockHelper = () => {
         } else {
           const hasMailError = ErrorHelper.containsError(
             res.metadata?.errors,
-            ERRORS.MAIL_ALREADY_IN_USE
+            ERRORS.MAIL_ALREADY_IN_USE,
           );
           const hasPhoneError = ErrorHelper.containsError(
             res.metadata?.errors,
-            ERRORS.PHONE_ALREADY_IN_USE
+            ERRORS.PHONE_ALREADY_IN_USE,
           );
           if (hasMailError || hasPhoneError) {
             setForm((prevState) => ({
@@ -242,7 +242,7 @@ export const useFormBlockHelper = () => {
       i18n.phone.errors.alreadyInUse,
       returnPage.value,
       showItem,
-    ]
+    ],
   );
 
   return {

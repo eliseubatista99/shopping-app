@@ -1,10 +1,7 @@
 import { ApiEndpoints, type ProductDto } from "@api";
 import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
-import {
-  useFeedback,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations, useCart } from "@hooks";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppTranslations, useCart } from "@hooks";
 import { useStoreWishlist } from "@store";
 import React from "react";
 
@@ -16,9 +13,9 @@ export const useProductsBlockHelper = () => {
   const products = useStoreWishlist((state) => state.products);
   const addProducts = useStoreWishlist((state) => state.addProducts);
   const setWishlistStoreState = useStoreWishlist(
-    (state) => state.setWishlistStoreState
+    (state) => state.setWishlistStoreState,
   );
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
 
@@ -50,7 +47,7 @@ export const useProductsBlockHelper = () => {
         hasMorePages: res.data?.hasMorePages,
       };
     },
-    [addProducts, fetchGetWishlist, setWishlistStoreState]
+    [addProducts, fetchGetWishlist, setWishlistStoreState],
   );
 
   const onClickProduct = React.useCallback(
@@ -60,9 +57,10 @@ export const useProductsBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: product.id,
         },
+        addToHistory: true,
       });
     },
-    [goTo]
+    [goTo],
   );
 
   const onClickAddToCart = React.useCallback(
@@ -71,7 +69,7 @@ export const useProductsBlockHelper = () => {
       await addToCart([product.id || ""]);
       hideItem(OVERLAYS.LOADER);
     },
-    [addToCart, hideItem, showItem]
+    [addToCart, hideItem, showItem],
   );
 
   const onClickWishlist = React.useCallback(
@@ -86,7 +84,7 @@ export const useProductsBlockHelper = () => {
       }
       hideItem(OVERLAYS.LOADER);
     },
-    [fetchRemoveFromWishlist, hideItem, setWishlistStoreState, showItem]
+    [fetchRemoveFromWishlist, hideItem, setWishlistStoreState, showItem],
   );
 
   return {

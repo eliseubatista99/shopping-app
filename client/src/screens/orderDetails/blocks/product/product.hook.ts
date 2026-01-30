@@ -1,15 +1,14 @@
 import type { ProductDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreOrders, useStoreReviews } from "@store";
 import React from "react";
 
 export const useProductBlockHelper = () => {
   const { t, translateDate } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const setReviewsStoreState = useStoreReviews(
-    (state) => state.setReviewsStoreState
+    (state) => state.setReviewsStoreState,
   );
   const selectedOrder = useStoreOrders((state) => state.selectedOrder);
 
@@ -17,7 +16,7 @@ export const useProductBlockHelper = () => {
 
   const i18n = React.useMemo(() => {
     const lastStatusDateTranslation = translateDate(
-      selectedOrder?.currentStatus?.date
+      selectedOrder?.currentStatus?.date,
     );
 
     return {
@@ -25,7 +24,7 @@ export const useProductBlockHelper = () => {
         `global.orderStatus.history.${selectedOrder?.currentStatus?.status}`,
         {
           date: lastStatusDateTranslation.orderDate,
-        }
+        },
       ),
       soldBy: t("orderDetails.product.seller"),
       actions: {
@@ -47,9 +46,10 @@ export const useProductBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: product.id,
         },
+        addToHistory: true,
       });
     },
-    [goTo]
+    [goTo],
   );
 
   const onClickWriteReview = React.useCallback(
@@ -65,9 +65,10 @@ export const useProductBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: product.id,
         },
+        addToHistory: true,
       });
     },
-    [goTo, setReviewsStoreState]
+    [goTo, setReviewsStoreState],
   );
 
   return {

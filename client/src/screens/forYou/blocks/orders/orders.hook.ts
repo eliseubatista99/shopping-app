@@ -1,13 +1,12 @@
 import type { OrderDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreForYou } from "@store";
 import React from "react";
 
 export const useOrdersBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const orders = useStoreForYou((state) => state.orders);
 
   const i18n = React.useMemo(() => {
@@ -24,14 +23,16 @@ export const useOrdersBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.ORDER_ID]: order.id,
         },
+        addToHistory: true,
       });
     },
-    [goTo]
+    [goTo],
   );
 
   const onClickSeeAll = React.useCallback(() => {
     goTo({
       path: PAGES.ORDERS,
+      addToHistory: true,
     });
   }, [goTo]);
 

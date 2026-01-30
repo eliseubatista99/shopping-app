@@ -1,6 +1,5 @@
 import { PAGES } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreBase, useStoreCart, useStoreCheckout } from "@store";
 import React, { useMemo } from "react";
 
@@ -13,7 +12,7 @@ export const useExecutionBlockHelper = () => {
     (state) => state.setCheckoutStoreState,
   );
 
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const selectedProducts = useMemo(
     () => (products || []).filter((p) => p.isSelected),

@@ -1,10 +1,7 @@
 import type { ProductDto } from "@api";
-import { DRAWERS, OVERLAYS, PAGES } from "@constants";
-import {
-  useFeedback,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations, useCart } from "@hooks";
+import { DRAWERS, OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppTranslations, useCart } from "@hooks";
 import {
   useStoreAddresses,
   useStoreAuthentication,
@@ -27,7 +24,7 @@ export const usePurchaseBlockHelper = () => {
   const { t, translateDate } = useAppTranslations();
   const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const [quantity, setQuantity] = React.useState<number>(1);
 
@@ -109,7 +106,14 @@ export const usePurchaseBlockHelper = () => {
         await addToCart([product.id || ""]);
         hideItem(OVERLAYS.LOADER);
       } else {
-        goTo({ path: PAGES.LOG_IN });
+        goTo({
+          path: PAGES.LOG_IN,
+          params: {
+            [SEARCH_PARAMS.PRODUCT_ID]: product.id,
+            [SEARCH_PARAMS.RETURN_PAGE]: PAGES.PRODUCT_DETAILS,
+          },
+          addToHistory: true,
+        });
       }
     },
     [addToCart, goTo, hideItem, isAuthenticated, showItem],
@@ -127,7 +131,7 @@ export const usePurchaseBlockHelper = () => {
           addToHistory: true,
         });
       } else {
-        goTo({ path: PAGES.LOG_IN });
+        goTo({ path: PAGES.LOG_IN, addToHistory: true });
       }
     }
   }, [goTo, isAuthenticated, quantity, selectedProduct, setCheckoutStoreState]);

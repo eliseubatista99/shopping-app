@@ -1,12 +1,11 @@
 import { PAGES } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreClient } from "@store";
 import React from "react";
 
 export const useProfileBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const client = useStoreClient((state) => state.client);
 
   const i18n = React.useMemo(() => {
@@ -18,6 +17,7 @@ export const useProfileBlockHelper = () => {
   const onCLickSettings = React.useCallback(() => {
     goTo({
       path: PAGES.SETTINGS,
+      addToHistory: true,
     });
   }, [goTo]);
 

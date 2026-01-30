@@ -1,10 +1,10 @@
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import { useStoreHome } from "@store";
 import { useMemo } from "react";
+import { useAppNavigation } from "../../../../hooks";
 
 export const useBannersBlockHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const banners = useStoreHome((state) => state.banners);
 
   const mappedBanners = useMemo(() => {
@@ -16,6 +16,7 @@ export const useBannersBlockHelper = () => {
           params: {
             [SEARCH_PARAMS.SEARCH_CATEGORY]: b.category,
           },
+          addToHistory: true,
         });
       },
     }));

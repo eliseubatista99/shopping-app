@@ -1,13 +1,14 @@
 import { PAGES } from "@constants";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams, useAuthentication } from "@hooks";
+  useAppNavigation,
+  useAppSearchParams,
+  useAuthentication,
+} from "@hooks";
 import { useCallback, useState } from "react";
 
 export const useSignInPageHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { allParams, returnPage } = useAppSearchParams();
   const { isAuthenticated } = useAuthentication();
   const [initialized, setInitialized] = useState(false);
@@ -19,6 +20,7 @@ export const useSignInPageHelper = () => {
         params: {
           ...allParams.value,
         },
+        addToHistory: false,
       });
     } else {
       setInitialized(true);
@@ -34,6 +36,7 @@ export const useSignInPageHelper = () => {
       params: {
         ...params,
       },
+      addToHistory: false,
     });
   }, [allParams, goTo, returnPage.value]);
 

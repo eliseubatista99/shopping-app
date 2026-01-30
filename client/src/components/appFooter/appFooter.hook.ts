@@ -1,7 +1,6 @@
 import { Assets } from "@assets";
 import { PAGES } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useCart } from "@hooks";
+import { useAppNavigation, useCart } from "@hooks";
 import React, { type FunctionComponent, type SVGProps } from "react";
 
 type FooterItem = {
@@ -12,7 +11,7 @@ type FooterItem = {
 };
 
 export const useAppFooterHelper = () => {
-  const { goTo, currentPath } = useNavigation();
+  const { goTo, currentPath } = useAppNavigation();
   const { numberOfProductsInBasket } = useCart();
 
   const items = React.useMemo((): FooterItem[] => {
@@ -45,7 +44,7 @@ export const useAppFooterHelper = () => {
     (item: FooterItem) => {
       goTo({ path: item.path });
     },
-    [goTo]
+    [goTo],
   );
 
   return {

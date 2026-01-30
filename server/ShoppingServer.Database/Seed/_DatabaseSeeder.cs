@@ -39,6 +39,7 @@
             SeedOrdersStatus.Seed(db);
             SeedOrderProducts.Seed(db);
             SeedDocuments.Seed(db);
+            SeedReviews.Seed(db);
             SeedWishlists.Seed(db);
             SeedBanners.Seed(db);
 

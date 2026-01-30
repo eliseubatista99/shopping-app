@@ -1,11 +1,10 @@
 import type { SignInOrLoginSubmitData } from "@components";
 import { PAGES } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useAppNavigation, useAppSearchParams } from "@hooks";
 import React from "react";
 
 export const useFormBlockHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { allParams } = useAppSearchParams();
 
   const onClickSubmit = React.useCallback(
@@ -16,6 +15,7 @@ export const useFormBlockHelper = () => {
           params: {
             ...allParams.value,
           },
+          addToHistory: true,
         });
       } else {
         goTo({
@@ -23,10 +23,11 @@ export const useFormBlockHelper = () => {
           params: {
             ...allParams.value,
           },
+          addToHistory: true,
         });
       }
     },
-    [allParams, goTo]
+    [allParams, goTo],
   );
 
   return {

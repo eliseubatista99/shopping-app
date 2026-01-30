@@ -25,6 +25,7 @@ export const ProductOfferBannerMobile: React.FC<ProductOfferBannerProps> = (
           objectFit: "cover",
           // background: "none",
           // mixBlendMode: "multiply",
+          borderRadius: "20px",
           height: "100%",
           width: "100%",
           top: 0,

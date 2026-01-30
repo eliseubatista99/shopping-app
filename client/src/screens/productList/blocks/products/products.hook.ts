@@ -1,10 +1,7 @@
 import { ApiEndpoints, type ProductDto } from "@api";
 import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
-import {
-  useFeedback,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams, useCart } from "@hooks";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppSearchParams, useCart } from "@hooks";
 import { useStoreAuthentication, type ProductFilters } from "@store";
 import React from "react";
 
@@ -16,7 +13,7 @@ export const useProductsBlockHelper = () => {
   const { searchFilters } = useAppSearchParams();
 
   const { fetchSearchProducts } = ApiEndpoints.SearchProducts();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { showItem, hideItem } = useFeedback();
   const { addToCart } = useCart();
 
@@ -29,6 +26,7 @@ export const useProductsBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: product.id,
         },
+        addToHistory: true,
       });
     },
     [goTo],
@@ -41,7 +39,7 @@ export const useProductsBlockHelper = () => {
         await addToCart([product.id || ""]);
         hideItem(OVERLAYS.LOADER);
       } else {
-        goTo({ path: PAGES.LOG_IN });
+        goTo({ path: PAGES.LOG_IN, addToHistory: true });
       }
     },
     [addToCart, goTo, hideItem, isAuthenticated, showItem],

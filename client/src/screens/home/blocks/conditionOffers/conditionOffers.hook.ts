@@ -1,11 +1,10 @@
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import React from "react";
 
 export const useConditionOffersBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const i18n = React.useMemo(() => {
     return {
@@ -34,6 +33,7 @@ export const useConditionOffersBlockHelper = () => {
           params: {
             [SEARCH_PARAMS.SEARCH_MAX_PRICE]: 10,
           },
+          addToHistory: true,
         }),
     };
 
@@ -46,6 +46,7 @@ export const useConditionOffersBlockHelper = () => {
           params: {
             [SEARCH_PARAMS.SEARCH_BEST_SELLER]: true,
           },
+          addToHistory: true,
         }),
     };
 
@@ -58,6 +59,7 @@ export const useConditionOffersBlockHelper = () => {
           params: {
             [SEARCH_PARAMS.SEARCH_FREE_SHIPPING]: true,
           },
+          addToHistory: true,
         }),
     };
 

@@ -1,10 +1,7 @@
 import { type ProductDto } from "@api";
 import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
-import {
-  useFeedback,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useCart } from "@hooks";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useCart } from "@hooks";
 import { useStoreAuthentication, useStoreProduct } from "@store";
 import React from "react";
 
@@ -15,7 +12,7 @@ export const useCombinationBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const { addToCart } = useCart();
   const { showItem, hideItem } = useFeedback();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const [expanded, setExpanded] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState<ProductDto[]>([
@@ -47,7 +44,7 @@ export const useCombinationBlockHelper = () => {
         await addToCart(products.map((p) => p.id || ""));
         hideItem(OVERLAYS.LOADER);
       } else {
-        goTo({ path: PAGES.LOG_IN });
+        goTo({ path: PAGES.LOG_IN, addToHistory: true });
       }
     },
     [addToCart, goTo, hideItem, isAuthenticated, showItem],
@@ -60,6 +57,7 @@ export const useCombinationBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: product.id,
         },
+        addToHistory: true,
       });
     },
     [goTo],

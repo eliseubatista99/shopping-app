@@ -7,8 +7,6 @@ services:
       context: ./database # pasta onde está o Dockerfile
       dockerfile: dockerfile
     shm_size: 128mb
-    env_file:
-      - ./database/.env
     ports:
       - "5432:5432"
     volumes:
