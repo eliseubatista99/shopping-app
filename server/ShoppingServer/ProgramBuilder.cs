@@ -21,7 +21,7 @@ namespace ShoppingApp
             "http://127.0.0.1:3000",
             "http://client:3000",
             "https://client:3000",
-            "https://eliseubatista99-shopping-app.netlify.app/"
+            "https://eliseubatista99-shopping-app.netlify.app"
         ];
 
         protected override void InjectDependencies()
