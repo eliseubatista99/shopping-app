@@ -166,9 +166,9 @@ namespace ShoppingServer.Library
                 App.MapOpenApi();
                 App.UseSwagger();
                 App.UseSwaggerUI();
+                App.UseHttpsRedirection();
             }
 
-            App.UseHttpsRedirection();
             App.UseCors("CorsPolicy");
 
             if (UseAuthorization)
