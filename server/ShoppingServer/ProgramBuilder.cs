@@ -15,6 +15,14 @@ namespace ShoppingApp
         protected override bool UseAuthorization => true;
         protected override bool UseAuthentication => true;
 
+        protected override string[] corsOrigins => [
+            "http://localhost:3000",
+            "https://localhost:3000",
+            "http://127.0.0.1:3000",
+            "http://client:3000",
+            "https://client:3000",
+            "https://eliseubatista99-shopping-app.netlify.app/"
+        ];
 
         protected override void InjectDependencies()
         {

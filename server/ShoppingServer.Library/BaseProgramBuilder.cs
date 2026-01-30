@@ -19,7 +19,7 @@ namespace ShoppingServer.Library
         protected virtual bool UseAuthorization { get; } = false;
         protected virtual bool UseAuthentication { get; } = false;
 
-        protected string[] corsOrigins = new[]
+        protected virtual string[] corsOrigins { get; } = new[]
         {
             "http://localhost:3000",
             "https://localhost:3000",
