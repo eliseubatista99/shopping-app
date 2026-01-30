@@ -1,8 +1,9 @@
 FROM postgres:16
 
-# ENV POSTGRES_USER=el_shopper
-# ENV POSTGRES_PASSWORD=el_shopper_pass
-# ENV POSTGRES_DB=shopping-app
+# Can be plain text cause its only this pass and user for tests
+ENV POSTGRES_USER=el_shopper
+ENV POSTGRES_PASSWORD=el_shopper_pass
+ENV POSTGRES_DB=shopping-app
 
 # COPY docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
 
