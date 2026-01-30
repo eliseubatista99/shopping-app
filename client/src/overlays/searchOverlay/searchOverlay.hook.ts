@@ -1,9 +1,6 @@
 import { OVERLAYS, PAGES, SEARCH_PARAMS } from "@constants";
-import {
-  useFeedback,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppSearchParams } from "@hooks";
 import { useStoreSearch, type SearchHistoryEntry } from "@store";
 import React from "react";
 
@@ -13,7 +10,7 @@ export const useOverlaySearchHelper = () => {
   const moveEntryToStart = useStoreSearch((state) => state.moveEntryToStart);
   const previousSearches = useStoreSearch((state) => state.previousSearches);
   // const setProductFilters = useStoreProduct((state) => state.setProductFilters);
-  const { goTo, currentPath } = useNavigation();
+  const { goTo, currentPath } = useAppNavigation();
   const { hideItem } = useFeedback();
   const { searchFilters, allParams } = useAppSearchParams();
 
@@ -27,13 +24,14 @@ export const useOverlaySearchHelper = () => {
           params: {
             [SEARCH_PARAMS.SEARCH_TEXT]: text,
           },
+          addToHistory: true,
         });
       } else {
         allParams.clear();
         searchFilters.set({ text });
       }
     },
-    [allParams, currentPath, goTo, hideItem, searchFilters]
+    [allParams, currentPath, goTo, hideItem, searchFilters],
   );
 
   const submitSearch = React.useCallback(
@@ -41,7 +39,7 @@ export const useOverlaySearchHelper = () => {
       addSearch(text);
       goToList(text);
     },
-    [addSearch, goToList]
+    [addSearch, goToList],
   );
 
   const clickSearchFromHistory = React.useCallback(
@@ -49,14 +47,14 @@ export const useOverlaySearchHelper = () => {
       moveEntryToStart(text.id);
       goToList(text.value);
     },
-    [goToList, moveEntryToStart]
+    [goToList, moveEntryToStart],
   );
 
   const clickRemoveEntry = React.useCallback(
     async (text: SearchHistoryEntry) => {
       deleteSearch(text.id);
     },
-    [deleteSearch]
+    [deleteSearch],
   );
 
   const onClickBack = React.useCallback(() => {

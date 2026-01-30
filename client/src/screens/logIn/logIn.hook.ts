@@ -1,13 +1,14 @@
 import { PAGES } from "@constants";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams, useAuthentication } from "@hooks";
+  useAppNavigation,
+  useAppSearchParams,
+  useAuthentication,
+} from "@hooks";
 import { useCallback, useState } from "react";
 
 export const useLogInPageHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const { allParams, returnPage } = useAppSearchParams();
   const { isAuthenticated } = useAuthentication();
@@ -20,6 +21,7 @@ export const useLogInPageHelper = () => {
         params: {
           ...allParams.value,
         },
+        addToHistory: false,
       });
     } else {
       setInitialized(true);
@@ -28,15 +30,15 @@ export const useLogInPageHelper = () => {
 
   const onClickBack = useCallback(() => {
     const path = returnPage.value || PAGES.SIGN_UP_OR_LOGIN;
-    const params = returnPage.value ? {} : allParams;
 
     goTo({
       path: path,
       params: {
-        ...params,
+        ...allParams.value,
       },
+      addToHistory: false,
     });
-  }, [allParams, goTo, returnPage.value]);
+  }, [allParams, goTo, returnPage]);
 
   useDidMount(() => {
     initScreen();

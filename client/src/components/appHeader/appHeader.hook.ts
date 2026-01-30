@@ -1,15 +1,12 @@
 import { OVERLAYS } from "@constants";
-import {
-  useFeedback,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useFeedback } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import React from "react";
 import type { AppHeaderProps } from "./appHeader";
 
 export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
   const { t } = useAppTranslations();
-  const { goBack, goTo, history } = useNavigation();
+  const { goBack, goTo, history } = useAppNavigation();
   const { showItem, isItemVisible } = useFeedback();
 
   const i18n = React.useMemo(() => {
@@ -26,7 +23,7 @@ export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
     (data: string) => {
       searchBar?.onSearchBarSubmit?.(data);
     },
-    [searchBar]
+    [searchBar],
   );
 
   const handleSearchBarClick = React.useCallback(() => {
@@ -39,17 +36,21 @@ export const useAppHeaderHelper = ({ searchBar, back }: AppHeaderProps) => {
     if (back?.onClick) {
       back.onClick?.();
     } else if (back?.defaultBackPath) {
-      goTo({ path: back.defaultBackPath, addToHistory: false });
+      goTo({ path: back.defaultBackPath });
     } else {
       goBack();
     }
   }, [back, goBack, goTo]);
+
+  const canGoBack = React.useCallback(() => {
+    return history.length > 0 || back?.defaultBackPath || back?.onClick;
+  }, [back, history]);
 
   return {
     i18n,
     handleSearchBarSubmit,
     handleSearchBarClick,
     handleClickBack,
-    canGoBack: history.length > 0 || back?.defaultBackPath || back?.onClick,
+    canGoBack: canGoBack(),
   };
 };

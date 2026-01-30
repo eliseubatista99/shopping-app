@@ -1,20 +1,19 @@
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreClient, useStoreForYou, useStoreReviews } from "@store";
 import React from "react";
 
 export const useReviewsBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const setReviewsStoreState = useStoreReviews(
-    (state) => state.setReviewsStoreState
+    (state) => state.setReviewsStoreState,
   );
   const clientInfo = useStoreClient((state) => state.client);
   const review = useStoreForYou((state) => state.review);
   const needingReviewProduct = useStoreForYou(
-    (state) => state.needingReviewProduct
+    (state) => state.needingReviewProduct,
   );
 
   const i18n = React.useMemo(() => {
@@ -29,6 +28,7 @@ export const useReviewsBlockHelper = () => {
     setReviewsStoreState({ reviewerId: clientInfo?.id });
     goTo({
       path: PAGES.MY_REVIEWS,
+      addToHistory: true,
     });
   }, [clientInfo?.id, goTo, setReviewsStoreState]);
 
@@ -38,6 +38,7 @@ export const useReviewsBlockHelper = () => {
       params: {
         [SEARCH_PARAMS.PRODUCT_ID]: needingReviewProduct?.id,
       },
+      addToHistory: true,
     });
   }, [goTo, needingReviewProduct?.id]);
 
@@ -48,6 +49,7 @@ export const useReviewsBlockHelper = () => {
         [SEARCH_PARAMS.REVIEW_ID]: review?.id,
         [SEARCH_PARAMS.PRODUCT_ID]: review?.productId,
       },
+      addToHistory: true,
     });
   }, [goTo, review?.id, review?.productId]);
 

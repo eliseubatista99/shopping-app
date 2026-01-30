@@ -1,9 +1,6 @@
 import { PAGES } from "@constants";
-import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppSearchParams } from "@hooks";
 import { useStoreReviews } from "@store";
 import React from "react";
 
@@ -12,10 +9,10 @@ export const useReviewsListHelper = () => {
   const { reviewId } = useAppSearchParams();
   const reviewerId = useStoreReviews((state) => state.reviewerId);
   const setReviewsStoreState = useStoreReviews(
-    (state) => state.setReviewsStoreState
+    (state) => state.setReviewsStoreState,
   );
 
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const [loading, setLoading] = React.useState(true);
 
@@ -23,7 +20,7 @@ export const useReviewsListHelper = () => {
     setLoading(true);
 
     if (!productId.value && !reviewId.value && !reviewerId) {
-      goTo({ path: PAGES.NOT_FOUND, addToHistory: false });
+      goTo({ path: PAGES.NOT_FOUND, addToHistory: true });
       return;
     }
 
@@ -35,7 +32,7 @@ export const useReviewsListHelper = () => {
     });
 
     setLoading(false);
-  }, [setReviewsStoreState]);
+  }, [goTo, productId.value, reviewId.value, reviewerId, setReviewsStoreState]);
 
   useDidMount(() => {
     initScreen();

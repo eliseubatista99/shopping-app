@@ -1,15 +1,14 @@
 import { ApiEndpoints } from "@api";
 import type { OrderAndProduct } from "@components";
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreOrders, type OrdersFilters } from "@store";
 import React from "react";
 
 export const useOrdersListBlockHelper = () => {
   const { t } = useAppTranslations();
   const { fetchGetClientOrders } = ApiEndpoints.GetClientOrders();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const setOrdersStoreState = useStoreOrders(
     (state) => state.setOrdersStoreState,
@@ -97,6 +96,7 @@ export const useOrdersListBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.ORDER_ID]: order.order.id,
         },
+        addToHistory: true,
       });
     },
     [goTo],

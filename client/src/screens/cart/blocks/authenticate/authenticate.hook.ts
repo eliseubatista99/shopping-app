@@ -1,10 +1,10 @@
 import type { SignInOrLoginSubmitData } from "@components";
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
+import { useAppNavigation } from "../../../../hooks";
 
 export const useAuthenticateBlockHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const onClickSubmit = React.useCallback(
     async (data: SignInOrLoginSubmitData) => {
@@ -14,6 +14,7 @@ export const useAuthenticateBlockHelper = () => {
           params: {
             [SEARCH_PARAMS.RETURN_PAGE]: PAGES.CART,
           },
+          addToHistory: true,
         });
       } else {
         goTo({
@@ -21,10 +22,11 @@ export const useAuthenticateBlockHelper = () => {
           params: {
             [SEARCH_PARAMS.RETURN_PAGE]: PAGES.CART,
           },
+          addToHistory: true,
         });
       }
     },
-    [goTo]
+    [goTo],
   );
 
   return {

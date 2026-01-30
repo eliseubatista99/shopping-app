@@ -3,18 +3,17 @@ import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
   FormsHelper,
   useFeedback,
-  useNavigation,
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreClient } from "@store";
 import React from "react";
 
 export const useChangeEmailPageHelper = () => {
   const { t } = useAppTranslations();
   const { fetchUpdateClientInfo } = ApiEndpoints.UpdateClientInfo();
-  const { goTo, goBack, history } = useNavigation();
+  const { goTo, goBack, history } = useAppNavigation();
   const { showItem } = useFeedback();
   const client = useStoreClient((state) => state.client);
   const setClientInfo = useStoreClient((state) => state.setClientInfo);
@@ -72,7 +71,7 @@ export const useChangeEmailPageHelper = () => {
           } else {
             goTo({
               path: PAGES.SIGN_IN_AND_SECURITY,
-              addToHistory: false,
+              addToHistory: true,
             });
           }
         }
@@ -85,10 +84,9 @@ export const useChangeEmailPageHelper = () => {
       goBack,
       goTo,
       history.length,
-      i18n.email.error,
       setClientInfo,
       showItem,
-    ]
+    ],
   );
 
   return {

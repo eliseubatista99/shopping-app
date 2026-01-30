@@ -1,25 +1,22 @@
 import { ApiEndpoints } from "@api";
 import { PAGES } from "@constants";
-import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppSearchParams } from "@hooks";
 import { useStoreProduct } from "@store";
 import React, { useEffect } from "react";
 
 export const useProductDetailsPageHelper = () => {
   const searchParams = useAppSearchParams();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const isFetching = React.useRef(false);
   const cachedProductId = React.useRef<string | undefined>(undefined);
 
   const selectedProductInStore = useStoreProduct(
-    (state) => state.selectedProduct
+    (state) => state.selectedProduct,
   );
   const setProductStoreState = useStoreProduct(
-    (state) => state.setProductStoreState
+    (state) => state.setProductStoreState,
   );
   const { fetchProductDetail } = ApiEndpoints.GetProductDetails();
 
@@ -34,7 +31,7 @@ export const useProductDetailsPageHelper = () => {
     setLoading(true);
 
     if (!searchParams.productId.value) {
-      goTo({ path: PAGES.NOT_FOUND, addToHistory: false });
+      goTo({ path: PAGES.NOT_FOUND, addToHistory: true });
     }
 
     const res = await fetchProductDetail({

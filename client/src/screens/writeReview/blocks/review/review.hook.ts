@@ -3,11 +3,10 @@ import { INPUTS, PAGES, SEARCH_PARAMS, TOASTS } from "@constants";
 import {
   FormsHelper,
   useFeedback,
-  useNavigation,
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreProduct } from "@store";
 import React from "react";
 
@@ -22,7 +21,7 @@ export const useReviewBlockHelper = () => {
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const { fetchWriteReview } = ApiEndpoints.WriteReview();
   const { showItem } = useFeedback();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const [score, setScore] = React.useState<number>(0);
   const [form, setForm] = React.useState<ReviewForm>({});

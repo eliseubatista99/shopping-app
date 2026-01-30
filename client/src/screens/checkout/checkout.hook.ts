@@ -1,14 +1,11 @@
 import { PAGES } from "@constants";
-import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { useStoreCheckout } from "@store";
 import React from "react";
-import { useCheckout } from "../../hooks";
+import { useAppNavigation, useCheckout } from "../../hooks";
 
 export const useCheckoutPageHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const isFetching = React.useRef(false);
 
@@ -29,7 +26,7 @@ export const useCheckoutPageHelper = () => {
     if ((productsInStore || []).length < 1) {
       goTo({
         path: PAGES.NOT_FOUND,
-        addToHistory: false,
+        addToHistory: true,
       });
     }
 

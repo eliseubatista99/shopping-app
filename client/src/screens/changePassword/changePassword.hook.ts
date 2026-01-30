@@ -3,11 +3,10 @@ import { INPUTS, PAGES, TOASTS } from "@constants";
 import {
   FormsHelper,
   useFeedback,
-  useNavigation,
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import { useStoreClient } from "@store";
 import React from "react";
 
@@ -19,7 +18,7 @@ type ChangePoneForm = {
 export const useChangePasswordPageHelper = () => {
   const { t } = useAppTranslations();
   const { fetchUpdateClientInfo } = ApiEndpoints.UpdateClientInfo();
-  const { goTo, goBack, history } = useNavigation();
+  const { goTo, goBack, history } = useAppNavigation();
   const { showItem } = useFeedback();
   const client = useStoreClient((state) => state.client);
   const setClientInfo = useStoreClient((state) => state.setClientInfo);
@@ -87,7 +86,7 @@ export const useChangePasswordPageHelper = () => {
       const password = FormsHelper.getField(data, INPUTS.NEW_PASSWORD);
       const passwordConfirm = FormsHelper.getField(
         data,
-        INPUTS.PASSWORD_CONFIRMATION
+        INPUTS.PASSWORD_CONFIRMATION,
       );
 
       if (
@@ -131,7 +130,7 @@ export const useChangePasswordPageHelper = () => {
           } else {
             goTo({
               path: PAGES.SIGN_IN_AND_SECURITY,
-              addToHistory: false,
+              addToHistory: true,
             });
           }
         }
@@ -148,7 +147,7 @@ export const useChangePasswordPageHelper = () => {
       i18n.password.errors.sameAsCurrent,
       setClientInfo,
       showItem,
-    ]
+    ],
   );
 
   return {

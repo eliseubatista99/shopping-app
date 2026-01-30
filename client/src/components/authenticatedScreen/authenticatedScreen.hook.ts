@@ -1,19 +1,17 @@
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
 import { useStoreAuthentication } from "@store";
 import { useCallback } from "react";
+import { useAppNavigation } from "../../hooks";
 import type { AuthenticatedScreenProps } from "./authenticatedScreen";
 
 export const useAuthenticatedScreenHelper = ({
   returnPage,
 }: AuthenticatedScreenProps) => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const initScreen = useCallback(async () => {
     if (!isAuthenticated) {
@@ -22,7 +20,7 @@ export const useAuthenticatedScreenHelper = ({
         params: {
           [SEARCH_PARAMS.RETURN_PAGE]: returnPage,
         },
-        addToHistory: false,
+        addToHistory: true,
       });
     }
   }, [goTo, isAuthenticated, returnPage]);

@@ -1,10 +1,10 @@
 import { type ProductDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import React from "react";
+import { useAppNavigation } from "../../../../hooks";
 
 export const useOffersGroupBlockHelper = () => {
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const onClickProduct = React.useCallback(
     (product: ProductDto) => {
       goTo({
@@ -12,9 +12,10 @@ export const useOffersGroupBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: product.id,
         },
+        addToHistory: true,
       });
     },
-    [goTo]
+    [goTo],
   );
 
   return {

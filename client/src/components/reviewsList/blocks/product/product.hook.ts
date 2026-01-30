@@ -1,6 +1,5 @@
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useAppNavigation, useAppSearchParams } from "@hooks";
 import { useStoreReviews } from "@store";
 import React from "react";
 
@@ -8,7 +7,7 @@ export const useProductBlockHelper = () => {
   const { productId } = useAppSearchParams();
 
   const productName = useStoreReviews((state) => state.productName);
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const onClickBack = React.useCallback(() => {
     goTo({
@@ -16,7 +15,7 @@ export const useProductBlockHelper = () => {
       params: {
         [SEARCH_PARAMS.PRODUCT_ID]: productId.value,
       },
-      addToHistory: false,
+      addToHistory: true,
     });
   }, [goTo, productId.value]);
 

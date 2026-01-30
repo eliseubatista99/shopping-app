@@ -1,10 +1,10 @@
 import type { SortMode } from "@api";
 import { SEARCH_PARAMS } from "@constants";
-import { useNavigation } from "@eliseubatista99/react-scaffold-core";
 import type { ProductFilters } from "@store";
+import { useAppNavigation } from "../useAppNavigation";
 
 export const useAppSearchParams = () => {
-  const { searchParams } = useNavigation();
+  const { searchParams } = useAppNavigation();
 
   return {
     allParams: {

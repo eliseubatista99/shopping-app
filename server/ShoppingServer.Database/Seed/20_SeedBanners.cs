@@ -25,7 +25,7 @@ namespace ShoppingServer.Database.Seed
                     Title = "Back to School Deals",
                     Subtitle = "Volta às aulas com descontos",
                     Category = "Back to School",
-                    TextColor = "#000000",
+                    TextColor = "#ffffff",
                     Image = SeedHelper.ReadImage("Seed/Images/Banners/banner-0002.jpg"),
                     CreatedAt = DateTimeOffset.UtcNow
                 },
@@ -35,7 +35,7 @@ namespace ShoppingServer.Database.Seed
                     Title = "Home Office Essentials",
                     Subtitle = "Tudo para o teu escritório",
                     Category = "Office",
-                    TextColor = "#ffffff",
+                    TextColor = "#000000",
                     Image = SeedHelper.ReadImage("Seed/Images/Banners/banner-0003.jpg"),
                     CreatedAt = DateTimeOffset.UtcNow
                 }

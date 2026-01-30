@@ -15,11 +15,9 @@ export const Authenticate = () => {
     async (input: AuthenticateOperationInputDto) => {
       const result = await post({ ...input });
 
-      console.log("RES", document.cookie);
-
       return result;
     },
-    [post]
+    [post],
   );
 
   return {

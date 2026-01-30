@@ -1,10 +1,7 @@
 import type { ReviewDto } from "@api";
 import { PAGES, SEARCH_PARAMS } from "@constants";
-import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppTranslations } from "@hooks";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppTranslations } from "@hooks";
 import {
   useStoreAuthentication,
   useStoreProduct,
@@ -18,13 +15,13 @@ type ReviewWithExpansion = ReviewDto & {
 
 export const useReviewsBlockHelper = () => {
   const isAuthenticated = useStoreAuthentication(
-    (state) => state.isAuthenticated
+    (state) => state.isAuthenticated,
   );
   const selectedProduct = useStoreProduct((state) => state.selectedProduct);
   const setReviewsStoreState = useStoreReviews(
-    (state) => state.setReviewsStoreState
+    (state) => state.setReviewsStoreState,
   );
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { t } = useAppTranslations();
 
   const [reviews, setReviews] = React.useState<ReviewWithExpansion[]>([]);
@@ -52,6 +49,7 @@ export const useReviewsBlockHelper = () => {
       params: {
         [SEARCH_PARAMS.PRODUCT_ID]: selectedProduct?.id,
       },
+      addToHistory: true,
     });
   }, [goTo, selectedProduct?.id]);
 
@@ -63,7 +61,7 @@ export const useReviewsBlockHelper = () => {
         } else {
           return r;
         }
-      })
+      }),
     );
   }, []);
 
@@ -81,10 +79,12 @@ export const useReviewsBlockHelper = () => {
         params: {
           [SEARCH_PARAMS.PRODUCT_ID]: selectedProduct?.id,
         },
+        addToHistory: true,
       });
     } else {
       goTo({
         path: PAGES.LOG_IN,
+        addToHistory: true,
       });
     }
   }, [
@@ -101,7 +101,7 @@ export const useReviewsBlockHelper = () => {
       (r): ReviewWithExpansion => ({
         ...r,
         isExpanded: false,
-      })
+      }),
     );
 
     setReviews(data);

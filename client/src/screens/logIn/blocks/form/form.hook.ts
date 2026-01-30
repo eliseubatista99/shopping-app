@@ -3,12 +3,12 @@ import {
   FormsHelper,
   TextHelper,
   useFeedback,
-  useNavigation,
   type FormFieldConfiguration,
   type FormFieldOutputData,
 } from "@eliseubatista99/react-scaffold-core";
 import { ErrorHelper } from "@helpers";
 import {
+  useAppNavigation,
   useAppSearchParams,
   useAppTranslations,
   useAuthentication,
@@ -24,7 +24,7 @@ type LoginInForm = {
 
 export const useFormBlockHelper = () => {
   const { t } = useAppTranslations();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
   const { authenticate } = useAuthentication();
   const storeAuthForm = useStoreAuthentication((state) => state.form);
   const { returnPage } = useAppSearchParams();
@@ -112,7 +112,7 @@ export const useFormBlockHelper = () => {
       if (!emailOrPhone?.error && !password?.error) {
         const emailOrPhoneValue = FormsHelper.getFieldValueOrDefault(
           emailOrPhone,
-          ""
+          "",
         );
         const isEmail = TextHelper.isEmail(emailOrPhoneValue);
         const isPhone = TextHelper.isPhoneNumber(emailOrPhoneValue);
@@ -138,15 +138,15 @@ export const useFormBlockHelper = () => {
         } else {
           const invalidEmailError = ErrorHelper.containsError(
             res.metadata?.errors,
-            ERRORS.INVALID_EMAIL
+            ERRORS.INVALID_EMAIL,
           );
           const invalidPhoneError = ErrorHelper.containsError(
             res.metadata?.errors,
-            ERRORS.INVALID_PHONE
+            ERRORS.INVALID_PHONE,
           );
           const wrongPasswordError = ErrorHelper.containsError(
             res.metadata?.errors,
-            ERRORS.WRONG_PASSWORD
+            ERRORS.WRONG_PASSWORD,
           );
 
           if (invalidEmailError) {
@@ -180,7 +180,7 @@ export const useFormBlockHelper = () => {
       i18n.password.errors.wrong,
       returnPage.value,
       showItem,
-    ]
+    ],
   );
 
   return {

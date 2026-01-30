@@ -1,21 +1,18 @@
 import { PAGES } from "@constants";
-import {
-  useDidMount,
-  useNavigation,
-} from "@eliseubatista99/react-scaffold-core";
-import { useAppSearchParams } from "@hooks";
+import { useDidMount } from "@eliseubatista99/react-scaffold-core";
+import { useAppNavigation, useAppSearchParams } from "@hooks";
 import React from "react";
 
 export const useWriteReviewPageHelper = () => {
   const { productId } = useAppSearchParams();
-  const { goTo } = useNavigation();
+  const { goTo } = useAppNavigation();
 
   const [loading, setLoading] = React.useState(true);
 
   const initScreen = React.useCallback(async () => {
     setLoading(true);
     if (!productId.value) {
-      goTo({ path: PAGES.NOT_FOUND, addToHistory: false });
+      goTo({ path: PAGES.NOT_FOUND, addToHistory: true });
     }
 
     setLoading(false);
